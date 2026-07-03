@@ -1,0 +1,30 @@
+
+#include "FreeRTOS.h"
+#include "task.h"
+#include "MC_Serial.hpp"
+#include "My_Vofa.hpp"
+#include "uorb.hpp"
+#include "bsp.hpp"
+#include "DcMotor_ClosedLoop.hpp"
+#include "BL24C16F.hpp"
+
+BL24C16F EEPROM1(EEPROM_hi2c);
+uint8_t bufff_tx[10] = {0x01, 0x02, 0xa3, 0xb4, 0x05, 0x06, 0xc7, 0xf8, 0x09, 0x0a};
+
+uint8_t add[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0d, 0x10, 0x11, 0x12, 0x16, 0x72};
+uint8_t data_tx[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10};
+uint16_t len = sizeof(data_tx) / sizeof(data_tx[0]);
+uint8_t data_rx[20];
+
+
+void Task_Test(void *argument)
+{
+    printf("1-任务启动中\r\n");
+    vTaskDelay(pdMS_TO_TICKS(50));
+
+    // M1._encoder->KTH7111_Read_MoreRegs(add, data_rx, len); //读取多个寄存器
+    while (1)
+    {
+        vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}

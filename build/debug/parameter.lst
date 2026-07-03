@@ -1,0 +1,980 @@
+ARM GAS  /tmp/cc1fGdlw.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"parameter.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Lib/parameter/parameter.cpp"
+  20              		.align	1
+  21              		.global	_ZN9Parameter4initEiP12param_init_t
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_ZN9Parameter4initEiP12param_init_t:
+  27              	.LVL0:
+  28              	.LFB988:
+   1:Lib/parameter/parameter.cpp **** #include "parameter.hpp"
+   2:Lib/parameter/parameter.cpp **** 
+   3:Lib/parameter/parameter.cpp **** void Parameter::init(int index, param_init_t pi)
+   4:Lib/parameter/parameter.cpp **** {
+   5:Lib/parameter/parameter.cpp ****     init(index, &pi);
+   6:Lib/parameter/parameter.cpp **** }
+   7:Lib/parameter/parameter.cpp **** 
+   8:Lib/parameter/parameter.cpp **** void Parameter::init(int index, param_init_t *pi)
+   9:Lib/parameter/parameter.cpp **** {
+  29              		.loc 1 9 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  10:Lib/parameter/parameter.cpp ****     _index = index;
+  34              		.loc 1 10 5 view .LVU1
+  35              		.loc 1 10 12 is_stmt 0 view .LVU2
+  36 0000 0160     		str	r1, [r0]
+  11:Lib/parameter/parameter.cpp ****     _id = pi->id;
+  37              		.loc 1 11 5 is_stmt 1 view .LVU3
+  38              		.loc 1 11 15 is_stmt 0 view .LVU4
+  39 0002 1368     		ldr	r3, [r2]
+  40              		.loc 1 11 9 view .LVU5
+  41 0004 4360     		str	r3, [r0, #4]
+  12:Lib/parameter/parameter.cpp ****     _type = pi->type;
+  42              		.loc 1 12 5 is_stmt 1 view .LVU6
+  43              		.loc 1 12 17 is_stmt 0 view .LVU7
+  44 0006 1379     		ldrb	r3, [r2, #4]	@ zero_extendqisi2
+  45              		.loc 1 12 11 view .LVU8
+  46 0008 0372     		strb	r3, [r0, #8]
+ARM GAS  /tmp/cc1fGdlw.s 			page 2
+
+
+  13:Lib/parameter/parameter.cpp ****     _dest_ptr = pi->dest_ptr;
+  47              		.loc 1 13 5 is_stmt 1 view .LVU9
+  48              		.loc 1 13 21 is_stmt 0 view .LVU10
+  49 000a 9368     		ldr	r3, [r2, #8]
+  50              		.loc 1 13 15 view .LVU11
+  51 000c 0361     		str	r3, [r0, #16]
+  14:Lib/parameter/parameter.cpp ****     _default_value = pi->default_value;
+  52              		.loc 1 14 5 is_stmt 1 view .LVU12
+  53              		.loc 1 14 26 is_stmt 0 view .LVU13
+  54 000e D368     		ldr	r3, [r2, #12]	@ float
+  55              		.loc 1 14 20 view .LVU14
+  56 0010 4361     		str	r3, [r0, #20]	@ float
+  15:Lib/parameter/parameter.cpp ****     _min_value = pi->min_value;
+  57              		.loc 1 15 5 is_stmt 1 view .LVU15
+  58              		.loc 1 15 22 is_stmt 0 view .LVU16
+  59 0012 1369     		ldr	r3, [r2, #16]	@ float
+  60              		.loc 1 15 16 view .LVU17
+  61 0014 8361     		str	r3, [r0, #24]	@ float
+  16:Lib/parameter/parameter.cpp ****     _max_value = pi->max_value;
+  62              		.loc 1 16 5 is_stmt 1 view .LVU18
+  63              		.loc 1 16 22 is_stmt 0 view .LVU19
+  64 0016 5369     		ldr	r3, [r2, #20]	@ float
+  65              		.loc 1 16 16 view .LVU20
+  66 0018 C361     		str	r3, [r0, #28]	@ float
+  17:Lib/parameter/parameter.cpp ****     _step = pi->step;
+  67              		.loc 1 17 5 is_stmt 1 view .LVU21
+  68              		.loc 1 17 17 is_stmt 0 view .LVU22
+  69 001a 9369     		ldr	r3, [r2, #24]	@ float
+  70              		.loc 1 17 11 view .LVU23
+  71 001c 0362     		str	r3, [r0, #32]	@ float
+  18:Lib/parameter/parameter.cpp **** #if PARAM_USE_CN_DESCRIPTION
+  19:Lib/parameter/parameter.cpp ****     _description = pi->desc_cn;
+  72              		.loc 1 19 5 is_stmt 1 view .LVU24
+  73              		.loc 1 19 24 is_stmt 0 view .LVU25
+  74 001e 136A     		ldr	r3, [r2, #32]
+  75              		.loc 1 19 18 view .LVU26
+  76 0020 4362     		str	r3, [r0, #36]
+  20:Lib/parameter/parameter.cpp **** #else
+  21:Lib/parameter/parameter.cpp ****     _description = pi->description;
+  22:Lib/parameter/parameter.cpp **** #endif
+  23:Lib/parameter/parameter.cpp **** }
+  77              		.loc 1 23 1 view .LVU27
+  78 0022 7047     		bx	lr
+  79              		.cfi_endproc
+  80              	.LFE988:
+  82              		.align	1
+  83              		.global	_ZN9Parameter4initEi12param_init_t
+  84              		.syntax unified
+  85              		.thumb
+  86              		.thumb_func
+  88              	_ZN9Parameter4initEi12param_init_t:
+  89              	.LVL1:
+  90              	.LFB987:
+   4:Lib/parameter/parameter.cpp ****     init(index, &pi);
+  91              		.loc 1 4 1 is_stmt 1 view -0
+  92              		.cfi_startproc
+  93              		@ args = 36, pretend = 8, frame = 0
+ARM GAS  /tmp/cc1fGdlw.s 			page 3
+
+
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+   4:Lib/parameter/parameter.cpp ****     init(index, &pi);
+  95              		.loc 1 4 1 is_stmt 0 view .LVU29
+  96 0024 82B0     		sub	sp, sp, #8
+  97              		.cfi_def_cfa_offset 8
+  98 0026 08B5     		push	{r3, lr}
+  99              		.cfi_def_cfa_offset 16
+ 100              		.cfi_offset 3, -16
+ 101              		.cfi_offset 14, -12
+ 102 0028 0DF1080C 		add	ip, sp, #8
+ 103 002c 8CE80C00 		stm	ip, {r2, r3}
+   5:Lib/parameter/parameter.cpp **** }
+ 104              		.loc 1 5 5 is_stmt 1 view .LVU30
+   5:Lib/parameter/parameter.cpp **** }
+ 105              		.loc 1 5 9 is_stmt 0 view .LVU31
+ 106 0030 6246     		mov	r2, ip
+ 107 0032 FFF7FEFF 		bl	_ZN9Parameter4initEiP12param_init_t
+ 108              	.LVL2:
+   6:Lib/parameter/parameter.cpp **** 
+ 109              		.loc 1 6 1 view .LVU32
+ 110 0036 BDE80840 		pop	{r3, lr}
+ 111              		.cfi_restore 14
+ 112              		.cfi_restore 3
+ 113              		.cfi_def_cfa_offset 8
+ 114 003a 02B0     		add	sp, sp, #8
+ 115              		.cfi_def_cfa_offset 0
+ 116 003c 7047     		bx	lr
+ 117              		.cfi_endproc
+ 118              	.LFE987:
+ 120              		.align	1
+ 121              		.global	_ZN9Parameter6updateEf
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 126              	_ZN9Parameter6updateEf:
+ 127              	.LVL3:
+ 128              	.LFB989:
+  24:Lib/parameter/parameter.cpp **** 
+  25:Lib/parameter/parameter.cpp **** void Parameter::update(float value)
+  26:Lib/parameter/parameter.cpp **** {
+ 129              		.loc 1 26 1 is_stmt 1 view -0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133              		@ link register save eliminated.
+  27:Lib/parameter/parameter.cpp ****     _value = constraint_value(value, _min_value, _max_value);
+ 134              		.loc 1 27 5 view .LVU34
+ 135              		.loc 1 27 14 is_stmt 0 view .LVU35
+ 136 003e D0ED067A 		vldr.32	s15, [r0, #24]
+ 137 0042 F4EEC07A 		vcmpe.f32	s15, s0
+ 138 0046 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 139 004a 08DC     		bgt	.L5
+ 140              		.loc 1 27 14 discriminator 2 view .LVU36
+ 141 004c D0ED077A 		vldr.32	s15, [r0, #28]
+ 142 0050 F4EEC07A 		vcmpe.f32	s15, s0
+ 143 0054 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 144 0058 01D4     		bmi	.L5
+ARM GAS  /tmp/cc1fGdlw.s 			page 4
+
+
+ 145              		.loc 1 27 14 discriminator 5 view .LVU37
+ 146 005a F0EE407A 		vmov.f32	s15, s0
+ 147              	.L5:
+ 148              		.loc 1 27 12 discriminator 8 view .LVU38
+ 149 005e C0ED037A 		vstr.32	s15, [r0, #12]
+  28:Lib/parameter/parameter.cpp **** }
+ 150              		.loc 1 28 1 view .LVU39
+ 151 0062 7047     		bx	lr
+ 152              		.cfi_endproc
+ 153              	.LFE989:
+ 155              		.align	1
+ 156              		.global	_ZN9Parameter4loadEv
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	_ZN9Parameter4loadEv:
+ 162              	.LVL4:
+ 163              	.LFB990:
+  29:Lib/parameter/parameter.cpp **** 
+  30:Lib/parameter/parameter.cpp **** bool Parameter::load(void)
+  31:Lib/parameter/parameter.cpp **** {
+ 164              		.loc 1 31 1 is_stmt 1 view -0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              		.loc 1 31 1 is_stmt 0 view .LVU41
+ 169 0064 10B5     		push	{r4, lr}
+ 170              		.cfi_def_cfa_offset 8
+ 171              		.cfi_offset 4, -8
+ 172              		.cfi_offset 14, -4
+  32:Lib/parameter/parameter.cpp ****     if (_dest_ptr == nullptr)
+ 173              		.loc 1 32 5 is_stmt 1 view .LVU42
+ 174              		.loc 1 32 9 is_stmt 0 view .LVU43
+ 175 0066 0469     		ldr	r4, [r0, #16]
+ 176              		.loc 1 32 5 view .LVU44
+ 177 0068 002C     		cmp	r4, #0
+ 178 006a 57D0     		beq	.L19
+  33:Lib/parameter/parameter.cpp ****         return false;
+  34:Lib/parameter/parameter.cpp **** 
+  35:Lib/parameter/parameter.cpp ****     switch (_type)
+ 179              		.loc 1 35 5 is_stmt 1 view .LVU45
+ 180              		.loc 1 35 13 is_stmt 0 view .LVU46
+ 181 006c 037A     		ldrb	r3, [r0, #8]	@ zero_extendqisi2
+ 182              		.loc 1 35 5 view .LVU47
+ 183 006e 013B     		subs	r3, r3, #1
+ 184 0070 092B     		cmp	r3, #9
+ 185 0072 55D8     		bhi	.L20
+ 186 0074 DFE803F0 		tbb	[pc, r3]
+ 187              	.L9:
+ 188 0078 05       		.byte	(.L18-.L9)/2
+ 189 0079 0E       		.byte	(.L17-.L9)/2
+ 190 007a 17       		.byte	(.L16-.L9)/2
+ 191 007b 20       		.byte	(.L15-.L9)/2
+ 192 007c 29       		.byte	(.L14-.L9)/2
+ 193 007d 31       		.byte	(.L13-.L9)/2
+ 194 007e 39       		.byte	(.L12-.L9)/2
+ 195 007f 40       		.byte	(.L11-.L9)/2
+ARM GAS  /tmp/cc1fGdlw.s 			page 5
+
+
+ 196 0080 47       		.byte	(.L10-.L9)/2
+ 197 0081 4B       		.byte	(.L8-.L9)/2
+ 198              		.p2align 1
+ 199              	.L18:
+  36:Lib/parameter/parameter.cpp ****     {
+  37:Lib/parameter/parameter.cpp ****     case Param_Type::U8: /* uint8_t type */
+ 200              		.loc 1 37 5 is_stmt 1 view .LVU48
+  38:Lib/parameter/parameter.cpp ****         *(uint8_t *)_dest_ptr = (uint8_t)_value;
+ 201              		.loc 1 38 9 view .LVU49
+ 202              		.loc 1 38 42 is_stmt 0 view .LVU50
+ 203 0082 D0ED037A 		vldr.32	s15, [r0, #12]
+ 204              		.loc 1 38 33 view .LVU51
+ 205 0086 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 206 008a 17EE903A 		vmov	r3, s15	@ int
+ 207              		.loc 1 38 31 view .LVU52
+ 208 008e 2370     		strb	r3, [r4]
+  39:Lib/parameter/parameter.cpp ****         break;
+ 209              		.loc 1 39 9 is_stmt 1 view .LVU53
+  40:Lib/parameter/parameter.cpp ****     case Param_Type::I8: /* int8_t type */
+  41:Lib/parameter/parameter.cpp ****         *(int8_t *)_dest_ptr = (int8_t)_value;
+  42:Lib/parameter/parameter.cpp ****         break;
+  43:Lib/parameter/parameter.cpp ****     case Param_Type::U16: /* uint16_t type */
+  44:Lib/parameter/parameter.cpp ****         *(uint16_t *)_dest_ptr = (uint16_t)_value;
+  45:Lib/parameter/parameter.cpp ****         break;
+  46:Lib/parameter/parameter.cpp ****     case Param_Type::I16: /* int16_t type */
+  47:Lib/parameter/parameter.cpp ****         *(int16_t *)_dest_ptr = (int16_t)_value;
+  48:Lib/parameter/parameter.cpp ****         break;
+  49:Lib/parameter/parameter.cpp ****     case Param_Type::U32: /* uint32_t type */
+  50:Lib/parameter/parameter.cpp ****         *(uint32_t *)_dest_ptr = (uint32_t)_value;
+  51:Lib/parameter/parameter.cpp ****         break;
+  52:Lib/parameter/parameter.cpp ****     case Param_Type::I32: /* int32_t type */
+  53:Lib/parameter/parameter.cpp ****         *(int32_t *)_dest_ptr = (int32_t)_value;
+  54:Lib/parameter/parameter.cpp ****         break;
+  55:Lib/parameter/parameter.cpp ****     case Param_Type::U64: /* uint64_t type */
+  56:Lib/parameter/parameter.cpp ****         *(uint64_t *)_dest_ptr = (uint64_t)_value;
+  57:Lib/parameter/parameter.cpp ****         break;
+  58:Lib/parameter/parameter.cpp ****     case Param_Type::I64: /* int64_t type */
+  59:Lib/parameter/parameter.cpp ****         *(int64_t *)_dest_ptr = (int64_t)_value;
+  60:Lib/parameter/parameter.cpp ****         break;
+  61:Lib/parameter/parameter.cpp ****     case Param_Type::F32: /* float type */
+  62:Lib/parameter/parameter.cpp ****         *(float *)_dest_ptr = (float)_value;
+  63:Lib/parameter/parameter.cpp ****         break;
+  64:Lib/parameter/parameter.cpp ****     case Param_Type::F64: /* double type */
+  65:Lib/parameter/parameter.cpp ****         *(double *)_dest_ptr = (double)_value;
+  66:Lib/parameter/parameter.cpp ****         break;
+  67:Lib/parameter/parameter.cpp ****     default:
+  68:Lib/parameter/parameter.cpp ****         return false;
+  69:Lib/parameter/parameter.cpp ****     }
+  70:Lib/parameter/parameter.cpp **** 
+  71:Lib/parameter/parameter.cpp ****     return true;
+ 210              		.loc 1 71 12 is_stmt 0 view .LVU54
+ 211 0090 0120     		movs	r0, #1
+ 212              	.LVL5:
+  39:Lib/parameter/parameter.cpp ****         break;
+ 213              		.loc 1 39 9 view .LVU55
+ 214 0092 44E0     		b	.L7
+ 215              	.LVL6:
+ARM GAS  /tmp/cc1fGdlw.s 			page 6
+
+
+ 216              	.L17:
+  40:Lib/parameter/parameter.cpp ****     case Param_Type::I8: /* int8_t type */
+ 217              		.loc 1 40 5 is_stmt 1 view .LVU56
+  41:Lib/parameter/parameter.cpp ****         break;
+ 218              		.loc 1 41 9 view .LVU57
+  41:Lib/parameter/parameter.cpp ****         break;
+ 219              		.loc 1 41 40 is_stmt 0 view .LVU58
+ 220 0094 D0ED037A 		vldr.32	s15, [r0, #12]
+  41:Lib/parameter/parameter.cpp ****         break;
+ 221              		.loc 1 41 32 view .LVU59
+ 222 0098 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 223 009c 17EE903A 		vmov	r3, s15	@ int
+  41:Lib/parameter/parameter.cpp ****         break;
+ 224              		.loc 1 41 30 view .LVU60
+ 225 00a0 2370     		strb	r3, [r4]
+  42:Lib/parameter/parameter.cpp ****     case Param_Type::U16: /* uint16_t type */
+ 226              		.loc 1 42 9 is_stmt 1 view .LVU61
+ 227              		.loc 1 71 12 is_stmt 0 view .LVU62
+ 228 00a2 0120     		movs	r0, #1
+ 229              	.LVL7:
+  42:Lib/parameter/parameter.cpp ****     case Param_Type::U16: /* uint16_t type */
+ 230              		.loc 1 42 9 view .LVU63
+ 231 00a4 3BE0     		b	.L7
+ 232              	.LVL8:
+ 233              	.L16:
+  43:Lib/parameter/parameter.cpp ****         *(uint16_t *)_dest_ptr = (uint16_t)_value;
+ 234              		.loc 1 43 5 is_stmt 1 view .LVU64
+  44:Lib/parameter/parameter.cpp ****         break;
+ 235              		.loc 1 44 9 view .LVU65
+  44:Lib/parameter/parameter.cpp ****         break;
+ 236              		.loc 1 44 44 is_stmt 0 view .LVU66
+ 237 00a6 D0ED037A 		vldr.32	s15, [r0, #12]
+  44:Lib/parameter/parameter.cpp ****         break;
+ 238              		.loc 1 44 34 view .LVU67
+ 239 00aa FCEEE77A 		vcvt.u32.f32	s15, s15
+  44:Lib/parameter/parameter.cpp ****         break;
+ 240              		.loc 1 44 32 view .LVU68
+ 241 00ae 17EE903A 		vmov	r3, s15	@ int
+ 242 00b2 2380     		strh	r3, [r4]	@ movhi
+  45:Lib/parameter/parameter.cpp ****     case Param_Type::I16: /* int16_t type */
+ 243              		.loc 1 45 9 is_stmt 1 view .LVU69
+ 244              		.loc 1 71 12 is_stmt 0 view .LVU70
+ 245 00b4 0120     		movs	r0, #1
+ 246              	.LVL9:
+  45:Lib/parameter/parameter.cpp ****     case Param_Type::I16: /* int16_t type */
+ 247              		.loc 1 45 9 view .LVU71
+ 248 00b6 32E0     		b	.L7
+ 249              	.LVL10:
+ 250              	.L15:
+  46:Lib/parameter/parameter.cpp ****         *(int16_t *)_dest_ptr = (int16_t)_value;
+ 251              		.loc 1 46 5 is_stmt 1 view .LVU72
+  47:Lib/parameter/parameter.cpp ****         break;
+ 252              		.loc 1 47 9 view .LVU73
+  47:Lib/parameter/parameter.cpp ****         break;
+ 253              		.loc 1 47 42 is_stmt 0 view .LVU74
+ 254 00b8 D0ED037A 		vldr.32	s15, [r0, #12]
+  47:Lib/parameter/parameter.cpp ****         break;
+ARM GAS  /tmp/cc1fGdlw.s 			page 7
+
+
+ 255              		.loc 1 47 33 view .LVU75
+ 256 00bc FDEEE77A 		vcvt.s32.f32	s15, s15
+  47:Lib/parameter/parameter.cpp ****         break;
+ 257              		.loc 1 47 31 view .LVU76
+ 258 00c0 17EE903A 		vmov	r3, s15	@ int
+ 259 00c4 2380     		strh	r3, [r4]	@ movhi
+  48:Lib/parameter/parameter.cpp ****     case Param_Type::U32: /* uint32_t type */
+ 260              		.loc 1 48 9 is_stmt 1 view .LVU77
+ 261              		.loc 1 71 12 is_stmt 0 view .LVU78
+ 262 00c6 0120     		movs	r0, #1
+ 263              	.LVL11:
+  48:Lib/parameter/parameter.cpp ****     case Param_Type::U32: /* uint32_t type */
+ 264              		.loc 1 48 9 view .LVU79
+ 265 00c8 29E0     		b	.L7
+ 266              	.LVL12:
+ 267              	.L14:
+  49:Lib/parameter/parameter.cpp ****         *(uint32_t *)_dest_ptr = (uint32_t)_value;
+ 268              		.loc 1 49 5 is_stmt 1 view .LVU80
+  50:Lib/parameter/parameter.cpp ****         break;
+ 269              		.loc 1 50 9 view .LVU81
+  50:Lib/parameter/parameter.cpp ****         break;
+ 270              		.loc 1 50 44 is_stmt 0 view .LVU82
+ 271 00ca D0ED037A 		vldr.32	s15, [r0, #12]
+  50:Lib/parameter/parameter.cpp ****         break;
+ 272              		.loc 1 50 34 view .LVU83
+ 273 00ce FCEEE77A 		vcvt.u32.f32	s15, s15
+  50:Lib/parameter/parameter.cpp ****         break;
+ 274              		.loc 1 50 32 view .LVU84
+ 275 00d2 C4ED007A 		vstr.32	s15, [r4]	@ int
+  51:Lib/parameter/parameter.cpp ****     case Param_Type::I32: /* int32_t type */
+ 276              		.loc 1 51 9 is_stmt 1 view .LVU85
+ 277              		.loc 1 71 12 is_stmt 0 view .LVU86
+ 278 00d6 0120     		movs	r0, #1
+ 279              	.LVL13:
+  51:Lib/parameter/parameter.cpp ****     case Param_Type::I32: /* int32_t type */
+ 280              		.loc 1 51 9 view .LVU87
+ 281 00d8 21E0     		b	.L7
+ 282              	.LVL14:
+ 283              	.L13:
+  52:Lib/parameter/parameter.cpp ****         *(int32_t *)_dest_ptr = (int32_t)_value;
+ 284              		.loc 1 52 5 is_stmt 1 view .LVU88
+  53:Lib/parameter/parameter.cpp ****         break;
+ 285              		.loc 1 53 9 view .LVU89
+  53:Lib/parameter/parameter.cpp ****         break;
+ 286              		.loc 1 53 42 is_stmt 0 view .LVU90
+ 287 00da D0ED037A 		vldr.32	s15, [r0, #12]
+  53:Lib/parameter/parameter.cpp ****         break;
+ 288              		.loc 1 53 33 view .LVU91
+ 289 00de FDEEE77A 		vcvt.s32.f32	s15, s15
+  53:Lib/parameter/parameter.cpp ****         break;
+ 290              		.loc 1 53 31 view .LVU92
+ 291 00e2 C4ED007A 		vstr.32	s15, [r4]	@ int
+  54:Lib/parameter/parameter.cpp ****     case Param_Type::U64: /* uint64_t type */
+ 292              		.loc 1 54 9 is_stmt 1 view .LVU93
+ 293              		.loc 1 71 12 is_stmt 0 view .LVU94
+ 294 00e6 0120     		movs	r0, #1
+ 295              	.LVL15:
+ARM GAS  /tmp/cc1fGdlw.s 			page 8
+
+
+  54:Lib/parameter/parameter.cpp ****     case Param_Type::U64: /* uint64_t type */
+ 296              		.loc 1 54 9 view .LVU95
+ 297 00e8 19E0     		b	.L7
+ 298              	.LVL16:
+ 299              	.L12:
+  55:Lib/parameter/parameter.cpp ****         *(uint64_t *)_dest_ptr = (uint64_t)_value;
+ 300              		.loc 1 55 5 is_stmt 1 view .LVU96
+  56:Lib/parameter/parameter.cpp ****         break;
+ 301              		.loc 1 56 9 view .LVU97
+  56:Lib/parameter/parameter.cpp ****         break;
+ 302              		.loc 1 56 34 is_stmt 0 view .LVU98
+ 303 00ea C068     		ldr	r0, [r0, #12]	@ float
+ 304              	.LVL17:
+  56:Lib/parameter/parameter.cpp ****         break;
+ 305              		.loc 1 56 34 view .LVU99
+ 306 00ec FFF7FEFF 		bl	__aeabi_f2ulz
+ 307              	.LVL18:
+  56:Lib/parameter/parameter.cpp ****         break;
+ 308              		.loc 1 56 32 view .LVU100
+ 309 00f0 C4E90001 		strd	r0, [r4]
+  57:Lib/parameter/parameter.cpp ****     case Param_Type::I64: /* int64_t type */
+ 310              		.loc 1 57 9 is_stmt 1 view .LVU101
+ 311              		.loc 1 71 12 is_stmt 0 view .LVU102
+ 312 00f4 0120     		movs	r0, #1
+  57:Lib/parameter/parameter.cpp ****     case Param_Type::I64: /* int64_t type */
+ 313              		.loc 1 57 9 view .LVU103
+ 314 00f6 12E0     		b	.L7
+ 315              	.LVL19:
+ 316              	.L11:
+  58:Lib/parameter/parameter.cpp ****         *(int64_t *)_dest_ptr = (int64_t)_value;
+ 317              		.loc 1 58 5 is_stmt 1 view .LVU104
+  59:Lib/parameter/parameter.cpp ****         break;
+ 318              		.loc 1 59 9 view .LVU105
+  59:Lib/parameter/parameter.cpp ****         break;
+ 319              		.loc 1 59 33 is_stmt 0 view .LVU106
+ 320 00f8 C068     		ldr	r0, [r0, #12]	@ float
+ 321              	.LVL20:
+  59:Lib/parameter/parameter.cpp ****         break;
+ 322              		.loc 1 59 33 view .LVU107
+ 323 00fa FFF7FEFF 		bl	__aeabi_f2lz
+ 324              	.LVL21:
+  59:Lib/parameter/parameter.cpp ****         break;
+ 325              		.loc 1 59 31 view .LVU108
+ 326 00fe C4E90001 		strd	r0, [r4]
+  60:Lib/parameter/parameter.cpp ****     case Param_Type::F32: /* float type */
+ 327              		.loc 1 60 9 is_stmt 1 view .LVU109
+ 328              		.loc 1 71 12 is_stmt 0 view .LVU110
+ 329 0102 0120     		movs	r0, #1
+  60:Lib/parameter/parameter.cpp ****     case Param_Type::F32: /* float type */
+ 330              		.loc 1 60 9 view .LVU111
+ 331 0104 0BE0     		b	.L7
+ 332              	.LVL22:
+ 333              	.L10:
+  61:Lib/parameter/parameter.cpp ****         *(float *)_dest_ptr = (float)_value;
+ 334              		.loc 1 61 5 is_stmt 1 view .LVU112
+  62:Lib/parameter/parameter.cpp ****         break;
+ 335              		.loc 1 62 9 view .LVU113
+ARM GAS  /tmp/cc1fGdlw.s 			page 9
+
+
+  62:Lib/parameter/parameter.cpp ****         break;
+ 336              		.loc 1 62 38 is_stmt 0 view .LVU114
+ 337 0106 C368     		ldr	r3, [r0, #12]	@ float
+  62:Lib/parameter/parameter.cpp ****         break;
+ 338              		.loc 1 62 29 view .LVU115
+ 339 0108 2360     		str	r3, [r4]	@ float
+  63:Lib/parameter/parameter.cpp ****     case Param_Type::F64: /* double type */
+ 340              		.loc 1 63 9 is_stmt 1 view .LVU116
+ 341              		.loc 1 71 12 is_stmt 0 view .LVU117
+ 342 010a 0120     		movs	r0, #1
+ 343              	.LVL23:
+  63:Lib/parameter/parameter.cpp ****     case Param_Type::F64: /* double type */
+ 344              		.loc 1 63 9 view .LVU118
+ 345 010c 07E0     		b	.L7
+ 346              	.LVL24:
+ 347              	.L8:
+  64:Lib/parameter/parameter.cpp ****         *(double *)_dest_ptr = (double)_value;
+ 348              		.loc 1 64 5 is_stmt 1 view .LVU119
+  65:Lib/parameter/parameter.cpp ****         break;
+ 349              		.loc 1 65 9 view .LVU120
+  65:Lib/parameter/parameter.cpp ****         break;
+ 350              		.loc 1 65 32 is_stmt 0 view .LVU121
+ 351 010e C068     		ldr	r0, [r0, #12]	@ float
+ 352              	.LVL25:
+  65:Lib/parameter/parameter.cpp ****         break;
+ 353              		.loc 1 65 32 view .LVU122
+ 354 0110 FFF7FEFF 		bl	__aeabi_f2d
+ 355              	.LVL26:
+  65:Lib/parameter/parameter.cpp ****         break;
+ 356              		.loc 1 65 30 view .LVU123
+ 357 0114 C4E90001 		strd	r0, [r4]
+  66:Lib/parameter/parameter.cpp ****     default:
+ 358              		.loc 1 66 9 is_stmt 1 view .LVU124
+ 359              		.loc 1 71 12 is_stmt 0 view .LVU125
+ 360 0118 0120     		movs	r0, #1
+  66:Lib/parameter/parameter.cpp ****     default:
+ 361              		.loc 1 66 9 view .LVU126
+ 362 011a 00E0     		b	.L7
+ 363              	.LVL27:
+ 364              	.L19:
+  33:Lib/parameter/parameter.cpp **** 
+ 365              		.loc 1 33 16 view .LVU127
+ 366 011c 0020     		movs	r0, #0
+ 367              	.LVL28:
+ 368              	.L7:
+  72:Lib/parameter/parameter.cpp **** }
+ 369              		.loc 1 72 1 view .LVU128
+ 370 011e 10BD     		pop	{r4, pc}
+ 371              	.LVL29:
+ 372              	.L20:
+  35:Lib/parameter/parameter.cpp ****     {
+ 373              		.loc 1 35 5 view .LVU129
+ 374 0120 0020     		movs	r0, #0
+ 375              	.LVL30:
+  35:Lib/parameter/parameter.cpp ****     {
+ 376              		.loc 1 35 5 view .LVU130
+ 377 0122 FCE7     		b	.L7
+ARM GAS  /tmp/cc1fGdlw.s 			page 10
+
+
+ 378              		.cfi_endproc
+ 379              	.LFE990:
+ 381              		.align	1
+ 382              		.global	_ZN9Parameter7extractEv
+ 383              		.syntax unified
+ 384              		.thumb
+ 385              		.thumb_func
+ 387              	_ZN9Parameter7extractEv:
+ 388              	.LVL31:
+ 389              	.LFB991:
+  73:Lib/parameter/parameter.cpp **** 
+  74:Lib/parameter/parameter.cpp **** bool Parameter::extract(void)
+  75:Lib/parameter/parameter.cpp **** {
+ 390              		.loc 1 75 1 is_stmt 1 view -0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+  76:Lib/parameter/parameter.cpp ****     if (_dest_ptr == nullptr)
+ 394              		.loc 1 76 5 view .LVU132
+ 395              		.loc 1 76 9 is_stmt 0 view .LVU133
+ 396 0124 0269     		ldr	r2, [r0, #16]
+ 397              		.loc 1 76 5 view .LVU134
+ 398 0126 002A     		cmp	r2, #0
+ 399 0128 5BD0     		beq	.L35
+  75:Lib/parameter/parameter.cpp ****     if (_dest_ptr == nullptr)
+ 400              		.loc 1 75 1 view .LVU135
+ 401 012a 10B5     		push	{r4, lr}
+ 402              		.cfi_def_cfa_offset 8
+ 403              		.cfi_offset 4, -8
+ 404              		.cfi_offset 14, -4
+ 405 012c 0446     		mov	r4, r0
+  77:Lib/parameter/parameter.cpp ****         return false;
+  78:Lib/parameter/parameter.cpp **** 
+  79:Lib/parameter/parameter.cpp ****     switch (_type)
+ 406              		.loc 1 79 5 is_stmt 1 view .LVU136
+ 407              		.loc 1 79 13 is_stmt 0 view .LVU137
+ 408 012e 037A     		ldrb	r3, [r0, #8]	@ zero_extendqisi2
+ 409              		.loc 1 79 5 view .LVU138
+ 410 0130 013B     		subs	r3, r3, #1
+ 411 0132 092B     		cmp	r3, #9
+ 412 0134 57D8     		bhi	.L36
+ 413 0136 DFE803F0 		tbb	[pc, r3]
+ 414              	.L25:
+ 415 013a 05       		.byte	(.L34-.L25)/2
+ 416 013b 0E       		.byte	(.L33-.L25)/2
+ 417 013c 18       		.byte	(.L32-.L25)/2
+ 418 013d 21       		.byte	(.L31-.L25)/2
+ 419 013e 2B       		.byte	(.L30-.L25)/2
+ 420 013f 33       		.byte	(.L29-.L25)/2
+ 421 0140 3B       		.byte	(.L28-.L25)/2
+ 422 0141 42       		.byte	(.L27-.L25)/2
+ 423 0142 49       		.byte	(.L26-.L25)/2
+ 424 0143 4D       		.byte	(.L24-.L25)/2
+ 425              		.p2align 1
+ 426              	.L34:
+  80:Lib/parameter/parameter.cpp ****     {
+  81:Lib/parameter/parameter.cpp ****     case Param_Type::U8: /* uint8_t type */
+ARM GAS  /tmp/cc1fGdlw.s 			page 11
+
+
+ 427              		.loc 1 81 5 is_stmt 1 view .LVU139
+  82:Lib/parameter/parameter.cpp ****         _value = (float)(*(uint8_t *)_dest_ptr);
+ 428              		.loc 1 82 9 view .LVU140
+ 429              		.loc 1 82 26 is_stmt 0 view .LVU141
+ 430 0144 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 431 0146 07EE903A 		vmov	s15, r3	@ int
+ 432              		.loc 1 82 18 view .LVU142
+ 433 014a F8EE677A 		vcvt.f32.u32	s15, s15
+ 434              		.loc 1 82 16 view .LVU143
+ 435 014e C0ED037A 		vstr.32	s15, [r0, #12]
+  83:Lib/parameter/parameter.cpp ****         break;
+ 436              		.loc 1 83 9 is_stmt 1 view .LVU144
+  84:Lib/parameter/parameter.cpp ****     case Param_Type::I8: /* int8_t type */
+  85:Lib/parameter/parameter.cpp ****         _value = (float)(*(int8_t *)_dest_ptr);
+  86:Lib/parameter/parameter.cpp ****         break;
+  87:Lib/parameter/parameter.cpp ****     case Param_Type::U16: /* uint16_t type */
+  88:Lib/parameter/parameter.cpp ****         _value = (float)(*(uint16_t *)_dest_ptr);
+  89:Lib/parameter/parameter.cpp ****         break;
+  90:Lib/parameter/parameter.cpp ****     case Param_Type::I16: /* int16_t type */
+  91:Lib/parameter/parameter.cpp ****         _value = (float)(*(int16_t *)_dest_ptr);
+  92:Lib/parameter/parameter.cpp ****         break;
+  93:Lib/parameter/parameter.cpp ****     case Param_Type::U32: /* uint32_t type */
+  94:Lib/parameter/parameter.cpp ****         _value = (float)(*(uint32_t *)_dest_ptr);
+  95:Lib/parameter/parameter.cpp ****         break;
+  96:Lib/parameter/parameter.cpp ****     case Param_Type::I32: /* int32_t type */
+  97:Lib/parameter/parameter.cpp ****         _value = (float)(*(int32_t *)_dest_ptr);
+  98:Lib/parameter/parameter.cpp ****         break;
+  99:Lib/parameter/parameter.cpp ****     case Param_Type::U64: /* uint64_t type */
+ 100:Lib/parameter/parameter.cpp ****         _value = (float)(*(uint64_t *)_dest_ptr);
+ 101:Lib/parameter/parameter.cpp ****         break;
+ 102:Lib/parameter/parameter.cpp ****     case Param_Type::I64: /* int64_t type */
+ 103:Lib/parameter/parameter.cpp ****         _value = (float)(*(int64_t *)_dest_ptr);
+ 104:Lib/parameter/parameter.cpp ****         break;
+ 105:Lib/parameter/parameter.cpp ****     case Param_Type::F32: /* float type */
+ 106:Lib/parameter/parameter.cpp ****         _value = (float)(*(float *)_dest_ptr);
+ 107:Lib/parameter/parameter.cpp ****         break;
+ 108:Lib/parameter/parameter.cpp ****     case Param_Type::F64: /* double type */
+ 109:Lib/parameter/parameter.cpp ****         _value = (float)(*(double *)_dest_ptr);
+ 110:Lib/parameter/parameter.cpp ****         break;
+ 111:Lib/parameter/parameter.cpp ****     default:
+ 112:Lib/parameter/parameter.cpp ****         return false;
+ 113:Lib/parameter/parameter.cpp ****     }
+ 114:Lib/parameter/parameter.cpp **** 
+ 115:Lib/parameter/parameter.cpp ****     return true;
+ 437              		.loc 1 115 12 is_stmt 0 view .LVU145
+ 438 0152 0120     		movs	r0, #1
+ 439              	.LVL32:
+ 440              	.L23:
+ 116:Lib/parameter/parameter.cpp **** }
+ 441              		.loc 1 116 1 view .LVU146
+ 442 0154 10BD     		pop	{r4, pc}
+ 443              	.LVL33:
+ 444              	.L33:
+  84:Lib/parameter/parameter.cpp ****     case Param_Type::I8: /* int8_t type */
+ 445              		.loc 1 84 5 is_stmt 1 view .LVU147
+  85:Lib/parameter/parameter.cpp ****         break;
+ 446              		.loc 1 85 9 view .LVU148
+ARM GAS  /tmp/cc1fGdlw.s 			page 12
+
+
+  85:Lib/parameter/parameter.cpp ****         break;
+ 447              		.loc 1 85 26 is_stmt 0 view .LVU149
+ 448 0156 92F90030 		ldrsb	r3, [r2]
+ 449 015a 07EE903A 		vmov	s15, r3	@ int
+  85:Lib/parameter/parameter.cpp ****         break;
+ 450              		.loc 1 85 18 view .LVU150
+ 451 015e F8EEE77A 		vcvt.f32.s32	s15, s15
+  85:Lib/parameter/parameter.cpp ****         break;
+ 452              		.loc 1 85 16 view .LVU151
+ 453 0162 C0ED037A 		vstr.32	s15, [r0, #12]
+  86:Lib/parameter/parameter.cpp ****     case Param_Type::U16: /* uint16_t type */
+ 454              		.loc 1 86 9 is_stmt 1 view .LVU152
+ 115:Lib/parameter/parameter.cpp **** }
+ 455              		.loc 1 115 12 is_stmt 0 view .LVU153
+ 456 0166 0120     		movs	r0, #1
+ 457              	.LVL34:
+  86:Lib/parameter/parameter.cpp ****     case Param_Type::U16: /* uint16_t type */
+ 458              		.loc 1 86 9 view .LVU154
+ 459 0168 F4E7     		b	.L23
+ 460              	.LVL35:
+ 461              	.L32:
+  87:Lib/parameter/parameter.cpp ****         _value = (float)(*(uint16_t *)_dest_ptr);
+ 462              		.loc 1 87 5 is_stmt 1 view .LVU155
+  88:Lib/parameter/parameter.cpp ****         break;
+ 463              		.loc 1 88 9 view .LVU156
+  88:Lib/parameter/parameter.cpp ****         break;
+ 464              		.loc 1 88 26 is_stmt 0 view .LVU157
+ 465 016a 1388     		ldrh	r3, [r2]
+ 466 016c 07EE903A 		vmov	s15, r3	@ int
+  88:Lib/parameter/parameter.cpp ****         break;
+ 467              		.loc 1 88 18 view .LVU158
+ 468 0170 F8EE677A 		vcvt.f32.u32	s15, s15
+  88:Lib/parameter/parameter.cpp ****         break;
+ 469              		.loc 1 88 16 view .LVU159
+ 470 0174 C0ED037A 		vstr.32	s15, [r0, #12]
+  89:Lib/parameter/parameter.cpp ****     case Param_Type::I16: /* int16_t type */
+ 471              		.loc 1 89 9 is_stmt 1 view .LVU160
+ 115:Lib/parameter/parameter.cpp **** }
+ 472              		.loc 1 115 12 is_stmt 0 view .LVU161
+ 473 0178 0120     		movs	r0, #1
+ 474              	.LVL36:
+  89:Lib/parameter/parameter.cpp ****     case Param_Type::I16: /* int16_t type */
+ 475              		.loc 1 89 9 view .LVU162
+ 476 017a EBE7     		b	.L23
+ 477              	.LVL37:
+ 478              	.L31:
+  90:Lib/parameter/parameter.cpp ****         _value = (float)(*(int16_t *)_dest_ptr);
+ 479              		.loc 1 90 5 is_stmt 1 view .LVU163
+  91:Lib/parameter/parameter.cpp ****         break;
+ 480              		.loc 1 91 9 view .LVU164
+  91:Lib/parameter/parameter.cpp ****         break;
+ 481              		.loc 1 91 26 is_stmt 0 view .LVU165
+ 482 017c B2F90030 		ldrsh	r3, [r2]
+ 483 0180 07EE903A 		vmov	s15, r3	@ int
+  91:Lib/parameter/parameter.cpp ****         break;
+ 484              		.loc 1 91 18 view .LVU166
+ 485 0184 F8EEE77A 		vcvt.f32.s32	s15, s15
+ARM GAS  /tmp/cc1fGdlw.s 			page 13
+
+
+  91:Lib/parameter/parameter.cpp ****         break;
+ 486              		.loc 1 91 16 view .LVU167
+ 487 0188 C0ED037A 		vstr.32	s15, [r0, #12]
+  92:Lib/parameter/parameter.cpp ****     case Param_Type::U32: /* uint32_t type */
+ 488              		.loc 1 92 9 is_stmt 1 view .LVU168
+ 115:Lib/parameter/parameter.cpp **** }
+ 489              		.loc 1 115 12 is_stmt 0 view .LVU169
+ 490 018c 0120     		movs	r0, #1
+ 491              	.LVL38:
+  92:Lib/parameter/parameter.cpp ****     case Param_Type::U32: /* uint32_t type */
+ 492              		.loc 1 92 9 view .LVU170
+ 493 018e E1E7     		b	.L23
+ 494              	.LVL39:
+ 495              	.L30:
+  93:Lib/parameter/parameter.cpp ****         _value = (float)(*(uint32_t *)_dest_ptr);
+ 496              		.loc 1 93 5 is_stmt 1 view .LVU171
+  94:Lib/parameter/parameter.cpp ****         break;
+ 497              		.loc 1 94 9 view .LVU172
+  94:Lib/parameter/parameter.cpp ****         break;
+ 498              		.loc 1 94 26 is_stmt 0 view .LVU173
+ 499 0190 D2ED007A 		vldr.32	s15, [r2]	@ int
+  94:Lib/parameter/parameter.cpp ****         break;
+ 500              		.loc 1 94 18 view .LVU174
+ 501 0194 F8EE677A 		vcvt.f32.u32	s15, s15
+  94:Lib/parameter/parameter.cpp ****         break;
+ 502              		.loc 1 94 16 view .LVU175
+ 503 0198 C0ED037A 		vstr.32	s15, [r0, #12]
+  95:Lib/parameter/parameter.cpp ****     case Param_Type::I32: /* int32_t type */
+ 504              		.loc 1 95 9 is_stmt 1 view .LVU176
+ 115:Lib/parameter/parameter.cpp **** }
+ 505              		.loc 1 115 12 is_stmt 0 view .LVU177
+ 506 019c 0120     		movs	r0, #1
+ 507              	.LVL40:
+  95:Lib/parameter/parameter.cpp ****     case Param_Type::I32: /* int32_t type */
+ 508              		.loc 1 95 9 view .LVU178
+ 509 019e D9E7     		b	.L23
+ 510              	.LVL41:
+ 511              	.L29:
+  96:Lib/parameter/parameter.cpp ****         _value = (float)(*(int32_t *)_dest_ptr);
+ 512              		.loc 1 96 5 is_stmt 1 view .LVU179
+  97:Lib/parameter/parameter.cpp ****         break;
+ 513              		.loc 1 97 9 view .LVU180
+  97:Lib/parameter/parameter.cpp ****         break;
+ 514              		.loc 1 97 26 is_stmt 0 view .LVU181
+ 515 01a0 D2ED007A 		vldr.32	s15, [r2]	@ int
+  97:Lib/parameter/parameter.cpp ****         break;
+ 516              		.loc 1 97 18 view .LVU182
+ 517 01a4 F8EEE77A 		vcvt.f32.s32	s15, s15
+  97:Lib/parameter/parameter.cpp ****         break;
+ 518              		.loc 1 97 16 view .LVU183
+ 519 01a8 C0ED037A 		vstr.32	s15, [r0, #12]
+  98:Lib/parameter/parameter.cpp ****     case Param_Type::U64: /* uint64_t type */
+ 520              		.loc 1 98 9 is_stmt 1 view .LVU184
+ 115:Lib/parameter/parameter.cpp **** }
+ 521              		.loc 1 115 12 is_stmt 0 view .LVU185
+ 522 01ac 0120     		movs	r0, #1
+ 523              	.LVL42:
+ARM GAS  /tmp/cc1fGdlw.s 			page 14
+
+
+  98:Lib/parameter/parameter.cpp ****     case Param_Type::U64: /* uint64_t type */
+ 524              		.loc 1 98 9 view .LVU186
+ 525 01ae D1E7     		b	.L23
+ 526              	.LVL43:
+ 527              	.L28:
+  99:Lib/parameter/parameter.cpp ****         _value = (float)(*(uint64_t *)_dest_ptr);
+ 528              		.loc 1 99 5 is_stmt 1 view .LVU187
+ 100:Lib/parameter/parameter.cpp ****         break;
+ 529              		.loc 1 100 9 view .LVU188
+ 100:Lib/parameter/parameter.cpp ****         break;
+ 530              		.loc 1 100 18 is_stmt 0 view .LVU189
+ 531 01b0 D2E90001 		ldrd	r0, [r2]
+ 532              	.LVL44:
+ 100:Lib/parameter/parameter.cpp ****         break;
+ 533              		.loc 1 100 18 view .LVU190
+ 534 01b4 FFF7FEFF 		bl	__aeabi_ul2f
+ 535              	.LVL45:
+ 100:Lib/parameter/parameter.cpp ****         break;
+ 536              		.loc 1 100 16 view .LVU191
+ 537 01b8 E060     		str	r0, [r4, #12]	@ float
+ 101:Lib/parameter/parameter.cpp ****     case Param_Type::I64: /* int64_t type */
+ 538              		.loc 1 101 9 is_stmt 1 view .LVU192
+ 115:Lib/parameter/parameter.cpp **** }
+ 539              		.loc 1 115 12 is_stmt 0 view .LVU193
+ 540 01ba 0120     		movs	r0, #1
+ 101:Lib/parameter/parameter.cpp ****     case Param_Type::I64: /* int64_t type */
+ 541              		.loc 1 101 9 view .LVU194
+ 542 01bc CAE7     		b	.L23
+ 543              	.LVL46:
+ 544              	.L27:
+ 102:Lib/parameter/parameter.cpp ****         _value = (float)(*(int64_t *)_dest_ptr);
+ 545              		.loc 1 102 5 is_stmt 1 view .LVU195
+ 103:Lib/parameter/parameter.cpp ****         break;
+ 546              		.loc 1 103 9 view .LVU196
+ 103:Lib/parameter/parameter.cpp ****         break;
+ 547              		.loc 1 103 18 is_stmt 0 view .LVU197
+ 548 01be D2E90001 		ldrd	r0, [r2]
+ 549              	.LVL47:
+ 103:Lib/parameter/parameter.cpp ****         break;
+ 550              		.loc 1 103 18 view .LVU198
+ 551 01c2 FFF7FEFF 		bl	__aeabi_l2f
+ 552              	.LVL48:
+ 103:Lib/parameter/parameter.cpp ****         break;
+ 553              		.loc 1 103 16 view .LVU199
+ 554 01c6 E060     		str	r0, [r4, #12]	@ float
+ 104:Lib/parameter/parameter.cpp ****     case Param_Type::F32: /* float type */
+ 555              		.loc 1 104 9 is_stmt 1 view .LVU200
+ 115:Lib/parameter/parameter.cpp **** }
+ 556              		.loc 1 115 12 is_stmt 0 view .LVU201
+ 557 01c8 0120     		movs	r0, #1
+ 104:Lib/parameter/parameter.cpp ****     case Param_Type::F32: /* float type */
+ 558              		.loc 1 104 9 view .LVU202
+ 559 01ca C3E7     		b	.L23
+ 560              	.LVL49:
+ 561              	.L26:
+ 105:Lib/parameter/parameter.cpp ****         _value = (float)(*(float *)_dest_ptr);
+ 562              		.loc 1 105 5 is_stmt 1 view .LVU203
+ARM GAS  /tmp/cc1fGdlw.s 			page 15
+
+
+ 106:Lib/parameter/parameter.cpp ****         break;
+ 563              		.loc 1 106 9 view .LVU204
+ 106:Lib/parameter/parameter.cpp ****         break;
+ 564              		.loc 1 106 26 is_stmt 0 view .LVU205
+ 565 01cc 1368     		ldr	r3, [r2]	@ float
+ 106:Lib/parameter/parameter.cpp ****         break;
+ 566              		.loc 1 106 16 view .LVU206
+ 567 01ce C360     		str	r3, [r0, #12]	@ float
+ 107:Lib/parameter/parameter.cpp ****     case Param_Type::F64: /* double type */
+ 568              		.loc 1 107 9 is_stmt 1 view .LVU207
+ 115:Lib/parameter/parameter.cpp **** }
+ 569              		.loc 1 115 12 is_stmt 0 view .LVU208
+ 570 01d0 0120     		movs	r0, #1
+ 571              	.LVL50:
+ 107:Lib/parameter/parameter.cpp ****     case Param_Type::F64: /* double type */
+ 572              		.loc 1 107 9 view .LVU209
+ 573 01d2 BFE7     		b	.L23
+ 574              	.LVL51:
+ 575              	.L24:
+ 108:Lib/parameter/parameter.cpp ****         _value = (float)(*(double *)_dest_ptr);
+ 576              		.loc 1 108 5 is_stmt 1 view .LVU210
+ 109:Lib/parameter/parameter.cpp ****         break;
+ 577              		.loc 1 109 9 view .LVU211
+ 109:Lib/parameter/parameter.cpp ****         break;
+ 578              		.loc 1 109 18 is_stmt 0 view .LVU212
+ 579 01d4 D2E90001 		ldrd	r0, [r2]
+ 580              	.LVL52:
+ 109:Lib/parameter/parameter.cpp ****         break;
+ 581              		.loc 1 109 18 view .LVU213
+ 582 01d8 FFF7FEFF 		bl	__aeabi_d2f
+ 583              	.LVL53:
+ 109:Lib/parameter/parameter.cpp ****         break;
+ 584              		.loc 1 109 16 view .LVU214
+ 585 01dc E060     		str	r0, [r4, #12]	@ float
+ 110:Lib/parameter/parameter.cpp ****     default:
+ 586              		.loc 1 110 9 is_stmt 1 view .LVU215
+ 115:Lib/parameter/parameter.cpp **** }
+ 587              		.loc 1 115 12 is_stmt 0 view .LVU216
+ 588 01de 0120     		movs	r0, #1
+ 110:Lib/parameter/parameter.cpp ****     default:
+ 589              		.loc 1 110 9 view .LVU217
+ 590 01e0 B8E7     		b	.L23
+ 591              	.LVL54:
+ 592              	.L35:
+ 593              		.cfi_def_cfa_offset 0
+ 594              		.cfi_restore 4
+ 595              		.cfi_restore 14
+  77:Lib/parameter/parameter.cpp **** 
+ 596              		.loc 1 77 16 view .LVU218
+ 597 01e2 0020     		movs	r0, #0
+ 598              	.LVL55:
+ 599              		.loc 1 116 1 view .LVU219
+ 600 01e4 7047     		bx	lr
+ 601              	.LVL56:
+ 602              	.L36:
+ 603              		.cfi_def_cfa_offset 8
+ 604              		.cfi_offset 4, -8
+ARM GAS  /tmp/cc1fGdlw.s 			page 16
+
+
+ 605              		.cfi_offset 14, -4
+  79:Lib/parameter/parameter.cpp ****     {
+ 606              		.loc 1 79 5 view .LVU220
+ 607 01e6 0020     		movs	r0, #0
+ 608              	.LVL57:
+  79:Lib/parameter/parameter.cpp ****     {
+ 609              		.loc 1 79 5 view .LVU221
+ 610 01e8 B4E7     		b	.L23
+ 611              		.cfi_endproc
+ 612              	.LFE991:
+ 614              		.align	1
+ 615              		.global	_ZN9Parameter19update_with_defaultEv
+ 616              		.syntax unified
+ 617              		.thumb
+ 618              		.thumb_func
+ 620              	_ZN9Parameter19update_with_defaultEv:
+ 621              	.LVL58:
+ 622              	.LFB992:
+ 117:Lib/parameter/parameter.cpp **** 
+ 118:Lib/parameter/parameter.cpp **** void Parameter::update_with_default(void)
+ 119:Lib/parameter/parameter.cpp **** {
+ 623              		.loc 1 119 1 is_stmt 1 view -0
+ 624              		.cfi_startproc
+ 625              		@ args = 0, pretend = 0, frame = 0
+ 626              		@ frame_needed = 0, uses_anonymous_args = 0
+ 627              		.loc 1 119 1 is_stmt 0 view .LVU223
+ 628 01ea 08B5     		push	{r3, lr}
+ 629              		.cfi_def_cfa_offset 8
+ 630              		.cfi_offset 3, -8
+ 631              		.cfi_offset 14, -4
+ 120:Lib/parameter/parameter.cpp ****     update(_default_value);
+ 632              		.loc 1 120 5 is_stmt 1 view .LVU224
+ 633              		.loc 1 120 11 is_stmt 0 view .LVU225
+ 634 01ec 90ED050A 		vldr.32	s0, [r0, #20]
+ 635 01f0 FFF7FEFF 		bl	_ZN9Parameter6updateEf
+ 636              	.LVL59:
+ 121:Lib/parameter/parameter.cpp **** }...
+ 637              		.loc 1 121 1 view .LVU226
+ 638 01f4 08BD     		pop	{r3, pc}
+ 639              		.cfi_endproc
+ 640              	.LFE992:
+ 642              	.Letext0:
+ 643              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 644              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 645              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 646              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 647              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 648              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 649              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 650              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 651              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 652              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 653              		.file 12 "Lib/parameter/parameter.hpp"
+ARM GAS  /tmp/cc1fGdlw.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 parameter.cpp
+     /tmp/cc1fGdlw.s:20     .text:00000000 $t
+     /tmp/cc1fGdlw.s:26     .text:00000000 _ZN9Parameter4initEiP12param_init_t
+     /tmp/cc1fGdlw.s:88     .text:00000024 _ZN9Parameter4initEi12param_init_t
+     /tmp/cc1fGdlw.s:126    .text:0000003e _ZN9Parameter6updateEf
+     /tmp/cc1fGdlw.s:161    .text:00000064 _ZN9Parameter4loadEv
+     /tmp/cc1fGdlw.s:188    .text:00000078 $d
+     /tmp/cc1fGdlw.s:198    .text:00000082 $t
+     /tmp/cc1fGdlw.s:387    .text:00000124 _ZN9Parameter7extractEv
+     /tmp/cc1fGdlw.s:415    .text:0000013a $d
+     /tmp/cc1fGdlw.s:425    .text:00000144 $t
+     /tmp/cc1fGdlw.s:620    .text:000001ea _ZN9Parameter19update_with_defaultEv
+
+UNDEFINED SYMBOLS
+__aeabi_f2ulz
+__aeabi_f2lz
+__aeabi_f2d
+__aeabi_ul2f
+__aeabi_l2f
+__aeabi_d2f

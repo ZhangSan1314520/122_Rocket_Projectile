@@ -1,0 +1,362 @@
+ARM GAS  /tmp/ccePsSLK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"HAL_System.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/System/HAL_System.cpp"
+  20              		.align	1
+  21              		.global	_ZN10HAL_System23period_elapsed_callbackEP19__TIM_HandleTypeDef
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_ZN10HAL_System23period_elapsed_callbackEP19__TIM_HandleTypeDef:
+  27              	.LVL0:
+  28              	.LFB337:
+   1:My_Top/System/HAL_System.cpp **** #include "HAL_System.hpp"
+   2:My_Top/System/HAL_System.cpp **** #include "FreeRTOS.h"
+   3:My_Top/System/HAL_System.cpp **** #include "task.h"
+   4:My_Top/System/HAL_System.cpp **** 
+   5:My_Top/System/HAL_System.cpp **** // ============================================================
+   6:My_Top/System/HAL_System.cpp **** // 静态成员变量定义
+   7:My_Top/System/HAL_System.cpp **** // STM32 的 TIM 计数器是 32 位的，最大值 0xFFFFFFFF
+   8:My_Top/System/HAL_System.cpp **** // 当计数器溢出（从 0xFFFFFFFF 回到 0）时，需要累加高 32 位
+   9:My_Top/System/HAL_System.cpp **** // ============================================================
+  10:My_Top/System/HAL_System.cpp **** uint64_t HAL_System::tick_us = 0;     // 64 位微秒计时器（高 32 位 + TIM 计数器）
+  11:My_Top/System/HAL_System.cpp **** uint32_t HAL_System::tick_ms = 0;     // 32 毫秒计时器（由 tick_us 计算得到）
+  12:My_Top/System/HAL_System.cpp **** 
+  13:My_Top/System/HAL_System.cpp **** // ============================================================
+  14:My_Top/System/HAL_System.cpp **** // 初始化函数
+  15:My_Top/System/HAL_System.cpp **** // ============================================================
+  16:My_Top/System/HAL_System.cpp **** void HAL_System::init(void)
+  17:My_Top/System/HAL_System.cpp **** {
+  18:My_Top/System/HAL_System.cpp ****     // 启动定时器中断（计数器开始计数）
+  19:My_Top/System/HAL_System.cpp ****     HAL_TIM_Base_Start_IT(System_htim);
+  20:My_Top/System/HAL_System.cpp **** 
+  21:My_Top/System/HAL_System.cpp ****     // 注册 PeriodElapsed 回调函数
+  22:My_Top/System/HAL_System.cpp ****     // 作用：当 TIM 计数器溢出时，自动调用 period_elapsed_callback()
+  23:My_Top/System/HAL_System.cpp ****     // 这样可以累加高 32 位，实现 64 位精度的长时间计时stm32g4xx_hal_tim
+  24:My_Top/System/HAL_System.cpp ****     HAL_TIM_RegisterCallback(System_htim, HAL_TIM_PERIOD_ELAPSED_CB_ID, period_elapsed_callback);
+  25:My_Top/System/HAL_System.cpp **** }
+  26:My_Top/System/HAL_System.cpp **** 
+  27:My_Top/System/HAL_System.cpp **** 
+  28:My_Top/System/HAL_System.cpp **** // ============================================================
+  29:My_Top/System/HAL_System.cpp **** // 获取当前微秒数（64 位，精度由 TIM 决定）
+  30:My_Top/System/HAL_System.cpp **** // ============================================================
+ARM GAS  /tmp/ccePsSLK.s 			page 2
+
+
+  31:My_Top/System/HAL_System.cpp **** uint64_t HAL_System::get_tick_us(void)
+  32:My_Top/System/HAL_System.cpp **** {
+  33:My_Top/System/HAL_System.cpp ****     // 读取当前 TIM 计数器的低 32 位
+  34:My_Top/System/HAL_System.cpp ****     uint32_t current_cnt = __HAL_TIM_GET_COUNTER(System_htim);
+  35:My_Top/System/HAL_System.cpp **** 
+  36:My_Top/System/HAL_System.cpp ****     // 拼装 64 位计时器：
+  37:My_Top/System/HAL_System.cpp ****     // tick_us 的高 32 位 = 之前的累加值（elapse_cnt × 2^32）
+  38:My_Top/System/HAL_System.cpp ****     // tick_us 的低 32 位 = 当前 TIM 计数器值
+  39:My_Top/System/HAL_System.cpp ****     // 先把当前的低 32 位清零（& ~0xFFFFFFFF），再或上新的计数器值
+  40:My_Top/System/HAL_System.cpp ****     tick_us = (tick_us & (uint64_t)0xFFFFFFFF00000000) | current_cnt;
+  41:My_Top/System/HAL_System.cpp **** 
+  42:My_Top/System/HAL_System.cpp ****     return tick_us;
+  43:My_Top/System/HAL_System.cpp **** }
+  44:My_Top/System/HAL_System.cpp **** 
+  45:My_Top/System/HAL_System.cpp **** // ============================================================
+  46:My_Top/System/HAL_System.cpp **** // 获取当前毫秒数（32 位，由微秒计算得出）
+  47:My_Top/System/HAL_System.cpp **** // ============================================================
+  48:My_Top/System/HAL_System.cpp **** uint32_t HAL_System::get_tick_ms(void)
+  49:My_Top/System/HAL_System.cpp **** {
+  50:My_Top/System/HAL_System.cpp ****     // 微秒转毫秒（除以 1000）
+  51:My_Top/System/HAL_System.cpp ****     tick_ms = get_tick_us() / 1000;
+  52:My_Top/System/HAL_System.cpp ****     return tick_ms;
+  53:My_Top/System/HAL_System.cpp **** }
+  54:My_Top/System/HAL_System.cpp **** 
+  55:My_Top/System/HAL_System.cpp **** // ============================================================
+  56:My_Top/System/HAL_System.cpp **** // 延时函数（使用 FreeRTOS 的任务延时，释放 CPU）
+  57:My_Top/System/HAL_System.cpp **** // ============================================================
+  58:My_Top/System/HAL_System.cpp **** void HAL_System::delay_ms(uint32_t ms)
+  59:My_Top/System/HAL_System.cpp **** {
+  60:My_Top/System/HAL_System.cpp ****     vTaskDelay(pdMS_TO_TICKS(ms));
+  61:My_Top/System/HAL_System.cpp **** }
+  62:My_Top/System/HAL_System.cpp **** 
+  63:My_Top/System/HAL_System.cpp **** // ============================================================
+  64:My_Top/System/HAL_System.cpp **** // 定时器溢出回调函数（每当 TIM 计数器从 0xFFFFFFFF 回到 0 时触发）
+  65:My_Top/System/HAL_System.cpp **** // ============================================================
+  66:My_Top/System/HAL_System.cpp **** // 注意：此函数运行在中断上下文中！
+  67:My_Top/System/HAL_System.cpp **** void HAL_System::period_elapsed_callback(TIM_HandleTypeDef *htim)
+  68:My_Top/System/HAL_System.cpp **** {
+  29              		.loc 1 68 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  69:My_Top/System/HAL_System.cpp ****     // TIM 溢出一次 = 增加了 2^32 个计数单位
+  70:My_Top/System/HAL_System.cpp ****     // 1 << 32 = 0x100000000 = 4294967296
+  71:My_Top/System/HAL_System.cpp ****     // tick_us 高 32 位自动加 1（因为累加到这个数）
+  72:My_Top/System/HAL_System.cpp ****     tick_us += (uint64_t)1 << 32;
+  34              		.loc 1 72 5 view .LVU1
+  35              		.loc 1 72 13 is_stmt 0 view .LVU2
+  36 0000 024A     		ldr	r2, .L2
+  37 0002 5368     		ldr	r3, [r2, #4]
+  38 0004 0133     		adds	r3, r3, #1
+  39 0006 5360     		str	r3, [r2, #4]
+  73:My_Top/System/HAL_System.cpp **** }
+  40              		.loc 1 73 1 view .LVU3
+  41 0008 7047     		bx	lr
+  42              	.L3:
+ARM GAS  /tmp/ccePsSLK.s 			page 3
+
+
+  43 000a 00BF     		.align	2
+  44              	.L2:
+  45 000c 00000000 		.word	.LANCHOR0
+  46              		.cfi_endproc
+  47              	.LFE337:
+  49              		.align	1
+  50              		.global	_ZN10HAL_System4initEv
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	_ZN10HAL_System4initEv:
+  56              	.LFB333:
+  17:My_Top/System/HAL_System.cpp ****     // 启动定时器中断（计数器开始计数）
+  57              		.loc 1 17 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61 0010 10B5     		push	{r4, lr}
+  62              		.cfi_def_cfa_offset 8
+  63              		.cfi_offset 4, -8
+  64              		.cfi_offset 14, -4
+  19:My_Top/System/HAL_System.cpp **** 
+  65              		.loc 1 19 5 view .LVU5
+  19:My_Top/System/HAL_System.cpp **** 
+  66              		.loc 1 19 26 is_stmt 0 view .LVU6
+  67 0012 054C     		ldr	r4, .L6
+  68 0014 2046     		mov	r0, r4
+  69 0016 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+  70              	.LVL1:
+  24:My_Top/System/HAL_System.cpp **** }
+  71              		.loc 1 24 5 is_stmt 1 view .LVU7
+  24:My_Top/System/HAL_System.cpp **** }
+  72              		.loc 1 24 29 is_stmt 0 view .LVU8
+  73 001a 044A     		ldr	r2, .L6+4
+  74 001c 0E21     		movs	r1, #14
+  75 001e 2046     		mov	r0, r4
+  76 0020 FFF7FEFF 		bl	HAL_TIM_RegisterCallback
+  77              	.LVL2:
+  25:My_Top/System/HAL_System.cpp **** 
+  78              		.loc 1 25 1 view .LVU9
+  79 0024 10BD     		pop	{r4, pc}
+  80              	.L7:
+  81 0026 00BF     		.align	2
+  82              	.L6:
+  83 0028 00000000 		.word	htim5
+  84 002c 00000000 		.word	_ZN10HAL_System23period_elapsed_callbackEP19__TIM_HandleTypeDef
+  85              		.cfi_endproc
+  86              	.LFE333:
+  88              		.align	1
+  89              		.global	_ZN10HAL_System11get_tick_usEv
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	_ZN10HAL_System11get_tick_usEv:
+  95              	.LFB334:
+  32:My_Top/System/HAL_System.cpp ****     // 读取当前 TIM 计数器的低 32 位
+  96              		.loc 1 32 1 is_stmt 1 view -0
+ARM GAS  /tmp/ccePsSLK.s 			page 4
+
+
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+  34:My_Top/System/HAL_System.cpp **** 
+ 101              		.loc 1 34 5 view .LVU11
+  34:My_Top/System/HAL_System.cpp **** 
+ 102              		.loc 1 34 28 is_stmt 0 view .LVU12
+ 103 0030 034B     		ldr	r3, .L9
+ 104 0032 1B68     		ldr	r3, [r3]
+ 105 0034 586A     		ldr	r0, [r3, #36]
+ 106              	.LVL3:
+  40:My_Top/System/HAL_System.cpp **** 
+ 107              		.loc 1 40 5 is_stmt 1 view .LVU13
+  40:My_Top/System/HAL_System.cpp **** 
+ 108              		.loc 1 40 24 is_stmt 0 view .LVU14
+ 109 0036 034B     		ldr	r3, .L9+4
+  40:My_Top/System/HAL_System.cpp **** 
+ 110              		.loc 1 40 13 view .LVU15
+ 111 0038 1860     		str	r0, [r3]
+  42:My_Top/System/HAL_System.cpp **** }
+ 112              		.loc 1 42 5 is_stmt 1 view .LVU16
+  43:My_Top/System/HAL_System.cpp **** 
+ 113              		.loc 1 43 1 is_stmt 0 view .LVU17
+ 114 003a 5968     		ldr	r1, [r3, #4]
+ 115 003c 7047     		bx	lr
+ 116              	.L10:
+ 117 003e 00BF     		.align	2
+ 118              	.L9:
+ 119 0040 00000000 		.word	htim5
+ 120 0044 00000000 		.word	.LANCHOR0
+ 121              		.cfi_endproc
+ 122              	.LFE334:
+ 124              		.align	1
+ 125              		.global	_ZN10HAL_System11get_tick_msEv
+ 126              		.syntax unified
+ 127              		.thumb
+ 128              		.thumb_func
+ 130              	_ZN10HAL_System11get_tick_msEv:
+ 131              	.LFB335:
+  49:My_Top/System/HAL_System.cpp ****     // 微秒转毫秒（除以 1000）
+ 132              		.loc 1 49 1 is_stmt 1 view -0
+ 133              		.cfi_startproc
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136 0048 08B5     		push	{r3, lr}
+ 137              		.cfi_def_cfa_offset 8
+ 138              		.cfi_offset 3, -8
+ 139              		.cfi_offset 14, -4
+  51:My_Top/System/HAL_System.cpp ****     return tick_ms;
+ 140              		.loc 1 51 5 view .LVU19
+  51:My_Top/System/HAL_System.cpp ****     return tick_ms;
+ 141              		.loc 1 51 26 is_stmt 0 view .LVU20
+ 142 004a FFF7FEFF 		bl	_ZN10HAL_System11get_tick_usEv
+ 143              	.LVL4:
+  51:My_Top/System/HAL_System.cpp ****     return tick_ms;
+ 144              		.loc 1 51 29 discriminator 1 view .LVU21
+ARM GAS  /tmp/ccePsSLK.s 			page 5
+
+
+ 145 004e 4FF47A72 		mov	r2, #1000
+ 146 0052 0023     		movs	r3, #0
+ 147 0054 FFF7FEFF 		bl	__aeabi_uldivmod
+ 148              	.LVL5:
+  51:My_Top/System/HAL_System.cpp ****     return tick_ms;
+ 149              		.loc 1 51 13 discriminator 1 view .LVU22
+ 150 0058 014B     		ldr	r3, .L13
+ 151 005a 9860     		str	r0, [r3, #8]
+  52:My_Top/System/HAL_System.cpp **** }
+ 152              		.loc 1 52 5 is_stmt 1 view .LVU23
+  53:My_Top/System/HAL_System.cpp **** 
+ 153              		.loc 1 53 1 is_stmt 0 view .LVU24
+ 154 005c 08BD     		pop	{r3, pc}
+ 155              	.L14:
+ 156 005e 00BF     		.align	2
+ 157              	.L13:
+ 158 0060 00000000 		.word	.LANCHOR0
+ 159              		.cfi_endproc
+ 160              	.LFE335:
+ 162              		.align	1
+ 163              		.global	_ZN10HAL_System8delay_msEm
+ 164              		.syntax unified
+ 165              		.thumb
+ 166              		.thumb_func
+ 168              	_ZN10HAL_System8delay_msEm:
+ 169              	.LVL6:
+ 170              	.LFB336:
+  59:My_Top/System/HAL_System.cpp ****     vTaskDelay(pdMS_TO_TICKS(ms));
+ 171              		.loc 1 59 1 is_stmt 1 view -0
+ 172              		.cfi_startproc
+ 173              		@ args = 0, pretend = 0, frame = 0
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+  59:My_Top/System/HAL_System.cpp ****     vTaskDelay(pdMS_TO_TICKS(ms));
+ 175              		.loc 1 59 1 is_stmt 0 view .LVU26
+ 176 0064 08B5     		push	{r3, lr}
+ 177              		.cfi_def_cfa_offset 8
+ 178              		.cfi_offset 3, -8
+ 179              		.cfi_offset 14, -4
+  60:My_Top/System/HAL_System.cpp **** }
+ 180              		.loc 1 60 5 is_stmt 1 view .LVU27
+  60:My_Top/System/HAL_System.cpp **** }
+ 181              		.loc 1 60 16 is_stmt 0 view .LVU28
+ 182 0066 4FF47A73 		mov	r3, #1000
+ 183 006a 03FB00F0 		mul	r0, r3, r0
+ 184              	.LVL7:
+  60:My_Top/System/HAL_System.cpp **** }
+ 185              		.loc 1 60 16 view .LVU29
+ 186 006e 034B     		ldr	r3, .L17
+ 187 0070 A3FB0030 		umull	r3, r0, r3, r0
+  60:My_Top/System/HAL_System.cpp **** }
+ 188              		.loc 1 60 15 view .LVU30
+ 189 0074 8009     		lsrs	r0, r0, #6
+ 190 0076 FFF7FEFF 		bl	vTaskDelay
+ 191              	.LVL8:
+  61:My_Top/System/HAL_System.cpp **** 
+ 192              		.loc 1 61 1 view .LVU31
+ 193 007a 08BD     		pop	{r3, pc}
+ARM GAS  /tmp/ccePsSLK.s 			page 6
+
+
+ 194              	.L18:
+ 195              		.align	2
+ 196              	.L17:
+ 197 007c D34D6210 		.word	274877907
+ 198              		.cfi_endproc
+ 199              	.LFE336:
+ 201              		.global	_ZN10HAL_System7tick_msE
+ 202              		.global	_ZN10HAL_System7tick_usE
+ 203              		.bss
+ 204              		.align	3
+ 205              		.set	.LANCHOR0,. + 0
+ 208              	_ZN10HAL_System7tick_usE:
+ 209 0000 00000000 		.space	8
+ 209      00000000 
+ 212              	_ZN10HAL_System7tick_msE:
+ 213 0008 00000000 		.space	4
+ 214              		.text
+ 215              	.Letext0:
+ 216              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 217              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 218              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 219              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 220              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 221              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 222              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 223              		.file 9 "My_Top/System/HAL_System.hpp"
+ 224              		.file 10 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 225              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 226              		.file 12 "Core/Inc/tim.h"
+ARM GAS  /tmp/ccePsSLK.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 HAL_System.cpp
+     /tmp/ccePsSLK.s:20     .text:00000000 $t
+     /tmp/ccePsSLK.s:26     .text:00000000 _ZN10HAL_System23period_elapsed_callbackEP19__TIM_HandleTypeDef
+     /tmp/ccePsSLK.s:45     .text:0000000c $d
+     /tmp/ccePsSLK.s:49     .text:00000010 $t
+     /tmp/ccePsSLK.s:55     .text:00000010 _ZN10HAL_System4initEv
+     /tmp/ccePsSLK.s:83     .text:00000028 $d
+     /tmp/ccePsSLK.s:88     .text:00000030 $t
+     /tmp/ccePsSLK.s:94     .text:00000030 _ZN10HAL_System11get_tick_usEv
+     /tmp/ccePsSLK.s:119    .text:00000040 $d
+     /tmp/ccePsSLK.s:124    .text:00000048 $t
+     /tmp/ccePsSLK.s:130    .text:00000048 _ZN10HAL_System11get_tick_msEv
+     /tmp/ccePsSLK.s:158    .text:00000060 $d
+     /tmp/ccePsSLK.s:162    .text:00000064 $t
+     /tmp/ccePsSLK.s:168    .text:00000064 _ZN10HAL_System8delay_msEm
+     /tmp/ccePsSLK.s:197    .text:0000007c $d
+     /tmp/ccePsSLK.s:212    .bss:00000008 _ZN10HAL_System7tick_msE
+     /tmp/ccePsSLK.s:208    .bss:00000000 _ZN10HAL_System7tick_usE
+     /tmp/ccePsSLK.s:204    .bss:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_TIM_Base_Start_IT
+HAL_TIM_RegisterCallback
+htim5
+__aeabi_uldivmod
+vTaskDelay

@@ -1,0 +1,564 @@
+ARM GAS  /tmp/cc97PeFV.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uavcan.protocol.NodeStatus.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c"
+  20              		.section	.text.__uavcan_protocol_NodeStatus_encode,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	__uavcan_protocol_NodeStatus_encode:
+  27              	.LVL0:
+  28              	.LFB2:
+  29              		.file 2 "My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h"
+   1:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #pragma once
+   2:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #include <stdbool.h>
+   3:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #include <stdint.h>
+   4:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #include <canard.h>
+   5:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+   6:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+   7:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MAX_SIZE 7
+   8:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_SIGNATURE (0xF0868D0C1A7C6F1ULL)
+   9:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_ID 341
+  10:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  11:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MAX_BROADCASTING_PERIOD_MS 1000
+  12:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MIN_BROADCASTING_PERIOD_MS 2
+  13:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_OFFLINE_TIMEOUT_MS 3000
+  14:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_HEALTH_OK 0
+  15:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_HEALTH_WARNING 1
+  16:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_HEALTH_ERROR 2
+  17:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_HEALTH_CRITICAL 3
+  18:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MODE_OPERATIONAL 0
+  19:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MODE_INITIALIZATION 1
+  20:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MODE_MAINTENANCE 2
+  21:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MODE_SOFTWARE_UPDATE 3
+  22:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #define UAVCAN_PROTOCOL_NODESTATUS_MODE_OFFLINE 7
+  23:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  24:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #if defined(__cplusplus) && defined(DRONECAN_CXX_WRAPPERS)
+  25:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** class uavcan_protocol_NodeStatus_cxx_iface;
+  26:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #endif
+  27:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  28:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** struct uavcan_protocol_NodeStatus {
+  29:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #if defined(__cplusplus) && defined(DRONECAN_CXX_WRAPPERS)
+ARM GAS  /tmp/cc97PeFV.s 			page 2
+
+
+  30:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     using cxx_iface = uavcan_protocol_NodeStatus_cxx_iface;
+  31:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #endif
+  32:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  33:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     uint32_t  uptime_sec;              // 节点累计运行时间（秒）
+  34:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     uint8_t   health;                  // 健康状态
+  35:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     uint8_t   mode;                    // 运行模式
+  36:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     uint8_t   sub_mode;               // 子模式
+  37:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     uint16_t  vendor_specific_status_code;  // 厂商自定义状态码
+  38:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  39:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** };
+  40:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  41:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  42:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  43:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #ifdef __cplusplus
+  44:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** extern "C"
+  45:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** {
+  46:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #endif
+  47:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  48:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** uint32_t _uavcan_protocol_NodeStatus_encode(struct uavcan_protocol_NodeStatus* msg, uint8_t* buffer
+  49:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #if CANARD_ENABLE_TAO_OPTION
+  50:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     , bool tao
+  51:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #endif
+  52:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** );
+  53:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** bool _uavcan_protocol_NodeStatus_decode(const CanardRxTransfer* transfer, struct uavcan_protocol_No
+  54:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  55:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** static inline uint32_t uavcan_protocol_NodeStatus_encode(struct uavcan_protocol_NodeStatus* msg, ui
+  56:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #if CANARD_ENABLE_TAO_OPTION
+  57:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     , bool tao
+  58:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #endif
+  59:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** ) {
+  60:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  61:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     return _uavcan_protocol_NodeStatus_encode(msg, buffer
+  62:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #if CANARD_ENABLE_TAO_OPTION
+  63:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     , tao
+  64:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #endif
+  65:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     );
+  66:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  67:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** }
+  68:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  69:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** static inline bool uavcan_protocol_NodeStatus_decode(const CanardRxTransfer* transfer, struct uavca
+  70:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  71:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     return _uavcan_protocol_NodeStatus_decode(transfer, msg);
+  72:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  73:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** }
+  74:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  75:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** #if defined(CANARD_DSDLC_INTERNAL)
+  76:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** static inline void __uavcan_protocol_NodeStatus_encode(uint8_t* buffer, uint32_t* bit_ofs, struct u
+  77:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** static inline bool __uavcan_protocol_NodeStatus_decode(const CanardRxTransfer* transfer, uint32_t* 
+  78:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** void __uavcan_protocol_NodeStatus_encode(uint8_t* buffer, uint32_t* bit_ofs, struct uavcan_protocol
+  30              		.loc 2 78 128 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 2 78 128 is_stmt 0 view .LVU1
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 4, -16
+ARM GAS  /tmp/cc97PeFV.s 			page 3
+
+
+  38              		.cfi_offset 5, -12
+  39              		.cfi_offset 6, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0646     		mov	r6, r0
+  42 0004 0C46     		mov	r4, r1
+  43 0006 1546     		mov	r5, r2
+  79:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)buffer;
+  44              		.loc 2 79 5 is_stmt 1 view .LVU2
+  80:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)bit_ofs;
+  45              		.loc 2 80 5 view .LVU3
+  81:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)msg;
+  46              		.loc 2 81 5 view .LVU4
+  82:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)tao;
+  47              		.loc 2 82 5 view .LVU5
+  83:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  84:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardEncodeScalar(buffer, *bit_ofs, 32, &msg->uptime_sec);
+  48              		.loc 2 84 5 view .LVU6
+  49 0008 1346     		mov	r3, r2
+  50              	.LVL1:
+  51              		.loc 2 84 5 is_stmt 0 view .LVU7
+  52 000a 2022     		movs	r2, #32
+  53              	.LVL2:
+  54              		.loc 2 84 5 view .LVU8
+  55 000c 0968     		ldr	r1, [r1]
+  56              	.LVL3:
+  57              		.loc 2 84 5 view .LVU9
+  58 000e FFF7FEFF 		bl	canardEncodeScalar
+  59              	.LVL4:
+  85:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 32;
+  60              		.loc 2 85 5 is_stmt 1 view .LVU10
+  61 0012 2168     		ldr	r1, [r4]
+  62              		.loc 2 85 14 is_stmt 0 view .LVU11
+  63 0014 2031     		adds	r1, r1, #32
+  64 0016 2160     		str	r1, [r4]
+  86:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardEncodeScalar(buffer, *bit_ofs, 2, &msg->health);
+  65              		.loc 2 86 5 is_stmt 1 view .LVU12
+  66 0018 2B1D     		adds	r3, r5, #4
+  67 001a 0222     		movs	r2, #2
+  68 001c 3046     		mov	r0, r6
+  69 001e FFF7FEFF 		bl	canardEncodeScalar
+  70              	.LVL5:
+  87:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 2;
+  71              		.loc 2 87 5 view .LVU13
+  72 0022 2168     		ldr	r1, [r4]
+  73              		.loc 2 87 14 is_stmt 0 view .LVU14
+  74 0024 0231     		adds	r1, r1, #2
+  75 0026 2160     		str	r1, [r4]
+  88:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardEncodeScalar(buffer, *bit_ofs, 3, &msg->mode);
+  76              		.loc 2 88 5 is_stmt 1 view .LVU15
+  77 0028 6B1D     		adds	r3, r5, #5
+  78 002a 0322     		movs	r2, #3
+  79 002c 3046     		mov	r0, r6
+  80 002e FFF7FEFF 		bl	canardEncodeScalar
+  81              	.LVL6:
+  89:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 3;
+  82              		.loc 2 89 5 view .LVU16
+  83 0032 2168     		ldr	r1, [r4]
+ARM GAS  /tmp/cc97PeFV.s 			page 4
+
+
+  84              		.loc 2 89 14 is_stmt 0 view .LVU17
+  85 0034 0331     		adds	r1, r1, #3
+  86 0036 2160     		str	r1, [r4]
+  90:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardEncodeScalar(buffer, *bit_ofs, 3, &msg->sub_mode);
+  87              		.loc 2 90 5 is_stmt 1 view .LVU18
+  88 0038 AB1D     		adds	r3, r5, #6
+  89 003a 0322     		movs	r2, #3
+  90 003c 3046     		mov	r0, r6
+  91 003e FFF7FEFF 		bl	canardEncodeScalar
+  92              	.LVL7:
+  91:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 3;
+  93              		.loc 2 91 5 view .LVU19
+  94 0042 2168     		ldr	r1, [r4]
+  95              		.loc 2 91 14 is_stmt 0 view .LVU20
+  96 0044 0331     		adds	r1, r1, #3
+  97 0046 2160     		str	r1, [r4]
+  92:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardEncodeScalar(buffer, *bit_ofs, 16, &msg->vendor_specific_status_code);
+  98              		.loc 2 92 5 is_stmt 1 view .LVU21
+  99 0048 05F10803 		add	r3, r5, #8
+ 100 004c 1022     		movs	r2, #16
+ 101 004e 3046     		mov	r0, r6
+ 102 0050 FFF7FEFF 		bl	canardEncodeScalar
+ 103              	.LVL8:
+  93:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 16;
+ 104              		.loc 2 93 5 view .LVU22
+ 105 0054 2368     		ldr	r3, [r4]
+ 106              		.loc 2 93 14 is_stmt 0 view .LVU23
+ 107 0056 1033     		adds	r3, r3, #16
+ 108 0058 2360     		str	r3, [r4]
+  94:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** }
+ 109              		.loc 2 94 1 view .LVU24
+ 110 005a 70BD     		pop	{r4, r5, r6, pc}
+ 111              		.loc 2 94 1 view .LVU25
+ 112              		.cfi_endproc
+ 113              	.LFE2:
+ 115              		.section	.text.__uavcan_protocol_NodeStatus_decode,"ax",%progbits
+ 116              		.align	1
+ 117              		.syntax unified
+ 118              		.thumb
+ 119              		.thumb_func
+ 121              	__uavcan_protocol_NodeStatus_decode:
+ 122              	.LVL9:
+ 123              	.LFB3:
+  95:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+  96:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** /*
+  97:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****  decode uavcan_protocol_NodeStatus, return true on failure, false on success
+  98:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** */
+  99:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** bool __uavcan_protocol_NodeStatus_decode(const CanardRxTransfer* transfer, uint32_t* bit_ofs, struc
+ 124              		.loc 2 99 145 is_stmt 1 view -0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128              		.loc 2 99 145 is_stmt 0 view .LVU27
+ 129 0000 70B5     		push	{r4, r5, r6, lr}
+ 130              		.cfi_def_cfa_offset 16
+ 131              		.cfi_offset 4, -16
+ 132              		.cfi_offset 5, -12
+ARM GAS  /tmp/cc97PeFV.s 			page 5
+
+
+ 133              		.cfi_offset 6, -8
+ 134              		.cfi_offset 14, -4
+ 135 0002 82B0     		sub	sp, sp, #8
+ 136              		.cfi_def_cfa_offset 24
+ 137 0004 0646     		mov	r6, r0
+ 138 0006 0C46     		mov	r4, r1
+ 139 0008 1546     		mov	r5, r2
+ 100:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)transfer;
+ 140              		.loc 2 100 5 is_stmt 1 view .LVU28
+ 101:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)bit_ofs;
+ 141              		.loc 2 101 5 view .LVU29
+ 102:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)msg;
+ 142              		.loc 2 102 5 view .LVU30
+ 103:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     (void)tao;
+ 143              		.loc 2 103 5 view .LVU31
+ 104:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardDecodeScalar(transfer, *bit_ofs, 32, false, &msg->uptime_sec);
+ 144              		.loc 2 104 5 view .LVU32
+ 145 000a 0092     		str	r2, [sp]
+ 146 000c 0023     		movs	r3, #0
+ 147              	.LVL10:
+ 148              		.loc 2 104 5 is_stmt 0 view .LVU33
+ 149 000e 2022     		movs	r2, #32
+ 150              	.LVL11:
+ 151              		.loc 2 104 5 view .LVU34
+ 152 0010 0968     		ldr	r1, [r1]
+ 153              	.LVL12:
+ 154              		.loc 2 104 5 view .LVU35
+ 155 0012 FFF7FEFF 		bl	canardDecodeScalar
+ 156              	.LVL13:
+ 105:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 32;
+ 157              		.loc 2 105 5 is_stmt 1 view .LVU36
+ 158 0016 2168     		ldr	r1, [r4]
+ 159              		.loc 2 105 14 is_stmt 0 view .LVU37
+ 160 0018 2031     		adds	r1, r1, #32
+ 161 001a 2160     		str	r1, [r4]
+ 106:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+ 107:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardDecodeScalar(transfer, *bit_ofs, 2, false, &msg->health);
+ 162              		.loc 2 107 5 is_stmt 1 view .LVU38
+ 163              		.loc 2 107 54 is_stmt 0 view .LVU39
+ 164 001c 2B1D     		adds	r3, r5, #4
+ 165              		.loc 2 107 5 view .LVU40
+ 166 001e 0093     		str	r3, [sp]
+ 167 0020 0023     		movs	r3, #0
+ 168 0022 0222     		movs	r2, #2
+ 169 0024 3046     		mov	r0, r6
+ 170 0026 FFF7FEFF 		bl	canardDecodeScalar
+ 171              	.LVL14:
+ 108:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 2;
+ 172              		.loc 2 108 5 is_stmt 1 view .LVU41
+ 173 002a 2168     		ldr	r1, [r4]
+ 174              		.loc 2 108 14 is_stmt 0 view .LVU42
+ 175 002c 0231     		adds	r1, r1, #2
+ 176 002e 2160     		str	r1, [r4]
+ 109:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+ 110:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardDecodeScalar(transfer, *bit_ofs, 3, false, &msg->mode);
+ 177              		.loc 2 110 5 is_stmt 1 view .LVU43
+ 178              		.loc 2 110 54 is_stmt 0 view .LVU44
+ARM GAS  /tmp/cc97PeFV.s 			page 6
+
+
+ 179 0030 6B1D     		adds	r3, r5, #5
+ 180              		.loc 2 110 5 view .LVU45
+ 181 0032 0093     		str	r3, [sp]
+ 182 0034 0023     		movs	r3, #0
+ 183 0036 0322     		movs	r2, #3
+ 184 0038 3046     		mov	r0, r6
+ 185 003a FFF7FEFF 		bl	canardDecodeScalar
+ 186              	.LVL15:
+ 111:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 3;
+ 187              		.loc 2 111 5 is_stmt 1 view .LVU46
+ 188 003e 2168     		ldr	r1, [r4]
+ 189              		.loc 2 111 14 is_stmt 0 view .LVU47
+ 190 0040 0331     		adds	r1, r1, #3
+ 191 0042 2160     		str	r1, [r4]
+ 112:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+ 113:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardDecodeScalar(transfer, *bit_ofs, 3, false, &msg->sub_mode);
+ 192              		.loc 2 113 5 is_stmt 1 view .LVU48
+ 193              		.loc 2 113 54 is_stmt 0 view .LVU49
+ 194 0044 AB1D     		adds	r3, r5, #6
+ 195              		.loc 2 113 5 view .LVU50
+ 196 0046 0093     		str	r3, [sp]
+ 197 0048 0023     		movs	r3, #0
+ 198 004a 0322     		movs	r2, #3
+ 199 004c 3046     		mov	r0, r6
+ 200 004e FFF7FEFF 		bl	canardDecodeScalar
+ 201              	.LVL16:
+ 114:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 3;
+ 202              		.loc 2 114 5 is_stmt 1 view .LVU51
+ 203 0052 2168     		ldr	r1, [r4]
+ 204              		.loc 2 114 14 is_stmt 0 view .LVU52
+ 205 0054 0331     		adds	r1, r1, #3
+ 206 0056 2160     		str	r1, [r4]
+ 115:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+ 116:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     canardDecodeScalar(transfer, *bit_ofs, 16, false, &msg->vendor_specific_status_code);
+ 207              		.loc 2 116 5 is_stmt 1 view .LVU53
+ 208              		.loc 2 116 55 is_stmt 0 view .LVU54
+ 209 0058 0835     		adds	r5, r5, #8
+ 210              	.LVL17:
+ 211              		.loc 2 116 5 view .LVU55
+ 212 005a 0095     		str	r5, [sp]
+ 213 005c 0023     		movs	r3, #0
+ 214 005e 1022     		movs	r2, #16
+ 215 0060 3046     		mov	r0, r6
+ 216 0062 FFF7FEFF 		bl	canardDecodeScalar
+ 217              	.LVL18:
+ 117:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     *bit_ofs += 16;
+ 218              		.loc 2 117 5 is_stmt 1 view .LVU56
+ 219 0066 2368     		ldr	r3, [r4]
+ 220              		.loc 2 117 14 is_stmt 0 view .LVU57
+ 221 0068 1033     		adds	r3, r3, #16
+ 222 006a 2360     		str	r3, [r4]
+ 118:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** 
+ 119:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h ****     return false; /* success */
+ 223              		.loc 2 119 5 is_stmt 1 view .LVU58
+ 120:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h **** }
+ 224              		.loc 2 120 1 is_stmt 0 view .LVU59
+ 225 006c 0020     		movs	r0, #0
+ARM GAS  /tmp/cc97PeFV.s 			page 7
+
+
+ 226 006e 02B0     		add	sp, sp, #8
+ 227              		.cfi_def_cfa_offset 16
+ 228              		@ sp needed
+ 229 0070 70BD     		pop	{r4, r5, r6, pc}
+ 230              		.loc 2 120 1 view .LVU60
+ 231              		.cfi_endproc
+ 232              	.LFE3:
+ 234              		.section	.text._uavcan_protocol_NodeStatus_encode,"ax",%progbits
+ 235              		.align	1
+ 236              		.global	_uavcan_protocol_NodeStatus_encode
+ 237              		.syntax unified
+ 238              		.thumb
+ 239              		.thumb_func
+ 241              	_uavcan_protocol_NodeStatus_encode:
+ 242              	.LVL19:
+ 243              	.LFB4:
+   1:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #define CANARD_DSDLC_INTERNAL
+   2:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #include <uavcan.protocol.NodeStatus.h>
+   3:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #include <string.h>
+   4:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** 
+   5:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #ifdef CANARD_DSDLC_TEST_BUILD
+   6:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #include <test_helpers.h>
+   7:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #endif
+   8:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** 
+   9:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** uint32_t _uavcan_protocol_NodeStatus_encode(struct uavcan_protocol_NodeStatus* msg, uint8_t* buffer
+  10:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #if CANARD_ENABLE_TAO_OPTION
+  11:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     , bool tao
+  12:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #endif
+  13:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** ) {
+ 244              		.loc 1 13 3 is_stmt 1 view -0
+ 245              		.cfi_startproc
+ 246              		@ args = 0, pretend = 0, frame = 8
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 248              		.loc 1 13 3 is_stmt 0 view .LVU62
+ 249 0000 00B5     		push	{lr}
+ 250              		.cfi_def_cfa_offset 4
+ 251              		.cfi_offset 14, -4
+ 252 0002 83B0     		sub	sp, sp, #12
+ 253              		.cfi_def_cfa_offset 16
+ 254 0004 0246     		mov	r2, r0
+ 255 0006 0846     		mov	r0, r1
+ 256              	.LVL20:
+  14:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     uint32_t bit_ofs = 0;
+ 257              		.loc 1 14 5 is_stmt 1 view .LVU63
+ 258              		.loc 1 14 14 is_stmt 0 view .LVU64
+ 259 0008 0023     		movs	r3, #0
+ 260 000a 0193     		str	r3, [sp, #4]
+  15:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     memset(buffer, 0, UAVCAN_PROTOCOL_NODESTATUS_MAX_SIZE);
+ 261              		.loc 1 15 5 is_stmt 1 view .LVU65
+ 262 000c 0B60     		str	r3, [r1]	@ unaligned
+ 263 000e C1F80330 		str	r3, [r1, #3]	@ unaligned
+  16:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     __uavcan_protocol_NodeStatus_encode(buffer, &bit_ofs, msg,
+ 264              		.loc 1 16 5 view .LVU66
+ 265 0012 0123     		movs	r3, #1
+ 266 0014 01A9     		add	r1, sp, #4
+ 267              	.LVL21:
+ 268              		.loc 1 16 5 is_stmt 0 view .LVU67
+ARM GAS  /tmp/cc97PeFV.s 			page 8
+
+
+ 269 0016 FFF7FEFF 		bl	__uavcan_protocol_NodeStatus_encode
+ 270              	.LVL22:
+  17:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #if CANARD_ENABLE_TAO_OPTION
+  18:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     tao
+  19:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #else
+  20:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     true
+  21:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #endif
+  22:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     );
+  23:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     return ((bit_ofs+7)/8);
+ 271              		.loc 1 23 5 is_stmt 1 view .LVU68
+ 272              		.loc 1 23 21 is_stmt 0 view .LVU69
+ 273 001a 0198     		ldr	r0, [sp, #4]
+ 274 001c 0730     		adds	r0, r0, #7
+  24:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** }
+ 275              		.loc 1 24 1 view .LVU70
+ 276 001e C008     		lsrs	r0, r0, #3
+ 277 0020 03B0     		add	sp, sp, #12
+ 278              		.cfi_def_cfa_offset 4
+ 279              		@ sp needed
+ 280 0022 5DF804FB 		ldr	pc, [sp], #4
+ 281              		.cfi_endproc
+ 282              	.LFE4:
+ 284              		.section	.text._uavcan_protocol_NodeStatus_decode,"ax",%progbits
+ 285              		.align	1
+ 286              		.global	_uavcan_protocol_NodeStatus_decode
+ 287              		.syntax unified
+ 288              		.thumb
+ 289              		.thumb_func
+ 291              	_uavcan_protocol_NodeStatus_decode:
+ 292              	.LVL23:
+ 293              	.LFB5:
+  25:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** 
+  26:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** /*
+  27:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****   return true if the decode is invalid
+  28:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****  */
+  29:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** bool _uavcan_protocol_NodeStatus_decode(const CanardRxTransfer* transfer, struct uavcan_protocol_No
+ 294              		.loc 1 29 115 is_stmt 1 view -0
+ 295              		.cfi_startproc
+ 296              		@ args = 0, pretend = 0, frame = 8
+ 297              		@ frame_needed = 0, uses_anonymous_args = 0
+ 298              		.loc 1 29 115 is_stmt 0 view .LVU72
+ 299 0000 10B5     		push	{r4, lr}
+ 300              		.cfi_def_cfa_offset 8
+ 301              		.cfi_offset 4, -8
+ 302              		.cfi_offset 14, -4
+ 303 0002 82B0     		sub	sp, sp, #8
+ 304              		.cfi_def_cfa_offset 16
+ 305 0004 0446     		mov	r4, r0
+ 306 0006 0A46     		mov	r2, r1
+  30:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #if CANARD_ENABLE_TAO_OPTION
+  31:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     if (transfer->tao && (transfer->payload_len > UAVCAN_PROTOCOL_NODESTATUS_MAX_SIZE)) {
+  32:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****         return true; /* invalid payload length */
+  33:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     }
+  34:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #endif
+  35:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     uint32_t bit_ofs = 0;
+ 307              		.loc 1 35 5 is_stmt 1 view .LVU73
+ 308              		.loc 1 35 14 is_stmt 0 view .LVU74
+ARM GAS  /tmp/cc97PeFV.s 			page 9
+
+
+ 309 0008 0023     		movs	r3, #0
+ 310 000a 0193     		str	r3, [sp, #4]
+  36:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     if (__uavcan_protocol_NodeStatus_decode(transfer, &bit_ofs, msg,
+ 311              		.loc 1 36 5 is_stmt 1 view .LVU75
+ 312              		.loc 1 36 9 is_stmt 0 view .LVU76
+ 313 000c 0123     		movs	r3, #1
+ 314 000e 01A9     		add	r1, sp, #4
+ 315              	.LVL24:
+ 316              		.loc 1 36 9 view .LVU77
+ 317 0010 FFF7FEFF 		bl	__uavcan_protocol_NodeStatus_decode
+ 318              	.LVL25:
+ 319              		.loc 1 36 8 discriminator 1 view .LVU78
+ 320 0014 38B9     		cbnz	r0, .L8
+  37:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #if CANARD_ENABLE_TAO_OPTION
+  38:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     transfer->tao
+  39:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #else
+  40:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     true
+  41:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #endif
+  42:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     )) {
+  43:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****         return true; /* invalid payload */
+  44:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     }
+  45:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** 
+  46:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     const uint32_t byte_len = (bit_ofs+7U)/8U;
+ 321              		.loc 1 46 5 is_stmt 1 view .LVU79
+ 322              		.loc 1 46 39 is_stmt 0 view .LVU80
+ 323 0016 019B     		ldr	r3, [sp, #4]
+ 324 0018 0733     		adds	r3, r3, #7
+ 325              	.LVL26:
+  47:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #if CANARD_ENABLE_TAO_OPTION
+  48:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     // if this could be CANFD then the dlc could indicating more bytes than
+  49:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     // we actually have
+  50:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     if (!transfer->tao) {
+  51:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****         return byte_len > transfer->payload_len;
+  52:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     }
+  53:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** #endif
+  54:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c ****     return byte_len != transfer->payload_len;
+ 326              		.loc 1 54 5 is_stmt 1 view .LVU81
+ 327              		.loc 1 54 32 is_stmt 0 view .LVU82
+ 328 001a A28A     		ldrh	r2, [r4, #20]
+ 329              		.loc 1 54 21 view .LVU83
+ 330 001c B2EBD30F 		cmp	r2, r3, lsr #3
+ 331 0020 14BF     		ite	ne
+ 332 0022 0120     		movne	r0, #1
+ 333 0024 0020     		moveq	r0, #0
+ 334              	.LVL27:
+ 335              	.L8:
+  55:My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c **** }
+ 336              		.loc 1 55 1 view .LVU84
+ 337 0026 02B0     		add	sp, sp, #8
+ 338              		.cfi_def_cfa_offset 8
+ 339              		@ sp needed
+ 340 0028 10BD     		pop	{r4, pc}
+ 341              		.loc 1 55 1 view .LVU85
+ 342              		.cfi_endproc
+ 343              	.LFE5:
+ 345              		.text
+ 346              	.Letext0:
+ARM GAS  /tmp/cc97PeFV.s 			page 10
+
+
+ 347              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 348              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 349              		.file 5 "My_Top/Drone_CAN/canard.h"
+ 350              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
+ARM GAS  /tmp/cc97PeFV.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uavcan.protocol.NodeStatus.c
+     /tmp/cc97PeFV.s:21     .text.__uavcan_protocol_NodeStatus_encode:00000000 $t
+     /tmp/cc97PeFV.s:26     .text.__uavcan_protocol_NodeStatus_encode:00000000 __uavcan_protocol_NodeStatus_encode
+     /tmp/cc97PeFV.s:116    .text.__uavcan_protocol_NodeStatus_decode:00000000 $t
+     /tmp/cc97PeFV.s:121    .text.__uavcan_protocol_NodeStatus_decode:00000000 __uavcan_protocol_NodeStatus_decode
+     /tmp/cc97PeFV.s:235    .text._uavcan_protocol_NodeStatus_encode:00000000 $t
+     /tmp/cc97PeFV.s:241    .text._uavcan_protocol_NodeStatus_encode:00000000 _uavcan_protocol_NodeStatus_encode
+     /tmp/cc97PeFV.s:285    .text._uavcan_protocol_NodeStatus_decode:00000000 $t
+     /tmp/cc97PeFV.s:291    .text._uavcan_protocol_NodeStatus_decode:00000000 _uavcan_protocol_NodeStatus_decode
+
+UNDEFINED SYMBOLS
+canardEncodeScalar
+canardDecodeScalar

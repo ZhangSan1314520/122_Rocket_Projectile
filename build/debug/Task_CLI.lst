@@ -1,0 +1,378 @@
+ARM GAS  /tmp/cc8iY3O3.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"Task_CLI.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/Task/Task_CLI.cpp"
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	_Z41__static_initialization_and_destruction_0v:
+  26              	.LFB353:
+   1:My_Top/Task/Task_CLI.cpp **** #include "My_CLI.hpp"
+   2:My_Top/Task/Task_CLI.cpp **** 
+   3:My_Top/Task/Task_CLI.cpp **** CLI_Module cli_console;  // 全局CLI实例
+   4:My_Top/Task/Task_CLI.cpp **** 
+   5:My_Top/Task/Task_CLI.cpp **** // ============================================================
+   6:My_Top/Task/Task_CLI.cpp **** // 1. 命令处理函数声明
+   7:My_Top/Task/Task_CLI.cpp **** // ============================================================
+   8:My_Top/Task/Task_CLI.cpp **** 
+   9:My_Top/Task/Task_CLI.cpp **** // ============================================================
+  10:My_Top/Task/Task_CLI.cpp **** // 2. CLI 任务入口
+  11:My_Top/Task/Task_CLI.cpp **** // ============================================================
+  12:My_Top/Task/Task_CLI.cpp **** void Task_CLI(void *argument)
+  13:My_Top/Task/Task_CLI.cpp **** {
+  14:My_Top/Task/Task_CLI.cpp ****     cli_console.init("FOC_ZGJ");                       // CLI终端名称
+  15:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
+  16:My_Top/Task/Task_CLI.cpp **** 
+  17:My_Top/Task/Task_CLI.cpp ****     // 注册命令
+  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("start", "start", true, NULL, start);//电机启动
+  19:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop", true, NULL, stop);//电机停止
+  20:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
+  21:My_Top/Task/Task_CLI.cpp **** 
+  22:My_Top/Task/Task_CLI.cpp ****     // CLI_Module::add_command_to_all("set_dir", "set_dir [dir] 0-顺时针 1-逆时针", true, NUL
+  23:My_Top/Task/Task_CLI.cpp ****     // CLI_Module::add_command_to_all("set_fre", "set_fre", true, NULL, set_fre);//设置电机频�
+  24:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_duty", "set_duty [duty] 范围0.0f-1.0f", true, NULL, set_d
+  25:My_Top/Task/Task_CLI.cpp **** 
+  26:My_Top/Task/Task_CLI.cpp ****     CLI_Module::start_all();  // 启动所有CLI
+  27:My_Top/Task/Task_CLI.cpp **** 
+  28:My_Top/Task/Task_CLI.cpp ****     vTaskDelete(NULL);
+  29:My_Top/Task/Task_CLI.cpp **** }
+  27              		.loc 1 29 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/cc8iY3O3.s 			page 2
+
+
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  33              	.LBB5:
+  34              	.LBI5:
+  35              		.file 2 "My_Top/Modules/CLI_Module.hpp"
+   1:My_Top/Modules/CLI_Module.hpp **** #pragma once
+   2:My_Top/Modules/CLI_Module.hpp **** 
+   3:My_Top/Modules/CLI_Module.hpp **** #include <stdint.h>
+   4:My_Top/Modules/CLI_Module.hpp **** 
+   5:My_Top/Modules/CLI_Module.hpp **** #include "cmsis_os2.h"
+   6:My_Top/Modules/CLI_Module.hpp **** #include "FreeRTOS.h"
+   7:My_Top/Modules/CLI_Module.hpp **** #include "task.h"
+   8:My_Top/Modules/CLI_Module.hpp **** #include "semphr.h"
+   9:My_Top/Modules/CLI_Module.hpp **** 
+  10:My_Top/Modules/CLI_Module.hpp **** #include "serial.hpp"
+  11:My_Top/Modules/CLI_Module.hpp **** #include "embedded_cli.h"
+  12:My_Top/Modules/CLI_Module.hpp **** 
+  13:My_Top/Modules/CLI_Module.hpp **** #ifndef CLI_MODULE_INSTANCE_MAX_NUM
+  14:My_Top/Modules/CLI_Module.hpp **** #define CLI_MODULE_INSTANCE_MAX_NUM 5
+  15:My_Top/Modules/CLI_Module.hpp **** #endif
+  16:My_Top/Modules/CLI_Module.hpp **** 
+  17:My_Top/Modules/CLI_Module.hpp **** #ifndef CLI_MODULE_PRINT_BUFFER_MAX_SIZE
+  18:My_Top/Modules/CLI_Module.hpp **** #define CLI_MODULE_PRINT_BUFFER_MAX_SIZE 200
+  19:My_Top/Modules/CLI_Module.hpp **** #endif
+  20:My_Top/Modules/CLI_Module.hpp **** 
+  21:My_Top/Modules/CLI_Module.hpp **** #define CLI_MODULE_MAX_ARGS_NUM 10
+  22:My_Top/Modules/CLI_Module.hpp **** 
+  23:My_Top/Modules/CLI_Module.hpp **** enum class CLI_Status : uint8_t
+  24:My_Top/Modules/CLI_Module.hpp **** {
+  25:My_Top/Modules/CLI_Module.hpp ****     ArgsError,
+  26:My_Top/Modules/CLI_Module.hpp ****     Success,
+  27:My_Top/Modules/CLI_Module.hpp ****     Fail
+  28:My_Top/Modules/CLI_Module.hpp **** };
+  29:My_Top/Modules/CLI_Module.hpp **** 
+  30:My_Top/Modules/CLI_Module.hpp **** class CLI_Module;
+  31:My_Top/Modules/CLI_Module.hpp **** 
+  32:My_Top/Modules/CLI_Module.hpp **** typedef CLI_Status (*cli_subcmd_func_t)(CLI_Module *mcli, const char **args, int argc);
+  33:My_Top/Modules/CLI_Module.hpp **** 
+  34:My_Top/Modules/CLI_Module.hpp **** typedef struct
+  35:My_Top/Modules/CLI_Module.hpp **** {
+  36:My_Top/Modules/CLI_Module.hpp ****     const char *name;
+  37:My_Top/Modules/CLI_Module.hpp ****     cli_subcmd_func_t func;
+  38:My_Top/Modules/CLI_Module.hpp **** } cli_subcmd_cfg_t;
+  39:My_Top/Modules/CLI_Module.hpp **** 
+  40:My_Top/Modules/CLI_Module.hpp **** class CLI_Module
+  36              		.loc 2 40 7 view .LVU1
+  37              	.LBB6:
+  38 0000 034B     		ldr	r3, .L2
+  39 0002 0022     		movs	r2, #0
+  40 0004 1A70     		strb	r2, [r3]
+  41 0006 5A60     		str	r2, [r3, #4]
+  42 0008 9A60     		str	r2, [r3, #8]
+  43 000a DA62     		str	r2, [r3, #44]
+  44 000c 1A63     		str	r2, [r3, #48]
+  45              	.LVL1:
+  46              		.loc 2 40 7 is_stmt 0 view .LVU2
+ARM GAS  /tmp/cc8iY3O3.s 			page 3
+
+
+  47              	.LBE6:
+  48              	.LBE5:
+  49              		.loc 1 29 1 view .LVU3
+  50 000e 7047     		bx	lr
+  51              	.L3:
+  52              		.align	2
+  53              	.L2:
+  54 0010 00000000 		.word	.LANCHOR0
+  55              		.cfi_endproc
+  56              	.LFE353:
+  58              		.section	.rodata.str1.4,"aMS",%progbits,1
+  59              		.align	2
+  60              	.LC0:
+  61 0000 464F435F 		.ascii	"FOC_ZGJ\000"
+  61      5A474A00 
+  62              		.align	2
+  63              	.LC1:
+  64 0008 73746172 		.ascii	"start\000"
+  64      7400
+  65 000e 0000     		.align	2
+  66              	.LC2:
+  67 0010 73746F70 		.ascii	"stop\000"
+  67      00
+  68 0015 000000   		.align	2
+  69              	.LC3:
+  70 0018 72657365 		.ascii	"reset\000"
+  70      7400
+  71 001e 0000     		.align	2
+  72              	.LC4:
+  73 0020 7365745F 		.ascii	"set_duty [duty] \350\214\203\345\233\2640.0f-1.0f\000"
+  73      64757479 
+  73      205B6475 
+  73      74795D20 
+  73      E88C83E5 
+  74              		.align	2
+  75              	.LC5:
+  76 0040 7365745F 		.ascii	"set_duty\000"
+  76      64757479 
+  76      00
+  77              		.text
+  78              		.align	1
+  79              		.global	_Z8Task_CLIPv
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  84              	_Z8Task_CLIPv:
+  85              	.LVL2:
+  86              	.LFB352:
+  13:My_Top/Task/Task_CLI.cpp ****     cli_console.init("FOC_ZGJ");                       // CLI终端名称
+  87              		.loc 1 13 1 is_stmt 1 view -0
+  88              		.cfi_startproc
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+  13:My_Top/Task/Task_CLI.cpp ****     cli_console.init("FOC_ZGJ");                       // CLI终端名称
+  91              		.loc 1 13 1 is_stmt 0 view .LVU5
+  92 0014 10B5     		push	{r4, lr}
+  93              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/cc8iY3O3.s 			page 4
+
+
+  94              		.cfi_offset 4, -8
+  95              		.cfi_offset 14, -4
+  96 0016 82B0     		sub	sp, sp, #8
+  97              		.cfi_def_cfa_offset 16
+  14:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
+  98              		.loc 1 14 5 is_stmt 1 view .LVU6
+  14:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
+  99              		.loc 1 14 21 is_stmt 0 view .LVU7
+ 100 0018 184C     		ldr	r4, .L6
+ 101 001a 0A22     		movs	r2, #10
+ 102 001c 1849     		ldr	r1, .L6+4
+ 103 001e 2046     		mov	r0, r4
+ 104              	.LVL3:
+  14:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
+ 105              		.loc 1 14 21 view .LVU8
+ 106 0020 FFF7FEFF 		bl	_ZN10CLI_Module4initEPKct
+ 107              	.LVL4:
+  15:My_Top/Task/Task_CLI.cpp **** 
+ 108              		.loc 1 15 5 is_stmt 1 view .LVU9
+  15:My_Top/Task/Task_CLI.cpp **** 
+ 109              		.loc 1 15 32 is_stmt 0 view .LVU10
+ 110 0024 1749     		ldr	r1, .L6+8
+ 111 0026 2046     		mov	r0, r4
+ 112 0028 FFF7FEFF 		bl	_ZN10CLI_Module15bind_write_dataEP6Serial
+ 113              	.LVL5:
+  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop", true, NULL, stop);//电机停止
+ 114              		.loc 1 18 5 is_stmt 1 view .LVU11
+  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop", true, NULL, stop);//电机停止
+ 115              		.loc 1 18 35 is_stmt 0 view .LVU12
+ 116 002c 1648     		ldr	r0, .L6+12
+ 117 002e 174B     		ldr	r3, .L6+16
+ 118 0030 0093     		str	r3, [sp]
+ 119 0032 0023     		movs	r3, #0
+ 120 0034 0122     		movs	r2, #1
+ 121 0036 0146     		mov	r1, r0
+ 122 0038 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 123              	.LVL6:
+  19:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
+ 124              		.loc 1 19 5 is_stmt 1 view .LVU13
+  19:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
+ 125              		.loc 1 19 35 is_stmt 0 view .LVU14
+ 126 003c 1448     		ldr	r0, .L6+20
+ 127 003e 154B     		ldr	r3, .L6+24
+ 128 0040 0093     		str	r3, [sp]
+ 129 0042 0023     		movs	r3, #0
+ 130 0044 0122     		movs	r2, #1
+ 131 0046 0146     		mov	r1, r0
+ 132 0048 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 133              	.LVL7:
+  20:My_Top/Task/Task_CLI.cpp **** 
+ 134              		.loc 1 20 5 is_stmt 1 view .LVU15
+  20:My_Top/Task/Task_CLI.cpp **** 
+ 135              		.loc 1 20 35 is_stmt 0 view .LVU16
+ 136 004c 1248     		ldr	r0, .L6+28
+ 137 004e 134B     		ldr	r3, .L6+32
+ 138 0050 0093     		str	r3, [sp]
+ 139 0052 0023     		movs	r3, #0
+ARM GAS  /tmp/cc8iY3O3.s 			page 5
+
+
+ 140 0054 0122     		movs	r2, #1
+ 141 0056 0146     		mov	r1, r0
+ 142 0058 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 143              	.LVL8:
+  24:My_Top/Task/Task_CLI.cpp **** 
+ 144              		.loc 1 24 5 is_stmt 1 view .LVU17
+  24:My_Top/Task/Task_CLI.cpp **** 
+ 145              		.loc 1 24 35 is_stmt 0 view .LVU18
+ 146 005c 104B     		ldr	r3, .L6+36
+ 147 005e 0093     		str	r3, [sp]
+ 148 0060 0023     		movs	r3, #0
+ 149 0062 0122     		movs	r2, #1
+ 150 0064 0F49     		ldr	r1, .L6+40
+ 151 0066 1048     		ldr	r0, .L6+44
+ 152 0068 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 153              	.LVL9:
+  26:My_Top/Task/Task_CLI.cpp **** 
+ 154              		.loc 1 26 5 is_stmt 1 view .LVU19
+  26:My_Top/Task/Task_CLI.cpp **** 
+ 155              		.loc 1 26 26 is_stmt 0 view .LVU20
+ 156 006c FFF7FEFF 		bl	_ZN10CLI_Module9start_allEv
+ 157              	.LVL10:
+  28:My_Top/Task/Task_CLI.cpp **** }
+ 158              		.loc 1 28 5 is_stmt 1 view .LVU21
+  28:My_Top/Task/Task_CLI.cpp **** }
+ 159              		.loc 1 28 16 is_stmt 0 view .LVU22
+ 160 0070 0020     		movs	r0, #0
+ 161 0072 FFF7FEFF 		bl	vTaskDelete
+ 162              	.LVL11:
+ 163              		.loc 1 29 1 view .LVU23
+ 164 0076 02B0     		add	sp, sp, #8
+ 165              		.cfi_def_cfa_offset 8
+ 166              		@ sp needed
+ 167 0078 10BD     		pop	{r4, pc}
+ 168              	.L7:
+ 169 007a 00BF     		.align	2
+ 170              	.L6:
+ 171 007c 00000000 		.word	.LANCHOR0
+ 172 0080 00000000 		.word	.LC0
+ 173 0084 00000000 		.word	sr_console
+ 174 0088 08000000 		.word	.LC1
+ 175 008c 00000000 		.word	_Z5startP11EmbeddedCliPcPv
+ 176 0090 10000000 		.word	.LC2
+ 177 0094 00000000 		.word	_Z4stopP11EmbeddedCliPcPv
+ 178 0098 18000000 		.word	.LC3
+ 179 009c 00000000 		.word	_Z5resetP11EmbeddedCliPcPv
+ 180 00a0 00000000 		.word	_Z8set_dutyP11EmbeddedCliPcPv
+ 181 00a4 20000000 		.word	.LC4
+ 182 00a8 40000000 		.word	.LC5
+ 183              		.cfi_endproc
+ 184              	.LFE352:
+ 186              		.align	1
+ 187              		.syntax unified
+ 188              		.thumb
+ 189              		.thumb_func
+ 191              	_GLOBAL__sub_I_cli_console:
+ 192              	.LFB354:
+ARM GAS  /tmp/cc8iY3O3.s 			page 6
+
+
+ 193              		.loc 1 29 1 is_stmt 1 view -0
+ 194              		.cfi_startproc
+ 195              		@ args = 0, pretend = 0, frame = 0
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197 00ac 08B5     		push	{r3, lr}
+ 198              		.cfi_def_cfa_offset 8
+ 199              		.cfi_offset 3, -8
+ 200              		.cfi_offset 14, -4
+ 201              		.loc 1 29 1 is_stmt 0 view .LVU25
+ 202 00ae FFF7A7FF 		bl	_Z41__static_initialization_and_destruction_0v
+ 203              	.LVL12:
+ 204 00b2 08BD     		pop	{r3, pc}
+ 205              		.cfi_endproc
+ 206              	.LFE354:
+ 208              		.section	.init_array,"aw",%init_array
+ 209              		.align	2
+ 210 0000 00000000 		.word	_GLOBAL__sub_I_cli_console(target1)
+ 211              		.global	cli_console
+ 212              		.bss
+ 213              		.align	2
+ 214              		.set	.LANCHOR0,. + 0
+ 217              	cli_console:
+ 218 0000 00000000 		.space	56
+ 218      00000000 
+ 218      00000000 
+ 218      00000000 
+ 218      00000000 
+ 219              		.text
+ 220              	.Letext0:
+ 221              		.file 3 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 222              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 223              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 224              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 225              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
+ 226              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
+ 227              		.file 9 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 228              		.file 10 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+ 229              		.file 11 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 230              		.file 12 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 231              		.file 13 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 232              		.file 14 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
+ 233              		.file 15 "Lib/serial/serial.hpp"
+ 234              		.file 16 "Lib/embedded-cli/embedded_cli.h"
+ 235              		.file 17 "My_Top/MC/MC_Serial.hpp"
+ 236              		.file 18 "My_Top/System/My_CLI.hpp"
+ 237              		.file 19 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ARM GAS  /tmp/cc8iY3O3.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Task_CLI.cpp
+     /tmp/cc8iY3O3.s:20     .text:00000000 $t
+     /tmp/cc8iY3O3.s:25     .text:00000000 _Z41__static_initialization_and_destruction_0v
+     /tmp/cc8iY3O3.s:54     .text:00000010 $d
+     /tmp/cc8iY3O3.s:59     .rodata.str1.4:00000000 $d
+     /tmp/cc8iY3O3.s:78     .text:00000014 $t
+     /tmp/cc8iY3O3.s:84     .text:00000014 _Z8Task_CLIPv
+     /tmp/cc8iY3O3.s:171    .text:0000007c $d
+     /tmp/cc8iY3O3.s:186    .text:000000ac $t
+     /tmp/cc8iY3O3.s:191    .text:000000ac _GLOBAL__sub_I_cli_console
+     /tmp/cc8iY3O3.s:209    .init_array:00000000 $d
+     /tmp/cc8iY3O3.s:217    .bss:00000000 cli_console
+     /tmp/cc8iY3O3.s:213    .bss:00000000 $d
+
+UNDEFINED SYMBOLS
+_ZN10CLI_Module4initEPKct
+_ZN10CLI_Module15bind_write_dataEP6Serial
+_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+_ZN10CLI_Module9start_allEv
+vTaskDelete
+sr_console
+_Z5startP11EmbeddedCliPcPv
+_Z4stopP11EmbeddedCliPcPv
+_Z5resetP11EmbeddedCliPcPv
+_Z8set_dutyP11EmbeddedCliPcPv

@@ -1,0 +1,1087 @@
+ARM GAS  /tmp/ccStD1O9.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uorb.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Lib/uorb/uorb.cpp"
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	_ZL14find_or_createPKc:
+  26              	.LVL0:
+  27              	.LFB5:
+   1:Lib/uorb/uorb.cpp **** /**
+   2:Lib/uorb/uorb.cpp ****  * ============================================================
+   3:Lib/uorb/uorb.cpp ****  * uORB 核心实现
+   4:Lib/uorb/uorb.cpp ****  * ============================================================
+   5:Lib/uorb/uorb.cpp ****  *
+   6:Lib/uorb/uorb.cpp ****  * 数据流:
+   7:Lib/uorb/uorb.cpp ****  *
+   8:Lib/uorb/uorb.cpp ****  *   发布者                     全局 Topic 表              订阅者
+   9:Lib/uorb/uorb.cpp ****  *   ──────                    ────────────               ─�
+  10:Lib/uorb/uorb.cpp ****  *   advertise("accel",16)     topics[0] {                subscribe("accel")
+  11:Lib/uorb/uorb.cpp ****  *          │                    name="accel"                     │
+  12:Lib/uorb/uorb.cpp ****  *          │                    data=[16 bytes]                  │
+  13:Lib/uorb/uorb.cpp ****  *          │                    generation=0                     │
+  14:Lib/uorb/uorb.cpp ****  *          │                    subs[0]={last_seen=0}            │
+  15:Lib/uorb/uorb.cpp ****  *          │                    }                                │
+  16:Lib/uorb/uorb.cpp ****  *          │                                                    │
+  17:Lib/uorb/uorb.cpp ****  *   publish(h, &data)  ──→  memcpy data                        │
+  18:Lib/uorb/uorb.cpp ****  *          │                generation++ (→1)                    │
+  19:Lib/uorb/uorb.cpp ****  *          │                                                    │
+  20:Lib/uorb/uorb.cpp ****  *          │                                     check/copy ──→ generation 从 0 变 1,
+  21:Lib/uorb/uorb.cpp ****  *          │                                                    感知到新数据, 拷贝
+  22:Lib/uorb/uorb.cpp ****  *          │                                                    更新 last_seen=1
+  23:Lib/uorb/uorb.cpp ****  *
+  24:Lib/uorb/uorb.cpp ****  *   关键机制:
+  25:Lib/uorb/uorb.cpp ****  *   - 匹配: publish 和 subscribe 靠同一个 Topic 名字字符串关联
+  26:Lib/uorb/uorb.cpp ****  *   - 通知: 靠 generation 整数, 不用信号量唤醒 (轮询 + 1ms 延时)
+  27:Lib/uorb/uorb.cpp ****  *   - 数据: 共享内存方案, 每次 publish 是 memcpy 一份副本
+  28:Lib/uorb/uorb.cpp ****  *   - 安全: global_lock 保护 topics 数组, topic 级 mutex 保护数据读写
+  29:Lib/uorb/uorb.cpp ****  * ============================================================
+  30:Lib/uorb/uorb.cpp ****  */
+  31:Lib/uorb/uorb.cpp **** 
+ARM GAS  /tmp/ccStD1O9.s 			page 2
+
+
+  32:Lib/uorb/uorb.cpp **** #include "uorb.hpp"
+  33:Lib/uorb/uorb.cpp **** 
+  34:Lib/uorb/uorb.cpp **** /* ── 全局 Topic 表 ──
+  35:Lib/uorb/uorb.cpp ****  * 所有 Topic 状态集中存于此, 全局锁保护增删操作
+  36:Lib/uorb/uorb.cpp ****  */
+  37:Lib/uorb/uorb.cpp **** static uorb_topic_t topics[UORB_MAX_TOPICS];
+  38:Lib/uorb/uorb.cpp **** static SemaphoreHandle_t global_lock;   // 保护 topics 数组结构的互斥锁
+  39:Lib/uorb/uorb.cpp **** 
+  40:Lib/uorb/uorb.cpp **** /**
+  41:Lib/uorb/uorb.cpp ****  * @brief  全局初始化: 清零 Topic 表 + 创建全局锁
+  42:Lib/uorb/uorb.cpp ****  *
+  43:Lib/uorb/uorb.cpp ****  * 必须在调度器启动后、任何 uorb API 调用前执行。
+  44:Lib/uorb/uorb.cpp ****  * 重复调用会导致锁泄漏, 不建议。
+  45:Lib/uorb/uorb.cpp ****  */
+  46:Lib/uorb/uorb.cpp **** void uorb_init(void) {
+  47:Lib/uorb/uorb.cpp ****     memset(topics, 0, sizeof(topics));               // 所有槽位标记为 invalid
+  48:Lib/uorb/uorb.cpp ****     global_lock = xSemaphoreCreateMutex();           // 创建保护 topics 数组的锁
+  49:Lib/uorb/uorb.cpp **** }
+  50:Lib/uorb/uorb.cpp **** 
+  51:Lib/uorb/uorb.cpp **** /**
+  52:Lib/uorb/uorb.cpp ****  * @brief  在全局表中按名字查找 Topic, 找不到则分配新槽位
+  53:Lib/uorb/uorb.cpp ****  * @param  name  Topic 名字
+  54:Lib/uorb/uorb.cpp ****  * @return 找到或新分配的槽位指针, 表满则返回 NULL
+  55:Lib/uorb/uorb.cpp ****  *
+  56:Lib/uorb/uorb.cpp ****  * 两步:
+  57:Lib/uorb/uorb.cpp ****  *   1. 遍历 topics[], 找 name 相同且 valid 的 → 已有 Topic (回收)
+  58:Lib/uorb/uorb.cpp ****  *   2. 找不到 → 找第一个 invalid 槽位 → 初始化新 Topic
+  59:Lib/uorb/uorb.cpp ****  *
+  60:Lib/uorb/uorb.cpp ****  * 注意: 调用者必须先持有 global_lock
+  61:Lib/uorb/uorb.cpp ****  */
+  62:Lib/uorb/uorb.cpp **** static uorb_topic_t *find_or_create(const char *name) {
+  28              		.loc 1 62 55 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 62 55 is_stmt 0 view .LVU1
+  33 0000 38B5     		push	{r3, r4, r5, lr}
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 3, -16
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  39 0002 0546     		mov	r5, r0
+  63:Lib/uorb/uorb.cpp ****     /* Step 1: 查找已存在的同名 Topic */
+  64:Lib/uorb/uorb.cpp ****     for (int i = 0; i < UORB_MAX_TOPICS; i++) {
+  40              		.loc 1 64 5 is_stmt 1 view .LVU2
+  41              	.LVL1:
+  42              	.LBB10:
+  43              		.loc 1 64 14 is_stmt 0 view .LVU3
+  44 0004 0024     		movs	r4, #0
+  45              		.loc 1 64 5 view .LVU4
+  46 0006 00E0     		b	.L2
+  47              	.LVL2:
+  48              	.L3:
+  49              		.loc 1 64 5 is_stmt 1 discriminator 2 view .LVU5
+  50 0008 0134     		adds	r4, r4, #1
+  51              	.LVL3:
+ARM GAS  /tmp/ccStD1O9.s 			page 3
+
+
+  52              	.L2:
+  53              		.loc 1 64 23 discriminator 1 view .LVU6
+  54 000a 092C     		cmp	r4, #9
+  55 000c 14DC     		bgt	.L10
+  65:Lib/uorb/uorb.cpp ****         if (topics[i].valid && strcmp(topics[i].name, name) == 0)
+  56              		.loc 1 65 9 view .LVU7
+  57              		.loc 1 65 23 is_stmt 0 view .LVU8
+  58 000e 1C4B     		ldr	r3, .L13
+  59 0010 4C22     		movs	r2, #76
+  60 0012 02FB0433 		mla	r3, r2, r4, r3
+  61 0016 93F84930 		ldrb	r3, [r3, #73]	@ zero_extendqisi2
+  62              		.loc 1 65 9 view .LVU9
+  63 001a 002B     		cmp	r3, #0
+  64 001c F4D0     		beq	.L3
+  65              		.loc 1 65 38 discriminator 1 view .LVU10
+  66 001e 2946     		mov	r1, r5
+  67 0020 174B     		ldr	r3, .L13
+  68 0022 02FB0430 		mla	r0, r2, r4, r3
+  69 0026 FFF7FEFF 		bl	strcmp
+  70              	.LVL4:
+  71              		.loc 1 65 29 discriminator 1 view .LVU11
+  72 002a 0028     		cmp	r0, #0
+  73 002c ECD1     		bne	.L3
+  66:Lib/uorb/uorb.cpp ****             return &topics[i];                       // 找到了, 直接返回
+  74              		.loc 1 66 13 is_stmt 1 view .LVU12
+  75              		.loc 1 66 29 is_stmt 0 view .LVU13
+  76 002e 1448     		ldr	r0, .L13
+  77 0030 4C23     		movs	r3, #76
+  78 0032 03FB0400 		mla	r0, r3, r4, r0
+  79 0036 21E0     		b	.L1
+  80              	.L10:
+  81              		.loc 1 66 29 view .LVU14
+  82              	.LBE10:
+  83              	.LBB11:
+  67:Lib/uorb/uorb.cpp ****     }
+  68:Lib/uorb/uorb.cpp ****     /* Step 2: 分配新槽位 */
+  69:Lib/uorb/uorb.cpp ****     for (int i = 0; i < UORB_MAX_TOPICS; i++) {
+  84              		.loc 1 69 14 view .LVU15
+  85 0038 0023     		movs	r3, #0
+  86              	.L6:
+  87              	.LVL5:
+  88              		.loc 1 69 23 is_stmt 1 discriminator 1 view .LVU16
+  89 003a 092B     		cmp	r3, #9
+  90 003c 1DDC     		bgt	.L11
+  70:Lib/uorb/uorb.cpp ****         if (!topics[i].valid) {                      // 找到空闲槽
+  91              		.loc 1 70 9 view .LVU17
+  92              		.loc 1 70 24 is_stmt 0 view .LVU18
+  93 003e 104A     		ldr	r2, .L13
+  94 0040 4C21     		movs	r1, #76
+  95 0042 01FB0322 		mla	r2, r1, r3, r2
+  96 0046 92F84920 		ldrb	r2, [r2, #73]	@ zero_extendqisi2
+  97              		.loc 1 70 9 view .LVU19
+  98 004a 0AB1     		cbz	r2, .L12
+  69:Lib/uorb/uorb.cpp ****         if (!topics[i].valid) {                      // 找到空闲槽
+  99              		.loc 1 69 5 is_stmt 1 discriminator 2 view .LVU20
+ 100 004c 0133     		adds	r3, r3, #1
+ 101              	.LVL6:
+ARM GAS  /tmp/ccStD1O9.s 			page 4
+
+
+  69:Lib/uorb/uorb.cpp ****         if (!topics[i].valid) {                      // 找到空闲槽
+ 102              		.loc 1 69 5 is_stmt 0 discriminator 2 view .LVU21
+ 103 004e F4E7     		b	.L6
+ 104              	.LVL7:
+ 105              	.L12:
+  71:Lib/uorb/uorb.cpp ****             strncpy(topics[i].name, name, UORB_TOPIC_NAME_LEN - 1);
+ 106              		.loc 1 71 13 is_stmt 1 view .LVU22
+ 107              		.loc 1 71 31 is_stmt 0 view .LVU23
+ 108 0050 0B4C     		ldr	r4, .L13
+ 109              	.LVL8:
+ 110              		.loc 1 71 31 view .LVU24
+ 111 0052 01FB0344 		mla	r4, r1, r3, r4
+ 112              		.loc 1 71 20 view .LVU25
+ 113 0056 0F22     		movs	r2, #15
+ 114 0058 2946     		mov	r1, r5
+ 115 005a 2046     		mov	r0, r4
+ 116 005c FFF7FEFF 		bl	strncpy
+ 117              	.LVL9:
+  72:Lib/uorb/uorb.cpp ****             topics[i].mutex = xSemaphoreCreateMutex(); // 为这个 Topic 创建专属锁
+ 118              		.loc 1 72 13 is_stmt 1 view .LVU26
+ 119              		.loc 1 72 31 is_stmt 0 view .LVU27
+ 120 0060 0120     		movs	r0, #1
+ 121 0062 FFF7FEFF 		bl	xQueueCreateMutex
+ 122              	.LVL10:
+ 123              		.loc 1 72 29 discriminator 1 view .LVU28
+ 124 0066 E061     		str	r0, [r4, #28]
+  73:Lib/uorb/uorb.cpp ****             topics[i].valid = true;
+ 125              		.loc 1 73 13 is_stmt 1 view .LVU29
+ 126              		.loc 1 73 29 is_stmt 0 view .LVU30
+ 127 0068 0123     		movs	r3, #1
+ 128 006a 84F84930 		strb	r3, [r4, #73]
+  74:Lib/uorb/uorb.cpp ****             topics[i].generation = 0;
+ 129              		.loc 1 74 13 is_stmt 1 view .LVU31
+ 130              		.loc 1 74 34 is_stmt 0 view .LVU32
+ 131 006e 0023     		movs	r3, #0
+ 132 0070 A361     		str	r3, [r4, #24]
+  75:Lib/uorb/uorb.cpp ****             topics[i].sub_count = 0;
+ 133              		.loc 1 75 13 is_stmt 1 view .LVU33
+ 134              		.loc 1 75 33 is_stmt 0 view .LVU34
+ 135 0072 84F84830 		strb	r3, [r4, #72]
+  76:Lib/uorb/uorb.cpp ****             return &topics[i];
+ 136              		.loc 1 76 13 is_stmt 1 view .LVU35
+ 137              		.loc 1 76 29 is_stmt 0 view .LVU36
+ 138 0076 2046     		mov	r0, r4
+ 139 0078 00E0     		b	.L1
+ 140              	.LVL11:
+ 141              	.L11:
+ 142              		.loc 1 76 29 view .LVU37
+ 143              	.LBE11:
+  77:Lib/uorb/uorb.cpp ****         }
+  78:Lib/uorb/uorb.cpp ****     }
+  79:Lib/uorb/uorb.cpp ****     return NULL;                                     // 表满了
+ 144              		.loc 1 79 12 view .LVU38
+ 145 007a 0020     		movs	r0, #0
+ 146              	.LVL12:
+ 147              	.L1:
+  80:Lib/uorb/uorb.cpp **** }
+ARM GAS  /tmp/ccStD1O9.s 			page 5
+
+
+ 148              		.loc 1 80 1 view .LVU39
+ 149 007c 38BD     		pop	{r3, r4, r5, pc}
+ 150              	.LVL13:
+ 151              	.L14:
+ 152              		.loc 1 80 1 view .LVU40
+ 153 007e 00BF     		.align	2
+ 154              	.L13:
+ 155 0080 00000000 		.word	.LANCHOR0
+ 156              		.cfi_endproc
+ 157              	.LFE5:
+ 159              		.align	1
+ 160              		.global	uorb_init
+ 161              		.syntax unified
+ 162              		.thumb
+ 163              		.thumb_func
+ 165              	uorb_init:
+ 166              	.LFB4:
+  46:Lib/uorb/uorb.cpp ****     memset(topics, 0, sizeof(topics));               // 所有槽位标记为 invalid
+ 167              		.loc 1 46 22 is_stmt 1 view -0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171 0084 10B5     		push	{r4, lr}
+ 172              		.cfi_def_cfa_offset 8
+ 173              		.cfi_offset 4, -8
+ 174              		.cfi_offset 14, -4
+  47:Lib/uorb/uorb.cpp ****     global_lock = xSemaphoreCreateMutex();           // 创建保护 topics 数组的锁
+ 175              		.loc 1 47 5 view .LVU42
+  47:Lib/uorb/uorb.cpp ****     global_lock = xSemaphoreCreateMutex();           // 创建保护 topics 数组的锁
+ 176              		.loc 1 47 11 is_stmt 0 view .LVU43
+ 177 0086 064C     		ldr	r4, .L17
+ 178 0088 4FF43E72 		mov	r2, #760
+ 179 008c 0021     		movs	r1, #0
+ 180 008e 2046     		mov	r0, r4
+ 181 0090 FFF7FEFF 		bl	memset
+ 182              	.LVL14:
+  48:Lib/uorb/uorb.cpp **** }
+ 183              		.loc 1 48 5 is_stmt 1 view .LVU44
+  48:Lib/uorb/uorb.cpp **** }
+ 184              		.loc 1 48 19 is_stmt 0 view .LVU45
+ 185 0094 0120     		movs	r0, #1
+ 186 0096 FFF7FEFF 		bl	xQueueCreateMutex
+ 187              	.LVL15:
+  48:Lib/uorb/uorb.cpp **** }
+ 188              		.loc 1 48 17 discriminator 1 view .LVU46
+ 189 009a C4F8F802 		str	r0, [r4, #760]
+  49:Lib/uorb/uorb.cpp **** 
+ 190              		.loc 1 49 1 view .LVU47
+ 191 009e 10BD     		pop	{r4, pc}
+ 192              	.L18:
+ 193              		.align	2
+ 194              	.L17:
+ 195 00a0 00000000 		.word	.LANCHOR0
+ 196              		.cfi_endproc
+ 197              	.LFE4:
+ 199              		.align	1
+ 200              		.global	uorb_advertise
+ARM GAS  /tmp/ccStD1O9.s 			page 6
+
+
+ 201              		.syntax unified
+ 202              		.thumb
+ 203              		.thumb_func
+ 205              	uorb_advertise:
+ 206              	.LVL16:
+ 207              	.LFB6:
+  81:Lib/uorb/uorb.cpp **** 
+  82:Lib/uorb/uorb.cpp **** /**
+  83:Lib/uorb/uorb.cpp ****  * @brief  发布端: 公告一个 Topic
+  84:Lib/uorb/uorb.cpp ****  *
+  85:Lib/uorb/uorb.cpp ****  * 内部逻辑:
+  86:Lib/uorb/uorb.cpp ****  *   1. 获取全局锁
+  87:Lib/uorb/uorb.cpp ****  *   2. 查找/创建 Topic 槽位
+  88:Lib/uorb/uorb.cpp ****  *   3. 如果该 Topic 已有 data 指针 → 说明已被 advertise 过 → 失败
+  89:Lib/uorb/uorb.cpp ****  *   4. 分配数据内存区, 记录 data_size
+  90:Lib/uorb/uorb.cpp ****  *   5. 返回 handle = topics 数组下标
+  91:Lib/uorb/uorb.cpp ****  *
+  92:Lib/uorb/uorb.cpp ****  * handle 是数组下标, publish 时直接 topics[handle] 访问, O(1) 无需查名字。
+  93:Lib/uorb/uorb.cpp ****  */
+  94:Lib/uorb/uorb.cpp **** uorb_handle_t uorb_advertise(const char *name, uint32_t data_size) {
+ 208              		.loc 1 94 68 is_stmt 1 view -0
+ 209              		.cfi_startproc
+ 210              		@ args = 0, pretend = 0, frame = 0
+ 211              		@ frame_needed = 0, uses_anonymous_args = 0
+ 212              		.loc 1 94 68 is_stmt 0 view .LVU49
+ 213 00a4 38B5     		push	{r3, r4, r5, lr}
+ 214              		.cfi_def_cfa_offset 16
+ 215              		.cfi_offset 3, -16
+ 216              		.cfi_offset 4, -12
+ 217              		.cfi_offset 5, -8
+ 218              		.cfi_offset 14, -4
+ 219 00a6 0446     		mov	r4, r0
+ 220 00a8 0D46     		mov	r5, r1
+  95:Lib/uorb/uorb.cpp ****     xSemaphoreTake(global_lock, portMAX_DELAY);      // 🔒 锁全局表
+ 221              		.loc 1 95 5 is_stmt 1 view .LVU50
+ 222 00aa 4FF0FF31 		mov	r1, #-1
+ 223              	.LVL17:
+ 224              		.loc 1 95 5 is_stmt 0 view .LVU51
+ 225 00ae 154B     		ldr	r3, .L24
+ 226 00b0 D3F8F802 		ldr	r0, [r3, #760]
+ 227              	.LVL18:
+ 228              		.loc 1 95 5 view .LVU52
+ 229 00b4 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 230              	.LVL19:
+  96:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = find_or_create(name);
+ 231              		.loc 1 96 5 is_stmt 1 view .LVU53
+ 232              		.loc 1 96 37 is_stmt 0 view .LVU54
+ 233 00b8 2046     		mov	r0, r4
+ 234 00ba FFF7A1FF 		bl	_ZL14find_or_createPKc
+ 235              	.LVL20:
+  97:Lib/uorb/uorb.cpp ****     if (!t || t->data) {                             // 表满 或 已被别人 advertise
+ 236              		.loc 1 97 5 is_stmt 1 view .LVU55
+ 237 00be B0B1     		cbz	r0, .L20
+ 238 00c0 0446     		mov	r4, r0
+ 239              	.LVL21:
+ 240              		.loc 1 97 18 is_stmt 0 discriminator 1 view .LVU56
+ 241 00c2 0369     		ldr	r3, [r0, #16]
+ARM GAS  /tmp/ccStD1O9.s 			page 7
+
+
+ 242              		.loc 1 97 12 discriminator 1 view .LVU57
+ 243 00c4 9BB9     		cbnz	r3, .L20
+  98:Lib/uorb/uorb.cpp ****         xSemaphoreGive(global_lock);                 // 🔓 放锁
+  99:Lib/uorb/uorb.cpp ****         return -1;
+ 100:Lib/uorb/uorb.cpp ****     }
+ 101:Lib/uorb/uorb.cpp ****     t->data = pvPortMalloc(data_size);               // 从 FreeRTOS 堆分配数据区
+ 244              		.loc 1 101 5 is_stmt 1 view .LVU58
+ 245              		.loc 1 101 27 is_stmt 0 view .LVU59
+ 246 00c6 2846     		mov	r0, r5
+ 247              	.LVL22:
+ 248              		.loc 1 101 27 view .LVU60
+ 249 00c8 FFF7FEFF 		bl	pvPortMalloc
+ 250              	.LVL23:
+ 251              		.loc 1 101 13 discriminator 1 view .LVU61
+ 252 00cc 2061     		str	r0, [r4, #16]
+ 102:Lib/uorb/uorb.cpp ****     t->data_size = data_size;
+ 253              		.loc 1 102 5 is_stmt 1 view .LVU62
+ 254              		.loc 1 102 18 is_stmt 0 view .LVU63
+ 255 00ce 6561     		str	r5, [r4, #20]
+ 103:Lib/uorb/uorb.cpp ****     int idx = t - topics;                            // 指针减法 = 数组下标
+ 256              		.loc 1 103 5 is_stmt 1 view .LVU64
+ 257              		.loc 1 103 17 is_stmt 0 view .LVU65
+ 258 00d0 0C48     		ldr	r0, .L24
+ 259 00d2 241A     		subs	r4, r4, r0
+ 260              	.LVL24:
+ 261              		.loc 1 103 9 view .LVU66
+ 262 00d4 A410     		asrs	r4, r4, #2
+ 263              	.LVL25:
+ 264              		.loc 1 103 9 view .LVU67
+ 265 00d6 0C4B     		ldr	r3, .L24+4
+ 266 00d8 03FB04F4 		mul	r4, r3, r4
+ 267              	.LVL26:
+ 104:Lib/uorb/uorb.cpp ****     xSemaphoreGive(global_lock);                     // 🔓 放锁
+ 268              		.loc 1 104 5 is_stmt 1 view .LVU68
+ 269 00dc 0023     		movs	r3, #0
+ 270 00de 1A46     		mov	r2, r3
+ 271 00e0 1946     		mov	r1, r3
+ 272 00e2 D0F8F802 		ldr	r0, [r0, #760]
+ 273 00e6 FFF7FEFF 		bl	xQueueGenericSend
+ 274              	.LVL27:
+ 105:Lib/uorb/uorb.cpp ****     return idx;                                      // 返回的 handle 就是槽号
+ 275              		.loc 1 105 5 view .LVU69
+ 276              	.L19:
+ 106:Lib/uorb/uorb.cpp **** }
+ 277              		.loc 1 106 1 is_stmt 0 view .LVU70
+ 278 00ea 2046     		mov	r0, r4
+ 279 00ec 38BD     		pop	{r3, r4, r5, pc}
+ 280              	.LVL28:
+ 281              	.L20:
+  98:Lib/uorb/uorb.cpp ****         return -1;
+ 282              		.loc 1 98 9 is_stmt 1 view .LVU71
+ 283 00ee 0023     		movs	r3, #0
+ 284 00f0 1A46     		mov	r2, r3
+ 285 00f2 1946     		mov	r1, r3
+ 286 00f4 0348     		ldr	r0, .L24
+ 287              	.LVL29:
+  98:Lib/uorb/uorb.cpp ****         return -1;
+ARM GAS  /tmp/ccStD1O9.s 			page 8
+
+
+ 288              		.loc 1 98 9 is_stmt 0 view .LVU72
+ 289 00f6 D0F8F802 		ldr	r0, [r0, #760]
+ 290 00fa FFF7FEFF 		bl	xQueueGenericSend
+ 291              	.LVL30:
+  99:Lib/uorb/uorb.cpp ****     }
+ 292              		.loc 1 99 9 is_stmt 1 view .LVU73
+  99:Lib/uorb/uorb.cpp ****     }
+ 293              		.loc 1 99 17 is_stmt 0 view .LVU74
+ 294 00fe 4FF0FF34 		mov	r4, #-1
+ 295 0102 F2E7     		b	.L19
+ 296              	.L25:
+ 297              		.align	2
+ 298              	.L24:
+ 299 0104 00000000 		.word	.LANCHOR0
+ 300 0108 1BCA6B28 		.word	678152731
+ 301              		.cfi_endproc
+ 302              	.LFE6:
+ 304              		.align	1
+ 305              		.global	uorb_publish
+ 306              		.syntax unified
+ 307              		.thumb
+ 308              		.thumb_func
+ 310              	uorb_publish:
+ 311              	.LVL31:
+ 312              	.LFB7:
+ 107:Lib/uorb/uorb.cpp **** 
+ 108:Lib/uorb/uorb.cpp **** /**
+ 109:Lib/uorb/uorb.cpp ****  * @brief  发布端: 向 Topic 写入新数据
+ 110:Lib/uorb/uorb.cpp ****  *
+ 111:Lib/uorb/uorb.cpp ****  * 内部逻辑:
+ 112:Lib/uorb/uorb.cpp ****  *   1. 校验 handle 合法性
+ 113:Lib/uorb/uorb.cpp ****  *   2. 获取该 Topic 的专属 mutex (只锁这一个 Topic, 不影响其他)
+ 114:Lib/uorb/uorb.cpp ****  *   3. memcpy 数据到 Topic 的数据区
+ 115:Lib/uorb/uorb.cpp ****  *   4. generation++ → 这一步"通知"了所有订阅者
+ 116:Lib/uorb/uorb.cpp ****  *   5. 释放 mutex
+ 117:Lib/uorb/uorb.cpp ****  *
+ 118:Lib/uorb/uorb.cpp ****  * publish 不直接发信号给订阅者, 而是靠 generation 这个整数。
+ 119:Lib/uorb/uorb.cpp ****  * 订阅者自己轮询发现 generation 变了, 这就是"被动通知"机制。
+ 120:Lib/uorb/uorb.cpp ****  */
+ 121:Lib/uorb/uorb.cpp **** void uorb_publish(uorb_handle_t handle, const void *data) {
+ 313              		.loc 1 121 59 is_stmt 1 view -0
+ 314              		.cfi_startproc
+ 315              		@ args = 0, pretend = 0, frame = 0
+ 316              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122:Lib/uorb/uorb.cpp ****     if (handle < 0 || handle >= UORB_MAX_TOPICS) return;  // 无效句柄, 静默丢弃
+ 317              		.loc 1 122 5 view .LVU76
+ 318 010c 0928     		cmp	r0, #9
+ 319 010e 20D8     		bhi	.L29
+ 121:Lib/uorb/uorb.cpp ****     if (handle < 0 || handle >= UORB_MAX_TOPICS) return;  // 无效句柄, 静默丢弃
+ 320              		.loc 1 121 59 is_stmt 0 view .LVU77
+ 321 0110 38B5     		push	{r3, r4, r5, lr}
+ 322              		.cfi_def_cfa_offset 16
+ 323              		.cfi_offset 3, -16
+ 324              		.cfi_offset 4, -12
+ 325              		.cfi_offset 5, -8
+ 326              		.cfi_offset 14, -4
+ 327 0112 0D46     		mov	r5, r1
+ARM GAS  /tmp/ccStD1O9.s 			page 9
+
+
+ 123:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = &topics[handle];
+ 328              		.loc 1 123 5 is_stmt 1 view .LVU78
+ 329              	.LVL32:
+ 124:Lib/uorb/uorb.cpp ****     if (!t->valid) return;                                 // 无效槽, 静默丢弃
+ 330              		.loc 1 124 5 view .LVU79
+ 331              		.loc 1 124 13 is_stmt 0 view .LVU80
+ 332 0114 0F4B     		ldr	r3, .L33
+ 333 0116 4C22     		movs	r2, #76
+ 334 0118 02FB0033 		mla	r3, r2, r0, r3
+ 335 011c 93F84930 		ldrb	r3, [r3, #73]	@ zero_extendqisi2
+ 336              		.loc 1 124 5 view .LVU81
+ 337 0120 03B9     		cbnz	r3, .L32
+ 338              	.LVL33:
+ 339              	.L26:
+ 125:Lib/uorb/uorb.cpp **** 
+ 126:Lib/uorb/uorb.cpp ****     xSemaphoreTake(t->mutex, portMAX_DELAY);               // 🔒 锁数据区
+ 127:Lib/uorb/uorb.cpp ****     memcpy(t->data, data, t->data_size);                   // 写入最新值
+ 128:Lib/uorb/uorb.cpp ****     t->generation++;                                       // ★ 代际号递增, 通知订阅者
+ 129:Lib/uorb/uorb.cpp ****     xSemaphoreGive(t->mutex);                              // 🔓 放锁
+ 130:Lib/uorb/uorb.cpp **** }
+ 340              		.loc 1 130 1 view .LVU82
+ 341 0122 38BD     		pop	{r3, r4, r5, pc}
+ 342              	.LVL34:
+ 343              	.L32:
+ 126:Lib/uorb/uorb.cpp ****     memcpy(t->data, data, t->data_size);                   // 写入最新值
+ 344              		.loc 1 126 5 is_stmt 1 view .LVU83
+ 345 0124 0B4C     		ldr	r4, .L33
+ 346 0126 02FB0044 		mla	r4, r2, r0, r4
+ 347 012a 4FF0FF31 		mov	r1, #-1
+ 348              	.LVL35:
+ 126:Lib/uorb/uorb.cpp ****     memcpy(t->data, data, t->data_size);                   // 写入最新值
+ 349              		.loc 1 126 5 is_stmt 0 view .LVU84
+ 350 012e E069     		ldr	r0, [r4, #28]
+ 351              	.LVL36:
+ 126:Lib/uorb/uorb.cpp ****     memcpy(t->data, data, t->data_size);                   // 写入最新值
+ 352              		.loc 1 126 5 view .LVU85
+ 353 0130 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 354              	.LVL37:
+ 127:Lib/uorb/uorb.cpp ****     t->generation++;                                       // ★ 代际号递增, 通知订阅者
+ 355              		.loc 1 127 5 is_stmt 1 view .LVU86
+ 127:Lib/uorb/uorb.cpp ****     t->generation++;                                       // ★ 代际号递增, 通知订阅者
+ 356              		.loc 1 127 11 is_stmt 0 view .LVU87
+ 357 0134 6269     		ldr	r2, [r4, #20]
+ 358 0136 2946     		mov	r1, r5
+ 359 0138 2069     		ldr	r0, [r4, #16]
+ 360 013a FFF7FEFF 		bl	memcpy
+ 361              	.LVL38:
+ 128:Lib/uorb/uorb.cpp ****     xSemaphoreGive(t->mutex);                              // 🔓 放锁
+ 362              		.loc 1 128 5 is_stmt 1 view .LVU88
+ 128:Lib/uorb/uorb.cpp ****     xSemaphoreGive(t->mutex);                              // 🔓 放锁
+ 363              		.loc 1 128 8 is_stmt 0 view .LVU89
+ 364 013e A369     		ldr	r3, [r4, #24]
+ 128:Lib/uorb/uorb.cpp ****     xSemaphoreGive(t->mutex);                              // 🔓 放锁
+ 365              		.loc 1 128 18 view .LVU90
+ 366 0140 0133     		adds	r3, r3, #1
+ 367 0142 A361     		str	r3, [r4, #24]
+ 129:Lib/uorb/uorb.cpp **** }
+ARM GAS  /tmp/ccStD1O9.s 			page 10
+
+
+ 368              		.loc 1 129 5 is_stmt 1 view .LVU91
+ 369 0144 0023     		movs	r3, #0
+ 370 0146 1A46     		mov	r2, r3
+ 371 0148 1946     		mov	r1, r3
+ 372 014a E069     		ldr	r0, [r4, #28]
+ 373 014c FFF7FEFF 		bl	xQueueGenericSend
+ 374              	.LVL39:
+ 375 0150 E7E7     		b	.L26
+ 376              	.LVL40:
+ 377              	.L29:
+ 378              		.cfi_def_cfa_offset 0
+ 379              		.cfi_restore 3
+ 380              		.cfi_restore 4
+ 381              		.cfi_restore 5
+ 382              		.cfi_restore 14
+ 129:Lib/uorb/uorb.cpp **** }
+ 383              		.loc 1 129 5 is_stmt 0 view .LVU92
+ 384 0152 7047     		bx	lr
+ 385              	.L34:
+ 386              		.align	2
+ 387              	.L33:
+ 388 0154 00000000 		.word	.LANCHOR0
+ 389              		.cfi_endproc
+ 390              	.LFE7:
+ 392              		.align	1
+ 393              		.global	uorb_subscribe
+ 394              		.syntax unified
+ 395              		.thumb
+ 396              		.thumb_func
+ 398              	uorb_subscribe:
+ 399              	.LVL41:
+ 400              	.LFB8:
+ 131:Lib/uorb/uorb.cpp **** 
+ 132:Lib/uorb/uorb.cpp **** /**
+ 133:Lib/uorb/uorb.cpp ****  * @brief  订阅端: 订阅一个 Topic
+ 134:Lib/uorb/uorb.cpp ****  *
+ 135:Lib/uorb/uorb.cpp ****  * 内部逻辑:
+ 136:Lib/uorb/uorb.cpp ****  *   1. 获取全局锁
+ 137:Lib/uorb/uorb.cpp ****  *   2. 查找 Topic (不存在则创建空壳)
+ 138:Lib/uorb/uorb.cpp ****  *   3. 在当前 Topic 的 subscribers[] 中占一个槽位
+ 139:Lib/uorb/uorb.cpp ****  *   4. 记录当前 generation 作为 last_seen_gen (避免立即收到旧数据)
+ 140:Lib/uorb/uorb.cpp ****  *   5. 返回编码后的 handle
+ 141:Lib/uorb/uorb.cpp ****  *
+ 142:Lib/uorb/uorb.cpp ****  * handle 编码:
+ 143:Lib/uorb/uorb.cpp ****  *   - 低 16 位 = topics 数组下标 (定位 Topic)
+ 144:Lib/uorb/uorb.cpp ****  *   - 高 16 位 = subscribers 槽位号 (定位该订阅者的 last_seen_gen)
+ 145:Lib/uorb/uorb.cpp ****  *
+ 146:Lib/uorb/uorb.cpp ****  * 一个 Topic 可以有多个订阅者, 每个拿到的 handle 高 16 位不同,
+ 147:Lib/uorb/uorb.cpp ****  * 但低 16 位相同——都指向同一个 Topic。
+ 148:Lib/uorb/uorb.cpp ****  */
+ 149:Lib/uorb/uorb.cpp **** uorb_handle_t uorb_subscribe(const char *name) {
+ 401              		.loc 1 149 48 is_stmt 1 view -0
+ 402              		.cfi_startproc
+ 403              		@ args = 0, pretend = 0, frame = 0
+ 404              		@ frame_needed = 0, uses_anonymous_args = 0
+ 405              		.loc 1 149 48 is_stmt 0 view .LVU94
+ 406 0158 70B5     		push	{r4, r5, r6, lr}
+ARM GAS  /tmp/ccStD1O9.s 			page 11
+
+
+ 407              		.cfi_def_cfa_offset 16
+ 408              		.cfi_offset 4, -16
+ 409              		.cfi_offset 5, -12
+ 410              		.cfi_offset 6, -8
+ 411              		.cfi_offset 14, -4
+ 412 015a 0446     		mov	r4, r0
+ 150:Lib/uorb/uorb.cpp ****     xSemaphoreTake(global_lock, portMAX_DELAY);            // 🔒 锁全局表
+ 413              		.loc 1 150 5 is_stmt 1 view .LVU95
+ 414 015c 4FF0FF31 		mov	r1, #-1
+ 415 0160 1B4B     		ldr	r3, .L40
+ 416 0162 D3F8F802 		ldr	r0, [r3, #760]
+ 417              	.LVL42:
+ 418              		.loc 1 150 5 is_stmt 0 view .LVU96
+ 419 0166 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 420              	.LVL43:
+ 151:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = find_or_create(name);
+ 421              		.loc 1 151 5 is_stmt 1 view .LVU97
+ 422              		.loc 1 151 37 is_stmt 0 view .LVU98
+ 423 016a 2046     		mov	r0, r4
+ 424 016c FFF748FF 		bl	_ZL14find_or_createPKc
+ 425              	.LVL44:
+ 152:Lib/uorb/uorb.cpp ****     if (!t || t->sub_count >= UORB_MAX_SUBSCRIBERS) {      // 表满或订阅者满
+ 426              		.loc 1 152 5 is_stmt 1 view .LVU99
+ 427 0170 18B3     		cbz	r0, .L36
+ 428 0172 0446     		mov	r4, r0
+ 429              	.LVL45:
+ 430              		.loc 1 152 18 is_stmt 0 discriminator 1 view .LVU100
+ 431 0174 90F84850 		ldrb	r5, [r0, #72]	@ zero_extendqisi2
+ 432              		.loc 1 152 12 discriminator 1 view .LVU101
+ 433 0178 042D     		cmp	r5, #4
+ 434 017a 1ED8     		bhi	.L36
+ 153:Lib/uorb/uorb.cpp ****         xSemaphoreGive(global_lock);                       // 🔓 放锁
+ 154:Lib/uorb/uorb.cpp ****         return -1;
+ 155:Lib/uorb/uorb.cpp ****     }
+ 156:Lib/uorb/uorb.cpp ****     t->subscribers[t->sub_count].task = xTaskGetCurrentTaskHandle();
+ 435              		.loc 1 156 5 is_stmt 1 view .LVU102
+ 436              		.loc 1 156 66 is_stmt 0 view .LVU103
+ 437 017c FFF7FEFF 		bl	xTaskGetCurrentTaskHandle
+ 438              	.LVL46:
+ 439              		.loc 1 156 39 discriminator 1 view .LVU104
+ 440 0180 0435     		adds	r5, r5, #4
+ 441 0182 44F83500 		str	r0, [r4, r5, lsl #3]
+ 157:Lib/uorb/uorb.cpp ****     t->subscribers[t->sub_count].last_seen_gen = t->generation;  // 初始值: 当前代际
+ 442              		.loc 1 157 5 is_stmt 1 view .LVU105
+ 443              		.loc 1 157 23 is_stmt 0 view .LVU106
+ 444 0186 94F84850 		ldrb	r5, [r4, #72]	@ zero_extendqisi2
+ 445              		.loc 1 157 53 view .LVU107
+ 446 018a A269     		ldr	r2, [r4, #24]
+ 447              		.loc 1 157 48 view .LVU108
+ 448 018c 2B1D     		adds	r3, r5, #4
+ 449 018e 04EBC303 		add	r3, r4, r3, lsl #3
+ 450 0192 5A60     		str	r2, [r3, #4]
+ 158:Lib/uorb/uorb.cpp ****     int slot = t->sub_count;                                     // 记下槽位号
+ 451              		.loc 1 158 5 is_stmt 1 view .LVU109
+ 452              	.LVL47:
+ 159:Lib/uorb/uorb.cpp ****     t->sub_count++;
+ 453              		.loc 1 159 5 view .LVU110
+ARM GAS  /tmp/ccStD1O9.s 			page 12
+
+
+ 454              		.loc 1 159 17 is_stmt 0 view .LVU111
+ 455 0194 6B1C     		adds	r3, r5, #1
+ 456 0196 84F84830 		strb	r3, [r4, #72]
+ 160:Lib/uorb/uorb.cpp ****     xSemaphoreGive(global_lock);                           // 🔓 放锁
+ 457              		.loc 1 160 5 is_stmt 1 view .LVU112
+ 458 019a 0D4E     		ldr	r6, .L40
+ 459 019c 0023     		movs	r3, #0
+ 460 019e 1A46     		mov	r2, r3
+ 461 01a0 1946     		mov	r1, r3
+ 462 01a2 D6F8F802 		ldr	r0, [r6, #760]
+ 463 01a6 FFF7FEFF 		bl	xQueueGenericSend
+ 464              	.LVL48:
+ 161:Lib/uorb/uorb.cpp **** 
+ 162:Lib/uorb/uorb.cpp ****     // 编码 handle: 低16位=Topic号, 高16位=订阅者槽号
+ 163:Lib/uorb/uorb.cpp ****     return (t - topics) | (slot << 16);
+ 465              		.loc 1 163 5 view .LVU113
+ 466              		.loc 1 163 15 is_stmt 0 view .LVU114
+ 467 01aa A01B     		subs	r0, r4, r6
+ 468 01ac 8010     		asrs	r0, r0, #2
+ 469 01ae 094B     		ldr	r3, .L40+4
+ 470 01b0 03FB00F0 		mul	r0, r3, r0
+ 471              		.loc 1 163 38 view .LVU115
+ 472 01b4 40EA0540 		orr	r0, r0, r5, lsl #16
+ 473              	.LVL49:
+ 474              	.L35:
+ 164:Lib/uorb/uorb.cpp **** }
+ 475              		.loc 1 164 1 view .LVU116
+ 476 01b8 70BD     		pop	{r4, r5, r6, pc}
+ 477              	.LVL50:
+ 478              	.L36:
+ 153:Lib/uorb/uorb.cpp ****         return -1;
+ 479              		.loc 1 153 9 is_stmt 1 view .LVU117
+ 480 01ba 0023     		movs	r3, #0
+ 481 01bc 1A46     		mov	r2, r3
+ 482 01be 1946     		mov	r1, r3
+ 483 01c0 0348     		ldr	r0, .L40
+ 484              	.LVL51:
+ 153:Lib/uorb/uorb.cpp ****         return -1;
+ 485              		.loc 1 153 9 is_stmt 0 view .LVU118
+ 486 01c2 D0F8F802 		ldr	r0, [r0, #760]
+ 487 01c6 FFF7FEFF 		bl	xQueueGenericSend
+ 488              	.LVL52:
+ 154:Lib/uorb/uorb.cpp ****     }
+ 489              		.loc 1 154 9 is_stmt 1 view .LVU119
+ 154:Lib/uorb/uorb.cpp ****     }
+ 490              		.loc 1 154 17 is_stmt 0 view .LVU120
+ 491 01ca 4FF0FF30 		mov	r0, #-1
+ 492 01ce F3E7     		b	.L35
+ 493              	.L41:
+ 494              		.align	2
+ 495              	.L40:
+ 496 01d0 00000000 		.word	.LANCHOR0
+ 497 01d4 1BCA6B28 		.word	678152731
+ 498              		.cfi_endproc
+ 499              	.LFE8:
+ 501              		.align	1
+ 502              		.global	uorb_check
+ARM GAS  /tmp/ccStD1O9.s 			page 13
+
+
+ 503              		.syntax unified
+ 504              		.thumb
+ 505              		.thumb_func
+ 507              	uorb_check:
+ 508              	.LVL53:
+ 509              	.LFB11:
+ 165:Lib/uorb/uorb.cpp **** 
+ 166:Lib/uorb/uorb.cpp **** /* ── handle 编解码 ── */
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_topic(uorb_handle_t h) { return h & 0xFFFF; }
+ 168:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 169:Lib/uorb/uorb.cpp **** 
+ 170:Lib/uorb/uorb.cpp **** /**
+ 171:Lib/uorb/uorb.cpp ****  * @brief  订阅端: 非阻塞检查是否有新数据
+ 172:Lib/uorb/uorb.cpp ****  *
+ 173:Lib/uorb/uorb.cpp ****  * 对比订阅者的 last_seen_gen 与 Topic 的 generation。
+ 174:Lib/uorb/uorb.cpp ****  * 不等 → 发布者写过新数据了 → 返回 true。
+ 175:Lib/uorb/uorb.cpp ****  * 相等 → 没有新数据 → 返回 false。
+ 176:Lib/uorb/uorb.cpp ****  *
+ 177:Lib/uorb/uorb.cpp ****  * 不拷贝数据, 不阻塞, 适合轮询场景。
+ 178:Lib/uorb/uorb.cpp ****  */
+ 179:Lib/uorb/uorb.cpp **** bool uorb_check(uorb_handle_t handle) {
+ 510              		.loc 1 179 39 is_stmt 1 view -0
+ 511              		.cfi_startproc
+ 512              		@ args = 0, pretend = 0, frame = 0
+ 513              		@ frame_needed = 0, uses_anonymous_args = 0
+ 514              		@ link register save eliminated.
+ 180:Lib/uorb/uorb.cpp ****     int ti = handle_topic(handle), si = handle_slot(handle);
+ 515              		.loc 1 180 5 view .LVU122
+ 516              	.LBB12:
+ 517              	.LBI12:
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 518              		.loc 1 167 19 view .LVU123
+ 519              	.LBB13:
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 520              		.loc 1 167 51 view .LVU124
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 521              		.loc 1 167 62 is_stmt 0 view .LVU125
+ 522 01d8 83B2     		uxth	r3, r0
+ 523              	.LVL54:
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 524              		.loc 1 167 62 view .LVU126
+ 525              	.LBE13:
+ 526              	.LBE12:
+ 527              	.LBB14:
+ 528              	.LBI14:
+ 168:Lib/uorb/uorb.cpp **** 
+ 529              		.loc 1 168 19 is_stmt 1 view .LVU127
+ 530              	.LBB15:
+ 168:Lib/uorb/uorb.cpp **** 
+ 531              		.loc 1 168 51 view .LVU128
+ 168:Lib/uorb/uorb.cpp **** 
+ 532              		.loc 1 168 68 is_stmt 0 view .LVU129
+ 533 01da 000C     		lsrs	r0, r0, #16
+ 534              	.LVL55:
+ 168:Lib/uorb/uorb.cpp **** 
+ 535              		.loc 1 168 68 view .LVU130
+ 536              	.LBE15:
+ARM GAS  /tmp/ccStD1O9.s 			page 14
+
+
+ 537              	.LBE14:
+ 181:Lib/uorb/uorb.cpp ****     if (ti < 0 || ti >= UORB_MAX_TOPICS) return false;
+ 538              		.loc 1 181 5 is_stmt 1 view .LVU131
+ 539 01dc 092B     		cmp	r3, #9
+ 540 01de 16D8     		bhi	.L44
+ 182:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = &topics[ti];
+ 541              		.loc 1 182 5 view .LVU132
+ 542              	.LVL56:
+ 183:Lib/uorb/uorb.cpp ****     if (si >= t->sub_count) return false;
+ 543              		.loc 1 183 5 view .LVU133
+ 544              		.loc 1 183 18 is_stmt 0 view .LVU134
+ 545 01e0 0D4A     		ldr	r2, .L46
+ 546 01e2 4C21     		movs	r1, #76
+ 547 01e4 01FB0322 		mla	r2, r1, r3, r2
+ 548 01e8 92F84820 		ldrb	r2, [r2, #72]	@ zero_extendqisi2
+ 549              		.loc 1 183 5 view .LVU135
+ 550 01ec 8242     		cmp	r2, r0
+ 551 01ee 10DD     		ble	.L45
+ 184:Lib/uorb/uorb.cpp ****     return t->subscribers[si].last_seen_gen < t->generation;  // 只比大小, 不等就有新
+ 552              		.loc 1 184 5 is_stmt 1 view .LVU136
+ 553              		.loc 1 184 31 is_stmt 0 view .LVU137
+ 554 01f0 094A     		ldr	r2, .L46
+ 555 01f2 0430     		adds	r0, r0, #4
+ 556              	.LVL57:
+ 557              		.loc 1 184 31 view .LVU138
+ 558 01f4 01FB03F3 		mul	r3, r1, r3
+ 559              	.LVL58:
+ 560              		.loc 1 184 31 view .LVU139
+ 561 01f8 03EBC000 		add	r0, r3, r0, lsl #3
+ 562              	.LVL59:
+ 563              		.loc 1 184 31 view .LVU140
+ 564 01fc 1044     		add	r0, r0, r2
+ 565 01fe 4068     		ldr	r0, [r0, #4]
+ 566              		.loc 1 184 50 view .LVU141
+ 567 0200 1A44     		add	r2, r2, r3
+ 568 0202 9369     		ldr	r3, [r2, #24]
+ 569 0204 9842     		cmp	r0, r3
+ 570 0206 2CBF     		ite	cs
+ 571 0208 0020     		movcs	r0, #0
+ 572 020a 0120     		movcc	r0, #1
+ 573 020c 7047     		bx	lr
+ 574              	.LVL60:
+ 575              	.L44:
+ 181:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = &topics[ti];
+ 576              		.loc 1 181 49 discriminator 1 view .LVU142
+ 577 020e 0020     		movs	r0, #0
+ 578              	.LVL61:
+ 181:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = &topics[ti];
+ 579              		.loc 1 181 49 discriminator 1 view .LVU143
+ 580 0210 7047     		bx	lr
+ 581              	.LVL62:
+ 582              	.L45:
+ 183:Lib/uorb/uorb.cpp ****     if (si >= t->sub_count) return false;
+ 583              		.loc 1 183 36 discriminator 1 view .LVU144
+ 584 0212 0020     		movs	r0, #0
+ 585              	.LVL63:
+ 185:Lib/uorb/uorb.cpp **** }
+ARM GAS  /tmp/ccStD1O9.s 			page 15
+
+
+ 586              		.loc 1 185 1 view .LVU145
+ 587 0214 7047     		bx	lr
+ 588              	.L47:
+ 589 0216 00BF     		.align	2
+ 590              	.L46:
+ 591 0218 00000000 		.word	.LANCHOR0
+ 592              		.cfi_endproc
+ 593              	.LFE11:
+ 595              		.align	1
+ 596              		.global	uorb_copy
+ 597              		.syntax unified
+ 598              		.thumb
+ 599              		.thumb_func
+ 601              	uorb_copy:
+ 602              	.LVL64:
+ 603              	.LFB12:
+ 186:Lib/uorb/uorb.cpp **** 
+ 187:Lib/uorb/uorb.cpp **** /**
+ 188:Lib/uorb/uorb.cpp ****  * @brief  订阅端: 阻塞读取最新数据
+ 189:Lib/uorb/uorb.cpp ****  *
+ 190:Lib/uorb/uorb.cpp ****  * 内部逻辑:
+ 191:Lib/uorb/uorb.cpp ****  *   1. while 循环等 generation 变化 (每 1ms 检查一次, 不自旋)
+ 192:Lib/uorb/uorb.cpp ****  *   2. 拿到 Topic 的数据锁
+ 193:Lib/uorb/uorb.cpp ****  *   3. memcpy 数据到用户 buf
+ 194:Lib/uorb/uorb.cpp ****  *   4. 更新 last_seen_gen = 当前 generation
+ 195:Lib/uorb/uorb.cpp ****  *   5. 放锁返回
+ 196:Lib/uorb/uorb.cpp ****  *
+ 197:Lib/uorb/uorb.cpp ****  * 阻塞机制是轮询 vTaskDelay(1), 不是信号量通知。
+ 198:Lib/uorb/uorb.cpp ****  * 这意味着最差响应延迟 ≈ 1ms (对于电机控制 1kHz 以下够用)。
+ 199:Lib/uorb/uorb.cpp ****  */
+ 200:Lib/uorb/uorb.cpp **** bool uorb_copy(uorb_handle_t handle, void *buf) {
+ 604              		.loc 1 200 49 is_stmt 1 view -0
+ 605              		.cfi_startproc
+ 606              		@ args = 0, pretend = 0, frame = 0
+ 607              		@ frame_needed = 0, uses_anonymous_args = 0
+ 608              		.loc 1 200 49 is_stmt 0 view .LVU147
+ 609 021c 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 610              		.cfi_def_cfa_offset 24
+ 611              		.cfi_offset 4, -24
+ 612              		.cfi_offset 5, -20
+ 613              		.cfi_offset 6, -16
+ 614              		.cfi_offset 7, -12
+ 615              		.cfi_offset 8, -8
+ 616              		.cfi_offset 14, -4
+ 617 0220 0E46     		mov	r6, r1
+ 201:Lib/uorb/uorb.cpp ****     int ti = handle_topic(handle), si = handle_slot(handle);
+ 618              		.loc 1 201 5 is_stmt 1 view .LVU148
+ 619              	.LVL65:
+ 620              	.LBB16:
+ 621              	.LBI16:
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 622              		.loc 1 167 19 view .LVU149
+ 623              	.LBB17:
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 624              		.loc 1 167 51 view .LVU150
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 625              		.loc 1 167 62 is_stmt 0 view .LVU151
+ARM GAS  /tmp/ccStD1O9.s 			page 16
+
+
+ 626 0222 85B2     		uxth	r5, r0
+ 627              	.LVL66:
+ 167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
+ 628              		.loc 1 167 62 view .LVU152
+ 629              	.LBE17:
+ 630              	.LBE16:
+ 631              	.LBB18:
+ 632              	.LBI18:
+ 168:Lib/uorb/uorb.cpp **** 
+ 633              		.loc 1 168 19 is_stmt 1 view .LVU153
+ 634              	.LBB19:
+ 168:Lib/uorb/uorb.cpp **** 
+ 635              		.loc 1 168 51 view .LVU154
+ 168:Lib/uorb/uorb.cpp **** 
+ 636              		.loc 1 168 68 is_stmt 0 view .LVU155
+ 637 0224 040C     		lsrs	r4, r0, #16
+ 638              	.LVL67:
+ 168:Lib/uorb/uorb.cpp **** 
+ 639              		.loc 1 168 68 view .LVU156
+ 640              	.LBE19:
+ 641              	.LBE18:
+ 202:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = &topics[ti];
+ 642              		.loc 1 202 5 is_stmt 1 view .LVU157
+ 203:Lib/uorb/uorb.cpp **** 
+ 204:Lib/uorb/uorb.cpp ****     /* 轮询等待: 每 1ms 看一眼 generation 变了没有 */
+ 205:Lib/uorb/uorb.cpp ****     while (t->subscribers[si].last_seen_gen == t->generation)
+ 643              		.loc 1 205 5 view .LVU158
+ 644 0226 02E0     		b	.L49
+ 645              	.LVL68:
+ 646              	.L50:
+ 206:Lib/uorb/uorb.cpp ****         vTaskDelay(1);                                   // 出让 CPU, 不自旋
+ 647              		.loc 1 206 9 view .LVU159
+ 648              		.loc 1 206 19 is_stmt 0 view .LVU160
+ 649 0228 0120     		movs	r0, #1
+ 650 022a FFF7FEFF 		bl	vTaskDelay
+ 651              	.LVL69:
+ 652              	.L49:
+ 205:Lib/uorb/uorb.cpp ****         vTaskDelay(1);                                   // 出让 CPU, 不自旋
+ 653              		.loc 1 205 45 is_stmt 1 view .LVU161
+ 205:Lib/uorb/uorb.cpp ****         vTaskDelay(1);                                   // 出让 CPU, 不自旋
+ 654              		.loc 1 205 31 is_stmt 0 view .LVU162
+ 655 022e 154A     		ldr	r2, .L52
+ 656 0230 231D     		adds	r3, r4, #4
+ 657 0232 4C21     		movs	r1, #76
+ 658 0234 05FB01F1 		mul	r1, r5, r1
+ 659 0238 01EBC303 		add	r3, r1, r3, lsl #3
+ 660 023c 1344     		add	r3, r3, r2
+ 661 023e 5868     		ldr	r0, [r3, #4]
+ 205:Lib/uorb/uorb.cpp ****         vTaskDelay(1);                                   // 出让 CPU, 不自旋
+ 662              		.loc 1 205 51 view .LVU163
+ 663 0240 0A44     		add	r2, r2, r1
+ 664 0242 9369     		ldr	r3, [r2, #24]
+ 205:Lib/uorb/uorb.cpp ****         vTaskDelay(1);                                   // 出让 CPU, 不自旋
+ 665              		.loc 1 205 45 view .LVU164
+ 666 0244 9842     		cmp	r0, r3
+ 667 0246 EFD0     		beq	.L50
+ 207:Lib/uorb/uorb.cpp **** 
+ARM GAS  /tmp/ccStD1O9.s 			page 17
+
+
+ 208:Lib/uorb/uorb.cpp ****     /* 数据到达, 拷贝 */
+ 209:Lib/uorb/uorb.cpp ****     xSemaphoreTake(t->mutex, portMAX_DELAY);             // 🔒 锁数据区 (防止读半截)
+ 668              		.loc 1 209 5 is_stmt 1 view .LVU165
+ 669 0248 DFF83880 		ldr	r8, .L52
+ 670 024c 0D46     		mov	r5, r1
+ 671              	.LVL70:
+ 672              		.loc 1 209 5 is_stmt 0 view .LVU166
+ 673 024e 1746     		mov	r7, r2
+ 674 0250 4FF0FF31 		mov	r1, #-1
+ 675 0254 D069     		ldr	r0, [r2, #28]
+ 676 0256 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 677              	.LVL71:
+ 210:Lib/uorb/uorb.cpp ****     memcpy(buf, t->data, t->data_size);
+ 678              		.loc 1 210 5 is_stmt 1 view .LVU167
+ 679              		.loc 1 210 11 is_stmt 0 view .LVU168
+ 680 025a 7A69     		ldr	r2, [r7, #20]
+ 681 025c 3969     		ldr	r1, [r7, #16]
+ 682 025e 3046     		mov	r0, r6
+ 683 0260 FFF7FEFF 		bl	memcpy
+ 684              	.LVL72:
+ 211:Lib/uorb/uorb.cpp ****     uint32_t gen = t->generation;                        // 记录当前代际
+ 685              		.loc 1 211 5 is_stmt 1 view .LVU169
+ 686              		.loc 1 211 14 is_stmt 0 view .LVU170
+ 687 0264 BE69     		ldr	r6, [r7, #24]
+ 688              	.LVL73:
+ 212:Lib/uorb/uorb.cpp ****     xSemaphoreGive(t->mutex);                            // 🔓 放锁
+ 689              		.loc 1 212 5 is_stmt 1 view .LVU171
+ 690 0266 0023     		movs	r3, #0
+ 691 0268 1A46     		mov	r2, r3
+ 692 026a 1946     		mov	r1, r3
+ 693 026c F869     		ldr	r0, [r7, #28]
+ 694 026e FFF7FEFF 		bl	xQueueGenericSend
+ 695              	.LVL74:
+ 213:Lib/uorb/uorb.cpp **** 
+ 214:Lib/uorb/uorb.cpp ****     t->subscribers[si].last_seen_gen = gen;              // 更新"已看到"的代际
+ 696              		.loc 1 214 5 view .LVU172
+ 697              		.loc 1 214 38 is_stmt 0 view .LVU173
+ 698 0272 0434     		adds	r4, r4, #4
+ 699              	.LVL75:
+ 700              		.loc 1 214 38 view .LVU174
+ 701 0274 05EBC405 		add	r5, r5, r4, lsl #3
+ 702 0278 A844     		add	r8, r8, r5
+ 703 027a C8F80460 		str	r6, [r8, #4]
+ 215:Lib/uorb/uorb.cpp ****     return true;
+ 704              		.loc 1 215 5 is_stmt 1 view .LVU175
+ 216:Lib/uorb/uorb.cpp **** }
+ 705              		.loc 1 216 1 is_stmt 0 view .LVU176
+ 706 027e 0120     		movs	r0, #1
+ 707 0280 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 708              	.LVL76:
+ 709              	.L53:
+ 710              		.loc 1 216 1 view .LVU177
+ 711              		.align	2
+ 712              	.L52:
+ 713 0284 00000000 		.word	.LANCHOR0
+ 714              		.cfi_endproc
+ 715              	.LFE12:
+ARM GAS  /tmp/ccStD1O9.s 			page 18
+
+
+ 717              		.bss
+ 718              		.align	2
+ 719              		.set	.LANCHOR0,. + 0
+ 722              	_ZL6topics:
+ 723 0000 00000000 		.space	760
+ 723      00000000 
+ 723      00000000 
+ 723      00000000 
+ 723      00000000 
+ 726              	_ZL11global_lock:
+ 727 02f8 00000000 		.space	4
+ 728              		.text
+ 729              	.Letext0:
+ 730              		.file 2 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 731              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 732              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 733              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 734              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 735              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 736              		.file 8 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+ 737              		.file 9 "Lib/uorb/uorb.hpp"
+ 738              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
+ 739              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
+ARM GAS  /tmp/ccStD1O9.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uorb.cpp
+     /tmp/ccStD1O9.s:20     .text:00000000 $t
+     /tmp/ccStD1O9.s:25     .text:00000000 _ZL14find_or_createPKc
+     /tmp/ccStD1O9.s:155    .text:00000080 $d
+     /tmp/ccStD1O9.s:159    .text:00000084 $t
+     /tmp/ccStD1O9.s:165    .text:00000084 uorb_init
+     /tmp/ccStD1O9.s:195    .text:000000a0 $d
+     /tmp/ccStD1O9.s:199    .text:000000a4 $t
+     /tmp/ccStD1O9.s:205    .text:000000a4 uorb_advertise
+     /tmp/ccStD1O9.s:299    .text:00000104 $d
+     /tmp/ccStD1O9.s:304    .text:0000010c $t
+     /tmp/ccStD1O9.s:310    .text:0000010c uorb_publish
+     /tmp/ccStD1O9.s:388    .text:00000154 $d
+     /tmp/ccStD1O9.s:392    .text:00000158 $t
+     /tmp/ccStD1O9.s:398    .text:00000158 uorb_subscribe
+     /tmp/ccStD1O9.s:496    .text:000001d0 $d
+     /tmp/ccStD1O9.s:501    .text:000001d8 $t
+     /tmp/ccStD1O9.s:507    .text:000001d8 uorb_check
+     /tmp/ccStD1O9.s:591    .text:00000218 $d
+     /tmp/ccStD1O9.s:595    .text:0000021c $t
+     /tmp/ccStD1O9.s:601    .text:0000021c uorb_copy
+     /tmp/ccStD1O9.s:713    .text:00000284 $d
+     /tmp/ccStD1O9.s:718    .bss:00000000 $d
+     /tmp/ccStD1O9.s:722    .bss:00000000 _ZL6topics
+     /tmp/ccStD1O9.s:726    .bss:000002f8 _ZL11global_lock
+
+UNDEFINED SYMBOLS
+strcmp
+strncpy
+xQueueCreateMutex
+memset
+xQueueSemaphoreTake
+pvPortMalloc
+xQueueGenericSend
+memcpy
+xTaskGetCurrentTaskHandle
+vTaskDelay

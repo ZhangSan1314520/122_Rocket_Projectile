@@ -1,0 +1,1318 @@
+ARM GAS  /tmp/ccWHmQF2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"DcMotor_ClosedLoop.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/Motor_Control/DcMotor_ClosedLoop.cpp"
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	_Z41__static_initialization_and_destruction_0v:
+  26              	.LFB1495:
+   1:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** #include "DcMotor_ClosedLoop.hpp"
+   2:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+   3:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** KTH7111 kth7111_M1(&M1_PWM); //编码器对象，
+   4:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** KTH7111 kth7111_M2(&M2_PWM); //编码器对象
+   5:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** KTH7111 kth7111_M3(&M3_PWM); //编码器对象，
+   6:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** KTH7111 kth7111_M4(&M4_PWM); //编码器对象
+   7:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+   8:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** DC_Motor M1(&M1_PWM, &kth7111_M1); //电机1
+   9:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** DC_Motor M2(&M2_PWM, &kth7111_M2); //电机2
+  10:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** DC_Motor M3(&M3_PWM, &kth7111_M3); //电机3
+  11:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** DC_Motor M4(&M4_PWM, &kth7111_M4); //电机4
+  12:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  13:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** void DC_Motor::My_DC_Motor_Init()
+  14:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** {
+  15:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     uint32_t sysclk = HAL_RCC_GetSysClockFreq();
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     timer_clock_freq_ = sysclk / (_motor_config->htim->Instance->PSC + 1);
+  17:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  18:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     speed_lpf.init(0.7);
+  19:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     error_lpf.init(0.7);
+  20:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     speed_avg.init(5);
+  21:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  22:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     // ===== ① 设频率和占空比（0% 用于充电） =====
+  23:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Set_Motor_Frequency();
+  24:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  25:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     // ===== ② 自举电容预充电：CCR=0 → 下管导通 → 电容充电 =====
+  26:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Motor_EN(true);  // 打开PWM输出
+  27:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     vTaskDelay(pdMS_TO_TICKS(1));  // 等 1ms 充满
+  28:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Motor_EN(false); // 关闭PWM输出
+  29:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  30:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     _encoder->KTH7111_Init(motor_encoder_dir);
+  31:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     control_init_flag = true;
+  32:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ARM GAS  /tmp/ccWHmQF2.s 			page 2
+
+
+  33:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  34:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  35:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  36:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** void DC_Motor::Set_Motor_Frequency() //设置电机频率和占空比
+  37:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** {
+  38:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     bool new_dir = false;
+  39:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     uint32_t arr = 0;
+  40:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     uint16_t Fre = (uint16_t)motor_freq;//转整数计算
+  41:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float up_duty = constraint_value(motor_up_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+  42:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float down_duty = constraint_value(motor_down_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+  43:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (Fre == Fre_last && up_duty == up_duty_last && down_duty == down_duty_last) return;// 如果
+  45:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+  46:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     up_duty_last = up_duty;
+  47:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     down_duty_last = down_duty;
+  48:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  49:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (Fre == 0) //频率0直接关电机
+  50:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     {
+  51:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         Motor_EN(false);
+  52:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         return;
+  53:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
+  54:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  55:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     arr = timer_clock_freq_ / Fre;
+  56:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (arr >= 65535) arr = 65535;
+  57:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     else if (arr <= 1) arr = 1;
+  58:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  59:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     _motor_config->htim->Instance->CNT = 0; // 清零计数器
+  60:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_AUTORELOAD(_motor_config->htim, (uint16_t)(arr - 1));//设置周期 
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin1, (uint32_t)(arr*up_duty));//�
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+  63:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+  64:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  65:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  66:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  67:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+  68:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** void DC_Motor::Motor_EN(bool en) 
+  69:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** {
+  70:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (en == true)
+  71:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     {
+  72:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Start(_motor_config->htim, _motor_config->ch_hin1);
+  73:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin1);
+  74:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Start(_motor_config->htim, _motor_config->ch_hin2);
+  75:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin2);
+  76:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }else
+  77:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     {
+  78:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Stop(_motor_config->htim, _motor_config->ch_hin1);
+  79:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin1);
+  80:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Stop(_motor_config->htim, _motor_config->ch_hin2);
+  81:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin2);
+  82:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
+  83:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+  27              		.loc 1 83 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  32              		.cfi_def_cfa_offset 28
+ARM GAS  /tmp/ccWHmQF2.s 			page 3
+
+
+  33              		.cfi_offset 4, -28
+  34              		.cfi_offset 5, -24
+  35              		.cfi_offset 6, -20
+  36              		.cfi_offset 7, -16
+  37              		.cfi_offset 8, -12
+  38              		.cfi_offset 9, -8
+  39              		.cfi_offset 14, -4
+  40              	.LVL0:
+  41              	.LBB26:
+  42              	.LBI26:
+  43              		.file 2 "My_Top/System/kth_read.hpp"
+   1:My_Top/System/kth_read.hpp **** #pragma once
+   2:My_Top/System/kth_read.hpp **** 
+   3:My_Top/System/kth_read.hpp **** #include <stdbool.h>
+   4:My_Top/System/kth_read.hpp **** #include "spi.h"
+   5:My_Top/System/kth_read.hpp **** #include "FreeRTOS.h"
+   6:My_Top/System/kth_read.hpp **** #include "task.h"
+   7:My_Top/System/kth_read.hpp **** #include "bsp.hpp"
+   8:My_Top/System/kth_read.hpp **** 
+   9:My_Top/System/kth_read.hpp **** #define KTH7111_PRECISION (65535.0f) // 2^16-1，编码器分辨率
+  10:My_Top/System/kth_read.hpp **** #define RAW_TO_RAD  (6.28318530717f / KTH7111_PRECISION)// 编码器原始值转弧度系数：2π 
+  11:My_Top/System/kth_read.hpp **** #define RAD_TO_DEG  (180.0f / 3.14159265358979323846f)// 弧度转角度系数：180 / π ≈ 57.29
+  12:My_Top/System/kth_read.hpp **** #include "ex_math.hpp" 
+  13:My_Top/System/kth_read.hpp **** 
+  14:My_Top/System/kth_read.hpp **** 
+  15:My_Top/System/kth_read.hpp **** class KTH7111
+  16:My_Top/System/kth_read.hpp **** {
+  17:My_Top/System/kth_read.hpp **** public:
+  18:My_Top/System/kth_read.hpp ****     uint16_t single_turn; // 单圈原始值16位
+  19:My_Top/System/kth_read.hpp ****     float theta;          // 转换后的弧度角 (0 ~ 2π)
+  20:My_Top/System/kth_read.hpp ****     float angle;          // 转换后的角度 (0 ~ 360)
+  21:My_Top/System/kth_read.hpp ****     bool  encoder_dir; // 编码器方向
+  22:My_Top/System/kth_read.hpp ****     KTH7111(const MotorPWM_Config *motor_config)
+  44              		.loc 2 22 5 view .LVU1
+  45              	.LBB27:
+  46              	.LBB28:
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  24:My_Top/System/kth_read.hpp ****       single_turn(0), theta(0.0f), angle(0.0f) {}
+  47              		.loc 2 24 7 is_stmt 0 view .LVU2
+  48 0004 3E4B     		ldr	r3, .L3
+  49 0006 0020     		movs	r0, #0
+  50 0008 1880     		strh	r0, [r3]	@ movhi
+  51              		.loc 2 24 23 view .LVU3
+  52 000a 0022     		movs	r2, #0
+  53 000c 5A60     		str	r2, [r3, #4]	@ float
+  54              		.loc 2 24 36 view .LVU4
+  55 000e 9A60     		str	r2, [r3, #8]	@ float
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  56              		.loc 2 23 7 view .LVU5
+  57 0010 DFF8FC90 		ldr	r9, .L3+16
+  58 0014 C3F81090 		str	r9, [r3, #16]
+  59              	.LVL1:
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  60              		.loc 2 23 7 view .LVU6
+  61              	.LBE28:
+  62              	.LBE27:
+  63              	.LBE26:
+ARM GAS  /tmp/ccWHmQF2.s 			page 4
+
+
+  64              	.LBB29:
+  65              	.LBI29:
+  22:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  66              		.loc 2 22 5 is_stmt 1 view .LVU7
+  67              	.LBB30:
+  68              	.LBB31:
+  69              		.loc 2 24 7 is_stmt 0 view .LVU8
+  70 0018 9882     		strh	r0, [r3, #20]	@ movhi
+  71              		.loc 2 24 23 view .LVU9
+  72 001a 9A61     		str	r2, [r3, #24]	@ float
+  73              		.loc 2 24 36 view .LVU10
+  74 001c DA61     		str	r2, [r3, #28]	@ float
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  75              		.loc 2 23 7 view .LVU11
+  76 001e DFF8F480 		ldr	r8, .L3+20
+  77 0022 C3F82480 		str	r8, [r3, #36]
+  78              	.LVL2:
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  79              		.loc 2 23 7 view .LVU12
+  80              	.LBE31:
+  81              	.LBE30:
+  82              	.LBE29:
+  83              	.LBB32:
+  84              	.LBI32:
+  22:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  85              		.loc 2 22 5 is_stmt 1 view .LVU13
+  86              	.LBB33:
+  87              	.LBB34:
+  88              		.loc 2 24 7 is_stmt 0 view .LVU14
+  89 0026 1885     		strh	r0, [r3, #40]	@ movhi
+  90              		.loc 2 24 23 view .LVU15
+  91 0028 DA62     		str	r2, [r3, #44]	@ float
+  92              		.loc 2 24 36 view .LVU16
+  93 002a 1A63     		str	r2, [r3, #48]	@ float
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  94              		.loc 2 23 7 view .LVU17
+  95 002c 354F     		ldr	r7, .L3+4
+  96 002e 9F63     		str	r7, [r3, #56]
+  97              	.LVL3:
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+  98              		.loc 2 23 7 view .LVU18
+  99              	.LBE34:
+ 100              	.LBE33:
+ 101              	.LBE32:
+ 102              	.LBB35:
+ 103              	.LBI35:
+  22:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+ 104              		.loc 2 22 5 is_stmt 1 view .LVU19
+ 105              	.LBB36:
+ 106              	.LBB37:
+ 107              		.loc 2 24 7 is_stmt 0 view .LVU20
+ 108 0030 9887     		strh	r0, [r3, #60]	@ movhi
+ 109              		.loc 2 24 23 view .LVU21
+ 110 0032 1A64     		str	r2, [r3, #64]	@ float
+ 111              		.loc 2 24 36 view .LVU22
+ 112 0034 5A64     		str	r2, [r3, #68]	@ float
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+ARM GAS  /tmp/ccWHmQF2.s 			page 5
+
+
+ 113              		.loc 2 23 7 view .LVU23
+ 114 0036 344E     		ldr	r6, .L3+8
+ 115 0038 DE64     		str	r6, [r3, #76]
+ 116              	.LVL4:
+  23:My_Top/System/kth_read.hpp ****     : _motor_config(motor_config),
+ 117              		.loc 2 23 7 view .LVU24
+ 118              	.LBE37:
+ 119              	.LBE36:
+ 120              	.LBE35:
+ 121              	.LBB38:
+ 122              	.LBI38:
+ 123              		.file 3 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+   1:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #pragma once
+   2:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #include "pid_Increment.hpp"
+   3:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #include "pll.hpp"
+   4:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #include "kth_read.hpp"
+   5:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #include "ex_math.hpp"
+   6:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #include "bsp.hpp"
+   7:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #include "BL24C16F.hpp" //EEPROM
+   8:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** #include "my_dronecan.hpp"
+   9:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** 
+  10:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** enum Work_Mode
+  11:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** {
+  12:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****     speed = 0,//速度模式
+  13:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****     position = 1,//位置模式
+  14:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****     EncoderCalibration = 99,//编码器校准模式
+  15:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****     Normal_Mode = 3,// 正常模式
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** };
+  17:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** 
+  18:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** 
+  19:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** class DC_Motor
+  20:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** {
+  21:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp **** public:
+  22:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****     DC_Motor(const MotorPWM_Config *motor_config, KTH7111 *encoder)
+ 124              		.loc 3 22 5 is_stmt 1 view .LVU25
+ 125              	.LBB39:
+ 126              	.LBB40:
+  23:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****         : _motor_config(motor_config), _encoder(encoder) {}//构造函数
+ 127              		.loc 3 23 56 is_stmt 0 view .LVU26
+ 128 003a 0325     		movs	r5, #3
+ 129 003c 83F85050 		strb	r5, [r3, #80]
+ 130 0040 0124     		movs	r4, #1
+ 131 0042 83F85140 		strb	r4, [r3, #81]
+ 132 0046 83F85200 		strb	r0, [r3, #82]
+ 133 004a 42F2107E 		movw	lr, #10000
+ 134 004e A3F854E0 		strh	lr, [r3, #84]	@ movhi
+ 135 0052 9A65     		str	r2, [r3, #88]	@ float
+ 136 0054 DA65     		str	r2, [r3, #92]	@ float
+ 137              		.loc 3 23 40 view .LVU27
+ 138 0056 1B66     		str	r3, [r3, #96]
+ 139              		.loc 3 23 56 view .LVU28
+ 140 0058 4FF0FF0C 		mov	ip, #255
+ 141 005c A3F868C0 		strh	ip, [r3, #104]	@ movhi
+ 142 0060 2A49     		ldr	r1, .L3+12
+ 143 0062 D966     		str	r1, [r3, #108]	@ float
+ 144 0064 1967     		str	r1, [r3, #112]	@ float
+ 145              		.loc 3 23 11 view .LVU29
+ARM GAS  /tmp/ccWHmQF2.s 			page 6
+
+
+ 146 0066 C3F8A490 		str	r9, [r3, #164]
+ 147              	.LVL5:
+ 148              		.loc 3 23 11 view .LVU30
+ 149              	.LBE40:
+ 150              	.LBE39:
+ 151              	.LBE38:
+ 152              	.LBB41:
+ 153              	.LBI41:
+  22:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****         : _motor_config(motor_config), _encoder(encoder) {}//构造函数
+ 154              		.loc 3 22 5 is_stmt 1 view .LVU31
+ 155              	.LBB42:
+ 156              	.LBB43:
+ 157              		.loc 3 23 56 is_stmt 0 view .LVU32
+ 158 006a 83F8A850 		strb	r5, [r3, #168]
+ 159 006e 83F8A940 		strb	r4, [r3, #169]
+ 160 0072 83F8AA00 		strb	r0, [r3, #170]
+ 161 0076 A3F8ACE0 		strh	lr, [r3, #172]	@ movhi
+ 162 007a C3F8B020 		str	r2, [r3, #176]	@ float
+ 163 007e C3F8B420 		str	r2, [r3, #180]	@ float
+ 164              		.loc 3 23 40 view .LVU33
+ 165 0082 03F11409 		add	r9, r3, #20
+ 166 0086 C3F8B890 		str	r9, [r3, #184]
+ 167              		.loc 3 23 56 view .LVU34
+ 168 008a A3F8C0C0 		strh	ip, [r3, #192]	@ movhi
+ 169 008e C3F8C410 		str	r1, [r3, #196]	@ float
+ 170 0092 C3F8C810 		str	r1, [r3, #200]	@ float
+ 171              		.loc 3 23 11 view .LVU35
+ 172 0096 C3F8FC80 		str	r8, [r3, #252]
+ 173              	.LVL6:
+ 174              		.loc 3 23 11 view .LVU36
+ 175              	.LBE43:
+ 176              	.LBE42:
+ 177              	.LBE41:
+ 178              	.LBB44:
+ 179              	.LBI44:
+  22:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****         : _motor_config(motor_config), _encoder(encoder) {}//构造函数
+ 180              		.loc 3 22 5 is_stmt 1 view .LVU37
+ 181              	.LBB45:
+ 182              	.LBB46:
+ 183              		.loc 3 23 56 is_stmt 0 view .LVU38
+ 184 009a 83F80051 		strb	r5, [r3, #256]
+ 185 009e 83F80141 		strb	r4, [r3, #257]
+ 186 00a2 83F80201 		strb	r0, [r3, #258]
+ 187 00a6 A3F804E1 		strh	lr, [r3, #260]	@ movhi
+ 188 00aa C3F80821 		str	r2, [r3, #264]	@ float
+ 189 00ae C3F80C21 		str	r2, [r3, #268]	@ float
+ 190              		.loc 3 23 40 view .LVU39
+ 191 00b2 03F12808 		add	r8, r3, #40
+ 192 00b6 C3F81081 		str	r8, [r3, #272]
+ 193              		.loc 3 23 56 view .LVU40
+ 194 00ba A3F818C1 		strh	ip, [r3, #280]	@ movhi
+ 195 00be C3F81C11 		str	r1, [r3, #284]	@ float
+ 196 00c2 C3F82011 		str	r1, [r3, #288]	@ float
+ 197              		.loc 3 23 11 view .LVU41
+ 198 00c6 C3F85471 		str	r7, [r3, #340]
+ 199              	.LVL7:
+ 200              		.loc 3 23 11 view .LVU42
+ARM GAS  /tmp/ccWHmQF2.s 			page 7
+
+
+ 201              	.LBE46:
+ 202              	.LBE45:
+ 203              	.LBE44:
+ 204              	.LBB47:
+ 205              	.LBI47:
+  22:My_Top/Motor_Control/DcMotor_ClosedLoop.hpp ****         : _motor_config(motor_config), _encoder(encoder) {}//构造函数
+ 206              		.loc 3 22 5 is_stmt 1 view .LVU43
+ 207              	.LBB48:
+ 208              	.LBB49:
+ 209              		.loc 3 23 56 is_stmt 0 view .LVU44
+ 210 00ca 83F85851 		strb	r5, [r3, #344]
+ 211 00ce 83F85941 		strb	r4, [r3, #345]
+ 212 00d2 83F85A01 		strb	r0, [r3, #346]
+ 213 00d6 A3F85CE1 		strh	lr, [r3, #348]	@ movhi
+ 214 00da C3F86021 		str	r2, [r3, #352]	@ float
+ 215 00de C3F86421 		str	r2, [r3, #356]	@ float
+ 216              		.loc 3 23 40 view .LVU45
+ 217 00e2 03F13C02 		add	r2, r3, #60
+ 218 00e6 C3F86821 		str	r2, [r3, #360]
+ 219              		.loc 3 23 56 view .LVU46
+ 220 00ea A3F870C1 		strh	ip, [r3, #368]	@ movhi
+ 221 00ee C3F87411 		str	r1, [r3, #372]	@ float
+ 222 00f2 C3F87811 		str	r1, [r3, #376]	@ float
+ 223              		.loc 3 23 11 view .LVU47
+ 224 00f6 C3F8AC61 		str	r6, [r3, #428]
+ 225              	.LVL8:
+ 226              		.loc 3 23 11 view .LVU48
+ 227              	.LBE49:
+ 228              	.LBE48:
+ 229              	.LBE47:
+ 230              		.loc 1 83 1 view .LVU49
+ 231 00fa BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 232              	.L4:
+ 233 00fe 00BF     		.align	2
+ 234              	.L3:
+ 235 0100 00000000 		.word	.LANCHOR0
+ 236 0104 00000000 		.word	M3_PWM
+ 237 0108 00000000 		.word	M4_PWM
+ 238 010c 000080BF 		.word	-1082130432
+ 239 0110 00000000 		.word	M1_PWM
+ 240 0114 00000000 		.word	M2_PWM
+ 241              		.cfi_endproc
+ 242              	.LFE1495:
+ 244              		.align	1
+ 245              		.global	_ZN8DC_Motor8Motor_ENEb
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 250              	_ZN8DC_Motor8Motor_ENEb:
+ 251              	.LVL9:
+ 252              	.LFB1344:
+  69:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (en == true)
+ 253              		.loc 1 69 1 is_stmt 1 view -0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+  69:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (en == true)
+ARM GAS  /tmp/ccWHmQF2.s 			page 8
+
+
+ 257              		.loc 1 69 1 is_stmt 0 view .LVU51
+ 258 0118 10B5     		push	{r4, lr}
+ 259              		.cfi_def_cfa_offset 8
+ 260              		.cfi_offset 4, -8
+ 261              		.cfi_offset 14, -4
+ 262 011a 0446     		mov	r4, r0
+  70:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     {
+ 263              		.loc 1 70 5 is_stmt 1 view .LVU52
+ 264 011c A1B1     		cbz	r1, .L6
+  72:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin1);
+ 265              		.loc 1 72 9 view .LVU53
+  72:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin1);
+ 266              		.loc 1 72 27 is_stmt 0 view .LVU54
+ 267 011e 436D     		ldr	r3, [r0, #84]
+  72:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin1);
+ 268              		.loc 1 72 26 view .LVU55
+ 269 0120 9968     		ldr	r1, [r3, #8]
+ 270              	.LVL10:
+  72:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin1);
+ 271              		.loc 1 72 26 view .LVU56
+ 272 0122 1868     		ldr	r0, [r3]
+ 273              	.LVL11:
+  72:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin1);
+ 274              		.loc 1 72 26 view .LVU57
+ 275 0124 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 276              	.LVL12:
+  73:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Start(_motor_config->htim, _motor_config->ch_hin2);
+ 277              		.loc 1 73 9 is_stmt 1 view .LVU58
+  73:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Start(_motor_config->htim, _motor_config->ch_hin2);
+ 278              		.loc 1 73 30 is_stmt 0 view .LVU59
+ 279 0128 636D     		ldr	r3, [r4, #84]
+  73:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Start(_motor_config->htim, _motor_config->ch_hin2);
+ 280              		.loc 1 73 29 view .LVU60
+ 281 012a 9968     		ldr	r1, [r3, #8]
+ 282 012c 1868     		ldr	r0, [r3]
+ 283 012e FFF7FEFF 		bl	HAL_TIMEx_PWMN_Start
+ 284              	.LVL13:
+  74:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin2);
+ 285              		.loc 1 74 9 is_stmt 1 view .LVU61
+  74:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin2);
+ 286              		.loc 1 74 27 is_stmt 0 view .LVU62
+ 287 0132 636D     		ldr	r3, [r4, #84]
+  74:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin2);
+ 288              		.loc 1 74 26 view .LVU63
+ 289 0134 D968     		ldr	r1, [r3, #12]
+ 290 0136 1868     		ldr	r0, [r3]
+ 291 0138 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 292              	.LVL14:
+  75:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }else
+ 293              		.loc 1 75 9 is_stmt 1 view .LVU64
+  75:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }else
+ 294              		.loc 1 75 30 is_stmt 0 view .LVU65
+ 295 013c 636D     		ldr	r3, [r4, #84]
+  75:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }else
+ 296              		.loc 1 75 29 view .LVU66
+ 297 013e D968     		ldr	r1, [r3, #12]
+ 298 0140 1868     		ldr	r0, [r3]
+ARM GAS  /tmp/ccWHmQF2.s 			page 9
+
+
+ 299 0142 FFF7FEFF 		bl	HAL_TIMEx_PWMN_Start
+ 300              	.LVL15:
+ 301              	.L5:
+ 302              		.loc 1 83 1 view .LVU67
+ 303 0146 10BD     		pop	{r4, pc}
+ 304              	.LVL16:
+ 305              	.L6:
+  78:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin1);
+ 306              		.loc 1 78 9 is_stmt 1 view .LVU68
+  78:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin1);
+ 307              		.loc 1 78 26 is_stmt 0 view .LVU69
+ 308 0148 436D     		ldr	r3, [r0, #84]
+  78:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin1);
+ 309              		.loc 1 78 25 view .LVU70
+ 310 014a 9968     		ldr	r1, [r3, #8]
+ 311              	.LVL17:
+  78:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin1);
+ 312              		.loc 1 78 25 view .LVU71
+ 313 014c 1868     		ldr	r0, [r3]
+ 314              	.LVL18:
+  78:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin1);
+ 315              		.loc 1 78 25 view .LVU72
+ 316 014e FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 317              	.LVL19:
+  79:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Stop(_motor_config->htim, _motor_config->ch_hin2);
+ 318              		.loc 1 79 9 is_stmt 1 view .LVU73
+  79:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Stop(_motor_config->htim, _motor_config->ch_hin2);
+ 319              		.loc 1 79 29 is_stmt 0 view .LVU74
+ 320 0152 636D     		ldr	r3, [r4, #84]
+  79:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIM_PWM_Stop(_motor_config->htim, _motor_config->ch_hin2);
+ 321              		.loc 1 79 28 view .LVU75
+ 322 0154 9968     		ldr	r1, [r3, #8]
+ 323 0156 1868     		ldr	r0, [r3]
+ 324 0158 FFF7FEFF 		bl	HAL_TIMEx_PWMN_Stop
+ 325              	.LVL20:
+  80:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin2);
+ 326              		.loc 1 80 9 is_stmt 1 view .LVU76
+  80:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin2);
+ 327              		.loc 1 80 26 is_stmt 0 view .LVU77
+ 328 015c 636D     		ldr	r3, [r4, #84]
+  80:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin2);
+ 329              		.loc 1 80 25 view .LVU78
+ 330 015e D968     		ldr	r1, [r3, #12]
+ 331 0160 1868     		ldr	r0, [r3]
+ 332 0162 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 333              	.LVL21:
+  81:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
+ 334              		.loc 1 81 9 is_stmt 1 view .LVU79
+  81:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
+ 335              		.loc 1 81 29 is_stmt 0 view .LVU80
+ 336 0166 636D     		ldr	r3, [r4, #84]
+  81:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
+ 337              		.loc 1 81 28 view .LVU81
+ 338 0168 D968     		ldr	r1, [r3, #12]
+ 339 016a 1868     		ldr	r0, [r3]
+ 340 016c FFF7FEFF 		bl	HAL_TIMEx_PWMN_Stop
+ 341              	.LVL22:
+ARM GAS  /tmp/ccWHmQF2.s 			page 10
+
+
+ 342              		.loc 1 83 1 view .LVU82
+ 343 0170 E9E7     		b	.L5
+ 344              		.cfi_endproc
+ 345              	.LFE1344:
+ 347              		.align	1
+ 348              		.global	_ZN8DC_Motor19Set_Motor_FrequencyEv
+ 349              		.syntax unified
+ 350              		.thumb
+ 351              		.thumb_func
+ 353              	_ZN8DC_Motor19Set_Motor_FrequencyEv:
+ 354              	.LVL23:
+ 355              	.LFB1343:
+  37:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     bool new_dir = false;
+ 356              		.loc 1 37 1 is_stmt 1 view -0
+ 357              		.cfi_startproc
+ 358              		@ args = 0, pretend = 0, frame = 0
+ 359              		@ frame_needed = 0, uses_anonymous_args = 0
+  37:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     bool new_dir = false;
+ 360              		.loc 1 37 1 is_stmt 0 view .LVU84
+ 361 0172 08B5     		push	{r3, lr}
+ 362              		.cfi_def_cfa_offset 8
+ 363              		.cfi_offset 3, -8
+ 364              		.cfi_offset 14, -4
+  38:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     uint32_t arr = 0;
+ 365              		.loc 1 38 5 is_stmt 1 view .LVU85
+ 366              	.LVL24:
+  39:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     uint16_t Fre = (uint16_t)motor_freq;//转整数计算
+ 367              		.loc 1 39 5 view .LVU86
+  40:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float up_duty = constraint_value(motor_up_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+ 368              		.loc 1 40 5 view .LVU87
+  40:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float up_duty = constraint_value(motor_up_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+ 369              		.loc 1 40 14 is_stmt 0 view .LVU88
+ 370 0174 8288     		ldrh	r2, [r0, #4]
+ 371              	.LVL25:
+  41:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float down_duty = constraint_value(motor_down_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+ 372              		.loc 1 41 5 is_stmt 1 view .LVU89
+  41:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float down_duty = constraint_value(motor_down_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+ 373              		.loc 1 41 21 is_stmt 0 view .LVU90
+ 374 0176 D0ED027A 		vldr.32	s15, [r0, #8]
+ 375 017a F5EEC07A 		vcmpe.f32	s15, #0
+ 376 017e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 377 0182 09D4     		bmi	.L33
+  41:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float down_duty = constraint_value(motor_down_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+ 378              		.loc 1 41 21 discriminator 2 view .LVU91
+ 379 0184 B7EE007A 		vmov.f32	s14, #1.0e+0
+ 380 0188 F4EEC77A 		vcmpe.f32	s15, s14
+ 381 018c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 382 0190 04DD     		ble	.L10
+  41:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float down_duty = constraint_value(motor_down_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+ 383              		.loc 1 41 21 discriminator 4 view .LVU92
+ 384 0192 F0EE477A 		vmov.f32	s15, s14
+ 385 0196 01E0     		b	.L10
+ 386              	.L33:
+  41:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float down_duty = constraint_value(motor_down_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+ 387              		.loc 1 41 21 discriminator 1 view .LVU93
+ 388 0198 DFED827A 		vldr.32	s15, .L42
+ 389              	.L10:
+ARM GAS  /tmp/ccWHmQF2.s 			page 11
+
+
+ 390              	.LVL26:
+  42:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 391              		.loc 1 42 5 is_stmt 1 view .LVU94
+  42:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 392              		.loc 1 42 23 is_stmt 0 view .LVU95
+ 393 019c 90ED037A 		vldr.32	s14, [r0, #12]
+ 394 01a0 B5EEC07A 		vcmpe.f32	s14, #0
+ 395 01a4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 396 01a8 09D4     		bmi	.L34
+  42:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 397              		.loc 1 42 23 discriminator 2 view .LVU96
+ 398 01aa F7EE006A 		vmov.f32	s13, #1.0e+0
+ 399 01ae B4EEE67A 		vcmpe.f32	s14, s13
+ 400 01b2 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 401 01b6 04DD     		ble	.L12
+  42:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 402              		.loc 1 42 23 discriminator 4 view .LVU97
+ 403 01b8 B0EE667A 		vmov.f32	s14, s13
+ 404 01bc 01E0     		b	.L12
+ 405              	.L34:
+  42:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 406              		.loc 1 42 23 discriminator 1 view .LVU98
+ 407 01be 9FED797A 		vldr.32	s14, .L42
+ 408              	.L12:
+ 409              	.LVL27:
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+ 410              		.loc 1 44 5 is_stmt 1 view .LVU99
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+ 411              		.loc 1 44 16 is_stmt 0 view .LVU100
+ 412 01c2 038B     		ldrh	r3, [r0, #24]
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+ 413              		.loc 1 44 5 view .LVU101
+ 414 01c4 9342     		cmp	r3, r2
+ 415 01c6 10D0     		beq	.L40
+ 416              	.L14:
+  45:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     up_duty_last = up_duty;
+ 417              		.loc 1 45 5 is_stmt 1 view .LVU102
+  45:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     up_duty_last = up_duty;
+ 418              		.loc 1 45 14 is_stmt 0 view .LVU103
+ 419 01c8 0283     		strh	r2, [r0, #24]	@ movhi
+  46:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     down_duty_last = down_duty;
+ 420              		.loc 1 46 5 is_stmt 1 view .LVU104
+  46:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     down_duty_last = down_duty;
+ 421              		.loc 1 46 18 is_stmt 0 view .LVU105
+ 422 01ca C0ED077A 		vstr.32	s15, [r0, #28]
+  47:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 423              		.loc 1 47 5 is_stmt 1 view .LVU106
+  47:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 424              		.loc 1 47 20 is_stmt 0 view .LVU107
+ 425 01ce 80ED087A 		vstr.32	s14, [r0, #32]
+  49:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     {
+ 426              		.loc 1 49 5 is_stmt 1 view .LVU108
+ 427 01d2 CAB1     		cbz	r2, .L41
+  55:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (arr >= 65535) arr = 65535;
+ 428              		.loc 1 55 5 view .LVU109
+  55:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (arr >= 65535) arr = 65535;
+ 429              		.loc 1 55 11 is_stmt 0 view .LVU110
+ARM GAS  /tmp/ccWHmQF2.s 			page 12
+
+
+ 430 01d4 436A     		ldr	r3, [r0, #36]
+  55:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     if (arr >= 65535) arr = 65535;
+ 431              		.loc 1 55 9 view .LVU111
+ 432 01d6 B3FBF2F3 		udiv	r3, r3, r2
+ 433              	.LVL28:
+  56:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     else if (arr <= 1) arr = 1;
+ 434              		.loc 1 56 5 is_stmt 1 view .LVU112
+ 435 01da 4FF6FE72 		movw	r2, #65534
+ 436              	.LVL29:
+  56:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     else if (arr <= 1) arr = 1;
+ 437              		.loc 1 56 5 is_stmt 0 view .LVU113
+ 438 01de 9342     		cmp	r3, r2
+ 439 01e0 16D8     		bhi	.L35
+  57:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 440              		.loc 1 57 10 is_stmt 1 view .LVU114
+ 441 01e2 012B     		cmp	r3, #1
+ 442 01e4 16D8     		bhi	.L17
+  57:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 443              		.loc 1 57 28 is_stmt 0 discriminator 1 view .LVU115
+ 444 01e6 0123     		movs	r3, #1
+ 445              	.LVL30:
+  57:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 446              		.loc 1 57 28 discriminator 1 view .LVU116
+ 447 01e8 14E0     		b	.L17
+ 448              	.LVL31:
+ 449              	.L40:
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+ 450              		.loc 1 44 39 discriminator 1 view .LVU117
+ 451 01ea D0ED076A 		vldr.32	s13, [r0, #28]
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+ 452              		.loc 1 44 25 discriminator 1 view .LVU118
+ 453 01ee F4EE676A 		vcmp.f32	s13, s15
+ 454 01f2 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 455 01f6 E7D1     		bne	.L14
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+ 456              		.loc 1 44 68 discriminator 2 view .LVU119
+ 457 01f8 D0ED086A 		vldr.32	s13, [r0, #32]
+  44:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
+ 458              		.loc 1 44 52 discriminator 2 view .LVU120
+ 459 01fc F4EE476A 		vcmp.f32	s13, s14
+ 460 0200 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 461 0204 E0D1     		bne	.L14
+ 462 0206 CBE0     		b	.L9
+ 463              	.L41:
+  51:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         return;
+ 464              		.loc 1 51 9 is_stmt 1 view .LVU121
+  51:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         return;
+ 465              		.loc 1 51 17 is_stmt 0 view .LVU122
+ 466 0208 0021     		movs	r1, #0
+ 467 020a FFF7FEFF 		bl	_ZN8DC_Motor8Motor_ENEb
+ 468              	.LVL32:
+  52:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
+ 469              		.loc 1 52 9 is_stmt 1 view .LVU123
+ 470 020e C7E0     		b	.L9
+ 471              	.LVL33:
+ 472              	.L35:
+  56:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     else if (arr <= 1) arr = 1;
+ARM GAS  /tmp/ccWHmQF2.s 			page 13
+
+
+ 473              		.loc 1 56 27 is_stmt 0 discriminator 1 view .LVU124
+ 474 0210 4FF6FF73 		movw	r3, #65535
+ 475              	.LVL34:
+ 476              	.L17:
+  59:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_AUTORELOAD(_motor_config->htim, (uint16_t)(arr - 1));//设置周期 
+ 477              		.loc 1 59 5 is_stmt 1 view .LVU125
+ 478 0214 426D     		ldr	r2, [r0, #84]
+  59:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_AUTORELOAD(_motor_config->htim, (uint16_t)(arr - 1));//设置周期 
+ 479              		.loc 1 59 20 is_stmt 0 view .LVU126
+ 480 0216 1268     		ldr	r2, [r2]
+  59:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_AUTORELOAD(_motor_config->htim, (uint16_t)(arr - 1));//设置周期 
+ 481              		.loc 1 59 26 view .LVU127
+ 482 0218 1268     		ldr	r2, [r2]
+  59:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_AUTORELOAD(_motor_config->htim, (uint16_t)(arr - 1));//设置周期 
+ 483              		.loc 1 59 40 view .LVU128
+ 484 021a 0021     		movs	r1, #0
+ 485 021c 5162     		str	r1, [r2, #36]
+ 486              	.LVL35:
+  60:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin1, (uint32_t)(arr*up_duty));//�
+ 487              		.loc 1 60 5 is_stmt 1 view .LVU129
+  60:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin1, (uint32_t)(arr*up_duty));//�
+ 488              		.loc 1 60 5 view .LVU130
+ 489 021e 5A1E     		subs	r2, r3, #1
+ 490 0220 92B2     		uxth	r2, r2
+ 491 0222 416D     		ldr	r1, [r0, #84]
+ 492 0224 0968     		ldr	r1, [r1]
+ 493 0226 0968     		ldr	r1, [r1]
+ 494 0228 CA62     		str	r2, [r1, #44]
+  60:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin1, (uint32_t)(arr*up_duty));//�
+ 495              		.loc 1 60 5 view .LVU131
+ 496 022a 416D     		ldr	r1, [r0, #84]
+ 497 022c 0968     		ldr	r1, [r1]
+ 498 022e CA60     		str	r2, [r1, #12]
+  60:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin1, (uint32_t)(arr*up_duty));//�
+ 499              		.loc 1 60 5 view .LVU132
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 500              		.loc 1 61 5 view .LVU133
+ 501 0230 416D     		ldr	r1, [r0, #84]
+ 502 0232 8A68     		ldr	r2, [r1, #8]
+ 503 0234 102A     		cmp	r2, #16
+ 504 0236 4BD8     		bhi	.L18
+ 505 0238 DFE802F0 		tbb	[pc, r2]
+ 506              	.L20:
+ 507 023c 09       		.byte	(.L24-.L20)/2
+ 508 023d 4A       		.byte	(.L18-.L20)/2
+ 509 023e 4A       		.byte	(.L18-.L20)/2
+ 510 023f 4A       		.byte	(.L18-.L20)/2
+ 511 0240 16       		.byte	(.L23-.L20)/2
+ 512 0241 4A       		.byte	(.L18-.L20)/2
+ 513 0242 4A       		.byte	(.L18-.L20)/2
+ 514 0243 4A       		.byte	(.L18-.L20)/2
+ 515 0244 23       		.byte	(.L22-.L20)/2
+ 516 0245 4A       		.byte	(.L18-.L20)/2
+ 517 0246 4A       		.byte	(.L18-.L20)/2
+ 518 0247 4A       		.byte	(.L18-.L20)/2
+ 519 0248 30       		.byte	(.L21-.L20)/2
+ 520 0249 4A       		.byte	(.L18-.L20)/2
+ARM GAS  /tmp/ccWHmQF2.s 			page 14
+
+
+ 521 024a 4A       		.byte	(.L18-.L20)/2
+ 522 024b 4A       		.byte	(.L18-.L20)/2
+ 523 024c 3D       		.byte	(.L19-.L20)/2
+ 524 024d 00       		.p2align 1
+ 525              	.L24:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 526              		.loc 1 61 5 is_stmt 0 discriminator 1 view .LVU134
+ 527 024e 06EE903A 		vmov	s13, r3	@ int
+ 528 0252 F8EE666A 		vcvt.f32.u32	s13, s13
+ 529 0256 66EEA77A 		vmul.f32	s15, s13, s15
+ 530              	.LVL36:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 531              		.loc 1 61 5 discriminator 1 view .LVU135
+ 532 025a 0A68     		ldr	r2, [r1]
+ 533 025c 1268     		ldr	r2, [r2]
+ 534 025e FCEEE77A 		vcvt.u32.f32	s15, s15
+ 535 0262 C2ED0D7A 		vstr.32	s15, [r2, #52]	@ int
+ 536 0266 3FE0     		b	.L25
+ 537              	.LVL37:
+ 538              	.L23:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 539              		.loc 1 61 5 discriminator 3 view .LVU136
+ 540 0268 06EE903A 		vmov	s13, r3	@ int
+ 541 026c F8EE666A 		vcvt.f32.u32	s13, s13
+ 542 0270 66EEA77A 		vmul.f32	s15, s13, s15
+ 543              	.LVL38:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 544              		.loc 1 61 5 discriminator 3 view .LVU137
+ 545 0274 0A68     		ldr	r2, [r1]
+ 546 0276 1268     		ldr	r2, [r2]
+ 547 0278 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 548 027c C2ED0E7A 		vstr.32	s15, [r2, #56]	@ int
+ 549 0280 32E0     		b	.L25
+ 550              	.LVL39:
+ 551              	.L22:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 552              		.loc 1 61 5 discriminator 5 view .LVU138
+ 553 0282 06EE903A 		vmov	s13, r3	@ int
+ 554 0286 F8EE666A 		vcvt.f32.u32	s13, s13
+ 555 028a 66EEA77A 		vmul.f32	s15, s13, s15
+ 556              	.LVL40:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 557              		.loc 1 61 5 discriminator 5 view .LVU139
+ 558 028e 0A68     		ldr	r2, [r1]
+ 559 0290 1268     		ldr	r2, [r2]
+ 560 0292 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 561 0296 C2ED0F7A 		vstr.32	s15, [r2, #60]	@ int
+ 562 029a 25E0     		b	.L25
+ 563              	.LVL41:
+ 564              	.L21:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 565              		.loc 1 61 5 discriminator 7 view .LVU140
+ 566 029c 06EE903A 		vmov	s13, r3	@ int
+ 567 02a0 F8EE666A 		vcvt.f32.u32	s13, s13
+ 568 02a4 66EEA77A 		vmul.f32	s15, s13, s15
+ 569              	.LVL42:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ARM GAS  /tmp/ccWHmQF2.s 			page 15
+
+
+ 570              		.loc 1 61 5 discriminator 7 view .LVU141
+ 571 02a8 0A68     		ldr	r2, [r1]
+ 572 02aa 1268     		ldr	r2, [r2]
+ 573 02ac FCEEE77A 		vcvt.u32.f32	s15, s15
+ 574 02b0 C2ED107A 		vstr.32	s15, [r2, #64]	@ int
+ 575 02b4 18E0     		b	.L25
+ 576              	.LVL43:
+ 577              	.L19:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 578              		.loc 1 61 5 discriminator 9 view .LVU142
+ 579 02b6 06EE903A 		vmov	s13, r3	@ int
+ 580 02ba F8EE666A 		vcvt.f32.u32	s13, s13
+ 581 02be 66EEA77A 		vmul.f32	s15, s13, s15
+ 582              	.LVL44:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 583              		.loc 1 61 5 discriminator 9 view .LVU143
+ 584 02c2 0A68     		ldr	r2, [r1]
+ 585 02c4 1268     		ldr	r2, [r2]
+ 586 02c6 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 587 02ca C2ED127A 		vstr.32	s15, [r2, #72]	@ int
+ 588 02ce 0BE0     		b	.L25
+ 589              	.LVL45:
+ 590              	.L18:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 591              		.loc 1 61 5 discriminator 10 view .LVU144
+ 592 02d0 06EE903A 		vmov	s13, r3	@ int
+ 593 02d4 F8EE666A 		vcvt.f32.u32	s13, s13
+ 594 02d8 66EEA77A 		vmul.f32	s15, s13, s15
+ 595              	.LVL46:
+  61:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
+ 596              		.loc 1 61 5 discriminator 10 view .LVU145
+ 597 02dc 0A68     		ldr	r2, [r1]
+ 598 02de 1268     		ldr	r2, [r2]
+ 599 02e0 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 600 02e4 C2ED137A 		vstr.32	s15, [r2, #76]	@ int
+ 601              	.L25:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 602              		.loc 1 62 5 is_stmt 1 view .LVU146
+ 603 02e8 416D     		ldr	r1, [r0, #84]
+ 604 02ea CA68     		ldr	r2, [r1, #12]
+ 605 02ec 102A     		cmp	r2, #16
+ 606 02ee 4BD8     		bhi	.L26
+ 607 02f0 DFE802F0 		tbb	[pc, r2]
+ 608              	.LVL47:
+ 609              	.L28:
+ 610 02f4 09       		.byte	(.L32-.L28)/2
+ 611 02f5 4A       		.byte	(.L26-.L28)/2
+ 612 02f6 4A       		.byte	(.L26-.L28)/2
+ 613 02f7 4A       		.byte	(.L26-.L28)/2
+ 614 02f8 16       		.byte	(.L31-.L28)/2
+ 615 02f9 4A       		.byte	(.L26-.L28)/2
+ 616 02fa 4A       		.byte	(.L26-.L28)/2
+ 617 02fb 4A       		.byte	(.L26-.L28)/2
+ 618 02fc 23       		.byte	(.L30-.L28)/2
+ 619 02fd 4A       		.byte	(.L26-.L28)/2
+ 620 02fe 4A       		.byte	(.L26-.L28)/2
+ 621 02ff 4A       		.byte	(.L26-.L28)/2
+ARM GAS  /tmp/ccWHmQF2.s 			page 16
+
+
+ 622 0300 30       		.byte	(.L29-.L28)/2
+ 623 0301 4A       		.byte	(.L26-.L28)/2
+ 624 0302 4A       		.byte	(.L26-.L28)/2
+ 625 0303 4A       		.byte	(.L26-.L28)/2
+ 626 0304 3D       		.byte	(.L27-.L28)/2
+ 627 0305 00       		.p2align 1
+ 628              	.L32:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 629              		.loc 1 62 5 is_stmt 0 discriminator 1 view .LVU147
+ 630 0306 07EE903A 		vmov	s15, r3	@ int
+ 631 030a F8EE677A 		vcvt.f32.u32	s15, s15
+ 632 030e 67EE877A 		vmul.f32	s15, s15, s14
+ 633 0312 0B68     		ldr	r3, [r1]
+ 634              	.LVL48:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 635              		.loc 1 62 5 discriminator 1 view .LVU148
+ 636 0314 1B68     		ldr	r3, [r3]
+ 637 0316 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 638 031a C3ED0D7A 		vstr.32	s15, [r3, #52]	@ int
+ 639 031e 3FE0     		b	.L9
+ 640              	.LVL49:
+ 641              	.L31:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 642              		.loc 1 62 5 discriminator 3 view .LVU149
+ 643 0320 07EE903A 		vmov	s15, r3	@ int
+ 644 0324 F8EE677A 		vcvt.f32.u32	s15, s15
+ 645 0328 67EE877A 		vmul.f32	s15, s15, s14
+ 646 032c 0B68     		ldr	r3, [r1]
+ 647              	.LVL50:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 648              		.loc 1 62 5 discriminator 3 view .LVU150
+ 649 032e 1B68     		ldr	r3, [r3]
+ 650 0330 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 651 0334 C3ED0E7A 		vstr.32	s15, [r3, #56]	@ int
+ 652 0338 32E0     		b	.L9
+ 653              	.LVL51:
+ 654              	.L30:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 655              		.loc 1 62 5 discriminator 5 view .LVU151
+ 656 033a 07EE903A 		vmov	s15, r3	@ int
+ 657 033e F8EE677A 		vcvt.f32.u32	s15, s15
+ 658 0342 67EE877A 		vmul.f32	s15, s15, s14
+ 659 0346 0B68     		ldr	r3, [r1]
+ 660              	.LVL52:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 661              		.loc 1 62 5 discriminator 5 view .LVU152
+ 662 0348 1B68     		ldr	r3, [r3]
+ 663 034a FCEEE77A 		vcvt.u32.f32	s15, s15
+ 664 034e C3ED0F7A 		vstr.32	s15, [r3, #60]	@ int
+ 665 0352 25E0     		b	.L9
+ 666              	.LVL53:
+ 667              	.L29:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 668              		.loc 1 62 5 discriminator 7 view .LVU153
+ 669 0354 07EE903A 		vmov	s15, r3	@ int
+ 670 0358 F8EE677A 		vcvt.f32.u32	s15, s15
+ 671 035c 67EE877A 		vmul.f32	s15, s15, s14
+ARM GAS  /tmp/ccWHmQF2.s 			page 17
+
+
+ 672 0360 0B68     		ldr	r3, [r1]
+ 673              	.LVL54:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 674              		.loc 1 62 5 discriminator 7 view .LVU154
+ 675 0362 1B68     		ldr	r3, [r3]
+ 676 0364 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 677 0368 C3ED107A 		vstr.32	s15, [r3, #64]	@ int
+ 678 036c 18E0     		b	.L9
+ 679              	.LVL55:
+ 680              	.L27:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 681              		.loc 1 62 5 discriminator 9 view .LVU155
+ 682 036e 07EE903A 		vmov	s15, r3	@ int
+ 683 0372 F8EE677A 		vcvt.f32.u32	s15, s15
+ 684 0376 67EE877A 		vmul.f32	s15, s15, s14
+ 685 037a 0B68     		ldr	r3, [r1]
+ 686              	.LVL56:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 687              		.loc 1 62 5 discriminator 9 view .LVU156
+ 688 037c 1B68     		ldr	r3, [r3]
+ 689 037e FCEEE77A 		vcvt.u32.f32	s15, s15
+ 690 0382 C3ED127A 		vstr.32	s15, [r3, #72]	@ int
+ 691 0386 0BE0     		b	.L9
+ 692              	.LVL57:
+ 693              	.L26:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 694              		.loc 1 62 5 discriminator 10 view .LVU157
+ 695 0388 07EE903A 		vmov	s15, r3	@ int
+ 696 038c F8EE677A 		vcvt.f32.u32	s15, s15
+ 697 0390 67EE877A 		vmul.f32	s15, s15, s14
+ 698 0394 0B68     		ldr	r3, [r1]
+ 699              	.LVL58:
+  62:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 700              		.loc 1 62 5 discriminator 10 view .LVU158
+ 701 0396 1B68     		ldr	r3, [r3]
+ 702 0398 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 703 039c C3ED137A 		vstr.32	s15, [r3, #76]	@ int
+ 704              	.LVL59:
+ 705              	.L9:
+  63:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 706              		.loc 1 63 1 view .LVU159
+ 707 03a0 08BD     		pop	{r3, pc}
+ 708              	.L43:
+ 709 03a2 00BF     		.align	2
+ 710              	.L42:
+ 711 03a4 00000000 		.word	0
+ 712              		.cfi_endproc
+ 713              	.LFE1343:
+ 715              		.align	1
+ 716              		.global	_ZN8DC_Motor16My_DC_Motor_InitEv
+ 717              		.syntax unified
+ 718              		.thumb
+ 719              		.thumb_func
+ 721              	_ZN8DC_Motor16My_DC_Motor_InitEv:
+ 722              	.LVL60:
+ 723              	.LFB1342:
+  14:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     uint32_t sysclk = HAL_RCC_GetSysClockFreq();
+ARM GAS  /tmp/ccWHmQF2.s 			page 18
+
+
+ 724              		.loc 1 14 1 is_stmt 1 view -0
+ 725              		.cfi_startproc
+ 726              		@ args = 0, pretend = 0, frame = 0
+ 727              		@ frame_needed = 0, uses_anonymous_args = 0
+  14:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     uint32_t sysclk = HAL_RCC_GetSysClockFreq();
+ 728              		.loc 1 14 1 is_stmt 0 view .LVU161
+ 729 03a8 10B5     		push	{r4, lr}
+ 730              		.cfi_def_cfa_offset 8
+ 731              		.cfi_offset 4, -8
+ 732              		.cfi_offset 14, -4
+ 733 03aa 2DED028B 		vpush.64	{d8}
+ 734              		.cfi_def_cfa_offset 16
+ 735              		.cfi_offset 80, -16
+ 736              		.cfi_offset 81, -12
+ 737 03ae 0446     		mov	r4, r0
+  15:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     timer_clock_freq_ = sysclk / (_motor_config->htim->Instance->PSC + 1);
+ 738              		.loc 1 15 5 is_stmt 1 view .LVU162
+  15:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     timer_clock_freq_ = sysclk / (_motor_config->htim->Instance->PSC + 1);
+ 739              		.loc 1 15 46 is_stmt 0 view .LVU163
+ 740 03b0 FFF7FEFF 		bl	HAL_RCC_GetSysClockFreq
+ 741              	.LVL61:
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 742              		.loc 1 16 5 is_stmt 1 view .LVU164
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 743              		.loc 1 16 35 is_stmt 0 view .LVU165
+ 744 03b4 636D     		ldr	r3, [r4, #84]
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 745              		.loc 1 16 50 view .LVU166
+ 746 03b6 1B68     		ldr	r3, [r3]
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 747              		.loc 1 16 56 view .LVU167
+ 748 03b8 1B68     		ldr	r3, [r3]
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 749              		.loc 1 16 66 view .LVU168
+ 750 03ba 9B6A     		ldr	r3, [r3, #40]
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 751              		.loc 1 16 70 view .LVU169
+ 752 03bc 0133     		adds	r3, r3, #1
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 753              		.loc 1 16 32 view .LVU170
+ 754 03be B0FBF3F0 		udiv	r0, r0, r3
+ 755              	.LVL62:
+  16:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 756              		.loc 1 16 23 view .LVU171
+ 757 03c2 6062     		str	r0, [r4, #36]
+  18:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     error_lpf.init(0.7);
+ 758              		.loc 1 18 5 is_stmt 1 view .LVU172
+  18:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     error_lpf.init(0.7);
+ 759              		.loc 1 18 19 is_stmt 0 view .LVU173
+ 760 03c4 9FED148A 		vldr.32	s16, .L46
+ 761 03c8 B0EE480A 		vmov.f32	s0, s16
+ 762 03cc 04F12800 		add	r0, r4, #40
+ 763 03d0 FFF7FEFF 		bl	_ZN13LowpassFilter4initEf
+ 764              	.LVL63:
+  19:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     speed_avg.init(5);
+ 765              		.loc 1 19 5 is_stmt 1 view .LVU174
+  19:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     speed_avg.init(5);
+ARM GAS  /tmp/ccWHmQF2.s 			page 19
+
+
+ 766              		.loc 1 19 19 is_stmt 0 view .LVU175
+ 767 03d4 B0EE480A 		vmov.f32	s0, s16
+ 768 03d8 04F13000 		add	r0, r4, #48
+ 769 03dc FFF7FEFF 		bl	_ZN13LowpassFilter4initEf
+ 770              	.LVL64:
+  20:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 771              		.loc 1 20 5 is_stmt 1 view .LVU176
+  20:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 772              		.loc 1 20 19 is_stmt 0 view .LVU177
+ 773 03e0 0521     		movs	r1, #5
+ 774 03e2 04F13800 		add	r0, r4, #56
+ 775 03e6 FFF7FEFF 		bl	_ZN9AvgFilter4initEh
+ 776              	.LVL65:
+  23:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 777              		.loc 1 23 5 is_stmt 1 view .LVU178
+  23:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 778              		.loc 1 23 24 is_stmt 0 view .LVU179
+ 779 03ea 2046     		mov	r0, r4
+ 780 03ec FFF7FEFF 		bl	_ZN8DC_Motor19Set_Motor_FrequencyEv
+ 781              	.LVL66:
+  26:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     vTaskDelay(pdMS_TO_TICKS(1));  // 等 1ms 充满
+ 782              		.loc 1 26 5 is_stmt 1 view .LVU180
+  26:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     vTaskDelay(pdMS_TO_TICKS(1));  // 等 1ms 充满
+ 783              		.loc 1 26 13 is_stmt 0 view .LVU181
+ 784 03f0 0121     		movs	r1, #1
+ 785 03f2 2046     		mov	r0, r4
+ 786 03f4 FFF7FEFF 		bl	_ZN8DC_Motor8Motor_ENEb
+ 787              	.LVL67:
+  27:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Motor_EN(false); // 关闭PWM输出
+ 788              		.loc 1 27 5 is_stmt 1 view .LVU182
+  27:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Motor_EN(false); // 关闭PWM输出
+ 789              		.loc 1 27 15 is_stmt 0 view .LVU183
+ 790 03f8 0120     		movs	r0, #1
+ 791 03fa FFF7FEFF 		bl	vTaskDelay
+ 792              	.LVL68:
+  28:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 793              		.loc 1 28 5 is_stmt 1 view .LVU184
+  28:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 794              		.loc 1 28 13 is_stmt 0 view .LVU185
+ 795 03fe 0021     		movs	r1, #0
+ 796 0400 2046     		mov	r0, r4
+ 797 0402 FFF7FEFF 		bl	_ZN8DC_Motor8Motor_ENEb
+ 798              	.LVL69:
+  30:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     control_init_flag = true;
+ 799              		.loc 1 30 5 is_stmt 1 view .LVU186
+  30:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     control_init_flag = true;
+ 800              		.loc 1 30 27 is_stmt 0 view .LVU187
+ 801 0406 6178     		ldrb	r1, [r4, #1]	@ zero_extendqisi2
+ 802 0408 2069     		ldr	r0, [r4, #16]
+ 803 040a FFF7FEFF 		bl	_ZN7KTH711112KTH7111_InitEb
+ 804              	.LVL70:
+  31:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 805              		.loc 1 31 5 is_stmt 1 view .LVU188
+  31:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
+ 806              		.loc 1 31 23 is_stmt 0 view .LVU189
+ 807 040e 0123     		movs	r3, #1
+ 808 0410 A370     		strb	r3, [r4, #2]
+ARM GAS  /tmp/ccWHmQF2.s 			page 20
+
+
+  32:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 809              		.loc 1 32 1 view .LVU190
+ 810 0412 BDEC028B 		vldm	sp!, {d8}
+ 811              		.cfi_restore 80
+ 812              		.cfi_restore 81
+ 813              		.cfi_def_cfa_offset 8
+ 814 0416 10BD     		pop	{r4, pc}
+ 815              	.LVL71:
+ 816              	.L47:
+  32:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
+ 817              		.loc 1 32 1 view .LVU191
+ 818              		.align	2
+ 819              	.L46:
+ 820 0418 3333333F 		.word	1060320051
+ 821              		.cfi_endproc
+ 822              	.LFE1342:
+ 824              		.align	1
+ 825              		.syntax unified
+ 826              		.thumb
+ 827              		.thumb_func
+ 829              	_GLOBAL__sub_I_kth7111_M1:
+ 830              	.LFB1496:
+ 831              		.loc 1 83 1 is_stmt 1 view -0
+ 832              		.cfi_startproc
+ 833              		@ args = 0, pretend = 0, frame = 0
+ 834              		@ frame_needed = 0, uses_anonymous_args = 0
+ 835 041c 08B5     		push	{r3, lr}
+ 836              		.cfi_def_cfa_offset 8
+ 837              		.cfi_offset 3, -8
+ 838              		.cfi_offset 14, -4
+ 839              		.loc 1 83 1 is_stmt 0 view .LVU193
+ 840 041e FFF7EFFD 		bl	_Z41__static_initialization_and_destruction_0v
+ 841              	.LVL72:
+ 842 0422 08BD     		pop	{r3, pc}
+ 843              		.cfi_endproc
+ 844              	.LFE1496:
+ 846              		.section	.init_array,"aw",%init_array
+ 847              		.align	2
+ 848 0000 00000000 		.word	_GLOBAL__sub_I_kth7111_M1(target1)
+ 849              		.global	M4
+ 850              		.global	M3
+ 851              		.global	M2
+ 852              		.global	M1
+ 853              		.global	kth7111_M4
+ 854              		.global	kth7111_M3
+ 855              		.global	kth7111_M2
+ 856              		.global	kth7111_M1
+ 857              		.bss
+ 858              		.align	2
+ 859              		.set	.LANCHOR0,. + 0
+ 862              	kth7111_M1:
+ 863 0000 00000000 		.space	20
+ 863      00000000 
+ 863      00000000 
+ 863      00000000 
+ 863      00000000 
+ 866              	kth7111_M2:
+ARM GAS  /tmp/ccWHmQF2.s 			page 21
+
+
+ 867 0014 00000000 		.space	20
+ 867      00000000 
+ 867      00000000 
+ 867      00000000 
+ 867      00000000 
+ 870              	kth7111_M3:
+ 871 0028 00000000 		.space	20
+ 871      00000000 
+ 871      00000000 
+ 871      00000000 
+ 871      00000000 
+ 874              	kth7111_M4:
+ 875 003c 00000000 		.space	20
+ 875      00000000 
+ 875      00000000 
+ 875      00000000 
+ 875      00000000 
+ 878              	M1:
+ 879 0050 00000000 		.space	88
+ 879      00000000 
+ 879      00000000 
+ 879      00000000 
+ 879      00000000 
+ 882              	M2:
+ 883 00a8 00000000 		.space	88
+ 883      00000000 
+ 883      00000000 
+ 883      00000000 
+ 883      00000000 
+ 886              	M3:
+ 887 0100 00000000 		.space	88
+ 887      00000000 
+ 887      00000000 
+ 887      00000000 
+ 887      00000000 
+ 890              	M4:
+ 891 0158 00000000 		.space	88
+ 891      00000000 
+ 891      00000000 
+ 891      00000000 
+ 891      00000000 
+ 892              		.text
+ 893              	.Letext0:
+ 894              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 895              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 896              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 897              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 898              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 899              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 900              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 901              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 902              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 903              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 904              		.file 14 "Lib/compute/ex_math.hpp"
+ 905              		.file 15 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 906              		.file 16 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 907              		.file 17 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ARM GAS  /tmp/ccWHmQF2.s 			page 22
+
+
+ 908              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 909              		.file 19 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 910              		.file 20 "My_Top/System/bsp.hpp"
+ 911              		.file 21 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 912              		.file 22 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h"
+ 913              		.file 23 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 914              		.file 24 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h"
+ARM GAS  /tmp/ccWHmQF2.s 			page 23
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 DcMotor_ClosedLoop.cpp
+     /tmp/ccWHmQF2.s:20     .text:00000000 $t
+     /tmp/ccWHmQF2.s:25     .text:00000000 _Z41__static_initialization_and_destruction_0v
+     /tmp/ccWHmQF2.s:235    .text:00000100 $d
+     /tmp/ccWHmQF2.s:244    .text:00000118 $t
+     /tmp/ccWHmQF2.s:250    .text:00000118 _ZN8DC_Motor8Motor_ENEb
+     /tmp/ccWHmQF2.s:353    .text:00000172 _ZN8DC_Motor19Set_Motor_FrequencyEv
+     /tmp/ccWHmQF2.s:507    .text:0000023c $d
+     /tmp/ccWHmQF2.s:610    .text:000002f4 $d
+     /tmp/ccWHmQF2.s:711    .text:000003a4 $d
+     /tmp/ccWHmQF2.s:715    .text:000003a8 $t
+     /tmp/ccWHmQF2.s:721    .text:000003a8 _ZN8DC_Motor16My_DC_Motor_InitEv
+     /tmp/ccWHmQF2.s:820    .text:00000418 $d
+     /tmp/ccWHmQF2.s:824    .text:0000041c $t
+     /tmp/ccWHmQF2.s:829    .text:0000041c _GLOBAL__sub_I_kth7111_M1
+     /tmp/ccWHmQF2.s:847    .init_array:00000000 $d
+     /tmp/ccWHmQF2.s:890    .bss:00000158 M4
+     /tmp/ccWHmQF2.s:886    .bss:00000100 M3
+     /tmp/ccWHmQF2.s:882    .bss:000000a8 M2
+     /tmp/ccWHmQF2.s:878    .bss:00000050 M1
+     /tmp/ccWHmQF2.s:874    .bss:0000003c kth7111_M4
+     /tmp/ccWHmQF2.s:870    .bss:00000028 kth7111_M3
+     /tmp/ccWHmQF2.s:866    .bss:00000014 kth7111_M2
+     /tmp/ccWHmQF2.s:862    .bss:00000000 kth7111_M1
+     /tmp/ccWHmQF2.s:858    .bss:00000000 $d
+     /tmp/ccWHmQF2.s:524    .text:0000024d $d
+     /tmp/ccWHmQF2.s:524    .text:0000024e $t
+     /tmp/ccWHmQF2.s:627    .text:00000305 $d
+     /tmp/ccWHmQF2.s:627    .text:00000306 $t
+
+UNDEFINED SYMBOLS
+M3_PWM
+M4_PWM
+M1_PWM
+M2_PWM
+HAL_TIM_PWM_Start
+HAL_TIMEx_PWMN_Start
+HAL_TIM_PWM_Stop
+HAL_TIMEx_PWMN_Stop
+HAL_RCC_GetSysClockFreq
+_ZN13LowpassFilter4initEf
+_ZN9AvgFilter4initEh
+vTaskDelay
+_ZN7KTH711112KTH7111_InitEb

@@ -1,0 +1,346 @@
+ARM GAS  /tmp/ccyObRZY.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"Task_DroneCAN.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/Task/Task_DroneCAN.cpp"
+  20              		.section	.rodata.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 312D4472 		.ascii	"1-DroneCAN\344\273\273\345\212\241\345\220\257\345\212"
+  23      6F6E6543 
+  23      414EE4BB 
+  23      BBE58AA1 
+  23      E590AFE5 
+  24 0015 A8E4B8AD 		.ascii	"\250\344\270\255\015\012\000"
+  24      0D0A00
+  25              		.align	2
+  26              	.LC1:
+  27 001c E888B5E6 		.ascii	"\350\210\265\346\234\272\346\214\207\344\273\244\000"
+  27      9CBAE68C 
+  27      87E4BBA4 
+  27      00
+  28 0029 000000   		.align	2
+  29              	.LC2:
+  30 002c 69645B25 		.ascii	"id[%d] = %.3f  \000"
+  30      645D203D 
+  30      20252E33 
+  30      66202000 
+  31              		.align	2
+  32              	.LC3:
+  33 003c 0D0A00   		.ascii	"\015\012\000"
+  34 003f 00       		.align	2
+  35              	.LC4:
+  36 0040 25642025 		.ascii	"%d %d  %d  %d  %d\015\012\000"
+  36      64202025 
+  36      64202025 
+  36      64202025 
+  36      640D0A00 
+  37              		.text
+  38              		.align	1
+  39              		.global	_Z13Task_DroneCANPv
+  40              		.syntax unified
+  41              		.thumb
+  42              		.thumb_func
+ARM GAS  /tmp/ccyObRZY.s 			page 2
+
+
+  44              	_Z13Task_DroneCANPv:
+  45              	.LVL0:
+  46              	.LFB350:
+   1:My_Top/Task/Task_DroneCAN.cpp **** 
+   2:My_Top/Task/Task_DroneCAN.cpp **** #include "FreeRTOS.h"
+   3:My_Top/Task/Task_DroneCAN.cpp **** #include "task.h"
+   4:My_Top/Task/Task_DroneCAN.cpp **** #include "MC_Serial.hpp"
+   5:My_Top/Task/Task_DroneCAN.cpp **** #include "dronecan_jiexi.hpp"
+   6:My_Top/Task/Task_DroneCAN.cpp **** 
+   7:My_Top/Task/Task_DroneCAN.cpp **** float duoji[] = {30.0, 45.0, 99.0, 360.0, 300.0, 250.0, 200.0, 150.0};
+   8:My_Top/Task/Task_DroneCAN.cpp **** uint16_t duoji_len = sizeof(duoji) / sizeof(duoji[0]);
+   9:My_Top/Task/Task_DroneCAN.cpp **** 
+  10:My_Top/Task/Task_DroneCAN.cpp **** int16_t diantiao[] = {-60, 20, 100, 30, -600, 100, 200, 300, -200, -300, -400, 500, 600, 700, 800};
+  11:My_Top/Task/Task_DroneCAN.cpp **** uint16_t diantiao_len = sizeof(diantiao) / sizeof(diantiao[0]);
+  12:My_Top/Task/Task_DroneCAN.cpp **** 
+  13:My_Top/Task/Task_DroneCAN.cpp **** void Task_DroneCAN(void *argument)
+  14:My_Top/Task/Task_DroneCAN.cpp **** {
+  47              		.loc 1 14 1 view -0
+  48              		.cfi_startproc
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		.loc 1 14 1 is_stmt 0 view .LVU1
+  52 0000 30B5     		push	{r4, r5, lr}
+  53              		.cfi_def_cfa_offset 12
+  54              		.cfi_offset 4, -12
+  55              		.cfi_offset 5, -8
+  56              		.cfi_offset 14, -4
+  57 0002 83B0     		sub	sp, sp, #12
+  58              		.cfi_def_cfa_offset 24
+  15:My_Top/Task/Task_DroneCAN.cpp ****     printf("1-DroneCAN任务启动中\r\n");
+  59              		.loc 1 15 5 is_stmt 1 view .LVU2
+  60              		.loc 1 15 11 is_stmt 0 view .LVU3
+  61 0004 1F48     		ldr	r0, .L9
+  62              	.LVL1:
+  63              		.loc 1 15 11 view .LVU4
+  64 0006 FFF7FEFF 		bl	printf_
+  65              	.LVL2:
+  16:My_Top/Task/Task_DroneCAN.cpp ****     vTaskDelay(pdMS_TO_TICKS(50));
+  66              		.loc 1 16 5 is_stmt 1 view .LVU5
+  67              		.loc 1 16 15 is_stmt 0 view .LVU6
+  68 000a 3220     		movs	r0, #50
+  69 000c FFF7FEFF 		bl	vTaskDelay
+  70              	.LVL3:
+  71              	.L5:
+  17:My_Top/Task/Task_DroneCAN.cpp ****     while (1)
+  72              		.loc 1 17 5 is_stmt 1 view .LVU7
+  73              	.LBB2:
+  18:My_Top/Task/Task_DroneCAN.cpp ****     {
+  19:My_Top/Task/Task_DroneCAN.cpp ****         DroneCan_Send_Servo(duoji, duoji_len); //
+  74              		.loc 1 19 9 view .LVU8
+  75              		.loc 1 19 28 is_stmt 0 view .LVU9
+  76 0010 1D48     		ldr	r0, .L9+4
+  77 0012 10F8041B 		ldrb	r1, [r0], #4	@ zero_extendqisi2
+  78 0016 FFF7FEFF 		bl	_Z19DroneCan_Send_ServoPfh
+  79              	.LVL4:
+  20:My_Top/Task/Task_DroneCAN.cpp ****         // DroneCan_Send_Heartbeat(); // 发送心跳包
+  21:My_Top/Task/Task_DroneCAN.cpp ****         if (drone_servo.updated)
+ARM GAS  /tmp/ccyObRZY.s 			page 3
+
+
+  80              		.loc 1 21 9 is_stmt 1 view .LVU10
+  81              	.LBB3:
+  82              		.loc 1 21 25 is_stmt 0 view .LVU11
+  83 001a 1C4B     		ldr	r3, .L9+8
+  84 001c 93F87C30 		ldrb	r3, [r3, #124]	@ zero_extendqisi2
+  85              		.loc 1 21 9 view .LVU12
+  86 0020 83B9     		cbnz	r3, .L8
+  87              	.L2:
+  88              	.LBE3:
+  22:My_Top/Task/Task_DroneCAN.cpp ****         {
+  23:My_Top/Task/Task_DroneCAN.cpp ****             printf("舵机指令");
+  24:My_Top/Task/Task_DroneCAN.cpp ****             for (uint16_t i = 0; i < drone_servo.cmd_cnt; i++)
+  25:My_Top/Task/Task_DroneCAN.cpp ****             {
+  26:My_Top/Task/Task_DroneCAN.cpp ****                 printf("id[%d] = %.3f  ", drone_servo.cmd[i].actuator_id, drone_servo.cmd[i].comman
+  27:My_Top/Task/Task_DroneCAN.cpp ****             }
+  28:My_Top/Task/Task_DroneCAN.cpp ****             printf("\r\n");
+  29:My_Top/Task/Task_DroneCAN.cpp ****             drone_servo.updated = false;
+  30:My_Top/Task/Task_DroneCAN.cpp ****         }
+  31:My_Top/Task/Task_DroneCAN.cpp **** 
+  32:My_Top/Task/Task_DroneCAN.cpp ****         if (drone_heartbeat.updated)
+  89              		.loc 1 32 9 is_stmt 1 view .LVU13
+  90              		.loc 1 32 29 is_stmt 0 view .LVU14
+  91 0022 1B4B     		ldr	r3, .L9+12
+  92 0024 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
+  93              		.loc 1 32 9 view .LVU15
+  94 0026 002B     		cmp	r3, #0
+  95 0028 F2D0     		beq	.L5
+  33:My_Top/Task/Task_DroneCAN.cpp ****         {
+  34:My_Top/Task/Task_DroneCAN.cpp ****             printf("%d %d  %d  %d  %d\r\n",
+  96              		.loc 1 34 13 is_stmt 1 view .LVU16
+  35:My_Top/Task/Task_DroneCAN.cpp ****                 drone_heartbeat.uptime_sec   ,   // 飞控运行了多久
+  36:My_Top/Task/Task_DroneCAN.cpp ****                 drone_heartbeat.health    ,   
+  97              		.loc 1 36 33 is_stmt 0 view .LVU17
+  98 002a 194C     		ldr	r4, .L9+12
+  37:My_Top/Task/Task_DroneCAN.cpp ****                 drone_heartbeat.mode    ,     
+  38:My_Top/Task/Task_DroneCAN.cpp ****                 drone_heartbeat.vendor_status,
+  99              		.loc 1 38 33 view .LVU18
+ 100 002c 2289     		ldrh	r2, [r4, #8]
+  34:My_Top/Task/Task_DroneCAN.cpp ****                 drone_heartbeat.uptime_sec   ,   // 飞控运行了多久
+ 101              		.loc 1 34 19 view .LVU19
+ 102 002e 0193     		str	r3, [sp, #4]
+ 103 0030 0092     		str	r2, [sp]
+ 104 0032 6379     		ldrb	r3, [r4, #5]	@ zero_extendqisi2
+ 105 0034 2279     		ldrb	r2, [r4, #4]	@ zero_extendqisi2
+ 106 0036 2168     		ldr	r1, [r4]
+ 107 0038 1648     		ldr	r0, .L9+16
+ 108 003a FFF7FEFF 		bl	printf_
+ 109              	.LVL5:
+  39:My_Top/Task/Task_DroneCAN.cpp ****                 drone_heartbeat.updated);
+  40:My_Top/Task/Task_DroneCAN.cpp ****             drone_heartbeat.updated = false;
+ 110              		.loc 1 40 13 is_stmt 1 view .LVU20
+ 111              		.loc 1 40 37 is_stmt 0 view .LVU21
+ 112 003e 0023     		movs	r3, #0
+ 113 0040 A372     		strb	r3, [r4, #10]
+ 114 0042 E5E7     		b	.L5
+ 115              	.L8:
+ 116              	.LBB6:
+ARM GAS  /tmp/ccyObRZY.s 			page 4
+
+
+ 117              	.LBB4:
+  23:My_Top/Task/Task_DroneCAN.cpp ****             for (uint16_t i = 0; i < drone_servo.cmd_cnt; i++)
+ 118              		.loc 1 23 13 is_stmt 1 view .LVU22
+  23:My_Top/Task/Task_DroneCAN.cpp ****             for (uint16_t i = 0; i < drone_servo.cmd_cnt; i++)
+ 119              		.loc 1 23 19 is_stmt 0 view .LVU23
+ 120 0044 1448     		ldr	r0, .L9+20
+ 121 0046 FFF7FEFF 		bl	printf_
+ 122              	.LVL6:
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 123              		.loc 1 24 13 is_stmt 1 view .LVU24
+ 124              	.LBB5:
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 125              		.loc 1 24 27 is_stmt 0 view .LVU25
+ 126 004a 0024     		movs	r4, #0
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 127              		.loc 1 24 13 view .LVU26
+ 128 004c 0EE0     		b	.L3
+ 129              	.LVL7:
+ 130              	.L4:
+  26:My_Top/Task/Task_DroneCAN.cpp ****             }
+ 131              		.loc 1 26 17 is_stmt 1 view .LVU27
+  26:My_Top/Task/Task_DroneCAN.cpp ****             }
+ 132              		.loc 1 26 62 is_stmt 0 view .LVU28
+ 133 004e 0F4B     		ldr	r3, .L9+8
+ 134 0050 03EBC403 		add	r3, r3, r4, lsl #3
+ 135 0054 1D79     		ldrb	r5, [r3, #4]	@ zero_extendqisi2
+  26:My_Top/Task/Task_DroneCAN.cpp ****             }
+ 136              		.loc 1 26 23 view .LVU29
+ 137 0056 9868     		ldr	r0, [r3, #8]	@ float
+ 138 0058 FFF7FEFF 		bl	__aeabi_f2d
+ 139              	.LVL8:
+ 140 005c 0246     		mov	r2, r0
+ 141 005e 0B46     		mov	r3, r1
+ 142 0060 2946     		mov	r1, r5
+ 143 0062 0E48     		ldr	r0, .L9+24
+ 144 0064 FFF7FEFF 		bl	printf_
+ 145              	.LVL9:
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 146              		.loc 1 24 13 is_stmt 1 discriminator 3 view .LVU30
+ 147 0068 0134     		adds	r4, r4, #1
+ 148              	.LVL10:
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 149              		.loc 1 24 13 is_stmt 0 discriminator 3 view .LVU31
+ 150 006a A4B2     		uxth	r4, r4
+ 151              	.LVL11:
+ 152              	.L3:
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 153              		.loc 1 24 36 is_stmt 1 discriminator 1 view .LVU32
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 154              		.loc 1 24 50 is_stmt 0 discriminator 1 view .LVU33
+ 155 006c 074B     		ldr	r3, .L9+8
+ 156 006e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  24:My_Top/Task/Task_DroneCAN.cpp ****             {
+ 157              		.loc 1 24 36 discriminator 1 view .LVU34
+ 158 0070 A342     		cmp	r3, r4
+ 159 0072 ECD8     		bhi	.L4
+ 160              	.LBE5:
+ARM GAS  /tmp/ccyObRZY.s 			page 5
+
+
+  28:My_Top/Task/Task_DroneCAN.cpp ****             drone_servo.updated = false;
+ 161              		.loc 1 28 13 is_stmt 1 view .LVU35
+  28:My_Top/Task/Task_DroneCAN.cpp ****             drone_servo.updated = false;
+ 162              		.loc 1 28 19 is_stmt 0 view .LVU36
+ 163 0074 0A48     		ldr	r0, .L9+28
+ 164 0076 FFF7FEFF 		bl	printf_
+ 165              	.LVL12:
+  29:My_Top/Task/Task_DroneCAN.cpp ****         }
+ 166              		.loc 1 29 13 is_stmt 1 view .LVU37
+  29:My_Top/Task/Task_DroneCAN.cpp ****         }
+ 167              		.loc 1 29 33 is_stmt 0 view .LVU38
+ 168 007a 044B     		ldr	r3, .L9+8
+ 169 007c 0022     		movs	r2, #0
+ 170 007e 83F87C20 		strb	r2, [r3, #124]
+ 171              	.LBE4:
+ 172 0082 CEE7     		b	.L2
+ 173              	.L10:
+ 174              		.align	2
+ 175              	.L9:
+ 176 0084 00000000 		.word	.LC0
+ 177 0088 00000000 		.word	.LANCHOR0
+ 178 008c 00000000 		.word	drone_servo
+ 179 0090 00000000 		.word	drone_heartbeat
+ 180 0094 40000000 		.word	.LC4
+ 181 0098 1C000000 		.word	.LC1
+ 182 009c 2C000000 		.word	.LC2
+ 183 00a0 3C000000 		.word	.LC3
+ 184              	.LBE6:
+ 185              	.LBE2:
+ 186              		.cfi_endproc
+ 187              	.LFE350:
+ 189              		.global	diantiao_len
+ 190              		.global	diantiao
+ 191              		.global	duoji_len
+ 192              		.global	duoji
+ 193              		.data
+ 194              		.align	2
+ 195              		.set	.LANCHOR0,. + 0
+ 198              	duoji_len:
+ 199 0000 0800     		.short	8
+ 200 0002 0000     		.space	2
+ 203              	duoji:
+ 204 0004 0000F041 		.word	1106247680
+ 205 0008 00003442 		.word	1110704128
+ 206 000c 0000C642 		.word	1120272384
+ 207 0010 0000B443 		.word	1135869952
+ 208 0014 00009643 		.word	1133903872
+ 209 0018 00007A43 		.word	1132068864
+ 210 001c 00004843 		.word	1128792064
+ 211 0020 00001643 		.word	1125515264
+ 214              	diantiao_len:
+ 215 0024 0F00     		.short	15
+ 216 0026 0000     		.space	2
+ 219              	diantiao:
+ 220 0028 C4FF     		.short	-60
+ 221 002a 1400     		.short	20
+ 222 002c 6400     		.short	100
+ARM GAS  /tmp/ccyObRZY.s 			page 6
+
+
+ 223 002e 1E00     		.short	30
+ 224 0030 A8FD     		.short	-600
+ 225 0032 6400     		.short	100
+ 226 0034 C800     		.short	200
+ 227 0036 2C01     		.short	300
+ 228 0038 38FF     		.short	-200
+ 229 003a D4FE     		.short	-300
+ 230 003c 70FE     		.short	-400
+ 231 003e F401     		.short	500
+ 232 0040 5802     		.short	600
+ 233 0042 BC02     		.short	700
+ 234 0044 2003     		.short	800
+ 235              		.text
+ 236              	.Letext0:
+ 237              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 238              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 239              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 240              		.file 5 "My_Top/Drone_CAN/dronecan_jiexi.hpp"
+ 241              		.file 6 "My_Top/Drone_CAN/my_dronecan.hpp"
+ 242              		.file 7 "Lib/serial/printf.h"
+ 243              		.file 8 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  /tmp/ccyObRZY.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Task_DroneCAN.cpp
+     /tmp/ccyObRZY.s:21     .rodata.str1.4:00000000 $d
+     /tmp/ccyObRZY.s:38     .text:00000000 $t
+     /tmp/ccyObRZY.s:44     .text:00000000 _Z13Task_DroneCANPv
+     /tmp/ccyObRZY.s:176    .text:00000084 $d
+     /tmp/ccyObRZY.s:214    .data:00000024 diantiao_len
+     /tmp/ccyObRZY.s:219    .data:00000028 diantiao
+     /tmp/ccyObRZY.s:198    .data:00000000 duoji_len
+     /tmp/ccyObRZY.s:203    .data:00000004 duoji
+     /tmp/ccyObRZY.s:194    .data:00000000 $d
+
+UNDEFINED SYMBOLS
+printf_
+vTaskDelay
+_Z19DroneCan_Send_ServoPfh
+__aeabi_f2d
+drone_servo
+drone_heartbeat

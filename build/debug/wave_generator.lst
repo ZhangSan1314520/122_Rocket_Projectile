@@ -1,0 +1,958 @@
+ARM GAS  /tmp/ccrmYEKt.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"wave_generator.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Lib/compute/wave/wave_generator.cpp"
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	f1:
+  26              	.LVL0:
+  27              	.LFB965:
+  28              		.file 2 "Lib/compute/fast_sin.h"
+   1:Lib/compute/fast_sin.h **** //
+   2:Lib/compute/fast_sin.h **** // Created by czt on 2023/1/30.
+   3:Lib/compute/fast_sin.h **** //
+   4:Lib/compute/fast_sin.h **** // refer to
+   5:Lib/compute/fast_sin.h **** // https://github.com/samhocevar/lolremez/wiki/Tutorial-4-of-5%3A-fixing-lower-order-parameters
+   6:Lib/compute/fast_sin.h **** 
+   7:Lib/compute/fast_sin.h **** #ifndef FAST_SIN_H
+   8:Lib/compute/fast_sin.h **** #define FAST_SIN_H
+   9:Lib/compute/fast_sin.h **** 
+  10:Lib/compute/fast_sin.h **** #define MF_PI (3.1415926f)
+  11:Lib/compute/fast_sin.h **** 
+  12:Lib/compute/fast_sin.h **** #ifdef __cplusplus
+  13:Lib/compute/fast_sin.h **** extern "C"
+  14:Lib/compute/fast_sin.h **** {
+  15:Lib/compute/fast_sin.h **** #endif
+  16:Lib/compute/fast_sin.h **** 
+  17:Lib/compute/fast_sin.h **** // lolremez --float --degree 5 --range "1e-50:pi*pi"
+  18:Lib/compute/fast_sin.h **** // "(sin(sqrt(x))-sqrt(x))/(x*sqrt(x))" "1/(x*sqrt(x))"
+  19:Lib/compute/fast_sin.h **** // Estimated max error: 1.455468e-9
+  20:Lib/compute/fast_sin.h **** static inline float f1(float x)
+  21:Lib/compute/fast_sin.h **** {
+  29              		.loc 2 21 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  22:Lib/compute/fast_sin.h ****     float u = 1.3528548e-10f;
+  34              		.loc 2 22 5 view .LVU1
+  23:Lib/compute/fast_sin.h ****     u = u * x + -2.4703144e-08f;
+  35              		.loc 2 23 5 view .LVU2
+ARM GAS  /tmp/ccrmYEKt.s 			page 2
+
+
+  36              		.loc 2 23 11 is_stmt 0 view .LVU3
+  37 0000 DFED107A 		vldr.32	s15, .L2
+  38 0004 60EE277A 		vmul.f32	s15, s0, s15
+  39              		.loc 2 23 7 view .LVU4
+  40 0008 9FED0F7A 		vldr.32	s14, .L2+4
+  41 000c 77EEC77A 		vsub.f32	s15, s15, s14
+  42              	.LVL1:
+  24:Lib/compute/fast_sin.h ****     u = u * x + 2.7532926e-06f;
+  43              		.loc 2 24 5 is_stmt 1 view .LVU5
+  44              		.loc 2 24 11 is_stmt 0 view .LVU6
+  45 0010 60EE277A 		vmul.f32	s15, s0, s15
+  46              	.LVL2:
+  47              		.loc 2 24 7 view .LVU7
+  48 0014 9FED0D7A 		vldr.32	s14, .L2+8
+  49              	.LVL3:
+  50              		.loc 2 24 7 view .LVU8
+  51 0018 77EE877A 		vadd.f32	s15, s15, s14
+  52              	.LVL4:
+  25:Lib/compute/fast_sin.h ****     u = u * x + -0.00019840381f;
+  53              		.loc 2 25 5 is_stmt 1 view .LVU9
+  54              		.loc 2 25 11 is_stmt 0 view .LVU10
+  55 001c 60EE277A 		vmul.f32	s15, s0, s15
+  56              	.LVL5:
+  57              		.loc 2 25 7 view .LVU11
+  58 0020 9FED0B7A 		vldr.32	s14, .L2+12
+  59              	.LVL6:
+  60              		.loc 2 25 7 view .LVU12
+  61 0024 77EEC77A 		vsub.f32	s15, s15, s14
+  62              	.LVL7:
+  26:Lib/compute/fast_sin.h ****     u = u * x + 0.0083333179f;
+  63              		.loc 2 26 5 is_stmt 1 view .LVU13
+  64              		.loc 2 26 11 is_stmt 0 view .LVU14
+  65 0028 60EE277A 		vmul.f32	s15, s0, s15
+  66              	.LVL8:
+  67              		.loc 2 26 7 view .LVU15
+  68 002c 9FED097A 		vldr.32	s14, .L2+16
+  69              	.LVL9:
+  70              		.loc 2 26 7 view .LVU16
+  71 0030 77EE877A 		vadd.f32	s15, s15, s14
+  72              	.LVL10:
+  27:Lib/compute/fast_sin.h ****     return u * x + -0.16666666f;
+  73              		.loc 2 27 5 is_stmt 1 view .LVU17
+  74              		.loc 2 27 14 is_stmt 0 view .LVU18
+  75 0034 20EE270A 		vmul.f32	s0, s0, s15
+  76              	.LVL11:
+  28:Lib/compute/fast_sin.h **** }
+  77              		.loc 2 28 1 view .LVU19
+  78 0038 DFED077A 		vldr.32	s15, .L2+20
+  79              	.LVL12:
+  80              		.loc 2 28 1 view .LVU20
+  81 003c 30EE670A 		vsub.f32	s0, s0, s15
+  82 0040 7047     		bx	lr
+  83              	.L3:
+  84 0042 00BF     		.align	2
+  85              	.L2:
+  86 0044 7ABF142F 		.word	789888890
+  87 0048 CA32D432 		.word	852767434
+ARM GAS  /tmp/ccrmYEKt.s 			page 3
+
+
+  88 004c 35C53836 		.word	909690165
+  89 0050 9E0A5039 		.word	961546910
+  90 0054 7888083C 		.word	1007192184
+  91 0058 AAAA2A3E 		.word	1042983594
+  92              		.cfi_endproc
+  93              	.LFE965:
+  95              		.align	1
+  96              		.syntax unified
+  97              		.thumb
+  98              		.thumb_func
+ 100              	fast_sin:
+ 101              	.LVL13:
+ 102              	.LFB967:
+  29:Lib/compute/fast_sin.h **** 
+  30:Lib/compute/fast_sin.h **** // lolremez --float --degree 5 --range "1e-50:pi*pi" "(cos(sqrt(x))-1)/x"
+  31:Lib/compute/fast_sin.h **** // "1/x"
+  32:Lib/compute/fast_sin.h **** // Estimated max error: 1.1846383e-8
+  33:Lib/compute/fast_sin.h **** static inline float f2(float x)
+  34:Lib/compute/fast_sin.h **** {
+  35:Lib/compute/fast_sin.h ****     float u = 1.7290616e-09f;
+  36:Lib/compute/fast_sin.h ****     u = u * x + -2.7093486e-07f;
+  37:Lib/compute/fast_sin.h ****     u = u * x + 2.4771643e-05f;
+  38:Lib/compute/fast_sin.h ****     u = u * x + -0.0013887906f;
+  39:Lib/compute/fast_sin.h ****     u = u * x + 0.041666519f;
+  40:Lib/compute/fast_sin.h ****     return u * x + -0.49999991f;
+  41:Lib/compute/fast_sin.h **** }
+  42:Lib/compute/fast_sin.h **** 
+  43:Lib/compute/fast_sin.h **** static inline float fast_sin(float x)
+  44:Lib/compute/fast_sin.h **** {
+ 103              		.loc 2 44 1 is_stmt 1 view -0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107              		.loc 2 44 1 is_stmt 0 view .LVU22
+ 108 005c 08B5     		push	{r3, lr}
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 3, -8
+ 111              		.cfi_offset 14, -4
+ 112 005e 2DED028B 		vpush.64	{d8}
+ 113              		.cfi_def_cfa_offset 16
+ 114              		.cfi_offset 80, -16
+ 115              		.cfi_offset 81, -12
+  45:Lib/compute/fast_sin.h ****     // si = (int)(x / pi)
+  46:Lib/compute/fast_sin.h ****     int si = (int)(x * 0.31830988f);
+ 116              		.loc 2 46 5 is_stmt 1 view .LVU23
+ 117              		.loc 2 46 22 is_stmt 0 view .LVU24
+ 118 0062 DFED167A 		vldr.32	s15, .L11
+ 119 0066 60EE277A 		vmul.f32	s15, s0, s15
+ 120              		.loc 2 46 9 view .LVU25
+ 121 006a FDEEE77A 		vcvt.s32.f32	s15, s15
+ 122              	.LVL14:
+  47:Lib/compute/fast_sin.h ****     x = x - (float)si * MF_PI;
+ 123              		.loc 2 47 5 is_stmt 1 view .LVU26
+ 124              		.loc 2 47 13 is_stmt 0 view .LVU27
+ 125 006e B8EEE77A 		vcvt.f32.s32	s14, s15
+ 126              		.loc 2 47 23 view .LVU28
+ 127 0072 DFED136A 		vldr.32	s13, .L11+4
+ARM GAS  /tmp/ccrmYEKt.s 			page 4
+
+
+ 128 0076 27EE267A 		vmul.f32	s14, s14, s13
+ 129              		.loc 2 47 7 view .LVU29
+ 130 007a 30EE478A 		vsub.f32	s16, s0, s14
+ 131              	.LVL15:
+  48:Lib/compute/fast_sin.h ****     if (si & 1)
+ 132              		.loc 2 48 5 is_stmt 1 view .LVU30
+ 133 007e 17EE903A 		vmov	r3, s15	@ int
+ 134 0082 13F0010F 		tst	r3, #1
+ 135 0086 06D0     		beq	.L5
+  49:Lib/compute/fast_sin.h ****     {
+  50:Lib/compute/fast_sin.h ****         x = x > 0.0f ? x - MF_PI : x + MF_PI;
+ 136              		.loc 2 50 9 view .LVU31
+ 137              		.loc 2 50 22 is_stmt 0 view .LVU32
+ 138 0088 B5EEC08A 		vcmpe.f32	s16, #0
+ 139 008c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 140 0090 0EDD     		ble	.L9
+ 141              		.loc 2 50 22 discriminator 1 view .LVU33
+ 142 0092 38EE668A 		vsub.f32	s16, s16, s13
+ 143              	.LVL16:
+ 144              	.L5:
+  51:Lib/compute/fast_sin.h ****     }
+  52:Lib/compute/fast_sin.h ****     return x + x * x * x * f1(x * x);
+ 145              		.loc 2 52 5 is_stmt 1 view .LVU34
+ 146              		.loc 2 52 18 is_stmt 0 view .LVU35
+ 147 0096 28EE080A 		vmul.f32	s0, s16, s16
+ 148              		.loc 2 52 22 view .LVU36
+ 149 009a 60EE088A 		vmul.f32	s17, s0, s16
+ 150              		.loc 2 52 30 view .LVU37
+ 151 009e FFF7AFFF 		bl	f1
+ 152              	.LVL17:
+ 153              		.loc 2 52 26 discriminator 1 view .LVU38
+ 154 00a2 28EE800A 		vmul.f32	s0, s17, s0
+  53:Lib/compute/fast_sin.h **** }
+ 155              		.loc 2 53 1 view .LVU39
+ 156 00a6 30EE080A 		vadd.f32	s0, s0, s16
+ 157 00aa BDEC028B 		vldm	sp!, {d8}
+ 158              		.cfi_remember_state
+ 159              		.cfi_restore 80
+ 160              		.cfi_restore 81
+ 161              		.cfi_def_cfa_offset 8
+ 162              	.LVL18:
+ 163              		.loc 2 53 1 view .LVU40
+ 164 00ae 08BD     		pop	{r3, pc}
+ 165              	.LVL19:
+ 166              	.L9:
+ 167              		.cfi_restore_state
+  50:Lib/compute/fast_sin.h ****     }
+ 168              		.loc 2 50 22 discriminator 2 view .LVU41
+ 169 00b0 DFED037A 		vldr.32	s15, .L11+4
+ 170 00b4 38EE278A 		vadd.f32	s16, s16, s15
+ 171              	.LVL20:
+  50:Lib/compute/fast_sin.h ****     }
+ 172              		.loc 2 50 22 discriminator 2 view .LVU42
+ 173 00b8 EDE7     		b	.L5
+ 174              	.L12:
+ 175 00ba 00BF     		.align	2
+ 176              	.L11:
+ARM GAS  /tmp/ccrmYEKt.s 			page 5
+
+
+ 177 00bc 83F9A23E 		.word	1050868099
+ 178 00c0 DA0F4940 		.word	1078530010
+ 179              		.cfi_endproc
+ 180              	.LFE967:
+ 182              		.align	1
+ 183              		.global	_ZN13WaveGenerator14_update_statusEt
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 188              	_ZN13WaveGenerator14_update_statusEt:
+ 189              	.LVL21:
+ 190              	.LFB995:
+   1:Lib/compute/wave/wave_generator.cpp **** #include "wave_generator.hpp"
+   2:Lib/compute/wave/wave_generator.cpp **** 
+   3:Lib/compute/wave/wave_generator.cpp **** void WaveGenerator::_update_status(uint16_t delta_tick)
+   4:Lib/compute/wave/wave_generator.cpp **** {
+ 191              		.loc 1 4 1 is_stmt 1 view -0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              		@ link register save eliminated.
+   5:Lib/compute/wave/wave_generator.cpp ****     if (_current_tick == 0)
+ 196              		.loc 1 5 5 view .LVU44
+ 197              		.loc 1 5 9 is_stmt 0 view .LVU45
+ 198 00c4 0388     		ldrh	r3, [r0]
+ 199              		.loc 1 5 5 view .LVU46
+ 200 00c6 3BB9     		cbnz	r3, .L14
+   6:Lib/compute/wave/wave_generator.cpp ****     {
+   7:Lib/compute/wave/wave_generator.cpp ****         _wave_type = _new_wave_type;
+ 201              		.loc 1 7 9 is_stmt 1 view .LVU47
+ 202              		.loc 1 7 22 is_stmt 0 view .LVU48
+ 203 00c8 C269     		ldr	r2, [r0, #28]
+ 204              		.loc 1 7 20 view .LVU49
+ 205 00ca 8261     		str	r2, [r0, #24]
+   8:Lib/compute/wave/wave_generator.cpp ****         _period_tick = _new_period_tick;
+ 206              		.loc 1 8 9 is_stmt 1 view .LVU50
+ 207              		.loc 1 8 24 is_stmt 0 view .LVU51
+ 208 00cc 8289     		ldrh	r2, [r0, #12]
+ 209              		.loc 1 8 22 view .LVU52
+ 210 00ce 4280     		strh	r2, [r0, #2]	@ movhi
+   9:Lib/compute/wave/wave_generator.cpp ****         _gain = _new_gain;
+ 211              		.loc 1 9 9 is_stmt 1 view .LVU53
+ 212              		.loc 1 9 17 is_stmt 0 view .LVU54
+ 213 00d0 0269     		ldr	r2, [r0, #16]	@ float
+ 214              		.loc 1 9 15 view .LVU55
+ 215 00d2 4260     		str	r2, [r0, #4]	@ float
+  10:Lib/compute/wave/wave_generator.cpp ****         _offset = _new_offset;
+ 216              		.loc 1 10 9 is_stmt 1 view .LVU56
+ 217              		.loc 1 10 19 is_stmt 0 view .LVU57
+ 218 00d4 4269     		ldr	r2, [r0, #20]	@ float
+ 219              		.loc 1 10 17 view .LVU58
+ 220 00d6 8260     		str	r2, [r0, #8]	@ float
+ 221              	.L14:
+  11:Lib/compute/wave/wave_generator.cpp ****     }
+  12:Lib/compute/wave/wave_generator.cpp **** 
+  13:Lib/compute/wave/wave_generator.cpp ****     _current_tick = (_current_tick < _period_tick)
+ 222              		.loc 1 13 5 is_stmt 1 view .LVU59
+ARM GAS  /tmp/ccrmYEKt.s 			page 6
+
+
+ 223              		.loc 1 13 38 is_stmt 0 view .LVU60
+ 224 00d8 4288     		ldrh	r2, [r0, #2]
+ 225              		.loc 1 13 19 view .LVU61
+ 226 00da 9342     		cmp	r3, r2
+ 227 00dc 07D2     		bcs	.L16
+  14:Lib/compute/wave/wave_generator.cpp ****                         ? ((_current_tick + delta_tick) % _period_tick)
+ 228              		.loc 1 14 43 view .LVU62
+ 229 00de 0B44     		add	r3, r3, r1
+ 230              		.loc 1 14 57 view .LVU63
+ 231 00e0 93FBF2F1 		sdiv	r1, r3, r2
+ 232              	.LVL22:
+ 233              		.loc 1 14 57 view .LVU64
+ 234 00e4 02FB1133 		mls	r3, r2, r1, r3
+  13:Lib/compute/wave/wave_generator.cpp ****                         ? ((_current_tick + delta_tick) % _period_tick)
+ 235              		.loc 1 13 19 discriminator 1 view .LVU65
+ 236 00e8 9BB2     		uxth	r3, r3
+ 237              	.L15:
+  13:Lib/compute/wave/wave_generator.cpp ****                         ? ((_current_tick + delta_tick) % _period_tick)
+ 238              		.loc 1 13 19 discriminator 4 view .LVU66
+ 239 00ea 0380     		strh	r3, [r0]	@ movhi
+  15:Lib/compute/wave/wave_generator.cpp ****                         : 0;
+  16:Lib/compute/wave/wave_generator.cpp **** }
+ 240              		.loc 1 16 1 view .LVU67
+ 241 00ec 7047     		bx	lr
+ 242              	.LVL23:
+ 243              	.L16:
+  13:Lib/compute/wave/wave_generator.cpp ****                         ? ((_current_tick + delta_tick) % _period_tick)
+ 244              		.loc 1 13 19 discriminator 2 view .LVU68
+ 245 00ee 0023     		movs	r3, #0
+ 246 00f0 FBE7     		b	.L15
+ 247              		.cfi_endproc
+ 248              	.LFE995:
+ 250              		.align	1
+ 251              		.global	_ZN13WaveGenerator19_generate_sine_waveEv
+ 252              		.syntax unified
+ 253              		.thumb
+ 254              		.thumb_func
+ 256              	_ZN13WaveGenerator19_generate_sine_waveEv:
+ 257              	.LVL24:
+ 258              	.LFB996:
+  17:Lib/compute/wave/wave_generator.cpp **** 
+  18:Lib/compute/wave/wave_generator.cpp **** float WaveGenerator::_generate_sine_wave(void)
+  19:Lib/compute/wave/wave_generator.cpp **** {
+ 259              		.loc 1 19 1 is_stmt 1 view -0
+ 260              		.cfi_startproc
+ 261              		@ args = 0, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263              		.loc 1 19 1 is_stmt 0 view .LVU70
+ 264 00f2 10B5     		push	{r4, lr}
+ 265              		.cfi_def_cfa_offset 8
+ 266              		.cfi_offset 4, -8
+ 267              		.cfi_offset 14, -4
+ 268 00f4 2DED028B 		vpush.64	{d8}
+ 269              		.cfi_def_cfa_offset 16
+ 270              		.cfi_offset 80, -16
+ 271              		.cfi_offset 81, -12
+ 272 00f8 0446     		mov	r4, r0
+ARM GAS  /tmp/ccrmYEKt.s 			page 7
+
+
+  20:Lib/compute/wave/wave_generator.cpp ****     float ret_val;
+ 273              		.loc 1 20 5 is_stmt 1 view .LVU71
+  21:Lib/compute/wave/wave_generator.cpp **** 
+  22:Lib/compute/wave/wave_generator.cpp ****     ret_val = _gain * fast_sin(_current_tick * M_2PI / _period_tick) + _offset;
+ 274              		.loc 1 22 5 view .LVU72
+ 275              		.loc 1 22 15 is_stmt 0 view .LVU73
+ 276 00fa 90ED018A 		vldr.32	s16, [r0, #4]
+ 277              		.loc 1 22 32 view .LVU74
+ 278 00fe 0388     		ldrh	r3, [r0]
+ 279 0100 07EE903A 		vmov	s15, r3	@ int
+ 280              		.loc 1 22 46 view .LVU75
+ 281 0104 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 282 0108 9FED0A7A 		vldr.32	s14, .L19
+ 283 010c 67EE877A 		vmul.f32	s15, s15, s14
+ 284              		.loc 1 22 56 view .LVU76
+ 285 0110 4388     		ldrh	r3, [r0, #2]
+ 286 0112 00EE103A 		vmov	s0, r3	@ int
+ 287              		.loc 1 22 31 view .LVU77
+ 288 0116 B8EEC00A 		vcvt.f32.s32	s0, s0
+ 289 011a 87EE800A 		vdiv.f32	s0, s15, s0
+ 290 011e FFF79DFF 		bl	fast_sin
+ 291              	.LVL25:
+ 292              		.loc 1 22 21 discriminator 1 view .LVU78
+ 293 0122 28EE008A 		vmul.f32	s16, s16, s0
+ 294              		.loc 1 22 72 discriminator 1 view .LVU79
+ 295 0126 94ED020A 		vldr.32	s0, [r4, #8]
+ 296              	.LVL26:
+  23:Lib/compute/wave/wave_generator.cpp **** 
+  24:Lib/compute/wave/wave_generator.cpp ****     return ret_val;
+ 297              		.loc 1 24 5 is_stmt 1 view .LVU80
+  25:Lib/compute/wave/wave_generator.cpp **** }
+ 298              		.loc 1 25 1 is_stmt 0 view .LVU81
+ 299 012a 38EE000A 		vadd.f32	s0, s16, s0
+ 300              	.LVL27:
+ 301              		.loc 1 25 1 view .LVU82
+ 302 012e BDEC028B 		vldm	sp!, {d8}
+ 303              		.cfi_restore 80
+ 304              		.cfi_restore 81
+ 305              		.cfi_def_cfa_offset 8
+ 306 0132 10BD     		pop	{r4, pc}
+ 307              	.LVL28:
+ 308              	.L20:
+ 309              		.loc 1 25 1 view .LVU83
+ 310              		.align	2
+ 311              	.L19:
+ 312 0134 DB0FC940 		.word	1086918619
+ 313              		.cfi_endproc
+ 314              	.LFE996:
+ 316              		.align	1
+ 317              		.global	_ZN13WaveGenerator21_generate_square_waveEv
+ 318              		.syntax unified
+ 319              		.thumb
+ 320              		.thumb_func
+ 322              	_ZN13WaveGenerator21_generate_square_waveEv:
+ 323              	.LVL29:
+ 324              	.LFB997:
+  26:Lib/compute/wave/wave_generator.cpp **** 
+ARM GAS  /tmp/ccrmYEKt.s 			page 8
+
+
+  27:Lib/compute/wave/wave_generator.cpp **** float WaveGenerator::_generate_square_wave(void)
+  28:Lib/compute/wave/wave_generator.cpp **** {
+ 325              		.loc 1 28 1 is_stmt 1 view -0
+ 326              		.cfi_startproc
+ 327              		@ args = 0, pretend = 0, frame = 0
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329              		@ link register save eliminated.
+  29:Lib/compute/wave/wave_generator.cpp ****     float ret_val;
+ 330              		.loc 1 29 5 view .LVU85
+  30:Lib/compute/wave/wave_generator.cpp **** 
+  31:Lib/compute/wave/wave_generator.cpp ****     if (_current_tick < (_period_tick / 2))
+ 331              		.loc 1 31 5 view .LVU86
+ 332              		.loc 1 31 9 is_stmt 0 view .LVU87
+ 333 0138 0388     		ldrh	r3, [r0]
+ 334              		.loc 1 31 26 view .LVU88
+ 335 013a 4288     		ldrh	r2, [r0, #2]
+ 336              		.loc 1 31 5 view .LVU89
+ 337 013c B3EB520F 		cmp	r3, r2, lsr #1
+ 338 0140 06D2     		bcs	.L22
+  32:Lib/compute/wave/wave_generator.cpp ****     {
+  33:Lib/compute/wave/wave_generator.cpp ****         ret_val = -_gain + _offset;
+ 339              		.loc 1 33 9 is_stmt 1 view .LVU90
+ 340              		.loc 1 33 28 is_stmt 0 view .LVU91
+ 341 0142 90ED020A 		vldr.32	s0, [r0, #8]
+ 342              		.loc 1 33 20 view .LVU92
+ 343 0146 D0ED017A 		vldr.32	s15, [r0, #4]
+ 344              		.loc 1 33 17 view .LVU93
+ 345 014a 30EE670A 		vsub.f32	s0, s0, s15
+ 346              	.LVL30:
+ 347              		.loc 1 33 17 view .LVU94
+ 348 014e 7047     		bx	lr
+ 349              	.LVL31:
+ 350              	.L22:
+  34:Lib/compute/wave/wave_generator.cpp ****     }
+  35:Lib/compute/wave/wave_generator.cpp ****     else
+  36:Lib/compute/wave/wave_generator.cpp ****     {
+  37:Lib/compute/wave/wave_generator.cpp ****         ret_val = _gain + _offset;
+ 351              		.loc 1 37 9 is_stmt 1 view .LVU95
+ 352              		.loc 1 37 19 is_stmt 0 view .LVU96
+ 353 0150 90ED010A 		vldr.32	s0, [r0, #4]
+ 354              		.loc 1 37 27 view .LVU97
+ 355 0154 D0ED027A 		vldr.32	s15, [r0, #8]
+ 356              		.loc 1 37 17 view .LVU98
+ 357 0158 30EE270A 		vadd.f32	s0, s0, s15
+ 358              	.LVL32:
+  38:Lib/compute/wave/wave_generator.cpp ****     }
+  39:Lib/compute/wave/wave_generator.cpp **** 
+  40:Lib/compute/wave/wave_generator.cpp ****     return ret_val;
+ 359              		.loc 1 40 5 is_stmt 1 view .LVU99
+  41:Lib/compute/wave/wave_generator.cpp **** }
+ 360              		.loc 1 41 1 is_stmt 0 view .LVU100
+ 361 015c 7047     		bx	lr
+ 362              		.cfi_endproc
+ 363              	.LFE997:
+ 365              		.align	1
+ 366              		.global	_ZN13WaveGenerator23_generate_triangle_waveEv
+ 367              		.syntax unified
+ARM GAS  /tmp/ccrmYEKt.s 			page 9
+
+
+ 368              		.thumb
+ 369              		.thumb_func
+ 371              	_ZN13WaveGenerator23_generate_triangle_waveEv:
+ 372              	.LVL33:
+ 373              	.LFB998:
+  42:Lib/compute/wave/wave_generator.cpp **** 
+  43:Lib/compute/wave/wave_generator.cpp **** float WaveGenerator::_generate_triangle_wave(void)
+  44:Lib/compute/wave/wave_generator.cpp **** {
+ 374              		.loc 1 44 1 is_stmt 1 view -0
+ 375              		.cfi_startproc
+ 376              		@ args = 0, pretend = 0, frame = 0
+ 377              		@ frame_needed = 0, uses_anonymous_args = 0
+ 378              		@ link register save eliminated.
+  45:Lib/compute/wave/wave_generator.cpp ****     float ret_val;
+ 379              		.loc 1 45 5 view .LVU102
+  46:Lib/compute/wave/wave_generator.cpp **** 
+  47:Lib/compute/wave/wave_generator.cpp ****     if (_current_tick < (_period_tick / 2))
+ 380              		.loc 1 47 5 view .LVU103
+ 381              		.loc 1 47 9 is_stmt 0 view .LVU104
+ 382 015e 0388     		ldrh	r3, [r0]
+ 383              		.loc 1 47 26 view .LVU105
+ 384 0160 4288     		ldrh	r2, [r0, #2]
+ 385              		.loc 1 47 5 view .LVU106
+ 386 0162 B3EB520F 		cmp	r3, r2, lsr #1
+ 387 0166 1AD2     		bcs	.L25
+  48:Lib/compute/wave/wave_generator.cpp ****     {
+  49:Lib/compute/wave/wave_generator.cpp ****         ret_val = _gain * (4.0f * _current_tick / _period_tick - 1.0f) + _offset;
+ 388              		.loc 1 49 9 is_stmt 1 view .LVU107
+ 389              		.loc 1 49 19 is_stmt 0 view .LVU108
+ 390 0168 90ED010A 		vldr.32	s0, [r0, #4]
+ 391              		.loc 1 49 33 view .LVU109
+ 392 016c 07EE903A 		vmov	s15, r3	@ int
+ 393 0170 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 394 0174 B1EE007A 		vmov.f32	s14, #4.0e+0
+ 395 0178 67EE877A 		vmul.f32	s15, s15, s14
+ 396              		.loc 1 49 49 view .LVU110
+ 397 017c 07EE102A 		vmov	s14, r2	@ int
+ 398 0180 B8EEC77A 		vcvt.f32.s32	s14, s14
+ 399 0184 C7EE876A 		vdiv.f32	s13, s15, s14
+ 400              		.loc 1 49 64 view .LVU111
+ 401 0188 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 402 018c 76EEE77A 		vsub.f32	s15, s13, s15
+ 403              		.loc 1 49 25 view .LVU112
+ 404 0190 20EE270A 		vmul.f32	s0, s0, s15
+ 405              		.loc 1 49 74 view .LVU113
+ 406 0194 D0ED027A 		vldr.32	s15, [r0, #8]
+ 407              		.loc 1 49 17 view .LVU114
+ 408 0198 30EE270A 		vadd.f32	s0, s0, s15
+ 409              	.LVL34:
+ 410              		.loc 1 49 17 view .LVU115
+ 411 019c 7047     		bx	lr
+ 412              	.LVL35:
+ 413              	.L25:
+  50:Lib/compute/wave/wave_generator.cpp ****     }
+  51:Lib/compute/wave/wave_generator.cpp ****     else
+  52:Lib/compute/wave/wave_generator.cpp ****     {
+  53:Lib/compute/wave/wave_generator.cpp ****         ret_val = _gain * (4.0f * (_period_tick - _current_tick) / _period_tick - 1.0f) + _offset;
+ARM GAS  /tmp/ccrmYEKt.s 			page 10
+
+
+ 414              		.loc 1 53 9 is_stmt 1 view .LVU116
+ 415              		.loc 1 53 19 is_stmt 0 view .LVU117
+ 416 019e 90ED010A 		vldr.32	s0, [r0, #4]
+ 417              		.loc 1 53 49 view .LVU118
+ 418 01a2 D31A     		subs	r3, r2, r3
+ 419 01a4 07EE903A 		vmov	s15, r3	@ int
+ 420              		.loc 1 53 33 view .LVU119
+ 421 01a8 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 422 01ac B1EE007A 		vmov.f32	s14, #4.0e+0
+ 423 01b0 67EE877A 		vmul.f32	s15, s15, s14
+ 424              		.loc 1 53 66 view .LVU120
+ 425 01b4 07EE102A 		vmov	s14, r2	@ int
+ 426 01b8 B8EEC77A 		vcvt.f32.s32	s14, s14
+ 427 01bc C7EE876A 		vdiv.f32	s13, s15, s14
+ 428              		.loc 1 53 81 view .LVU121
+ 429 01c0 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 430 01c4 76EEE77A 		vsub.f32	s15, s13, s15
+ 431              		.loc 1 53 25 view .LVU122
+ 432 01c8 20EE270A 		vmul.f32	s0, s0, s15
+ 433              		.loc 1 53 91 view .LVU123
+ 434 01cc D0ED027A 		vldr.32	s15, [r0, #8]
+ 435              		.loc 1 53 17 view .LVU124
+ 436 01d0 30EE270A 		vadd.f32	s0, s0, s15
+ 437              	.LVL36:
+  54:Lib/compute/wave/wave_generator.cpp ****     }
+  55:Lib/compute/wave/wave_generator.cpp **** 
+  56:Lib/compute/wave/wave_generator.cpp ****     return ret_val;
+ 438              		.loc 1 56 5 is_stmt 1 view .LVU125
+  57:Lib/compute/wave/wave_generator.cpp **** }
+ 439              		.loc 1 57 1 is_stmt 0 view .LVU126
+ 440 01d4 7047     		bx	lr
+ 441              		.cfi_endproc
+ 442              	.LFE998:
+ 444              		.align	1
+ 445              		.global	_ZN13WaveGenerator23_generate_sawtooth_waveEv
+ 446              		.syntax unified
+ 447              		.thumb
+ 448              		.thumb_func
+ 450              	_ZN13WaveGenerator23_generate_sawtooth_waveEv:
+ 451              	.LVL37:
+ 452              	.LFB999:
+  58:Lib/compute/wave/wave_generator.cpp **** 
+  59:Lib/compute/wave/wave_generator.cpp **** float WaveGenerator::_generate_sawtooth_wave(void)
+  60:Lib/compute/wave/wave_generator.cpp **** {
+ 453              		.loc 1 60 1 is_stmt 1 view -0
+ 454              		.cfi_startproc
+ 455              		@ args = 0, pretend = 0, frame = 0
+ 456              		@ frame_needed = 0, uses_anonymous_args = 0
+ 457              		@ link register save eliminated.
+  61:Lib/compute/wave/wave_generator.cpp ****     float ret_val;
+ 458              		.loc 1 61 5 view .LVU128
+  62:Lib/compute/wave/wave_generator.cpp **** 
+  63:Lib/compute/wave/wave_generator.cpp ****     ret_val = _gain * (2.0f * _current_tick / _period_tick - 1.0f) + _offset;
+ 459              		.loc 1 63 5 view .LVU129
+ 460              		.loc 1 63 15 is_stmt 0 view .LVU130
+ 461 01d6 90ED010A 		vldr.32	s0, [r0, #4]
+ 462              		.loc 1 63 31 view .LVU131
+ARM GAS  /tmp/ccrmYEKt.s 			page 11
+
+
+ 463 01da 0388     		ldrh	r3, [r0]
+ 464 01dc 07EE903A 		vmov	s15, r3	@ int
+ 465              		.loc 1 63 29 view .LVU132
+ 466 01e0 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 467 01e4 77EEA77A 		vadd.f32	s15, s15, s15
+ 468              		.loc 1 63 47 view .LVU133
+ 469 01e8 4388     		ldrh	r3, [r0, #2]
+ 470 01ea 06EE903A 		vmov	s13, r3	@ int
+ 471              		.loc 1 63 45 view .LVU134
+ 472 01ee F8EEE66A 		vcvt.f32.s32	s13, s13
+ 473 01f2 87EEA67A 		vdiv.f32	s14, s15, s13
+ 474              		.loc 1 63 60 view .LVU135
+ 475 01f6 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 476 01fa 77EE677A 		vsub.f32	s15, s14, s15
+ 477              		.loc 1 63 21 view .LVU136
+ 478 01fe 60EE277A 		vmul.f32	s15, s0, s15
+ 479              		.loc 1 63 70 view .LVU137
+ 480 0202 90ED020A 		vldr.32	s0, [r0, #8]
+ 481              	.LVL38:
+  64:Lib/compute/wave/wave_generator.cpp **** 
+  65:Lib/compute/wave/wave_generator.cpp ****     return ret_val;
+ 482              		.loc 1 65 5 is_stmt 1 view .LVU138
+  66:Lib/compute/wave/wave_generator.cpp **** }
+ 483              		.loc 1 66 1 is_stmt 0 view .LVU139
+ 484 0206 37EE800A 		vadd.f32	s0, s15, s0
+ 485              	.LVL39:
+ 486              		.loc 1 66 1 view .LVU140
+ 487 020a 7047     		bx	lr
+ 488              		.cfi_endproc
+ 489              	.LFE999:
+ 491              		.align	1
+ 492              		.global	_ZN13WaveGenerator19_generate_step_waveEv
+ 493              		.syntax unified
+ 494              		.thumb
+ 495              		.thumb_func
+ 497              	_ZN13WaveGenerator19_generate_step_waveEv:
+ 498              	.LVL40:
+ 499              	.LFB1000:
+  67:Lib/compute/wave/wave_generator.cpp **** 
+  68:Lib/compute/wave/wave_generator.cpp **** float WaveGenerator::_generate_step_wave(void)
+  69:Lib/compute/wave/wave_generator.cpp **** {
+ 500              		.loc 1 69 1 is_stmt 1 view -0
+ 501              		.cfi_startproc
+ 502              		@ args = 0, pretend = 0, frame = 0
+ 503              		@ frame_needed = 0, uses_anonymous_args = 0
+ 504              		@ link register save eliminated.
+  70:Lib/compute/wave/wave_generator.cpp ****     if (_step_table == nullptr || _step_table_size == 0)
+ 505              		.loc 1 70 5 view .LVU142
+ 506              		.loc 1 70 9 is_stmt 0 view .LVU143
+ 507 020c 036A     		ldr	r3, [r0, #32]
+ 508              		.loc 1 70 5 view .LVU144
+ 509 020e ABB1     		cbz	r3, .L30
+ 510              		.loc 1 70 35 discriminator 1 view .LVU145
+ 511 0210 828C     		ldrh	r2, [r0, #36]
+ 512              		.loc 1 70 32 discriminator 1 view .LVU146
+ 513 0212 B2B1     		cbz	r2, .L31
+  71:Lib/compute/wave/wave_generator.cpp ****     {
+ARM GAS  /tmp/ccrmYEKt.s 			page 12
+
+
+  72:Lib/compute/wave/wave_generator.cpp ****         return 0.0f;
+  73:Lib/compute/wave/wave_generator.cpp ****     }
+  74:Lib/compute/wave/wave_generator.cpp ****     int index = _current_tick / (_period_tick / _step_table_size);
+ 514              		.loc 1 74 5 is_stmt 1 view .LVU147
+ 515              		.loc 1 74 17 is_stmt 0 view .LVU148
+ 516 0214 0188     		ldrh	r1, [r0]
+ 517              		.loc 1 74 34 view .LVU149
+ 518 0216 B0F802C0 		ldrh	ip, [r0, #2]
+ 519              		.loc 1 74 47 view .LVU150
+ 520 021a BCFBF2F2 		udiv	r2, ip, r2
+ 521              		.loc 1 74 31 view .LVU151
+ 522 021e B1FBF2F2 		udiv	r2, r1, r2
+ 523              	.LVL41:
+  75:Lib/compute/wave/wave_generator.cpp **** 
+  76:Lib/compute/wave/wave_generator.cpp ****     return _gain * _step_table[index] + _offset;
+ 524              		.loc 1 76 5 is_stmt 1 view .LVU152
+ 525              		.loc 1 76 12 is_stmt 0 view .LVU153
+ 526 0222 90ED010A 		vldr.32	s0, [r0, #4]
+ 527              		.loc 1 76 37 view .LVU154
+ 528 0226 03EB8203 		add	r3, r3, r2, lsl #2
+ 529 022a D3ED007A 		vldr.32	s15, [r3]
+ 530              		.loc 1 76 18 view .LVU155
+ 531 022e 20EE270A 		vmul.f32	s0, s0, s15
+ 532              		.loc 1 76 41 view .LVU156
+ 533 0232 D0ED027A 		vldr.32	s15, [r0, #8]
+ 534 0236 30EE270A 		vadd.f32	s0, s0, s15
+ 535 023a 7047     		bx	lr
+ 536              	.LVL42:
+ 537              	.L30:
+  72:Lib/compute/wave/wave_generator.cpp ****     }
+ 538              		.loc 1 72 16 view .LVU157
+ 539 023c 9FED020A 		vldr.32	s0, .L32
+ 540 0240 7047     		bx	lr
+ 541              	.L31:
+ 542 0242 9FED010A 		vldr.32	s0, .L32
+  77:Lib/compute/wave/wave_generator.cpp **** }
+ 543              		.loc 1 77 1 view .LVU158
+ 544 0246 7047     		bx	lr
+ 545              	.L33:
+ 546              		.align	2
+ 547              	.L32:
+ 548 0248 00000000 		.word	0
+ 549              		.cfi_endproc
+ 550              	.LFE1000:
+ 552              		.align	1
+ 553              		.global	_ZN13WaveGenerator20_generate_const_waveEv
+ 554              		.syntax unified
+ 555              		.thumb
+ 556              		.thumb_func
+ 558              	_ZN13WaveGenerator20_generate_const_waveEv:
+ 559              	.LVL43:
+ 560              	.LFB1001:
+  78:Lib/compute/wave/wave_generator.cpp **** 
+  79:Lib/compute/wave/wave_generator.cpp **** float WaveGenerator::_generate_const_wave(void)
+  80:Lib/compute/wave/wave_generator.cpp **** {
+ 561              		.loc 1 80 1 is_stmt 1 view -0
+ 562              		.cfi_startproc
+ARM GAS  /tmp/ccrmYEKt.s 			page 13
+
+
+ 563              		@ args = 0, pretend = 0, frame = 0
+ 564              		@ frame_needed = 0, uses_anonymous_args = 0
+ 565              		@ link register save eliminated.
+  81:Lib/compute/wave/wave_generator.cpp ****     return _gain;
+ 566              		.loc 1 81 5 view .LVU160
+  82:Lib/compute/wave/wave_generator.cpp **** }
+ 567              		.loc 1 82 1 is_stmt 0 view .LVU161
+ 568 024c 90ED010A 		vldr.32	s0, [r0, #4]
+ 569 0250 7047     		bx	lr
+ 570              		.cfi_endproc
+ 571              	.LFE1001:
+ 573              		.align	1
+ 574              		.global	_ZN13WaveGenerator4nextEt
+ 575              		.syntax unified
+ 576              		.thumb
+ 577              		.thumb_func
+ 579              	_ZN13WaveGenerator4nextEt:
+ 580              	.LVL44:
+ 581              	.LFB1002:
+  83:Lib/compute/wave/wave_generator.cpp **** 
+  84:Lib/compute/wave/wave_generator.cpp **** float WaveGenerator::next(uint16_t delta_tick)
+  85:Lib/compute/wave/wave_generator.cpp **** {
+ 582              		.loc 1 85 1 is_stmt 1 view -0
+ 583              		.cfi_startproc
+ 584              		@ args = 0, pretend = 0, frame = 0
+ 585              		@ frame_needed = 0, uses_anonymous_args = 0
+ 586              		.loc 1 85 1 is_stmt 0 view .LVU163
+ 587 0252 10B5     		push	{r4, lr}
+ 588              		.cfi_def_cfa_offset 8
+ 589              		.cfi_offset 4, -8
+ 590              		.cfi_offset 14, -4
+ 591 0254 0446     		mov	r4, r0
+  86:Lib/compute/wave/wave_generator.cpp ****     float ret_val = 0.0f;
+ 592              		.loc 1 86 5 is_stmt 1 view .LVU164
+ 593              	.LVL45:
+  87:Lib/compute/wave/wave_generator.cpp **** 
+  88:Lib/compute/wave/wave_generator.cpp ****     _update_status(delta_tick);
+ 594              		.loc 1 88 5 view .LVU165
+ 595              		.loc 1 88 19 is_stmt 0 view .LVU166
+ 596 0256 FFF7FEFF 		bl	_ZN13WaveGenerator14_update_statusEt
+ 597              	.LVL46:
+  89:Lib/compute/wave/wave_generator.cpp **** 
+  90:Lib/compute/wave/wave_generator.cpp ****     switch (_wave_type)
+ 598              		.loc 1 90 5 is_stmt 1 view .LVU167
+ 599              		.loc 1 90 13 is_stmt 0 view .LVU168
+ 600 025a A369     		ldr	r3, [r4, #24]
+ 601              		.loc 1 90 5 view .LVU169
+ 602 025c 013B     		subs	r3, r3, #1
+ 603 025e 052B     		cmp	r3, #5
+ 604 0260 1CD8     		bhi	.L44
+ 605 0262 DFE803F0 		tbb	[pc, r3]
+ 606              	.L38:
+ 607 0266 03       		.byte	(.L43-.L38)/2
+ 608 0267 07       		.byte	(.L42-.L38)/2
+ 609 0268 0B       		.byte	(.L41-.L38)/2
+ 610 0269 0F       		.byte	(.L40-.L38)/2
+ 611 026a 13       		.byte	(.L39-.L38)/2
+ARM GAS  /tmp/ccrmYEKt.s 			page 14
+
+
+ 612 026b 17       		.byte	(.L37-.L38)/2
+ 613              		.p2align 1
+ 614              	.L43:
+  91:Lib/compute/wave/wave_generator.cpp ****     {
+  92:Lib/compute/wave/wave_generator.cpp ****     case WaveType::NONE:
+  93:Lib/compute/wave/wave_generator.cpp ****         ret_val = 0.0f;
+  94:Lib/compute/wave/wave_generator.cpp ****         break;
+  95:Lib/compute/wave/wave_generator.cpp ****     case WaveType::SINE:
+ 615              		.loc 1 95 5 is_stmt 1 view .LVU170
+  96:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_sine_wave();
+ 616              		.loc 1 96 9 view .LVU171
+ 617              		.loc 1 96 38 is_stmt 0 view .LVU172
+ 618 026c 2046     		mov	r0, r4
+ 619 026e FFF7FEFF 		bl	_ZN13WaveGenerator19_generate_sine_waveEv
+ 620              	.LVL47:
+  97:Lib/compute/wave/wave_generator.cpp ****         break;
+ 621              		.loc 1 97 9 is_stmt 1 view .LVU173
+ 622              	.L35:
+  98:Lib/compute/wave/wave_generator.cpp ****     case WaveType::SQUARE:
+  99:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_square_wave();
+ 100:Lib/compute/wave/wave_generator.cpp ****         break;
+ 101:Lib/compute/wave/wave_generator.cpp ****     case WaveType::TRIANGLE:
+ 102:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_triangle_wave();
+ 103:Lib/compute/wave/wave_generator.cpp ****         break;
+ 104:Lib/compute/wave/wave_generator.cpp ****     case WaveType::SAWTOOTH:
+ 105:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_sawtooth_wave();
+ 106:Lib/compute/wave/wave_generator.cpp ****         break;
+ 107:Lib/compute/wave/wave_generator.cpp ****     case WaveType::STEP:
+ 108:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_step_wave();
+ 109:Lib/compute/wave/wave_generator.cpp ****         break;
+ 110:Lib/compute/wave/wave_generator.cpp ****     case WaveType::CONST:
+ 111:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_const_wave();
+ 112:Lib/compute/wave/wave_generator.cpp ****         break;
+ 113:Lib/compute/wave/wave_generator.cpp ****     default:
+ 114:Lib/compute/wave/wave_generator.cpp ****         ret_val = 0.0f;
+ 115:Lib/compute/wave/wave_generator.cpp ****         break;
+ 116:Lib/compute/wave/wave_generator.cpp ****     }
+ 117:Lib/compute/wave/wave_generator.cpp **** 
+ 118:Lib/compute/wave/wave_generator.cpp ****     return ret_val;
+ 119:Lib/compute/wave/wave_generator.cpp **** }...
+ 623              		.loc 1 119 1 is_stmt 0 view .LVU174
+ 624 0272 10BD     		pop	{r4, pc}
+ 625              	.LVL48:
+ 626              	.L42:
+  98:Lib/compute/wave/wave_generator.cpp ****     case WaveType::SQUARE:
+ 627              		.loc 1 98 5 is_stmt 1 view .LVU175
+  99:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_square_wave();
+ 628              		.loc 1 99 9 view .LVU176
+  99:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_square_wave();
+ 629              		.loc 1 99 40 is_stmt 0 view .LVU177
+ 630 0274 2046     		mov	r0, r4
+ 631 0276 FFF7FEFF 		bl	_ZN13WaveGenerator21_generate_square_waveEv
+ 632              	.LVL49:
+ 100:Lib/compute/wave/wave_generator.cpp ****         break;
+ 633              		.loc 1 100 9 is_stmt 1 view .LVU178
+ 634 027a FAE7     		b	.L35
+ 635              	.LVL50:
+ARM GAS  /tmp/ccrmYEKt.s 			page 15
+
+
+ 636              	.L41:
+ 101:Lib/compute/wave/wave_generator.cpp ****     case WaveType::TRIANGLE:
+ 637              		.loc 1 101 5 view .LVU179
+ 102:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_triangle_wave();
+ 638              		.loc 1 102 9 view .LVU180
+ 102:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_triangle_wave();
+ 639              		.loc 1 102 42 is_stmt 0 view .LVU181
+ 640 027c 2046     		mov	r0, r4
+ 641 027e FFF7FEFF 		bl	_ZN13WaveGenerator23_generate_triangle_waveEv
+ 642              	.LVL51:
+ 103:Lib/compute/wave/wave_generator.cpp ****         break;
+ 643              		.loc 1 103 9 is_stmt 1 view .LVU182
+ 644 0282 F6E7     		b	.L35
+ 645              	.LVL52:
+ 646              	.L40:
+ 104:Lib/compute/wave/wave_generator.cpp ****     case WaveType::SAWTOOTH:
+ 647              		.loc 1 104 5 view .LVU183
+ 105:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_sawtooth_wave();
+ 648              		.loc 1 105 9 view .LVU184
+ 105:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_sawtooth_wave();
+ 649              		.loc 1 105 42 is_stmt 0 view .LVU185
+ 650 0284 2046     		mov	r0, r4
+ 651 0286 FFF7FEFF 		bl	_ZN13WaveGenerator23_generate_sawtooth_waveEv
+ 652              	.LVL53:
+ 106:Lib/compute/wave/wave_generator.cpp ****         break;
+ 653              		.loc 1 106 9 is_stmt 1 view .LVU186
+ 654 028a F2E7     		b	.L35
+ 655              	.LVL54:
+ 656              	.L39:
+ 107:Lib/compute/wave/wave_generator.cpp ****     case WaveType::STEP:
+ 657              		.loc 1 107 5 view .LVU187
+ 108:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_step_wave();
+ 658              		.loc 1 108 9 view .LVU188
+ 108:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_step_wave();
+ 659              		.loc 1 108 38 is_stmt 0 view .LVU189
+ 660 028c 2046     		mov	r0, r4
+ 661 028e FFF7FEFF 		bl	_ZN13WaveGenerator19_generate_step_waveEv
+ 662              	.LVL55:
+ 109:Lib/compute/wave/wave_generator.cpp ****         break;
+ 663              		.loc 1 109 9 is_stmt 1 view .LVU190
+ 664 0292 EEE7     		b	.L35
+ 665              	.LVL56:
+ 666              	.L37:
+ 110:Lib/compute/wave/wave_generator.cpp ****     case WaveType::CONST:
+ 667              		.loc 1 110 5 view .LVU191
+ 111:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_const_wave();
+ 668              		.loc 1 111 9 view .LVU192
+ 111:Lib/compute/wave/wave_generator.cpp ****         ret_val = _generate_const_wave();
+ 669              		.loc 1 111 39 is_stmt 0 view .LVU193
+ 670 0294 2046     		mov	r0, r4
+ 671 0296 FFF7FEFF 		bl	_ZN13WaveGenerator20_generate_const_waveEv
+ 672              	.LVL57:
+ 112:Lib/compute/wave/wave_generator.cpp ****         break;
+ 673              		.loc 1 112 9 is_stmt 1 view .LVU194
+ 674 029a EAE7     		b	.L35
+ 675              	.LVL58:
+ 676              	.L44:
+ARM GAS  /tmp/ccrmYEKt.s 			page 16
+
+
+  90:Lib/compute/wave/wave_generator.cpp ****     switch (_wave_type)
+ 677              		.loc 1 90 5 is_stmt 0 view .LVU195
+ 678 029c 9FED010A 		vldr.32	s0, .L46
+ 118:Lib/compute/wave/wave_generator.cpp ****     return ret_val;
+ 679              		.loc 1 118 5 is_stmt 1 view .LVU196
+ 118:Lib/compute/wave/wave_generator.cpp ****     return ret_val;
+ 680              		.loc 1 118 12 is_stmt 0 view .LVU197
+ 681 02a0 E7E7     		b	.L35
+ 682              	.L47:
+ 683 02a2 00BF     		.align	2
+ 684              	.L46:
+ 685 02a4 00000000 		.word	0
+ 686              		.cfi_endproc
+ 687              	.LFE1002:
+ 689              	.Letext0:
+ 690              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 691              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 692              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 693              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 694              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 695              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 696              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 697              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 698              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 699              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 700              		.file 13 "Lib/compute/wave/wave_generator.hpp"
+ARM GAS  /tmp/ccrmYEKt.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 wave_generator.cpp
+     /tmp/ccrmYEKt.s:20     .text:00000000 $t
+     /tmp/ccrmYEKt.s:25     .text:00000000 f1
+     /tmp/ccrmYEKt.s:86     .text:00000044 $d
+     /tmp/ccrmYEKt.s:95     .text:0000005c $t
+     /tmp/ccrmYEKt.s:100    .text:0000005c fast_sin
+     /tmp/ccrmYEKt.s:177    .text:000000bc $d
+     /tmp/ccrmYEKt.s:182    .text:000000c4 $t
+     /tmp/ccrmYEKt.s:188    .text:000000c4 _ZN13WaveGenerator14_update_statusEt
+     /tmp/ccrmYEKt.s:256    .text:000000f2 _ZN13WaveGenerator19_generate_sine_waveEv
+     /tmp/ccrmYEKt.s:312    .text:00000134 $d
+     /tmp/ccrmYEKt.s:316    .text:00000138 $t
+     /tmp/ccrmYEKt.s:322    .text:00000138 _ZN13WaveGenerator21_generate_square_waveEv
+     /tmp/ccrmYEKt.s:371    .text:0000015e _ZN13WaveGenerator23_generate_triangle_waveEv
+     /tmp/ccrmYEKt.s:450    .text:000001d6 _ZN13WaveGenerator23_generate_sawtooth_waveEv
+     /tmp/ccrmYEKt.s:497    .text:0000020c _ZN13WaveGenerator19_generate_step_waveEv
+     /tmp/ccrmYEKt.s:548    .text:00000248 $d
+     /tmp/ccrmYEKt.s:552    .text:0000024c $t
+     /tmp/ccrmYEKt.s:558    .text:0000024c _ZN13WaveGenerator20_generate_const_waveEv
+     /tmp/ccrmYEKt.s:579    .text:00000252 _ZN13WaveGenerator4nextEt
+     /tmp/ccrmYEKt.s:607    .text:00000266 $d
+     /tmp/ccrmYEKt.s:613    .text:0000026c $t
+     /tmp/ccrmYEKt.s:685    .text:000002a4 $d
+
+NO UNDEFINED SYMBOLS

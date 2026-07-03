@@ -1,0 +1,89 @@
+ARM GAS  /tmp/ccbQg7r4.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"xlink_common.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Lib/protocol/xlink/xlink_common.c"
+  20              		.global	_xl_chan_write_func
+  21              		.section	.bss._xl_chan_write_func,"aw",%nobits
+  22              		.align	2
+  25              	_xl_chan_write_func:
+  26 0000 00000000 		.space	16
+  26      00000000 
+  26      00000000 
+  26      00000000 
+  27              		.global	_xl_chan_status
+  28              		.section	.data._xl_chan_status,"aw"
+  29              		.align	2
+  32              	_xl_chan_status:
+  33 0000 00       		.byte	0
+  34 0001 01       		.byte	1
+  35 0002 00       		.byte	0
+  36 0003 00       		.space	1
+  37 0004 00000000 		.word	0
+  38 0008 00000000 		.word	0
+  39 000c 01       		.byte	1
+  40 000d 01       		.byte	1
+  41 000e 00       		.byte	0
+  42 000f 00       		.space	1
+  43 0010 00000000 		.word	0
+  44 0014 00000000 		.word	0
+  45 0018 02       		.byte	2
+  46 0019 01       		.byte	1
+  47 001a 00       		.byte	0
+  48 001b 00       		.space	1
+  49 001c 00000000 		.word	0
+  50 0020 00000000 		.word	0
+  51 0024 03       		.byte	3
+  52 0025 01       		.byte	1
+  53 0026 00       		.byte	0
+  54 0027 00       		.space	1
+  55 0028 00000000 		.word	0
+  56 002c 00000000 		.word	0
+  57              		.global	_xl_rx_buffer
+  58              		.section	.bss._xl_rx_buffer,"aw",%nobits
+ARM GAS  /tmp/ccbQg7r4.s 			page 2
+
+
+  59              		.align	2
+  62              	_xl_rx_buffer:
+  63 0000 00000000 		.space	352
+  63      00000000 
+  63      00000000 
+  63      00000000 
+  63      00000000 
+  64              		.text
+  65              	.Letext0:
+  66              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+  67              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+  68              		.file 4 "Lib/protocol/xlink/xlink_define.h"
+  69              		.file 5 "Lib/protocol/xlink/xlink_common.h"
+ARM GAS  /tmp/ccbQg7r4.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 xlink_common.c
+     /tmp/ccbQg7r4.s:25     .bss._xl_chan_write_func:00000000 _xl_chan_write_func
+     /tmp/ccbQg7r4.s:22     .bss._xl_chan_write_func:00000000 $d
+     /tmp/ccbQg7r4.s:32     .data._xl_chan_status:00000000 _xl_chan_status
+     /tmp/ccbQg7r4.s:29     .data._xl_chan_status:00000000 $d
+     /tmp/ccbQg7r4.s:62     .bss._xl_rx_buffer:00000000 _xl_rx_buffer
+     /tmp/ccbQg7r4.s:59     .bss._xl_rx_buffer:00000000 $d
+
+NO UNDEFINED SYMBOLS

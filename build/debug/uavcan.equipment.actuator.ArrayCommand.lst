@@ -1,0 +1,966 @@
+ARM GAS  /tmp/ccubv1Cg.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uavcan.equipment.actuator.ArrayCommand.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c"
+  20              		.section	.text.__uavcan_equipment_actuator_Command_encode,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	__uavcan_equipment_actuator_Command_encode:
+  27              	.LVL0:
+  28              	.LFB2:
+  29              		.file 2 "My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h"
+   1:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #pragma once
+   2:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #include <stdbool.h>
+   3:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #include <stdint.h>
+   4:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #include <canard.h>
+   5:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+   6:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+   7:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_COMMAND_MAX_SIZE 4
+   8:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_COMMAND_SIGNATURE (0x8D9A6A920C1D616CULL)
+   9:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  10:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_COMMAND_COMMAND_TYPE_UNITLESS 0  //无量纲控制（如百分比
+  11:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_COMMAND_COMMAND_TYPE_POSITION 1   //位置控制
+  12:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_COMMAND_COMMAND_TYPE_FORCE 2  //力控制
+  13:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_COMMAND_COMMAND_TYPE_SPEED 3 //速度控制
+  14:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_COMMAND_COMMAND_TYPE_PWM 4  //PWM控制
+  15:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  16:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  17:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** struct uavcan_equipment_actuator_Command {
+  18:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     uint8_t actuator_id;
+  19:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     uint8_t command_type;
+  20:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     float command_value;
+  21:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** };
+  22:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  23:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #ifdef __cplusplus
+  24:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** extern "C"
+  25:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** {
+  26:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #endif
+  27:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  28:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** uint32_t _uavcan_equipment_actuator_Command_encode(struct uavcan_equipment_actuator_Command* msg, u
+  29:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #if CANARD_ENABLE_TAO_OPTION
+ARM GAS  /tmp/ccubv1Cg.s 			page 2
+
+
+  30:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     , bool tao
+  31:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #endif
+  32:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** );
+  33:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** bool _uavcan_equipment_actuator_Command_decode(const CanardRxTransfer* transfer, struct uavcan_equi
+  34:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  35:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** static inline uint32_t uavcan_equipment_actuator_Command_encode(struct uavcan_equipment_actuator_Co
+  36:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #if CANARD_ENABLE_TAO_OPTION
+  37:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     , bool tao
+  38:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #endif
+  39:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** ) {
+  40:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  41:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     return _uavcan_equipment_actuator_Command_encode(msg, buffer
+  42:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #if CANARD_ENABLE_TAO_OPTION
+  43:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     , tao
+  44:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #endif
+  45:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     );
+  46:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  47:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** }
+  48:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  49:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** static inline bool uavcan_equipment_actuator_Command_decode(const CanardRxTransfer* transfer, struc
+  50:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  51:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     return _uavcan_equipment_actuator_Command_decode(transfer, msg);
+  52:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  53:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** }
+  54:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  55:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** #if defined(CANARD_DSDLC_INTERNAL)
+  56:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** static inline void __uavcan_equipment_actuator_Command_encode(uint8_t* buffer, uint32_t* bit_ofs, s
+  57:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** static inline bool __uavcan_equipment_actuator_Command_decode(const CanardRxTransfer* transfer, uin
+  58:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** void __uavcan_equipment_actuator_Command_encode(uint8_t* buffer, uint32_t* bit_ofs, struct uavcan_e
+  30              		.loc 2 58 142 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 2 58 142 is_stmt 0 view .LVU1
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 4, -16
+  38              		.cfi_offset 5, -12
+  39              		.cfi_offset 6, -8
+  40              		.cfi_offset 14, -4
+  41 0002 82B0     		sub	sp, sp, #8
+  42              		.cfi_def_cfa_offset 24
+  43 0004 0646     		mov	r6, r0
+  44 0006 0C46     		mov	r4, r1
+  45 0008 1546     		mov	r5, r2
+  59:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)buffer;
+  46              		.loc 2 59 5 is_stmt 1 view .LVU2
+  60:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)bit_ofs;
+  47              		.loc 2 60 5 view .LVU3
+  61:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)msg;
+  48              		.loc 2 61 5 view .LVU4
+  62:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)tao;
+  49              		.loc 2 62 5 view .LVU5
+  63:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  64:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     canardEncodeScalar(buffer, *bit_ofs, 8, &msg->actuator_id);
+  50              		.loc 2 64 5 view .LVU6
+  51 000a 1346     		mov	r3, r2
+ARM GAS  /tmp/ccubv1Cg.s 			page 3
+
+
+  52              	.LVL1:
+  53              		.loc 2 64 5 is_stmt 0 view .LVU7
+  54 000c 0822     		movs	r2, #8
+  55              	.LVL2:
+  56              		.loc 2 64 5 view .LVU8
+  57 000e 0968     		ldr	r1, [r1]
+  58              	.LVL3:
+  59              		.loc 2 64 5 view .LVU9
+  60 0010 FFF7FEFF 		bl	canardEncodeScalar
+  61              	.LVL4:
+  65:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     *bit_ofs += 8;
+  62              		.loc 2 65 5 is_stmt 1 view .LVU10
+  63 0014 2168     		ldr	r1, [r4]
+  64              		.loc 2 65 14 is_stmt 0 view .LVU11
+  65 0016 0831     		adds	r1, r1, #8
+  66 0018 2160     		str	r1, [r4]
+  66:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     canardEncodeScalar(buffer, *bit_ofs, 8, &msg->command_type);
+  67              		.loc 2 66 5 is_stmt 1 view .LVU12
+  68 001a 6B1C     		adds	r3, r5, #1
+  69 001c 0822     		movs	r2, #8
+  70 001e 3046     		mov	r0, r6
+  71 0020 FFF7FEFF 		bl	canardEncodeScalar
+  72              	.LVL5:
+  67:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     *bit_ofs += 8;
+  73              		.loc 2 67 5 view .LVU13
+  74 0024 2368     		ldr	r3, [r4]
+  75              		.loc 2 67 14 is_stmt 0 view .LVU14
+  76 0026 0833     		adds	r3, r3, #8
+  77 0028 2360     		str	r3, [r4]
+  78              	.LBB2:
+  68:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     {
+  69:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****         uint16_t float16_val = canardConvertNativeFloatToFloat16(msg->command_value);
+  79              		.loc 2 69 9 is_stmt 1 view .LVU15
+  80              		.loc 2 69 32 is_stmt 0 view .LVU16
+  81 002a 95ED010A 		vldr.32	s0, [r5, #4]
+  82 002e FFF7FEFF 		bl	canardConvertNativeFloatToFloat16
+  83              	.LVL6:
+  84              		.loc 2 69 18 discriminator 1 view .LVU17
+  85 0032 ADF80600 		strh	r0, [sp, #6]	@ movhi
+  70:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****         canardEncodeScalar(buffer, *bit_ofs, 16, &float16_val);
+  86              		.loc 2 70 9 is_stmt 1 view .LVU18
+  87 0036 0DF10603 		add	r3, sp, #6
+  88 003a 1022     		movs	r2, #16
+  89 003c 2168     		ldr	r1, [r4]
+  90 003e 3046     		mov	r0, r6
+  91 0040 FFF7FEFF 		bl	canardEncodeScalar
+  92              	.LVL7:
+  93              	.LBE2:
+  71:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     }
+  72:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     *bit_ofs += 16;
+  94              		.loc 2 72 5 view .LVU19
+  95 0044 2368     		ldr	r3, [r4]
+  96              		.loc 2 72 14 is_stmt 0 view .LVU20
+  97 0046 1033     		adds	r3, r3, #16
+  98 0048 2360     		str	r3, [r4]
+  73:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** }
+  99              		.loc 2 73 1 view .LVU21
+ARM GAS  /tmp/ccubv1Cg.s 			page 4
+
+
+ 100 004a 02B0     		add	sp, sp, #8
+ 101              		.cfi_def_cfa_offset 16
+ 102              		@ sp needed
+ 103 004c 70BD     		pop	{r4, r5, r6, pc}
+ 104              		.loc 2 73 1 view .LVU22
+ 105              		.cfi_endproc
+ 106              	.LFE2:
+ 108              		.section	.text.__uavcan_equipment_actuator_ArrayCommand_encode,"ax",%progbits
+ 109              		.align	1
+ 110              		.syntax unified
+ 111              		.thumb
+ 112              		.thumb_func
+ 114              	__uavcan_equipment_actuator_ArrayCommand_encode:
+ 115              	.LVL8:
+ 116              	.LFB6:
+ 117              		.file 3 "My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h"
+   1:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #pragma once
+   2:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #include <stdbool.h>
+   3:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #include <stdint.h>
+   4:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #include <canard.h>
+   5:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #include <uavcan.equipment.actuator.Command.h>
+   6:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+   7:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+   8:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_ARRAYCOMMAND_MAX_SIZE 61
+   9:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_ARRAYCOMMAND_SIGNATURE (0xD8A7486238EC3AF3ULL)
+  10:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #define UAVCAN_EQUIPMENT_ACTUATOR_ARRAYCOMMAND_ID 1010
+  11:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  12:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #if defined(__cplusplus) && defined(DRONECAN_CXX_WRAPPERS)
+  13:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** class uavcan_equipment_actuator_ArrayCommand_cxx_iface;
+  14:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #endif
+  15:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  16:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** struct uavcan_equipment_actuator_ArrayCommand {
+  17:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #if defined(__cplusplus) && defined(DRONECAN_CXX_WRAPPERS)
+  18:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     using cxx_iface = uavcan_equipment_actuator_ArrayCommand_cxx_iface;
+  19:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #endif
+  20:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     struct { uint8_t len; struct uavcan_equipment_actuator_Command data[15]; }commands;
+  21:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** };
+  22:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  23:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #ifdef __cplusplus
+  24:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** extern "C"
+  25:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** {
+  26:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #endif
+  27:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  28:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** uint32_t _uavcan_equipment_actuator_ArrayCommand_encode(struct uavcan_equipment_actuator_ArrayComma
+  29:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #if CANARD_ENABLE_TAO_OPTION
+  30:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     , bool tao
+  31:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #endif
+  32:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** );
+  33:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** bool _uavcan_equipment_actuator_ArrayCommand_decode(const CanardRxTransfer* transfer, struct uavcan
+  34:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  35:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** static inline uint32_t uavcan_equipment_actuator_ArrayCommand_encode(struct uavcan_equipment_actuat
+  36:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #if CANARD_ENABLE_TAO_OPTION
+  37:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     , bool tao
+  38:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #endif
+  39:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** ) {
+  40:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  41:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     return _uavcan_equipment_actuator_ArrayCommand_encode(msg, buffer
+ARM GAS  /tmp/ccubv1Cg.s 			page 5
+
+
+  42:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #if CANARD_ENABLE_TAO_OPTION
+  43:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     , tao
+  44:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #endif
+  45:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     );
+  46:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  47:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+  48:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  49:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** static inline bool uavcan_equipment_actuator_ArrayCommand_decode(const CanardRxTransfer* transfer, 
+  50:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  51:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     return _uavcan_equipment_actuator_ArrayCommand_decode(transfer, msg);
+  52:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  53:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+  54:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  55:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #if defined(CANARD_DSDLC_INTERNAL)
+  56:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** static inline void __uavcan_equipment_actuator_ArrayCommand_encode(uint8_t* buffer, uint32_t* bit_o
+  57:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** static inline bool __uavcan_equipment_actuator_ArrayCommand_decode(const CanardRxTransfer* transfer
+  58:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** void __uavcan_equipment_actuator_ArrayCommand_encode(uint8_t* buffer, uint32_t* bit_ofs, struct uav
+ 118              		.loc 3 58 152 is_stmt 1 view -0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 8
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122              		.loc 3 58 152 is_stmt 0 view .LVU24
+ 123 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 124              		.cfi_def_cfa_offset 20
+ 125              		.cfi_offset 4, -20
+ 126              		.cfi_offset 5, -16
+ 127              		.cfi_offset 6, -12
+ 128              		.cfi_offset 7, -8
+ 129              		.cfi_offset 14, -4
+ 130 0002 83B0     		sub	sp, sp, #12
+ 131              		.cfi_def_cfa_offset 32
+ 132 0004 0746     		mov	r7, r0
+ 133 0006 0E46     		mov	r6, r1
+ 134 0008 1546     		mov	r5, r2
+  59:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)buffer;
+ 135              		.loc 3 59 5 is_stmt 1 view .LVU25
+  60:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)bit_ofs;
+ 136              		.loc 3 60 5 view .LVU26
+  61:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)msg;
+ 137              		.loc 3 61 5 view .LVU27
+  62:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)tao;
+ 138              		.loc 3 62 5 view .LVU28
+  63:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  64:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #pragma GCC diagnostic push
+  65:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #pragma GCC diagnostic ignored "-Wtype-limits"
+  66:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     const uint8_t commands_len = msg->commands.len > 15 ? 15 : msg->commands.len;
+ 139              		.loc 3 66 5 view .LVU29
+ 140              		.loc 3 66 47 is_stmt 0 view .LVU30
+ 141 000a 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 142              	.LVL9:
+ 143              		.loc 3 66 62 view .LVU31
+ 144 000c 0F2A     		cmp	r2, #15
+ 145 000e 28BF     		it	cs
+ 146 0010 0F22     		movcs	r2, #15
+ 147              		.loc 3 66 19 view .LVU32
+ 148 0012 8DF80720 		strb	r2, [sp, #7]
+  67:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #pragma GCC diagnostic pop
+ARM GAS  /tmp/ccubv1Cg.s 			page 6
+
+
+  68:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     if (!tao) {
+ 149              		.loc 3 68 5 is_stmt 1 view .LVU33
+ 150              		.loc 3 68 8 is_stmt 0 view .LVU34
+ 151 0016 0BB1     		cbz	r3, .L8
+ 152              	.LVL10:
+ 153              	.L4:
+  58:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)buffer;
+ 154              		.loc 3 58 152 view .LVU35
+ 155 0018 0024     		movs	r4, #0
+ 156 001a 12E0     		b	.L5
+ 157              	.LVL11:
+ 158              	.L8:
+  69:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         canardEncodeScalar(buffer, *bit_ofs, 4, &commands_len);
+ 159              		.loc 3 69 9 is_stmt 1 view .LVU36
+ 160 001c 0DF10703 		add	r3, sp, #7
+ 161              	.LVL12:
+ 162              		.loc 3 69 9 is_stmt 0 view .LVU37
+ 163 0020 0422     		movs	r2, #4
+ 164 0022 0968     		ldr	r1, [r1]
+ 165              	.LVL13:
+ 166              		.loc 3 69 9 view .LVU38
+ 167 0024 FFF7FEFF 		bl	canardEncodeScalar
+ 168              	.LVL14:
+  70:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         *bit_ofs += 4;
+ 169              		.loc 3 70 9 is_stmt 1 view .LVU39
+ 170 0028 3368     		ldr	r3, [r6]
+ 171              		.loc 3 70 18 is_stmt 0 view .LVU40
+ 172 002a 0433     		adds	r3, r3, #4
+ 173 002c 3360     		str	r3, [r6]
+ 174 002e F3E7     		b	.L4
+ 175              	.LVL15:
+ 176              	.L6:
+ 177              	.LBB3:
+  71:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     }
+  72:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     for (size_t i=0; i < commands_len; i++) {
+  73:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         __uavcan_equipment_actuator_Command_encode(buffer, bit_ofs, &msg->commands.data[i], false);
+ 178              		.loc 3 73 9 is_stmt 1 view .LVU41
+ 179 0030 05EBC402 		add	r2, r5, r4, lsl #3
+ 180 0034 0023     		movs	r3, #0
+ 181 0036 0432     		adds	r2, r2, #4
+ 182 0038 3146     		mov	r1, r6
+ 183 003a 3846     		mov	r0, r7
+ 184 003c FFF7FEFF 		bl	__uavcan_equipment_actuator_Command_encode
+ 185              	.LVL16:
+  72:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         __uavcan_equipment_actuator_Command_encode(buffer, bit_ofs, &msg->commands.data[i], false);
+ 186              		.loc 3 72 41 discriminator 3 view .LVU42
+ 187 0040 0134     		adds	r4, r4, #1
+ 188              	.LVL17:
+ 189              	.L5:
+  72:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         __uavcan_equipment_actuator_Command_encode(buffer, bit_ofs, &msg->commands.data[i], false);
+ 190              		.loc 3 72 24 discriminator 1 view .LVU43
+ 191 0042 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 192 0046 A342     		cmp	r3, r4
+ 193 0048 F2D8     		bhi	.L6
+ 194              	.LBE3:
+  74:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     }
+  75:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+ARM GAS  /tmp/ccubv1Cg.s 			page 7
+
+
+ 195              		.loc 3 75 1 is_stmt 0 view .LVU44
+ 196 004a 03B0     		add	sp, sp, #12
+ 197              		.cfi_def_cfa_offset 20
+ 198              		@ sp needed
+ 199 004c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 200              		.loc 3 75 1 view .LVU45
+ 201              		.cfi_endproc
+ 202              	.LFE6:
+ 204              		.section	.text.__uavcan_equipment_actuator_Command_decode,"ax",%progbits
+ 205              		.align	1
+ 206              		.syntax unified
+ 207              		.thumb
+ 208              		.thumb_func
+ 210              	__uavcan_equipment_actuator_Command_decode:
+ 211              	.LVL18:
+ 212              	.LFB3:
+  74:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  75:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** /*
+  76:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****  decode uavcan_equipment_actuator_Command, return true on failure, false on success
+  77:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** */
+  78:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** bool __uavcan_equipment_actuator_Command_decode(const CanardRxTransfer* transfer, uint32_t* bit_ofs
+ 213              		.loc 2 78 159 is_stmt 1 view -0
+ 214              		.cfi_startproc
+ 215              		@ args = 0, pretend = 0, frame = 8
+ 216              		@ frame_needed = 0, uses_anonymous_args = 0
+ 217              		.loc 2 78 159 is_stmt 0 view .LVU47
+ 218 0000 70B5     		push	{r4, r5, r6, lr}
+ 219              		.cfi_def_cfa_offset 16
+ 220              		.cfi_offset 4, -16
+ 221              		.cfi_offset 5, -12
+ 222              		.cfi_offset 6, -8
+ 223              		.cfi_offset 14, -4
+ 224 0002 84B0     		sub	sp, sp, #16
+ 225              		.cfi_def_cfa_offset 32
+ 226 0004 0646     		mov	r6, r0
+ 227 0006 0C46     		mov	r4, r1
+ 228 0008 1546     		mov	r5, r2
+  79:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)transfer;
+ 229              		.loc 2 79 5 is_stmt 1 view .LVU48
+  80:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)bit_ofs;
+ 230              		.loc 2 80 5 view .LVU49
+  81:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)msg;
+ 231              		.loc 2 81 5 view .LVU50
+  82:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     (void)tao;
+ 232              		.loc 2 82 5 view .LVU51
+  83:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     canardDecodeScalar(transfer, *bit_ofs, 8, false, &msg->actuator_id);
+ 233              		.loc 2 83 5 view .LVU52
+ 234 000a 0092     		str	r2, [sp]
+ 235 000c 0023     		movs	r3, #0
+ 236              	.LVL19:
+ 237              		.loc 2 83 5 is_stmt 0 view .LVU53
+ 238 000e 0822     		movs	r2, #8
+ 239              	.LVL20:
+ 240              		.loc 2 83 5 view .LVU54
+ 241 0010 0968     		ldr	r1, [r1]
+ 242              	.LVL21:
+ 243              		.loc 2 83 5 view .LVU55
+ARM GAS  /tmp/ccubv1Cg.s 			page 8
+
+
+ 244 0012 FFF7FEFF 		bl	canardDecodeScalar
+ 245              	.LVL22:
+  84:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     *bit_ofs += 8;
+ 246              		.loc 2 84 5 is_stmt 1 view .LVU56
+ 247 0016 2168     		ldr	r1, [r4]
+ 248              		.loc 2 84 14 is_stmt 0 view .LVU57
+ 249 0018 0831     		adds	r1, r1, #8
+ 250 001a 2160     		str	r1, [r4]
+  85:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  86:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     canardDecodeScalar(transfer, *bit_ofs, 8, false, &msg->command_type);
+ 251              		.loc 2 86 5 is_stmt 1 view .LVU58
+ 252              		.loc 2 86 54 is_stmt 0 view .LVU59
+ 253 001c 6B1C     		adds	r3, r5, #1
+ 254              		.loc 2 86 5 view .LVU60
+ 255 001e 0093     		str	r3, [sp]
+ 256 0020 0023     		movs	r3, #0
+ 257 0022 0822     		movs	r2, #8
+ 258 0024 3046     		mov	r0, r6
+ 259 0026 FFF7FEFF 		bl	canardDecodeScalar
+ 260              	.LVL23:
+  87:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     *bit_ofs += 8;
+ 261              		.loc 2 87 5 is_stmt 1 view .LVU61
+ 262 002a 2168     		ldr	r1, [r4]
+ 263              		.loc 2 87 14 is_stmt 0 view .LVU62
+ 264 002c 0831     		adds	r1, r1, #8
+ 265 002e 2160     		str	r1, [r4]
+ 266              	.LBB4:
+  88:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+  89:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     {
+  90:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****         uint16_t float16_val;
+ 267              		.loc 2 90 9 is_stmt 1 view .LVU63
+  91:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****         canardDecodeScalar(transfer, *bit_ofs, 16, true, &float16_val);
+ 268              		.loc 2 91 9 view .LVU64
+ 269 0030 0DF10E03 		add	r3, sp, #14
+ 270 0034 0093     		str	r3, [sp]
+ 271 0036 0123     		movs	r3, #1
+ 272 0038 1022     		movs	r2, #16
+ 273 003a 3046     		mov	r0, r6
+ 274 003c FFF7FEFF 		bl	canardDecodeScalar
+ 275              	.LVL24:
+  92:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****         msg->command_value = canardConvertFloat16ToNativeFloat(float16_val);
+ 276              		.loc 2 92 9 view .LVU65
+ 277              		.loc 2 92 30 is_stmt 0 view .LVU66
+ 278 0040 BDF80E00 		ldrh	r0, [sp, #14]
+ 279 0044 FFF7FEFF 		bl	canardConvertFloat16ToNativeFloat
+ 280              	.LVL25:
+ 281              		.loc 2 92 28 discriminator 1 view .LVU67
+ 282 0048 85ED010A 		vstr.32	s0, [r5, #4]
+ 283              	.LBE4:
+  93:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     }
+  94:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     *bit_ofs += 16;
+ 284              		.loc 2 94 5 is_stmt 1 view .LVU68
+ 285 004c 2368     		ldr	r3, [r4]
+ 286              		.loc 2 94 14 is_stmt 0 view .LVU69
+ 287 004e 1033     		adds	r3, r3, #16
+ 288 0050 2360     		str	r3, [r4]
+  95:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** 
+ARM GAS  /tmp/ccubv1Cg.s 			page 9
+
+
+  96:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h ****     return false; /* success */
+ 289              		.loc 2 96 5 is_stmt 1 view .LVU70
+  97:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h **** }
+ 290              		.loc 2 97 1 is_stmt 0 view .LVU71
+ 291 0052 0020     		movs	r0, #0
+ 292 0054 04B0     		add	sp, sp, #16
+ 293              		.cfi_def_cfa_offset 16
+ 294              		@ sp needed
+ 295 0056 70BD     		pop	{r4, r5, r6, pc}
+ 296              		.loc 2 97 1 view .LVU72
+ 297              		.cfi_endproc
+ 298              	.LFE3:
+ 300              		.section	.text.__uavcan_equipment_actuator_ArrayCommand_decode,"ax",%progbits
+ 301              		.align	1
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 306              	__uavcan_equipment_actuator_ArrayCommand_decode:
+ 307              	.LVL26:
+ 308              	.LFB7:
+  76:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  77:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** /*
+  78:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****  decode uavcan_equipment_actuator_ArrayCommand, return true on failure, false on success
+  79:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** */
+  80:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** bool __uavcan_equipment_actuator_ArrayCommand_decode(const CanardRxTransfer* transfer, uint32_t* bi
+ 309              		.loc 3 80 169 is_stmt 1 view -0
+ 310              		.cfi_startproc
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 313              		.loc 3 80 169 is_stmt 0 view .LVU74
+ 314 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 315              		.cfi_def_cfa_offset 28
+ 316              		.cfi_offset 4, -28
+ 317              		.cfi_offset 5, -24
+ 318              		.cfi_offset 6, -20
+ 319              		.cfi_offset 7, -16
+ 320              		.cfi_offset 8, -12
+ 321              		.cfi_offset 9, -8
+ 322              		.cfi_offset 14, -4
+ 323 0004 83B0     		sub	sp, sp, #12
+ 324              		.cfi_def_cfa_offset 40
+ 325 0006 0646     		mov	r6, r0
+ 326 0008 0D46     		mov	r5, r1
+ 327 000a 1446     		mov	r4, r2
+  81:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)transfer;
+ 328              		.loc 3 81 5 is_stmt 1 view .LVU75
+  82:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)bit_ofs;
+ 329              		.loc 3 82 5 view .LVU76
+  83:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)msg;
+ 330              		.loc 3 83 5 view .LVU77
+  84:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     (void)tao;
+ 331              		.loc 3 84 5 view .LVU78
+  85:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     if (!tao) {
+ 332              		.loc 3 85 5 view .LVU79
+ 333              		.loc 3 85 8 is_stmt 0 view .LVU80
+ 334 000c 9946     		mov	r9, r3
+ 335 000e E3B1     		cbz	r3, .L12
+ARM GAS  /tmp/ccubv1Cg.s 			page 10
+
+
+  86:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         canardDecodeScalar(transfer, *bit_ofs, 4, false, &msg->commands.len);
+  87:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         *bit_ofs += 4;
+  88:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     }
+  89:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  90:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+  91:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     if (tao) {
+ 336              		.loc 3 91 5 is_stmt 1 view .LVU81
+ 337              	.LBB5:
+  92:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         msg->commands.len = 0;
+ 338              		.loc 3 92 9 view .LVU82
+ 339              		.loc 3 92 27 is_stmt 0 view .LVU83
+ 340 0010 0023     		movs	r3, #0
+ 341              	.LVL27:
+ 342              		.loc 3 92 27 view .LVU84
+ 343 0012 1370     		strb	r3, [r2]
+  93:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         size_t max_len = 15;
+ 344              		.loc 3 93 9 is_stmt 1 view .LVU85
+ 345              	.LVL28:
+  94:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         uint32_t max_bits = (transfer->payload_len*8)-7; // TAO elements must be >= 8 bits
+ 346              		.loc 3 94 9 view .LVU86
+ 347              		.loc 3 94 38 is_stmt 0 view .LVU87
+ 348 0014 B0F81480 		ldrh	r8, [r0, #20]
+ 349              		.loc 3 94 51 view .LVU88
+ 350 0018 4FEAC808 		lsl	r8, r8, #3
+ 351              		.loc 3 94 54 view .LVU89
+ 352 001c A8F10708 		sub	r8, r8, #7
+ 353              	.LVL29:
+  95:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         while (max_bits > *bit_ofs) {
+ 354              		.loc 3 95 9 is_stmt 1 view .LVU90
+  93:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         size_t max_len = 15;
+ 355              		.loc 3 93 16 is_stmt 0 view .LVU91
+ 356 0020 0F23     		movs	r3, #15
+ 357              	.LVL30:
+ 358              	.L13:
+ 359              		.loc 3 95 25 is_stmt 1 view .LVU92
+ 360              		.loc 3 95 27 is_stmt 0 view .LVU93
+ 361 0022 2A68     		ldr	r2, [r5]
+ 362              		.loc 3 95 25 view .LVU94
+ 363 0024 4245     		cmp	r2, r8
+ 364 0026 31D2     		bcs	.L22
+  96:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             if (!max_len-- || __uavcan_equipment_actuator_Command_decode(transfer, bit_ofs, &msg->c
+ 365              		.loc 3 96 13 is_stmt 1 view .LVU95
+ 366              		.loc 3 96 25 is_stmt 0 view .LVU96
+ 367 0028 5F1E     		subs	r7, r3, #1
+ 368              	.LVL31:
+ 369              		.loc 3 96 16 view .LVU97
+ 370 002a 53B3     		cbz	r3, .L16
+ 371              		.loc 3 96 126 discriminator 2 view .LVU98
+ 372 002c 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 373              		.loc 3 96 31 discriminator 2 view .LVU99
+ 374 002e 04EBC202 		add	r2, r4, r2, lsl #3
+ 375 0032 0023     		movs	r3, #0
+ 376 0034 0432     		adds	r2, r2, #4
+ 377 0036 2946     		mov	r1, r5
+ 378 0038 3046     		mov	r0, r6
+ 379 003a FFF7FEFF 		bl	__uavcan_equipment_actuator_Command_decode
+ 380              	.LVL32:
+ARM GAS  /tmp/ccubv1Cg.s 			page 11
+
+
+ 381              		.loc 3 96 28 discriminator 1 view .LVU100
+ 382 003e 00BB     		cbnz	r0, .L16
+  97:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             msg->commands.len++;
+ 383              		.loc 3 97 13 is_stmt 1 view .LVU101
+ 384              		.loc 3 97 26 is_stmt 0 view .LVU102
+ 385 0040 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 386              		.loc 3 97 30 view .LVU103
+ 387 0042 0133     		adds	r3, r3, #1
+ 388 0044 2370     		strb	r3, [r4]
+  96:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             if (!max_len-- || __uavcan_equipment_actuator_Command_decode(transfer, bit_ofs, &msg->c
+ 389              		.loc 3 96 25 view .LVU104
+ 390 0046 3B46     		mov	r3, r7
+ 391 0048 EBE7     		b	.L13
+ 392              	.LVL33:
+ 393              	.L12:
+  96:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             if (!max_len-- || __uavcan_equipment_actuator_Command_decode(transfer, bit_ofs, &msg->c
+ 394              		.loc 3 96 25 view .LVU105
+ 395              	.LBE5:
+  86:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         *bit_ofs += 4;
+ 396              		.loc 3 86 9 is_stmt 1 view .LVU106
+ 397 004a 0092     		str	r2, [sp]
+ 398 004c 0023     		movs	r3, #0
+ 399              	.LVL34:
+  86:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         *bit_ofs += 4;
+ 400              		.loc 3 86 9 is_stmt 0 view .LVU107
+ 401 004e 0422     		movs	r2, #4
+ 402              	.LVL35:
+  86:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         *bit_ofs += 4;
+ 403              		.loc 3 86 9 view .LVU108
+ 404 0050 0968     		ldr	r1, [r1]
+ 405              	.LVL36:
+  86:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         *bit_ofs += 4;
+ 406              		.loc 3 86 9 view .LVU109
+ 407 0052 FFF7FEFF 		bl	canardDecodeScalar
+ 408              	.LVL37:
+  87:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     }
+ 409              		.loc 3 87 9 is_stmt 1 view .LVU110
+ 410 0056 2B68     		ldr	r3, [r5]
+  87:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     }
+ 411              		.loc 3 87 18 is_stmt 0 view .LVU111
+ 412 0058 0433     		adds	r3, r3, #4
+ 413 005a 2B60     		str	r3, [r5]
+  91:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         msg->commands.len = 0;
+ 414              		.loc 3 91 5 is_stmt 1 view .LVU112
+  98:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         }
+  99:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     } else {
+ 100:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #pragma GCC diagnostic push
+ 101:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #pragma GCC diagnostic ignored "-Wtype-limits"
+ 102:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         if (msg->commands.len > 15) {
+ 415              		.loc 3 102 9 view .LVU113
+ 416              		.loc 3 102 26 is_stmt 0 view .LVU114
+ 417 005c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 418              		.loc 3 102 12 view .LVU115
+ 419 005e 0F2B     		cmp	r3, #15
+ 420 0060 18D8     		bhi	.L20
+ 421              	.LBB6:
+ 103:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             return true; /* invalid value */
+ARM GAS  /tmp/ccubv1Cg.s 			page 12
+
+
+ 104:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         }
+ 105:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** #pragma GCC diagnostic pop
+ 106:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         for (size_t i=0; i < msg->commands.len; i++) {
+ 422              		.loc 3 106 21 view .LVU116
+ 423 0062 0027     		movs	r7, #0
+ 424              	.L15:
+ 425              	.LVL38:
+ 426              		.loc 3 106 28 is_stmt 1 discriminator 1 view .LVU117
+ 427              		.loc 3 106 43 is_stmt 0 discriminator 1 view .LVU118
+ 428 0064 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 429              		.loc 3 106 28 discriminator 1 view .LVU119
+ 430 0066 BB42     		cmp	r3, r7
+ 431 0068 12D9     		bls	.L23
+ 107:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             if (__uavcan_equipment_actuator_Command_decode(transfer, bit_ofs, &msg->commands.data[i
+ 432              		.loc 3 107 13 is_stmt 1 view .LVU120
+ 433              		.loc 3 107 17 is_stmt 0 view .LVU121
+ 434 006a 04EBC702 		add	r2, r4, r7, lsl #3
+ 435 006e 0023     		movs	r3, #0
+ 436 0070 0432     		adds	r2, r2, #4
+ 437 0072 2946     		mov	r1, r5
+ 438 0074 3046     		mov	r0, r6
+ 439 0076 FFF7FEFF 		bl	__uavcan_equipment_actuator_Command_decode
+ 440              	.LVL39:
+ 441              		.loc 3 107 16 discriminator 1 view .LVU122
+ 442 007a 0346     		mov	r3, r0
+ 443 007c 10B9     		cbnz	r0, .L14
+ 106:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             if (__uavcan_equipment_actuator_Command_decode(transfer, bit_ofs, &msg->commands.data[i
+ 444              		.loc 3 106 50 is_stmt 1 discriminator 2 view .LVU123
+ 445 007e 0137     		adds	r7, r7, #1
+ 446              	.LVL40:
+ 106:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             if (__uavcan_equipment_actuator_Command_decode(transfer, bit_ofs, &msg->commands.data[i
+ 447              		.loc 3 106 50 is_stmt 0 discriminator 2 view .LVU124
+ 448 0080 F0E7     		b	.L15
+ 449              	.LVL41:
+ 450              	.L16:
+ 106:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             if (__uavcan_equipment_actuator_Command_decode(transfer, bit_ofs, &msg->commands.data[i
+ 451              		.loc 3 106 50 discriminator 2 view .LVU125
+ 452              	.LBE6:
+ 453              	.LBB7:
+  96:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             msg->commands.len++;
+ 454              		.loc 3 96 142 is_stmt 1 discriminator 3 view .LVU126
+  96:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             msg->commands.len++;
+ 455              		.loc 3 96 149 is_stmt 0 discriminator 3 view .LVU127
+ 456 0082 4B46     		mov	r3, r9
+ 457              	.LVL42:
+ 458              	.L14:
+  96:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****             msg->commands.len++;
+ 459              		.loc 3 96 149 discriminator 3 view .LVU128
+ 460              	.LBE7:
+ 108:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         }
+ 109:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     }
+ 110:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** 
+ 111:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****     return false; /* success */
+ 112:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+ 461              		.loc 3 112 1 view .LVU129
+ 462 0084 1846     		mov	r0, r3
+ 463 0086 03B0     		add	sp, sp, #12
+ARM GAS  /tmp/ccubv1Cg.s 			page 13
+
+
+ 464              		.cfi_remember_state
+ 465              		.cfi_def_cfa_offset 28
+ 466              		@ sp needed
+ 467 0088 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 468              	.LVL43:
+ 469              	.L22:
+ 470              		.cfi_restore_state
+ 111:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+ 471              		.loc 3 111 12 view .LVU130
+ 472 008c 0023     		movs	r3, #0
+ 473              	.LVL44:
+ 111:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+ 474              		.loc 3 111 12 view .LVU131
+ 475 008e F9E7     		b	.L14
+ 476              	.LVL45:
+ 477              	.L23:
+ 111:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+ 478              		.loc 3 111 12 view .LVU132
+ 479 0090 4B46     		mov	r3, r9
+ 480              	.LBB8:
+ 481 0092 F7E7     		b	.L14
+ 482              	.LVL46:
+ 483              	.L20:
+ 111:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h **** }
+ 484              		.loc 3 111 12 view .LVU133
+ 485              	.LBE8:
+ 103:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h ****         }
+ 486              		.loc 3 103 20 view .LVU134
+ 487 0094 0123     		movs	r3, #1
+ 488 0096 F5E7     		b	.L14
+ 489              		.cfi_endproc
+ 490              	.LFE7:
+ 492              		.section	.text._uavcan_equipment_actuator_ArrayCommand_encode,"ax",%progbits
+ 493              		.align	1
+ 494              		.global	_uavcan_equipment_actuator_ArrayCommand_encode
+ 495              		.syntax unified
+ 496              		.thumb
+ 497              		.thumb_func
+ 499              	_uavcan_equipment_actuator_ArrayCommand_encode:
+ 500              	.LVL47:
+ 501              	.LFB8:
+   1:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #define CANARD_DSDLC_INTERNAL
+   2:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #include <uavcan.equipment.actuator.ArrayCommand.h>
+   3:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #include <string.h>
+   4:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** 
+   5:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #ifdef CANARD_DSDLC_TEST_BUILD
+   6:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #include <test_helpers.h>
+   7:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #endif
+   8:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** 
+   9:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** uint32_t _uavcan_equipment_actuator_ArrayCommand_encode(struct uavcan_equipment_actuator_ArrayComma
+  10:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #if CANARD_ENABLE_TAO_OPTION
+  11:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     , bool tao
+  12:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #endif
+  13:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** ) {
+ 502              		.loc 1 13 3 is_stmt 1 view -0
+ 503              		.cfi_startproc
+ 504              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  /tmp/ccubv1Cg.s 			page 14
+
+
+ 505              		@ frame_needed = 0, uses_anonymous_args = 0
+ 506              		.loc 1 13 3 is_stmt 0 view .LVU136
+ 507 0000 30B5     		push	{r4, r5, lr}
+ 508              		.cfi_def_cfa_offset 12
+ 509              		.cfi_offset 4, -12
+ 510              		.cfi_offset 5, -8
+ 511              		.cfi_offset 14, -4
+ 512 0002 83B0     		sub	sp, sp, #12
+ 513              		.cfi_def_cfa_offset 24
+ 514 0004 0546     		mov	r5, r0
+ 515 0006 0C46     		mov	r4, r1
+  14:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     uint32_t bit_ofs = 0;
+ 516              		.loc 1 14 5 is_stmt 1 view .LVU137
+ 517              		.loc 1 14 14 is_stmt 0 view .LVU138
+ 518 0008 0021     		movs	r1, #0
+ 519              	.LVL48:
+ 520              		.loc 1 14 14 view .LVU139
+ 521 000a 0191     		str	r1, [sp, #4]
+  15:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     memset(buffer, 0, UAVCAN_EQUIPMENT_ACTUATOR_ARRAYCOMMAND_MAX_SIZE);
+ 522              		.loc 1 15 5 is_stmt 1 view .LVU140
+ 523 000c 3D22     		movs	r2, #61
+ 524 000e 2046     		mov	r0, r4
+ 525              	.LVL49:
+ 526              		.loc 1 15 5 is_stmt 0 view .LVU141
+ 527 0010 FFF7FEFF 		bl	memset
+ 528              	.LVL50:
+  16:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     __uavcan_equipment_actuator_ArrayCommand_encode(buffer, &bit_ofs, msg,
+ 529              		.loc 1 16 5 is_stmt 1 view .LVU142
+ 530 0014 0123     		movs	r3, #1
+ 531 0016 2A46     		mov	r2, r5
+ 532 0018 01A9     		add	r1, sp, #4
+ 533 001a 2046     		mov	r0, r4
+ 534 001c FFF7FEFF 		bl	__uavcan_equipment_actuator_ArrayCommand_encode
+ 535              	.LVL51:
+  17:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #if CANARD_ENABLE_TAO_OPTION
+  18:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     tao
+  19:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #else
+  20:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     true
+  21:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #endif
+  22:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     );
+  23:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     return ((bit_ofs+7)/8);
+ 536              		.loc 1 23 5 view .LVU143
+ 537              		.loc 1 23 21 is_stmt 0 view .LVU144
+ 538 0020 0198     		ldr	r0, [sp, #4]
+ 539 0022 0730     		adds	r0, r0, #7
+  24:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** }
+ 540              		.loc 1 24 1 view .LVU145
+ 541 0024 C008     		lsrs	r0, r0, #3
+ 542 0026 03B0     		add	sp, sp, #12
+ 543              		.cfi_def_cfa_offset 12
+ 544              		@ sp needed
+ 545 0028 30BD     		pop	{r4, r5, pc}
+ 546              		.loc 1 24 1 view .LVU146
+ 547              		.cfi_endproc
+ 548              	.LFE8:
+ 550              		.section	.text._uavcan_equipment_actuator_ArrayCommand_decode,"ax",%progbits
+ 551              		.align	1
+ARM GAS  /tmp/ccubv1Cg.s 			page 15
+
+
+ 552              		.global	_uavcan_equipment_actuator_ArrayCommand_decode
+ 553              		.syntax unified
+ 554              		.thumb
+ 555              		.thumb_func
+ 557              	_uavcan_equipment_actuator_ArrayCommand_decode:
+ 558              	.LVL52:
+ 559              	.LFB9:
+  25:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** 
+  26:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** /*
+  27:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****   return true if the decode is invalid
+  28:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****  */
+  29:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** bool _uavcan_equipment_actuator_ArrayCommand_decode(const CanardRxTransfer* transfer, struct uavcan
+ 560              		.loc 1 29 139 is_stmt 1 view -0
+ 561              		.cfi_startproc
+ 562              		@ args = 0, pretend = 0, frame = 8
+ 563              		@ frame_needed = 0, uses_anonymous_args = 0
+ 564              		.loc 1 29 139 is_stmt 0 view .LVU148
+ 565 0000 10B5     		push	{r4, lr}
+ 566              		.cfi_def_cfa_offset 8
+ 567              		.cfi_offset 4, -8
+ 568              		.cfi_offset 14, -4
+ 569 0002 82B0     		sub	sp, sp, #8
+ 570              		.cfi_def_cfa_offset 16
+ 571 0004 0446     		mov	r4, r0
+ 572 0006 0A46     		mov	r2, r1
+  30:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #if CANARD_ENABLE_TAO_OPTION
+  31:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     if (transfer->tao && (transfer->payload_len > UAVCAN_EQUIPMENT_ACTUATOR_ARRAYCOMMAND_MAX_SIZE))
+  32:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****         return true; /* invalid payload length */
+  33:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     }
+  34:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #endif
+  35:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     uint32_t bit_ofs = 0;
+ 573              		.loc 1 35 5 is_stmt 1 view .LVU149
+ 574              		.loc 1 35 14 is_stmt 0 view .LVU150
+ 575 0008 0023     		movs	r3, #0
+ 576 000a 0193     		str	r3, [sp, #4]
+  36:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     if (__uavcan_equipment_actuator_ArrayCommand_decode(transfer, &bit_ofs, msg,
+ 577              		.loc 1 36 5 is_stmt 1 view .LVU151
+ 578              		.loc 1 36 9 is_stmt 0 view .LVU152
+ 579 000c 0123     		movs	r3, #1
+ 580 000e 01A9     		add	r1, sp, #4
+ 581              	.LVL53:
+ 582              		.loc 1 36 9 view .LVU153
+ 583 0010 FFF7FEFF 		bl	__uavcan_equipment_actuator_ArrayCommand_decode
+ 584              	.LVL54:
+ 585              		.loc 1 36 8 discriminator 1 view .LVU154
+ 586 0014 38B9     		cbnz	r0, .L27
+  37:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #if CANARD_ENABLE_TAO_OPTION
+  38:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     transfer->tao
+  39:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #else
+  40:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     true
+  41:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #endif
+  42:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     )) {
+  43:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****         return true; /* invalid payload */
+  44:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     }
+  45:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** 
+  46:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     const uint32_t byte_len = (bit_ofs+7U)/8U;
+ 587              		.loc 1 46 5 is_stmt 1 view .LVU155
+ARM GAS  /tmp/ccubv1Cg.s 			page 16
+
+
+ 588              		.loc 1 46 39 is_stmt 0 view .LVU156
+ 589 0016 019B     		ldr	r3, [sp, #4]
+ 590 0018 0733     		adds	r3, r3, #7
+ 591              	.LVL55:
+  47:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #if CANARD_ENABLE_TAO_OPTION
+  48:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     // if this could be CANFD then the dlc could indicating more bytes than
+  49:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     // we actually have
+  50:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     if (!transfer->tao) {
+  51:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****         return byte_len > transfer->payload_len;
+  52:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     }
+  53:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** #endif
+  54:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c ****     return byte_len != transfer->payload_len;
+ 592              		.loc 1 54 5 is_stmt 1 view .LVU157
+ 593              		.loc 1 54 32 is_stmt 0 view .LVU158
+ 594 001a A28A     		ldrh	r2, [r4, #20]
+ 595              		.loc 1 54 21 view .LVU159
+ 596 001c B2EBD30F 		cmp	r2, r3, lsr #3
+ 597 0020 14BF     		ite	ne
+ 598 0022 0120     		movne	r0, #1
+ 599 0024 0020     		moveq	r0, #0
+ 600              	.LVL56:
+ 601              	.L27:
+  55:My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c **** }
+ 602              		.loc 1 55 1 view .LVU160
+ 603 0026 02B0     		add	sp, sp, #8
+ 604              		.cfi_def_cfa_offset 8
+ 605              		@ sp needed
+ 606 0028 10BD     		pop	{r4, pc}
+ 607              		.loc 1 55 1 view .LVU161
+ 608              		.cfi_endproc
+ 609              	.LFE9:
+ 611              		.text
+ 612              	.Letext0:
+ 613              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 614              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 615              		.file 6 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 616              		.file 7 "My_Top/Drone_CAN/canard.h"
+ 617              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
+ 618              		.file 9 "<built-in>"
+ARM GAS  /tmp/ccubv1Cg.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uavcan.equipment.actuator.ArrayCommand.c
+     /tmp/ccubv1Cg.s:21     .text.__uavcan_equipment_actuator_Command_encode:00000000 $t
+     /tmp/ccubv1Cg.s:26     .text.__uavcan_equipment_actuator_Command_encode:00000000 __uavcan_equipment_actuator_Command_encode
+     /tmp/ccubv1Cg.s:109    .text.__uavcan_equipment_actuator_ArrayCommand_encode:00000000 $t
+     /tmp/ccubv1Cg.s:114    .text.__uavcan_equipment_actuator_ArrayCommand_encode:00000000 __uavcan_equipment_actuator_ArrayCommand_encode
+     /tmp/ccubv1Cg.s:205    .text.__uavcan_equipment_actuator_Command_decode:00000000 $t
+     /tmp/ccubv1Cg.s:210    .text.__uavcan_equipment_actuator_Command_decode:00000000 __uavcan_equipment_actuator_Command_decode
+     /tmp/ccubv1Cg.s:301    .text.__uavcan_equipment_actuator_ArrayCommand_decode:00000000 $t
+     /tmp/ccubv1Cg.s:306    .text.__uavcan_equipment_actuator_ArrayCommand_decode:00000000 __uavcan_equipment_actuator_ArrayCommand_decode
+     /tmp/ccubv1Cg.s:493    .text._uavcan_equipment_actuator_ArrayCommand_encode:00000000 $t
+     /tmp/ccubv1Cg.s:499    .text._uavcan_equipment_actuator_ArrayCommand_encode:00000000 _uavcan_equipment_actuator_ArrayCommand_encode
+     /tmp/ccubv1Cg.s:551    .text._uavcan_equipment_actuator_ArrayCommand_decode:00000000 $t
+     /tmp/ccubv1Cg.s:557    .text._uavcan_equipment_actuator_ArrayCommand_decode:00000000 _uavcan_equipment_actuator_ArrayCommand_decode
+
+UNDEFINED SYMBOLS
+canardEncodeScalar
+canardConvertNativeFloatToFloat16
+canardDecodeScalar
+canardConvertFloat16ToNativeFloat
+memset

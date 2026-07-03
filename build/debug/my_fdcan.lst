@@ -1,0 +1,696 @@
+ARM GAS  /tmp/ccl08KRU.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"my_fdcan.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/Drone_CAN/my_fdcan.cpp"
+  20              		.align	1
+  21              		.global	_Z15My_FilterConfigv
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_Z15My_FilterConfigv:
+  27              	.LFB333:
+   1:My_Top/Drone_CAN/my_fdcan.cpp **** #include "my_fdcan.hpp"
+   2:My_Top/Drone_CAN/my_fdcan.cpp **** 
+   3:My_Top/Drone_CAN/my_fdcan.cpp **** #include "FreeRTOS.h"
+   4:My_Top/Drone_CAN/my_fdcan.cpp **** #include "task.h"
+   5:My_Top/Drone_CAN/my_fdcan.cpp **** 
+   6:My_Top/Drone_CAN/my_fdcan.cpp **** 
+   7:My_Top/Drone_CAN/my_fdcan.cpp **** RxMsg g_rx_msg; //中断接收的消息
+   8:My_Top/Drone_CAN/my_fdcan.cpp **** RxMsg g_rx_msg_poll; //轮询接收的消息
+   9:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  10:My_Top/Drone_CAN/my_fdcan.cpp **** void My_FilterConfig(void)// 配置CAN过滤器
+  11:My_Top/Drone_CAN/my_fdcan.cpp **** {
+  28              		.loc 1 11 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 24
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 00B5     		push	{lr}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 87B0     		sub	sp, sp, #28
+  36              		.cfi_def_cfa_offset 32
+  12:My_Top/Drone_CAN/my_fdcan.cpp ****     FDCAN_FilterTypeDef sFilterConfig;
+  37              		.loc 1 12 5 view .LVU1
+  13:My_Top/Drone_CAN/my_fdcan.cpp ****     // --- 标准 ID 过滤器：全接收 → FIFO0
+  14:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.IdType = FDCAN_STANDARD_ID; //标准类型ID/扩展类型ID
+  38              		.loc 1 14 5 view .LVU2
+  39              		.loc 1 14 26 is_stmt 0 view .LVU3
+  40 0004 0023     		movs	r3, #0
+  41 0006 0093     		str	r3, [sp]
+  15:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterIndex = 0; //过滤器索引号（0-15）
+  42              		.loc 1 15 5 is_stmt 1 view .LVU4
+  43              		.loc 1 15 31 is_stmt 0 view .LVU5
+ARM GAS  /tmp/ccl08KRU.s 			page 2
+
+
+  44 0008 0193     		str	r3, [sp, #4]
+  16:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterType = FDCAN_FILTER_MASK; //过滤器类型选择屏蔽位模式 
+  45              		.loc 1 16 5 is_stmt 1 view .LVU6
+  46              		.loc 1 16 30 is_stmt 0 view .LVU7
+  47 000a 0222     		movs	r2, #2
+  48 000c 0292     		str	r2, [sp, #8]
+  17:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0; //过滤器配置，将匹配到的报文
+  49              		.loc 1 17 5 is_stmt 1 view .LVU8
+  50              		.loc 1 17 32 is_stmt 0 view .LVU9
+  51 000e 0122     		movs	r2, #1
+  52 0010 0392     		str	r2, [sp, #12]
+  18:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterID1 = 0x0000; // 要匹配的目标 ID    
+  53              		.loc 1 18 5 is_stmt 1 view .LVU10
+  54              		.loc 1 18 29 is_stmt 0 view .LVU11
+  55 0012 0493     		str	r3, [sp, #16]
+  19:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterID2 = 0x0000; // 与哪些位参与比较
+  56              		.loc 1 19 5 is_stmt 1 view .LVU12
+  57              		.loc 1 19 29 is_stmt 0 view .LVU13
+  58 0014 0593     		str	r3, [sp, #20]
+  20:My_Top/Drone_CAN/my_fdcan.cpp ****     
+  21:My_Top/Drone_CAN/my_fdcan.cpp ****     if (HAL_FDCAN_ConfigFilter(&hfdcan2, &sFilterConfig) != HAL_OK) // 配置标准帧的FDCAN过�
+  59              		.loc 1 21 5 is_stmt 1 view .LVU14
+  60              		.loc 1 21 31 is_stmt 0 view .LVU15
+  61 0016 6946     		mov	r1, sp
+  62 0018 1048     		ldr	r0, .L7
+  63 001a FFF7FEFF 		bl	HAL_FDCAN_ConfigFilter
+  64              	.LVL0:
+  65              		.loc 1 21 5 discriminator 1 view .LVU16
+  66 001e B0B9     		cbnz	r0, .L5
+  67              	.L2:
+  22:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+  23:My_Top/Drone_CAN/my_fdcan.cpp ****         Error_Handler();
+  24:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+  25:My_Top/Drone_CAN/my_fdcan.cpp ****     // --- 扩展 ID 过滤器：全接收 → FIFO1 ---
+  26:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.IdType = FDCAN_EXTENDED_ID; //标准类型ID/扩展类型ID
+  68              		.loc 1 26 5 is_stmt 1 view .LVU17
+  69              		.loc 1 26 26 is_stmt 0 view .LVU18
+  70 0020 4FF08043 		mov	r3, #1073741824
+  71 0024 0093     		str	r3, [sp]
+  27:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterIndex = 0; //过滤器索引号（0-15）
+  72              		.loc 1 27 5 is_stmt 1 view .LVU19
+  73              		.loc 1 27 31 is_stmt 0 view .LVU20
+  74 0026 0023     		movs	r3, #0
+  75 0028 0193     		str	r3, [sp, #4]
+  28:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterType = FDCAN_FILTER_RANGE; //过滤器类型选择筛选模式 从ID1到ID2
+  76              		.loc 1 28 5 is_stmt 1 view .LVU21
+  77              		.loc 1 28 30 is_stmt 0 view .LVU22
+  78 002a 0293     		str	r3, [sp, #8]
+  29:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO1; //过滤器配置，将匹配到的报文
+  79              		.loc 1 29 5 is_stmt 1 view .LVU23
+  80              		.loc 1 29 32 is_stmt 0 view .LVU24
+  81 002c 0222     		movs	r2, #2
+  82 002e 0392     		str	r2, [sp, #12]
+  30:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterID1 = 0x00000000; // 要匹配的目标 ID    
+  83              		.loc 1 30 5 is_stmt 1 view .LVU25
+  84              		.loc 1 30 29 is_stmt 0 view .LVU26
+  85 0030 0493     		str	r3, [sp, #16]
+ARM GAS  /tmp/ccl08KRU.s 			page 3
+
+
+  31:My_Top/Drone_CAN/my_fdcan.cpp ****     sFilterConfig.FilterID2 = 0x1fffffff; // 与哪些位参与比较
+  86              		.loc 1 31 5 is_stmt 1 view .LVU27
+  87              		.loc 1 31 29 is_stmt 0 view .LVU28
+  88 0032 6FF06043 		mvn	r3, #-536870912
+  89 0036 0593     		str	r3, [sp, #20]
+  32:My_Top/Drone_CAN/my_fdcan.cpp ****     
+  33:My_Top/Drone_CAN/my_fdcan.cpp ****     if (HAL_FDCAN_ConfigFilter(&hfdcan2, &sFilterConfig) != HAL_OK) // 配置扩展帧的FDCAN过�
+  90              		.loc 1 33 5 is_stmt 1 view .LVU29
+  91              		.loc 1 33 31 is_stmt 0 view .LVU30
+  92 0038 6946     		mov	r1, sp
+  93 003a 0848     		ldr	r0, .L7
+  94 003c FFF7FEFF 		bl	HAL_FDCAN_ConfigFilter
+  95              	.LVL1:
+  96              		.loc 1 33 5 discriminator 1 view .LVU31
+  97 0040 40B9     		cbnz	r0, .L6
+  98              	.L3:
+  34:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+  35:My_Top/Drone_CAN/my_fdcan.cpp ****         Error_Handler();
+  36:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+  37:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  38:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  39:My_Top/Drone_CAN/my_fdcan.cpp ****     HAL_FDCAN_Start(&hfdcan2);// 启动FDCAN
+  99              		.loc 1 39 5 is_stmt 1 view .LVU32
+ 100              		.loc 1 39 20 is_stmt 0 view .LVU33
+ 101 0042 0648     		ldr	r0, .L7
+ 102 0044 FFF7FEFF 		bl	HAL_FDCAN_Start
+ 103              	.LVL2:
+  40:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  41:My_Top/Drone_CAN/my_fdcan.cpp ****     #if CAN_IT_Get_Data == 1 // 中断接收模式
+  42:My_Top/Drone_CAN/my_fdcan.cpp ****     if (HAL_FDCAN_ActivateNotification(&hfdcan2, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
+  43:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+  44:My_Top/Drone_CAN/my_fdcan.cpp ****         // 启用FDCAN接收中断fifo0新消息中断
+  45:My_Top/Drone_CAN/my_fdcan.cpp ****         Error_Handler();
+  46:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+  47:My_Top/Drone_CAN/my_fdcan.cpp ****     if (HAL_FDCAN_ActivateNotification(&hfdcan2, FDCAN_IT_RX_FIFO1_NEW_MESSAGE, 0) != HAL_OK)
+  48:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+  49:My_Top/Drone_CAN/my_fdcan.cpp ****         // 启用FDCAN接收中断fifo1新消息中断
+  50:My_Top/Drone_CAN/my_fdcan.cpp ****         Error_Handler();
+  51:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+  52:My_Top/Drone_CAN/my_fdcan.cpp ****     #endif
+  53:My_Top/Drone_CAN/my_fdcan.cpp **** }
+ 104              		.loc 1 53 1 view .LVU34
+ 105 0048 07B0     		add	sp, sp, #28
+ 106              		.cfi_remember_state
+ 107              		.cfi_def_cfa_offset 4
+ 108              		@ sp needed
+ 109 004a 5DF804FB 		ldr	pc, [sp], #4
+ 110              	.L5:
+ 111              		.cfi_restore_state
+  23:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+ 112              		.loc 1 23 9 is_stmt 1 view .LVU35
+  23:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+ 113              		.loc 1 23 22 is_stmt 0 view .LVU36
+ 114 004e FFF7FEFF 		bl	Error_Handler
+ 115              	.LVL3:
+ 116 0052 E5E7     		b	.L2
+ 117              	.L6:
+ARM GAS  /tmp/ccl08KRU.s 			page 4
+
+
+  35:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+ 118              		.loc 1 35 9 is_stmt 1 view .LVU37
+  35:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+ 119              		.loc 1 35 22 is_stmt 0 view .LVU38
+ 120 0054 FFF7FEFF 		bl	Error_Handler
+ 121              	.LVL4:
+ 122 0058 F3E7     		b	.L3
+ 123              	.L8:
+ 124 005a 00BF     		.align	2
+ 125              	.L7:
+ 126 005c 00000000 		.word	hfdcan2
+ 127              		.cfi_endproc
+ 128              	.LFE333:
+ 130              		.align	1
+ 131              		.global	_Z11My_Can_Initv
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 136              	_Z11My_Can_Initv:
+ 137              	.LFB334:
+  54:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  55:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  56:My_Top/Drone_CAN/my_fdcan.cpp **** void My_Can_Init(void) // 初始化CAN
+  57:My_Top/Drone_CAN/my_fdcan.cpp **** {
+ 138              		.loc 1 57 1 is_stmt 1 view -0
+ 139              		.cfi_startproc
+ 140              		@ args = 0, pretend = 0, frame = 0
+ 141              		@ frame_needed = 0, uses_anonymous_args = 0
+ 142 0060 08B5     		push	{r3, lr}
+ 143              		.cfi_def_cfa_offset 8
+ 144              		.cfi_offset 3, -8
+ 145              		.cfi_offset 14, -4
+  58:My_Top/Drone_CAN/my_fdcan.cpp ****     My_FilterConfig(); // 配置CAN过滤器
+ 146              		.loc 1 58 5 view .LVU40
+ 147              		.loc 1 58 20 is_stmt 0 view .LVU41
+ 148 0062 FFF7FEFF 		bl	_Z15My_FilterConfigv
+ 149              	.LVL5:
+  59:My_Top/Drone_CAN/my_fdcan.cpp **** }
+ 150              		.loc 1 59 1 view .LVU42
+ 151 0066 08BD     		pop	{r3, pc}
+ 152              		.cfi_endproc
+ 153              	.LFE334:
+ 155              		.align	1
+ 156              		.global	_Z11My_Can_SendmPhhb
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	_Z11My_Can_SendmPhhb:
+ 162              	.LVL6:
+ 163              	.LFB335:
+  60:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  61:My_Top/Drone_CAN/my_fdcan.cpp **** bool My_Can_Send(uint32_t can_id, uint8_t *data, uint8_t len, bool IDE) // 原始发送CAN报文
+  62:My_Top/Drone_CAN/my_fdcan.cpp **** {
+ 164              		.loc 1 62 1 is_stmt 1 view -0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 40
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccl08KRU.s 			page 5
+
+
+ 168              		.loc 1 62 1 is_stmt 0 view .LVU44
+ 169 0068 70B5     		push	{r4, r5, r6, lr}
+ 170              		.cfi_def_cfa_offset 16
+ 171              		.cfi_offset 4, -16
+ 172              		.cfi_offset 5, -12
+ 173              		.cfi_offset 6, -8
+ 174              		.cfi_offset 14, -4
+ 175 006a 8AB0     		sub	sp, sp, #40
+ 176              		.cfi_def_cfa_offset 56
+ 177 006c 0646     		mov	r6, r0
+ 178 006e 0D46     		mov	r5, r1
+ 179 0070 1C46     		mov	r4, r3
+  63:My_Top/Drone_CAN/my_fdcan.cpp ****     HAL_StatusTypeDef status = HAL_ERROR;
+ 180              		.loc 1 63 5 is_stmt 1 view .LVU45
+ 181              	.LVL7:
+  64:My_Top/Drone_CAN/my_fdcan.cpp ****     FDCAN_TxHeaderTypeDef tx = {0};
+ 182              		.loc 1 64 5 view .LVU46
+ 183              		.loc 1 64 27 is_stmt 0 view .LVU47
+ 184 0072 2422     		movs	r2, #36
+ 185              	.LVL8:
+ 186              		.loc 1 64 27 view .LVU48
+ 187 0074 0021     		movs	r1, #0
+ 188              	.LVL9:
+ 189              		.loc 1 64 27 view .LVU49
+ 190 0076 01A8     		add	r0, sp, #4
+ 191              	.LVL10:
+ 192              		.loc 1 64 27 view .LVU50
+ 193 0078 FFF7FEFF 		bl	memset
+ 194              	.LVL11:
+  65:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.Identifier           = can_id;
+ 195              		.loc 1 65 5 is_stmt 1 view .LVU51
+ 196              		.loc 1 65 29 is_stmt 0 view .LVU52
+ 197 007c 0196     		str	r6, [sp, #4]
+  66:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.IdType               = IDE ? FDCAN_EXTENDED_ID : FDCAN_STANDARD_ID; //true是扩展ID false�
+ 198              		.loc 1 66 5 is_stmt 1 view .LVU53
+ 199              		.loc 1 66 35 is_stmt 0 view .LVU54
+ 200 007e 94B1     		cbz	r4, .L16
+ 201              		.loc 1 66 35 discriminator 1 view .LVU55
+ 202 0080 4FF08043 		mov	r3, #1073741824
+ 203              	.L12:
+ 204              		.loc 1 66 29 discriminator 4 view .LVU56
+ 205 0084 0293     		str	r3, [sp, #8]
+  67:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.TxFrameType          = FDCAN_DATA_FRAME;// 发数据帧
+ 206              		.loc 1 67 5 is_stmt 1 view .LVU57
+  68:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.DataLength           = FDCAN_DLC_BYTES_8;      // 设置每一帧发送8个字节 经典模�
+ 207              		.loc 1 68 5 view .LVU58
+ 208              		.loc 1 68 29 is_stmt 0 view .LVU59
+ 209 0086 0823     		movs	r3, #8
+ 210 0088 0493     		str	r3, [sp, #16]
+  69:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.ErrorStateIndicator  = FDCAN_ESI_ACTIVE; // 错误状态
+ 211              		.loc 1 69 5 is_stmt 1 view .LVU60
+  70:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.BitRateSwitch        = FDCAN_BRS_OFF; // 是否启用切换比特率速率
+ 212              		.loc 1 70 5 view .LVU61
+  71:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.FDFormat             = FDCAN_CLASSIC_CAN;  // 用经典CAN / CAN-FD 前提配置好
+ 213              		.loc 1 71 5 view .LVU62
+  72:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.TxEventFifoControl   = FDCAN_NO_TX_EVENTS; // 发完要不要记录
+ 214              		.loc 1 72 5 view .LVU63
+ARM GAS  /tmp/ccl08KRU.s 			page 6
+
+
+  73:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.MessageMarker        = 0; // 给消息打个标签
+ 215              		.loc 1 73 5 view .LVU64
+  74:My_Top/Drone_CAN/my_fdcan.cpp ****     // 最多重试 10 次
+  75:My_Top/Drone_CAN/my_fdcan.cpp ****     for (int i = 0; i < 10; i++)
+ 216              		.loc 1 75 5 view .LVU65
+ 217              	.LVL12:
+ 218              	.LBB2:
+ 219              		.loc 1 75 14 is_stmt 0 view .LVU66
+ 220 008a 0024     		movs	r4, #0
+ 221              	.LVL13:
+ 222              	.L13:
+ 223              		.loc 1 75 23 is_stmt 1 discriminator 1 view .LVU67
+ 224 008c 092C     		cmp	r4, #9
+ 225 008e 0CDC     		bgt	.L19
+  76:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+  77:My_Top/Drone_CAN/my_fdcan.cpp ****         status = HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &tx, data);
+ 226              		.loc 1 77 9 view .LVU68
+ 227              		.loc 1 77 47 is_stmt 0 view .LVU69
+ 228 0090 2A46     		mov	r2, r5
+ 229 0092 01A9     		add	r1, sp, #4
+ 230 0094 0748     		ldr	r0, .L20
+ 231 0096 FFF7FEFF 		bl	HAL_FDCAN_AddMessageToTxFifoQ
+ 232              	.LVL14:
+  78:My_Top/Drone_CAN/my_fdcan.cpp ****         if (status == HAL_OK) return true;  // 发送成功
+ 233              		.loc 1 78 9 is_stmt 1 view .LVU70
+ 234 009a 48B1     		cbz	r0, .L17
+  79:My_Top/Drone_CAN/my_fdcan.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));  // 延时 1 毫秒，等待邮箱释放
+ 235              		.loc 1 79 9 view .LVU71
+ 236              		.loc 1 79 19 is_stmt 0 view .LVU72
+ 237 009c 0120     		movs	r0, #1
+ 238              	.LVL15:
+ 239              		.loc 1 79 19 view .LVU73
+ 240 009e FFF7FEFF 		bl	vTaskDelay
+ 241              	.LVL16:
+  75:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+ 242              		.loc 1 75 5 is_stmt 1 discriminator 2 view .LVU74
+ 243 00a2 0134     		adds	r4, r4, #1
+ 244              	.LVL17:
+  75:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+ 245              		.loc 1 75 5 is_stmt 0 discriminator 2 view .LVU75
+ 246 00a4 F2E7     		b	.L13
+ 247              	.LVL18:
+ 248              	.L16:
+  75:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+ 249              		.loc 1 75 5 discriminator 2 view .LVU76
+ 250              	.LBE2:
+  66:My_Top/Drone_CAN/my_fdcan.cpp ****     tx.TxFrameType          = FDCAN_DATA_FRAME;// 发数据帧
+ 251              		.loc 1 66 35 discriminator 2 view .LVU77
+ 252 00a6 0023     		movs	r3, #0
+ 253 00a8 ECE7     		b	.L12
+ 254              	.LVL19:
+ 255              	.L19:
+  80:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+  81:My_Top/Drone_CAN/my_fdcan.cpp ****     return false;  // 超时失败
+ 256              		.loc 1 81 12 view .LVU78
+ 257 00aa 0020     		movs	r0, #0
+ 258              	.L14:
+ARM GAS  /tmp/ccl08KRU.s 			page 7
+
+
+  82:My_Top/Drone_CAN/my_fdcan.cpp **** }
+ 259              		.loc 1 82 1 view .LVU79
+ 260 00ac 0AB0     		add	sp, sp, #40
+ 261              		.cfi_remember_state
+ 262              		.cfi_def_cfa_offset 16
+ 263              		@ sp needed
+ 264 00ae 70BD     		pop	{r4, r5, r6, pc}
+ 265              	.LVL20:
+ 266              	.L17:
+ 267              		.cfi_restore_state
+ 268              	.LBB3:
+  78:My_Top/Drone_CAN/my_fdcan.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));  // 延时 1 毫秒，等待邮箱释放
+ 269              		.loc 1 78 38 discriminator 1 view .LVU80
+ 270 00b0 0120     		movs	r0, #1
+ 271              	.LVL21:
+  78:My_Top/Drone_CAN/my_fdcan.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));  // 延时 1 毫秒，等待邮箱释放
+ 272              		.loc 1 78 38 discriminator 1 view .LVU81
+ 273 00b2 FBE7     		b	.L14
+ 274              	.L21:
+ 275              		.align	2
+ 276              	.L20:
+ 277 00b4 00000000 		.word	hfdcan2
+ 278              	.LBE3:
+ 279              		.cfi_endproc
+ 280              	.LFE335:
+ 282              		.align	1
+ 283              		.global	_Z11My_CAN_PollP5RxMsg
+ 284              		.syntax unified
+ 285              		.thumb
+ 286              		.thumb_func
+ 288              	_Z11My_CAN_PollP5RxMsg:
+ 289              	.LVL22:
+ 290              	.LFB336:
+  83:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  84:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  85:My_Top/Drone_CAN/my_fdcan.cpp **** #if CAN_IT_Get_Data == 1 // 中断接收模式
+  86:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  87:My_Top/Drone_CAN/my_fdcan.cpp **** // ===== 接收回调（共用逻辑）=====
+  88:My_Top/Drone_CAN/my_fdcan.cpp **** static void CAN_StoreMsg(FDCAN_HandleTypeDef *hfdcan, uint32_t fifo, uint8_t ide)
+  89:My_Top/Drone_CAN/my_fdcan.cpp **** {
+  90:My_Top/Drone_CAN/my_fdcan.cpp ****     FDCAN_RxHeaderTypeDef rx;
+  91:My_Top/Drone_CAN/my_fdcan.cpp ****     if (HAL_FDCAN_GetRxMessage(hfdcan, fifo, &rx, g_rx_msg.data) != HAL_OK)
+  92:My_Top/Drone_CAN/my_fdcan.cpp ****         return;
+  93:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  94:My_Top/Drone_CAN/my_fdcan.cpp ****     g_rx_msg.can_id = rx.Identifier;
+  95:My_Top/Drone_CAN/my_fdcan.cpp ****     g_rx_msg.len    = rx.DataLength;
+  96:My_Top/Drone_CAN/my_fdcan.cpp ****     g_rx_msg.ide    = ide;
+  97:My_Top/Drone_CAN/my_fdcan.cpp **** }
+  98:My_Top/Drone_CAN/my_fdcan.cpp **** 
+  99:My_Top/Drone_CAN/my_fdcan.cpp **** void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t it) //中断收FOFO0
+ 100:My_Top/Drone_CAN/my_fdcan.cpp **** {
+ 101:My_Top/Drone_CAN/my_fdcan.cpp ****     if (hfdcan->Instance == FDCAN2 && (it & FDCAN_IT_RX_FIFO0_NEW_MESSAGE))
+ 102:My_Top/Drone_CAN/my_fdcan.cpp ****         CAN_StoreMsg(hfdcan, FDCAN_RX_FIFO0, 0);   // 标准 ID
+ 103:My_Top/Drone_CAN/my_fdcan.cpp **** }
+ 104:My_Top/Drone_CAN/my_fdcan.cpp **** 
+ 105:My_Top/Drone_CAN/my_fdcan.cpp **** void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t it) //中断收FOFO1
+ 106:My_Top/Drone_CAN/my_fdcan.cpp **** {
+ARM GAS  /tmp/ccl08KRU.s 			page 8
+
+
+ 107:My_Top/Drone_CAN/my_fdcan.cpp ****     if (hfdcan->Instance == FDCAN2 && (it & FDCAN_IT_RX_FIFO1_NEW_MESSAGE))
+ 108:My_Top/Drone_CAN/my_fdcan.cpp ****         CAN_StoreMsg(hfdcan, FDCAN_RX_FIFO1, 1);   // 扩展 ID
+ 109:My_Top/Drone_CAN/my_fdcan.cpp **** }
+ 110:My_Top/Drone_CAN/my_fdcan.cpp **** 
+ 111:My_Top/Drone_CAN/my_fdcan.cpp **** 
+ 112:My_Top/Drone_CAN/my_fdcan.cpp **** #elif CAN_IT_Get_Data == 0 // 轮询接收模式
+ 113:My_Top/Drone_CAN/my_fdcan.cpp **** 
+ 114:My_Top/Drone_CAN/my_fdcan.cpp **** bool My_CAN_Poll(RxMsg *msg) // 轮询接收CAN报文
+ 115:My_Top/Drone_CAN/my_fdcan.cpp **** {
+ 291              		.loc 1 115 1 is_stmt 1 view -0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 40
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295              		.loc 1 115 1 is_stmt 0 view .LVU83
+ 296 00b8 10B5     		push	{r4, lr}
+ 297              		.cfi_def_cfa_offset 8
+ 298              		.cfi_offset 4, -8
+ 299              		.cfi_offset 14, -4
+ 300 00ba 8AB0     		sub	sp, sp, #40
+ 301              		.cfi_def_cfa_offset 48
+ 302 00bc 0446     		mov	r4, r0
+ 116:My_Top/Drone_CAN/my_fdcan.cpp ****     // 先查 FIFO0
+ 117:My_Top/Drone_CAN/my_fdcan.cpp ****     if (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan2, FDCAN_RX_FIFO0) > 0)
+ 303              		.loc 1 117 5 is_stmt 1 view .LVU84
+ 304              	.LBB4:
+ 305              		.loc 1 117 37 is_stmt 0 view .LVU85
+ 306 00be 4021     		movs	r1, #64
+ 307 00c0 1A48     		ldr	r0, .L32
+ 308              	.LVL23:
+ 309              		.loc 1 117 37 view .LVU86
+ 310 00c2 FFF7FEFF 		bl	HAL_FDCAN_GetRxFifoFillLevel
+ 311              	.LVL24:
+ 312              		.loc 1 117 5 discriminator 1 view .LVU87
+ 313 00c6 30B1     		cbz	r0, .L23
+ 314              	.LBB5:
+ 118:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+ 119:My_Top/Drone_CAN/my_fdcan.cpp ****         FDCAN_RxHeaderTypeDef rx;
+ 315              		.loc 1 119 9 is_stmt 1 view .LVU88
+ 120:My_Top/Drone_CAN/my_fdcan.cpp ****         if (HAL_FDCAN_GetRxMessage(&hfdcan2, FDCAN_RX_FIFO0, &rx, msg->data) == HAL_OK)
+ 316              		.loc 1 120 9 view .LVU89
+ 317              		.loc 1 120 35 is_stmt 0 view .LVU90
+ 318 00c8 231D     		adds	r3, r4, #4
+ 319 00ca 6A46     		mov	r2, sp
+ 320 00cc 4021     		movs	r1, #64
+ 321 00ce 1748     		ldr	r0, .L32
+ 322 00d0 FFF7FEFF 		bl	HAL_FDCAN_GetRxMessage
+ 323              	.LVL25:
+ 324              		.loc 1 120 9 discriminator 1 view .LVU91
+ 325 00d4 38B1     		cbz	r0, .L29
+ 326              	.L23:
+ 327              	.LBE5:
+ 328              	.LBE4:
+ 121:My_Top/Drone_CAN/my_fdcan.cpp ****         {
+ 122:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->can_id = rx.Identifier;
+ 123:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 124:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ 125:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ARM GAS  /tmp/ccl08KRU.s 			page 9
+
+
+ 126:My_Top/Drone_CAN/my_fdcan.cpp ****         }
+ 127:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+ 128:My_Top/Drone_CAN/my_fdcan.cpp ****     // 再查 FIFO1
+ 129:My_Top/Drone_CAN/my_fdcan.cpp ****     if (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan2, FDCAN_RX_FIFO1) > 0)
+ 329              		.loc 1 129 5 is_stmt 1 view .LVU92
+ 330              	.LBB7:
+ 331              		.loc 1 129 37 is_stmt 0 view .LVU93
+ 332 00d6 4121     		movs	r1, #65
+ 333 00d8 1448     		ldr	r0, .L32
+ 334 00da FFF7FEFF 		bl	HAL_FDCAN_GetRxFifoFillLevel
+ 335              	.LVL26:
+ 336              		.loc 1 129 5 discriminator 1 view .LVU94
+ 337 00de 78B9     		cbnz	r0, .L30
+ 338              	.LBE7:
+ 130:My_Top/Drone_CAN/my_fdcan.cpp ****     {
+ 131:My_Top/Drone_CAN/my_fdcan.cpp ****         FDCAN_RxHeaderTypeDef rx;
+ 132:My_Top/Drone_CAN/my_fdcan.cpp ****         if (HAL_FDCAN_GetRxMessage(&hfdcan2, FDCAN_RX_FIFO1, &rx, msg->data) == HAL_OK)
+ 133:My_Top/Drone_CAN/my_fdcan.cpp ****         {
+ 134:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->can_id = rx.Identifier;
+ 135:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 136:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ 137:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ 138:My_Top/Drone_CAN/my_fdcan.cpp ****         }
+ 139:My_Top/Drone_CAN/my_fdcan.cpp ****     }
+ 140:My_Top/Drone_CAN/my_fdcan.cpp ****     return false;
+ 339              		.loc 1 140 12 view .LVU95
+ 340 00e0 0020     		movs	r0, #0
+ 341              	.L25:
+ 141:My_Top/Drone_CAN/my_fdcan.cpp **** }
+ 342              		.loc 1 141 1 view .LVU96
+ 343 00e2 0AB0     		add	sp, sp, #40
+ 344              		.cfi_remember_state
+ 345              		.cfi_def_cfa_offset 8
+ 346              		@ sp needed
+ 347 00e4 10BD     		pop	{r4, pc}
+ 348              	.LVL27:
+ 349              	.L29:
+ 350              		.cfi_restore_state
+ 351              	.LBB10:
+ 352              	.LBB6:
+ 122:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 353              		.loc 1 122 13 is_stmt 1 view .LVU97
+ 122:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 354              		.loc 1 122 30 is_stmt 0 view .LVU98
+ 355 00e6 009B     		ldr	r3, [sp]
+ 122:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 356              		.loc 1 122 25 view .LVU99
+ 357 00e8 2360     		str	r3, [r4]
+ 123:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ 358              		.loc 1 123 13 is_stmt 1 view .LVU100
+ 123:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ 359              		.loc 1 123 30 is_stmt 0 view .LVU101
+ 360 00ea 039B     		ldr	r3, [sp, #12]
+ 123:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ 361              		.loc 1 123 25 view .LVU102
+ 362 00ec 2373     		strb	r3, [r4, #12]
+ 124:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ARM GAS  /tmp/ccl08KRU.s 			page 10
+
+
+ 363              		.loc 1 124 13 is_stmt 1 view .LVU103
+ 124:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ 364              		.loc 1 124 38 is_stmt 0 view .LVU104
+ 365 00ee 019B     		ldr	r3, [sp, #4]
+ 366 00f0 B3F1804F 		cmp	r3, #1073741824
+ 367 00f4 14BF     		ite	ne
+ 368 00f6 0023     		movne	r3, #0
+ 369 00f8 0123     		moveq	r3, #1
+ 124:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ 370              		.loc 1 124 25 view .LVU105
+ 371 00fa 6373     		strb	r3, [r4, #13]
+ 125:My_Top/Drone_CAN/my_fdcan.cpp ****         }
+ 372              		.loc 1 125 13 is_stmt 1 view .LVU106
+ 125:My_Top/Drone_CAN/my_fdcan.cpp ****         }
+ 373              		.loc 1 125 20 is_stmt 0 view .LVU107
+ 374 00fc 0120     		movs	r0, #1
+ 375 00fe F0E7     		b	.L25
+ 376              	.L30:
+ 125:My_Top/Drone_CAN/my_fdcan.cpp ****         }
+ 377              		.loc 1 125 20 view .LVU108
+ 378              	.LBE6:
+ 379              	.LBE10:
+ 380              	.LBB11:
+ 381              	.LBB8:
+ 131:My_Top/Drone_CAN/my_fdcan.cpp ****         if (HAL_FDCAN_GetRxMessage(&hfdcan2, FDCAN_RX_FIFO1, &rx, msg->data) == HAL_OK)
+ 382              		.loc 1 131 9 is_stmt 1 view .LVU109
+ 132:My_Top/Drone_CAN/my_fdcan.cpp ****         {
+ 383              		.loc 1 132 9 view .LVU110
+ 132:My_Top/Drone_CAN/my_fdcan.cpp ****         {
+ 384              		.loc 1 132 35 is_stmt 0 view .LVU111
+ 385 0100 231D     		adds	r3, r4, #4
+ 386 0102 6A46     		mov	r2, sp
+ 387 0104 4121     		movs	r1, #65
+ 388 0106 0948     		ldr	r0, .L32
+ 389 0108 FFF7FEFF 		bl	HAL_FDCAN_GetRxMessage
+ 390              	.LVL28:
+ 132:My_Top/Drone_CAN/my_fdcan.cpp ****         {
+ 391              		.loc 1 132 9 discriminator 1 view .LVU112
+ 392 010c 08B1     		cbz	r0, .L31
+ 393              	.LBE8:
+ 394              	.LBE11:
+ 140:My_Top/Drone_CAN/my_fdcan.cpp **** }
+ 395              		.loc 1 140 12 view .LVU113
+ 396 010e 0020     		movs	r0, #0
+ 397              	.LBB12:
+ 398 0110 E7E7     		b	.L25
+ 399              	.L31:
+ 400              	.LBB9:
+ 134:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 401              		.loc 1 134 13 is_stmt 1 view .LVU114
+ 134:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 402              		.loc 1 134 30 is_stmt 0 view .LVU115
+ 403 0112 009B     		ldr	r3, [sp]
+ 134:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->len    = rx.DataLength;
+ 404              		.loc 1 134 25 view .LVU116
+ 405 0114 2360     		str	r3, [r4]
+ 135:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ARM GAS  /tmp/ccl08KRU.s 			page 11
+
+
+ 406              		.loc 1 135 13 is_stmt 1 view .LVU117
+ 135:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ 407              		.loc 1 135 30 is_stmt 0 view .LVU118
+ 408 0116 039B     		ldr	r3, [sp, #12]
+ 135:My_Top/Drone_CAN/my_fdcan.cpp ****             msg->ide    = (rx.IdType == FDCAN_EXTENDED_ID);
+ 409              		.loc 1 135 25 view .LVU119
+ 410 0118 2373     		strb	r3, [r4, #12]
+ 136:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ 411              		.loc 1 136 13 is_stmt 1 view .LVU120
+ 136:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ 412              		.loc 1 136 38 is_stmt 0 view .LVU121
+ 413 011a 019B     		ldr	r3, [sp, #4]
+ 414 011c B3F1804F 		cmp	r3, #1073741824
+ 415 0120 14BF     		ite	ne
+ 416 0122 0023     		movne	r3, #0
+ 417 0124 0123     		moveq	r3, #1
+ 136:My_Top/Drone_CAN/my_fdcan.cpp ****             return true;
+ 418              		.loc 1 136 25 view .LVU122
+ 419 0126 6373     		strb	r3, [r4, #13]
+ 137:My_Top/Drone_CAN/my_fdcan.cpp ****         }
+ 420              		.loc 1 137 13 is_stmt 1 view .LVU123
+ 137:My_Top/Drone_CAN/my_fdcan.cpp ****         }
+ 421              		.loc 1 137 20 is_stmt 0 view .LVU124
+ 422 0128 0120     		movs	r0, #1
+ 423 012a DAE7     		b	.L25
+ 424              	.L33:
+ 425              		.align	2
+ 426              	.L32:
+ 427 012c 00000000 		.word	hfdcan2
+ 428              	.LBE9:
+ 429              	.LBE12:
+ 430              		.cfi_endproc
+ 431              	.LFE336:
+ 433              		.global	g_rx_msg_poll
+ 434              		.global	g_rx_msg
+ 435              		.bss
+ 436              		.align	2
+ 439              	g_rx_msg_poll:
+ 440 0000 00000000 		.space	16
+ 440      00000000 
+ 440      00000000 
+ 440      00000000 
+ 443              	g_rx_msg:
+ 444 0010 00000000 		.space	16
+ 444      00000000 
+ 444      00000000 
+ 444      00000000 
+ 445              		.text
+ 446              	.Letext0:
+ 447              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 448              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 449              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 450              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 451              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 452              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_fdcan.h"
+ 453              		.file 8 "My_Top/Drone_CAN/canard.h"
+ 454              		.file 9 "My_Top/Drone_CAN/my_fdcan.hpp"
+ARM GAS  /tmp/ccl08KRU.s 			page 12
+
+
+ 455              		.file 10 "Core/Inc/fdcan.h"
+ 456              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 457              		.file 12 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 458              		.file 13 "Core/Inc/main.h"
+ARM GAS  /tmp/ccl08KRU.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 my_fdcan.cpp
+     /tmp/ccl08KRU.s:20     .text:00000000 $t
+     /tmp/ccl08KRU.s:26     .text:00000000 _Z15My_FilterConfigv
+     /tmp/ccl08KRU.s:126    .text:0000005c $d
+     /tmp/ccl08KRU.s:130    .text:00000060 $t
+     /tmp/ccl08KRU.s:136    .text:00000060 _Z11My_Can_Initv
+     /tmp/ccl08KRU.s:161    .text:00000068 _Z11My_Can_SendmPhhb
+     /tmp/ccl08KRU.s:277    .text:000000b4 $d
+     /tmp/ccl08KRU.s:282    .text:000000b8 $t
+     /tmp/ccl08KRU.s:288    .text:000000b8 _Z11My_CAN_PollP5RxMsg
+     /tmp/ccl08KRU.s:427    .text:0000012c $d
+     /tmp/ccl08KRU.s:439    .bss:00000000 g_rx_msg_poll
+     /tmp/ccl08KRU.s:443    .bss:00000010 g_rx_msg
+     /tmp/ccl08KRU.s:436    .bss:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_FDCAN_ConfigFilter
+HAL_FDCAN_Start
+Error_Handler
+hfdcan2
+memset
+HAL_FDCAN_AddMessageToTxFifoQ
+vTaskDelay
+HAL_FDCAN_GetRxFifoFillLevel
+HAL_FDCAN_GetRxMessage

@@ -1,0 +1,240 @@
+ARM GAS  /tmp/ccI3Z4l3.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"win_filter.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Lib/compute/filter/win_filter.cpp"
+  20              		.align	1
+  21              		.global	_ZN12WindowFilter4initEh
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_ZN12WindowFilter4initEh:
+  27              	.LVL0:
+  28              	.LFB982:
+   1:Lib/compute/filter/win_filter.cpp **** #include "ex_math.hpp"
+   2:Lib/compute/filter/win_filter.cpp **** 
+   3:Lib/compute/filter/win_filter.cpp **** #include "FreeRTOS.h"
+   4:Lib/compute/filter/win_filter.cpp **** 
+   5:Lib/compute/filter/win_filter.cpp **** bool WindowFilter::init(uint8_t win_size)
+   6:Lib/compute/filter/win_filter.cpp **** {
+  29              		.loc 1 6 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+   7:Lib/compute/filter/win_filter.cpp ****     if (win_size == 0)
+  33              		.loc 1 7 5 view .LVU1
+  34 0000 09B9     		cbnz	r1, .L9
+   8:Lib/compute/filter/win_filter.cpp ****         return false;
+  35              		.loc 1 8 16 is_stmt 0 view .LVU2
+  36 0002 0020     		movs	r0, #0
+  37              	.LVL1:
+   9:Lib/compute/filter/win_filter.cpp **** 
+  10:Lib/compute/filter/win_filter.cpp ****     sum = 0.f;
+  11:Lib/compute/filter/win_filter.cpp ****     this->win_size = win_size;
+  12:Lib/compute/filter/win_filter.cpp ****     index = 0;
+  13:Lib/compute/filter/win_filter.cpp ****     count = 0;
+  14:Lib/compute/filter/win_filter.cpp **** 
+  15:Lib/compute/filter/win_filter.cpp ****     pData = (float *)pvPortMalloc(sizeof(float) * win_size);
+  16:Lib/compute/filter/win_filter.cpp ****     if (pData == NULL)
+  17:Lib/compute/filter/win_filter.cpp ****         return false;
+  18:Lib/compute/filter/win_filter.cpp **** 
+  19:Lib/compute/filter/win_filter.cpp ****     return true;
+  20:Lib/compute/filter/win_filter.cpp **** }
+  38              		.loc 1 20 1 view .LVU3
+ARM GAS  /tmp/ccI3Z4l3.s 			page 2
+
+
+  39 0004 7047     		bx	lr
+  40              	.LVL2:
+  41              	.L9:
+   6:Lib/compute/filter/win_filter.cpp ****     if (win_size == 0)
+  42              		.loc 1 6 1 view .LVU4
+  43 0006 10B5     		push	{r4, lr}
+  44              		.cfi_def_cfa_offset 8
+  45              		.cfi_offset 4, -8
+  46              		.cfi_offset 14, -4
+  47 0008 0446     		mov	r4, r0
+  10:Lib/compute/filter/win_filter.cpp ****     this->win_size = win_size;
+  48              		.loc 1 10 5 is_stmt 1 view .LVU5
+  10:Lib/compute/filter/win_filter.cpp ****     this->win_size = win_size;
+  49              		.loc 1 10 9 is_stmt 0 view .LVU6
+  50 000a 0023     		movs	r3, #0
+  51 000c C360     		str	r3, [r0, #12]	@ float
+  11:Lib/compute/filter/win_filter.cpp ****     index = 0;
+  52              		.loc 1 11 5 is_stmt 1 view .LVU7
+  11:Lib/compute/filter/win_filter.cpp ****     index = 0;
+  53              		.loc 1 11 20 is_stmt 0 view .LVU8
+  54 000e 0170     		strb	r1, [r0]
+  12:Lib/compute/filter/win_filter.cpp ****     count = 0;
+  55              		.loc 1 12 5 is_stmt 1 view .LVU9
+  12:Lib/compute/filter/win_filter.cpp ****     count = 0;
+  56              		.loc 1 12 11 is_stmt 0 view .LVU10
+  57 0010 0023     		movs	r3, #0
+  58 0012 0372     		strb	r3, [r0, #8]
+  13:Lib/compute/filter/win_filter.cpp **** 
+  59              		.loc 1 13 5 is_stmt 1 view .LVU11
+  13:Lib/compute/filter/win_filter.cpp **** 
+  60              		.loc 1 13 11 is_stmt 0 view .LVU12
+  61 0014 4372     		strb	r3, [r0, #9]
+  15:Lib/compute/filter/win_filter.cpp ****     if (pData == NULL)
+  62              		.loc 1 15 5 is_stmt 1 view .LVU13
+  15:Lib/compute/filter/win_filter.cpp ****     if (pData == NULL)
+  63              		.loc 1 15 34 is_stmt 0 view .LVU14
+  64 0016 8800     		lsls	r0, r1, #2
+  65              	.LVL3:
+  15:Lib/compute/filter/win_filter.cpp ****     if (pData == NULL)
+  66              		.loc 1 15 34 view .LVU15
+  67 0018 FFF7FEFF 		bl	pvPortMalloc
+  68              	.LVL4:
+  15:Lib/compute/filter/win_filter.cpp ****     if (pData == NULL)
+  69              		.loc 1 15 11 discriminator 1 view .LVU16
+  70 001c 6060     		str	r0, [r4, #4]
+  16:Lib/compute/filter/win_filter.cpp ****         return false;
+  71              		.loc 1 16 5 is_stmt 1 view .LVU17
+  72 001e 08B1     		cbz	r0, .L4
+  19:Lib/compute/filter/win_filter.cpp **** }
+  73              		.loc 1 19 12 is_stmt 0 view .LVU18
+  74 0020 0120     		movs	r0, #1
+  75              	.L2:
+  76              		.loc 1 20 1 view .LVU19
+  77 0022 10BD     		pop	{r4, pc}
+  78              	.LVL5:
+  79              	.L4:
+  17:Lib/compute/filter/win_filter.cpp **** 
+ARM GAS  /tmp/ccI3Z4l3.s 			page 3
+
+
+  80              		.loc 1 17 16 view .LVU20
+  81 0024 0020     		movs	r0, #0
+  82 0026 FCE7     		b	.L2
+  83              		.cfi_endproc
+  84              	.LFE982:
+  86              		.align	1
+  87              		.global	_ZN12WindowFilter6filterEf
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  92              	_ZN12WindowFilter6filterEf:
+  93              	.LVL6:
+  94              	.LFB983:
+  21:Lib/compute/filter/win_filter.cpp **** 
+  22:Lib/compute/filter/win_filter.cpp **** float WindowFilter::filter(float value)
+  23:Lib/compute/filter/win_filter.cpp **** {
+  95              		.loc 1 23 1 is_stmt 1 view -0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              		@ link register save eliminated.
+  24:Lib/compute/filter/win_filter.cpp ****     count = count < win_size ? count + 1 : win_size;
+ 100              		.loc 1 24 5 view .LVU22
+ 101              		.loc 1 24 13 is_stmt 0 view .LVU23
+ 102 0028 427A     		ldrb	r2, [r0, #9]	@ zero_extendqisi2
+ 103              		.loc 1 24 21 view .LVU24
+ 104 002a 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 105              		.loc 1 24 11 view .LVU25
+ 106 002c 9A42     		cmp	r2, r3
+ 107 002e 01D2     		bcs	.L11
+ 108              		.loc 1 24 11 discriminator 1 view .LVU26
+ 109 0030 0132     		adds	r2, r2, #1
+ 110 0032 D3B2     		uxtb	r3, r2
+ 111              	.L11:
+ 112              		.loc 1 24 11 discriminator 4 view .LVU27
+ 113 0034 4372     		strb	r3, [r0, #9]
+  25:Lib/compute/filter/win_filter.cpp ****     sum = sum - pData[index] + value;
+ 114              		.loc 1 25 5 is_stmt 1 view .LVU28
+ 115              		.loc 1 25 11 is_stmt 0 view .LVU29
+ 116 0036 D0ED037A 		vldr.32	s15, [r0, #12]
+ 117              		.loc 1 25 17 view .LVU30
+ 118 003a 4268     		ldr	r2, [r0, #4]
+ 119              		.loc 1 25 23 view .LVU31
+ 120 003c 017A     		ldrb	r1, [r0, #8]	@ zero_extendqisi2
+ 121              		.loc 1 25 28 view .LVU32
+ 122 003e 02EB8102 		add	r2, r2, r1, lsl #2
+ 123 0042 92ED007A 		vldr.32	s14, [r2]
+ 124              		.loc 1 25 15 view .LVU33
+ 125 0046 77EEC77A 		vsub.f32	s15, s15, s14
+ 126              		.loc 1 25 30 view .LVU34
+ 127 004a 77EE807A 		vadd.f32	s15, s15, s0
+ 128              		.loc 1 25 9 view .LVU35
+ 129 004e C0ED037A 		vstr.32	s15, [r0, #12]
+  26:Lib/compute/filter/win_filter.cpp ****     avg = sum / count;
+ 130              		.loc 1 26 5 is_stmt 1 view .LVU36
+ 131              		.loc 1 26 15 is_stmt 0 view .LVU37
+ 132 0052 07EE103A 		vmov	s14, r3	@ int
+ARM GAS  /tmp/ccI3Z4l3.s 			page 4
+
+
+ 133 0056 B8EEC77A 		vcvt.f32.s32	s14, s14
+ 134 005a C7EE876A 		vdiv.f32	s13, s15, s14
+ 135              		.loc 1 26 9 view .LVU38
+ 136 005e C0ED046A 		vstr.32	s13, [r0, #16]
+  27:Lib/compute/filter/win_filter.cpp ****     pData[index] = value;
+ 137              		.loc 1 27 5 is_stmt 1 view .LVU39
+ 138              		.loc 1 27 18 is_stmt 0 view .LVU40
+ 139 0062 82ED000A 		vstr.32	s0, [r2]
+  28:Lib/compute/filter/win_filter.cpp ****     index = (index + 1) % win_size;
+ 140              		.loc 1 28 5 is_stmt 1 view .LVU41
+ 141              		.loc 1 28 14 is_stmt 0 view .LVU42
+ 142 0066 037A     		ldrb	r3, [r0, #8]	@ zero_extendqisi2
+ 143              		.loc 1 28 20 view .LVU43
+ 144 0068 0133     		adds	r3, r3, #1
+ 145              		.loc 1 28 27 view .LVU44
+ 146 006a 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 147              		.loc 1 28 25 view .LVU45
+ 148 006c 93FBF2F1 		sdiv	r1, r3, r2
+ 149 0070 02FB1133 		mls	r3, r2, r1, r3
+ 150              		.loc 1 28 11 view .LVU46
+ 151 0074 0372     		strb	r3, [r0, #8]
+  29:Lib/compute/filter/win_filter.cpp **** 
+  30:Lib/compute/filter/win_filter.cpp ****     return avg;
+ 152              		.loc 1 30 5 is_stmt 1 view .LVU47
+  31:Lib/compute/filter/win_filter.cpp **** }
+ 153              		.loc 1 31 1 is_stmt 0 view .LVU48
+ 154 0076 90ED040A 		vldr.32	s0, [r0, #16]
+ 155              	.LVL7:
+ 156              		.loc 1 31 1 view .LVU49
+ 157 007a 7047     		bx	lr
+ 158              		.cfi_endproc
+ 159              	.LFE983:
+ 161              	.Letext0:
+ 162              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 163              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 164              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 165              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 166              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 167              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 168              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 169              		.file 9 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 170              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 171              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 172              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 173              		.file 13 "Lib/compute/ex_math.hpp"
+ 174              		.file 14 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
+ARM GAS  /tmp/ccI3Z4l3.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 win_filter.cpp
+     /tmp/ccI3Z4l3.s:20     .text:00000000 $t
+     /tmp/ccI3Z4l3.s:26     .text:00000000 _ZN12WindowFilter4initEh
+     /tmp/ccI3Z4l3.s:92     .text:00000028 _ZN12WindowFilter6filterEf
+
+UNDEFINED SYMBOLS
+pvPortMalloc

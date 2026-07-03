@@ -1,0 +1,1630 @@
+ARM GAS  /tmp/ccCmXEY4.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"pll.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/System/pll.cpp"
+  20              		.align	1
+  21              		.global	_Z11foc_pll_runffPfS_P13PLL_Parameter
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_Z11foc_pll_runffPfS_P13PLL_Parameter:
+  27              	.LVL0:
+  28              	.LFB1310:
+   1:My_Top/System/pll.cpp **** #include "pll.hpp"
+   2:My_Top/System/pll.cpp **** 
+   3:My_Top/System/pll.cpp **** 
+   4:My_Top/System/pll.cpp **** /*  wn是自然频率决定了系统的响应速度和带宽  ζ是阻尼比  ts是收敛时间即�
+   5:My_Top/System/pll.cpp ****     ζ≈0.707 时，带宽 ≈ ωn/2pi（近似）
+   6:My_Top/System/pll.cpp ****     实测电机最高38.2圈/s =2292rpm  电频率Fe = 2280*7/60=226hz  wn>2pi*Fe/10=142  wn最小
+   7:My_Top/System/pll.cpp ****     wn<(2pi*4000/10) = 2513.2  wn最大限制
+   8:My_Top/System/pll.cpp ****     wn = 3/(ζ*ts) = 3/(0.707*0.002) = 2121.64(Ts最小2ms)
+   9:My_Top/System/pll.cpp ****     kp = 2ζωn
+  10:My_Top/System/pll.cpp ****     ki = ωn²
+  11:My_Top/System/pll.cpp ****     ζ = 0.707
+  12:My_Top/System/pll.cpp **** 
+  13:My_Top/System/pll.cpp **** */
+  14:My_Top/System/pll.cpp **** /* 
+  15:My_Top/System/pll.cpp ****     PLL_ts = 5ms  →  带宽 ≈ 135Hz  →  不动时波动 0.7 rad/s
+  16:My_Top/System/pll.cpp ****     PLL_ts = 10ms →  带宽 ≈ 67Hz   →  波动估计降到 ~0.2 rad/s
+  17:My_Top/System/pll.cpp ****     PLL_ts = 20ms →  带宽 ≈ 34Hz   →  更平滑
+  18:My_Top/System/pll.cpp ****     采样频率必须 ≥ 带宽频率的 2 倍，否则信号会混叠。（带宽频率的<采�
+  19:My_Top/System/pll.cpp ****     带宽太低：跟踪不了快速变化的角度，动态响应差
+  20:My_Top/System/pll.cpp ****     带宽太高：会把高频噪声也跟踪进来，输出抖动大
+  21:My_Top/System/pll.cpp **** */
+  22:My_Top/System/pll.cpp **** 
+  23:My_Top/System/pll.cpp **** 
+  24:My_Top/System/pll.cpp **** /*
+  25:My_Top/System/pll.cpp **** reg_in:输入角度 对应数学公式中的 θin
+  26:My_Top/System/pll.cpp **** dt:采样周期 两次调用 foc_pll_run 之间的时间间隔，单位为秒
+  27:My_Top/System/pll.cpp **** reg_out:输出角度 对应数学公式中的 θout
+  28:My_Top/System/pll.cpp **** Angular_velocity:输出角速度 对应数学公式中的 ωout
+  29:My_Top/System/pll.cpp **** conf：PI参数配置结构体
+  30:My_Top/System/pll.cpp **** 
+ARM GAS  /tmp/ccCmXEY4.s 			page 2
+
+
+  31:My_Top/System/pll.cpp **** */
+  32:My_Top/System/pll.cpp **** 
+  33:My_Top/System/pll.cpp **** //超过实际速度3倍以上需要限制最大速度
+  34:My_Top/System/pll.cpp **** void foc_pll_run(float reg_in, float dt, float *reg_out,
+  35:My_Top/System/pll.cpp ****                  float *Angular_velocity, PLL_Parameter *conf) {
+  29              		.loc 1 35 64 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 24
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 35 64 is_stmt 0 view .LVU1
+  34 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  35              		.cfi_def_cfa_offset 36
+  36              		.cfi_offset 4, -36
+  37              		.cfi_offset 5, -32
+  38              		.cfi_offset 6, -28
+  39              		.cfi_offset 7, -24
+  40              		.cfi_offset 8, -20
+  41              		.cfi_offset 9, -16
+  42              		.cfi_offset 10, -12
+  43              		.cfi_offset 11, -8
+  44              		.cfi_offset 14, -4
+  45 0004 87B0     		sub	sp, sp, #28
+  46              		.cfi_def_cfa_offset 64
+  47 0006 10EE90BA 		vmov	fp, s1
+  48 000a 8246     		mov	r10, r0
+  49 000c 0C46     		mov	r4, r1
+  50 000e 1546     		mov	r5, r2
+  36:My_Top/System/pll.cpp **** 
+  37:My_Top/System/pll.cpp **** // volatile float debug_pll_kp = FOC_PLL_KP; 
+  38:My_Top/System/pll.cpp **** // volatile float debug_pll_ki = FOC_PLL_KI; 
+  39:My_Top/System/pll.cpp **** // volatile float debug_pll_wn = PLL_Wn;
+  40:My_Top/System/pll.cpp **** // volatile float debug_PLL_ts = PLL_ts;
+  41:My_Top/System/pll.cpp **** // volatile float debug_pll_Ts_min = Ts_min;
+  42:My_Top/System/pll.cpp **** // volatile float debug_pll_Ts_max = Ts_max;
+  43:My_Top/System/pll.cpp **** // volatile float debug_pll_wn_min = Wn_min;
+  44:My_Top/System/pll.cpp **** // volatile float debug_pll_wn_max = Wn_max;
+  45:My_Top/System/pll.cpp ****                     
+  46:My_Top/System/pll.cpp **** 
+  47:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*reg_out);//如果输出角度是非数字(NaN)或无穷大置零
+  51              		.loc 1 47 5 is_stmt 1 view .LVU2
+  52 0010 D0ED007A 		vldr.32	s15, [r0]
+  53              		.loc 1 47 5 is_stmt 0 discriminator 1 view .LVU3
+  54 0014 F4EE677A 		vcmp.f32	s15, s15
+  55 0018 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  56 001c 08D6     		bvs	.L2
+  57              	.LVL1:
+  58              	.LBB12:
+  59              	.LBI12:
+  60              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+   1:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // -*- C++ -*- C forwarding header.
+   2:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+   3:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // Copyright (C) 1997-2024 Free Software Foundation, Inc.
+   4:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** //
+   5:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // This file is part of the GNU ISO C++ Library.  This library is free
+   6:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // software; you can redistribute it and/or modify it under the
+   7:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // terms of the GNU General Public License as published by the
+   8:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // Free Software Foundation; either version 3, or (at your option)
+ARM GAS  /tmp/ccCmXEY4.s 			page 3
+
+
+   9:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // any later version.
+  10:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  11:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // This library is distributed in the hope that it will be useful,
+  12:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // but WITHOUT ANY WARRANTY; without even the implied warranty of
+  13:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  14:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // GNU General Public License for more details.
+  15:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  16:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // Under Section 7 of GPL version 3, you are granted additional
+  17:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // permissions described in the GCC Runtime Library Exception, version
+  18:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // 3.1, as published by the Free Software Foundation.
+  19:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  20:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // You should have received a copy of the GNU General Public License and
+  21:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // a copy of the GCC Runtime Library Exception along with this program;
+  22:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+  23:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // <http://www.gnu.org/licenses/>.
+  24:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  25:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** /** @file include/cmath
+  26:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  *  This is a Standard C++ Library file.  You should @c \#include this file
+  27:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  *  in your programs, rather than any of the @a *.h implementation files.
+  28:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  *
+  29:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  *  This is the C++ version of the Standard C Library header @c math.h,
+  30:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  *  and its contents are (mostly) the same as that header, but are all
+  31:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  *  contained in the namespace @c std (except for names which are defined
+  32:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  *  as macros in C).
+  33:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****  */
+  34:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  35:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** //
+  36:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // ISO C++ 14882: 26.5  C library
+  37:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** //
+  38:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  39:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #pragma GCC system_header
+  40:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  41:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #include <bits/requires_hosted.h>
+  42:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  43:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #include <bits/c++config.h>
+  44:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #include <bits/cpp_type_traits.h>
+  45:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #include <ext/type_traits.h>
+  46:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #define _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+  47:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #include_next <math.h>
+  48:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+  49:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #include <bits/std_abs.h>
+  50:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  51:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef _GLIBCXX_CMATH
+  52:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #define _GLIBCXX_CMATH 1
+  53:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  54:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #define __glibcxx_want_hypot
+  55:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #define __glibcxx_want_interpolate
+  56:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #include <bits/version.h>
+  57:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  58:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // Get rid of those macros defined in <math.h> in lieu of real functions.
+  59:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef div
+  60:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef acos
+  61:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef asin
+  62:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef atan
+  63:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef atan2
+  64:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef ceil
+  65:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef cos
+ARM GAS  /tmp/ccCmXEY4.s 			page 4
+
+
+  66:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef cosh
+  67:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef exp
+  68:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef fabs
+  69:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef floor
+  70:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef fmod
+  71:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef frexp
+  72:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef ldexp
+  73:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef log
+  74:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef log10
+  75:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef modf
+  76:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef pow
+  77:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef sin
+  78:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef sinh
+  79:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef sqrt
+  80:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef tan
+  81:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef tanh
+  82:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  83:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** extern "C++"
+  84:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** {
+  85:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** namespace std _GLIBCXX_VISIBILITY(default)
+  86:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** {
+  87:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** _GLIBCXX_BEGIN_NAMESPACE_VERSION
+  88:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  89:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::acos;
+  90:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  91:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+  92:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+  93:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(float __x)
+  94:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_acosf(__x); }
+  95:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+  96:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+  97:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(long double __x)
+  98:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_acosl(__x); }
+  99:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 100:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 101:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 102:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 103:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 104:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 105:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     acos(_Tp __x)
+ 106:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_acos(__x); }
+ 107:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 108:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::asin;
+ 109:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 110:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 111:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 112:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(float __x)
+ 113:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_asinf(__x); }
+ 114:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 115:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 116:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(long double __x)
+ 117:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_asinl(__x); }
+ 118:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 119:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 120:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 121:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 122:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ARM GAS  /tmp/ccCmXEY4.s 			page 5
+
+
+ 123:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 124:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     asin(_Tp __x)
+ 125:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_asin(__x); }
+ 126:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 127:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::atan;
+ 128:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 129:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 130:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 131:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(float __x)
+ 132:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atanf(__x); }
+ 133:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 134:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 135:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(long double __x)
+ 136:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atanl(__x); }
+ 137:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 138:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 139:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 140:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 141:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ 142:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 143:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     atan(_Tp __x)
+ 144:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_atan(__x); }
+ 145:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 146:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::atan2;
+ 147:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 148:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 149:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 150:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(float __y, float __x)
+ 151:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atan2f(__y, __x); }
+ 152:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 153:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 154:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(long double __y, long double __x)
+ 155:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atan2l(__y, __x); }
+ 156:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 157:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 158:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::ceil;
+ 159:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 160:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 161:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 162:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(float __x)
+ 163:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ceilf(__x); }
+ 164:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 165:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 166:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(long double __x)
+ 167:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ceill(__x); }
+ 168:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 169:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 170:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 171:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 172:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 173:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 174:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     ceil(_Tp __x)
+ 175:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_ceil(__x); }
+ 176:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 177:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::cos;
+ 178:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 179:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ARM GAS  /tmp/ccCmXEY4.s 			page 6
+
+
+ 180:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 181:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(float __x)
+ 182:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_cosf(__x); }
+ 183:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 184:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 185:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(long double __x)
+ 186:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_cosl(__x); }
+ 187:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 188:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 189:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 190:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 191:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ 192:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 193:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     cos(_Tp __x)
+ 194:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_cos(__x); }
+ 195:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 196:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::cosh;
+ 197:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 198:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 199:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 200:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(float __x)
+ 201:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_coshf(__x); }
+ 202:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 203:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 204:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(long double __x)
+ 205:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_coshl(__x); }
+ 206:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 207:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 208:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 209:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 210:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ 211:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 212:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     cosh(_Tp __x)
+ 213:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_cosh(__x); }
+ 214:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 215:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::exp;
+ 216:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 217:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 218:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 219:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(float __x)
+ 220:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_expf(__x); }
+ 221:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 222:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 223:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(long double __x)
+ 224:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_expl(__x); }
+ 225:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 226:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 227:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 228:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 229:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ 230:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 231:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     exp(_Tp __x)
+ 232:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_exp(__x); }
+ 233:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 234:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::fabs;
+ 235:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 236:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ARM GAS  /tmp/ccCmXEY4.s 			page 7
+
+
+ 237:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 238:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(float __x)
+ 239:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fabsf(__x); }
+ 240:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 241:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 242:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(long double __x)
+ 243:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fabsl(__x); }
+ 244:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 245:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 246:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 247:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 248:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ 249:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 250:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     fabs(_Tp __x)
+ 251:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_fabs(__x); }
+ 252:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 253:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::floor;
+ 254:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 255:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 256:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 257:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(float __x)
+ 258:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_floorf(__x); }
+ 259:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 260:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 261:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(long double __x)
+ 262:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_floorl(__x); }
+ 263:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 264:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 265:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 266:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 267:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ 268:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 269:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     floor(_Tp __x)
+ 270:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_floor(__x); }
+ 271:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 272:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::fmod;
+ 273:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 274:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 275:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 276:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(float __x, float __y)
+ 277:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fmodf(__x, __y); }
+ 278:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 279:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 280:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(long double __x, long double __y)
+ 281:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fmodl(__x, __y); }
+ 282:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 283:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 284:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::frexp;
+ 285:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 286:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 287:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline float
+ 288:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(float __x, int* __exp)
+ 289:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexpf(__x, __exp); }
+ 290:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 291:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline long double
+ 292:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(long double __x, int* __exp)
+ 293:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexpl(__x, __exp); }
+ARM GAS  /tmp/ccCmXEY4.s 			page 8
+
+
+ 294:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 295:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 296:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 297:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 298:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 299:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 300:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     frexp(_Tp __x, int* __exp)
+ 301:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_frexp(__x, __exp); }
+ 302:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 303:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::ldexp;
+ 304:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 305:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 306:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 307:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(float __x, int __exp)
+ 308:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ldexpf(__x, __exp); }
+ 309:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 310:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 311:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(long double __x, int __exp)
+ 312:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ldexpl(__x, __exp); }
+ 313:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 314:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 315:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 316:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 317:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 318:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 319:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     ldexp(_Tp __x, int __exp)
+ 320:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_ldexp(__x, __exp); }
+ 321:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 322:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::log;
+ 323:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 324:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 325:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 326:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(float __x)
+ 327:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_logf(__x); }
+ 328:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 329:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 330:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(long double __x)
+ 331:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_logl(__x); }
+ 332:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 333:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 334:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 335:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 336:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 337:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 338:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     log(_Tp __x)
+ 339:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_log(__x); }
+ 340:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 341:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::log10;
+ 342:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 343:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 344:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 345:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(float __x)
+ 346:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log10f(__x); }
+ 347:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 348:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 349:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(long double __x)
+ 350:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log10l(__x); }
+ARM GAS  /tmp/ccCmXEY4.s 			page 9
+
+
+ 351:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 352:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 353:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 354:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 355:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+ 356:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 357:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     log10(_Tp __x)
+ 358:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_log10(__x); }
+ 359:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 360:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::modf;
+ 361:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 362:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 363:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline float
+ 364:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(float __x, float* __iptr)
+ 365:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_modff(__x, __iptr); }
+ 366:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 367:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline long double
+ 368:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(long double __x, long double* __iptr)
+ 369:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_modfl(__x, __iptr); }
+ 370:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 371:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 372:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::pow;
+ 373:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 374:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 375:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 376:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(float __x, float __y)
+ 377:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powf(__x, __y); }
+ 378:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 379:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 380:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(long double __x, long double __y)
+ 381:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powl(__x, __y); }
+ 382:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 383:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if __cplusplus < 201103L
+ 384:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   // _GLIBCXX_RESOLVE_LIB_DEFECTS
+ 385:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   // DR 550. What should the return type of pow(float,int) be?
+ 386:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline double
+ 387:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(double __x, int __i)
+ 388:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powi(__x, __i); }
+ 389:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 390:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline float
+ 391:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(float __x, int __n)
+ 392:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powif(__x, __n); }
+ 393:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 394:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline long double
+ 395:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(long double __x, int __n)
+ 396:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powil(__x, __n); }
+ 397:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 398:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 399:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 400:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::sin;
+ 401:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 402:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 403:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 404:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(float __x)
+ 405:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinf(__x); }
+ 406:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 407:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ARM GAS  /tmp/ccCmXEY4.s 			page 10
+
+
+ 408:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(long double __x)
+ 409:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinl(__x); }
+ 410:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 411:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 412:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 413:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 414:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 415:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 416:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     sin(_Tp __x)
+ 417:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_sin(__x); }
+ 418:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 419:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::sinh;
+ 420:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 421:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 422:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 423:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(float __x)
+ 424:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinhf(__x); }
+ 425:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 426:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 427:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(long double __x)
+ 428:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinhl(__x); }
+ 429:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 430:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 431:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 432:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 433:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 434:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 435:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     sinh(_Tp __x)
+ 436:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_sinh(__x); }
+ 437:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 438:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::sqrt;
+ 439:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 440:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 441:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 442:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(float __x)
+ 443:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sqrtf(__x); }
+ 444:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 445:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 446:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(long double __x)
+ 447:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sqrtl(__x); }
+ 448:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 449:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 450:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 451:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 452:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 453:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 454:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     sqrt(_Tp __x)
+ 455:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_sqrt(__x); }
+ 456:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 457:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::tan;
+ 458:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 459:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 460:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 461:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(float __x)
+ 462:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanf(__x); }
+ 463:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 464:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ARM GAS  /tmp/ccCmXEY4.s 			page 11
+
+
+ 465:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(long double __x)
+ 466:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanl(__x); }
+ 467:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 468:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 469:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 470:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 471:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 472:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 473:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     tan(_Tp __x)
+ 474:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_tan(__x); }
+ 475:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 476:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::tanh;
+ 477:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 478:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+ 479:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
+ 480:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(float __x)
+ 481:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanhf(__x); }
+ 482:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 483:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
+ 484:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(long double __x)
+ 485:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanhl(__x); }
+ 486:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 487:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 488:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+ 489:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+ 490:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+ 491:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
+ 492:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     tanh(_Tp __x)
+ 493:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_tanh(__x); }
+ 494:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 495:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if defined(__STDCPP_FLOAT16_T__) && defined(_GLIBCXX_FLOAT_IS_IEEE_BINARY32)
+ 496:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 497:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(_Float16 __x)
+ 498:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_acosf(__x)); }
+ 499:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 500:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 501:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(_Float16 __x)
+ 502:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_asinf(__x)); }
+ 503:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 504:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 505:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(_Float16 __x)
+ 506:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_atanf(__x)); }
+ 507:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 508:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 509:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(_Float16 __y, _Float16 __x)
+ 510:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_atan2f(__y, __x)); }
+ 511:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 512:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 513:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(_Float16 __x)
+ 514:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_ceilf(__x)); }
+ 515:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 516:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 517:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(_Float16 __x)
+ 518:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_cosf(__x)); }
+ 519:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 520:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 521:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(_Float16 __x)
+ARM GAS  /tmp/ccCmXEY4.s 			page 12
+
+
+ 522:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_coshf(__x)); }
+ 523:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 524:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 525:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(_Float16 __x)
+ 526:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_expf(__x)); }
+ 527:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 528:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 529:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(_Float16 __x)
+ 530:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_fabsf(__x)); }
+ 531:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 532:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 533:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(_Float16 __x)
+ 534:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_floorf(__x)); }
+ 535:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 536:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 537:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(_Float16 __x, _Float16 __y)
+ 538:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_fmodf(__x, __y)); }
+ 539:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 540:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float16
+ 541:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(_Float16 __x, int* __exp)
+ 542:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_frexpf(__x, __exp)); }
+ 543:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 544:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 545:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(_Float16 __x, int __exp)
+ 546:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_ldexpf(__x, __exp)); }
+ 547:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 548:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 549:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(_Float16 __x)
+ 550:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_logf(__x)); }
+ 551:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 552:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 553:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(_Float16 __x)
+ 554:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_log10f(__x)); }
+ 555:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 556:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float16
+ 557:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(_Float16 __x, _Float16* __iptr)
+ 558:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   {
+ 559:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     float __i, __ret = __builtin_modff(__x, &__i);
+ 560:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     *__iptr = _Float16(__i);
+ 561:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     return _Float16(__ret);
+ 562:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   }
+ 563:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 564:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 565:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(_Float16 __x, _Float16 __y)
+ 566:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_powf(__x, __y)); }
+ 567:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 568:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 569:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(_Float16 __x)
+ 570:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_sinf(__x)); }
+ 571:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 572:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 573:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(_Float16 __x)
+ 574:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_sinhf(__x)); }
+ 575:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 576:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 577:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(_Float16 __x)
+ 578:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_sqrtf(__x)); }
+ARM GAS  /tmp/ccCmXEY4.s 			page 13
+
+
+ 579:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 580:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 581:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(_Float16 __x)
+ 582:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_tanf(__x)); }
+ 583:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 584:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
+ 585:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(_Float16 __x)
+ 586:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_tanhf(__x)); }
+ 587:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 588:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 589:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if defined(__STDCPP_FLOAT32_T__) && defined(_GLIBCXX_FLOAT_IS_IEEE_BINARY32)
+ 590:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 591:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(_Float32 __x)
+ 592:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_acosf(__x); }
+ 593:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 594:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 595:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(_Float32 __x)
+ 596:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_asinf(__x); }
+ 597:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 598:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 599:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(_Float32 __x)
+ 600:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atanf(__x); }
+ 601:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 602:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 603:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(_Float32 __y, _Float32 __x)
+ 604:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atan2f(__y, __x); }
+ 605:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 606:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 607:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(_Float32 __x)
+ 608:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ceilf(__x); }
+ 609:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 610:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 611:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(_Float32 __x)
+ 612:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_cosf(__x); }
+ 613:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 614:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 615:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(_Float32 __x)
+ 616:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_coshf(__x); }
+ 617:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 618:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 619:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(_Float32 __x)
+ 620:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_expf(__x); }
+ 621:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 622:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 623:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(_Float32 __x)
+ 624:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fabsf(__x); }
+ 625:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 626:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 627:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(_Float32 __x)
+ 628:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_floorf(__x); }
+ 629:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 630:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 631:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(_Float32 __x, _Float32 __y)
+ 632:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fmodf(__x, __y); }
+ 633:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 634:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float32
+ 635:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(_Float32 __x, int* __exp)
+ARM GAS  /tmp/ccCmXEY4.s 			page 14
+
+
+ 636:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexpf(__x, __exp); }
+ 637:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 638:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 639:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(_Float32 __x, int __exp)
+ 640:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ldexpf(__x, __exp); }
+ 641:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 642:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 643:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(_Float32 __x)
+ 644:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_logf(__x); }
+ 645:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 646:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 647:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(_Float32 __x)
+ 648:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log10f(__x); }
+ 649:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 650:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float32
+ 651:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(_Float32 __x, _Float32* __iptr)
+ 652:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   {
+ 653:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     float __i, __ret = __builtin_modff(__x, &__i);
+ 654:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     *__iptr = __i;
+ 655:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     return __ret;
+ 656:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   }
+ 657:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 658:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 659:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(_Float32 __x, _Float32 __y)
+ 660:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powf(__x, __y); }
+ 661:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 662:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 663:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(_Float32 __x)
+ 664:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinf(__x); }
+ 665:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 666:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 667:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(_Float32 __x)
+ 668:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinhf(__x); }
+ 669:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 670:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 671:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(_Float32 __x)
+ 672:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sqrtf(__x); }
+ 673:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 674:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 675:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(_Float32 __x)
+ 676:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanf(__x); }
+ 677:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 678:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float32
+ 679:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(_Float32 __x)
+ 680:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanhf(__x); }
+ 681:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 682:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 683:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if defined(__STDCPP_FLOAT64_T__) && defined(_GLIBCXX_DOUBLE_IS_IEEE_BINARY64)
+ 684:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 685:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(_Float64 __x)
+ 686:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_acos(__x); }
+ 687:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 688:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 689:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(_Float64 __x)
+ 690:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_asin(__x); }
+ 691:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 692:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ARM GAS  /tmp/ccCmXEY4.s 			page 15
+
+
+ 693:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(_Float64 __x)
+ 694:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atan(__x); }
+ 695:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 696:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 697:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(_Float64 __y, _Float64 __x)
+ 698:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atan2(__y, __x); }
+ 699:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 700:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 701:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(_Float64 __x)
+ 702:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ceil(__x); }
+ 703:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 704:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 705:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(_Float64 __x)
+ 706:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_cos(__x); }
+ 707:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 708:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 709:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(_Float64 __x)
+ 710:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_cosh(__x); }
+ 711:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 712:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 713:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(_Float64 __x)
+ 714:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_exp(__x); }
+ 715:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 716:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 717:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(_Float64 __x)
+ 718:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fabs(__x); }
+ 719:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 720:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 721:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(_Float64 __x)
+ 722:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_floor(__x); }
+ 723:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 724:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 725:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(_Float64 __x, _Float64 __y)
+ 726:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fmod(__x, __y); }
+ 727:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 728:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float64
+ 729:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(_Float64 __x, int* __exp)
+ 730:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexp(__x, __exp); }
+ 731:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 732:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 733:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(_Float64 __x, int __exp)
+ 734:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ldexp(__x, __exp); }
+ 735:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 736:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 737:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(_Float64 __x)
+ 738:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log(__x); }
+ 739:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 740:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 741:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(_Float64 __x)
+ 742:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log10(__x); }
+ 743:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 744:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float64
+ 745:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(_Float64 __x, _Float64* __iptr)
+ 746:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   {
+ 747:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     double __i, __ret = __builtin_modf(__x, &__i);
+ 748:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     *__iptr = __i;
+ 749:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     return __ret;
+ARM GAS  /tmp/ccCmXEY4.s 			page 16
+
+
+ 750:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   }
+ 751:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 752:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 753:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(_Float64 __x, _Float64 __y)
+ 754:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_pow(__x, __y); }
+ 755:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 756:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 757:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(_Float64 __x)
+ 758:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sin(__x); }
+ 759:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 760:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 761:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(_Float64 __x)
+ 762:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinh(__x); }
+ 763:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 764:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 765:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(_Float64 __x)
+ 766:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sqrt(__x); }
+ 767:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 768:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 769:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(_Float64 __x)
+ 770:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tan(__x); }
+ 771:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 772:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
+ 773:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(_Float64 __x)
+ 774:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanh(__x); }
+ 775:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 776:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 777:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if defined(__STDCPP_FLOAT128_T__) && defined(_GLIBCXX_LDOUBLE_IS_IEEE_BINARY128)
+ 778:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 779:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(_Float128 __x)
+ 780:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_acosl(__x); }
+ 781:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 782:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 783:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(_Float128 __x)
+ 784:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_asinl(__x); }
+ 785:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 786:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 787:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(_Float128 __x)
+ 788:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atanl(__x); }
+ 789:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 790:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 791:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(_Float128 __y, _Float128 __x)
+ 792:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atan2l(__y, __x); }
+ 793:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 794:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 795:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(_Float128 __x)
+ 796:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ceill(__x); }
+ 797:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 798:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 799:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(_Float128 __x)
+ 800:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_cosl(__x); }
+ 801:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 802:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 803:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(_Float128 __x)
+ 804:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_coshl(__x); }
+ 805:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 806:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ARM GAS  /tmp/ccCmXEY4.s 			page 17
+
+
+ 807:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(_Float128 __x)
+ 808:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_expl(__x); }
+ 809:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 810:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 811:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(_Float128 __x)
+ 812:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fabsl(__x); }
+ 813:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 814:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 815:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(_Float128 __x)
+ 816:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_floorl(__x); }
+ 817:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 818:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 819:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(_Float128 __x, _Float128 __y)
+ 820:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fmodl(__x, __y); }
+ 821:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 822:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float128
+ 823:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(_Float128 __x, int* __exp)
+ 824:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexpl(__x, __exp); }
+ 825:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 826:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 827:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(_Float128 __x, int __exp)
+ 828:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ldexpl(__x, __exp); }
+ 829:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 830:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 831:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(_Float128 __x)
+ 832:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_logl(__x); }
+ 833:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 834:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 835:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(_Float128 __x)
+ 836:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log10l(__x); }
+ 837:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 838:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float128
+ 839:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(_Float128 __x, _Float128* __iptr)
+ 840:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   {
+ 841:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     long double __i, __ret = __builtin_modfl(__x, &__i);
+ 842:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     *__iptr = __i;
+ 843:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     return __ret;
+ 844:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   }
+ 845:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 846:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 847:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(_Float128 __x, _Float128 __y)
+ 848:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powl(__x, __y); }
+ 849:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 850:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 851:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(_Float128 __x)
+ 852:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinl(__x); }
+ 853:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 854:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 855:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(_Float128 __x)
+ 856:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinhl(__x); }
+ 857:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 858:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 859:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(_Float128 __x)
+ 860:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sqrtl(__x); }
+ 861:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 862:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 863:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(_Float128 __x)
+ARM GAS  /tmp/ccCmXEY4.s 			page 18
+
+
+ 864:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanl(__x); }
+ 865:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 866:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 867:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(_Float128 __x)
+ 868:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanhl(__x); }
+ 869:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #elif defined(__STDCPP_FLOAT128_T__) && defined(_GLIBCXX_HAVE_FLOAT128_MATH)
+ 870:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 871:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(_Float128 __x)
+ 872:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_acosf128(__x); }
+ 873:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 874:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 875:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(_Float128 __x)
+ 876:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_asinf128(__x); }
+ 877:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 878:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 879:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(_Float128 __x)
+ 880:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atanf128(__x); }
+ 881:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 882:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 883:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(_Float128 __y, _Float128 __x)
+ 884:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_atan2f128(__y, __x); }
+ 885:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 886:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 887:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(_Float128 __x)
+ 888:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ceilf128(__x); }
+ 889:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 890:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 891:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(_Float128 __x)
+ 892:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_cosf128(__x); }
+ 893:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 894:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 895:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(_Float128 __x)
+ 896:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_coshf128(__x); }
+ 897:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 898:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 899:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(_Float128 __x)
+ 900:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_expf128(__x); }
+ 901:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 902:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 903:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(_Float128 __x)
+ 904:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fabsf128(__x); }
+ 905:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 906:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 907:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(_Float128 __x)
+ 908:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_floorf128(__x); }
+ 909:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 910:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 911:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(_Float128 __x, _Float128 __y)
+ 912:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fmodf128(__x, __y); }
+ 913:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 914:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float128
+ 915:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(_Float128 __x, int* __exp)
+ 916:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexpf128(__x, __exp); }
+ 917:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 918:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 919:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(_Float128 __x, int __exp)
+ 920:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ldexpf128(__x, __exp); }
+ARM GAS  /tmp/ccCmXEY4.s 			page 19
+
+
+ 921:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 922:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 923:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(_Float128 __x)
+ 924:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_logf128(__x); }
+ 925:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 926:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 927:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(_Float128 __x)
+ 928:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log10f128(__x); }
+ 929:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 930:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float128
+ 931:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(_Float128 __x, _Float128* __iptr)
+ 932:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_modff128(__x, __iptr); }
+ 933:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 934:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 935:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(_Float128 __x, _Float128 __y)
+ 936:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_powf128(__x, __y); }
+ 937:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 938:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 939:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(_Float128 __x)
+ 940:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinf128(__x); }
+ 941:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 942:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 943:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(_Float128 __x)
+ 944:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinhf128(__x); }
+ 945:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 946:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 947:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(_Float128 __x)
+ 948:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sqrtf128(__x); }
+ 949:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 950:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 951:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(_Float128 __x)
+ 952:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanf128(__x); }
+ 953:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 954:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
+ 955:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(_Float128 __x)
+ 956:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanhf128(__x); }
+ 957:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+ 958:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 959:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if defined(__STDCPP_BFLOAT16_T__) && defined(_GLIBCXX_FLOAT_IS_IEEE_BINARY32)
+ 960:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 961:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   acos(__gnu_cxx::__bfloat16_t __x)
+ 962:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_acosf(__x)); }
+ 963:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 964:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 965:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   asin(__gnu_cxx::__bfloat16_t __x)
+ 966:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_asinf(__x)); }
+ 967:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 968:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 969:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(__gnu_cxx::__bfloat16_t __x)
+ 970:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_atanf(__x)); }
+ 971:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 972:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 973:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan2(__gnu_cxx::__bfloat16_t __y, __gnu_cxx::__bfloat16_t __x)
+ 974:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_atan2f(__y, __x)); }
+ 975:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 976:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 977:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(__gnu_cxx::__bfloat16_t __x)
+ARM GAS  /tmp/ccCmXEY4.s 			page 20
+
+
+ 978:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_ceilf(__x)); }
+ 979:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 980:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 981:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cos(__gnu_cxx::__bfloat16_t __x)
+ 982:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_cosf(__x)); }
+ 983:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 984:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 985:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(__gnu_cxx::__bfloat16_t __x)
+ 986:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_coshf(__x)); }
+ 987:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 988:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 989:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(__gnu_cxx::__bfloat16_t __x)
+ 990:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_expf(__x)); }
+ 991:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 992:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 993:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fabs(__gnu_cxx::__bfloat16_t __x)
+ 994:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_fabsf(__x)); }
+ 995:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+ 996:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+ 997:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   floor(__gnu_cxx::__bfloat16_t __x)
+ 998:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_floorf(__x)); }
+ 999:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1000:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1001:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fmod(__gnu_cxx::__bfloat16_t __x, __gnu_cxx::__bfloat16_t __y)
+1002:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_fmodf(__x, __y)); }
+1003:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1004:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline __gnu_cxx::__bfloat16_t
+1005:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(__gnu_cxx::__bfloat16_t __x, int* __exp)
+1006:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_frexpf(__x, __exp)); }
+1007:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1008:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1009:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(__gnu_cxx::__bfloat16_t __x, int __exp)
+1010:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_ldexpf(__x, __exp)); }
+1011:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1012:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1013:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log(__gnu_cxx::__bfloat16_t __x)
+1014:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_logf(__x)); }
+1015:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1016:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1017:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(__gnu_cxx::__bfloat16_t __x)
+1018:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_log10f(__x)); }
+1019:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1020:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline __gnu_cxx::__bfloat16_t
+1021:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   modf(__gnu_cxx::__bfloat16_t __x, __gnu_cxx::__bfloat16_t* __iptr)
+1022:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   {
+1023:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     float __i, __ret = __builtin_modff(__x, &__i);
+1024:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     *__iptr = __gnu_cxx::__bfloat16_t(__i);
+1025:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     return __gnu_cxx::__bfloat16_t(__ret);
+1026:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   }
+1027:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1028:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1029:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   pow(__gnu_cxx::__bfloat16_t __x, __gnu_cxx::__bfloat16_t __y)
+1030:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_powf(__x, __y)); }
+1031:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1032:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1033:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(__gnu_cxx::__bfloat16_t __x)
+1034:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_sinf(__x)); }
+ARM GAS  /tmp/ccCmXEY4.s 			page 21
+
+
+1035:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1036:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1037:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sinh(__gnu_cxx::__bfloat16_t __x)
+1038:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_sinhf(__x)); }
+1039:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1040:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1041:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(__gnu_cxx::__bfloat16_t __x)
+1042:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_sqrtf(__x)); }
+1043:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1044:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1045:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(__gnu_cxx::__bfloat16_t __x)
+1046:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_tanf(__x)); }
+1047:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1048:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
+1049:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tanh(__gnu_cxx::__bfloat16_t __x)
+1050:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_tanhf(__x)); }
+1051:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+1052:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1053:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp, typename _Up>
+1054:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+1055:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__promote_2<_Tp, _Up>::__type
+1056:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     atan2(_Tp __y, _Up __x)
+1057:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     {
+1058:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****       typedef typename __gnu_cxx::__promote_2<_Tp, _Up>::__type __type;
+1059:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****       return atan2(__type(__y), __type(__x));
+1060:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     }
+1061:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1062:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp, typename _Up>
+1063:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+1064:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__promote_2<_Tp, _Up>::__type
+1065:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     fmod(_Tp __x, _Up __y)
+1066:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     {
+1067:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****       typedef typename __gnu_cxx::__promote_2<_Tp, _Up>::__type __type;
+1068:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****       return fmod(__type(__x), __type(__y));
+1069:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     }
+1070:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1071:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp, typename _Up>
+1072:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
+1073:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__promote_2<_Tp, _Up>::__type
+1074:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     pow(_Tp __x, _Up __y)
+1075:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     {
+1076:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****       typedef typename __gnu_cxx::__promote_2<_Tp, _Up>::__type __type;
+1077:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****       return pow(__type(__x), __type(__y));
+1078:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     }
+1079:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1080:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if _GLIBCXX_USE_C99_MATH
+1081:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
+1082:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1083:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // These are possible macros imported from C99-land.
+1084:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef fpclassify
+1085:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isfinite
+1086:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isinf
+1087:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isnan
+1088:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isnormal
+1089:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef signbit
+1090:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isgreater
+1091:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isgreaterequal
+ARM GAS  /tmp/ccCmXEY4.s 			page 22
+
+
+1092:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isless
+1093:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef islessequal
+1094:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef islessgreater
+1095:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isunordered
+1096:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1097:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #if __cplusplus >= 201103L
+1098:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1099:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP11_MATH_H_PROTO_FP
+1100:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr int
+1101:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fpclassify(float __x)
+1102:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fpclassify(FP_NAN, FP_INFINITE, FP_NORMAL,
+1103:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 				FP_SUBNORMAL, FP_ZERO, __x); }
+1104:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1105:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr int
+1106:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fpclassify(double __x)
+1107:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fpclassify(FP_NAN, FP_INFINITE, FP_NORMAL,
+1108:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 				FP_SUBNORMAL, FP_ZERO, __x); }
+1109:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1110:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr int
+1111:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   fpclassify(long double __x)
+1112:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_fpclassify(FP_NAN, FP_INFINITE, FP_NORMAL,
+1113:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 				FP_SUBNORMAL, FP_ZERO, __x); }
+1114:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+1115:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1116:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP11_MATH_H_PROTO_INT
+1117:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+1118:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     constexpr typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+1119:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                               int>::__type
+1120:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     fpclassify(_Tp __x)
+1121:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __x != 0 ? FP_NORMAL : FP_ZERO; }
+1122:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+1123:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1124:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP11_MATH_H_PROTO_FP
+1125:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr bool
+1126:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   isfinite(float __x)
+1127:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_isfinite(__x); }
+1128:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1129:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr bool
+1130:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   isfinite(double __x)
+1131:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_isfinite(__x); }
+1132:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1133:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr bool
+1134:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   isfinite(long double __x)
+1135:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_isfinite(__x); }
+1136:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+1137:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1138:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP11_MATH_H_PROTO_INT
+1139:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
+1140:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     constexpr typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
+1141:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                               bool>::__type
+1142:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     isfinite(_Tp)
+1143:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return true; }
+1144:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
+1145:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
+1146:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP11_MATH_H_PROTO_FP
+1147:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr bool
+1148:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   isinf(float __x)
+ARM GAS  /tmp/ccCmXEY4.s 			page 23
+
+
+  61              		.loc 2 1148 3 is_stmt 1 view .LVU4
+  62              	.LBB13:
+1149:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_isinf(__x); }
+  63              		.loc 2 1149 5 view .LVU5
+  64              		.loc 2 1149 27 is_stmt 0 view .LVU6
+  65 001e F0EEE77A 		vabs.f32	s15, s15
+  66              	.LVL2:
+  67              		.loc 2 1149 27 view .LVU7
+  68              	.LBE13:
+  69              	.LBE12:
+  70              		.loc 1 47 5 discriminator 1 view .LVU8
+  71 0022 9FED637A 		vldr.32	s14, .L15+8
+  72 0026 F4EE477A 		vcmp.f32	s15, s14
+  73 002a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  74 002e 02DD     		ble	.L3
+  75              	.L2:
+  76              		.loc 1 47 5 is_stmt 1 discriminator 7 view .LVU9
+  77 0030 0023     		movs	r3, #0
+  78 0032 CAF80030 		str	r3, [r10]	@ float
+  79              	.L3:
+  80              		.loc 1 47 29 discriminator 9 view .LVU10
+  48:My_Top/System/pll.cpp ****     float delta_theta = reg_in - *reg_out;//计算输入角度与输出角度的误差
+  81              		.loc 1 48 5 view .LVU11
+  82              		.loc 1 48 34 is_stmt 0 view .LVU12
+  83 0036 DAED007A 		vldr.32	s15, [r10]
+  84              	.LVL3:
+  49:My_Top/System/pll.cpp ****     delta_theta = wrap_to_PI(delta_theta);//将误差限制在 -π 到 π 之间
+  85              		.loc 1 49 5 is_stmt 1 view .LVU13
+  86              	.LBB14:
+  87              		.loc 1 49 19 view .LVU14
+  88 003a 70EE677A 		vsub.f32	s15, s0, s15
+  89              	.LVL4:
+  90              		.loc 1 49 19 is_stmt 0 view .LVU15
+  91 003e 17EE900A 		vmov	r0, s15
+  92              	.LVL5:
+  93              		.loc 1 49 19 view .LVU16
+  94 0042 FFF7FEFF 		bl	__aeabi_f2d
+  95              	.LVL6:
+  96              		.loc 1 49 19 view .LVU17
+  97 0046 58A3     		adr	r3, .L15
+  98 0048 D3E90023 		ldrd	r2, [r3]
+  99 004c FFF7FEFF 		bl	__aeabi_dadd
+ 100              	.LVL7:
+ 101 0050 FFF7FEFF 		bl	__aeabi_d2f
+ 102              	.LVL8:
+ 103 0054 DFED570A 		vldr.32	s1, .L15+12
+ 104 0058 00EE100A 		vmov	s0, r0
+ 105 005c FFF7FEFF 		bl	fmodf
+ 106              	.LVL9:
+ 107              		.loc 1 49 19 is_stmt 1 discriminator 1 view .LVU18
+ 108 0060 B5EEC00A 		vcmpe.f32	s0, #0
+ 109 0064 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 110 0068 00F19180 		bmi	.L13
+ 111              	.LVL10:
+ 112              	.L4:
+ 113              		.loc 1 49 19 discriminator 3 view .LVU19
+ 114 006c 10EE100A 		vmov	r0, s0
+ARM GAS  /tmp/ccCmXEY4.s 			page 24
+
+
+ 115 0070 FFF7FEFF 		bl	__aeabi_f2d
+ 116              	.LVL11:
+ 117              		.loc 1 49 19 is_stmt 0 discriminator 3 view .LVU20
+ 118 0074 4CA3     		adr	r3, .L15
+ 119 0076 D3E90023 		ldrd	r2, [r3]
+ 120 007a FFF7FEFF 		bl	__aeabi_dsub
+ 121              	.LVL12:
+ 122              	.LBE14:
+ 123              		.loc 1 49 17 discriminator 3 view .LVU21
+ 124 007e FFF7FEFF 		bl	__aeabi_d2f
+ 125              	.LVL13:
+ 126 0082 8046     		mov	r8, r0	@ float
+ 127              	.LVL14:
+  50:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+ 128              		.loc 1 50 5 is_stmt 1 view .LVU22
+ 129 0084 D4ED007A 		vldr.32	s15, [r4]
+ 130              		.loc 1 50 5 is_stmt 0 discriminator 1 view .LVU23
+ 131 0088 F4EE677A 		vcmp.f32	s15, s15
+ 132 008c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 133 0090 08D6     		bvs	.L6
+ 134              	.LVL15:
+ 135              	.LBB15:
+ 136              	.LBI15:
+1148:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_isinf(__x); }
+ 137              		.loc 2 1148 3 is_stmt 1 view .LVU24
+ 138              	.LBB16:
+ 139              		.loc 2 1149 5 view .LVU25
+ 140              		.loc 2 1149 27 is_stmt 0 view .LVU26
+ 141 0092 F0EEE77A 		vabs.f32	s15, s15
+ 142              	.LVL16:
+ 143              		.loc 2 1149 27 view .LVU27
+ 144              	.LBE16:
+ 145              	.LBE15:
+ 146              		.loc 1 50 5 discriminator 1 view .LVU28
+ 147 0096 9FED467A 		vldr.32	s14, .L15+8
+ 148 009a F4EE477A 		vcmp.f32	s15, s14
+ 149 009e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 150 00a2 01DD     		ble	.L7
+ 151              	.L6:
+ 152              		.loc 1 50 5 is_stmt 1 discriminator 7 view .LVU29
+ 153 00a4 0023     		movs	r3, #0
+ 154 00a6 2360     		str	r3, [r4]	@ float
+ 155              	.L7:
+ 156              		.loc 1 50 38 discriminator 9 view .LVU30
+  51:My_Top/System/pll.cpp ****     // 对应：θ_out[k+1] = θ_out[k] + (ω_out[k] + Kp·Δθ[k]) × Ts
+  52:My_Top/System/pll.cpp ****     *reg_out += (*Angular_velocity + conf->foc_pll_kp * delta_theta) * dt; //更新输出角度 310
+ 157              		.loc 1 52 5 view .LVU31
+ 158 00a8 DAF80000 		ldr	r0, [r10]	@ float
+ 159              	.LVL17:
+ 160              		.loc 1 52 5 is_stmt 0 view .LVU32
+ 161 00ac FFF7FEFF 		bl	__aeabi_f2d
+ 162              	.LVL18:
+ 163 00b0 CDE90001 		strd	r0, [sp]
+ 164              		.loc 1 52 18 view .LVU33
+ 165 00b4 2068     		ldr	r0, [r4]	@ float
+ 166 00b6 FFF7FEFF 		bl	__aeabi_f2d
+ 167              	.LVL19:
+ARM GAS  /tmp/ccCmXEY4.s 			page 25
+
+
+ 168 00ba CDE90201 		strd	r0, [sp, #8]
+ 169              		.loc 1 52 44 view .LVU34
+ 170 00be D5E90067 		ldrd	r6, [r5]
+ 171              		.loc 1 52 57 view .LVU35
+ 172 00c2 4046     		mov	r0, r8	@ float
+ 173 00c4 FFF7FEFF 		bl	__aeabi_f2d
+ 174              	.LVL20:
+ 175 00c8 0246     		mov	r2, r0
+ 176 00ca 0B46     		mov	r3, r1
+ 177 00cc CDE90423 		strd	r2, [sp, #16]
+ 178              		.loc 1 52 55 view .LVU36
+ 179 00d0 3046     		mov	r0, r6
+ 180 00d2 3946     		mov	r1, r7
+ 181 00d4 FFF7FEFF 		bl	__aeabi_dmul
+ 182              	.LVL21:
+ 183 00d8 0246     		mov	r2, r0
+ 184 00da 0B46     		mov	r3, r1
+ 185              		.loc 1 52 36 view .LVU37
+ 186 00dc DDE90201 		ldrd	r0, [sp, #8]
+ 187 00e0 FFF7FEFF 		bl	__aeabi_dadd
+ 188              	.LVL22:
+ 189 00e4 8046     		mov	r8, r0
+ 190              	.LVL23:
+ 191              		.loc 1 52 36 view .LVU38
+ 192 00e6 8946     		mov	r9, r1
+ 193              		.loc 1 52 72 view .LVU39
+ 194 00e8 5846     		mov	r0, fp	@ float
+ 195 00ea FFF7FEFF 		bl	__aeabi_f2d
+ 196              	.LVL24:
+ 197 00ee 0646     		mov	r6, r0
+ 198 00f0 0F46     		mov	r7, r1
+ 199              		.loc 1 52 70 view .LVU40
+ 200 00f2 0246     		mov	r2, r0
+ 201 00f4 0B46     		mov	r3, r1
+ 202 00f6 4046     		mov	r0, r8
+ 203 00f8 4946     		mov	r1, r9
+ 204 00fa FFF7FEFF 		bl	__aeabi_dmul
+ 205              	.LVL25:
+ 206 00fe 0246     		mov	r2, r0
+ 207 0100 0B46     		mov	r3, r1
+ 208              		.loc 1 52 14 view .LVU41
+ 209 0102 DDE90001 		ldrd	r0, [sp]
+ 210 0106 FFF7FEFF 		bl	__aeabi_dadd
+ 211              	.LVL26:
+ 212 010a FFF7FEFF 		bl	__aeabi_d2f
+ 213              	.LVL27:
+ 214 010e CAF80000 		str	r0, [r10]	@ float
+  53:My_Top/System/pll.cpp ****     *reg_out = wrap_to_PI(*reg_out);//将输出角度限制在 -π 到 π 之间
+ 215              		.loc 1 53 5 is_stmt 1 view .LVU42
+ 216              	.LBB17:
+ 217              		.loc 1 53 16 view .LVU43
+ 218 0112 FFF7FEFF 		bl	__aeabi_f2d
+ 219              	.LVL28:
+ 220 0116 24A3     		adr	r3, .L15
+ 221 0118 D3E90023 		ldrd	r2, [r3]
+ 222 011c FFF7FEFF 		bl	__aeabi_dadd
+ 223              	.LVL29:
+ARM GAS  /tmp/ccCmXEY4.s 			page 26
+
+
+ 224 0120 FFF7FEFF 		bl	__aeabi_d2f
+ 225              	.LVL30:
+ 226 0124 DFED230A 		vldr.32	s1, .L15+12
+ 227 0128 00EE100A 		vmov	s0, r0
+ 228 012c FFF7FEFF 		bl	fmodf
+ 229              	.LVL31:
+ 230              		.loc 1 53 16 discriminator 1 view .LVU44
+ 231 0130 B5EEC00A 		vcmpe.f32	s0, #0
+ 232 0134 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 233 0138 2ED4     		bmi	.L14
+ 234              	.LVL32:
+ 235              	.L8:
+ 236              		.loc 1 53 16 discriminator 3 view .LVU45
+ 237 013a 10EE100A 		vmov	r0, s0
+ 238 013e FFF7FEFF 		bl	__aeabi_f2d
+ 239              	.LVL33:
+ 240              		.loc 1 53 16 is_stmt 0 discriminator 3 view .LVU46
+ 241 0142 19A3     		adr	r3, .L15
+ 242 0144 D3E90023 		ldrd	r2, [r3]
+ 243 0148 FFF7FEFF 		bl	__aeabi_dsub
+ 244              	.LVL34:
+ 245              	.LBE17:
+ 246 014c FFF7FEFF 		bl	__aeabi_d2f
+ 247              	.LVL35:
+ 248              		.loc 1 53 14 discriminator 3 view .LVU47
+ 249 0150 CAF80000 		str	r0, [r10]	@ float
+  54:My_Top/System/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
+ 250              		.loc 1 54 5 is_stmt 1 view .LVU48
+ 251 0154 2068     		ldr	r0, [r4]	@ float
+ 252 0156 FFF7FEFF 		bl	__aeabi_f2d
+ 253              	.LVL36:
+ 254 015a 8046     		mov	r8, r0
+ 255 015c 8946     		mov	r9, r1
+ 256              		.loc 1 54 43 is_stmt 0 view .LVU49
+ 257 015e D5E90223 		ldrd	r2, [r5, #8]
+ 258 0162 DDE90401 		ldrd	r0, [sp, #16]
+ 259 0166 FFF7FEFF 		bl	__aeabi_dmul
+ 260              	.LVL37:
+ 261 016a 0246     		mov	r2, r0
+ 262 016c 0B46     		mov	r3, r1
+ 263              		.loc 1 54 57 view .LVU50
+ 264 016e 3046     		mov	r0, r6
+ 265 0170 3946     		mov	r1, r7
+ 266 0172 FFF7FEFF 		bl	__aeabi_dmul
+ 267              	.LVL38:
+ 268 0176 0246     		mov	r2, r0
+ 269 0178 0B46     		mov	r3, r1
+ 270              		.loc 1 54 23 view .LVU51
+ 271 017a 4046     		mov	r0, r8
+ 272 017c 4946     		mov	r1, r9
+ 273 017e FFF7FEFF 		bl	__aeabi_dadd
+ 274              	.LVL39:
+ 275 0182 FFF7FEFF 		bl	__aeabi_d2f
+ 276              	.LVL40:
+ 277 0186 2060     		str	r0, [r4]	@ float
+  55:My_Top/System/pll.cpp **** }
+ 278              		.loc 1 55 1 view .LVU52
+ARM GAS  /tmp/ccCmXEY4.s 			page 27
+
+
+ 279 0188 07B0     		add	sp, sp, #28
+ 280              		.cfi_remember_state
+ 281              		.cfi_def_cfa_offset 36
+ 282              		@ sp needed
+ 283 018a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 284              	.LVL41:
+ 285              	.L13:
+ 286              		.cfi_restore_state
+ 287              	.LBB18:
+  49:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+ 288              		.loc 1 49 19 is_stmt 1 discriminator 1 view .LVU53
+ 289 018e DFED097A 		vldr.32	s15, .L15+12
+ 290 0192 30EE270A 		vadd.f32	s0, s0, s15
+ 291              	.LVL42:
+  49:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+ 292              		.loc 1 49 19 is_stmt 0 discriminator 1 view .LVU54
+ 293 0196 69E7     		b	.L4
+ 294              	.LVL43:
+ 295              	.L14:
+  49:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+ 296              		.loc 1 49 19 discriminator 1 view .LVU55
+ 297              	.LBE18:
+ 298              	.LBB19:
+  53:My_Top/System/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
+ 299              		.loc 1 53 16 is_stmt 1 discriminator 1 view .LVU56
+ 300 0198 DFED067A 		vldr.32	s15, .L15+12
+ 301 019c 30EE270A 		vadd.f32	s0, s0, s15
+ 302              	.LVL44:
+  53:My_Top/System/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
+ 303              		.loc 1 53 16 is_stmt 0 discriminator 1 view .LVU57
+ 304 01a0 CBE7     		b	.L8
+ 305              	.L16:
+ 306 01a2 00BFAFF3 		.align	3
+ 306      0080
+ 307              	.L15:
+ 308 01a8 182D4454 		.word	1413754136
+ 309 01ac FB210940 		.word	1074340347
+ 310 01b0 FFFF7F7F 		.word	2139095039
+ 311 01b4 DB0FC940 		.word	1086918619
+ 312              	.LBE19:
+ 313              		.cfi_endproc
+ 314              	.LFE1310:
+ 316              	.Letext0:
+ 317              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 318              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 319              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 320              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 321              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 322              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+fp
+ 323              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 324              		.file 10 "My_Top/System/pll.hpp"
+ARM GAS  /tmp/ccCmXEY4.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pll.cpp
+     /tmp/ccCmXEY4.s:20     .text:00000000 $t
+     /tmp/ccCmXEY4.s:26     .text:00000000 _Z11foc_pll_runffPfS_P13PLL_Parameter
+     /tmp/ccCmXEY4.s:308    .text:000001a8 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_dadd
+__aeabi_d2f
+fmodf
+__aeabi_dsub
+__aeabi_dmul

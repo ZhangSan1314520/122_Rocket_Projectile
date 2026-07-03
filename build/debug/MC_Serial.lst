@@ -1,0 +1,973 @@
+ARM GAS  /tmp/ccVLtOc8.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"MC_Serial.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/MC/MC_Serial.cpp"
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	_ZL18handle_console_msgP12__DataPack_tP6SerialPv:
+  26              	.LVL0:
+  27              	.LFB345:
+   1:My_Top/MC/MC_Serial.cpp **** // #include "MotorController.hpp"
+   2:My_Top/MC/MC_Serial.cpp **** #include "MC_Serial.hpp"
+   3:My_Top/MC/MC_Serial.cpp **** 
+   4:My_Top/MC/MC_Serial.cpp **** Serial sr_logger;
+   5:My_Top/MC/MC_Serial.cpp **** Serial sr_console;
+   6:My_Top/MC/MC_Serial.cpp **** 
+   7:My_Top/MC/MC_Serial.cpp **** static void handle_console_msg(DataPack_t *pack, Serial *serial, void *args);
+   8:My_Top/MC/MC_Serial.cpp **** static void handle_logger_msg(DataPack_t *pack, Serial *serial, void *args);
+   9:My_Top/MC/MC_Serial.cpp **** 
+  10:My_Top/MC/MC_Serial.cpp **** void MC_Serial::init(void)
+  11:My_Top/MC/MC_Serial.cpp **** {
+  12:My_Top/MC/MC_Serial.cpp ****     /* vofa+串口初始化 */
+  13:My_Top/MC/MC_Serial.cpp ****     sr_logger.init_with_default("logger", Vofa_huart);
+  14:My_Top/MC/MC_Serial.cpp ****     sr_logger.register_rx_msg_handler(handle_logger_msg, NULL);
+  15:My_Top/MC/MC_Serial.cpp **** 
+  16:My_Top/MC/MC_Serial.cpp ****     /* 控制台打印串口初始化 */
+  17:My_Top/MC/MC_Serial.cpp ****     sr_console.init_with_default("console", CLI_huart);
+  18:My_Top/MC/MC_Serial.cpp ****     sr_console.register_rx_msg_handler(handle_console_msg, NULL);
+  19:My_Top/MC/MC_Serial.cpp ****  
+  20:My_Top/MC/MC_Serial.cpp **** }
+  21:My_Top/MC/MC_Serial.cpp **** 
+  22:My_Top/MC/MC_Serial.cpp **** extern "C" int printf_(const char *format, ...) // 替代标准printf，将格式化输出重定向
+  23:My_Top/MC/MC_Serial.cpp **** {
+  24:My_Top/MC/MC_Serial.cpp ****     // extern Serial sr_console;
+  25:My_Top/MC/MC_Serial.cpp ****     uint8_t *print_buf = (uint8_t *)pvPortMalloc(SERIAL_PRINT_SIZE);
+  26:My_Top/MC/MC_Serial.cpp **** 
+  27:My_Top/MC/MC_Serial.cpp ****     if (print_buf == NULL)
+  28:My_Top/MC/MC_Serial.cpp ****         return -1;
+  29:My_Top/MC/MC_Serial.cpp **** 
+  30:My_Top/MC/MC_Serial.cpp ****     va_list args;
+  31:My_Top/MC/MC_Serial.cpp ****     va_start(args, format);
+ARM GAS  /tmp/ccVLtOc8.s 			page 2
+
+
+  32:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+  33:My_Top/MC/MC_Serial.cpp ****     va_end(args);
+  34:My_Top/MC/MC_Serial.cpp **** 
+  35:My_Top/MC/MC_Serial.cpp ****     bool status;
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+  37:My_Top/MC/MC_Serial.cpp ****     {
+  38:My_Top/MC/MC_Serial.cpp ****         status = sr_console.send_data(print_buf, len);
+  39:My_Top/MC/MC_Serial.cpp ****         if (status)
+  40:My_Top/MC/MC_Serial.cpp ****             break;
+  41:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+  42:My_Top/MC/MC_Serial.cpp ****     }
+  43:My_Top/MC/MC_Serial.cpp ****     if (!status)
+  44:My_Top/MC/MC_Serial.cpp ****         len = -1;
+  45:My_Top/MC/MC_Serial.cpp **** 
+  46:My_Top/MC/MC_Serial.cpp ****     vPortFree(print_buf);
+  47:My_Top/MC/MC_Serial.cpp **** 
+  48:My_Top/MC/MC_Serial.cpp ****     return len;
+  49:My_Top/MC/MC_Serial.cpp **** }
+  50:My_Top/MC/MC_Serial.cpp **** 
+  51:My_Top/MC/MC_Serial.cpp **** extern "C" int println(const char *format, ...) // 替代标准printf，将格式化输出重定向
+  52:My_Top/MC/MC_Serial.cpp **** {
+  53:My_Top/MC/MC_Serial.cpp ****     // extern Serial sr_console;
+  54:My_Top/MC/MC_Serial.cpp ****     uint8_t *print_buf = (uint8_t *)pvPortMalloc(SERIAL_PRINT_SIZE);
+  55:My_Top/MC/MC_Serial.cpp **** 
+  56:My_Top/MC/MC_Serial.cpp ****     if (print_buf == NULL)
+  57:My_Top/MC/MC_Serial.cpp ****         return -1;
+  58:My_Top/MC/MC_Serial.cpp **** 
+  59:My_Top/MC/MC_Serial.cpp ****     va_list args;
+  60:My_Top/MC/MC_Serial.cpp ****     va_start(args, format);
+  61:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+  62:My_Top/MC/MC_Serial.cpp ****     va_end(args);
+  63:My_Top/MC/MC_Serial.cpp **** 
+  64:My_Top/MC/MC_Serial.cpp ****     bool status;
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+  66:My_Top/MC/MC_Serial.cpp ****     {
+  67:My_Top/MC/MC_Serial.cpp ****         status = sr_console.send_data(print_buf, len);
+  68:My_Top/MC/MC_Serial.cpp ****         if (status)
+  69:My_Top/MC/MC_Serial.cpp ****             break;
+  70:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+  71:My_Top/MC/MC_Serial.cpp ****     }
+  72:My_Top/MC/MC_Serial.cpp ****     status &= sr_console.send_data((uint8_t *)"\r\n", 2);
+  73:My_Top/MC/MC_Serial.cpp ****     len += 2;
+  74:My_Top/MC/MC_Serial.cpp ****     if (!status)
+  75:My_Top/MC/MC_Serial.cpp ****         len = -1;
+  76:My_Top/MC/MC_Serial.cpp **** 
+  77:My_Top/MC/MC_Serial.cpp ****     vPortFree(print_buf);
+  78:My_Top/MC/MC_Serial.cpp **** 
+  79:My_Top/MC/MC_Serial.cpp ****     return len;
+  80:My_Top/MC/MC_Serial.cpp **** }
+  81:My_Top/MC/MC_Serial.cpp **** 
+  82:My_Top/MC/MC_Serial.cpp **** static void handle_console_msg(DataPack_t *pack, Serial *serial, void *args) // 用于实现交互�
+  83:My_Top/MC/MC_Serial.cpp **** {
+  28              		.loc 1 83 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 83 1 is_stmt 0 view .LVU1
+ARM GAS  /tmp/ccVLtOc8.s 			page 3
+
+
+  33 0000 10B5     		push	{r4, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+  37 0002 0446     		mov	r4, r0
+  84:My_Top/MC/MC_Serial.cpp ****     CLI_Module *mcli = CLI_Module::get_cli_module(&sr_console);
+  38              		.loc 1 84 5 is_stmt 1 view .LVU2
+  39              		.loc 1 84 50 is_stmt 0 view .LVU3
+  40 0004 0448     		ldr	r0, .L4
+  41              	.LVL1:
+  42              		.loc 1 84 50 view .LVU4
+  43 0006 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP6Serial
+  44              	.LVL2:
+  85:My_Top/MC/MC_Serial.cpp **** 
+  86:My_Top/MC/MC_Serial.cpp ****     if (mcli == NULL)
+  45              		.loc 1 86 5 is_stmt 1 view .LVU5
+  46 000a 18B1     		cbz	r0, .L1
+  87:My_Top/MC/MC_Serial.cpp ****         return;
+  88:My_Top/MC/MC_Serial.cpp **** 
+  89:My_Top/MC/MC_Serial.cpp ****     mcli->receive_data(pack->pData, pack->size);
+  47              		.loc 1 89 5 view .LVU6
+  48              		.loc 1 89 23 is_stmt 0 view .LVU7
+  49 000c A288     		ldrh	r2, [r4, #4]
+  50 000e 2168     		ldr	r1, [r4]
+  51 0010 FFF7FEFF 		bl	_ZN10CLI_Module12receive_dataEPht
+  52              	.LVL3:
+  53              	.L1:
+  90:My_Top/MC/MC_Serial.cpp **** }
+  54              		.loc 1 90 1 view .LVU8
+  55 0014 10BD     		pop	{r4, pc}
+  56              	.LVL4:
+  57              	.L5:
+  58              		.loc 1 90 1 view .LVU9
+  59 0016 00BF     		.align	2
+  60              	.L4:
+  61 0018 00000000 		.word	.LANCHOR0
+  62              		.cfi_endproc
+  63              	.LFE345:
+  65              		.align	1
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	_ZL17handle_logger_msgP12__DataPack_tP6SerialPv:
+  71              	.LVL5:
+  72              	.LFB346:
+  91:My_Top/MC/MC_Serial.cpp **** 
+  92:My_Top/MC/MC_Serial.cpp **** static void handle_logger_msg(DataPack_t *pack, Serial *serial, void *args) //串口2 VoFA的回调
+  93:My_Top/MC/MC_Serial.cpp **** {
+  73              		.loc 1 93 1 is_stmt 1 view -0
+  74              		.cfi_startproc
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77              		.loc 1 93 1 is_stmt 0 view .LVU11
+  78 001c 10B5     		push	{r4, lr}
+  79              		.cfi_def_cfa_offset 8
+  80              		.cfi_offset 4, -8
+  81              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccVLtOc8.s 			page 4
+
+
+  82 001e 0446     		mov	r4, r0
+  94:My_Top/MC/MC_Serial.cpp ****     CLI_Module *mcli = CLI_Module::get_cli_module(&sr_console);
+  83              		.loc 1 94 5 is_stmt 1 view .LVU12
+  84              		.loc 1 94 50 is_stmt 0 view .LVU13
+  85 0020 0448     		ldr	r0, .L9
+  86              	.LVL6:
+  87              		.loc 1 94 50 view .LVU14
+  88 0022 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP6Serial
+  89              	.LVL7:
+  95:My_Top/MC/MC_Serial.cpp **** 
+  96:My_Top/MC/MC_Serial.cpp ****     if (mcli == NULL)
+  90              		.loc 1 96 5 is_stmt 1 view .LVU15
+  91 0026 18B1     		cbz	r0, .L6
+  97:My_Top/MC/MC_Serial.cpp ****         return;
+  98:My_Top/MC/MC_Serial.cpp ****     // vofa1.on_recv(pack->pData, pack->size);//转发给自定义解析任务
+  99:My_Top/MC/MC_Serial.cpp ****     mcli->receive_data(pack->pData, pack->size);
+  92              		.loc 1 99 5 view .LVU16
+  93              		.loc 1 99 23 is_stmt 0 view .LVU17
+  94 0028 A288     		ldrh	r2, [r4, #4]
+  95 002a 2168     		ldr	r1, [r4]
+  96 002c FFF7FEFF 		bl	_ZN10CLI_Module12receive_dataEPht
+  97              	.LVL8:
+  98              	.L6:
+ 100:My_Top/MC/MC_Serial.cpp ****     
+ 101:My_Top/MC/MC_Serial.cpp **** 
+ 102:My_Top/MC/MC_Serial.cpp **** }...
+  99              		.loc 1 102 1 view .LVU18
+ 100 0030 10BD     		pop	{r4, pc}
+ 101              	.LVL9:
+ 102              	.L10:
+ 103              		.loc 1 102 1 view .LVU19
+ 104 0032 00BF     		.align	2
+ 105              	.L9:
+ 106 0034 00000000 		.word	.LANCHOR0
+ 107              		.cfi_endproc
+ 108              	.LFE346:
+ 110              		.section	.text._ZN6SerialC2Ev,"axG",%progbits,_ZN6SerialC5Ev,comdat
+ 111              		.align	1
+ 112              		.weak	_ZN6SerialC2Ev
+ 113              		.syntax unified
+ 114              		.thumb
+ 115              		.thumb_func
+ 117              	_ZN6SerialC2Ev:
+ 118              	.LVL10:
+ 119              	.LFB340:
+ 120              		.file 2 "Lib/serial/serial.hpp"
+   1:Lib/serial/serial.hpp **** #pragma once
+   2:Lib/serial/serial.hpp **** 
+   3:Lib/serial/serial.hpp **** #include <stdint.h>
+   4:Lib/serial/serial.hpp **** #include <stdarg.h>
+   5:Lib/serial/serial.hpp **** 
+   6:Lib/serial/serial.hpp **** #include "usart.h"
+   7:Lib/serial/serial.hpp **** #if (USE_HAL_UART_REGISTER_CALLBACKS != 1)
+   8:Lib/serial/serial.hpp **** #error "请在STM32CubeMX中开启UART的回调函数功能"
+   9:Lib/serial/serial.hpp **** #endif
+  10:Lib/serial/serial.hpp **** 
+  11:Lib/serial/serial.hpp **** #include "cmsis_os2.h"
+ARM GAS  /tmp/ccVLtOc8.s 			page 5
+
+
+  12:Lib/serial/serial.hpp **** #include "FreeRTOS.h"
+  13:Lib/serial/serial.hpp **** #include "queue.h"
+  14:Lib/serial/serial.hpp **** #include "semphr.h"
+  15:Lib/serial/serial.hpp **** 
+  16:Lib/serial/serial.hpp **** #define SERIAL_NAME_SIZE 16
+  17:Lib/serial/serial.hpp **** #define SERIAL_MAX_COUNT 8
+  18:Lib/serial/serial.hpp **** #define SERIAL_PRINT_SIZE 200
+  19:Lib/serial/serial.hpp **** 
+  20:Lib/serial/serial.hpp **** typedef struct __DataPack_t
+  21:Lib/serial/serial.hpp **** {
+  22:Lib/serial/serial.hpp ****     uint8_t *pData; // 数据包首地址
+  23:Lib/serial/serial.hpp ****     uint16_t size;  // 数据包大小
+  24:Lib/serial/serial.hpp ****     uint32_t tick;  // 时间戳
+  25:Lib/serial/serial.hpp **** } DataPack_t;
+  26:Lib/serial/serial.hpp **** 
+  27:Lib/serial/serial.hpp **** typedef struct __BufferHandle_t
+  28:Lib/serial/serial.hpp **** {
+  29:Lib/serial/serial.hpp ****     uint8_t *pBuffer; // 数据缓冲区首地址
+  30:Lib/serial/serial.hpp ****     uint16_t size;    // 数据缓冲区最大长度
+  31:Lib/serial/serial.hpp ****     uint8_t status;   // 数据缓冲区状态
+  32:Lib/serial/serial.hpp ****     uint8_t *pData;   // 已有数据首指针
+  33:Lib/serial/serial.hpp ****     uint16_t index;   // 已有数据尾指针索引
+  34:Lib/serial/serial.hpp **** } BufferHandle_t;
+  35:Lib/serial/serial.hpp **** 
+  36:Lib/serial/serial.hpp **** enum class Serial_Mode : uint8_t
+  37:Lib/serial/serial.hpp **** {
+  38:Lib/serial/serial.hpp ****     None,
+  39:Lib/serial/serial.hpp ****     IT,
+  40:Lib/serial/serial.hpp ****     DMA
+  41:Lib/serial/serial.hpp **** };
+  42:Lib/serial/serial.hpp **** 
+  43:Lib/serial/serial.hpp **** enum class Serial_Error : uint8_t
+  44:Lib/serial/serial.hpp **** {
+  45:Lib/serial/serial.hpp ****     None,
+  46:Lib/serial/serial.hpp ****     Init_Error,
+  47:Lib/serial/serial.hpp ****     Start_Error,
+  48:Lib/serial/serial.hpp ****     RX_Error,
+  49:Lib/serial/serial.hpp ****     TX_Error
+  50:Lib/serial/serial.hpp **** };
+  51:Lib/serial/serial.hpp **** 
+  52:Lib/serial/serial.hpp **** 
+  53:Lib/serial/serial.hpp **** typedef struct
+  54:Lib/serial/serial.hpp **** {
+  55:Lib/serial/serial.hpp ****     Serial_Mode rx_mode;   // 接收模式（IT、DMA）
+  56:Lib/serial/serial.hpp ****     Serial_Mode tx_mode;   // 发送模式（IT、DMA）
+  57:Lib/serial/serial.hpp ****     uint16_t rx_buf_size;  // 接收缓冲区大小
+  58:Lib/serial/serial.hpp ****     uint16_t tx_buf_size;  // 发送缓冲区大小
+  59:Lib/serial/serial.hpp ****     uint16_t rx_pack_size; // 接收数据包大小
+  60:Lib/serial/serial.hpp ****     uint16_t tx_pack_size; // 发送数据包大小
+  61:Lib/serial/serial.hpp ****     uint16_t rx_queue_len; // 接收队列长度
+  62:Lib/serial/serial.hpp ****     uint16_t tx_queue_len; // 发送队列长度
+  63:Lib/serial/serial.hpp **** } Serial_Config;
+  64:Lib/serial/serial.hpp **** 
+  65:Lib/serial/serial.hpp **** typedef struct
+  66:Lib/serial/serial.hpp **** {
+  67:Lib/serial/serial.hpp ****     uint16_t error_cnt;          // 串口错误计数
+  68:Lib/serial/serial.hpp ****     uint32_t rx_total_size;      // 总接收字节数
+ARM GAS  /tmp/ccVLtOc8.s 			page 6
+
+
+  69:Lib/serial/serial.hpp ****     uint32_t tx_total_size;      // 总发送字节数
+  70:Lib/serial/serial.hpp ****     uint16_t rx_to_process_size; // 待处理接收字节数
+  71:Lib/serial/serial.hpp ****     uint16_t tx_to_process_size; // 待处理发送字节数
+  72:Lib/serial/serial.hpp **** } Serial_Info;
+  73:Lib/serial/serial.hpp **** 
+  74:Lib/serial/serial.hpp **** class Serial;
+  75:Lib/serial/serial.hpp **** 
+  76:Lib/serial/serial.hpp **** typedef struct
+  77:Lib/serial/serial.hpp **** {
+  78:Lib/serial/serial.hpp ****     UART_HandleTypeDef *uart;
+  79:Lib/serial/serial.hpp ****     Serial *serial;
+  80:Lib/serial/serial.hpp **** } Serial_Map;
+  81:Lib/serial/serial.hpp **** 
+  82:Lib/serial/serial.hpp **** typedef void (*Serial_RX_Msg_Handler)(DataPack_t *pack, Serial *serial, void *args);
+  83:Lib/serial/serial.hpp **** 
+  84:Lib/serial/serial.hpp **** class Serial
+ 121              		.loc 2 84 7 is_stmt 1 view -0
+ 122              		.cfi_startproc
+ 123              		@ args = 0, pretend = 0, frame = 0
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125              		@ link register save eliminated.
+ 126              	.LBB2:
+ 127              		.loc 2 84 7 is_stmt 0 view .LVU21
+ 128 0000 0023     		movs	r3, #0
+ 129 0002 0360     		str	r3, [r0]
+ 130 0004 4360     		str	r3, [r0, #4]
+ 131 0006 8360     		str	r3, [r0, #8]
+ 132 0008 C360     		str	r3, [r0, #12]
+ 133 000a 0374     		strb	r3, [r0, #16]
+ 134 000c 4374     		strb	r3, [r0, #17]
+ 135 000e 8374     		strb	r3, [r0, #18]
+ 136 0010 0365     		str	r3, [r0, #80]
+ 137 0012 4365     		str	r3, [r0, #84]
+ 138 0014 8365     		str	r3, [r0, #88]
+ 139 0016 C365     		str	r3, [r0, #92]
+ 140 0018 C0F85F30 		str	r3, [r0, #95]	@ unaligned
+ 141 001c C0F86330 		str	r3, [r0, #99]	@ unaligned
+ 142 0020 C0F86730 		str	r3, [r0, #103]	@ unaligned
+ 143 0024 C0F86B30 		str	r3, [r0, #107]	@ unaligned
+ 144 0028 C0F86F30 		str	r3, [r0, #111]	@ unaligned
+ 145 002c C0F87230 		str	r3, [r0, #114]	@ unaligned
+ 146 0030 C0F89430 		str	r3, [r0, #148]
+ 147 0034 C0F89830 		str	r3, [r0, #152]
+ 148              	.LBE2:
+ 149 0038 7047     		bx	lr
+ 150              		.cfi_endproc
+ 151              	.LFE340:
+ 153              		.weak	_ZN6SerialC1Ev
+ 154              		.thumb_set _ZN6SerialC1Ev,_ZN6SerialC2Ev
+ 155              		.text
+ 156              		.align	1
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	_Z41__static_initialization_and_destruction_0v:
+ 162              	.LFB347:
+ 163              		.loc 1 102 1 is_stmt 1 view -0
+ARM GAS  /tmp/ccVLtOc8.s 			page 7
+
+
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167 0038 10B5     		push	{r4, lr}
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 4, -8
+ 170              		.cfi_offset 14, -4
+   4:My_Top/MC/MC_Serial.cpp **** Serial sr_logger;
+ 171              		.loc 1 4 8 is_stmt 0 view .LVU23
+ 172 003a 044C     		ldr	r4, .L14
+ 173 003c 04F19C00 		add	r0, r4, #156
+ 174 0040 FFF7FEFF 		bl	_ZN6SerialC1Ev
+ 175              	.LVL11:
+   5:My_Top/MC/MC_Serial.cpp **** Serial sr_console;
+ 176              		.loc 1 5 8 view .LVU24
+ 177 0044 2046     		mov	r0, r4
+ 178 0046 FFF7FEFF 		bl	_ZN6SerialC1Ev
+ 179              	.LVL12:
+ 180              		.loc 1 102 1 view .LVU25
+ 181 004a 10BD     		pop	{r4, pc}
+ 182              	.L15:
+ 183              		.align	2
+ 184              	.L14:
+ 185 004c 00000000 		.word	.LANCHOR0
+ 186              		.cfi_endproc
+ 187              	.LFE347:
+ 189              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 190              		.align	2
+ 191              	.LC0:
+ 192 0000 6C6F6767 		.ascii	"logger\000"
+ 192      657200
+ 193 0007 00       		.align	2
+ 194              	.LC1:
+ 195 0008 636F6E73 		.ascii	"console\000"
+ 195      6F6C6500 
+ 196              		.text
+ 197              		.align	1
+ 198              		.global	_ZN9MC_Serial4initEv
+ 199              		.syntax unified
+ 200              		.thumb
+ 201              		.thumb_func
+ 203              	_ZN9MC_Serial4initEv:
+ 204              	.LFB342:
+  11:My_Top/MC/MC_Serial.cpp **** {
+ 205              		.loc 1 11 1 is_stmt 1 view -0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209 0050 38B5     		push	{r3, r4, r5, lr}
+ 210              		.cfi_def_cfa_offset 16
+ 211              		.cfi_offset 3, -16
+ 212              		.cfi_offset 4, -12
+ 213              		.cfi_offset 5, -8
+ 214              		.cfi_offset 14, -4
+  13:My_Top/MC/MC_Serial.cpp ****     sr_logger.init_with_default("logger", Vofa_huart);
+ 215              		.loc 1 13 5 view .LVU27
+  13:My_Top/MC/MC_Serial.cpp ****     sr_logger.init_with_default("logger", Vofa_huart);
+ARM GAS  /tmp/ccVLtOc8.s 			page 8
+
+
+ 216              		.loc 1 13 32 is_stmt 0 view .LVU28
+ 217 0052 0C4C     		ldr	r4, .L18
+ 218 0054 04F19C05 		add	r5, r4, #156
+ 219 0058 0B4A     		ldr	r2, .L18+4
+ 220 005a 0C49     		ldr	r1, .L18+8
+ 221 005c 2846     		mov	r0, r5
+ 222 005e FFF7FEFF 		bl	_ZN6Serial17init_with_defaultEPKcP20__UART_HandleTypeDef
+ 223              	.LVL13:
+  14:My_Top/MC/MC_Serial.cpp ****     sr_logger.register_rx_msg_handler(handle_logger_msg, NULL);
+ 224              		.loc 1 14 5 is_stmt 1 view .LVU29
+  14:My_Top/MC/MC_Serial.cpp ****     sr_logger.register_rx_msg_handler(handle_logger_msg, NULL);
+ 225              		.loc 1 14 38 is_stmt 0 view .LVU30
+ 226 0062 0022     		movs	r2, #0
+ 227 0064 0A49     		ldr	r1, .L18+12
+ 228 0066 2846     		mov	r0, r5
+ 229 0068 FFF7FEFF 		bl	_ZN6Serial23register_rx_msg_handlerEPFvP12__DataPack_tPS_PvES3_
+ 230              	.LVL14:
+  17:My_Top/MC/MC_Serial.cpp ****     sr_console.init_with_default("console", CLI_huart);
+ 231              		.loc 1 17 5 is_stmt 1 view .LVU31
+  17:My_Top/MC/MC_Serial.cpp ****     sr_console.init_with_default("console", CLI_huart);
+ 232              		.loc 1 17 33 is_stmt 0 view .LVU32
+ 233 006c 094A     		ldr	r2, .L18+16
+ 234 006e 0A49     		ldr	r1, .L18+20
+ 235 0070 2046     		mov	r0, r4
+ 236 0072 FFF7FEFF 		bl	_ZN6Serial17init_with_defaultEPKcP20__UART_HandleTypeDef
+ 237              	.LVL15:
+  18:My_Top/MC/MC_Serial.cpp ****     sr_console.register_rx_msg_handler(handle_console_msg, NULL);
+ 238              		.loc 1 18 5 is_stmt 1 view .LVU33
+  18:My_Top/MC/MC_Serial.cpp ****     sr_console.register_rx_msg_handler(handle_console_msg, NULL);
+ 239              		.loc 1 18 39 is_stmt 0 view .LVU34
+ 240 0076 0022     		movs	r2, #0
+ 241 0078 0849     		ldr	r1, .L18+24
+ 242 007a 2046     		mov	r0, r4
+ 243 007c FFF7FEFF 		bl	_ZN6Serial23register_rx_msg_handlerEPFvP12__DataPack_tPS_PvES3_
+ 244              	.LVL16:
+  20:My_Top/MC/MC_Serial.cpp **** }
+ 245              		.loc 1 20 1 view .LVU35
+ 246 0080 38BD     		pop	{r3, r4, r5, pc}
+ 247              	.L19:
+ 248 0082 00BF     		.align	2
+ 249              	.L18:
+ 250 0084 00000000 		.word	.LANCHOR0
+ 251 0088 00000000 		.word	huart2
+ 252 008c 00000000 		.word	.LC0
+ 253 0090 00000000 		.word	_ZL17handle_logger_msgP12__DataPack_tP6SerialPv
+ 254 0094 00000000 		.word	huart1
+ 255 0098 08000000 		.word	.LC1
+ 256 009c 00000000 		.word	_ZL18handle_console_msgP12__DataPack_tP6SerialPv
+ 257              		.cfi_endproc
+ 258              	.LFE342:
+ 260              		.align	1
+ 261              		.global	printf_
+ 262              		.syntax unified
+ 263              		.thumb
+ 264              		.thumb_func
+ 266              	printf_:
+ 267              	.LVL17:
+ARM GAS  /tmp/ccVLtOc8.s 			page 9
+
+
+ 268              	.LFB343:
+  23:My_Top/MC/MC_Serial.cpp **** {
+ 269              		.loc 1 23 1 is_stmt 1 view -0
+ 270              		.cfi_startproc
+ 271              		@ args = 4, pretend = 16, frame = 8
+ 272              		@ frame_needed = 0, uses_anonymous_args = 1
+  23:My_Top/MC/MC_Serial.cpp **** {
+ 273              		.loc 1 23 1 is_stmt 0 view .LVU37
+ 274 00a0 0FB4     		push	{r0, r1, r2, r3}
+ 275              		.cfi_def_cfa_offset 16
+ 276              		.cfi_offset 0, -16
+ 277              		.cfi_offset 1, -12
+ 278              		.cfi_offset 2, -8
+ 279              		.cfi_offset 3, -4
+ 280 00a2 F0B5     		push	{r4, r5, r6, r7, lr}
+ 281              		.cfi_def_cfa_offset 36
+ 282              		.cfi_offset 4, -36
+ 283              		.cfi_offset 5, -32
+ 284              		.cfi_offset 6, -28
+ 285              		.cfi_offset 7, -24
+ 286              		.cfi_offset 14, -20
+ 287 00a4 83B0     		sub	sp, sp, #12
+ 288              		.cfi_def_cfa_offset 48
+  25:My_Top/MC/MC_Serial.cpp ****     uint8_t *print_buf = (uint8_t *)pvPortMalloc(SERIAL_PRINT_SIZE);
+ 289              		.loc 1 25 5 is_stmt 1 view .LVU38
+  25:My_Top/MC/MC_Serial.cpp ****     uint8_t *print_buf = (uint8_t *)pvPortMalloc(SERIAL_PRINT_SIZE);
+ 290              		.loc 1 25 49 is_stmt 0 view .LVU39
+ 291 00a6 C820     		movs	r0, #200
+ 292 00a8 FFF7FEFF 		bl	pvPortMalloc
+ 293              	.LVL18:
+  27:My_Top/MC/MC_Serial.cpp ****     if (print_buf == NULL)
+ 294              		.loc 1 27 5 is_stmt 1 view .LVU40
+ 295 00ac 28B3     		cbz	r0, .L26
+ 296 00ae 0027     		movs	r7, #0
+ 297 00b0 0646     		mov	r6, r0
+  30:My_Top/MC/MC_Serial.cpp ****     va_list args;
+ 298              		.loc 1 30 5 view .LVU41
+  31:My_Top/MC/MC_Serial.cpp ****     va_start(args, format);
+ 299              		.loc 1 31 5 view .LVU42
+ 300 00b2 09AB     		add	r3, sp, #36
+ 301 00b4 0193     		str	r3, [sp, #4]
+  32:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+ 302              		.loc 1 32 5 view .LVU43
+  32:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+ 303              		.loc 1 32 24 is_stmt 0 view .LVU44
+ 304 00b6 089A     		ldr	r2, [sp, #32]
+ 305 00b8 C821     		movs	r1, #200
+ 306 00ba FFF7FEFF 		bl	vsnprintf_
+ 307              	.LVL19:
+  32:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+ 308              		.loc 1 32 24 view .LVU45
+ 309 00be 0546     		mov	r5, r0
+ 310              	.LVL20:
+  33:My_Top/MC/MC_Serial.cpp ****     va_end(args);
+ 311              		.loc 1 33 5 is_stmt 1 view .LVU46
+  35:My_Top/MC/MC_Serial.cpp ****     bool status;
+ 312              		.loc 1 35 5 view .LVU47
+ARM GAS  /tmp/ccVLtOc8.s 			page 10
+
+
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 313              		.loc 1 36 5 view .LVU48
+ 314              	.LBB3:
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 315              		.loc 1 36 18 is_stmt 0 view .LVU49
+ 316 00c0 3C46     		mov	r4, r7
+ 317              	.LVL21:
+ 318              	.L22:
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 319              		.loc 1 36 27 is_stmt 1 discriminator 1 view .LVU50
+ 320 00c2 632C     		cmp	r4, #99
+ 321 00c4 0DD8     		bhi	.L23
+  38:My_Top/MC/MC_Serial.cpp ****         status = sr_console.send_data(print_buf, len);
+ 322              		.loc 1 38 9 view .LVU51
+  38:My_Top/MC/MC_Serial.cpp ****         status = sr_console.send_data(print_buf, len);
+ 323              		.loc 1 38 38 is_stmt 0 view .LVU52
+ 324 00c6 0023     		movs	r3, #0
+ 325 00c8 AAB2     		uxth	r2, r5
+ 326 00ca 3146     		mov	r1, r6
+ 327 00cc 0C48     		ldr	r0, .L29
+ 328 00ce FFF7FEFF 		bl	_ZN6Serial9send_dataEPhtm
+ 329              	.LVL22:
+  39:My_Top/MC/MC_Serial.cpp ****         if (status)
+ 330              		.loc 1 39 9 is_stmt 1 view .LVU53
+ 331 00d2 0746     		mov	r7, r0
+ 332 00d4 28B9     		cbnz	r0, .L23
+  41:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+ 333              		.loc 1 41 9 view .LVU54
+  41:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+ 334              		.loc 1 41 19 is_stmt 0 view .LVU55
+ 335 00d6 0120     		movs	r0, #1
+ 336              	.LVL23:
+  41:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+ 337              		.loc 1 41 19 view .LVU56
+ 338 00d8 FFF7FEFF 		bl	vTaskDelay
+ 339              	.LVL24:
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 340              		.loc 1 36 5 is_stmt 1 discriminator 2 view .LVU57
+ 341 00dc 0134     		adds	r4, r4, #1
+ 342              	.LVL25:
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 343              		.loc 1 36 5 is_stmt 0 discriminator 2 view .LVU58
+ 344 00de E4B2     		uxtb	r4, r4
+ 345              	.LVL26:
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 346              		.loc 1 36 5 discriminator 2 view .LVU59
+ 347 00e0 EFE7     		b	.L22
+ 348              	.LVL27:
+ 349              	.L23:
+  36:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 350              		.loc 1 36 5 discriminator 2 view .LVU60
+ 351              	.LBE3:
+  43:My_Top/MC/MC_Serial.cpp ****     if (!status)
+ 352              		.loc 1 43 5 is_stmt 1 view .LVU61
+ 353 00e2 0FB9     		cbnz	r7, .L25
+  44:My_Top/MC/MC_Serial.cpp ****         len = -1;
+ 354              		.loc 1 44 13 is_stmt 0 view .LVU62
+ARM GAS  /tmp/ccVLtOc8.s 			page 11
+
+
+ 355 00e4 4FF0FF35 		mov	r5, #-1
+ 356              	.LVL28:
+ 357              	.L25:
+  46:My_Top/MC/MC_Serial.cpp ****     vPortFree(print_buf);
+ 358              		.loc 1 46 5 is_stmt 1 view .LVU63
+  46:My_Top/MC/MC_Serial.cpp ****     vPortFree(print_buf);
+ 359              		.loc 1 46 14 is_stmt 0 view .LVU64
+ 360 00e8 3046     		mov	r0, r6
+ 361 00ea FFF7FEFF 		bl	vPortFree
+ 362              	.LVL29:
+  48:My_Top/MC/MC_Serial.cpp ****     return len;
+ 363              		.loc 1 48 5 is_stmt 1 view .LVU65
+ 364              	.L20:
+  49:My_Top/MC/MC_Serial.cpp **** }
+ 365              		.loc 1 49 1 is_stmt 0 view .LVU66
+ 366 00ee 2846     		mov	r0, r5
+ 367 00f0 03B0     		add	sp, sp, #12
+ 368              		.cfi_remember_state
+ 369              		.cfi_def_cfa_offset 36
+ 370              		@ sp needed
+ 371 00f2 BDE8F040 		pop	{r4, r5, r6, r7, lr}
+ 372              		.cfi_restore 14
+ 373              		.cfi_restore 7
+ 374              		.cfi_restore 6
+ 375              		.cfi_restore 5
+ 376              		.cfi_restore 4
+ 377              		.cfi_def_cfa_offset 16
+ 378 00f6 04B0     		add	sp, sp, #16
+ 379              		.cfi_restore 3
+ 380              		.cfi_restore 2
+ 381              		.cfi_restore 1
+ 382              		.cfi_restore 0
+ 383              		.cfi_def_cfa_offset 0
+ 384 00f8 7047     		bx	lr
+ 385              	.LVL30:
+ 386              	.L26:
+ 387              		.cfi_restore_state
+  28:My_Top/MC/MC_Serial.cpp ****         return -1;
+ 388              		.loc 1 28 17 view .LVU67
+ 389 00fa 4FF0FF35 		mov	r5, #-1
+ 390 00fe F6E7     		b	.L20
+ 391              	.L30:
+ 392              		.align	2
+ 393              	.L29:
+ 394 0100 00000000 		.word	.LANCHOR0
+ 395              		.cfi_endproc
+ 396              	.LFE343:
+ 398              		.section	.rodata.str1.4
+ 399              		.align	2
+ 400              	.LC2:
+ 401 0010 0D0A00   		.ascii	"\015\012\000"
+ 402              		.text
+ 403              		.align	1
+ 404              		.global	println
+ 405              		.syntax unified
+ 406              		.thumb
+ 407              		.thumb_func
+ARM GAS  /tmp/ccVLtOc8.s 			page 12
+
+
+ 409              	println:
+ 410              	.LVL31:
+ 411              	.LFB344:
+  52:My_Top/MC/MC_Serial.cpp **** {
+ 412              		.loc 1 52 1 is_stmt 1 view -0
+ 413              		.cfi_startproc
+ 414              		@ args = 4, pretend = 16, frame = 8
+ 415              		@ frame_needed = 0, uses_anonymous_args = 1
+  52:My_Top/MC/MC_Serial.cpp **** {
+ 416              		.loc 1 52 1 is_stmt 0 view .LVU69
+ 417 0104 0FB4     		push	{r0, r1, r2, r3}
+ 418              		.cfi_def_cfa_offset 16
+ 419              		.cfi_offset 0, -16
+ 420              		.cfi_offset 1, -12
+ 421              		.cfi_offset 2, -8
+ 422              		.cfi_offset 3, -4
+ 423 0106 F0B5     		push	{r4, r5, r6, r7, lr}
+ 424              		.cfi_def_cfa_offset 36
+ 425              		.cfi_offset 4, -36
+ 426              		.cfi_offset 5, -32
+ 427              		.cfi_offset 6, -28
+ 428              		.cfi_offset 7, -24
+ 429              		.cfi_offset 14, -20
+ 430 0108 83B0     		sub	sp, sp, #12
+ 431              		.cfi_def_cfa_offset 48
+  54:My_Top/MC/MC_Serial.cpp ****     uint8_t *print_buf = (uint8_t *)pvPortMalloc(SERIAL_PRINT_SIZE);
+ 432              		.loc 1 54 5 is_stmt 1 view .LVU70
+  54:My_Top/MC/MC_Serial.cpp ****     uint8_t *print_buf = (uint8_t *)pvPortMalloc(SERIAL_PRINT_SIZE);
+ 433              		.loc 1 54 49 is_stmt 0 view .LVU71
+ 434 010a C820     		movs	r0, #200
+ 435 010c FFF7FEFF 		bl	pvPortMalloc
+ 436              	.LVL32:
+  56:My_Top/MC/MC_Serial.cpp ****     if (print_buf == NULL)
+ 437              		.loc 1 56 5 is_stmt 1 view .LVU72
+ 438 0110 70B3     		cbz	r0, .L37
+ 439 0112 0027     		movs	r7, #0
+ 440 0114 0646     		mov	r6, r0
+  59:My_Top/MC/MC_Serial.cpp ****     va_list args;
+ 441              		.loc 1 59 5 view .LVU73
+  60:My_Top/MC/MC_Serial.cpp ****     va_start(args, format);
+ 442              		.loc 1 60 5 view .LVU74
+ 443 0116 09AB     		add	r3, sp, #36
+ 444 0118 0193     		str	r3, [sp, #4]
+  61:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+ 445              		.loc 1 61 5 view .LVU75
+  61:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+ 446              		.loc 1 61 24 is_stmt 0 view .LVU76
+ 447 011a 089A     		ldr	r2, [sp, #32]
+ 448 011c C821     		movs	r1, #200
+ 449 011e FFF7FEFF 		bl	vsnprintf_
+ 450              	.LVL33:
+  61:My_Top/MC/MC_Serial.cpp ****     int len = vsnprintf((char *)print_buf, SERIAL_PRINT_SIZE, format, args);
+ 451              		.loc 1 61 24 view .LVU77
+ 452 0122 0546     		mov	r5, r0
+ 453              	.LVL34:
+  62:My_Top/MC/MC_Serial.cpp ****     va_end(args);
+ 454              		.loc 1 62 5 is_stmt 1 view .LVU78
+ARM GAS  /tmp/ccVLtOc8.s 			page 13
+
+
+  64:My_Top/MC/MC_Serial.cpp ****     bool status;
+ 455              		.loc 1 64 5 view .LVU79
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 456              		.loc 1 65 5 view .LVU80
+ 457              	.LBB4:
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 458              		.loc 1 65 18 is_stmt 0 view .LVU81
+ 459 0124 3C46     		mov	r4, r7
+ 460              	.LVL35:
+ 461              	.L33:
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 462              		.loc 1 65 27 is_stmt 1 discriminator 1 view .LVU82
+ 463 0126 632C     		cmp	r4, #99
+ 464 0128 0DD8     		bhi	.L34
+  67:My_Top/MC/MC_Serial.cpp ****         status = sr_console.send_data(print_buf, len);
+ 465              		.loc 1 67 9 view .LVU83
+  67:My_Top/MC/MC_Serial.cpp ****         status = sr_console.send_data(print_buf, len);
+ 466              		.loc 1 67 38 is_stmt 0 view .LVU84
+ 467 012a 0023     		movs	r3, #0
+ 468 012c AAB2     		uxth	r2, r5
+ 469 012e 3146     		mov	r1, r6
+ 470 0130 1148     		ldr	r0, .L40
+ 471 0132 FFF7FEFF 		bl	_ZN6Serial9send_dataEPhtm
+ 472              	.LVL36:
+  68:My_Top/MC/MC_Serial.cpp ****         if (status)
+ 473              		.loc 1 68 9 is_stmt 1 view .LVU85
+ 474 0136 0746     		mov	r7, r0
+ 475 0138 28B9     		cbnz	r0, .L34
+  70:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+ 476              		.loc 1 70 9 view .LVU86
+  70:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+ 477              		.loc 1 70 19 is_stmt 0 view .LVU87
+ 478 013a 0120     		movs	r0, #1
+ 479              	.LVL37:
+  70:My_Top/MC/MC_Serial.cpp ****         vTaskDelay(pdMS_TO_TICKS(1));
+ 480              		.loc 1 70 19 view .LVU88
+ 481 013c FFF7FEFF 		bl	vTaskDelay
+ 482              	.LVL38:
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 483              		.loc 1 65 5 is_stmt 1 discriminator 2 view .LVU89
+ 484 0140 0134     		adds	r4, r4, #1
+ 485              	.LVL39:
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 486              		.loc 1 65 5 is_stmt 0 discriminator 2 view .LVU90
+ 487 0142 E4B2     		uxtb	r4, r4
+ 488              	.LVL40:
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 489              		.loc 1 65 5 discriminator 2 view .LVU91
+ 490 0144 EFE7     		b	.L33
+ 491              	.LVL41:
+ 492              	.L34:
+  65:My_Top/MC/MC_Serial.cpp ****     for (uint8_t i = 0; i < 100; i++)
+ 493              		.loc 1 65 5 discriminator 2 view .LVU92
+ 494              	.LBE4:
+  72:My_Top/MC/MC_Serial.cpp ****     status &= sr_console.send_data((uint8_t *)"\r\n", 2);
+ 495              		.loc 1 72 5 is_stmt 1 view .LVU93
+  72:My_Top/MC/MC_Serial.cpp ****     status &= sr_console.send_data((uint8_t *)"\r\n", 2);
+ARM GAS  /tmp/ccVLtOc8.s 			page 14
+
+
+ 496              		.loc 1 72 35 is_stmt 0 view .LVU94
+ 497 0146 0023     		movs	r3, #0
+ 498 0148 0222     		movs	r2, #2
+ 499 014a 0C49     		ldr	r1, .L40+4
+ 500 014c 0A48     		ldr	r0, .L40
+ 501 014e FFF7FEFF 		bl	_ZN6Serial9send_dataEPhtm
+ 502              	.LVL42:
+  73:My_Top/MC/MC_Serial.cpp ****     len += 2;
+ 503              		.loc 1 73 5 is_stmt 1 view .LVU95
+  73:My_Top/MC/MC_Serial.cpp ****     len += 2;
+ 504              		.loc 1 73 9 is_stmt 0 view .LVU96
+ 505 0152 0235     		adds	r5, r5, #2
+ 506              	.LVL43:
+  74:My_Top/MC/MC_Serial.cpp ****     if (!status)
+ 507              		.loc 1 74 5 is_stmt 1 view .LVU97
+ 508 0154 4FB1     		cbz	r7, .L38
+ 509 0156 40B1     		cbz	r0, .L38
+ 510              	.LVL44:
+ 511              	.L36:
+  77:My_Top/MC/MC_Serial.cpp ****     vPortFree(print_buf);
+ 512              		.loc 1 77 5 view .LVU98
+  77:My_Top/MC/MC_Serial.cpp ****     vPortFree(print_buf);
+ 513              		.loc 1 77 14 is_stmt 0 view .LVU99
+ 514 0158 3046     		mov	r0, r6
+ 515              	.LVL45:
+  77:My_Top/MC/MC_Serial.cpp ****     vPortFree(print_buf);
+ 516              		.loc 1 77 14 view .LVU100
+ 517 015a FFF7FEFF 		bl	vPortFree
+ 518              	.LVL46:
+  79:My_Top/MC/MC_Serial.cpp ****     return len;
+ 519              		.loc 1 79 5 is_stmt 1 view .LVU101
+ 520              	.L31:
+  80:My_Top/MC/MC_Serial.cpp **** }
+ 521              		.loc 1 80 1 is_stmt 0 view .LVU102
+ 522 015e 2846     		mov	r0, r5
+ 523 0160 03B0     		add	sp, sp, #12
+ 524              		.cfi_remember_state
+ 525              		.cfi_def_cfa_offset 36
+ 526              		@ sp needed
+ 527 0162 BDE8F040 		pop	{r4, r5, r6, r7, lr}
+ 528              		.cfi_restore 14
+ 529              		.cfi_restore 7
+ 530              		.cfi_restore 6
+ 531              		.cfi_restore 5
+ 532              		.cfi_restore 4
+ 533              		.cfi_def_cfa_offset 16
+ 534 0166 04B0     		add	sp, sp, #16
+ 535              		.cfi_restore 3
+ 536              		.cfi_restore 2
+ 537              		.cfi_restore 1
+ 538              		.cfi_restore 0
+ 539              		.cfi_def_cfa_offset 0
+ 540 0168 7047     		bx	lr
+ 541              	.LVL47:
+ 542              	.L38:
+ 543              		.cfi_restore_state
+  75:My_Top/MC/MC_Serial.cpp ****         len = -1;
+ARM GAS  /tmp/ccVLtOc8.s 			page 15
+
+
+ 544              		.loc 1 75 13 view .LVU103
+ 545 016a 4FF0FF35 		mov	r5, #-1
+ 546              	.LVL48:
+  75:My_Top/MC/MC_Serial.cpp ****         len = -1;
+ 547              		.loc 1 75 13 view .LVU104
+ 548 016e F3E7     		b	.L36
+ 549              	.LVL49:
+ 550              	.L37:
+  57:My_Top/MC/MC_Serial.cpp ****         return -1;
+ 551              		.loc 1 57 17 view .LVU105
+ 552 0170 4FF0FF35 		mov	r5, #-1
+ 553 0174 F3E7     		b	.L31
+ 554              	.L41:
+ 555 0176 00BF     		.align	2
+ 556              	.L40:
+ 557 0178 00000000 		.word	.LANCHOR0
+ 558 017c 10000000 		.word	.LC2
+ 559              		.cfi_endproc
+ 560              	.LFE344:
+ 562              		.align	1
+ 563              		.syntax unified
+ 564              		.thumb
+ 565              		.thumb_func
+ 567              	_GLOBAL__sub_I_sr_logger:
+ 568              	.LFB348:
+ 569              		.loc 1 102 1 is_stmt 1 view -0
+ 570              		.cfi_startproc
+ 571              		@ args = 0, pretend = 0, frame = 0
+ 572              		@ frame_needed = 0, uses_anonymous_args = 0
+ 573 0180 08B5     		push	{r3, lr}
+ 574              		.cfi_def_cfa_offset 8
+ 575              		.cfi_offset 3, -8
+ 576              		.cfi_offset 14, -4
+ 577              		.loc 1 102 1 is_stmt 0 view .LVU107
+ 578 0182 FFF759FF 		bl	_Z41__static_initialization_and_destruction_0v
+ 579              	.LVL50:
+ 580 0186 08BD     		pop	{r3, pc}
+ 581              		.cfi_endproc
+ 582              	.LFE348:
+ 584              		.section	.init_array,"aw",%init_array
+ 585              		.align	2
+ 586 0000 00000000 		.word	_GLOBAL__sub_I_sr_logger(target1)
+ 587              		.global	sr_console
+ 588              		.global	sr_logger
+ 589              		.bss
+ 590              		.align	2
+ 591              		.set	.LANCHOR0,. + 0
+ 594              	sr_console:
+ 595 0000 00000000 		.space	156
+ 595      00000000 
+ 595      00000000 
+ 595      00000000 
+ 595      00000000 
+ 598              	sr_logger:
+ 599 009c 00000000 		.space	156
+ 599      00000000 
+ 599      00000000 
+ARM GAS  /tmp/ccVLtOc8.s 			page 16
+
+
+ 599      00000000 
+ 599      00000000 
+ 600              		.text
+ 601              	.Letext0:
+ 602              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 603              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 604              		.file 5 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stdarg.h"
+ 605              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 606              		.file 7 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 607              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 608              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 609              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
+ 610              		.file 11 "Core/Inc/usart.h"
+ 611              		.file 12 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 612              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 613              		.file 14 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 614              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+ 615              		.file 16 "Lib/embedded-cli/embedded_cli.h"
+ 616              		.file 17 "My_Top/Modules/CLI_Module.hpp"
+ 617              		.file 18 "My_Top/MC/MC_Serial.hpp"
+ 618              		.file 19 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
+ 619              		.file 20 "Lib/serial/printf.h"
+ 620              		.file 21 "<built-in>"
+ARM GAS  /tmp/ccVLtOc8.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 MC_Serial.cpp
+     /tmp/ccVLtOc8.s:20     .text:00000000 $t
+     /tmp/ccVLtOc8.s:25     .text:00000000 _ZL18handle_console_msgP12__DataPack_tP6SerialPv
+     /tmp/ccVLtOc8.s:61     .text:00000018 $d
+     /tmp/ccVLtOc8.s:65     .text:0000001c $t
+     /tmp/ccVLtOc8.s:70     .text:0000001c _ZL17handle_logger_msgP12__DataPack_tP6SerialPv
+     /tmp/ccVLtOc8.s:106    .text:00000034 $d
+     /tmp/ccVLtOc8.s:111    .text._ZN6SerialC2Ev:00000000 $t
+     /tmp/ccVLtOc8.s:117    .text._ZN6SerialC2Ev:00000000 _ZN6SerialC2Ev
+     /tmp/ccVLtOc8.s:117    .text._ZN6SerialC2Ev:00000000 _ZN6SerialC1Ev
+     /tmp/ccVLtOc8.s:156    .text:00000038 $t
+     /tmp/ccVLtOc8.s:161    .text:00000038 _Z41__static_initialization_and_destruction_0v
+     /tmp/ccVLtOc8.s:185    .text:0000004c $d
+     /tmp/ccVLtOc8.s:190    .rodata.str1.4:00000000 $d
+     /tmp/ccVLtOc8.s:197    .text:00000050 $t
+     /tmp/ccVLtOc8.s:203    .text:00000050 _ZN9MC_Serial4initEv
+     /tmp/ccVLtOc8.s:250    .text:00000084 $d
+     /tmp/ccVLtOc8.s:260    .text:000000a0 $t
+     /tmp/ccVLtOc8.s:266    .text:000000a0 printf_
+     /tmp/ccVLtOc8.s:394    .text:00000100 $d
+     /tmp/ccVLtOc8.s:403    .text:00000104 $t
+     /tmp/ccVLtOc8.s:409    .text:00000104 println
+     /tmp/ccVLtOc8.s:557    .text:00000178 $d
+     /tmp/ccVLtOc8.s:562    .text:00000180 $t
+     /tmp/ccVLtOc8.s:567    .text:00000180 _GLOBAL__sub_I_sr_logger
+     /tmp/ccVLtOc8.s:585    .init_array:00000000 $d
+     /tmp/ccVLtOc8.s:594    .bss:00000000 sr_console
+     /tmp/ccVLtOc8.s:598    .bss:0000009c sr_logger
+     /tmp/ccVLtOc8.s:590    .bss:00000000 $d
+                           .group:00000000 _ZN6SerialC5Ev
+
+UNDEFINED SYMBOLS
+_ZN10CLI_Module14get_cli_moduleEP6Serial
+_ZN10CLI_Module12receive_dataEPht
+_ZN6Serial17init_with_defaultEPKcP20__UART_HandleTypeDef
+_ZN6Serial23register_rx_msg_handlerEPFvP12__DataPack_tPS_PvES3_
+huart2
+huart1
+pvPortMalloc
+vsnprintf_
+_ZN6Serial9send_dataEPhtm
+vTaskDelay
+vPortFree

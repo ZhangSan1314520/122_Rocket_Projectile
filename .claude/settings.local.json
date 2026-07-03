@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.dianyuan.com)",
+      "WebFetch(domain:egmicro.com)",
+      "Bash(pdftotext \"/mnt/d/work_project/资料/C20416242_栅极驱动芯片_EG2226_规格书_WJ974945.PDF\" -)",
+      "Bash(python3 -c ' *)",
+      "Bash(pip3 list *)",
+      "Bash(pip3 install *)",
+      "Bash(pip install *)",
+      "Bash(sudo apt install -y poppler-utils)",
+      "Bash(make -j2 DEBUG=1 -f STM32Make.make)"
+    ]
+  }
+}

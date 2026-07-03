@@ -1,0 +1,305 @@
+ARM GAS  /tmp/ccJ2IxFe.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"Task_Test.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/Task/Task_Test.cpp"
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	_Z41__static_initialization_and_destruction_0v:
+  26              	.LFB1506:
+   1:My_Top/Task/Task_Test.cpp **** 
+   2:My_Top/Task/Task_Test.cpp **** #include "FreeRTOS.h"
+   3:My_Top/Task/Task_Test.cpp **** #include "task.h"
+   4:My_Top/Task/Task_Test.cpp **** #include "MC_Serial.hpp"
+   5:My_Top/Task/Task_Test.cpp **** #include "My_Vofa.hpp"
+   6:My_Top/Task/Task_Test.cpp **** #include "uorb.hpp"
+   7:My_Top/Task/Task_Test.cpp **** #include "bsp.hpp"
+   8:My_Top/Task/Task_Test.cpp **** #include "DcMotor_ClosedLoop.hpp"
+   9:My_Top/Task/Task_Test.cpp **** #include "BL24C16F.hpp"
+  10:My_Top/Task/Task_Test.cpp **** 
+  11:My_Top/Task/Task_Test.cpp **** BL24C16F EEPROM1(EEPROM_hi2c);
+  12:My_Top/Task/Task_Test.cpp **** uint8_t bufff_tx[10] = {0x01, 0x02, 0xa3, 0xb4, 0x05, 0x06, 0xc7, 0xf8, 0x09, 0x0a};
+  13:My_Top/Task/Task_Test.cpp **** 
+  14:My_Top/Task/Task_Test.cpp **** uint8_t add[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0d, 0x10, 0x11
+  15:My_Top/Task/Task_Test.cpp **** uint8_t data_tx[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 
+  16:My_Top/Task/Task_Test.cpp **** uint16_t len = sizeof(data_tx) / sizeof(data_tx[0]);
+  17:My_Top/Task/Task_Test.cpp **** uint8_t data_rx[20];
+  18:My_Top/Task/Task_Test.cpp **** 
+  19:My_Top/Task/Task_Test.cpp **** 
+  20:My_Top/Task/Task_Test.cpp **** void Task_Test(void *argument)
+  21:My_Top/Task/Task_Test.cpp **** {
+  22:My_Top/Task/Task_Test.cpp ****     printf("1-任务启动中\r\n");
+  23:My_Top/Task/Task_Test.cpp ****     vTaskDelay(pdMS_TO_TICKS(50));
+  24:My_Top/Task/Task_Test.cpp **** 
+  25:My_Top/Task/Task_Test.cpp ****     // M1._encoder->KTH7111_Read_MoreRegs(add, data_rx, len); //读取多个寄存器
+  26:My_Top/Task/Task_Test.cpp ****     while (1)
+  27:My_Top/Task/Task_Test.cpp ****     {
+  28:My_Top/Task/Task_Test.cpp ****         vTaskDelay(pdMS_TO_TICKS(1000));
+  29:My_Top/Task/Task_Test.cpp ****     }
+  30:My_Top/Task/Task_Test.cpp **** }
+  27              		.loc 1 30 1 view -0
+  28              		.cfi_startproc
+ARM GAS  /tmp/ccJ2IxFe.s 			page 2
+
+
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  33              	.LBB5:
+  34              	.LBI5:
+  35              		.file 2 "My_Top/System/BL24C16F.hpp"
+   1:My_Top/System/BL24C16F.hpp **** #pragma once
+   2:My_Top/System/BL24C16F.hpp **** 
+   3:My_Top/System/BL24C16F.hpp **** #include "bsp.hpp"
+   4:My_Top/System/BL24C16F.hpp **** 
+   5:My_Top/System/BL24C16F.hpp **** // ============================================================
+   6:My_Top/System/BL24C16F.hpp **** // EEPROM 芯片配置（按实际型号修改下面 4 个宏）
+   7:My_Top/System/BL24C16F.hpp **** // ============================================================
+   8:My_Top/System/BL24C16F.hpp **** // BL24C16F:  PAGE=16, SIZE=2048,  ADDR_SIZE=8BIT
+   9:My_Top/System/BL24C16F.hpp **** // 24C32:    PAGE=32, SIZE=4096,  ADDR_SIZE=16BIT
+  10:My_Top/System/BL24C16F.hpp **** // 24C64:    PAGE=32, SIZE=8192,  ADDR_SIZE=16BIT
+  11:My_Top/System/BL24C16F.hpp **** // 24C256:   PAGE=64, SIZE=32768, ADDR_SIZE=16BIT
+  12:My_Top/System/BL24C16F.hpp **** // ============================================================
+  13:My_Top/System/BL24C16F.hpp **** #define EEPROM_DEV_ADDR       0x50                       // 7位 I2C 器件地址
+  14:My_Top/System/BL24C16F.hpp **** #define EEPROM_PAGE_SIZE      32                         // 页大小（字节）
+  15:My_Top/System/BL24C16F.hpp **** #define EEPROM_SIZE           4096                       // 总容量（字节）
+  16:My_Top/System/BL24C16F.hpp **** #define EEPROM_ADDR_SIZE      I2C_MEMADD_SIZE_16BIT      // 内存地址位数
+  17:My_Top/System/BL24C16F.hpp **** #define EEPROM_WRITE_CYCLE_MS 5                          // 内部写入时间
+  18:My_Top/System/BL24C16F.hpp **** 
+  19:My_Top/System/BL24C16F.hpp **** 
+  20:My_Top/System/BL24C16F.hpp **** class BL24C16F
+  21:My_Top/System/BL24C16F.hpp **** {
+  22:My_Top/System/BL24C16F.hpp **** public:
+  23:My_Top/System/BL24C16F.hpp ****     BL24C16F(I2C_HandleTypeDef *hi2c)
+  36              		.loc 2 23 5 view .LVU1
+  37              	.LBB6:
+  24:My_Top/System/BL24C16F.hpp ****     {
+  25:My_Top/System/BL24C16F.hpp ****         _hi2c = hi2c;
+  38              		.loc 2 25 9 view .LVU2
+  39              		.loc 2 25 15 is_stmt 0 view .LVU3
+  40 0000 014B     		ldr	r3, .L2
+  41 0002 024A     		ldr	r2, .L2+4
+  42 0004 1A60     		str	r2, [r3]
+  43              	.LVL1:
+  44              		.loc 2 25 15 view .LVU4
+  45              	.LBE6:
+  46              	.LBE5:
+  47              		.loc 1 30 1 view .LVU5
+  48 0006 7047     		bx	lr
+  49              	.L3:
+  50              		.align	2
+  51              	.L2:
+  52 0008 00000000 		.word	_ZN8BL24C16F5_hi2cE
+  53 000c 00000000 		.word	hi2c1
+  54              		.cfi_endproc
+  55              	.LFE1506:
+  57              		.section	.rodata.str1.4,"aMS",%progbits,1
+  58              		.align	2
+  59              	.LC0:
+  60 0000 312DE4BB 		.ascii	"1-\344\273\273\345\212\241\345\220\257\345\212\250\344"
+  60      BBE58AA1 
+ARM GAS  /tmp/ccJ2IxFe.s 			page 3
+
+
+  60      E590AFE5 
+  60      8AA8E4
+  61 000f B8AD0D0A 		.ascii	"\270\255\015\012\000"
+  61      00
+  62              		.text
+  63              		.align	1
+  64              		.global	_Z9Task_TestPv
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  69              	_Z9Task_TestPv:
+  70              	.LVL2:
+  71              	.LFB1355:
+  21:My_Top/Task/Task_Test.cpp ****     printf("1-任务启动中\r\n");
+  72              		.loc 1 21 1 is_stmt 1 view -0
+  73              		.cfi_startproc
+  74              		@ Volatile: function does not return.
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  21:My_Top/Task/Task_Test.cpp ****     printf("1-任务启动中\r\n");
+  77              		.loc 1 21 1 is_stmt 0 view .LVU7
+  78 0010 08B5     		push	{r3, lr}
+  79              		.cfi_def_cfa_offset 8
+  80              		.cfi_offset 3, -8
+  81              		.cfi_offset 14, -4
+  22:My_Top/Task/Task_Test.cpp ****     vTaskDelay(pdMS_TO_TICKS(50));
+  82              		.loc 1 22 5 is_stmt 1 view .LVU8
+  22:My_Top/Task/Task_Test.cpp ****     vTaskDelay(pdMS_TO_TICKS(50));
+  83              		.loc 1 22 11 is_stmt 0 view .LVU9
+  84 0012 0548     		ldr	r0, .L7
+  85              	.LVL3:
+  22:My_Top/Task/Task_Test.cpp ****     vTaskDelay(pdMS_TO_TICKS(50));
+  86              		.loc 1 22 11 view .LVU10
+  87 0014 FFF7FEFF 		bl	printf_
+  88              	.LVL4:
+  23:My_Top/Task/Task_Test.cpp **** 
+  89              		.loc 1 23 5 is_stmt 1 view .LVU11
+  23:My_Top/Task/Task_Test.cpp **** 
+  90              		.loc 1 23 15 is_stmt 0 view .LVU12
+  91 0018 3220     		movs	r0, #50
+  92 001a FFF7FEFF 		bl	vTaskDelay
+  93              	.LVL5:
+  94              	.L5:
+  26:My_Top/Task/Task_Test.cpp ****     {
+  95              		.loc 1 26 5 is_stmt 1 view .LVU13
+  28:My_Top/Task/Task_Test.cpp ****     }
+  96              		.loc 1 28 9 discriminator 1 view .LVU14
+  28:My_Top/Task/Task_Test.cpp ****     }
+  97              		.loc 1 28 19 is_stmt 0 discriminator 1 view .LVU15
+  98 001e 4FF47A70 		mov	r0, #1000
+  99 0022 FFF7FEFF 		bl	vTaskDelay
+ 100              	.LVL6:
+  26:My_Top/Task/Task_Test.cpp ****     {
+ 101              		.loc 1 26 5 is_stmt 1 view .LVU16
+ 102 0026 FAE7     		b	.L5
+ 103              	.L8:
+ 104              		.align	2
+ARM GAS  /tmp/ccJ2IxFe.s 			page 4
+
+
+ 105              	.L7:
+ 106 0028 00000000 		.word	.LC0
+ 107              		.cfi_endproc
+ 108              	.LFE1355:
+ 110              		.align	1
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 115              	_GLOBAL__sub_I_EEPROM1:
+ 116              	.LFB1507:
+ 117              		.loc 1 30 1 view -0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121 002c 08B5     		push	{r3, lr}
+ 122              		.cfi_def_cfa_offset 8
+ 123              		.cfi_offset 3, -8
+ 124              		.cfi_offset 14, -4
+ 125              		.loc 1 30 1 is_stmt 0 view .LVU18
+ 126 002e FFF7E7FF 		bl	_Z41__static_initialization_and_destruction_0v
+ 127              	.LVL7:
+ 128 0032 08BD     		pop	{r3, pc}
+ 129              		.cfi_endproc
+ 130              	.LFE1507:
+ 132              		.section	.init_array,"aw",%init_array
+ 133              		.align	2
+ 134 0000 00000000 		.word	_GLOBAL__sub_I_EEPROM1(target1)
+ 135              		.global	data_rx
+ 136              		.global	len
+ 137              		.global	data_tx
+ 138              		.global	add
+ 139              		.global	bufff_tx
+ 140              		.global	EEPROM1
+ 141              		.data
+ 142              		.align	2
+ 145              	len:
+ 146 0000 1000     		.short	16
+ 147 0002 0000     		.space	2
+ 150              	data_tx:
+ 151 0004 01020304 		.ascii	"\001\002\003\004\005\006\007\010\011\012\013\014\015"
+ 151      05060708 
+ 151      090A0B0C 
+ 151      0D
+ 152 0011 0E0F10   		.ascii	"\016\017\020"
+ 155              	add:
+ 156 0014 00010203 		.ascii	"\000\001\002\003\004\005\006\007\010\011\012\015\020"
+ 156      04050607 
+ 156      08090A0D 
+ 156      10
+ 157 0021 11121672 		.ascii	"\021\022\026r"
+ 158 0025 000000   		.space	3
+ 161              	bufff_tx:
+ 162 0028 0102A3B4 		.ascii	"\001\002\243\264\005\006\307\370\011\012"
+ 162      0506C7F8 
+ 162      090A
+ 163              		.bss
+ 164              		.align	2
+ARM GAS  /tmp/ccJ2IxFe.s 			page 5
+
+
+ 167              	data_rx:
+ 168 0000 00000000 		.space	20
+ 168      00000000 
+ 168      00000000 
+ 168      00000000 
+ 168      00000000 
+ 171              	EEPROM1:
+ 172 0014 00       		.space	1
+ 173              		.text
+ 174              	.Letext0:
+ 175              		.file 3 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 176              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 177              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 178              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 179              		.file 7 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 180              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 181              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 182              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h"
+ 183              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
+ 184              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
+ 185              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 186              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 187              		.file 15 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 188              		.file 16 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 189              		.file 17 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 190              		.file 18 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/stdlib.h"
+ 191              		.file 19 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 192              		.file 20 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 193              		.file 21 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 194              		.file 22 "Core/Inc/i2c.h"
+ 195              		.file 23 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 196              		.file 24 "Lib/serial/printf.h"
+ 197              		.file 25 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ARM GAS  /tmp/ccJ2IxFe.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Task_Test.cpp
+     /tmp/ccJ2IxFe.s:20     .text:00000000 $t
+     /tmp/ccJ2IxFe.s:25     .text:00000000 _Z41__static_initialization_and_destruction_0v
+     /tmp/ccJ2IxFe.s:52     .text:00000008 $d
+     /tmp/ccJ2IxFe.s:58     .rodata.str1.4:00000000 $d
+     /tmp/ccJ2IxFe.s:63     .text:00000010 $t
+     /tmp/ccJ2IxFe.s:69     .text:00000010 _Z9Task_TestPv
+     /tmp/ccJ2IxFe.s:106    .text:00000028 $d
+     /tmp/ccJ2IxFe.s:110    .text:0000002c $t
+     /tmp/ccJ2IxFe.s:115    .text:0000002c _GLOBAL__sub_I_EEPROM1
+     /tmp/ccJ2IxFe.s:133    .init_array:00000000 $d
+     /tmp/ccJ2IxFe.s:167    .bss:00000000 data_rx
+     /tmp/ccJ2IxFe.s:145    .data:00000000 len
+     /tmp/ccJ2IxFe.s:150    .data:00000004 data_tx
+     /tmp/ccJ2IxFe.s:155    .data:00000014 add
+     /tmp/ccJ2IxFe.s:161    .data:00000028 bufff_tx
+     /tmp/ccJ2IxFe.s:171    .bss:00000014 EEPROM1
+     /tmp/ccJ2IxFe.s:142    .data:00000000 $d
+     /tmp/ccJ2IxFe.s:164    .bss:00000000 $d
+
+UNDEFINED SYMBOLS
+_ZN8BL24C16F5_hi2cE
+hi2c1
+printf_
+vTaskDelay

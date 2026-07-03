@@ -1,0 +1,219 @@
+ARM GAS  /tmp/ccV2cWP1.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"lowpass_filter.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Lib/compute/filter/lowpass_filter.cpp"
+  20              		.align	1
+  21              		.global	_ZN13LowpassFilter4initEf
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_ZN13LowpassFilter4initEf:
+  27              	.LVL0:
+  28              	.LFB978:
+   1:Lib/compute/filter/lowpass_filter.cpp **** #include "ex_math.hpp"
+   2:Lib/compute/filter/lowpass_filter.cpp **** 
+   3:Lib/compute/filter/lowpass_filter.cpp **** void LowpassFilter::init(float alpha)
+   4:Lib/compute/filter/lowpass_filter.cpp **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   5:Lib/compute/filter/lowpass_filter.cpp ****     _alpha = constraint_value(alpha, 0.0f, 1.0f);
+  34              		.loc 1 5 5 view .LVU1
+  35              		.loc 1 5 14 is_stmt 0 view .LVU2
+  36 0000 B5EEC00A 		vcmpe.f32	s0, #0
+  37 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  38 0008 09D4     		bmi	.L4
+  39              		.loc 1 5 14 discriminator 2 view .LVU3
+  40 000a F7EE007A 		vmov.f32	s15, #1.0e+0
+  41 000e B4EEE70A 		vcmpe.f32	s0, s15
+  42 0012 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  43 0016 04DD     		ble	.L2
+  44              		.loc 1 5 14 discriminator 4 view .LVU4
+  45 0018 B0EE670A 		vmov.f32	s0, s15
+  46              	.LVL1:
+  47              		.loc 1 5 14 discriminator 4 view .LVU5
+  48 001c 01E0     		b	.L2
+  49              	.LVL2:
+  50              	.L4:
+  51              		.loc 1 5 14 discriminator 1 view .LVU6
+  52 001e 9FED030A 		vldr.32	s0, .L6
+  53              	.LVL3:
+ARM GAS  /tmp/ccV2cWP1.s 			page 2
+
+
+  54              	.L2:
+  55              		.loc 1 5 12 discriminator 8 view .LVU7
+  56 0022 80ED000A 		vstr.32	s0, [r0]
+   6:Lib/compute/filter/lowpass_filter.cpp ****     _prev_value = 0.0f;
+  57              		.loc 1 6 5 is_stmt 1 view .LVU8
+  58              		.loc 1 6 17 is_stmt 0 view .LVU9
+  59 0026 0023     		movs	r3, #0
+  60 0028 4360     		str	r3, [r0, #4]	@ float
+   7:Lib/compute/filter/lowpass_filter.cpp **** }
+  61              		.loc 1 7 1 view .LVU10
+  62 002a 7047     		bx	lr
+  63              	.L7:
+  64              		.align	2
+  65              	.L6:
+  66 002c 00000000 		.word	0
+  67              		.cfi_endproc
+  68              	.LFE978:
+  70              		.align	1
+  71              		.global	_ZN13LowpassFilter6filterEf
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  76              	_ZN13LowpassFilter6filterEf:
+  77              	.LVL4:
+  78              	.LFB979:
+   8:Lib/compute/filter/lowpass_filter.cpp **** 
+   9:Lib/compute/filter/lowpass_filter.cpp **** float LowpassFilter::filter(float value) // 低通滤波器算法
+  10:Lib/compute/filter/lowpass_filter.cpp **** {
+  79              		.loc 1 10 1 is_stmt 1 view -0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  11:Lib/compute/filter/lowpass_filter.cpp ****     /* y=ax+(1-a)*y0 -> y=y0+a(x-y0) */
+  12:Lib/compute/filter/lowpass_filter.cpp ****     /* x 是当前输入值（value），y0 是上一个输出值（prev_value）, 
+  13:Lib/compute/filter/lowpass_filter.cpp ****     a 是滤波系数（alpha） ,y 是当前输出值（ret） */
+  14:Lib/compute/filter/lowpass_filter.cpp ****     float ret = _prev_value + _alpha * (value - _prev_value);
+  84              		.loc 1 14 5 view .LVU12
+  85              		.loc 1 14 17 is_stmt 0 view .LVU13
+  86 0030 D0ED017A 		vldr.32	s15, [r0, #4]
+  87              		.loc 1 14 31 view .LVU14
+  88 0034 90ED007A 		vldr.32	s14, [r0]
+  89              		.loc 1 14 47 view .LVU15
+  90 0038 30EE670A 		vsub.f32	s0, s0, s15
+  91              	.LVL5:
+  92              		.loc 1 14 38 view .LVU16
+  93 003c 27EE007A 		vmul.f32	s14, s14, s0
+  94              		.loc 1 14 11 view .LVU17
+  95 0040 37EE870A 		vadd.f32	s0, s15, s14
+  96              	.LVL6:
+  15:Lib/compute/filter/lowpass_filter.cpp ****     _prev_value = ret;
+  97              		.loc 1 15 5 is_stmt 1 view .LVU18
+  98              		.loc 1 15 17 is_stmt 0 view .LVU19
+  99 0044 80ED010A 		vstr.32	s0, [r0, #4]
+  16:Lib/compute/filter/lowpass_filter.cpp ****     return ret;
+ 100              		.loc 1 16 5 is_stmt 1 view .LVU20
+  17:Lib/compute/filter/lowpass_filter.cpp **** }
+ARM GAS  /tmp/ccV2cWP1.s 			page 3
+
+
+ 101              		.loc 1 17 1 is_stmt 0 view .LVU21
+ 102 0048 7047     		bx	lr
+ 103              		.cfi_endproc
+ 104              	.LFE979:
+ 106              		.align	1
+ 107              		.global	_ZN13LowpassFilter17filter_with_alphaEff
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	_ZN13LowpassFilter17filter_with_alphaEff:
+ 113              	.LVL7:
+ 114              	.LFB980:
+  18:Lib/compute/filter/lowpass_filter.cpp **** 
+  19:Lib/compute/filter/lowpass_filter.cpp **** float LowpassFilter::filter_with_alpha(float value, float alpha)
+  20:Lib/compute/filter/lowpass_filter.cpp **** {
+ 115              		.loc 1 20 1 is_stmt 1 view -0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
+  21:Lib/compute/filter/lowpass_filter.cpp ****     float ret = _prev_value + alpha * (value - _prev_value);
+ 120              		.loc 1 21 5 view .LVU23
+ 121              		.loc 1 21 17 is_stmt 0 view .LVU24
+ 122 004a D0ED017A 		vldr.32	s15, [r0, #4]
+ 123              		.loc 1 21 46 view .LVU25
+ 124 004e 30EE670A 		vsub.f32	s0, s0, s15
+ 125              	.LVL8:
+ 126              		.loc 1 21 37 view .LVU26
+ 127 0052 20EE200A 		vmul.f32	s0, s0, s1
+ 128              		.loc 1 21 11 view .LVU27
+ 129 0056 37EE800A 		vadd.f32	s0, s15, s0
+ 130              	.LVL9:
+  22:Lib/compute/filter/lowpass_filter.cpp ****     _prev_value = ret;
+ 131              		.loc 1 22 5 is_stmt 1 view .LVU28
+ 132              		.loc 1 22 17 is_stmt 0 view .LVU29
+ 133 005a 80ED010A 		vstr.32	s0, [r0, #4]
+  23:Lib/compute/filter/lowpass_filter.cpp ****     return ret;
+ 134              		.loc 1 23 5 is_stmt 1 view .LVU30
+  24:Lib/compute/filter/lowpass_filter.cpp **** }
+ 135              		.loc 1 24 1 is_stmt 0 view .LVU31
+ 136 005e 7047     		bx	lr
+ 137              		.cfi_endproc
+ 138              	.LFE980:
+ 140              		.align	1
+ 141              		.global	_ZN13LowpassFilter5clearEv
+ 142              		.syntax unified
+ 143              		.thumb
+ 144              		.thumb_func
+ 146              	_ZN13LowpassFilter5clearEv:
+ 147              	.LVL10:
+ 148              	.LFB981:
+  25:Lib/compute/filter/lowpass_filter.cpp **** 
+  26:Lib/compute/filter/lowpass_filter.cpp **** void LowpassFilter::clear(void)
+  27:Lib/compute/filter/lowpass_filter.cpp **** {
+ 149              		.loc 1 27 1 is_stmt 1 view -0
+ 150              		.cfi_startproc
+ 151              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccV2cWP1.s 			page 4
+
+
+ 152              		@ frame_needed = 0, uses_anonymous_args = 0
+ 153              		@ link register save eliminated.
+  28:Lib/compute/filter/lowpass_filter.cpp ****     _prev_value = 0.0f;
+ 154              		.loc 1 28 5 view .LVU33
+ 155              		.loc 1 28 17 is_stmt 0 view .LVU34
+ 156 0060 0023     		movs	r3, #0
+ 157 0062 4360     		str	r3, [r0, #4]	@ float
+  29:Lib/compute/filter/lowpass_filter.cpp **** }...
+ 158              		.loc 1 29 1 view .LVU35
+ 159 0064 7047     		bx	lr
+ 160              		.cfi_endproc
+ 161              	.LFE981:
+ 163              	.Letext0:
+ 164              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 165              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 166              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 167              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 168              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 169              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 170              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+fp
+ 171              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 172              		.file 10 "Lib/compute/ex_math.hpp"
+ARM GAS  /tmp/ccV2cWP1.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 lowpass_filter.cpp
+     /tmp/ccV2cWP1.s:20     .text:00000000 $t
+     /tmp/ccV2cWP1.s:26     .text:00000000 _ZN13LowpassFilter4initEf
+     /tmp/ccV2cWP1.s:66     .text:0000002c $d
+     /tmp/ccV2cWP1.s:70     .text:00000030 $t
+     /tmp/ccV2cWP1.s:76     .text:00000030 _ZN13LowpassFilter6filterEf
+     /tmp/ccV2cWP1.s:112    .text:0000004a _ZN13LowpassFilter17filter_with_alphaEff
+     /tmp/ccV2cWP1.s:146    .text:00000060 _ZN13LowpassFilter5clearEv
+
+NO UNDEFINED SYMBOLS

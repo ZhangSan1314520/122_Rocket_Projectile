@@ -1,0 +1,459 @@
+ARM GAS  /tmp/cclnpvHX.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"ex_math.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Lib/compute/ex_math.cpp"
+  20              		.align	1
+  21              		.global	_Z9is_numberPKc
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_Z9is_numberPKc:
+  27              	.LVL0:
+  28              	.LFB978:
+   1:Lib/compute/ex_math.cpp **** #include "ex_math.hpp"
+   2:Lib/compute/ex_math.cpp **** 
+   3:Lib/compute/ex_math.cpp **** #include <ctype.h>
+   4:Lib/compute/ex_math.cpp **** 
+   5:Lib/compute/ex_math.cpp **** bool is_number(const char *str)
+   6:Lib/compute/ex_math.cpp **** {
+  29              		.loc 1 6 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              		.loc 1 6 1 is_stmt 0 view .LVU1
+  35 0000 10B4     		push	{r4}
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 4, -4
+  38 0002 0246     		mov	r2, r0
+   7:Lib/compute/ex_math.cpp ****     if (*str == '-' || *str == '+')
+  39              		.loc 1 7 5 is_stmt 1 view .LVU2
+  40              		.loc 1 7 9 is_stmt 0 view .LVU3
+  41 0004 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  42              		.loc 1 7 5 view .LVU4
+  43 0006 2D2B     		cmp	r3, #45
+  44 0008 01D0     		beq	.L2
+  45              		.loc 1 7 21 discriminator 1 view .LVU5
+  46 000a 2B2B     		cmp	r3, #43
+  47 000c 00D1     		bne	.L3
+  48              	.L2:
+   8:Lib/compute/ex_math.cpp ****     {
+   9:Lib/compute/ex_math.cpp ****         str++;
+  49              		.loc 1 9 9 is_stmt 1 view .LVU6
+ARM GAS  /tmp/cclnpvHX.s 			page 2
+
+
+  50              		.loc 1 9 12 is_stmt 0 view .LVU7
+  51 000e 0132     		adds	r2, r2, #1
+  52              	.LVL1:
+  53              	.L3:
+  10:Lib/compute/ex_math.cpp ****     }
+  11:Lib/compute/ex_math.cpp **** 
+  12:Lib/compute/ex_math.cpp ****     bool has_digit = false;
+  13:Lib/compute/ex_math.cpp ****     bool has_dot = false;
+  14:Lib/compute/ex_math.cpp **** 
+  15:Lib/compute/ex_math.cpp ****     while (*str)
+  16:Lib/compute/ex_math.cpp ****     {
+  17:Lib/compute/ex_math.cpp ****         if (isdigit(*str))
+  18:Lib/compute/ex_math.cpp ****         {
+  19:Lib/compute/ex_math.cpp ****             has_digit = true;
+  20:Lib/compute/ex_math.cpp ****         }
+  21:Lib/compute/ex_math.cpp ****         else if (*str == '.' && !has_dot)
+  22:Lib/compute/ex_math.cpp ****         {
+  23:Lib/compute/ex_math.cpp ****             has_dot = true;
+  54              		.loc 1 23 21 view .LVU8
+  55 0010 0024     		movs	r4, #0
+  56 0012 2046     		mov	r0, r4
+  57 0014 01E0     		b	.L6
+  58              	.LVL2:
+  59              	.L8:
+  19:Lib/compute/ex_math.cpp ****         }
+  60              		.loc 1 19 23 view .LVU9
+  61 0016 0120     		movs	r0, #1
+  62              	.LVL3:
+  63              	.L4:
+  24:Lib/compute/ex_math.cpp ****         }
+  25:Lib/compute/ex_math.cpp ****         else
+  26:Lib/compute/ex_math.cpp ****         {
+  27:Lib/compute/ex_math.cpp ****             return false;
+  28:Lib/compute/ex_math.cpp ****         }
+  29:Lib/compute/ex_math.cpp ****         str++;
+  64              		.loc 1 29 9 is_stmt 1 view .LVU10
+  65              		.loc 1 29 12 is_stmt 0 view .LVU11
+  66 0018 0132     		adds	r2, r2, #1
+  67              	.LVL4:
+  68              	.L6:
+  15:Lib/compute/ex_math.cpp ****     {
+  69              		.loc 1 15 12 is_stmt 1 view .LVU12
+  70 001a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  71 001c 4BB1     		cbz	r3, .L5
+  17:Lib/compute/ex_math.cpp ****         {
+  72              		.loc 1 17 9 view .LVU13
+  17:Lib/compute/ex_math.cpp ****         {
+  73              		.loc 1 17 20 is_stmt 0 view .LVU14
+  74 001e A3F13001 		sub	r1, r3, #48
+  17:Lib/compute/ex_math.cpp ****         {
+  75              		.loc 1 17 9 view .LVU15
+  76 0022 0929     		cmp	r1, #9
+  77 0024 F7D9     		bls	.L8
+  21:Lib/compute/ex_math.cpp ****         {
+  78              		.loc 1 21 14 is_stmt 1 view .LVU16
+  79 0026 2E2B     		cmp	r3, #46
+  80 0028 02D1     		bne	.L9
+ARM GAS  /tmp/cclnpvHX.s 			page 3
+
+
+  21:Lib/compute/ex_math.cpp ****         {
+  81              		.loc 1 21 30 is_stmt 0 discriminator 1 view .LVU17
+  82 002a 2CB9     		cbnz	r4, .L10
+  23:Lib/compute/ex_math.cpp ****         }
+  83              		.loc 1 23 21 view .LVU18
+  84 002c 0124     		movs	r4, #1
+  85              	.LVL5:
+  23:Lib/compute/ex_math.cpp ****         }
+  86              		.loc 1 23 21 view .LVU19
+  87 002e F3E7     		b	.L4
+  88              	.LVL6:
+  89              	.L9:
+  27:Lib/compute/ex_math.cpp ****         }
+  90              		.loc 1 27 20 view .LVU20
+  91 0030 0020     		movs	r0, #0
+  92              	.LVL7:
+  93              	.L5:
+  30:Lib/compute/ex_math.cpp ****     }
+  31:Lib/compute/ex_math.cpp **** 
+  32:Lib/compute/ex_math.cpp ****     return has_digit;
+  33:Lib/compute/ex_math.cpp **** }
+  94              		.loc 1 33 1 view .LVU21
+  95 0032 5DF8044B 		ldr	r4, [sp], #4
+  96              		.cfi_remember_state
+  97              		.cfi_restore 4
+  98              		.cfi_def_cfa_offset 0
+  99              	.LVL8:
+ 100              		.loc 1 33 1 view .LVU22
+ 101 0036 7047     		bx	lr
+ 102              	.LVL9:
+ 103              	.L10:
+ 104              		.cfi_restore_state
+  27:Lib/compute/ex_math.cpp ****         }
+ 105              		.loc 1 27 20 view .LVU23
+ 106 0038 0020     		movs	r0, #0
+ 107              	.LVL10:
+  27:Lib/compute/ex_math.cpp ****         }
+ 108              		.loc 1 27 20 view .LVU24
+ 109 003a FAE7     		b	.L5
+ 110              		.cfi_endproc
+ 111              	.LFE978:
+ 113              		.align	1
+ 114              		.global	_Z10is_integerPKc
+ 115              		.syntax unified
+ 116              		.thumb
+ 117              		.thumb_func
+ 119              	_Z10is_integerPKc:
+ 120              	.LVL11:
+ 121              	.LFB979:
+  34:Lib/compute/ex_math.cpp **** 
+  35:Lib/compute/ex_math.cpp **** bool is_integer(const char *str)
+  36:Lib/compute/ex_math.cpp **** {
+ 122              		.loc 1 36 1 is_stmt 1 view -0
+ 123              		.cfi_startproc
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126              		@ link register save eliminated.
+ARM GAS  /tmp/cclnpvHX.s 			page 4
+
+
+ 127              		.loc 1 36 1 is_stmt 0 view .LVU26
+ 128 003c 0246     		mov	r2, r0
+  37:Lib/compute/ex_math.cpp ****     if (*str == '-' || *str == '+')
+ 129              		.loc 1 37 5 is_stmt 1 view .LVU27
+ 130              		.loc 1 37 9 is_stmt 0 view .LVU28
+ 131 003e 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 132              		.loc 1 37 5 view .LVU29
+ 133 0040 2D2B     		cmp	r3, #45
+ 134 0042 01D0     		beq	.L13
+ 135              		.loc 1 37 21 discriminator 1 view .LVU30
+ 136 0044 2B2B     		cmp	r3, #43
+ 137 0046 00D1     		bne	.L14
+ 138              	.L13:
+  38:Lib/compute/ex_math.cpp ****     {
+  39:Lib/compute/ex_math.cpp ****         str++;
+ 139              		.loc 1 39 9 is_stmt 1 view .LVU31
+ 140              		.loc 1 39 12 is_stmt 0 view .LVU32
+ 141 0048 0132     		adds	r2, r2, #1
+ 142              	.LVL12:
+ 143              	.L14:
+  36:Lib/compute/ex_math.cpp ****     if (*str == '-' || *str == '+')
+ 144              		.loc 1 36 1 view .LVU33
+ 145 004a 0020     		movs	r0, #0
+ 146              	.L16:
+ 147              	.LVL13:
+  40:Lib/compute/ex_math.cpp ****     }
+  41:Lib/compute/ex_math.cpp **** 
+  42:Lib/compute/ex_math.cpp ****     bool has_digit = false;
+  43:Lib/compute/ex_math.cpp **** 
+  44:Lib/compute/ex_math.cpp ****     while (*str)
+ 148              		.loc 1 44 12 is_stmt 1 view .LVU34
+ 149 004c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 150 004e 2BB1     		cbz	r3, .L19
+  45:Lib/compute/ex_math.cpp ****     {
+  46:Lib/compute/ex_math.cpp ****         if (isdigit(*str))
+ 151              		.loc 1 46 9 view .LVU35
+ 152              		.loc 1 46 20 is_stmt 0 view .LVU36
+ 153 0050 303B     		subs	r3, r3, #48
+ 154              		.loc 1 46 9 view .LVU37
+ 155 0052 092B     		cmp	r3, #9
+ 156 0054 03D8     		bhi	.L18
+  47:Lib/compute/ex_math.cpp ****         {
+  48:Lib/compute/ex_math.cpp ****             has_digit = true;
+ 157              		.loc 1 48 13 is_stmt 1 view .LVU38
+ 158              	.LVL14:
+  49:Lib/compute/ex_math.cpp ****         }
+  50:Lib/compute/ex_math.cpp ****         else
+  51:Lib/compute/ex_math.cpp ****         {
+  52:Lib/compute/ex_math.cpp ****             return false;
+  53:Lib/compute/ex_math.cpp ****         }
+  54:Lib/compute/ex_math.cpp ****         str++;
+ 159              		.loc 1 54 9 view .LVU39
+ 160              		.loc 1 54 12 is_stmt 0 view .LVU40
+ 161 0056 0132     		adds	r2, r2, #1
+ 162              	.LVL15:
+  48:Lib/compute/ex_math.cpp ****         }
+ 163              		.loc 1 48 23 view .LVU41
+ARM GAS  /tmp/cclnpvHX.s 			page 5
+
+
+ 164 0058 0120     		movs	r0, #1
+ 165 005a F7E7     		b	.L16
+ 166              	.LVL16:
+ 167              	.L19:
+  48:Lib/compute/ex_math.cpp ****         }
+ 168              		.loc 1 48 23 view .LVU42
+ 169 005c 7047     		bx	lr
+ 170              	.L18:
+  52:Lib/compute/ex_math.cpp ****         }
+ 171              		.loc 1 52 20 view .LVU43
+ 172 005e 0020     		movs	r0, #0
+ 173              	.LVL17:
+  55:Lib/compute/ex_math.cpp ****     }
+  56:Lib/compute/ex_math.cpp **** 
+  57:Lib/compute/ex_math.cpp ****     return has_digit;
+  58:Lib/compute/ex_math.cpp **** }
+ 174              		.loc 1 58 1 view .LVU44
+ 175 0060 7047     		bx	lr
+ 176              		.cfi_endproc
+ 177              	.LFE979:
+ 179              		.align	1
+ 180              		.global	_Z8is_floatPKc
+ 181              		.syntax unified
+ 182              		.thumb
+ 183              		.thumb_func
+ 185              	_Z8is_floatPKc:
+ 186              	.LVL18:
+ 187              	.LFB980:
+  59:Lib/compute/ex_math.cpp **** 
+  60:Lib/compute/ex_math.cpp **** bool is_float(const char *str)
+  61:Lib/compute/ex_math.cpp **** {
+ 188              		.loc 1 61 1 is_stmt 1 view -0
+ 189              		.cfi_startproc
+ 190              		@ args = 0, pretend = 0, frame = 0
+ 191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 192              		@ link register save eliminated.
+  62:Lib/compute/ex_math.cpp ****     if (str == NULL || *str == '\0')
+ 193              		.loc 1 62 5 view .LVU46
+ 194 0062 C0B1     		cbz	r0, .L27
+ 195 0064 0246     		mov	r2, r0
+ 196              		.loc 1 62 24 is_stmt 0 discriminator 1 view .LVU47
+ 197 0066 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 198              		.loc 1 62 21 discriminator 1 view .LVU48
+ 199 0068 BBB1     		cbz	r3, .L28
+  61:Lib/compute/ex_math.cpp ****     if (str == NULL || *str == '\0')
+ 200              		.loc 1 61 1 view .LVU49
+ 201 006a 10B4     		push	{r4}
+ 202              		.cfi_def_cfa_offset 4
+ 203              		.cfi_offset 4, -4
+  63:Lib/compute/ex_math.cpp ****     {
+  64:Lib/compute/ex_math.cpp ****         return false;
+  65:Lib/compute/ex_math.cpp ****     }
+  66:Lib/compute/ex_math.cpp **** 
+  67:Lib/compute/ex_math.cpp ****     if (*str == '-' || *str == '+')
+ 204              		.loc 1 67 5 is_stmt 1 view .LVU50
+ 205 006c 2D2B     		cmp	r3, #45
+ 206 006e 01D0     		beq	.L22
+ARM GAS  /tmp/cclnpvHX.s 			page 6
+
+
+ 207              		.loc 1 67 21 is_stmt 0 discriminator 1 view .LVU51
+ 208 0070 2B2B     		cmp	r3, #43
+ 209 0072 00D1     		bne	.L23
+ 210              	.L22:
+  68:Lib/compute/ex_math.cpp ****     {
+  69:Lib/compute/ex_math.cpp ****         str++;
+ 211              		.loc 1 69 9 is_stmt 1 view .LVU52
+ 212              		.loc 1 69 12 is_stmt 0 view .LVU53
+ 213 0074 0132     		adds	r2, r2, #1
+ 214              	.LVL19:
+ 215              	.L23:
+  70:Lib/compute/ex_math.cpp ****     }
+  71:Lib/compute/ex_math.cpp **** 
+  72:Lib/compute/ex_math.cpp ****     bool has_digit = false;
+  73:Lib/compute/ex_math.cpp ****     bool has_dot = false;
+  74:Lib/compute/ex_math.cpp **** 
+  75:Lib/compute/ex_math.cpp ****     while (*str)
+  76:Lib/compute/ex_math.cpp ****     {
+  77:Lib/compute/ex_math.cpp ****         if (isdigit((unsigned char)*str))
+  78:Lib/compute/ex_math.cpp ****         {
+  79:Lib/compute/ex_math.cpp ****             has_digit = true;
+  80:Lib/compute/ex_math.cpp ****         }
+  81:Lib/compute/ex_math.cpp ****         else if (*str == '.')
+  82:Lib/compute/ex_math.cpp ****         {
+  83:Lib/compute/ex_math.cpp ****             if (has_dot)
+  84:Lib/compute/ex_math.cpp ****             {
+  85:Lib/compute/ex_math.cpp ****                 return false;
+  86:Lib/compute/ex_math.cpp ****             }
+  87:Lib/compute/ex_math.cpp ****             has_dot = true;
+ 216              		.loc 1 87 21 view .LVU54
+ 217 0076 0024     		movs	r4, #0
+ 218 0078 2046     		mov	r0, r4
+ 219 007a 01E0     		b	.L25
+ 220              	.LVL20:
+ 221              	.L29:
+  79:Lib/compute/ex_math.cpp ****         }
+ 222              		.loc 1 79 23 view .LVU55
+ 223 007c 0120     		movs	r0, #1
+ 224              	.LVL21:
+ 225              	.L24:
+  88:Lib/compute/ex_math.cpp ****         }
+  89:Lib/compute/ex_math.cpp ****         else
+  90:Lib/compute/ex_math.cpp ****         {
+  91:Lib/compute/ex_math.cpp ****             return false;
+  92:Lib/compute/ex_math.cpp ****         }
+  93:Lib/compute/ex_math.cpp ****         str++;
+ 226              		.loc 1 93 9 is_stmt 1 view .LVU56
+ 227              		.loc 1 93 12 is_stmt 0 view .LVU57
+ 228 007e 0132     		adds	r2, r2, #1
+ 229              	.LVL22:
+ 230              	.L25:
+  75:Lib/compute/ex_math.cpp ****     {
+ 231              		.loc 1 75 12 is_stmt 1 view .LVU58
+ 232 0080 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 233 0082 6BB1     		cbz	r3, .L21
+  77:Lib/compute/ex_math.cpp ****         {
+ 234              		.loc 1 77 9 view .LVU59
+ARM GAS  /tmp/cclnpvHX.s 			page 7
+
+
+  77:Lib/compute/ex_math.cpp ****         {
+ 235              		.loc 1 77 20 is_stmt 0 view .LVU60
+ 236 0084 A3F13001 		sub	r1, r3, #48
+  77:Lib/compute/ex_math.cpp ****         {
+ 237              		.loc 1 77 9 view .LVU61
+ 238 0088 0929     		cmp	r1, #9
+ 239 008a F7D9     		bls	.L29
+  81:Lib/compute/ex_math.cpp ****         {
+ 240              		.loc 1 81 14 is_stmt 1 view .LVU62
+ 241 008c 2E2B     		cmp	r3, #46
+ 242 008e 06D1     		bne	.L30
+  83:Lib/compute/ex_math.cpp ****             {
+ 243              		.loc 1 83 13 view .LVU63
+ 244 0090 4CB9     		cbnz	r4, .L31
+  87:Lib/compute/ex_math.cpp ****         }
+ 245              		.loc 1 87 21 is_stmt 0 view .LVU64
+ 246 0092 0124     		movs	r4, #1
+ 247              	.LVL23:
+  87:Lib/compute/ex_math.cpp ****         }
+ 248              		.loc 1 87 21 view .LVU65
+ 249 0094 F3E7     		b	.L24
+ 250              	.LVL24:
+ 251              	.L27:
+ 252              		.cfi_def_cfa_offset 0
+ 253              		.cfi_restore 4
+  64:Lib/compute/ex_math.cpp ****     }
+ 254              		.loc 1 64 16 view .LVU66
+ 255 0096 0020     		movs	r0, #0
+ 256              	.LVL25:
+  64:Lib/compute/ex_math.cpp ****     }
+ 257              		.loc 1 64 16 view .LVU67
+ 258 0098 7047     		bx	lr
+ 259              	.LVL26:
+ 260              	.L28:
+  64:Lib/compute/ex_math.cpp ****     }
+ 261              		.loc 1 64 16 view .LVU68
+ 262 009a 0020     		movs	r0, #0
+ 263              	.LVL27:
+  94:Lib/compute/ex_math.cpp ****     }
+  95:Lib/compute/ex_math.cpp **** 
+  96:Lib/compute/ex_math.cpp ****     return has_digit;
+  97:Lib/compute/ex_math.cpp **** }...
+ 264              		.loc 1 97 1 view .LVU69
+ 265 009c 7047     		bx	lr
+ 266              	.LVL28:
+ 267              	.L30:
+ 268              		.cfi_def_cfa_offset 4
+ 269              		.cfi_offset 4, -4
+  91:Lib/compute/ex_math.cpp ****             return false;
+ 270              		.loc 1 91 20 view .LVU70
+ 271 009e 0020     		movs	r0, #0
+ 272              	.LVL29:
+ 273              	.L21:
+ 274              		.loc 1 97 1 view .LVU71
+ 275 00a0 5DF8044B 		ldr	r4, [sp], #4
+ 276              		.cfi_remember_state
+ 277              		.cfi_restore 4
+ARM GAS  /tmp/cclnpvHX.s 			page 8
+
+
+ 278              		.cfi_def_cfa_offset 0
+ 279              	.LVL30:
+ 280              		.loc 1 97 1 view .LVU72
+ 281 00a4 7047     		bx	lr
+ 282              	.LVL31:
+ 283              	.L31:
+ 284              		.cfi_restore_state
+  85:Lib/compute/ex_math.cpp ****                 return false;
+ 285              		.loc 1 85 24 view .LVU73
+ 286 00a6 0020     		movs	r0, #0
+ 287              	.LVL32:
+  85:Lib/compute/ex_math.cpp ****                 return false;
+ 288              		.loc 1 85 24 view .LVU74
+ 289 00a8 FAE7     		b	.L21
+ 290              		.cfi_endproc
+ 291              	.LFE980:
+ 293              	.Letext0:
+ 294              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 295              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 296              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 297              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 298              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 299              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 300              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+fp
+ 301              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ARM GAS  /tmp/cclnpvHX.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ex_math.cpp
+     /tmp/cclnpvHX.s:20     .text:00000000 $t
+     /tmp/cclnpvHX.s:26     .text:00000000 _Z9is_numberPKc
+     /tmp/cclnpvHX.s:119    .text:0000003c _Z10is_integerPKc
+     /tmp/cclnpvHX.s:185    .text:00000062 _Z8is_floatPKc
+
+NO UNDEFINED SYMBOLS

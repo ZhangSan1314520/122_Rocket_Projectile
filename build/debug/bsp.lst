@@ -1,0 +1,107 @@
+ARM GAS  /tmp/ccqSUOTd.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"bsp.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/System/bsp.cpp"
+  20              		.global	M4_PWM
+  21              		.global	M3_PWM
+  22              		.global	M2_PWM
+  23              		.global	M1_PWM
+  24              		.section	.rodata
+  25              		.align	2
+  28              	M4_PWM:
+  29 0000 00000000 		.word	htim8
+  30 0004 00340140 		.word	1073820672
+  31 0008 08000000 		.word	8
+  32 000c 0C000000 		.word	12
+  33 0010 00000000 		.word	hspi3
+  34 0014 00040048 		.word	1207960576
+  35 0018 0002     		.short	512
+  36 001a 0000     		.space	2
+  37 001c 00080048 		.word	1207961600
+  38 0020 0040     		.short	16384
+  39 0022 0000     		.space	2
+  42              	M3_PWM:
+  43 0024 00000000 		.word	htim8
+  44 0028 00340140 		.word	1073820672
+  45 002c 00000000 		.word	0
+  46 0030 04000000 		.word	4
+  47 0034 00000000 		.word	hspi3
+  48 0038 00040048 		.word	1207960576
+  49 003c 4000     		.short	64
+  50 003e 0000     		.space	2
+  51 0040 00080048 		.word	1207961600
+  52 0044 0080     		.short	-32768
+  53 0046 0000     		.space	2
+  56              	M2_PWM:
+  57 0048 00000000 		.word	htim1
+  58 004c 002C0140 		.word	1073818624
+  59 0050 08000000 		.word	8
+  60 0054 0C000000 		.word	12
+  61 0058 00000000 		.word	hspi3
+  62 005c 00040048 		.word	1207960576
+  63 0060 1000     		.short	16
+ARM GAS  /tmp/ccqSUOTd.s 			page 2
+
+
+  64 0062 0000     		.space	2
+  65 0064 00000048 		.word	1207959552
+  66 0068 0001     		.short	256
+  67 006a 0000     		.space	2
+  70              	M1_PWM:
+  71 006c 00000000 		.word	htim1
+  72 0070 002C0140 		.word	1073818624
+  73 0074 00000000 		.word	0
+  74 0078 04000000 		.word	4
+  75 007c 00000000 		.word	hspi3
+  76 0080 000C0048 		.word	1207962624
+  77 0084 0400     		.short	4
+  78 0086 0000     		.space	2
+  79 0088 00040048 		.word	1207960576
+  80 008c 0080     		.short	-32768
+  81 008e 0000     		.space	2
+  82              		.text
+  83              	.Letext0:
+  84              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+  85              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+  86              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+  87              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+  88              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+  89              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+  90              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+  91              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+  92              		.file 10 "Core/Inc/tim.h"
+  93              		.file 11 "Core/Inc/spi.h"
+  94              		.file 12 "My_Top/System/bsp.hpp"
+ARM GAS  /tmp/ccqSUOTd.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 bsp.cpp
+     /tmp/ccqSUOTd.s:28     .rodata:00000000 M4_PWM
+     /tmp/ccqSUOTd.s:42     .rodata:00000024 M3_PWM
+     /tmp/ccqSUOTd.s:56     .rodata:00000048 M2_PWM
+     /tmp/ccqSUOTd.s:70     .rodata:0000006c M1_PWM
+     /tmp/ccqSUOTd.s:25     .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+htim8
+hspi3
+htim1
