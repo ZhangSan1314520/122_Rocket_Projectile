@@ -156,6 +156,8 @@ Lib/compute/filter/lowpass_filter.cpp \
 Lib/compute/filter/win_filter.cpp \
 Lib/compute/pid/dynamic_pid.cpp \
 Lib/compute/pid/pid.cpp \
+Lib/compute/pid/pid_Increment.cpp \
+Lib/compute/pid/pll.cpp \
 Lib/compute/wave/wave_generator.cpp \
 Lib/parameter/parameter.cpp \
 Lib/serial/serial.cpp \
@@ -164,22 +166,21 @@ My_Top/Drone_CAN/dronecan_jiexi.cpp \
 My_Top/Drone_CAN/my_dronecan.cpp \
 My_Top/Drone_CAN/my_fdcan.cpp \
 My_Top/Drone_CAN/my_uav_can.cpp \
+My_Top/EEPROM/Motor_Storage.cpp \
+My_Top/EEPROM/XBLW24C64.cpp \
 My_Top/MC/MC_Serial.cpp \
 My_Top/MC/My_Vofa.cpp \
 My_Top/Modules/CLI_Module.cpp \
 My_Top/Motor_Control/DcMotor_ClosedLoop.cpp \
 My_Top/Motor_Control/my_tim.cpp \
-My_Top/System/BL24C16F.cpp \
 My_Top/System/HAL_System.cpp \
 My_Top/System/My_CLI.cpp \
-My_Top/System/My_Vofa.cpp \
 My_Top/System/bsp.cpp \
 My_Top/System/kth_read.cpp \
-My_Top/System/pid_Increment.cpp \
-My_Top/System/pll.cpp \
 My_Top/Task/Task_CLI.cpp \
 My_Top/Task/Task_DroneCAN.cpp \
 My_Top/Task/Task_Launch.cpp \
+My_Top/Task/Task_MotorPublish.cpp \
 My_Top/Task/Task_SystemInit.cpp \
 My_Top/Task/Task_Test.cpp \
 My_Top/Task/Task_Vofa.cpp
@@ -293,6 +294,7 @@ C_INCLUDES =  \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
 -IMy_Top/Drone_CAN \
 -IMy_Top/Drone_CAN/Check_code \
+-IMy_Top/EEPROM \
 -IMy_Top/MC \
 -IMy_Top/Modules \
 -IMy_Top/Motor_Control \

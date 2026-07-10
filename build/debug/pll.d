@@ -1,4 +1,4 @@
-build/debug/pll.o: My_Top/System/pll.cpp My_Top/System/pll.hpp \
+build/debug/pll.o: Lib/compute/pid/pll.cpp Lib/compute/pid/pll.hpp \
  Lib/compute/ex_math.hpp Lib/compute/fast_sin.h My_Top/System/bsp.hpp \
  Core/Inc/usart.h Core/Inc/main.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
@@ -41,7 +41,7 @@ build/debug/pll.o: My_Top/System/pll.cpp My_Top/System/pll.hpp \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h Core/Inc/tim.h \
  Core/Inc/gpio.h Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/adc.h
-My_Top/System/pll.hpp:
+Lib/compute/pid/pll.hpp:
 Lib/compute/ex_math.hpp:
 Lib/compute/fast_sin.h:
 My_Top/System/bsp.hpp:

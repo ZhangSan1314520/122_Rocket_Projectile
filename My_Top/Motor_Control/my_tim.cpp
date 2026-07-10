@@ -1,51 +1,92 @@
 #include "my_tim.hpp"
 
-uint16_t ADC_Value[16] = {0}; //ADC采集值数组
-/**
- * @brief 定时器回调函数，用于执行FOC（磁场定向控制）相关任务
- * @param htim 定时器句柄指针，包含定时器相关信息
- */
+
+
+
+void My_Tim_OC_Callback(TIM_HandleTypeDef *htim)
+{
+    static uint16_t count = 0;
+    static uint32_t start_time, end_time = 0;//求计算时间
+    if(M1.control_init_flag == false) return;// 初始化未完成时，不执行
+    if(M2.control_init_flag == false) return;// 初始化未完成时，不执行
+    if(M3.control_init_flag == false) return;// 初始化未完成时，不执行
+    if(M4.control_init_flag == false) return;// 初始化未完成时，不执行
+
+    if (count % 16 == 1)
+    {
+        HAL_ADC_Start_DMA(therm_hadc,(uint32_t *)DC_Motor::ADC_Value,4); //电池电压采集
+
+        M1.Thermistor_Temp();
+        M2.Thermistor_Temp();
+        M3.Thermistor_Temp();
+        M4.Thermistor_Temp();
+    }
+
+    count = (count % 16000) + 1;
+}
+
+
 void My_Tim_Callback(TIM_HandleTypeDef *htim)
 {
+    static uint16_t count = 0;
     static uint32_t start_time, end_time = 0;//求计算时间
+    if ((htim->Instance->CR1 & 0x10) != 0x00U) return; //不是向上计数时，不执行
 
-    static uint32_t last_time = 0;//求中断间隔时间
-    uint32_t now_time = 0;
+    DC_Motor* motors[] = { &M1, &M2, &M3, &M4 };
 
-    static uint16_t count = 0;
-
-    if (M1.control_init_flag == false) return;// 初始化未完成时，不执行
-
-    if ((htim->Instance->CR1 & 0x10) == 0x00U) // 向上计数时，请求编码器位置信息
+    for (int i = 0; i < 4; i++)
     {
-        if (count % DC_VELOCITY_LOOP_FREQ_DIV == 1)// 每4个周期执行一次（4k频率）
-        {
-            // start_time = HAL_System::get_tick_us(); //记录开始时间
-            // M1.Update_Speed_Angle_LPFAndPLL();//更新速度角度 耗时
-            // end_time = HAL_System::get_tick_us(); // 记录结束时间
-            // M1.laji = (float)(end_time - start_time); 
+        DC_Motor* m = motors[i];
+        if (!m->control_init_flag) continue;
 
-        }
-        if (count % 160 == 1)// 每160个周期执行一次（0.1k频率）
-        {
-            HAL_ADC_Start_DMA(therm_hadc,(uint32_t *)ADC_Value,4); //电池电压采集
-        }
-        count = (count%10000)+1;
+        if (count % 40 == 1)
+            m->Update_Speed_Angle_LPFAndPLL();
 
+        switch (m->work_mode)
+        {
+        case open_loop: // 开环控制
+            if (count % DC_Open_Loop_FREQ_DIV == 1) 
+            {
+                // start_time = HAL_System::get_tick_us(); //记录开始时间
+                m->Set_Motor_Glo_Duty(); //耗时10us*4 = 40us
+                // end_time = HAL_System::get_tick_us(); // 记录结束时间
+                // m->laji = (float)(end_time - start_time);  // 计算时间差
+            }
+            break;
+
+        case speed: // 速度控制
+            if (count % DC_VELOCITY_LOOP_FREQ_DIV == 1)
+            {
+                // start_time = HAL_System::get_tick_us(); //记录开始时间
+                m->Speed_Loop();//耗时2us*4 = 8us
+                // end_time = HAL_System::get_tick_us(); // 记录结束时间
+                // m->laji = (float)(end_time - start_time);  // 计算时间差
+            }
+            break;
+
+        case position: // 位置控制 
+            if (count % DC_POSITION_LOOP_FREQ_DIV == 1)
+            {
+                // start_time = HAL_System::get_tick_us(); //记录开始时间
+                m->Location_Loop();//耗时4us*4 = 16us
+                // end_time = HAL_System::get_tick_us(); // 记录结束时间
+                // m->laji = (float)(end_time - start_time);  // 计算时间差
+            }
+            break;
+
+        case EncoderCalibration: //编码器校准模式
+            break;
+        }
     }
+
+    count = (count % 16000) + 1;
 }
 
 
-void My_Tim_OC_Callback(TIM_HandleTypeDef *htim) // TIM3_CH1 的输出比较中断
-{
-    static uint16_t count = 0;
-    static uint32_t start_time = 0, end_time = 0; // 计时变量
 
-    if (M1.control_init_flag == false) return;// 初始化未完成时，不执行
-    M1.Set_Motor_Frequency(); //设置电机频率
-    count = (count%10000)+1;
 
-}
+
+
 
 
 /*

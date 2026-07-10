@@ -1,0 +1,946 @@
+ARM GAS  /tmp/cczV2lnF.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"Motor_Storage.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "My_Top/EEPROM/Motor_Storage.cpp"
+  20              		.align	1
+  21              		.global	_ZN13Motor_Storage10motor_addrEh
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_ZN13Motor_Storage10motor_addrEh:
+  27              	.LVL0:
+  28              	.LFB1350:
+   1:My_Top/EEPROM/Motor_Storage.cpp **** #include "Motor_Storage.hpp"
+   2:My_Top/EEPROM/Motor_Storage.cpp **** #include "XBLW24C64.hpp" 
+   3:My_Top/EEPROM/Motor_Storage.cpp **** 
+   4:My_Top/EEPROM/Motor_Storage.cpp **** // ============================================================
+   5:My_Top/EEPROM/Motor_Storage.cpp **** bool Motor_Storage::save(uint8_t motor_id) //写电机数据到eeprom
+   6:My_Top/EEPROM/Motor_Storage.cpp **** {
+   7:My_Top/EEPROM/Motor_Storage.cpp ****     // ① 拿电机对象指针 
+   8:My_Top/EEPROM/Motor_Storage.cpp ****     DC_Motor *m = get_motor_ptr(motor_id);
+   9:My_Top/EEPROM/Motor_Storage.cpp ****     if (m == nullptr) {
+  10:My_Top/EEPROM/Motor_Storage.cpp ****         // 编号非法（0 或 >4）—— 不写 EEPROM 直接拒绝
+  11:My_Top/EEPROM/Motor_Storage.cpp ****         return false;
+  12:My_Top/EEPROM/Motor_Storage.cpp ****     }
+  13:My_Top/EEPROM/Motor_Storage.cpp **** 
+  14:My_Top/EEPROM/Motor_Storage.cpp ****     // ② 打包当前参数到 MotorSave_t
+  15:My_Top/EEPROM/Motor_Storage.cpp ****     MotorSave_t s;                              // 栈上 32 字节局部变量
+  16:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_kp    = m->pid_speed_incparam->_kp;  // 速度环 P
+  17:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_ki    = m->pid_speed_incparam->_ki;  // 速度环 I
+  18:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_kd    = m->pid_speed_incparam->_kd;  // 速度环 D
+  19:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kp      = m->pid_location->_kp;        // 位置环 P
+  20:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_ki      = m->pid_location->_ki;        // 位置环 I
+  21:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kd      = m->pid_location->_kd;        // 位置环 D
+  22:My_Top/EEPROM/Motor_Storage.cpp ****     s.zero_offset = m->zero_offset;              // 零位/角度偏移 (角度)
+  23:My_Top/EEPROM/Motor_Storage.cpp ****     s.motor_freq  = m->motor_freq;
+  24:My_Top/EEPROM/Motor_Storage.cpp **** 
+  25:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t addr = motor_addr(motor_id); //获取该电机的分配的起始地址
+  26:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::write(addr,  //写电机数据
+  27:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&s,
+  28:My_Top/EEPROM/Motor_Storage.cpp ****                             sizeof(s)) )
+  29:My_Top/EEPROM/Motor_Storage.cpp ****     {
+  30:My_Top/EEPROM/Motor_Storage.cpp ****         return false;
+ARM GAS  /tmp/cczV2lnF.s 			page 2
+
+
+  31:My_Top/EEPROM/Motor_Storage.cpp ****     }
+  32:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t magic = motor_magic(motor_id);//获取电机写入标志的数据
+  33:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //写电机标志表示写过了
+  34:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&magic,
+  35:My_Top/EEPROM/Motor_Storage.cpp ****                             MAGIC_SIZE);
+  36:My_Top/EEPROM/Motor_Storage.cpp **** }
+  37:My_Top/EEPROM/Motor_Storage.cpp **** 
+  38:My_Top/EEPROM/Motor_Storage.cpp **** bool Motor_Storage::load(uint8_t motor_id) //读eeprom的数据传回给电机
+  39:My_Top/EEPROM/Motor_Storage.cpp **** {
+  40:My_Top/EEPROM/Motor_Storage.cpp ****     DC_Motor *m = get_motor_ptr(motor_id);
+  41:My_Top/EEPROM/Motor_Storage.cpp ****     if (m == nullptr) {
+  42:My_Top/EEPROM/Motor_Storage.cpp ****         return false;
+  43:My_Top/EEPROM/Motor_Storage.cpp ****     }
+  44:My_Top/EEPROM/Motor_Storage.cpp **** 
+  45:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t magic_read = 0x0000;
+  46:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::read(motor_magic_addr(motor_id), //读对应地址的标志数据
+  47:My_Top/EEPROM/Motor_Storage.cpp ****                         (uint8_t *)&magic_read,
+  48:My_Top/EEPROM/Motor_Storage.cpp ****                         MAGIC_SIZE)) {
+  49:My_Top/EEPROM/Motor_Storage.cpp ****         return false;
+  50:My_Top/EEPROM/Motor_Storage.cpp ****     }
+  51:My_Top/EEPROM/Motor_Storage.cpp ****     if(magic_read != motor_magic(motor_id))
+  52:My_Top/EEPROM/Motor_Storage.cpp ****     {
+  53:My_Top/EEPROM/Motor_Storage.cpp ****         return false;//没有数据写入过
+  54:My_Top/EEPROM/Motor_Storage.cpp ****     }
+  55:My_Top/EEPROM/Motor_Storage.cpp **** 
+  56:My_Top/EEPROM/Motor_Storage.cpp **** 
+  57:My_Top/EEPROM/Motor_Storage.cpp ****     // ② 读出 32 字节到 MotorSave_t
+  58:My_Top/EEPROM/Motor_Storage.cpp ****     MotorSave_t s;
+  59:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t addr = motor_addr(motor_id); //获取该电机的分配的起始地址
+  60:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::read(addr,
+  61:My_Top/EEPROM/Motor_Storage.cpp ****                          (uint8_t *)&s,
+  62:My_Top/EEPROM/Motor_Storage.cpp ****                          sizeof(s))) {
+  63:My_Top/EEPROM/Motor_Storage.cpp ****         // I²C 失败
+  64:My_Top/EEPROM/Motor_Storage.cpp ****         return false;
+  65:My_Top/EEPROM/Motor_Storage.cpp ****     }
+  66:My_Top/EEPROM/Motor_Storage.cpp **** 
+  67:My_Top/EEPROM/Motor_Storage.cpp ****     // ③ 反填到 DC_Motor
+  68:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_kp = s.speed_kp;
+  69:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_ki = s.speed_ki;
+  70:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_kd = s.speed_kd;
+  71:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kp       = s.pos_kp;
+  72:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_ki       = s.pos_ki;
+  73:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kd       = s.pos_kd;
+  74:My_Top/EEPROM/Motor_Storage.cpp ****     m->zero_offset             = s.zero_offset;
+  75:My_Top/EEPROM/Motor_Storage.cpp ****     m->motor_freq              = s.motor_freq;
+  76:My_Top/EEPROM/Motor_Storage.cpp **** 
+  77:My_Top/EEPROM/Motor_Storage.cpp ****     return true;
+  78:My_Top/EEPROM/Motor_Storage.cpp **** }
+  79:My_Top/EEPROM/Motor_Storage.cpp **** 
+  80:My_Top/EEPROM/Motor_Storage.cpp **** 
+  81:My_Top/EEPROM/Motor_Storage.cpp **** bool Motor_Storage::clear(uint8_t motor_id) //清除指定电机的 EEPROM 标志位
+  82:My_Top/EEPROM/Motor_Storage.cpp **** {
+  83:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t erase = 0x0000;
+  84:My_Top/EEPROM/Motor_Storage.cpp **** 
+  85:My_Top/EEPROM/Motor_Storage.cpp ****     // 100 = 全部清除
+  86:My_Top/EEPROM/Motor_Storage.cpp ****     if (motor_id == 100) {
+  87:My_Top/EEPROM/Motor_Storage.cpp ****         bool ok = true;
+ARM GAS  /tmp/cczV2lnF.s 			page 3
+
+
+  88:My_Top/EEPROM/Motor_Storage.cpp ****         for (uint8_t i = 1; i <= 4; i++) {
+  89:My_Top/EEPROM/Motor_Storage.cpp ****             if (!XBLW24C64::write(motor_magic_addr(i),
+  90:My_Top/EEPROM/Motor_Storage.cpp ****                                   (const uint8_t *)&erase,
+  91:My_Top/EEPROM/Motor_Storage.cpp ****                                   MAGIC_SIZE)) {
+  92:My_Top/EEPROM/Motor_Storage.cpp ****                 ok = false;
+  93:My_Top/EEPROM/Motor_Storage.cpp ****             }
+  94:My_Top/EEPROM/Motor_Storage.cpp ****         }
+  95:My_Top/EEPROM/Motor_Storage.cpp ****         return ok;
+  96:My_Top/EEPROM/Motor_Storage.cpp ****     }
+  97:My_Top/EEPROM/Motor_Storage.cpp **** 
+  98:My_Top/EEPROM/Motor_Storage.cpp ****     // 单个清除
+  99:My_Top/EEPROM/Motor_Storage.cpp ****     if (motor_id < 1 || motor_id > 4) return false;
+ 100:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //给标志位写入0x0000
+ 101:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&erase,
+ 102:My_Top/EEPROM/Motor_Storage.cpp ****                             MAGIC_SIZE);
+ 103:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 104:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 105:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 106:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 107:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 108:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 109:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 110:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 111:My_Top/EEPROM/Motor_Storage.cpp **** uint16_t Motor_Storage::motor_addr(uint8_t id) //分配电机的写入起始地址
+ 112:My_Top/EEPROM/Motor_Storage.cpp **** {
+  29              		.loc 1 112 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+ 113:My_Top/EEPROM/Motor_Storage.cpp ****     return (EEPROM_Write_Starting_Address + (id - 1) * Motor_Address_Space); 
+  34              		.loc 1 113 5 view .LVU1
+  35              		.loc 1 113 49 is_stmt 0 view .LVU2
+  36 0000 0138     		subs	r0, r0, #1
+  37              	.LVL1:
+  38              		.loc 1 113 43 view .LVU3
+  39 0002 8001     		lsls	r0, r0, #6
+  40              	.LVL2:
+  41              		.loc 1 113 43 view .LVU4
+  42 0004 80B2     		uxth	r0, r0
+  43              		.loc 1 113 75 view .LVU5
+  44 0006 2030     		adds	r0, r0, #32
+  45              		.loc 1 113 75 discriminator 1 view .LVU6
+  46 0008 80B2     		uxth	r0, r0
+ 114:My_Top/EEPROM/Motor_Storage.cpp **** }
+  47              		.loc 1 114 1 view .LVU7
+  48 000a 7047     		bx	lr
+  49              		.cfi_endproc
+  50              	.LFE1350:
+  52              		.align	1
+  53              		.global	_ZN13Motor_Storage13get_motor_ptrEh
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	_ZN13Motor_Storage13get_motor_ptrEh:
+  59              	.LVL3:
+  60              	.LFB1351:
+ARM GAS  /tmp/cczV2lnF.s 			page 4
+
+
+ 115:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 116:My_Top/EEPROM/Motor_Storage.cpp **** DC_Motor* Motor_Storage::get_motor_ptr(uint8_t id)
+ 117:My_Top/EEPROM/Motor_Storage.cpp **** {
+  61              		.loc 1 117 1 is_stmt 1 view -0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+ 118:My_Top/EEPROM/Motor_Storage.cpp ****     switch (id) {
+  66              		.loc 1 118 5 view .LVU9
+  67 000c 0138     		subs	r0, r0, #1
+  68              	.LVL4:
+  69              		.loc 1 118 5 is_stmt 0 view .LVU10
+  70 000e 0328     		cmp	r0, #3
+  71 0010 09D8     		bhi	.L3
+  72 0012 DFE800F0 		tbb	[pc, r0]
+  73              	.L5:
+  74 0016 02       		.byte	(.L8-.L5)/2
+  75 0017 0A       		.byte	(.L9-.L5)/2
+  76 0018 04       		.byte	(.L6-.L5)/2
+  77 0019 06       		.byte	(.L4-.L5)/2
+  78              		.p2align 1
+  79              	.L8:
+  80 001a 0548     		ldr	r0, .L10
+  81              	.LVL5:
+  82              		.loc 1 118 5 view .LVU11
+  83 001c 7047     		bx	lr
+  84              	.L6:
+ 119:My_Top/EEPROM/Motor_Storage.cpp ****         case 1: return &M1;
+ 120:My_Top/EEPROM/Motor_Storage.cpp ****         case 2: return &M2;
+ 121:My_Top/EEPROM/Motor_Storage.cpp ****         case 3: return &M3;
+  85              		.loc 1 121 9 is_stmt 1 view .LVU12
+  86              		.loc 1 121 17 view .LVU13
+  87              		.loc 1 121 25 is_stmt 0 view .LVU14
+  88 001e 0548     		ldr	r0, .L10+4
+  89 0020 7047     		bx	lr
+  90              	.L4:
+ 122:My_Top/EEPROM/Motor_Storage.cpp ****         case 4: return &M4;
+  91              		.loc 1 122 9 is_stmt 1 view .LVU15
+  92              		.loc 1 122 17 view .LVU16
+  93              		.loc 1 122 25 is_stmt 0 view .LVU17
+  94 0022 0548     		ldr	r0, .L10+8
+  95 0024 7047     		bx	lr
+  96              	.L3:
+ 123:My_Top/EEPROM/Motor_Storage.cpp ****         default: return nullptr;
+  97              		.loc 1 123 9 is_stmt 1 view .LVU18
+  98              		.loc 1 123 18 view .LVU19
+  99              		.loc 1 123 25 is_stmt 0 view .LVU20
+ 100 0026 0020     		movs	r0, #0
+ 101 0028 7047     		bx	lr
+ 102              	.L9:
+ 120:My_Top/EEPROM/Motor_Storage.cpp ****         case 3: return &M3;
+ 103              		.loc 1 120 25 view .LVU21
+ 104 002a 0448     		ldr	r0, .L10+12
+ 124:My_Top/EEPROM/Motor_Storage.cpp ****     }
+ 125:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 105              		.loc 1 125 1 view .LVU22
+ARM GAS  /tmp/cczV2lnF.s 			page 5
+
+
+ 106 002c 7047     		bx	lr
+ 107              	.L11:
+ 108 002e 00BF     		.align	2
+ 109              	.L10:
+ 110 0030 00000000 		.word	M1
+ 111 0034 00000000 		.word	M3
+ 112 0038 00000000 		.word	M4
+ 113 003c 00000000 		.word	M2
+ 114              		.cfi_endproc
+ 115              	.LFE1351:
+ 117              		.align	1
+ 118              		.global	_ZN13Motor_Storage11motor_magicEh
+ 119              		.syntax unified
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	_ZN13Motor_Storage11motor_magicEh:
+ 124              	.LVL6:
+ 125              	.LFB1352:
+ 126:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 127:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 128:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 129:My_Top/EEPROM/Motor_Storage.cpp **** uint16_t Motor_Storage::motor_magic(uint8_t id) {  //返回电机写入标志的地址
+ 126              		.loc 1 129 49 is_stmt 1 view -0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		@ link register save eliminated.
+ 130:My_Top/EEPROM/Motor_Storage.cpp ****     switch (id) {
+ 131              		.loc 1 130 5 view .LVU24
+ 132 0040 0138     		subs	r0, r0, #1
+ 133              	.LVL7:
+ 134              		.loc 1 130 5 is_stmt 0 view .LVU25
+ 135 0042 0328     		cmp	r0, #3
+ 136 0044 0CD8     		bhi	.L13
+ 137 0046 DFE800F0 		tbb	[pc, r0]
+ 138              	.L15:
+ 139 004a 02       		.byte	(.L18-.L15)/2
+ 140 004b 0D       		.byte	(.L19-.L15)/2
+ 141 004c 05       		.byte	(.L16-.L15)/2
+ 142 004d 08       		.byte	(.L14-.L15)/2
+ 143              		.p2align 1
+ 144              	.L18:
+ 145 004e 41F21110 		movw	r0, #4369
+ 146              	.LVL8:
+ 147              		.loc 1 130 5 view .LVU26
+ 148 0052 7047     		bx	lr
+ 149              	.L16:
+ 131:My_Top/EEPROM/Motor_Storage.cpp ****         case 1: return MOTOR1_MAGIC;
+ 132:My_Top/EEPROM/Motor_Storage.cpp ****         case 2: return MOTOR2_MAGIC;
+ 133:My_Top/EEPROM/Motor_Storage.cpp ****         case 3: return MOTOR3_MAGIC;
+ 150              		.loc 1 133 9 is_stmt 1 view .LVU27
+ 151              		.loc 1 133 17 view .LVU28
+ 152              		.loc 1 133 24 is_stmt 0 view .LVU29
+ 153 0054 43F23330 		movw	r0, #13107
+ 154 0058 7047     		bx	lr
+ 155              	.L14:
+ 134:My_Top/EEPROM/Motor_Storage.cpp ****         case 4: return MOTOR4_MAGIC;
+ARM GAS  /tmp/cczV2lnF.s 			page 6
+
+
+ 156              		.loc 1 134 9 is_stmt 1 view .LVU30
+ 157              		.loc 1 134 17 view .LVU31
+ 158              		.loc 1 134 24 is_stmt 0 view .LVU32
+ 159 005a 44F24440 		movw	r0, #17476
+ 160 005e 7047     		bx	lr
+ 161              	.L13:
+ 135:My_Top/EEPROM/Motor_Storage.cpp ****         default: return 0;
+ 162              		.loc 1 135 9 is_stmt 1 view .LVU33
+ 163              		.loc 1 135 18 view .LVU34
+ 164              		.loc 1 135 25 is_stmt 0 view .LVU35
+ 165 0060 0020     		movs	r0, #0
+ 166 0062 7047     		bx	lr
+ 167              	.L19:
+ 132:My_Top/EEPROM/Motor_Storage.cpp ****         case 3: return MOTOR3_MAGIC;
+ 168              		.loc 1 132 24 view .LVU36
+ 169 0064 42F22220 		movw	r0, #8738
+ 136:My_Top/EEPROM/Motor_Storage.cpp ****     }
+ 137:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 170              		.loc 1 137 1 view .LVU37
+ 171 0068 7047     		bx	lr
+ 172              		.cfi_endproc
+ 173              	.LFE1352:
+ 175              		.align	1
+ 176              		.global	_ZN13Motor_Storage16motor_magic_addrEh
+ 177              		.syntax unified
+ 178              		.thumb
+ 179              		.thumb_func
+ 181              	_ZN13Motor_Storage16motor_magic_addrEh:
+ 182              	.LVL9:
+ 183              	.LFB1353:
+ 138:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 139:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 140:My_Top/EEPROM/Motor_Storage.cpp **** uint16_t Motor_Storage::motor_magic_addr(uint8_t id) //分配电机标志的写入起始地址
+ 141:My_Top/EEPROM/Motor_Storage.cpp **** {
+ 184              		.loc 1 141 1 is_stmt 1 view -0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              		@ link register save eliminated.
+ 142:My_Top/EEPROM/Motor_Storage.cpp ****     return (MAGIC_BASE_ADDR + (id - 1) * MAGIC_SIZE);
+ 189              		.loc 1 142 5 view .LVU39
+ 190              		.loc 1 142 35 is_stmt 0 view .LVU40
+ 191 006a 0138     		subs	r0, r0, #1
+ 192              	.LVL10:
+ 193              		.loc 1 142 52 view .LVU41
+ 194 006c 4000     		lsls	r0, r0, #1
+ 195              	.LVL11:
+ 196              		.loc 1 142 52 discriminator 1 view .LVU42
+ 197 006e 80B2     		uxth	r0, r0
+ 143:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 198              		.loc 1 143 1 view .LVU43
+ 199 0070 7047     		bx	lr
+ 200              		.cfi_endproc
+ 201              	.LFE1353:
+ 203              		.align	1
+ 204              		.global	_ZN13Motor_Storage4saveEh
+ 205              		.syntax unified
+ARM GAS  /tmp/cczV2lnF.s 			page 7
+
+
+ 206              		.thumb
+ 207              		.thumb_func
+ 209              	_ZN13Motor_Storage4saveEh:
+ 210              	.LVL12:
+ 211              	.LFB1347:
+   6:My_Top/EEPROM/Motor_Storage.cpp ****     // ① 拿电机对象指针 
+ 212              		.loc 1 6 1 is_stmt 1 view -0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 40
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+   6:My_Top/EEPROM/Motor_Storage.cpp ****     // ① 拿电机对象指针 
+ 216              		.loc 1 6 1 is_stmt 0 view .LVU45
+ 217 0072 10B5     		push	{r4, lr}
+ 218              		.cfi_def_cfa_offset 8
+ 219              		.cfi_offset 4, -8
+ 220              		.cfi_offset 14, -4
+ 221 0074 8AB0     		sub	sp, sp, #40
+ 222              		.cfi_def_cfa_offset 48
+ 223 0076 0446     		mov	r4, r0
+   8:My_Top/EEPROM/Motor_Storage.cpp ****     if (m == nullptr) {
+ 224              		.loc 1 8 5 is_stmt 1 view .LVU46
+   8:My_Top/EEPROM/Motor_Storage.cpp ****     if (m == nullptr) {
+ 225              		.loc 1 8 32 is_stmt 0 view .LVU47
+ 226 0078 FFF7FEFF 		bl	_ZN13Motor_Storage13get_motor_ptrEh
+ 227              	.LVL13:
+   9:My_Top/EEPROM/Motor_Storage.cpp ****         // 编号非法（0 或 >4）—— 不写 EEPROM 直接拒绝
+ 228              		.loc 1 9 5 is_stmt 1 view .LVU48
+ 229 007c 48B3     		cbz	r0, .L23
+  15:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_kp    = m->pid_speed_incparam->_kp;  // 速度环 P
+ 230              		.loc 1 15 5 view .LVU49
+  16:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_ki    = m->pid_speed_incparam->_ki;  // 速度环 I
+ 231              		.loc 1 16 5 view .LVU50
+  16:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_ki    = m->pid_speed_incparam->_ki;  // 速度环 I
+ 232              		.loc 1 16 24 is_stmt 0 view .LVU51
+ 233 007e C26B     		ldr	r2, [r0, #60]
+  16:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_ki    = m->pid_speed_incparam->_ki;  // 速度环 I
+ 234              		.loc 1 16 44 view .LVU52
+ 235 0080 1168     		ldr	r1, [r2]	@ float
+  16:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_ki    = m->pid_speed_incparam->_ki;  // 速度环 I
+ 236              		.loc 1 16 19 view .LVU53
+ 237 0082 0291     		str	r1, [sp, #8]	@ float
+  17:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_kd    = m->pid_speed_incparam->_kd;  // 速度环 D
+ 238              		.loc 1 17 5 is_stmt 1 view .LVU54
+  17:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_kd    = m->pid_speed_incparam->_kd;  // 速度环 D
+ 239              		.loc 1 17 44 is_stmt 0 view .LVU55
+ 240 0084 5168     		ldr	r1, [r2, #4]	@ float
+  17:My_Top/EEPROM/Motor_Storage.cpp ****     s.speed_kd    = m->pid_speed_incparam->_kd;  // 速度环 D
+ 241              		.loc 1 17 19 view .LVU56
+ 242 0086 0391     		str	r1, [sp, #12]	@ float
+  18:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kp      = m->pid_location->_kp;        // 位置环 P
+ 243              		.loc 1 18 5 is_stmt 1 view .LVU57
+  18:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kp      = m->pid_location->_kp;        // 位置环 P
+ 244              		.loc 1 18 44 is_stmt 0 view .LVU58
+ 245 0088 9268     		ldr	r2, [r2, #8]	@ float
+  18:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kp      = m->pid_location->_kp;        // 位置环 P
+ 246              		.loc 1 18 19 view .LVU59
+ 247 008a 0492     		str	r2, [sp, #16]	@ float
+ARM GAS  /tmp/cczV2lnF.s 			page 8
+
+
+  19:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_ki      = m->pid_location->_ki;        // 位置环 I
+ 248              		.loc 1 19 5 is_stmt 1 view .LVU60
+  19:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_ki      = m->pid_location->_ki;        // 位置环 I
+ 249              		.loc 1 19 24 is_stmt 0 view .LVU61
+ 250 008c 026C     		ldr	r2, [r0, #64]
+  19:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_ki      = m->pid_location->_ki;        // 位置环 I
+ 251              		.loc 1 19 38 view .LVU62
+ 252 008e 1168     		ldr	r1, [r2]	@ float
+  19:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_ki      = m->pid_location->_ki;        // 位置环 I
+ 253              		.loc 1 19 19 view .LVU63
+ 254 0090 0591     		str	r1, [sp, #20]	@ float
+  20:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kd      = m->pid_location->_kd;        // 位置环 D
+ 255              		.loc 1 20 5 is_stmt 1 view .LVU64
+  20:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kd      = m->pid_location->_kd;        // 位置环 D
+ 256              		.loc 1 20 38 is_stmt 0 view .LVU65
+ 257 0092 5168     		ldr	r1, [r2, #4]	@ float
+  20:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kd      = m->pid_location->_kd;        // 位置环 D
+ 258              		.loc 1 20 19 view .LVU66
+ 259 0094 0691     		str	r1, [sp, #24]	@ float
+  21:My_Top/EEPROM/Motor_Storage.cpp ****     s.zero_offset = m->zero_offset;              // 零位/角度偏移 (角度)
+ 260              		.loc 1 21 5 is_stmt 1 view .LVU67
+  21:My_Top/EEPROM/Motor_Storage.cpp ****     s.zero_offset = m->zero_offset;              // 零位/角度偏移 (角度)
+ 261              		.loc 1 21 38 is_stmt 0 view .LVU68
+ 262 0096 9268     		ldr	r2, [r2, #8]	@ float
+  21:My_Top/EEPROM/Motor_Storage.cpp ****     s.zero_offset = m->zero_offset;              // 零位/角度偏移 (角度)
+ 263              		.loc 1 21 19 view .LVU69
+ 264 0098 0792     		str	r2, [sp, #28]	@ float
+  22:My_Top/EEPROM/Motor_Storage.cpp ****     s.motor_freq  = m->motor_freq;
+ 265              		.loc 1 22 5 is_stmt 1 view .LVU70
+  22:My_Top/EEPROM/Motor_Storage.cpp ****     s.motor_freq  = m->motor_freq;
+ 266              		.loc 1 22 24 is_stmt 0 view .LVU71
+ 267 009a 426A     		ldr	r2, [r0, #36]	@ float
+  22:My_Top/EEPROM/Motor_Storage.cpp ****     s.motor_freq  = m->motor_freq;
+ 268              		.loc 1 22 19 view .LVU72
+ 269 009c 0892     		str	r2, [sp, #32]	@ float
+  23:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 270              		.loc 1 23 5 is_stmt 1 view .LVU73
+  23:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 271              		.loc 1 23 24 is_stmt 0 view .LVU74
+ 272 009e 4368     		ldr	r3, [r0, #4]	@ float
+  23:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 273              		.loc 1 23 19 view .LVU75
+ 274 00a0 0993     		str	r3, [sp, #36]	@ float
+  25:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::write(addr,  //写电机数据
+ 275              		.loc 1 25 5 is_stmt 1 view .LVU76
+  25:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::write(addr,  //写电机数据
+ 276              		.loc 1 25 31 is_stmt 0 view .LVU77
+ 277 00a2 2046     		mov	r0, r4
+ 278              	.LVL14:
+  25:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::write(addr,  //写电机数据
+ 279              		.loc 1 25 31 view .LVU78
+ 280 00a4 FFF7FEFF 		bl	_ZN13Motor_Storage10motor_addrEh
+ 281              	.LVL15:
+  26:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&s,
+ 282              		.loc 1 26 5 is_stmt 1 view .LVU79
+  26:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&s,
+ 283              		.loc 1 26 26 is_stmt 0 view .LVU80
+ARM GAS  /tmp/cczV2lnF.s 			page 9
+
+
+ 284 00a8 2022     		movs	r2, #32
+ 285 00aa 02A9     		add	r1, sp, #8
+ 286 00ac FFF7FEFF 		bl	_ZN9XBLW24C645writeEtPKht
+ 287              	.LVL16:
+  26:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&s,
+ 288              		.loc 1 26 5 discriminator 1 view .LVU81
+ 289 00b0 08B9     		cbnz	r0, .L25
+ 290              	.LVL17:
+ 291              	.L22:
+  36:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 292              		.loc 1 36 1 view .LVU82
+ 293 00b2 0AB0     		add	sp, sp, #40
+ 294              		.cfi_remember_state
+ 295              		.cfi_def_cfa_offset 8
+ 296              		@ sp needed
+ 297 00b4 10BD     		pop	{r4, pc}
+ 298              	.LVL18:
+ 299              	.L25:
+ 300              		.cfi_restore_state
+  32:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //写电机标志表示写过了
+ 301              		.loc 1 32 5 is_stmt 1 view .LVU83
+  32:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //写电机标志表示写过了
+ 302              		.loc 1 32 33 is_stmt 0 view .LVU84
+ 303 00b6 2046     		mov	r0, r4
+ 304 00b8 FFF7FEFF 		bl	_ZN13Motor_Storage11motor_magicEh
+ 305              	.LVL19:
+  32:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //写电机标志表示写过了
+ 306              		.loc 1 32 42 discriminator 1 view .LVU85
+ 307 00bc ADF80600 		strh	r0, [sp, #6]	@ movhi
+  33:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&magic,
+ 308              		.loc 1 33 5 is_stmt 1 view .LVU86
+  33:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&magic,
+ 309              		.loc 1 33 28 is_stmt 0 view .LVU87
+ 310 00c0 2046     		mov	r0, r4
+ 311 00c2 FFF7FEFF 		bl	_ZN13Motor_Storage16motor_magic_addrEh
+ 312              	.LVL20:
+  33:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&magic,
+ 313              		.loc 1 33 28 discriminator 1 view .LVU88
+ 314 00c6 0222     		movs	r2, #2
+ 315 00c8 0DF10601 		add	r1, sp, #6
+ 316 00cc FFF7FEFF 		bl	_ZN9XBLW24C645writeEtPKht
+ 317              	.LVL21:
+  35:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 318              		.loc 1 35 39 view .LVU89
+ 319 00d0 EFE7     		b	.L22
+ 320              	.LVL22:
+ 321              	.L23:
+  11:My_Top/EEPROM/Motor_Storage.cpp ****     }
+ 322              		.loc 1 11 16 view .LVU90
+ 323 00d2 0020     		movs	r0, #0
+ 324              	.LVL23:
+  11:My_Top/EEPROM/Motor_Storage.cpp ****     }
+ 325              		.loc 1 11 16 view .LVU91
+ 326 00d4 EDE7     		b	.L22
+ 327              		.cfi_endproc
+ 328              	.LFE1347:
+ 330              		.align	1
+ARM GAS  /tmp/cczV2lnF.s 			page 10
+
+
+ 331              		.global	_ZN13Motor_Storage4loadEh
+ 332              		.syntax unified
+ 333              		.thumb
+ 334              		.thumb_func
+ 336              	_ZN13Motor_Storage4loadEh:
+ 337              	.LVL24:
+ 338              	.LFB1348:
+  39:My_Top/EEPROM/Motor_Storage.cpp ****     DC_Motor *m = get_motor_ptr(motor_id);
+ 339              		.loc 1 39 1 is_stmt 1 view -0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 40
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+  39:My_Top/EEPROM/Motor_Storage.cpp ****     DC_Motor *m = get_motor_ptr(motor_id);
+ 343              		.loc 1 39 1 is_stmt 0 view .LVU93
+ 344 00d6 30B5     		push	{r4, r5, lr}
+ 345              		.cfi_def_cfa_offset 12
+ 346              		.cfi_offset 4, -12
+ 347              		.cfi_offset 5, -8
+ 348              		.cfi_offset 14, -4
+ 349 00d8 8BB0     		sub	sp, sp, #44
+ 350              		.cfi_def_cfa_offset 56
+ 351 00da 0446     		mov	r4, r0
+  40:My_Top/EEPROM/Motor_Storage.cpp ****     if (m == nullptr) {
+ 352              		.loc 1 40 5 is_stmt 1 view .LVU94
+  40:My_Top/EEPROM/Motor_Storage.cpp ****     if (m == nullptr) {
+ 353              		.loc 1 40 32 is_stmt 0 view .LVU95
+ 354 00dc FFF7FEFF 		bl	_ZN13Motor_Storage13get_motor_ptrEh
+ 355              	.LVL25:
+  41:My_Top/EEPROM/Motor_Storage.cpp ****         return false;
+ 356              		.loc 1 41 5 is_stmt 1 view .LVU96
+ 357 00e0 0028     		cmp	r0, #0
+ 358 00e2 34D0     		beq	.L28
+ 359 00e4 0546     		mov	r5, r0
+  45:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::read(motor_magic_addr(motor_id), //读对应地址的标志数据
+ 360              		.loc 1 45 5 view .LVU97
+  45:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::read(motor_magic_addr(motor_id), //读对应地址的标志数据
+ 361              		.loc 1 45 14 is_stmt 0 view .LVU98
+ 362 00e6 0023     		movs	r3, #0
+ 363 00e8 ADF82630 		strh	r3, [sp, #38]	@ movhi
+  46:My_Top/EEPROM/Motor_Storage.cpp ****                         (uint8_t *)&magic_read,
+ 364              		.loc 1 46 5 is_stmt 1 view .LVU99
+  46:My_Top/EEPROM/Motor_Storage.cpp ****                         (uint8_t *)&magic_read,
+ 365              		.loc 1 46 25 is_stmt 0 view .LVU100
+ 366 00ec 2046     		mov	r0, r4
+ 367              	.LVL26:
+  46:My_Top/EEPROM/Motor_Storage.cpp ****                         (uint8_t *)&magic_read,
+ 368              		.loc 1 46 25 view .LVU101
+ 369 00ee FFF7FEFF 		bl	_ZN13Motor_Storage16motor_magic_addrEh
+ 370              	.LVL27:
+  46:My_Top/EEPROM/Motor_Storage.cpp ****                         (uint8_t *)&magic_read,
+ 371              		.loc 1 46 25 discriminator 1 view .LVU102
+ 372 00f2 0222     		movs	r2, #2
+ 373 00f4 0DF12601 		add	r1, sp, #38
+ 374 00f8 FFF7FEFF 		bl	_ZN9XBLW24C644readEtPht
+ 375              	.LVL28:
+  46:My_Top/EEPROM/Motor_Storage.cpp ****                         (uint8_t *)&magic_read,
+ 376              		.loc 1 46 5 discriminator 2 view .LVU103
+ARM GAS  /tmp/cczV2lnF.s 			page 11
+
+
+ 377 00fc 40B3     		cbz	r0, .L27
+  51:My_Top/EEPROM/Motor_Storage.cpp ****     {
+ 378              		.loc 1 51 5 is_stmt 1 view .LVU104
+  51:My_Top/EEPROM/Motor_Storage.cpp ****     {
+ 379              		.loc 1 51 33 is_stmt 0 view .LVU105
+ 380 00fe 2046     		mov	r0, r4
+ 381 0100 FFF7FEFF 		bl	_ZN13Motor_Storage11motor_magicEh
+ 382              	.LVL29:
+  51:My_Top/EEPROM/Motor_Storage.cpp ****     {
+ 383              		.loc 1 51 19 discriminator 1 view .LVU106
+ 384 0104 BDF82630 		ldrh	r3, [sp, #38]
+  51:My_Top/EEPROM/Motor_Storage.cpp ****     {
+ 385              		.loc 1 51 5 discriminator 1 view .LVU107
+ 386 0108 9842     		cmp	r0, r3
+ 387 010a 01D0     		beq	.L31
+  53:My_Top/EEPROM/Motor_Storage.cpp ****     }
+ 388              		.loc 1 53 16 view .LVU108
+ 389 010c 0020     		movs	r0, #0
+ 390 010e 1FE0     		b	.L27
+ 391              	.L31:
+  58:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t addr = motor_addr(motor_id); //获取该电机的分配的起始地址
+ 392              		.loc 1 58 5 is_stmt 1 view .LVU109
+  59:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::read(addr,
+ 393              		.loc 1 59 5 view .LVU110
+  59:My_Top/EEPROM/Motor_Storage.cpp ****     if (!XBLW24C64::read(addr,
+ 394              		.loc 1 59 31 is_stmt 0 view .LVU111
+ 395 0110 2046     		mov	r0, r4
+ 396 0112 FFF7FEFF 		bl	_ZN13Motor_Storage10motor_addrEh
+ 397              	.LVL30:
+  60:My_Top/EEPROM/Motor_Storage.cpp ****                          (uint8_t *)&s,
+ 398              		.loc 1 60 5 is_stmt 1 view .LVU112
+  60:My_Top/EEPROM/Motor_Storage.cpp ****                          (uint8_t *)&s,
+ 399              		.loc 1 60 25 is_stmt 0 view .LVU113
+ 400 0116 2022     		movs	r2, #32
+ 401 0118 01A9     		add	r1, sp, #4
+ 402 011a FFF7FEFF 		bl	_ZN9XBLW24C644readEtPht
+ 403              	.LVL31:
+  60:My_Top/EEPROM/Motor_Storage.cpp ****                          (uint8_t *)&s,
+ 404              		.loc 1 60 5 discriminator 1 view .LVU114
+ 405 011e B8B1     		cbz	r0, .L27
+  68:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_ki = s.speed_ki;
+ 406              		.loc 1 68 5 is_stmt 1 view .LVU115
+  68:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_ki = s.speed_ki;
+ 407              		.loc 1 68 8 is_stmt 0 view .LVU116
+ 408 0120 EB6B     		ldr	r3, [r5, #60]
+  68:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_ki = s.speed_ki;
+ 409              		.loc 1 68 36 view .LVU117
+ 410 0122 019A     		ldr	r2, [sp, #4]	@ float
+  68:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_ki = s.speed_ki;
+ 411              		.loc 1 68 32 view .LVU118
+ 412 0124 1A60     		str	r2, [r3]	@ float
+  69:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_kd = s.speed_kd;
+ 413              		.loc 1 69 5 is_stmt 1 view .LVU119
+  69:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_kd = s.speed_kd;
+ 414              		.loc 1 69 8 is_stmt 0 view .LVU120
+ 415 0126 EB6B     		ldr	r3, [r5, #60]
+  69:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_kd = s.speed_kd;
+ARM GAS  /tmp/cczV2lnF.s 			page 12
+
+
+ 416              		.loc 1 69 36 view .LVU121
+ 417 0128 029A     		ldr	r2, [sp, #8]	@ float
+  69:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_kd = s.speed_kd;
+ 418              		.loc 1 69 32 view .LVU122
+ 419 012a 5A60     		str	r2, [r3, #4]	@ float
+  70:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kp       = s.pos_kp;
+ 420              		.loc 1 70 5 is_stmt 1 view .LVU123
+  70:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kp       = s.pos_kp;
+ 421              		.loc 1 70 8 is_stmt 0 view .LVU124
+ 422 012c EB6B     		ldr	r3, [r5, #60]
+  70:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kp       = s.pos_kp;
+ 423              		.loc 1 70 36 view .LVU125
+ 424 012e 039A     		ldr	r2, [sp, #12]	@ float
+  70:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kp       = s.pos_kp;
+ 425              		.loc 1 70 32 view .LVU126
+ 426 0130 9A60     		str	r2, [r3, #8]	@ float
+  71:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_ki       = s.pos_ki;
+ 427              		.loc 1 71 5 is_stmt 1 view .LVU127
+  71:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_ki       = s.pos_ki;
+ 428              		.loc 1 71 8 is_stmt 0 view .LVU128
+ 429 0132 2B6C     		ldr	r3, [r5, #64]
+  71:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_ki       = s.pos_ki;
+ 430              		.loc 1 71 36 view .LVU129
+ 431 0134 049A     		ldr	r2, [sp, #16]	@ float
+  71:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_ki       = s.pos_ki;
+ 432              		.loc 1 71 32 view .LVU130
+ 433 0136 1A60     		str	r2, [r3]	@ float
+  72:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kd       = s.pos_kd;
+ 434              		.loc 1 72 5 is_stmt 1 view .LVU131
+  72:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kd       = s.pos_kd;
+ 435              		.loc 1 72 8 is_stmt 0 view .LVU132
+ 436 0138 2B6C     		ldr	r3, [r5, #64]
+  72:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kd       = s.pos_kd;
+ 437              		.loc 1 72 36 view .LVU133
+ 438 013a 059A     		ldr	r2, [sp, #20]	@ float
+  72:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_location->_kd       = s.pos_kd;
+ 439              		.loc 1 72 32 view .LVU134
+ 440 013c 5A60     		str	r2, [r3, #4]	@ float
+  73:My_Top/EEPROM/Motor_Storage.cpp ****     m->zero_offset             = s.zero_offset;
+ 441              		.loc 1 73 5 is_stmt 1 view .LVU135
+  73:My_Top/EEPROM/Motor_Storage.cpp ****     m->zero_offset             = s.zero_offset;
+ 442              		.loc 1 73 8 is_stmt 0 view .LVU136
+ 443 013e 2B6C     		ldr	r3, [r5, #64]
+  73:My_Top/EEPROM/Motor_Storage.cpp ****     m->zero_offset             = s.zero_offset;
+ 444              		.loc 1 73 36 view .LVU137
+ 445 0140 069A     		ldr	r2, [sp, #24]	@ float
+  73:My_Top/EEPROM/Motor_Storage.cpp ****     m->zero_offset             = s.zero_offset;
+ 446              		.loc 1 73 32 view .LVU138
+ 447 0142 9A60     		str	r2, [r3, #8]	@ float
+  74:My_Top/EEPROM/Motor_Storage.cpp ****     m->motor_freq              = s.motor_freq;
+ 448              		.loc 1 74 5 is_stmt 1 view .LVU139
+  74:My_Top/EEPROM/Motor_Storage.cpp ****     m->motor_freq              = s.motor_freq;
+ 449              		.loc 1 74 36 is_stmt 0 view .LVU140
+ 450 0144 079B     		ldr	r3, [sp, #28]	@ float
+  74:My_Top/EEPROM/Motor_Storage.cpp ****     m->motor_freq              = s.motor_freq;
+ 451              		.loc 1 74 32 view .LVU141
+ 452 0146 6B62     		str	r3, [r5, #36]	@ float
+ARM GAS  /tmp/cczV2lnF.s 			page 13
+
+
+  75:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 453              		.loc 1 75 5 is_stmt 1 view .LVU142
+  75:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 454              		.loc 1 75 36 is_stmt 0 view .LVU143
+ 455 0148 089B     		ldr	r3, [sp, #32]	@ float
+  75:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 456              		.loc 1 75 32 view .LVU144
+ 457 014a 6B60     		str	r3, [r5, #4]	@ float
+  77:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 458              		.loc 1 77 5 is_stmt 1 view .LVU145
+  77:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 459              		.loc 1 77 12 is_stmt 0 view .LVU146
+ 460 014c 00E0     		b	.L27
+ 461              	.LVL32:
+ 462              	.L28:
+  42:My_Top/EEPROM/Motor_Storage.cpp ****     }
+ 463              		.loc 1 42 16 view .LVU147
+ 464 014e 0020     		movs	r0, #0
+ 465              	.LVL33:
+ 466              	.L27:
+  78:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 467              		.loc 1 78 1 view .LVU148
+ 468 0150 0BB0     		add	sp, sp, #44
+ 469              		.cfi_def_cfa_offset 12
+ 470              		@ sp needed
+ 471 0152 30BD     		pop	{r4, r5, pc}
+  78:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 472              		.loc 1 78 1 view .LVU149
+ 473              		.cfi_endproc
+ 474              	.LFE1348:
+ 476              		.align	1
+ 477              		.global	_ZN13Motor_Storage5clearEh
+ 478              		.syntax unified
+ 479              		.thumb
+ 480              		.thumb_func
+ 482              	_ZN13Motor_Storage5clearEh:
+ 483              	.LVL34:
+ 484              	.LFB1349:
+  82:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t erase = 0x0000;
+ 485              		.loc 1 82 1 is_stmt 1 view -0
+ 486              		.cfi_startproc
+ 487              		@ args = 0, pretend = 0, frame = 8
+ 488              		@ frame_needed = 0, uses_anonymous_args = 0
+  82:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t erase = 0x0000;
+ 489              		.loc 1 82 1 is_stmt 0 view .LVU151
+ 490 0154 30B5     		push	{r4, r5, lr}
+ 491              		.cfi_def_cfa_offset 12
+ 492              		.cfi_offset 4, -12
+ 493              		.cfi_offset 5, -8
+ 494              		.cfi_offset 14, -4
+ 495 0156 83B0     		sub	sp, sp, #12
+ 496              		.cfi_def_cfa_offset 24
+  83:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 497              		.loc 1 83 5 is_stmt 1 view .LVU152
+  83:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 498              		.loc 1 83 14 is_stmt 0 view .LVU153
+ 499 0158 0023     		movs	r3, #0
+ARM GAS  /tmp/cczV2lnF.s 			page 14
+
+
+ 500 015a ADF80630 		strh	r3, [sp, #6]	@ movhi
+  86:My_Top/EEPROM/Motor_Storage.cpp ****         bool ok = true;
+ 501              		.loc 1 86 5 is_stmt 1 view .LVU154
+ 502              	.LBB2:
+ 503 015e 6428     		cmp	r0, #100
+ 504 0160 17D0     		beq	.L43
+ 505              	.LBE2:
+  99:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //给标志位写入0x0000
+ 506              		.loc 1 99 5 view .LVU155
+  99:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //给标志位写入0x0000
+ 507              		.loc 1 99 22 is_stmt 0 view .LVU156
+ 508 0162 431E     		subs	r3, r0, #1
+ 509 0164 DBB2     		uxtb	r3, r3
+  99:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //给标志位写入0x0000
+ 510              		.loc 1 99 5 view .LVU157
+ 511 0166 032B     		cmp	r3, #3
+ 512 0168 16D9     		bls	.L44
+  99:My_Top/EEPROM/Motor_Storage.cpp ****     return XBLW24C64::write(motor_magic_addr(motor_id), //给标志位写入0x0000
+ 513              		.loc 1 99 46 discriminator 1 view .LVU158
+ 514 016a 0025     		movs	r5, #0
+ 515              	.LVL35:
+ 516              	.L37:
+ 103:My_Top/EEPROM/Motor_Storage.cpp **** 
+ 517              		.loc 1 103 1 view .LVU159
+ 518 016c 2846     		mov	r0, r5
+ 519 016e 03B0     		add	sp, sp, #12
+ 520              		.cfi_remember_state
+ 521              		.cfi_def_cfa_offset 12
+ 522              		@ sp needed
+ 523 0170 30BD     		pop	{r4, r5, pc}
+ 524              	.LVL36:
+ 525              	.L35:
+ 526              		.cfi_restore_state
+ 527              	.LBB5:
+ 528              	.LBB3:
+ 529              	.LBB4:
+  88:My_Top/EEPROM/Motor_Storage.cpp ****             if (!XBLW24C64::write(motor_magic_addr(i),
+ 530              		.loc 1 88 9 is_stmt 1 discriminator 2 view .LVU160
+ 531 0172 0134     		adds	r4, r4, #1
+ 532              	.LVL37:
+  88:My_Top/EEPROM/Motor_Storage.cpp ****             if (!XBLW24C64::write(motor_magic_addr(i),
+ 533              		.loc 1 88 9 is_stmt 0 discriminator 2 view .LVU161
+ 534 0174 E4B2     		uxtb	r4, r4
+ 535              	.LVL38:
+ 536              	.L33:
+  88:My_Top/EEPROM/Motor_Storage.cpp ****             if (!XBLW24C64::write(motor_magic_addr(i),
+ 537              		.loc 1 88 31 is_stmt 1 discriminator 1 view .LVU162
+ 538 0176 042C     		cmp	r4, #4
+ 539 0178 F8D8     		bhi	.L37
+  89:My_Top/EEPROM/Motor_Storage.cpp ****                                   (const uint8_t *)&erase,
+ 540              		.loc 1 89 13 view .LVU163
+  89:My_Top/EEPROM/Motor_Storage.cpp ****                                   (const uint8_t *)&erase,
+ 541              		.loc 1 89 34 is_stmt 0 view .LVU164
+ 542 017a 2046     		mov	r0, r4
+ 543 017c FFF7FEFF 		bl	_ZN13Motor_Storage16motor_magic_addrEh
+ 544              	.LVL39:
+  89:My_Top/EEPROM/Motor_Storage.cpp ****                                   (const uint8_t *)&erase,
+ARM GAS  /tmp/cczV2lnF.s 			page 15
+
+
+ 545              		.loc 1 89 34 discriminator 1 view .LVU165
+ 546 0180 0222     		movs	r2, #2
+ 547 0182 0DF10601 		add	r1, sp, #6
+ 548 0186 FFF7FEFF 		bl	_ZN9XBLW24C645writeEtPKht
+ 549              	.LVL40:
+  89:My_Top/EEPROM/Motor_Storage.cpp ****                                   (const uint8_t *)&erase,
+ 550              		.loc 1 89 13 discriminator 2 view .LVU166
+ 551 018a 0028     		cmp	r0, #0
+ 552 018c F1D1     		bne	.L35
+  92:My_Top/EEPROM/Motor_Storage.cpp ****             }
+ 553              		.loc 1 92 20 view .LVU167
+ 554 018e 0546     		mov	r5, r0
+ 555              	.LVL41:
+  92:My_Top/EEPROM/Motor_Storage.cpp ****             }
+ 556              		.loc 1 92 20 view .LVU168
+ 557 0190 EFE7     		b	.L35
+ 558              	.LVL42:
+ 559              	.L43:
+  88:My_Top/EEPROM/Motor_Storage.cpp ****             if (!XBLW24C64::write(motor_magic_addr(i),
+ 560              		.loc 1 88 22 view .LVU169
+ 561 0192 0124     		movs	r4, #1
+ 562              	.LBE4:
+  87:My_Top/EEPROM/Motor_Storage.cpp ****         for (uint8_t i = 1; i <= 4; i++) {
+ 563              		.loc 1 87 14 view .LVU170
+ 564 0194 2546     		mov	r5, r4
+ 565 0196 EEE7     		b	.L33
+ 566              	.L44:
+ 567              	.LBE3:
+ 568              	.LBE5:
+ 100:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&erase,
+ 569              		.loc 1 100 5 is_stmt 1 view .LVU171
+ 100:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&erase,
+ 570              		.loc 1 100 28 is_stmt 0 view .LVU172
+ 571 0198 FFF7FEFF 		bl	_ZN13Motor_Storage16motor_magic_addrEh
+ 572              	.LVL43:
+ 100:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&erase,
+ 573              		.loc 1 100 28 discriminator 1 view .LVU173
+ 574 019c 0222     		movs	r2, #2
+ 575 019e 0DF10601 		add	r1, sp, #6
+ 576 01a2 FFF7FEFF 		bl	_ZN9XBLW24C645writeEtPKht
+ 577              	.LVL44:
+ 578 01a6 0546     		mov	r5, r0
+ 102:My_Top/EEPROM/Motor_Storage.cpp **** }
+ 579              		.loc 1 102 39 view .LVU174
+ 580 01a8 E0E7     		b	.L37
+ 581              		.cfi_endproc
+ 582              	.LFE1349:
+ 584              	.Letext0:
+ 585              		.file 2 "Lib/compute/pid/pid.hpp"
+ 586              		.file 3 "Lib/compute/pid/pid_Increment.hpp"
+ 587              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 588              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 589              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 590              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 591              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 592              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 593              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ARM GAS  /tmp/cczV2lnF.s 			page 16
+
+
+ 594              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 595              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 596              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 597              		.file 14 "Lib/compute/ex_math.hpp"
+ 598              		.file 15 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 599              		.file 16 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 600              		.file 17 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 601              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h"
+ 602              		.file 19 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 603              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 604              		.file 21 "My_Top/System/bsp.hpp"
+ 605              		.file 22 "Lib/compute/pid/pll.hpp"
+ 606              		.file 23 "My_Top/System/kth_read.hpp"
+ 607              		.file 24 "My_Top/EEPROM/XBLW24C64.hpp"
+ 608              		.file 25 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ 609              		.file 26 "My_Top/EEPROM/Motor_Storage.hpp"
+ARM GAS  /tmp/cczV2lnF.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Motor_Storage.cpp
+     /tmp/cczV2lnF.s:20     .text:00000000 $t
+     /tmp/cczV2lnF.s:26     .text:00000000 _ZN13Motor_Storage10motor_addrEh
+     /tmp/cczV2lnF.s:58     .text:0000000c _ZN13Motor_Storage13get_motor_ptrEh
+     /tmp/cczV2lnF.s:74     .text:00000016 $d
+     /tmp/cczV2lnF.s:78     .text:0000001a $t
+     /tmp/cczV2lnF.s:110    .text:00000030 $d
+     /tmp/cczV2lnF.s:117    .text:00000040 $t
+     /tmp/cczV2lnF.s:123    .text:00000040 _ZN13Motor_Storage11motor_magicEh
+     /tmp/cczV2lnF.s:139    .text:0000004a $d
+     /tmp/cczV2lnF.s:143    .text:0000004e $t
+     /tmp/cczV2lnF.s:181    .text:0000006a _ZN13Motor_Storage16motor_magic_addrEh
+     /tmp/cczV2lnF.s:209    .text:00000072 _ZN13Motor_Storage4saveEh
+     /tmp/cczV2lnF.s:336    .text:000000d6 _ZN13Motor_Storage4loadEh
+     /tmp/cczV2lnF.s:482    .text:00000154 _ZN13Motor_Storage5clearEh
+
+UNDEFINED SYMBOLS
+M1
+M3
+M4
+M2
+_ZN9XBLW24C645writeEtPKht
+_ZN9XBLW24C644readEtPht

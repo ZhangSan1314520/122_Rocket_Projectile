@@ -1,3 +1,3 @@
-build/debug/pid_Increment.o: My_Top/System/pid_Increment.cpp \
- My_Top/System/pid_Increment.hpp
-My_Top/System/pid_Increment.hpp:
+build/debug/pid_Increment.o: Lib/compute/pid/pid_Increment.cpp \
+ Lib/compute/pid/pid_Increment.hpp
+Lib/compute/pid/pid_Increment.hpp:

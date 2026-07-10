@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc8iY3O3.s 			page 1
+ARM GAS  /tmp/cccqw24X.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -25,7 +25,7 @@ ARM GAS  /tmp/cc8iY3O3.s 			page 1
   22              		.thumb
   23              		.thumb_func
   25              	_Z41__static_initialization_and_destruction_0v:
-  26              	.LFB353:
+  26              	.LFB1509:
    1:My_Top/Task/Task_CLI.cpp **** #include "My_CLI.hpp"
    2:My_Top/Task/Task_CLI.cpp **** 
    3:My_Top/Task/Task_CLI.cpp **** CLI_Module cli_console;  // 全局CLI实例
@@ -43,24 +43,33 @@ ARM GAS  /tmp/cc8iY3O3.s 			page 1
   15:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
   16:My_Top/Task/Task_CLI.cpp **** 
   17:My_Top/Task/Task_CLI.cpp ****     // 注册命令
-  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("start", "start", true, NULL, start);//电机启动
-  19:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop", true, NULL, stop);//电机停止
+  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("start", "start [idx]", true, NULL, start);//电机启动
+  19:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop [idx]", true, NULL, stop);//电机停止
   20:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
-  21:My_Top/Task/Task_CLI.cpp **** 
-  22:My_Top/Task/Task_CLI.cpp ****     // CLI_Module::add_command_to_all("set_dir", "set_dir [dir] 0-顺时针 1-逆时针", true, NUL
-  23:My_Top/Task/Task_CLI.cpp ****     // CLI_Module::add_command_to_all("set_fre", "set_fre", true, NULL, set_fre);//设置电机频�
-  24:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_duty", "set_duty [duty] 范围0.0f-1.0f", true, NULL, set_d
-  25:My_Top/Task/Task_CLI.cpp **** 
-  26:My_Top/Task/Task_CLI.cpp ****     CLI_Module::start_all();  // 启动所有CLI
-  27:My_Top/Task/Task_CLI.cpp **** 
-  28:My_Top/Task/Task_CLI.cpp ****     vTaskDelete(NULL);
-  29:My_Top/Task/Task_CLI.cpp **** }
-  27              		.loc 1 29 1 view -0
+  21:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("clear_eeprom", "clear_eeprom [idx]", true, NULL, clear_eeprom);
+  22:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("save", "save [idx]", true, NULL, save);//参数保存
+  23:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_fre", "set_fre [idx] [fre]", true, NULL, set_fre);//设置�
+  24:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_duty", "set_duty [idx] [duty] 范围0.0f-1.0f", true, NULL,
+  25:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pos", "set_pos [idx] [angle] 单位 °", true, NULL, set_po
+  26:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_speed", "set_speed [idx] [velocity] 单位 rad/s", true, NU
+  27:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_mode", "set_mode [idx] <mode>取值:speed pos open_loop", t
+  28:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pid_v", "set_pid_v [idx] [kp] [ki] [kd]", true, NULL, set_p
+  29:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pid_p", "set_pid_p [idx] [kp] [ki] [kd]", true, NULL, set_p
+  30:My_Top/Task/Task_CLI.cpp **** 
+  31:My_Top/Task/Task_CLI.cpp **** 
+  32:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("get_mode", "get_mode [idx] ", true, NULL, get_mode);//获取当
+ARM GAS  /tmp/cccqw24X.s 			page 2
+
+
+  33:My_Top/Task/Task_CLI.cpp ****     
+  34:My_Top/Task/Task_CLI.cpp **** 
+  35:My_Top/Task/Task_CLI.cpp ****     CLI_Module::start_all();  // 启动所有CLI
+  36:My_Top/Task/Task_CLI.cpp ****     printf("CLI栈剩余:%d\r\n", uxTaskGetStackHighWaterMark(NULL));
+  37:My_Top/Task/Task_CLI.cpp ****     vTaskDelete(NULL);
+  38:My_Top/Task/Task_CLI.cpp **** }
+  27              		.loc 1 38 1 view -0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cc8iY3O3.s 			page 2
-
-
   30              		@ frame_needed = 0, uses_anonymous_args = 0
   31              		@ link register save eliminated.
   32              	.LVL0:
@@ -109,6 +118,9 @@ ARM GAS  /tmp/cc8iY3O3.s 			page 1
   40:My_Top/Modules/CLI_Module.hpp **** class CLI_Module
   36              		.loc 2 40 7 view .LVU1
   37              	.LBB6:
+ARM GAS  /tmp/cccqw24X.s 			page 3
+
+
   38 0000 034B     		ldr	r3, .L2
   39 0002 0022     		movs	r2, #0
   40 0004 1A70     		strb	r2, [r3]
@@ -118,19 +130,16 @@ ARM GAS  /tmp/cc8iY3O3.s 			page 1
   44 000c 1A63     		str	r2, [r3, #48]
   45              	.LVL1:
   46              		.loc 2 40 7 is_stmt 0 view .LVU2
-ARM GAS  /tmp/cc8iY3O3.s 			page 3
-
-
   47              	.LBE6:
   48              	.LBE5:
-  49              		.loc 1 29 1 view .LVU3
+  49              		.loc 1 38 1 view .LVU3
   50 000e 7047     		bx	lr
   51              	.L3:
   52              		.align	2
   53              	.L2:
   54 0010 00000000 		.word	.LANCHOR0
   55              		.cfi_endproc
-  56              	.LFE353:
+  56              	.LFE1509:
   58              		.section	.rodata.str1.4,"aMS",%progbits,1
   59              		.align	2
   60              	.LC0:
@@ -138,241 +147,560 @@ ARM GAS  /tmp/cc8iY3O3.s 			page 1
   61      5A474A00 
   62              		.align	2
   63              	.LC1:
-  64 0008 73746172 		.ascii	"start\000"
-  64      7400
-  65 000e 0000     		.align	2
+  64 0008 73746172 		.ascii	"start [idx]\000"
+  64      74205B69 
+  64      64785D00 
+  65              		.align	2
   66              	.LC2:
-  67 0010 73746F70 		.ascii	"stop\000"
-  67      00
-  68 0015 000000   		.align	2
+  67 0014 73746172 		.ascii	"start\000"
+  67      7400
+  68 001a 0000     		.align	2
   69              	.LC3:
-  70 0018 72657365 		.ascii	"reset\000"
-  70      7400
-  71 001e 0000     		.align	2
+  70 001c 73746F70 		.ascii	"stop [idx]\000"
+  70      205B6964 
+  70      785D00
+  71 0027 00       		.align	2
   72              	.LC4:
-  73 0020 7365745F 		.ascii	"set_duty [duty] \350\214\203\345\233\2640.0f-1.0f\000"
-  73      64757479 
-  73      205B6475 
-  73      74795D20 
-  73      E88C83E5 
-  74              		.align	2
+  73 0028 73746F70 		.ascii	"stop\000"
+  73      00
+  74 002d 000000   		.align	2
   75              	.LC5:
-  76 0040 7365745F 		.ascii	"set_duty\000"
-  76      64757479 
-  76      00
-  77              		.text
-  78              		.align	1
-  79              		.global	_Z8Task_CLIPv
-  80              		.syntax unified
-  81              		.thumb
-  82              		.thumb_func
-  84              	_Z8Task_CLIPv:
-  85              	.LVL2:
-  86              	.LFB352:
+  76 0030 72657365 		.ascii	"reset\000"
+  76      7400
+  77 0036 0000     		.align	2
+  78              	.LC6:
+  79 0038 636C6561 		.ascii	"clear_eeprom [idx]\000"
+  79      725F6565 
+  79      70726F6D 
+  79      205B6964 
+  79      785D00
+  80 004b 00       		.align	2
+  81              	.LC7:
+  82 004c 636C6561 		.ascii	"clear_eeprom\000"
+  82      725F6565 
+ARM GAS  /tmp/cccqw24X.s 			page 4
+
+
+  82      70726F6D 
+  82      00
+  83 0059 000000   		.align	2
+  84              	.LC8:
+  85 005c 73617665 		.ascii	"save [idx]\000"
+  85      205B6964 
+  85      785D00
+  86 0067 00       		.align	2
+  87              	.LC9:
+  88 0068 73617665 		.ascii	"save\000"
+  88      00
+  89 006d 000000   		.align	2
+  90              	.LC10:
+  91 0070 7365745F 		.ascii	"set_fre [idx] [fre]\000"
+  91      66726520 
+  91      5B696478 
+  91      5D205B66 
+  91      72655D00 
+  92              		.align	2
+  93              	.LC11:
+  94 0084 7365745F 		.ascii	"set_fre\000"
+  94      66726500 
+  95              		.align	2
+  96              	.LC12:
+  97 008c 7365745F 		.ascii	"set_duty [idx] [duty] \350\214\203\345\233\2640.0f-"
+  97      64757479 
+  97      205B6964 
+  97      785D205B 
+  97      64757479 
+  98 00ad 312E3066 		.ascii	"1.0f\000"
+  98      00
+  99 00b2 0000     		.align	2
+ 100              	.LC13:
+ 101 00b4 7365745F 		.ascii	"set_duty\000"
+ 101      64757479 
+ 101      00
+ 102 00bd 000000   		.align	2
+ 103              	.LC14:
+ 104 00c0 7365745F 		.ascii	"set_pos [idx] [angle] \345\215\225\344\275\215 \302"
+ 104      706F7320 
+ 104      5B696478 
+ 104      5D205B61 
+ 104      6E676C65 
+ 105 00de B000     		.ascii	"\260\000"
+ 106              		.align	2
+ 107              	.LC15:
+ 108 00e0 7365745F 		.ascii	"set_pos\000"
+ 108      706F7300 
+ 109              		.align	2
+ 110              	.LC16:
+ 111 00e8 7365745F 		.ascii	"set_speed [idx] [velocity] \345\215\225\344\275\215"
+ 111      73706565 
+ 111      64205B69 
+ 111      64785D20 
+ 111      5B76656C 
+ 112 0109 20726164 		.ascii	" rad/s\000"
+ 112      2F7300
+ARM GAS  /tmp/cccqw24X.s 			page 5
+
+
+ 113              		.align	2
+ 114              	.LC17:
+ 115 0110 7365745F 		.ascii	"set_speed\000"
+ 115      73706565 
+ 115      6400
+ 116 011a 0000     		.align	2
+ 117              	.LC18:
+ 118 011c 7365745F 		.ascii	"set_mode [idx] <mode>\345\217\226\345\200\274:speed"
+ 118      6D6F6465 
+ 118      205B6964 
+ 118      785D203C 
+ 118      6D6F6465 
+ 119 013d 20706F73 		.ascii	" pos open_loop\000"
+ 119      206F7065 
+ 119      6E5F6C6F 
+ 119      6F7000
+ 120              		.align	2
+ 121              	.LC19:
+ 122 014c 7365745F 		.ascii	"set_mode\000"
+ 122      6D6F6465 
+ 122      00
+ 123 0155 000000   		.align	2
+ 124              	.LC20:
+ 125 0158 7365745F 		.ascii	"set_pid_v [idx] [kp] [ki] [kd]\000"
+ 125      7069645F 
+ 125      76205B69 
+ 125      64785D20 
+ 125      5B6B705D 
+ 126 0177 00       		.align	2
+ 127              	.LC21:
+ 128 0178 7365745F 		.ascii	"set_pid_v\000"
+ 128      7069645F 
+ 128      7600
+ 129 0182 0000     		.align	2
+ 130              	.LC22:
+ 131 0184 7365745F 		.ascii	"set_pid_p [idx] [kp] [ki] [kd]\000"
+ 131      7069645F 
+ 131      70205B69 
+ 131      64785D20 
+ 131      5B6B705D 
+ 132 01a3 00       		.align	2
+ 133              	.LC23:
+ 134 01a4 7365745F 		.ascii	"set_pid_p\000"
+ 134      7069645F 
+ 134      7000
+ 135 01ae 0000     		.align	2
+ 136              	.LC24:
+ 137 01b0 6765745F 		.ascii	"get_mode [idx] \000"
+ 137      6D6F6465 
+ 137      205B6964 
+ 137      785D2000 
+ 138              		.align	2
+ 139              	.LC25:
+ 140 01c0 6765745F 		.ascii	"get_mode\000"
+ 140      6D6F6465 
+ 140      00
+ 141 01c9 000000   		.align	2
+ARM GAS  /tmp/cccqw24X.s 			page 6
+
+
+ 142              	.LC26:
+ 143 01cc 434C49E6 		.ascii	"CLI\346\240\210\345\211\251\344\275\231:%d\015\012\000"
+ 143      A088E589 
+ 143      A9E4BD99 
+ 143      3A25640D 
+ 143      0A00
+ 144              		.text
+ 145              		.align	1
+ 146              		.global	_Z8Task_CLIPv
+ 147              		.syntax unified
+ 148              		.thumb
+ 149              		.thumb_func
+ 151              	_Z8Task_CLIPv:
+ 152              	.LVL2:
+ 153              	.LFB1358:
   13:My_Top/Task/Task_CLI.cpp ****     cli_console.init("FOC_ZGJ");                       // CLI终端名称
-  87              		.loc 1 13 1 is_stmt 1 view -0
-  88              		.cfi_startproc
-  89              		@ args = 0, pretend = 0, frame = 0
-  90              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154              		.loc 1 13 1 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
   13:My_Top/Task/Task_CLI.cpp ****     cli_console.init("FOC_ZGJ");                       // CLI终端名称
-  91              		.loc 1 13 1 is_stmt 0 view .LVU5
-  92 0014 10B5     		push	{r4, lr}
-  93              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/cc8iY3O3.s 			page 4
-
-
-  94              		.cfi_offset 4, -8
-  95              		.cfi_offset 14, -4
-  96 0016 82B0     		sub	sp, sp, #8
-  97              		.cfi_def_cfa_offset 16
+ 158              		.loc 1 13 1 is_stmt 0 view .LVU5
+ 159 0014 10B5     		push	{r4, lr}
+ 160              		.cfi_def_cfa_offset 8
+ 161              		.cfi_offset 4, -8
+ 162              		.cfi_offset 14, -4
+ 163 0016 82B0     		sub	sp, sp, #8
+ 164              		.cfi_def_cfa_offset 16
   14:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
-  98              		.loc 1 14 5 is_stmt 1 view .LVU6
+ 165              		.loc 1 14 5 is_stmt 1 view .LVU6
   14:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
-  99              		.loc 1 14 21 is_stmt 0 view .LVU7
- 100 0018 184C     		ldr	r4, .L6
- 101 001a 0A22     		movs	r2, #10
- 102 001c 1849     		ldr	r1, .L6+4
- 103 001e 2046     		mov	r0, r4
- 104              	.LVL3:
+ 166              		.loc 1 14 21 is_stmt 0 view .LVU7
+ 167 0018 3F4C     		ldr	r4, .L6
+ 168 001a 0A22     		movs	r2, #10
+ 169 001c 3F49     		ldr	r1, .L6+4
+ 170 001e 2046     		mov	r0, r4
+ 171              	.LVL3:
   14:My_Top/Task/Task_CLI.cpp ****     cli_console.bind_write_data(&sr_console);       // 绑定串口1
- 105              		.loc 1 14 21 view .LVU8
- 106 0020 FFF7FEFF 		bl	_ZN10CLI_Module4initEPKct
- 107              	.LVL4:
+ 172              		.loc 1 14 21 view .LVU8
+ 173 0020 FFF7FEFF 		bl	_ZN10CLI_Module4initEPKct
+ 174              	.LVL4:
   15:My_Top/Task/Task_CLI.cpp **** 
- 108              		.loc 1 15 5 is_stmt 1 view .LVU9
+ 175              		.loc 1 15 5 is_stmt 1 view .LVU9
   15:My_Top/Task/Task_CLI.cpp **** 
- 109              		.loc 1 15 32 is_stmt 0 view .LVU10
- 110 0024 1749     		ldr	r1, .L6+8
- 111 0026 2046     		mov	r0, r4
- 112 0028 FFF7FEFF 		bl	_ZN10CLI_Module15bind_write_dataEP6Serial
- 113              	.LVL5:
-  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop", true, NULL, stop);//电机停止
- 114              		.loc 1 18 5 is_stmt 1 view .LVU11
-  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop", true, NULL, stop);//电机停止
- 115              		.loc 1 18 35 is_stmt 0 view .LVU12
- 116 002c 1648     		ldr	r0, .L6+12
- 117 002e 174B     		ldr	r3, .L6+16
- 118 0030 0093     		str	r3, [sp]
- 119 0032 0023     		movs	r3, #0
- 120 0034 0122     		movs	r2, #1
- 121 0036 0146     		mov	r1, r0
- 122 0038 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
- 123              	.LVL6:
+ 176              		.loc 1 15 32 is_stmt 0 view .LVU10
+ 177 0024 3E49     		ldr	r1, .L6+8
+ 178 0026 2046     		mov	r0, r4
+ 179 0028 FFF7FEFF 		bl	_ZN10CLI_Module15bind_write_dataEP6Serial
+ 180              	.LVL5:
+  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop [idx]", true, NULL, stop);//电机停止
+ 181              		.loc 1 18 5 is_stmt 1 view .LVU11
+  18:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("stop", "stop [idx]", true, NULL, stop);//电机停止
+ 182              		.loc 1 18 35 is_stmt 0 view .LVU12
+ 183 002c 3D4B     		ldr	r3, .L6+12
+ 184 002e 0093     		str	r3, [sp]
+ 185 0030 0023     		movs	r3, #0
+ 186 0032 0122     		movs	r2, #1
+ARM GAS  /tmp/cccqw24X.s 			page 7
+
+
+ 187 0034 3C49     		ldr	r1, .L6+16
+ 188 0036 3D48     		ldr	r0, .L6+20
+ 189 0038 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 190              	.LVL6:
   19:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
- 124              		.loc 1 19 5 is_stmt 1 view .LVU13
+ 191              		.loc 1 19 5 is_stmt 1 view .LVU13
   19:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
- 125              		.loc 1 19 35 is_stmt 0 view .LVU14
- 126 003c 1448     		ldr	r0, .L6+20
- 127 003e 154B     		ldr	r3, .L6+24
- 128 0040 0093     		str	r3, [sp]
- 129 0042 0023     		movs	r3, #0
- 130 0044 0122     		movs	r2, #1
- 131 0046 0146     		mov	r1, r0
- 132 0048 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
- 133              	.LVL7:
-  20:My_Top/Task/Task_CLI.cpp **** 
- 134              		.loc 1 20 5 is_stmt 1 view .LVU15
-  20:My_Top/Task/Task_CLI.cpp **** 
- 135              		.loc 1 20 35 is_stmt 0 view .LVU16
- 136 004c 1248     		ldr	r0, .L6+28
- 137 004e 134B     		ldr	r3, .L6+32
- 138 0050 0093     		str	r3, [sp]
- 139 0052 0023     		movs	r3, #0
-ARM GAS  /tmp/cc8iY3O3.s 			page 5
+ 192              		.loc 1 19 35 is_stmt 0 view .LVU14
+ 193 003c 3C4B     		ldr	r3, .L6+24
+ 194 003e 0093     		str	r3, [sp]
+ 195 0040 0023     		movs	r3, #0
+ 196 0042 0122     		movs	r2, #1
+ 197 0044 3B49     		ldr	r1, .L6+28
+ 198 0046 3C48     		ldr	r0, .L6+32
+ 199 0048 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 200              	.LVL7:
+  20:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("clear_eeprom", "clear_eeprom [idx]", true, NULL, clear_eeprom);
+ 201              		.loc 1 20 5 is_stmt 1 view .LVU15
+  20:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("clear_eeprom", "clear_eeprom [idx]", true, NULL, clear_eeprom);
+ 202              		.loc 1 20 35 is_stmt 0 view .LVU16
+ 203 004c 3B48     		ldr	r0, .L6+36
+ 204 004e 3C4B     		ldr	r3, .L6+40
+ 205 0050 0093     		str	r3, [sp]
+ 206 0052 0023     		movs	r3, #0
+ 207 0054 0122     		movs	r2, #1
+ 208 0056 0146     		mov	r1, r0
+ 209 0058 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 210              	.LVL8:
+  21:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("save", "save [idx]", true, NULL, save);//参数保存
+ 211              		.loc 1 21 5 is_stmt 1 view .LVU17
+  21:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("save", "save [idx]", true, NULL, save);//参数保存
+ 212              		.loc 1 21 35 is_stmt 0 view .LVU18
+ 213 005c 394B     		ldr	r3, .L6+44
+ 214 005e 0093     		str	r3, [sp]
+ 215 0060 0023     		movs	r3, #0
+ 216 0062 0122     		movs	r2, #1
+ 217 0064 3849     		ldr	r1, .L6+48
+ 218 0066 3948     		ldr	r0, .L6+52
+ 219 0068 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 220              	.LVL9:
+  22:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_fre", "set_fre [idx] [fre]", true, NULL, set_fre);//设置�
+ 221              		.loc 1 22 5 is_stmt 1 view .LVU19
+  22:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_fre", "set_fre [idx] [fre]", true, NULL, set_fre);//设置�
+ 222              		.loc 1 22 35 is_stmt 0 view .LVU20
+ 223 006c 384B     		ldr	r3, .L6+56
+ 224 006e 0093     		str	r3, [sp]
+ 225 0070 0023     		movs	r3, #0
+ 226 0072 0122     		movs	r2, #1
+ 227 0074 3749     		ldr	r1, .L6+60
+ 228 0076 3848     		ldr	r0, .L6+64
+ 229 0078 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 230              	.LVL10:
+  23:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_duty", "set_duty [idx] [duty] 范围0.0f-1.0f", true, NULL,
+ 231              		.loc 1 23 5 is_stmt 1 view .LVU21
+  23:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_duty", "set_duty [idx] [duty] 范围0.0f-1.0f", true, NULL,
+ 232              		.loc 1 23 35 is_stmt 0 view .LVU22
+ 233 007c 374B     		ldr	r3, .L6+68
+ARM GAS  /tmp/cccqw24X.s 			page 8
 
 
- 140 0054 0122     		movs	r2, #1
- 141 0056 0146     		mov	r1, r0
- 142 0058 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
- 143              	.LVL8:
-  24:My_Top/Task/Task_CLI.cpp **** 
- 144              		.loc 1 24 5 is_stmt 1 view .LVU17
-  24:My_Top/Task/Task_CLI.cpp **** 
- 145              		.loc 1 24 35 is_stmt 0 view .LVU18
- 146 005c 104B     		ldr	r3, .L6+36
- 147 005e 0093     		str	r3, [sp]
- 148 0060 0023     		movs	r3, #0
- 149 0062 0122     		movs	r2, #1
- 150 0064 0F49     		ldr	r1, .L6+40
- 151 0066 1048     		ldr	r0, .L6+44
- 152 0068 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
- 153              	.LVL9:
-  26:My_Top/Task/Task_CLI.cpp **** 
- 154              		.loc 1 26 5 is_stmt 1 view .LVU19
-  26:My_Top/Task/Task_CLI.cpp **** 
- 155              		.loc 1 26 26 is_stmt 0 view .LVU20
- 156 006c FFF7FEFF 		bl	_ZN10CLI_Module9start_allEv
- 157              	.LVL10:
-  28:My_Top/Task/Task_CLI.cpp **** }
- 158              		.loc 1 28 5 is_stmt 1 view .LVU21
-  28:My_Top/Task/Task_CLI.cpp **** }
- 159              		.loc 1 28 16 is_stmt 0 view .LVU22
- 160 0070 0020     		movs	r0, #0
- 161 0072 FFF7FEFF 		bl	vTaskDelete
- 162              	.LVL11:
- 163              		.loc 1 29 1 view .LVU23
- 164 0076 02B0     		add	sp, sp, #8
- 165              		.cfi_def_cfa_offset 8
- 166              		@ sp needed
- 167 0078 10BD     		pop	{r4, pc}
- 168              	.L7:
- 169 007a 00BF     		.align	2
- 170              	.L6:
- 171 007c 00000000 		.word	.LANCHOR0
- 172 0080 00000000 		.word	.LC0
- 173 0084 00000000 		.word	sr_console
- 174 0088 08000000 		.word	.LC1
- 175 008c 00000000 		.word	_Z5startP11EmbeddedCliPcPv
- 176 0090 10000000 		.word	.LC2
- 177 0094 00000000 		.word	_Z4stopP11EmbeddedCliPcPv
- 178 0098 18000000 		.word	.LC3
- 179 009c 00000000 		.word	_Z5resetP11EmbeddedCliPcPv
- 180 00a0 00000000 		.word	_Z8set_dutyP11EmbeddedCliPcPv
- 181 00a4 20000000 		.word	.LC4
- 182 00a8 40000000 		.word	.LC5
- 183              		.cfi_endproc
- 184              	.LFE352:
- 186              		.align	1
- 187              		.syntax unified
- 188              		.thumb
- 189              		.thumb_func
- 191              	_GLOBAL__sub_I_cli_console:
- 192              	.LFB354:
-ARM GAS  /tmp/cc8iY3O3.s 			page 6
+ 234 007e 0093     		str	r3, [sp]
+ 235 0080 0023     		movs	r3, #0
+ 236 0082 0122     		movs	r2, #1
+ 237 0084 3649     		ldr	r1, .L6+72
+ 238 0086 3748     		ldr	r0, .L6+76
+ 239 0088 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 240              	.LVL11:
+  24:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pos", "set_pos [idx] [angle] 单位 °", true, NULL, set_po
+ 241              		.loc 1 24 5 is_stmt 1 view .LVU23
+  24:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pos", "set_pos [idx] [angle] 单位 °", true, NULL, set_po
+ 242              		.loc 1 24 35 is_stmt 0 view .LVU24
+ 243 008c 364B     		ldr	r3, .L6+80
+ 244 008e 0093     		str	r3, [sp]
+ 245 0090 0023     		movs	r3, #0
+ 246 0092 0122     		movs	r2, #1
+ 247 0094 3549     		ldr	r1, .L6+84
+ 248 0096 3648     		ldr	r0, .L6+88
+ 249 0098 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 250              	.LVL12:
+  25:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_speed", "set_speed [idx] [velocity] 单位 rad/s", true, NU
+ 251              		.loc 1 25 5 is_stmt 1 view .LVU25
+  25:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_speed", "set_speed [idx] [velocity] 单位 rad/s", true, NU
+ 252              		.loc 1 25 35 is_stmt 0 view .LVU26
+ 253 009c 354B     		ldr	r3, .L6+92
+ 254 009e 0093     		str	r3, [sp]
+ 255 00a0 0023     		movs	r3, #0
+ 256 00a2 0122     		movs	r2, #1
+ 257 00a4 3449     		ldr	r1, .L6+96
+ 258 00a6 3548     		ldr	r0, .L6+100
+ 259 00a8 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 260              	.LVL13:
+  26:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_mode", "set_mode [idx] <mode>取值:speed pos open_loop", t
+ 261              		.loc 1 26 5 is_stmt 1 view .LVU27
+  26:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_mode", "set_mode [idx] <mode>取值:speed pos open_loop", t
+ 262              		.loc 1 26 35 is_stmt 0 view .LVU28
+ 263 00ac 344B     		ldr	r3, .L6+104
+ 264 00ae 0093     		str	r3, [sp]
+ 265 00b0 0023     		movs	r3, #0
+ 266 00b2 0122     		movs	r2, #1
+ 267 00b4 3349     		ldr	r1, .L6+108
+ 268 00b6 3448     		ldr	r0, .L6+112
+ 269 00b8 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 270              	.LVL14:
+  27:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pid_v", "set_pid_v [idx] [kp] [ki] [kd]", true, NULL, set_p
+ 271              		.loc 1 27 5 is_stmt 1 view .LVU29
+  27:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pid_v", "set_pid_v [idx] [kp] [ki] [kd]", true, NULL, set_p
+ 272              		.loc 1 27 35 is_stmt 0 view .LVU30
+ 273 00bc 334B     		ldr	r3, .L6+116
+ 274 00be 0093     		str	r3, [sp]
+ 275 00c0 0023     		movs	r3, #0
+ 276 00c2 0122     		movs	r2, #1
+ 277 00c4 3249     		ldr	r1, .L6+120
+ 278 00c6 3348     		ldr	r0, .L6+124
+ 279 00c8 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 280              	.LVL15:
+  28:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pid_p", "set_pid_p [idx] [kp] [ki] [kd]", true, NULL, set_p
+ 281              		.loc 1 28 5 is_stmt 1 view .LVU31
+ARM GAS  /tmp/cccqw24X.s 			page 9
 
 
- 193              		.loc 1 29 1 is_stmt 1 view -0
- 194              		.cfi_startproc
- 195              		@ args = 0, pretend = 0, frame = 0
- 196              		@ frame_needed = 0, uses_anonymous_args = 0
- 197 00ac 08B5     		push	{r3, lr}
- 198              		.cfi_def_cfa_offset 8
- 199              		.cfi_offset 3, -8
- 200              		.cfi_offset 14, -4
- 201              		.loc 1 29 1 is_stmt 0 view .LVU25
- 202 00ae FFF7A7FF 		bl	_Z41__static_initialization_and_destruction_0v
- 203              	.LVL12:
- 204 00b2 08BD     		pop	{r3, pc}
- 205              		.cfi_endproc
- 206              	.LFE354:
- 208              		.section	.init_array,"aw",%init_array
- 209              		.align	2
- 210 0000 00000000 		.word	_GLOBAL__sub_I_cli_console(target1)
- 211              		.global	cli_console
- 212              		.bss
- 213              		.align	2
- 214              		.set	.LANCHOR0,. + 0
- 217              	cli_console:
- 218 0000 00000000 		.space	56
- 218      00000000 
- 218      00000000 
- 218      00000000 
- 218      00000000 
- 219              		.text
- 220              	.Letext0:
- 221              		.file 3 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
- 222              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 223              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
- 224              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
- 225              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
- 226              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
- 227              		.file 9 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
- 228              		.file 10 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
- 229              		.file 11 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 230              		.file 12 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 231              		.file 13 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 232              		.file 14 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
- 233              		.file 15 "Lib/serial/serial.hpp"
- 234              		.file 16 "Lib/embedded-cli/embedded_cli.h"
- 235              		.file 17 "My_Top/MC/MC_Serial.hpp"
- 236              		.file 18 "My_Top/System/My_CLI.hpp"
- 237              		.file 19 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
-ARM GAS  /tmp/cc8iY3O3.s 			page 7
+  28:My_Top/Task/Task_CLI.cpp ****     CLI_Module::add_command_to_all("set_pid_p", "set_pid_p [idx] [kp] [ki] [kd]", true, NULL, set_p
+ 282              		.loc 1 28 35 is_stmt 0 view .LVU32
+ 283 00cc 324B     		ldr	r3, .L6+128
+ 284 00ce 0093     		str	r3, [sp]
+ 285 00d0 0023     		movs	r3, #0
+ 286 00d2 0122     		movs	r2, #1
+ 287 00d4 3149     		ldr	r1, .L6+132
+ 288 00d6 3248     		ldr	r0, .L6+136
+ 289 00d8 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 290              	.LVL16:
+  29:My_Top/Task/Task_CLI.cpp **** 
+ 291              		.loc 1 29 5 is_stmt 1 view .LVU33
+  29:My_Top/Task/Task_CLI.cpp **** 
+ 292              		.loc 1 29 35 is_stmt 0 view .LVU34
+ 293 00dc 314B     		ldr	r3, .L6+140
+ 294 00de 0093     		str	r3, [sp]
+ 295 00e0 0023     		movs	r3, #0
+ 296 00e2 0122     		movs	r2, #1
+ 297 00e4 3049     		ldr	r1, .L6+144
+ 298 00e6 3148     		ldr	r0, .L6+148
+ 299 00e8 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 300              	.LVL17:
+  32:My_Top/Task/Task_CLI.cpp ****     
+ 301              		.loc 1 32 5 is_stmt 1 view .LVU35
+  32:My_Top/Task/Task_CLI.cpp ****     
+ 302              		.loc 1 32 35 is_stmt 0 view .LVU36
+ 303 00ec 304B     		ldr	r3, .L6+152
+ 304 00ee 0093     		str	r3, [sp]
+ 305 00f0 0023     		movs	r3, #0
+ 306 00f2 0122     		movs	r2, #1
+ 307 00f4 2F49     		ldr	r1, .L6+156
+ 308 00f6 3048     		ldr	r0, .L6+160
+ 309 00f8 FFF7FEFF 		bl	_ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
+ 310              	.LVL18:
+  35:My_Top/Task/Task_CLI.cpp ****     printf("CLI栈剩余:%d\r\n", uxTaskGetStackHighWaterMark(NULL));
+ 311              		.loc 1 35 5 is_stmt 1 view .LVU37
+  35:My_Top/Task/Task_CLI.cpp ****     printf("CLI栈剩余:%d\r\n", uxTaskGetStackHighWaterMark(NULL));
+ 312              		.loc 1 35 26 is_stmt 0 view .LVU38
+ 313 00fc FFF7FEFF 		bl	_ZN10CLI_Module9start_allEv
+ 314              	.LVL19:
+  36:My_Top/Task/Task_CLI.cpp ****     vTaskDelete(NULL);
+ 315              		.loc 1 36 5 is_stmt 1 view .LVU39
+  36:My_Top/Task/Task_CLI.cpp ****     vTaskDelete(NULL);
+ 316              		.loc 1 36 11 is_stmt 0 view .LVU40
+ 317 0100 0020     		movs	r0, #0
+ 318 0102 FFF7FEFF 		bl	uxTaskGetStackHighWaterMark
+ 319              	.LVL20:
+ 320 0106 0146     		mov	r1, r0
+  36:My_Top/Task/Task_CLI.cpp ****     vTaskDelete(NULL);
+ 321              		.loc 1 36 11 discriminator 1 view .LVU41
+ 322 0108 2C48     		ldr	r0, .L6+164
+ 323 010a FFF7FEFF 		bl	printf_
+ 324              	.LVL21:
+  37:My_Top/Task/Task_CLI.cpp **** }
+ 325              		.loc 1 37 5 is_stmt 1 view .LVU42
+  37:My_Top/Task/Task_CLI.cpp **** }
+ 326              		.loc 1 37 16 is_stmt 0 view .LVU43
+ARM GAS  /tmp/cccqw24X.s 			page 10
+
+
+ 327 010e 0020     		movs	r0, #0
+ 328 0110 FFF7FEFF 		bl	vTaskDelete
+ 329              	.LVL22:
+ 330              		.loc 1 38 1 view .LVU44
+ 331 0114 02B0     		add	sp, sp, #8
+ 332              		.cfi_def_cfa_offset 8
+ 333              		@ sp needed
+ 334 0116 10BD     		pop	{r4, pc}
+ 335              	.L7:
+ 336              		.align	2
+ 337              	.L6:
+ 338 0118 00000000 		.word	.LANCHOR0
+ 339 011c 00000000 		.word	.LC0
+ 340 0120 00000000 		.word	sr_console
+ 341 0124 00000000 		.word	_Z5startP11EmbeddedCliPcPv
+ 342 0128 08000000 		.word	.LC1
+ 343 012c 14000000 		.word	.LC2
+ 344 0130 00000000 		.word	_Z4stopP11EmbeddedCliPcPv
+ 345 0134 1C000000 		.word	.LC3
+ 346 0138 28000000 		.word	.LC4
+ 347 013c 30000000 		.word	.LC5
+ 348 0140 00000000 		.word	_Z5resetP11EmbeddedCliPcPv
+ 349 0144 00000000 		.word	_Z12clear_eepromP11EmbeddedCliPcPv
+ 350 0148 38000000 		.word	.LC6
+ 351 014c 4C000000 		.word	.LC7
+ 352 0150 00000000 		.word	_Z4saveP11EmbeddedCliPcPv
+ 353 0154 5C000000 		.word	.LC8
+ 354 0158 68000000 		.word	.LC9
+ 355 015c 00000000 		.word	_Z7set_freP11EmbeddedCliPcPv
+ 356 0160 70000000 		.word	.LC10
+ 357 0164 84000000 		.word	.LC11
+ 358 0168 00000000 		.word	_Z8set_dutyP11EmbeddedCliPcPv
+ 359 016c 8C000000 		.word	.LC12
+ 360 0170 B4000000 		.word	.LC13
+ 361 0174 00000000 		.word	_Z7set_posP11EmbeddedCliPcPv
+ 362 0178 C0000000 		.word	.LC14
+ 363 017c E0000000 		.word	.LC15
+ 364 0180 00000000 		.word	_Z9set_speedP11EmbeddedCliPcPv
+ 365 0184 E8000000 		.word	.LC16
+ 366 0188 10010000 		.word	.LC17
+ 367 018c 00000000 		.word	_Z8set_modeP11EmbeddedCliPcPv
+ 368 0190 1C010000 		.word	.LC18
+ 369 0194 4C010000 		.word	.LC19
+ 370 0198 00000000 		.word	_Z9set_pid_vP11EmbeddedCliPcPv
+ 371 019c 58010000 		.word	.LC20
+ 372 01a0 78010000 		.word	.LC21
+ 373 01a4 00000000 		.word	_Z9set_pid_pP11EmbeddedCliPcPv
+ 374 01a8 84010000 		.word	.LC22
+ 375 01ac A4010000 		.word	.LC23
+ 376 01b0 00000000 		.word	_Z8get_modeP11EmbeddedCliPcPv
+ 377 01b4 B0010000 		.word	.LC24
+ 378 01b8 C0010000 		.word	.LC25
+ 379 01bc CC010000 		.word	.LC26
+ 380              		.cfi_endproc
+ 381              	.LFE1358:
+ 383              		.align	1
+ 384              		.syntax unified
+ARM GAS  /tmp/cccqw24X.s 			page 11
+
+
+ 385              		.thumb
+ 386              		.thumb_func
+ 388              	_GLOBAL__sub_I_cli_console:
+ 389              	.LFB1510:
+ 390              		.loc 1 38 1 is_stmt 1 view -0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+ 394 01c0 08B5     		push	{r3, lr}
+ 395              		.cfi_def_cfa_offset 8
+ 396              		.cfi_offset 3, -8
+ 397              		.cfi_offset 14, -4
+ 398              		.loc 1 38 1 is_stmt 0 view .LVU46
+ 399 01c2 FFF71DFF 		bl	_Z41__static_initialization_and_destruction_0v
+ 400              	.LVL23:
+ 401 01c6 08BD     		pop	{r3, pc}
+ 402              		.cfi_endproc
+ 403              	.LFE1510:
+ 405              		.section	.init_array,"aw",%init_array
+ 406              		.align	2
+ 407 0000 00000000 		.word	_GLOBAL__sub_I_cli_console(target1)
+ 408              		.global	cli_console
+ 409              		.bss
+ 410              		.align	2
+ 411              		.set	.LANCHOR0,. + 0
+ 414              	cli_console:
+ 415 0000 00000000 		.space	56
+ 415      00000000 
+ 415      00000000 
+ 415      00000000 
+ 415      00000000 
+ 416              		.text
+ 417              	.Letext0:
+ 418              		.file 3 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 419              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 420              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 421              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 422              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 423              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
+ 424              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
+ 425              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 426              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 427              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 428              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 429              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 430              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 431              		.file 16 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+ 432              		.file 17 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 433              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 434              		.file 19 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 435              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
+ 436              		.file 21 "Lib/serial/serial.hpp"
+ 437              		.file 22 "Lib/embedded-cli/embedded_cli.h"
+ 438              		.file 23 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 439              		.file 24 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 440              		.file 25 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 441              		.file 26 "My_Top/MC/MC_Serial.hpp"
+ARM GAS  /tmp/cccqw24X.s 			page 12
+
+
+ 442              		.file 27 "Lib/serial/printf.h"
+ 443              		.file 28 "My_Top/System/My_CLI.hpp"
+ 444              		.file 29 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ARM GAS  /tmp/cccqw24X.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Task_CLI.cpp
-     /tmp/cc8iY3O3.s:20     .text:00000000 $t
-     /tmp/cc8iY3O3.s:25     .text:00000000 _Z41__static_initialization_and_destruction_0v
-     /tmp/cc8iY3O3.s:54     .text:00000010 $d
-     /tmp/cc8iY3O3.s:59     .rodata.str1.4:00000000 $d
-     /tmp/cc8iY3O3.s:78     .text:00000014 $t
-     /tmp/cc8iY3O3.s:84     .text:00000014 _Z8Task_CLIPv
-     /tmp/cc8iY3O3.s:171    .text:0000007c $d
-     /tmp/cc8iY3O3.s:186    .text:000000ac $t
-     /tmp/cc8iY3O3.s:191    .text:000000ac _GLOBAL__sub_I_cli_console
-     /tmp/cc8iY3O3.s:209    .init_array:00000000 $d
-     /tmp/cc8iY3O3.s:217    .bss:00000000 cli_console
-     /tmp/cc8iY3O3.s:213    .bss:00000000 $d
+     /tmp/cccqw24X.s:20     .text:00000000 $t
+     /tmp/cccqw24X.s:25     .text:00000000 _Z41__static_initialization_and_destruction_0v
+     /tmp/cccqw24X.s:54     .text:00000010 $d
+     /tmp/cccqw24X.s:59     .rodata.str1.4:00000000 $d
+     /tmp/cccqw24X.s:145    .text:00000014 $t
+     /tmp/cccqw24X.s:151    .text:00000014 _Z8Task_CLIPv
+     /tmp/cccqw24X.s:338    .text:00000118 $d
+     /tmp/cccqw24X.s:383    .text:000001c0 $t
+     /tmp/cccqw24X.s:388    .text:000001c0 _GLOBAL__sub_I_cli_console
+     /tmp/cccqw24X.s:406    .init_array:00000000 $d
+     /tmp/cccqw24X.s:414    .bss:00000000 cli_console
+     /tmp/cccqw24X.s:410    .bss:00000000 $d
 
 UNDEFINED SYMBOLS
 _ZN10CLI_Module4initEPKct
 _ZN10CLI_Module15bind_write_dataEP6Serial
 _ZN10CLI_Module18add_command_to_allEPKcS1_bPvPFvP11EmbeddedCliPcS2_E
 _ZN10CLI_Module9start_allEv
+uxTaskGetStackHighWaterMark
+printf_
 vTaskDelete
 sr_console
 _Z5startP11EmbeddedCliPcPv
 _Z4stopP11EmbeddedCliPcPv
 _Z5resetP11EmbeddedCliPcPv
+_Z12clear_eepromP11EmbeddedCliPcPv
+_Z4saveP11EmbeddedCliPcPv
+_Z7set_freP11EmbeddedCliPcPv
 _Z8set_dutyP11EmbeddedCliPcPv
+_Z7set_posP11EmbeddedCliPcPv
+_Z9set_speedP11EmbeddedCliPcPv
+_Z8set_modeP11EmbeddedCliPcPv
+_Z9set_pid_vP11EmbeddedCliPcPv
+_Z9set_pid_pP11EmbeddedCliPcPv
+_Z8get_modeP11EmbeddedCliPcPv

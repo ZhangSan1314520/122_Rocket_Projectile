@@ -15,16 +15,31 @@ void Task_CLI(void *argument)
     cli_console.bind_write_data(&sr_console);       // 绑定串口1
 
     // 注册命令
-    CLI_Module::add_command_to_all("start", "start", true, NULL, start);//电机启动
-    CLI_Module::add_command_to_all("stop", "stop", true, NULL, stop);//电机停止
+    CLI_Module::add_command_to_all("start", "start [idx]", true, NULL, start);//电机启动
+    CLI_Module::add_command_to_all("stop", "stop [idx]", true, NULL, stop);//电机停止
     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
+    CLI_Module::add_command_to_all("clear_eeprom", "clear_eeprom [idx]", true, NULL, clear_eeprom);//清空指定电机的eeprom数据
+    CLI_Module::add_command_to_all("save", "save [idx]", true, NULL, save);//参数保存
+    CLI_Module::add_command_to_all("set_fre", "set_fre [idx] [fre]", true, NULL, set_fre);//设置电机频率
+    CLI_Module::add_command_to_all("set_duty", "set_duty [idx] [duty] 范围0.0f-1.0f", true, NULL, set_duty);//设置电机占空比
+    CLI_Module::add_command_to_all("set_pos", "set_pos [idx] [angle] 单位 °", true, NULL, set_pos);//设置目标位置 范围[-180,180]
+    CLI_Module::add_command_to_all("set_speed", "set_speed [idx] [velocity] 单位 rad/s", true, NULL, set_speed);//设置目标速度
+    CLI_Module::add_command_to_all("set_mode", "set_mode [idx] <mode>取值:speed pos open_loop", true, NULL, set_mode); //切换工作模式
+    CLI_Module::add_command_to_all("set_pid_v", "set_pid_v [idx] [kp] [ki] [kd]", true, NULL, set_pid_v); //设置PID 速度环  
+    CLI_Module::add_command_to_all("set_pid_p", "set_pid_p [idx] [kp] [ki] [kd]", true, NULL, set_pid_p); //设置PID 位置环     
 
-    // CLI_Module::add_command_to_all("set_dir", "set_dir [dir] 0-顺时针 1-逆时针", true, NULL, set_dir);//设置电机正反转方向
-    // CLI_Module::add_command_to_all("set_fre", "set_fre", true, NULL, set_fre);//设置电机频率
-    CLI_Module::add_command_to_all("set_duty", "set_duty [duty] 范围0.0f-1.0f", true, NULL, set_duty);//设置电机占空比
+
+    CLI_Module::add_command_to_all("get_mode", "get_mode [idx] ", true, NULL, get_mode);//获取当前工作模式 
+    
 
     CLI_Module::start_all();  // 启动所有CLI
-
+    printf("CLI栈剩余:%d\r\n", uxTaskGetStackHighWaterMark(NULL));
     vTaskDelete(NULL);
 }
+
+
+
+
+
+
 

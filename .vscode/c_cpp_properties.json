@@ -24,6 +24,7 @@
         "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F",
         "My_Top/Drone_CAN",
         "My_Top/Drone_CAN/Check_code",
+        "My_Top/EEPROM",
         "My_Top/MC",
         "My_Top/Modules",
         "My_Top/Motor_Control",

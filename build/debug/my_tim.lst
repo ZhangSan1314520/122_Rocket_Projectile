@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccoslhU4.s 			page 1
+ARM GAS  /tmp/cc0hmtKz.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -21,390 +21,625 @@ ARM GAS  /tmp/ccoslhU4.s 			page 1
   18              		.cfi_sections	.debug_frame
   19              		.file 1 "My_Top/Motor_Control/my_tim.cpp"
   20              		.align	1
-  21              		.global	_Z15My_Tim_CallbackP19__TIM_HandleTypeDef
+  21              		.global	_Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef
   22              		.syntax unified
   23              		.thumb
   24              		.thumb_func
-  26              	_Z15My_Tim_CallbackP19__TIM_HandleTypeDef:
+  26              	_Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef:
   27              	.LVL0:
-  28              	.LFB1342:
+  28              	.LFB1347:
    1:My_Top/Motor_Control/my_tim.cpp **** #include "my_tim.hpp"
    2:My_Top/Motor_Control/my_tim.cpp **** 
-   3:My_Top/Motor_Control/my_tim.cpp **** uint16_t ADC_Value[16] = {0}; //ADC采集值数组
-   4:My_Top/Motor_Control/my_tim.cpp **** /**
-   5:My_Top/Motor_Control/my_tim.cpp ****  * @brief 定时器回调函数，用于执行FOC（磁场定向控制）相关任务
-   6:My_Top/Motor_Control/my_tim.cpp ****  * @param htim 定时器句柄指针，包含定时器相关信息
-   7:My_Top/Motor_Control/my_tim.cpp ****  */
-   8:My_Top/Motor_Control/my_tim.cpp **** void My_Tim_Callback(TIM_HandleTypeDef *htim)
-   9:My_Top/Motor_Control/my_tim.cpp **** {
-  29              		.loc 1 9 1 view -0
+   3:My_Top/Motor_Control/my_tim.cpp **** 
+   4:My_Top/Motor_Control/my_tim.cpp **** 
+   5:My_Top/Motor_Control/my_tim.cpp **** 
+   6:My_Top/Motor_Control/my_tim.cpp **** void My_Tim_OC_Callback(TIM_HandleTypeDef *htim)
+   7:My_Top/Motor_Control/my_tim.cpp **** {
+  29              		.loc 1 7 1 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
-  33              		.loc 1 9 1 is_stmt 0 view .LVU1
+  33              		.loc 1 7 1 is_stmt 0 view .LVU1
   34 0000 08B5     		push	{r3, lr}
   35              		.cfi_def_cfa_offset 8
   36              		.cfi_offset 3, -8
   37              		.cfi_offset 14, -4
-  10:My_Top/Motor_Control/my_tim.cpp ****     static uint32_t start_time, end_time = 0;//求计算时间
-  38              		.loc 1 10 5 is_stmt 1 view .LVU2
-  11:My_Top/Motor_Control/my_tim.cpp **** 
-  12:My_Top/Motor_Control/my_tim.cpp ****     static uint32_t last_time = 0;//求中断间隔时间
-  39              		.loc 1 12 5 view .LVU3
-  13:My_Top/Motor_Control/my_tim.cpp ****     uint32_t now_time = 0;
-  40              		.loc 1 13 5 view .LVU4
-  41              	.LVL1:
+   8:My_Top/Motor_Control/my_tim.cpp ****     static uint16_t count = 0;
+  38              		.loc 1 8 5 is_stmt 1 view .LVU2
+   9:My_Top/Motor_Control/my_tim.cpp ****     static uint32_t start_time, end_time = 0;//求计算时间
+  39              		.loc 1 9 5 view .LVU3
+  10:My_Top/Motor_Control/my_tim.cpp ****     if(M1.control_init_flag == false) return;// 初始化未完成时，不执行
+  40              		.loc 1 10 5 view .LVU4
+  41              		.loc 1 10 11 is_stmt 0 view .LVU5
+  42 0002 194B     		ldr	r3, .L6
+  43 0004 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+  44              		.loc 1 10 5 view .LVU6
+  45 0006 DBB1     		cbz	r3, .L1
+  11:My_Top/Motor_Control/my_tim.cpp ****     if(M2.control_init_flag == false) return;// 初始化未完成时，不执行
+  46              		.loc 1 11 5 is_stmt 1 view .LVU7
+  47              		.loc 1 11 11 is_stmt 0 view .LVU8
+ARM GAS  /tmp/cc0hmtKz.s 			page 2
+
+
+  48 0008 184B     		ldr	r3, .L6+4
+  49 000a 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+  50              		.loc 1 11 5 view .LVU9
+  51 000c C3B1     		cbz	r3, .L1
+  12:My_Top/Motor_Control/my_tim.cpp ****     if(M3.control_init_flag == false) return;// 初始化未完成时，不执行
+  52              		.loc 1 12 5 is_stmt 1 view .LVU10
+  53              		.loc 1 12 11 is_stmt 0 view .LVU11
+  54 000e 184B     		ldr	r3, .L6+8
+  55 0010 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+  56              		.loc 1 12 5 view .LVU12
+  57 0012 ABB1     		cbz	r3, .L1
+  13:My_Top/Motor_Control/my_tim.cpp ****     if(M4.control_init_flag == false) return;// 初始化未完成时，不执行
+  58              		.loc 1 13 5 is_stmt 1 view .LVU13
+  59              		.loc 1 13 11 is_stmt 0 view .LVU14
+  60 0014 174B     		ldr	r3, .L6+12
+  61 0016 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+  62              		.loc 1 13 5 view .LVU15
+  63 0018 93B1     		cbz	r3, .L1
   14:My_Top/Motor_Control/my_tim.cpp **** 
-  15:My_Top/Motor_Control/my_tim.cpp ****     static uint16_t count = 0;
-  42              		.loc 1 15 5 view .LVU5
-  16:My_Top/Motor_Control/my_tim.cpp **** 
-ARM GAS  /tmp/ccoslhU4.s 			page 2
-
-
-  17:My_Top/Motor_Control/my_tim.cpp ****     if (M1.control_init_flag == false) return;// 初始化未完成时，不执行
-  43              		.loc 1 17 5 view .LVU6
-  44              		.loc 1 17 12 is_stmt 0 view .LVU7
-  45 0002 144B     		ldr	r3, .L6
-  46 0004 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
-  47              		.loc 1 17 5 view .LVU8
-  48 0006 F3B1     		cbz	r3, .L1
-  18:My_Top/Motor_Control/my_tim.cpp **** 
-  19:My_Top/Motor_Control/my_tim.cpp ****     if ((htim->Instance->CR1 & 0x10) == 0x00U) // 向上计数时，请求编码器位置信息
-  49              		.loc 1 19 5 is_stmt 1 view .LVU9
-  50              		.loc 1 19 16 is_stmt 0 view .LVU10
-  51 0008 0368     		ldr	r3, [r0]
-  52              		.loc 1 19 26 view .LVU11
-  53 000a 1B68     		ldr	r3, [r3]
-  54              		.loc 1 19 5 view .LVU12
-  55 000c 13F0100F 		tst	r3, #16
-  56 0010 19D1     		bne	.L1
-  20:My_Top/Motor_Control/my_tim.cpp ****     {
-  21:My_Top/Motor_Control/my_tim.cpp ****         if (count % DC_VELOCITY_LOOP_FREQ_DIV == 1)// 每4个周期执行一次（4k频率）
-  57              		.loc 1 21 9 is_stmt 1 view .LVU13
-  58              		.loc 1 21 19 is_stmt 0 view .LVU14
-  59 0012 114B     		ldr	r3, .L6+4
-  60 0014 1A88     		ldrh	r2, [r3]
-  22:My_Top/Motor_Control/my_tim.cpp ****         {
-  23:My_Top/Motor_Control/my_tim.cpp ****             // start_time = HAL_System::get_tick_us(); //记录开始时间
-  24:My_Top/Motor_Control/my_tim.cpp ****             // M1.Update_Speed_Angle_LPFAndPLL();//更新速度角度 耗时
-  25:My_Top/Motor_Control/my_tim.cpp ****             // end_time = HAL_System::get_tick_us(); // 记录结束时间
-  26:My_Top/Motor_Control/my_tim.cpp ****             // M1.laji = (float)(end_time - start_time); 
-  27:My_Top/Motor_Control/my_tim.cpp **** 
-  28:My_Top/Motor_Control/my_tim.cpp ****         }
-  29:My_Top/Motor_Control/my_tim.cpp ****         if (count % 160 == 1)// 每160个周期执行一次（0.1k频率）
-  61              		.loc 1 29 9 is_stmt 1 view .LVU15
-  62              		.loc 1 29 19 is_stmt 0 view .LVU16
-  63 0016 114B     		ldr	r3, .L6+8
-  64 0018 A3FB0213 		umull	r1, r3, r3, r2
-  65 001c DB09     		lsrs	r3, r3, #7
-  66 001e 03EB8303 		add	r3, r3, r3, lsl #2
-  67 0022 A2EB4312 		sub	r2, r2, r3, lsl #5
-  68 0026 92B2     		uxth	r2, r2
-  69              		.loc 1 29 9 view .LVU17
-  70 0028 012A     		cmp	r2, #1
-  71 002a 0DD0     		beq	.L5
-  72              	.LVL2:
+  15:My_Top/Motor_Control/my_tim.cpp ****     if (count % 16 == 1)
+  64              		.loc 1 15 5 is_stmt 1 view .LVU16
+  65              		.loc 1 15 15 is_stmt 0 view .LVU17
+  66 001a 174B     		ldr	r3, .L6+16
+  67 001c 1B88     		ldrh	r3, [r3]
+  68              		.loc 1 15 5 view .LVU18
+  69 001e 03F00F03 		and	r3, r3, #15
+  70 0022 012B     		cmp	r3, #1
+  71 0024 0DD0     		beq	.L5
+  72              	.LVL1:
   73              	.L3:
-  30:My_Top/Motor_Control/my_tim.cpp ****         {
-  31:My_Top/Motor_Control/my_tim.cpp ****             HAL_ADC_Start_DMA(therm_hadc,(uint32_t *)ADC_Value,4); //电池电压采集
-  32:My_Top/Motor_Control/my_tim.cpp ****         }
-  33:My_Top/Motor_Control/my_tim.cpp ****         count = (count%10000)+1;
-  74              		.loc 1 33 9 is_stmt 1 view .LVU18
-  75              		.loc 1 33 23 is_stmt 0 view .LVU19
-  76 002c 0A49     		ldr	r1, .L6+4
-  77 002e 0B88     		ldrh	r3, [r1]
-  78 0030 0B4A     		ldr	r2, .L6+12
-  79 0032 A2FB0302 		umull	r0, r2, r2, r3
-  80 0036 520B     		lsrs	r2, r2, #13
-  81 0038 42F21070 		movw	r0, #10000
-  82 003c 00FB1233 		mls	r3, r0, r2, r3
-ARM GAS  /tmp/ccoslhU4.s 			page 3
-
-
-  83 0040 9BB2     		uxth	r3, r3
-  84              		.loc 1 33 30 view .LVU20
-  85 0042 0133     		adds	r3, r3, #1
-  86              		.loc 1 33 15 view .LVU21
-  87 0044 0B80     		strh	r3, [r1]	@ movhi
+  16:My_Top/Motor_Control/my_tim.cpp ****     {
+  17:My_Top/Motor_Control/my_tim.cpp ****         HAL_ADC_Start_DMA(therm_hadc,(uint32_t *)DC_Motor::ADC_Value,4); //电池电压采集
+  18:My_Top/Motor_Control/my_tim.cpp **** 
+  19:My_Top/Motor_Control/my_tim.cpp ****         M1.Thermistor_Temp();
+  20:My_Top/Motor_Control/my_tim.cpp ****         M2.Thermistor_Temp();
+  21:My_Top/Motor_Control/my_tim.cpp ****         M3.Thermistor_Temp();
+  22:My_Top/Motor_Control/my_tim.cpp ****         M4.Thermistor_Temp();
+  23:My_Top/Motor_Control/my_tim.cpp ****     }
+  24:My_Top/Motor_Control/my_tim.cpp **** 
+  25:My_Top/Motor_Control/my_tim.cpp ****     count = (count % 16000) + 1;
+  74              		.loc 1 25 5 is_stmt 1 view .LVU19
+  75              		.loc 1 25 20 is_stmt 0 view .LVU20
+  76 0026 1449     		ldr	r1, .L6+16
+  77 0028 0B88     		ldrh	r3, [r1]
+  78 002a 144A     		ldr	r2, .L6+20
+  79 002c A2FB0302 		umull	r0, r2, r2, r3
+  80 0030 920A     		lsrs	r2, r2, #10
+  81 0032 4FF47A50 		mov	r0, #16000
+  82 0036 00FB1233 		mls	r3, r0, r2, r3
+  83 003a 9BB2     		uxth	r3, r3
+  84              		.loc 1 25 29 view .LVU21
+  85 003c 0133     		adds	r3, r3, #1
+  86              		.loc 1 25 11 view .LVU22
+  87 003e 0B80     		strh	r3, [r1]	@ movhi
   88              	.L1:
-  34:My_Top/Motor_Control/my_tim.cpp **** 
-  35:My_Top/Motor_Control/my_tim.cpp ****     }
-  36:My_Top/Motor_Control/my_tim.cpp **** }
-  89              		.loc 1 36 1 view .LVU22
-  90 0046 08BD     		pop	{r3, pc}
-  91              	.LVL3:
+  26:My_Top/Motor_Control/my_tim.cpp **** }
+  89              		.loc 1 26 1 view .LVU23
+ARM GAS  /tmp/cc0hmtKz.s 			page 3
+
+
+  90 0040 08BD     		pop	{r3, pc}
+  91              	.LVL2:
   92              	.L5:
-  31:My_Top/Motor_Control/my_tim.cpp ****         }
-  93              		.loc 1 31 13 is_stmt 1 view .LVU23
-  31:My_Top/Motor_Control/my_tim.cpp ****         }
-  94              		.loc 1 31 30 is_stmt 0 view .LVU24
-  95 0048 0422     		movs	r2, #4
-  96 004a 0649     		ldr	r1, .L6+16
-  97 004c 0648     		ldr	r0, .L6+20
-  98              	.LVL4:
-  31:My_Top/Motor_Control/my_tim.cpp ****         }
-  99              		.loc 1 31 30 view .LVU25
- 100 004e FFF7FEFF 		bl	HAL_ADC_Start_DMA
- 101              	.LVL5:
- 102 0052 EBE7     		b	.L3
- 103              	.L7:
- 104              		.align	2
- 105              	.L6:
- 106 0054 00000000 		.word	M1
- 107 0058 00000000 		.word	.LANCHOR0
- 108 005c CDCCCCCC 		.word	-858993459
- 109 0060 5917B7D1 		.word	-776530087
- 110 0064 04000000 		.word	.LANCHOR0+4
- 111 0068 00000000 		.word	hadc2
- 112              		.cfi_endproc
- 113              	.LFE1342:
- 115              		.align	1
- 116              		.global	_Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef
- 117              		.syntax unified
- 118              		.thumb
- 119              		.thumb_func
- 121              	_Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef:
- 122              	.LVL6:
- 123              	.LFB1343:
-  37:My_Top/Motor_Control/my_tim.cpp **** 
-  38:My_Top/Motor_Control/my_tim.cpp **** 
-  39:My_Top/Motor_Control/my_tim.cpp **** void My_Tim_OC_Callback(TIM_HandleTypeDef *htim) // TIM3_CH1 的输出比较中断
-  40:My_Top/Motor_Control/my_tim.cpp **** {
- 124              		.loc 1 40 1 is_stmt 1 view -0
- 125              		.cfi_startproc
- 126              		@ args = 0, pretend = 0, frame = 0
- 127              		@ frame_needed = 0, uses_anonymous_args = 0
- 128              		.loc 1 40 1 is_stmt 0 view .LVU27
- 129 006c 08B5     		push	{r3, lr}
- 130              		.cfi_def_cfa_offset 8
- 131              		.cfi_offset 3, -8
-ARM GAS  /tmp/ccoslhU4.s 			page 4
+  17:My_Top/Motor_Control/my_tim.cpp **** 
+  93              		.loc 1 17 9 is_stmt 1 view .LVU24
+  17:My_Top/Motor_Control/my_tim.cpp **** 
+  94              		.loc 1 17 26 is_stmt 0 view .LVU25
+  95 0042 0422     		movs	r2, #4
+  96 0044 0E49     		ldr	r1, .L6+24
+  97 0046 0F48     		ldr	r0, .L6+28
+  98              	.LVL3:
+  17:My_Top/Motor_Control/my_tim.cpp **** 
+  99              		.loc 1 17 26 view .LVU26
+ 100 0048 FFF7FEFF 		bl	HAL_ADC_Start_DMA
+ 101              	.LVL4:
+  19:My_Top/Motor_Control/my_tim.cpp ****         M2.Thermistor_Temp();
+ 102              		.loc 1 19 9 is_stmt 1 view .LVU27
+  19:My_Top/Motor_Control/my_tim.cpp ****         M2.Thermistor_Temp();
+ 103              		.loc 1 19 27 is_stmt 0 view .LVU28
+ 104 004c 0648     		ldr	r0, .L6
+ 105 004e FFF7FEFF 		bl	_ZN8DC_Motor15Thermistor_TempEv
+ 106              	.LVL5:
+  20:My_Top/Motor_Control/my_tim.cpp ****         M3.Thermistor_Temp();
+ 107              		.loc 1 20 9 is_stmt 1 view .LVU29
+  20:My_Top/Motor_Control/my_tim.cpp ****         M3.Thermistor_Temp();
+ 108              		.loc 1 20 27 is_stmt 0 view .LVU30
+ 109 0052 0648     		ldr	r0, .L6+4
+ 110 0054 FFF7FEFF 		bl	_ZN8DC_Motor15Thermistor_TempEv
+ 111              	.LVL6:
+  21:My_Top/Motor_Control/my_tim.cpp ****         M4.Thermistor_Temp();
+ 112              		.loc 1 21 9 is_stmt 1 view .LVU31
+  21:My_Top/Motor_Control/my_tim.cpp ****         M4.Thermistor_Temp();
+ 113              		.loc 1 21 27 is_stmt 0 view .LVU32
+ 114 0058 0548     		ldr	r0, .L6+8
+ 115 005a FFF7FEFF 		bl	_ZN8DC_Motor15Thermistor_TempEv
+ 116              	.LVL7:
+  22:My_Top/Motor_Control/my_tim.cpp ****     }
+ 117              		.loc 1 22 9 is_stmt 1 view .LVU33
+  22:My_Top/Motor_Control/my_tim.cpp ****     }
+ 118              		.loc 1 22 27 is_stmt 0 view .LVU34
+ 119 005e 0548     		ldr	r0, .L6+12
+ 120 0060 FFF7FEFF 		bl	_ZN8DC_Motor15Thermistor_TempEv
+ 121              	.LVL8:
+ 122 0064 DFE7     		b	.L3
+ 123              	.L7:
+ 124 0066 00BF     		.align	2
+ 125              	.L6:
+ 126 0068 00000000 		.word	M1
+ 127 006c 00000000 		.word	M2
+ 128 0070 00000000 		.word	M3
+ 129 0074 00000000 		.word	M4
+ 130 0078 00000000 		.word	.LANCHOR0
+ 131 007c D34D6210 		.word	274877907
+ 132 0080 00000000 		.word	_ZN8DC_Motor9ADC_ValueE
+ 133 0084 00000000 		.word	hadc2
+ 134              		.cfi_endproc
+ 135              	.LFE1347:
+ARM GAS  /tmp/cc0hmtKz.s 			page 4
 
 
- 132              		.cfi_offset 14, -4
-  41:My_Top/Motor_Control/my_tim.cpp ****     static uint16_t count = 0;
- 133              		.loc 1 41 5 is_stmt 1 view .LVU28
-  42:My_Top/Motor_Control/my_tim.cpp ****     static uint32_t start_time = 0, end_time = 0; // 计时变量
- 134              		.loc 1 42 5 view .LVU29
-  43:My_Top/Motor_Control/my_tim.cpp **** 
-  44:My_Top/Motor_Control/my_tim.cpp ****     if (M1.control_init_flag == false) return;// 初始化未完成时，不执行
- 135              		.loc 1 44 5 view .LVU30
- 136              		.loc 1 44 12 is_stmt 0 view .LVU31
- 137 006e 0A4B     		ldr	r3, .L12
- 138 0070 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
- 139              		.loc 1 44 5 view .LVU32
- 140 0072 03B9     		cbnz	r3, .L11
- 141              	.LVL7:
- 142              	.L8:
-  45:My_Top/Motor_Control/my_tim.cpp ****     M1.Set_Motor_Frequency(); //设置电机频率
-  46:My_Top/Motor_Control/my_tim.cpp ****     count = (count%10000)+1;
-  47:My_Top/Motor_Control/my_tim.cpp **** 
-  48:My_Top/Motor_Control/my_tim.cpp **** }
- 143              		.loc 1 48 1 view .LVU33
- 144 0074 08BD     		pop	{r3, pc}
- 145              	.LVL8:
- 146              	.L11:
-  45:My_Top/Motor_Control/my_tim.cpp ****     M1.Set_Motor_Frequency(); //设置电机频率
- 147              		.loc 1 45 5 is_stmt 1 view .LVU34
-  45:My_Top/Motor_Control/my_tim.cpp ****     M1.Set_Motor_Frequency(); //设置电机频率
- 148              		.loc 1 45 27 is_stmt 0 view .LVU35
- 149 0076 0848     		ldr	r0, .L12
- 150              	.LVL9:
-  45:My_Top/Motor_Control/my_tim.cpp ****     M1.Set_Motor_Frequency(); //设置电机频率
- 151              		.loc 1 45 27 view .LVU36
- 152 0078 FFF7FEFF 		bl	_ZN8DC_Motor19Set_Motor_FrequencyEv
- 153              	.LVL10:
-  46:My_Top/Motor_Control/my_tim.cpp **** 
- 154              		.loc 1 46 5 is_stmt 1 view .LVU37
-  46:My_Top/Motor_Control/my_tim.cpp **** 
- 155              		.loc 1 46 19 is_stmt 0 view .LVU38
- 156 007c 0749     		ldr	r1, .L12+4
- 157 007e 8B8C     		ldrh	r3, [r1, #36]
- 158 0080 074A     		ldr	r2, .L12+8
- 159 0082 A2FB0302 		umull	r0, r2, r2, r3
- 160 0086 520B     		lsrs	r2, r2, #13
- 161 0088 42F21070 		movw	r0, #10000
- 162 008c 00FB1233 		mls	r3, r0, r2, r3
- 163 0090 9BB2     		uxth	r3, r3
-  46:My_Top/Motor_Control/my_tim.cpp **** 
- 164              		.loc 1 46 26 view .LVU39
- 165 0092 0133     		adds	r3, r3, #1
-  46:My_Top/Motor_Control/my_tim.cpp **** 
- 166              		.loc 1 46 11 view .LVU40
- 167 0094 8B84     		strh	r3, [r1, #36]	@ movhi
- 168 0096 EDE7     		b	.L8
- 169              	.L13:
- 170              		.align	2
- 171              	.L12:
- 172 0098 00000000 		.word	M1
- 173 009c 00000000 		.word	.LANCHOR0
-ARM GAS  /tmp/ccoslhU4.s 			page 5
+ 137              		.align	1
+ 138              		.global	_Z15My_Tim_CallbackP19__TIM_HandleTypeDef
+ 139              		.syntax unified
+ 140              		.thumb
+ 141              		.thumb_func
+ 143              	_Z15My_Tim_CallbackP19__TIM_HandleTypeDef:
+ 144              	.LVL9:
+ 145              	.LFB1348:
+  27:My_Top/Motor_Control/my_tim.cpp **** 
+  28:My_Top/Motor_Control/my_tim.cpp **** 
+  29:My_Top/Motor_Control/my_tim.cpp **** void My_Tim_Callback(TIM_HandleTypeDef *htim)
+  30:My_Top/Motor_Control/my_tim.cpp **** {
+ 146              		.loc 1 30 1 is_stmt 1 view -0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 16
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+  31:My_Top/Motor_Control/my_tim.cpp ****     static uint16_t count = 0;
+ 150              		.loc 1 31 5 view .LVU36
+  32:My_Top/Motor_Control/my_tim.cpp ****     static uint32_t start_time, end_time = 0;//求计算时间
+ 151              		.loc 1 32 5 view .LVU37
+  33:My_Top/Motor_Control/my_tim.cpp ****     if ((htim->Instance->CR1 & 0x10) != 0x00U) return; //不是向上计数时，不执行
+ 152              		.loc 1 33 5 view .LVU38
+ 153              		.loc 1 33 16 is_stmt 0 view .LVU39
+ 154 0088 0368     		ldr	r3, [r0]
+ 155              		.loc 1 33 26 view .LVU40
+ 156 008a 1B68     		ldr	r3, [r3]
+ 157              		.loc 1 33 5 view .LVU41
+ 158 008c 13F0100F 		tst	r3, #16
+ 159 0090 58D1     		bne	.L18
+  30:My_Top/Motor_Control/my_tim.cpp ****     static uint16_t count = 0;
+ 160              		.loc 1 30 1 view .LVU42
+ 161 0092 30B5     		push	{r4, r5, lr}
+ 162              		.cfi_def_cfa_offset 12
+ 163              		.cfi_offset 4, -12
+ 164              		.cfi_offset 5, -8
+ 165              		.cfi_offset 14, -4
+ 166 0094 85B0     		sub	sp, sp, #20
+ 167              		.cfi_def_cfa_offset 32
+  34:My_Top/Motor_Control/my_tim.cpp **** 
+  35:My_Top/Motor_Control/my_tim.cpp ****     DC_Motor* motors[] = { &M1, &M2, &M3, &M4 };
+ 168              		.loc 1 35 5 is_stmt 1 view .LVU43
+ 169              		.loc 1 35 15 is_stmt 0 view .LVU44
+ 170 0096 2C4B     		ldr	r3, .L24
+ 171 0098 0FCB     		ldm	r3, {r0, r1, r2, r3}
+ 172              	.LVL10:
+ 173              		.loc 1 35 15 view .LVU45
+ 174 009a 04AC     		add	r4, sp, #16
+ 175 009c 04E90F00 		stmdb	r4, {r0, r1, r2, r3}
+  36:My_Top/Motor_Control/my_tim.cpp **** 
+  37:My_Top/Motor_Control/my_tim.cpp ****     for (int i = 0; i < 4; i++)
+ 176              		.loc 1 37 5 is_stmt 1 view .LVU46
+ 177              	.LVL11:
+ 178              	.LBB2:
+ 179              		.loc 1 37 14 is_stmt 0 view .LVU47
+ 180 00a0 0024     		movs	r4, #0
+ 181              		.loc 1 37 5 view .LVU48
+ 182 00a2 0AE0     		b	.L11
+ARM GAS  /tmp/cc0hmtKz.s 			page 5
 
 
- 174 00a0 5917B7D1 		.word	-776530087
- 175              		.cfi_endproc
- 176              	.LFE1343:
- 178              		.align	1
- 179              		.global	_Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef
- 180              		.syntax unified
- 181              		.thumb
- 182              		.thumb_func
- 184              	_Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef:
- 185              	.LVL11:
- 186              	.LFB1344:
-  49:My_Top/Motor_Control/my_tim.cpp **** 
-  50:My_Top/Motor_Control/my_tim.cpp **** 
-  51:My_Top/Motor_Control/my_tim.cpp **** /*
-  52:My_Top/Motor_Control/my_tim.cpp **** void laji()
-  53:My_Top/Motor_Control/my_tim.cpp **** {
-  54:My_Top/Motor_Control/my_tim.cpp ****     static uint32_t last_time = 0;
-  55:My_Top/Motor_Control/my_tim.cpp ****     uint32_t now_time = 0;
-  56:My_Top/Motor_Control/my_tim.cpp ****     now_time =  HAL_System::get_tick_us();
-  57:My_Top/Motor_Control/my_tim.cpp ****     if (last_time != 0) {
-  58:My_Top/Motor_Control/my_tim.cpp ****          M1.laji = (int32_t)(now_time - last_time);  // 单次中断间隔，单位us
-  59:My_Top/Motor_Control/my_tim.cpp ****     }
-  60:My_Top/Motor_Control/my_tim.cpp ****     last_time = now_time;
-  61:My_Top/Motor_Control/my_tim.cpp **** }
-  62:My_Top/Motor_Control/my_tim.cpp **** */
-  63:My_Top/Motor_Control/my_tim.cpp **** 
-  64:My_Top/Motor_Control/my_tim.cpp **** /**
-  65:My_Top/Motor_Control/my_tim.cpp ****  * @brief 初始化定时器并设置回调函数
-  66:My_Top/Motor_Control/my_tim.cpp ****  * @param htim 定时器句柄指针，指向定时器配置结构体
-  67:My_Top/Motor_Control/my_tim.cpp ****  */
-  68:My_Top/Motor_Control/my_tim.cpp **** 
-  69:My_Top/Motor_Control/my_tim.cpp **** void My_Tim_Init(TIM_HandleTypeDef* htim,ADC_HandleTypeDef *hadc)
-  70:My_Top/Motor_Control/my_tim.cpp **** {
- 187              		.loc 1 70 1 is_stmt 1 view -0
- 188              		.cfi_startproc
- 189              		@ args = 0, pretend = 0, frame = 0
- 190              		@ frame_needed = 0, uses_anonymous_args = 0
- 191              		.loc 1 70 1 is_stmt 0 view .LVU42
- 192 00a4 10B5     		push	{r4, lr}
- 193              		.cfi_def_cfa_offset 8
- 194              		.cfi_offset 4, -8
- 195              		.cfi_offset 14, -4
- 196 00a6 0446     		mov	r4, r0
-  71:My_Top/Motor_Control/my_tim.cpp ****     uint16_t duty = __HAL_TIM_GET_AUTORELOAD(htim)*0.5f;// 获取定时器ARR寄存器的值
- 197              		.loc 1 71 5 is_stmt 1 view .LVU43
- 198              		.loc 1 71 21 is_stmt 0 view .LVU44
- 199 00a8 0268     		ldr	r2, [r0]
- 200 00aa D2ED0B7A 		vldr.32	s15, [r2, #44]	@ int
- 201              		.loc 1 71 51 view .LVU45
- 202 00ae F8EE677A 		vcvt.f32.u32	s15, s15
- 203 00b2 B6EE007A 		vmov.f32	s14, #5.0e-1
- 204 00b6 67EE877A 		vmul.f32	s15, s15, s14
- 205              		.loc 1 71 52 view .LVU46
- 206 00ba FCEEE77A 		vcvt.u32.f32	s15, s15
- 207 00be 17EE903A 		vmov	r3, s15	@ int
- 208 00c2 9BB2     		uxth	r3, r3
- 209              	.LVL12:
-ARM GAS  /tmp/ccoslhU4.s 			page 6
+ 183              	.LVL12:
+ 184              	.L23:
+ 185              	.LBB3:
+  38:My_Top/Motor_Control/my_tim.cpp ****     {
+  39:My_Top/Motor_Control/my_tim.cpp ****         DC_Motor* m = motors[i];
+  40:My_Top/Motor_Control/my_tim.cpp ****         if (!m->control_init_flag) continue;
+  41:My_Top/Motor_Control/my_tim.cpp **** 
+  42:My_Top/Motor_Control/my_tim.cpp ****         if (count % 40 == 1)
+  43:My_Top/Motor_Control/my_tim.cpp ****             m->Update_Speed_Angle_LPFAndPLL();
+ 186              		.loc 1 43 13 is_stmt 1 view .LVU49
+ 187              		.loc 1 43 44 is_stmt 0 view .LVU50
+ 188 00a4 2846     		mov	r0, r5
+ 189 00a6 FFF7FEFF 		bl	_ZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEv
+ 190              	.LVL13:
+ 191 00aa 1DE0     		b	.L13
+ 192              	.L14:
+  44:My_Top/Motor_Control/my_tim.cpp **** 
+  45:My_Top/Motor_Control/my_tim.cpp ****         switch (m->work_mode)
+  46:My_Top/Motor_Control/my_tim.cpp ****         {
+  47:My_Top/Motor_Control/my_tim.cpp ****         case open_loop: // 开环控制
+  48:My_Top/Motor_Control/my_tim.cpp ****             if (count % DC_Open_Loop_FREQ_DIV == 1) 
+  49:My_Top/Motor_Control/my_tim.cpp ****             {
+  50:My_Top/Motor_Control/my_tim.cpp ****                 // start_time = HAL_System::get_tick_us(); //记录开始时间
+  51:My_Top/Motor_Control/my_tim.cpp ****                 m->Set_Motor_Glo_Duty(); //耗时10us*4 = 40us
+  52:My_Top/Motor_Control/my_tim.cpp ****                 // end_time = HAL_System::get_tick_us(); // 记录结束时间
+  53:My_Top/Motor_Control/my_tim.cpp ****                 // m->laji = (float)(end_time - start_time);  // 计算时间差
+  54:My_Top/Motor_Control/my_tim.cpp ****             }
+  55:My_Top/Motor_Control/my_tim.cpp ****             break;
+  56:My_Top/Motor_Control/my_tim.cpp **** 
+  57:My_Top/Motor_Control/my_tim.cpp ****         case speed: // 速度控制
+ 193              		.loc 1 57 9 is_stmt 1 view .LVU51
+  58:My_Top/Motor_Control/my_tim.cpp ****             if (count % DC_VELOCITY_LOOP_FREQ_DIV == 1)
+ 194              		.loc 1 58 13 view .LVU52
+ 195              		.loc 1 58 23 is_stmt 0 view .LVU53
+ 196 00ac 274B     		ldr	r3, .L24+4
+ 197 00ae 5B88     		ldrh	r3, [r3, #2]
+ 198              		.loc 1 58 13 view .LVU54
+ 199 00b0 03F00303 		and	r3, r3, #3
+ 200 00b4 012B     		cmp	r3, #1
+ 201 00b6 28D0     		beq	.L21
+ 202              	.L12:
+ 203              		.loc 1 58 13 view .LVU55
+ 204              	.LBE3:
+  37:My_Top/Motor_Control/my_tim.cpp ****     {
+ 205              		.loc 1 37 5 is_stmt 1 discriminator 2 view .LVU56
+ 206 00b8 0134     		adds	r4, r4, #1
+ 207              	.LVL14:
+ 208              	.L11:
+  37:My_Top/Motor_Control/my_tim.cpp ****     {
+ 209              		.loc 1 37 23 discriminator 1 view .LVU57
+ 210 00ba 032C     		cmp	r4, #3
+ 211 00bc 33DC     		bgt	.L22
+ 212              	.LBB4:
+  39:My_Top/Motor_Control/my_tim.cpp ****         if (!m->control_init_flag) continue;
+ 213              		.loc 1 39 9 view .LVU58
+  39:My_Top/Motor_Control/my_tim.cpp ****         if (!m->control_init_flag) continue;
+ 214              		.loc 1 39 19 is_stmt 0 view .LVU59
+ARM GAS  /tmp/cc0hmtKz.s 			page 6
 
 
-  72:My_Top/Motor_Control/my_tim.cpp ****     
-  73:My_Top/Motor_Control/my_tim.cpp ****     __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, duty); // 设置占空比为50% 控制My_Tim_OC_Call
- 210              		.loc 1 73 5 is_stmt 1 view .LVU47
- 211 00c4 5363     		str	r3, [r2, #52]
-  74:My_Top/Motor_Control/my_tim.cpp ****     HAL_TIM_Base_Start_IT(htim); //启动定时器周期中断
- 212              		.loc 1 74 5 view .LVU48
- 213              		.loc 1 74 26 is_stmt 0 view .LVU49
- 214 00c6 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 215              	.LVL13:
-  75:My_Top/Motor_Control/my_tim.cpp ****     HAL_TIM_OC_Start_IT(htim, TIM_CHANNEL_1); //启动定时器比较中断
- 216              		.loc 1 75 5 is_stmt 1 view .LVU50
- 217              		.loc 1 75 24 is_stmt 0 view .LVU51
- 218 00ca 0021     		movs	r1, #0
- 219 00cc 2046     		mov	r0, r4
- 220 00ce FFF7FEFF 		bl	HAL_TIM_OC_Start_IT
- 221              	.LVL14:
-  76:My_Top/Motor_Control/my_tim.cpp ****     htim->PeriodElapsedCallback = My_Tim_Callback;  // 设置定时器周期结束回调函数
- 222              		.loc 1 76 5 is_stmt 1 view .LVU52
- 223              		.loc 1 76 33 is_stmt 0 view .LVU53
- 224 00d2 034B     		ldr	r3, .L16
- 225 00d4 C4F88430 		str	r3, [r4, #132]
-  77:My_Top/Motor_Control/my_tim.cpp ****     htim->PWM_PulseFinishedCallback = My_Tim_OC_Callback;// PWM的模式的比较匹配回调函数
- 226              		.loc 1 77 5 is_stmt 1 view .LVU54
- 227              		.loc 1 77 37 is_stmt 0 view .LVU55
- 228 00d8 024B     		ldr	r3, .L16+4
- 229 00da C4F8A030 		str	r3, [r4, #160]
-  78:My_Top/Motor_Control/my_tim.cpp **** }
- 230              		.loc 1 78 1 view .LVU56
- 231 00de 10BD     		pop	{r4, pc}
- 232              	.LVL15:
- 233              	.L17:
- 234              		.loc 1 78 1 view .LVU57
- 235              		.align	2
- 236              	.L16:
- 237 00e0 00000000 		.word	_Z15My_Tim_CallbackP19__TIM_HandleTypeDef
- 238 00e4 00000000 		.word	_Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef
- 239              		.cfi_endproc
- 240              	.LFE1344:
- 242              		.global	ADC_Value
- 243              		.bss
- 244              		.align	2
- 245              		.set	.LANCHOR0,. + 0
- 248              	_ZZ15My_Tim_CallbackP19__TIM_HandleTypeDefE5count:
- 249 0000 0000     		.space	2
- 250 0002 0000     		.space	2
- 253              	ADC_Value:
- 254 0004 00000000 		.space	32
- 254      00000000 
- 254      00000000 
- 254      00000000 
- 254      00000000 
- 257              	_ZZ18My_Tim_OC_CallbackP19__TIM_HandleTypeDefE5count:
- 258 0024 0000     		.space	2
- 259              		.text
- 260              	.Letext0:
- 261              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 262              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
-ARM GAS  /tmp/ccoslhU4.s 			page 7
+ 215 00be 04AB     		add	r3, sp, #16
+ 216 00c0 03EB8403 		add	r3, r3, r4, lsl #2
+ 217 00c4 53F8105C 		ldr	r5, [r3, #-16]
+ 218              	.LVL15:
+  40:My_Top/Motor_Control/my_tim.cpp **** 
+ 219              		.loc 1 40 9 is_stmt 1 view .LVU60
+  40:My_Top/Motor_Control/my_tim.cpp **** 
+ 220              		.loc 1 40 17 is_stmt 0 view .LVU61
+ 221 00c8 AB78     		ldrb	r3, [r5, #2]	@ zero_extendqisi2
+  40:My_Top/Motor_Control/my_tim.cpp **** 
+ 222              		.loc 1 40 9 view .LVU62
+ 223 00ca 002B     		cmp	r3, #0
+ 224 00cc F4D0     		beq	.L12
+  42:My_Top/Motor_Control/my_tim.cpp ****             m->Update_Speed_Angle_LPFAndPLL();
+ 225              		.loc 1 42 9 is_stmt 1 view .LVU63
+  42:My_Top/Motor_Control/my_tim.cpp ****             m->Update_Speed_Angle_LPFAndPLL();
+ 226              		.loc 1 42 19 is_stmt 0 view .LVU64
+ 227 00ce 1F4B     		ldr	r3, .L24+4
+ 228 00d0 5A88     		ldrh	r2, [r3, #2]
+ 229 00d2 1F4B     		ldr	r3, .L24+8
+ 230 00d4 A3FB0213 		umull	r1, r3, r3, r2
+ 231 00d8 5B09     		lsrs	r3, r3, #5
+ 232 00da 03EB8303 		add	r3, r3, r3, lsl #2
+ 233 00de A2EBC302 		sub	r2, r2, r3, lsl #3
+ 234 00e2 92B2     		uxth	r2, r2
+  42:My_Top/Motor_Control/my_tim.cpp ****             m->Update_Speed_Angle_LPFAndPLL();
+ 235              		.loc 1 42 9 view .LVU65
+ 236 00e4 012A     		cmp	r2, #1
+ 237 00e6 DDD0     		beq	.L23
+ 238              	.L13:
+  45:My_Top/Motor_Control/my_tim.cpp ****         {
+ 239              		.loc 1 45 9 is_stmt 1 view .LVU66
+  45:My_Top/Motor_Control/my_tim.cpp ****         {
+ 240              		.loc 1 45 20 is_stmt 0 view .LVU67
+ 241 00e8 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+  45:My_Top/Motor_Control/my_tim.cpp ****         {
+ 242              		.loc 1 45 9 view .LVU68
+ 243 00ea 012B     		cmp	r3, #1
+ 244 00ec DED0     		beq	.L14
+ 245 00ee 022B     		cmp	r3, #2
+ 246 00f0 0FD0     		beq	.L15
+ 247 00f2 002B     		cmp	r3, #0
+ 248 00f4 E0D1     		bne	.L12
+  47:My_Top/Motor_Control/my_tim.cpp ****             if (count % DC_Open_Loop_FREQ_DIV == 1) 
+ 249              		.loc 1 47 9 is_stmt 1 view .LVU69
+  48:My_Top/Motor_Control/my_tim.cpp ****             {
+ 250              		.loc 1 48 13 view .LVU70
+  48:My_Top/Motor_Control/my_tim.cpp ****             {
+ 251              		.loc 1 48 23 is_stmt 0 view .LVU71
+ 252 00f6 154B     		ldr	r3, .L24+4
+ 253 00f8 5B88     		ldrh	r3, [r3, #2]
+  48:My_Top/Motor_Control/my_tim.cpp ****             {
+ 254              		.loc 1 48 13 view .LVU72
+ 255 00fa 03F00303 		and	r3, r3, #3
+ 256 00fe 012B     		cmp	r3, #1
+ 257 0100 DAD1     		bne	.L12
+  51:My_Top/Motor_Control/my_tim.cpp ****                 // end_time = HAL_System::get_tick_us(); // 记录结束时间
+ARM GAS  /tmp/cc0hmtKz.s 			page 7
 
 
- 263              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 264              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
- 265              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 266              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 267              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h"
- 268              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 269              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 270              		.file 11 "My_Top/System/bsp.hpp"
- 271              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
- 272              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
- 273              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
- 274              		.file 15 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
- 275              		.file 16 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
- 276              		.file 17 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
- 277              		.file 18 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
- 278              		.file 19 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
- 279              		.file 20 "Lib/compute/ex_math.hpp"
- 280              		.file 21 "My_Top/System/kth_read.hpp"
- 281              		.file 22 "My_Top/Drone_CAN/canard.h"
- 282              		.file 23 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
- 283              		.file 24 "Core/Inc/adc.h"
-ARM GAS  /tmp/ccoslhU4.s 			page 8
+ 258              		.loc 1 51 17 is_stmt 1 view .LVU73
+  51:My_Top/Motor_Control/my_tim.cpp ****                 // end_time = HAL_System::get_tick_us(); // 记录结束时间
+ 259              		.loc 1 51 38 is_stmt 0 view .LVU74
+ 260 0102 2846     		mov	r0, r5
+ 261 0104 FFF7FEFF 		bl	_ZN8DC_Motor18Set_Motor_Glo_DutyEv
+ 262              	.LVL16:
+ 263 0108 D6E7     		b	.L12
+ 264              	.L21:
+  59:My_Top/Motor_Control/my_tim.cpp ****             {
+  60:My_Top/Motor_Control/my_tim.cpp ****                 // start_time = HAL_System::get_tick_us(); //记录开始时间
+  61:My_Top/Motor_Control/my_tim.cpp ****                 m->Speed_Loop();//耗时2us*4 = 8us
+ 265              		.loc 1 61 17 is_stmt 1 view .LVU75
+ 266              		.loc 1 61 30 is_stmt 0 view .LVU76
+ 267 010a 2846     		mov	r0, r5
+ 268 010c FFF7FEFF 		bl	_ZN8DC_Motor10Speed_LoopEv
+ 269              	.LVL17:
+ 270 0110 D2E7     		b	.L12
+ 271              	.L15:
+  62:My_Top/Motor_Control/my_tim.cpp ****                 // end_time = HAL_System::get_tick_us(); // 记录结束时间
+  63:My_Top/Motor_Control/my_tim.cpp ****                 // m->laji = (float)(end_time - start_time);  // 计算时间差
+  64:My_Top/Motor_Control/my_tim.cpp ****             }
+  65:My_Top/Motor_Control/my_tim.cpp ****             break;
+  66:My_Top/Motor_Control/my_tim.cpp **** 
+  67:My_Top/Motor_Control/my_tim.cpp ****         case position: // 位置控制 
+ 272              		.loc 1 67 9 is_stmt 1 view .LVU77
+  68:My_Top/Motor_Control/my_tim.cpp ****             if (count % DC_POSITION_LOOP_FREQ_DIV == 1)
+ 273              		.loc 1 68 13 view .LVU78
+ 274              		.loc 1 68 23 is_stmt 0 view .LVU79
+ 275 0112 0E4B     		ldr	r3, .L24+4
+ 276 0114 5B88     		ldrh	r3, [r3, #2]
+ 277              		.loc 1 68 13 view .LVU80
+ 278 0116 03F00F03 		and	r3, r3, #15
+ 279 011a 012B     		cmp	r3, #1
+ 280 011c CCD1     		bne	.L12
+  69:My_Top/Motor_Control/my_tim.cpp ****             {
+  70:My_Top/Motor_Control/my_tim.cpp ****                 // start_time = HAL_System::get_tick_us(); //记录开始时间
+  71:My_Top/Motor_Control/my_tim.cpp ****                 m->Location_Loop();//耗时4us*4 = 16us
+ 281              		.loc 1 71 17 is_stmt 1 view .LVU81
+ 282              		.loc 1 71 33 is_stmt 0 view .LVU82
+ 283 011e 2846     		mov	r0, r5
+ 284 0120 FFF7FEFF 		bl	_ZN8DC_Motor13Location_LoopEv
+ 285              	.LVL18:
+ 286 0124 C8E7     		b	.L12
+ 287              	.LVL19:
+ 288              	.L22:
+ 289              		.loc 1 71 33 view .LVU83
+ 290              	.LBE4:
+ 291              	.LBE2:
+  72:My_Top/Motor_Control/my_tim.cpp ****                 // end_time = HAL_System::get_tick_us(); // 记录结束时间
+  73:My_Top/Motor_Control/my_tim.cpp ****                 // m->laji = (float)(end_time - start_time);  // 计算时间差
+  74:My_Top/Motor_Control/my_tim.cpp ****             }
+  75:My_Top/Motor_Control/my_tim.cpp ****             break;
+  76:My_Top/Motor_Control/my_tim.cpp **** 
+  77:My_Top/Motor_Control/my_tim.cpp ****         case EncoderCalibration: //编码器校准模式
+  78:My_Top/Motor_Control/my_tim.cpp ****             break;
+  79:My_Top/Motor_Control/my_tim.cpp ****         }
+  80:My_Top/Motor_Control/my_tim.cpp ****     }
+ARM GAS  /tmp/cc0hmtKz.s 			page 8
+
+
+  81:My_Top/Motor_Control/my_tim.cpp **** 
+  82:My_Top/Motor_Control/my_tim.cpp ****     count = (count % 16000) + 1;
+ 292              		.loc 1 82 5 is_stmt 1 view .LVU84
+ 293              		.loc 1 82 20 is_stmt 0 view .LVU85
+ 294 0126 0949     		ldr	r1, .L24+4
+ 295 0128 4B88     		ldrh	r3, [r1, #2]
+ 296 012a 0A4A     		ldr	r2, .L24+12
+ 297 012c A2FB0302 		umull	r0, r2, r2, r3
+ 298 0130 920A     		lsrs	r2, r2, #10
+ 299 0132 4FF47A50 		mov	r0, #16000
+ 300 0136 00FB1233 		mls	r3, r0, r2, r3
+ 301 013a 9BB2     		uxth	r3, r3
+ 302              		.loc 1 82 29 view .LVU86
+ 303 013c 0133     		adds	r3, r3, #1
+ 304              		.loc 1 82 11 view .LVU87
+ 305 013e 4B80     		strh	r3, [r1, #2]	@ movhi
+  83:My_Top/Motor_Control/my_tim.cpp **** }
+ 306              		.loc 1 83 1 view .LVU88
+ 307 0140 05B0     		add	sp, sp, #20
+ 308              		.cfi_def_cfa_offset 12
+ 309              		@ sp needed
+ 310 0142 30BD     		pop	{r4, r5, pc}
+ 311              	.LVL20:
+ 312              	.L18:
+ 313              		.cfi_def_cfa_offset 0
+ 314              		.cfi_restore 4
+ 315              		.cfi_restore 5
+ 316              		.cfi_restore 14
+ 317              		.loc 1 83 1 view .LVU89
+ 318 0144 7047     		bx	lr
+ 319              	.L25:
+ 320 0146 00BF     		.align	2
+ 321              	.L24:
+ 322 0148 00000000 		.word	.LANCHOR1
+ 323 014c 00000000 		.word	.LANCHOR0
+ 324 0150 CDCCCCCC 		.word	-858993459
+ 325 0154 D34D6210 		.word	274877907
+ 326              		.cfi_endproc
+ 327              	.LFE1348:
+ 329              		.align	1
+ 330              		.global	_Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef
+ 331              		.syntax unified
+ 332              		.thumb
+ 333              		.thumb_func
+ 335              	_Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef:
+ 336              	.LVL21:
+ 337              	.LFB1349:
+  84:My_Top/Motor_Control/my_tim.cpp **** 
+  85:My_Top/Motor_Control/my_tim.cpp **** 
+  86:My_Top/Motor_Control/my_tim.cpp **** 
+  87:My_Top/Motor_Control/my_tim.cpp **** 
+  88:My_Top/Motor_Control/my_tim.cpp **** 
+  89:My_Top/Motor_Control/my_tim.cpp **** 
+  90:My_Top/Motor_Control/my_tim.cpp **** 
+  91:My_Top/Motor_Control/my_tim.cpp **** 
+  92:My_Top/Motor_Control/my_tim.cpp **** /*
+  93:My_Top/Motor_Control/my_tim.cpp **** void laji()
+ARM GAS  /tmp/cc0hmtKz.s 			page 9
+
+
+  94:My_Top/Motor_Control/my_tim.cpp **** {
+  95:My_Top/Motor_Control/my_tim.cpp ****     static uint32_t last_time = 0;
+  96:My_Top/Motor_Control/my_tim.cpp ****     uint32_t now_time = 0;
+  97:My_Top/Motor_Control/my_tim.cpp ****     now_time =  HAL_System::get_tick_us();
+  98:My_Top/Motor_Control/my_tim.cpp ****     if (last_time != 0) {
+  99:My_Top/Motor_Control/my_tim.cpp ****          M1.laji = (int32_t)(now_time - last_time);  // 单次中断间隔，单位us
+ 100:My_Top/Motor_Control/my_tim.cpp ****     }
+ 101:My_Top/Motor_Control/my_tim.cpp ****     last_time = now_time;
+ 102:My_Top/Motor_Control/my_tim.cpp **** }
+ 103:My_Top/Motor_Control/my_tim.cpp **** */
+ 104:My_Top/Motor_Control/my_tim.cpp **** 
+ 105:My_Top/Motor_Control/my_tim.cpp **** /**
+ 106:My_Top/Motor_Control/my_tim.cpp ****  * @brief 初始化定时器并设置回调函数
+ 107:My_Top/Motor_Control/my_tim.cpp ****  * @param htim 定时器句柄指针，指向定时器配置结构体
+ 108:My_Top/Motor_Control/my_tim.cpp ****  */
+ 109:My_Top/Motor_Control/my_tim.cpp **** 
+ 110:My_Top/Motor_Control/my_tim.cpp **** void My_Tim_Init(TIM_HandleTypeDef* htim,ADC_HandleTypeDef *hadc)
+ 111:My_Top/Motor_Control/my_tim.cpp **** {
+ 338              		.loc 1 111 1 is_stmt 1 view -0
+ 339              		.cfi_startproc
+ 340              		@ args = 0, pretend = 0, frame = 0
+ 341              		@ frame_needed = 0, uses_anonymous_args = 0
+ 342              		.loc 1 111 1 is_stmt 0 view .LVU91
+ 343 0158 10B5     		push	{r4, lr}
+ 344              		.cfi_def_cfa_offset 8
+ 345              		.cfi_offset 4, -8
+ 346              		.cfi_offset 14, -4
+ 347 015a 0446     		mov	r4, r0
+ 112:My_Top/Motor_Control/my_tim.cpp ****     uint16_t duty = __HAL_TIM_GET_AUTORELOAD(htim)*0.5f;// 获取定时器ARR寄存器的值
+ 348              		.loc 1 112 5 is_stmt 1 view .LVU92
+ 349              		.loc 1 112 21 is_stmt 0 view .LVU93
+ 350 015c 0268     		ldr	r2, [r0]
+ 351 015e D2ED0B7A 		vldr.32	s15, [r2, #44]	@ int
+ 352              		.loc 1 112 51 view .LVU94
+ 353 0162 F8EE677A 		vcvt.f32.u32	s15, s15
+ 354 0166 B6EE007A 		vmov.f32	s14, #5.0e-1
+ 355 016a 67EE877A 		vmul.f32	s15, s15, s14
+ 356              		.loc 1 112 52 view .LVU95
+ 357 016e FCEEE77A 		vcvt.u32.f32	s15, s15
+ 358 0172 17EE903A 		vmov	r3, s15	@ int
+ 359 0176 9BB2     		uxth	r3, r3
+ 360              	.LVL22:
+ 113:My_Top/Motor_Control/my_tim.cpp ****     
+ 114:My_Top/Motor_Control/my_tim.cpp ****     __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, duty); // 设置占空比为50% 控制My_Tim_OC_Call
+ 361              		.loc 1 114 5 is_stmt 1 view .LVU96
+ 362 0178 5363     		str	r3, [r2, #52]
+ 115:My_Top/Motor_Control/my_tim.cpp ****     HAL_TIM_Base_Start_IT(htim); //启动定时器周期中断
+ 363              		.loc 1 115 5 view .LVU97
+ 364              		.loc 1 115 26 is_stmt 0 view .LVU98
+ 365 017a FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 366              	.LVL23:
+ 116:My_Top/Motor_Control/my_tim.cpp ****     HAL_TIM_OC_Start_IT(htim, TIM_CHANNEL_1); //启动定时器比较中断
+ 367              		.loc 1 116 5 is_stmt 1 view .LVU99
+ 368              		.loc 1 116 24 is_stmt 0 view .LVU100
+ 369 017e 0021     		movs	r1, #0
+ 370 0180 2046     		mov	r0, r4
+ 371 0182 FFF7FEFF 		bl	HAL_TIM_OC_Start_IT
+ARM GAS  /tmp/cc0hmtKz.s 			page 10
+
+
+ 372              	.LVL24:
+ 117:My_Top/Motor_Control/my_tim.cpp ****     htim->PeriodElapsedCallback = My_Tim_Callback;  // 设置定时器周期结束回调函数
+ 373              		.loc 1 117 5 is_stmt 1 view .LVU101
+ 374              		.loc 1 117 33 is_stmt 0 view .LVU102
+ 375 0186 034B     		ldr	r3, .L28
+ 376 0188 C4F88430 		str	r3, [r4, #132]
+ 118:My_Top/Motor_Control/my_tim.cpp ****     htim->PWM_PulseFinishedCallback = My_Tim_OC_Callback;// PWM的模式的比较匹配回调函数
+ 377              		.loc 1 118 5 is_stmt 1 view .LVU103
+ 378              		.loc 1 118 37 is_stmt 0 view .LVU104
+ 379 018c 024B     		ldr	r3, .L28+4
+ 380 018e C4F8A030 		str	r3, [r4, #160]
+ 119:My_Top/Motor_Control/my_tim.cpp **** }
+ 381              		.loc 1 119 1 view .LVU105
+ 382 0192 10BD     		pop	{r4, pc}
+ 383              	.LVL25:
+ 384              	.L29:
+ 385              		.loc 1 119 1 view .LVU106
+ 386              		.align	2
+ 387              	.L28:
+ 388 0194 00000000 		.word	_Z15My_Tim_CallbackP19__TIM_HandleTypeDef
+ 389 0198 00000000 		.word	_Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef
+ 390              		.cfi_endproc
+ 391              	.LFE1349:
+ 393              		.section	.rodata
+ 394              		.align	2
+ 395              		.set	.LANCHOR1,. + 0
+ 396              	.LC0:
+ 397 0000 00000000 		.word	M1
+ 398 0004 00000000 		.word	M2
+ 399 0008 00000000 		.word	M3
+ 400 000c 00000000 		.word	M4
+ 401              		.bss
+ 402              		.align	1
+ 403              		.set	.LANCHOR0,. + 0
+ 406              	_ZZ18My_Tim_OC_CallbackP19__TIM_HandleTypeDefE5count:
+ 407 0000 0000     		.space	2
+ 410              	_ZZ15My_Tim_CallbackP19__TIM_HandleTypeDefE5count:
+ 411 0002 0000     		.space	2
+ 412              		.text
+ 413              	.Letext0:
+ 414              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 415              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 416              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 417              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 418              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 419              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 420              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h"
+ 421              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 422              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 423              		.file 11 "My_Top/System/bsp.hpp"
+ 424              		.file 12 "Lib/compute/pid/pid.hpp"
+ 425              		.file 13 "Lib/compute/pid/pid_Increment.hpp"
+ 426              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 427              		.file 15 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 428              		.file 16 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 429              		.file 17 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 430              		.file 18 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ARM GAS  /tmp/cc0hmtKz.s 			page 11
+
+
+ 431              		.file 19 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 432              		.file 20 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 433              		.file 21 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 434              		.file 22 "Lib/compute/ex_math.hpp"
+ 435              		.file 23 "Lib/compute/pid/pll.hpp"
+ 436              		.file 24 "My_Top/System/kth_read.hpp"
+ 437              		.file 25 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ 438              		.file 26 "Core/Inc/adc.h"
+ARM GAS  /tmp/cc0hmtKz.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 my_tim.cpp
-     /tmp/ccoslhU4.s:20     .text:00000000 $t
-     /tmp/ccoslhU4.s:26     .text:00000000 _Z15My_Tim_CallbackP19__TIM_HandleTypeDef
-     /tmp/ccoslhU4.s:106    .text:00000054 $d
-     /tmp/ccoslhU4.s:115    .text:0000006c $t
-     /tmp/ccoslhU4.s:121    .text:0000006c _Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef
-     /tmp/ccoslhU4.s:172    .text:00000098 $d
-     /tmp/ccoslhU4.s:178    .text:000000a4 $t
-     /tmp/ccoslhU4.s:184    .text:000000a4 _Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef
-     /tmp/ccoslhU4.s:237    .text:000000e0 $d
-     /tmp/ccoslhU4.s:253    .bss:00000004 ADC_Value
-     /tmp/ccoslhU4.s:244    .bss:00000000 $d
-     /tmp/ccoslhU4.s:248    .bss:00000000 _ZZ15My_Tim_CallbackP19__TIM_HandleTypeDefE5count
-     /tmp/ccoslhU4.s:257    .bss:00000024 _ZZ18My_Tim_OC_CallbackP19__TIM_HandleTypeDefE5count
+     /tmp/cc0hmtKz.s:20     .text:00000000 $t
+     /tmp/cc0hmtKz.s:26     .text:00000000 _Z18My_Tim_OC_CallbackP19__TIM_HandleTypeDef
+     /tmp/cc0hmtKz.s:126    .text:00000068 $d
+     /tmp/cc0hmtKz.s:137    .text:00000088 $t
+     /tmp/cc0hmtKz.s:143    .text:00000088 _Z15My_Tim_CallbackP19__TIM_HandleTypeDef
+     /tmp/cc0hmtKz.s:322    .text:00000148 $d
+     /tmp/cc0hmtKz.s:329    .text:00000158 $t
+     /tmp/cc0hmtKz.s:335    .text:00000158 _Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef
+     /tmp/cc0hmtKz.s:388    .text:00000194 $d
+     /tmp/cc0hmtKz.s:394    .rodata:00000000 $d
+     /tmp/cc0hmtKz.s:402    .bss:00000000 $d
+     /tmp/cc0hmtKz.s:406    .bss:00000000 _ZZ18My_Tim_OC_CallbackP19__TIM_HandleTypeDefE5count
+     /tmp/cc0hmtKz.s:410    .bss:00000002 _ZZ15My_Tim_CallbackP19__TIM_HandleTypeDefE5count
 
 UNDEFINED SYMBOLS
 HAL_ADC_Start_DMA
+_ZN8DC_Motor15Thermistor_TempEv
 M1
+M2
+M3
+M4
+_ZN8DC_Motor9ADC_ValueE
 hadc2
-_ZN8DC_Motor19Set_Motor_FrequencyEv
+_ZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEv
+_ZN8DC_Motor18Set_Motor_Glo_DutyEv
+_ZN8DC_Motor10Speed_LoopEv
+_ZN8DC_Motor13Location_LoopEv
 HAL_TIM_Base_Start_IT
 HAL_TIM_OC_Start_IT

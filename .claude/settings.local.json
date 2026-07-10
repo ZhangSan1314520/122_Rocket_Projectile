@@ -10,7 +10,8 @@
       "Bash(pip3 install *)",
       "Bash(pip install *)",
       "Bash(sudo apt install -y poppler-utils)",
-      "Bash(make -j2 DEBUG=1 -f STM32Make.make)"
+      "Bash(make -j2 DEBUG=1 -f STM32Make.make)",
+      "Bash(xxd)"
     ]
   }
 }

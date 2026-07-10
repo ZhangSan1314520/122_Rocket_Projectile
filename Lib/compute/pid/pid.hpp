@@ -1,76 +1,70 @@
 #pragma once
 
-typedef struct
-{
-    float P;
-    float I;
-    float D;
-    float error;
-    float nudge;
-    float output;
-} PID_Info;
-
-typedef struct
-{
-    float kp;
-    float ki;
-    float kd;
-    float dt;
-    float max;
-    float min;
-    float i_max;
-} PID_Param;
+#define PID_DtHZ (1.0f/16000.0f)
 
 class PID
 {
 public:
-    PID(void);
-    PID(float kp, float ki, float kd, float dt, float max, float min, float i_max);
 
-    void operator()(float kp, float ki, float kd, float dt, float max, float min, float i_max);
+// 构造函数，带默认参数，方便使用
+    PID(float kp = 0.0f, float ki = 0.0f, float kd = 0.0f, float dt = PID_DtHZ, float i_max = 0.66*1,
+        float max = 1.0f, float min = -1.0f)
+        : _kp(kp), _ki(ki), _kd(kd), _dt(dt), _i_max(i_max),_max(max), _min(min),
+          _error(0.0f), _prev_error(0.0f), P_OUT(0.0f), I_OUT(0.0f), D_OUT(0.0f),
+          _output(0.0f), max_out_flag(false) {}
 
-    float update(float error, float nudge = 0.0f);
-    void reset(void);
+    float _kp; // 比例增益
+    float _ki; // 积分增益
+    float _kd; // 微分增益
+    float _dt; // 采样时间
+    float _i_max; //
 
-    void set_kp(float kp) { _kp = kp; }
-    void set_ki(float ki) { _ki = ki; }
-    void set_kd(float kd) { _kd = kd; }
-    void set_dt(float dt) { _dt = dt; }
-    void set_max(float max) { _max = max; }
-    void set_min(float min) { _min = min; }
-    void set_i_max(float i_max) { _i_max = i_max; }
+    float _max; // 输出上限
+    float _min; // 输出下限
+    float _error; // 当前误差
+    float _prev_error; // 上一次误差
 
-    float get_kp(void) { return _kp; }
-    float get_ki(void) { return _ki; }
-    float get_kd(void) { return _kd; }
-    float get_dt(void) { return _dt; }
-    float get_max(void) { return _max; }
-    float get_min(void) { return _min; }
-    float get_i_max(void) { return _i_max; }
 
-    float *get_kp_ptr(void) { return &_kp; }
-    float *get_ki_ptr(void) { return &_ki; }
-    float *get_kd_ptr(void) { return &_kd; }
-    float *get_dt_ptr(void) { return &_dt; }
-    float *get_max_ptr(void) { return &_max; }
-    float *get_min_ptr(void) { return &_min; }
-    float *get_i_max_ptr(void) { return &_i_max; }
+    float update(float error)
+    {
+        _error = error;
 
-    float get_P(void) { return _P; }
-    float get_I(void) { return _I; }
-    float get_D(void) { return _D; }
-    float get_error(void) { return _error; }
-    float get_nudge(void) { return _nudge; }
-    float get_output(void) { return _output; }
+        P_OUT = _kp * _error; 
 
-    PID_Info get_pid_info(void) { return {_P, _I, _D, _error, _nudge, _output}; }
-    PID_Param get_pid_param(void) { return {_kp, _ki, _kd, _dt, _max, _min, _i_max}; }
+        I_OUT += _ki * _error*_dt;
+        if (I_OUT>=_i_max) I_OUT = _i_max;
+        if (I_OUT<=-_i_max) I_OUT = -_i_max;
+
+        D_OUT = _kd * (_error - _prev_error)/_dt;
+        // Calculate output
+        _output = P_OUT + I_OUT + D_OUT; //???
+
+        // Clamp output
+        if (_output > _max)
+        {
+            _output = _max;
+            // max_out_flag = true; // 设置输出上限标志位 
+        }else if (_output < _min)
+        {
+            _output = _min;
+            // max_out_flag = true; // 设置输出上限标志位
+        }
+        _prev_error = _error;
+
+        return _output;
+    }
+
+    void reset()
+    {
+        P_OUT = I_OUT = D_OUT = _output = _error =_prev_error = 0;
+    }
+
 
 private:
-    float _kp, _ki, _kd, _dt, _max, _min, _i_max;
-    float _prev_error = 0;
-    float _P, _I, _D, _error, _nudge, _output;
+    float P_OUT;
+    float I_OUT;
+    float D_OUT;
+    float _output; // PID输出
+    bool max_out_flag; // 输出上限标志位
 
-    void _update_I(float error);
-    void _reset_I(void);
 };

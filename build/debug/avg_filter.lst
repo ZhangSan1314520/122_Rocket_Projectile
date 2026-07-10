@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccbLbaRg.s 			page 1
+ARM GAS  /tmp/cc62yMRv.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -28,393 +28,435 @@ ARM GAS  /tmp/ccbLbaRg.s 			page 1
   26              	_ZN9AvgFilter4initEh:
   27              	.LVL0:
   28              	.LFB982:
-   1:Lib/compute/filter/avg_filter.cpp **** #include "ex_math.hpp"
-   2:Lib/compute/filter/avg_filter.cpp **** 
-   3:Lib/compute/filter/avg_filter.cpp **** #include "FreeRTOS.h"
-   4:Lib/compute/filter/avg_filter.cpp **** 
-   5:Lib/compute/filter/avg_filter.cpp **** bool AvgFilter::init(uint8_t win_size)
-   6:Lib/compute/filter/avg_filter.cpp **** {
-  29              		.loc 1 6 1 view -0
+   1:Lib/compute/filter/avg_filter.cpp **** #include "ex_math.hpp"   // 包含自定义数学工具头文件（可能包含一些辅助宏或�
+   2:Lib/compute/filter/avg_filter.cpp **** #include "FreeRTOS.h"    // 包含 FreeRTOS 内核头文件，用于使用 pvPortMalloc 动态内�
+   3:Lib/compute/filter/avg_filter.cpp **** #include "string.h"
+   4:Lib/compute/filter/avg_filter.cpp **** // ============================================================
+   5:Lib/compute/filter/avg_filter.cpp **** // 类名: AvgFilter
+   6:Lib/compute/filter/avg_filter.cpp **** // 功能: 实现滑动窗口平均滤波，窗口满后自动去掉一个最大值和一个最小�
+   7:Lib/compute/filter/avg_filter.cpp **** //       再对剩余数据求平均，以消除异常值干扰。
+   8:Lib/compute/filter/avg_filter.cpp **** //       内部使用 FreeRTOS 的 pvPortMalloc 动态申请环形缓冲区。
+   9:Lib/compute/filter/avg_filter.cpp **** // ============================================================
+  10:Lib/compute/filter/avg_filter.cpp **** 
+  11:Lib/compute/filter/avg_filter.cpp **** // 初始化滤波器
+  12:Lib/compute/filter/avg_filter.cpp **** // 参数 win_size : 滑动窗口大小（至少为2，因为需要去掉最大最小值后至少�
+  13:Lib/compute/filter/avg_filter.cpp **** // 返回值: true 表示初始化成功，false 表示失败（窗口太小或内存分配失败�
+  14:Lib/compute/filter/avg_filter.cpp **** bool AvgFilter::init(uint8_t win_size)
+  15:Lib/compute/filter/avg_filter.cpp **** {
+  29              		.loc 1 15 1 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
-   7:Lib/compute/filter/avg_filter.cpp ****     if (win_size < 2)
-  33              		.loc 1 7 5 view .LVU1
+  16:Lib/compute/filter/avg_filter.cpp ****     // 窗口太小（<2）无法进行去极值平均，返回失败
+  17:Lib/compute/filter/avg_filter.cpp ****     if (win_size < 2)
+  33              		.loc 1 17 5 view .LVU1
   34 0000 0129     		cmp	r1, #1
-  35 0002 0ED9     		bls	.L3
-   6:Lib/compute/filter/avg_filter.cpp ****     if (win_size < 2)
-  36              		.loc 1 6 1 is_stmt 0 view .LVU2
+  35 0002 13D9     		bls	.L3
+  15:Lib/compute/filter/avg_filter.cpp ****     // 窗口太小（<2）无法进行去极值平均，返回失败
+  36              		.loc 1 15 1 is_stmt 0 view .LVU2
   37 0004 10B5     		push	{r4, lr}
   38              		.cfi_def_cfa_offset 8
   39              		.cfi_offset 4, -8
   40              		.cfi_offset 14, -4
+ARM GAS  /tmp/cc62yMRv.s 			page 2
+
+
   41 0006 0446     		mov	r4, r0
-   8:Lib/compute/filter/avg_filter.cpp ****         return false;
-   9:Lib/compute/filter/avg_filter.cpp **** 
-  10:Lib/compute/filter/avg_filter.cpp ****     _sum = 0.f;
-  42              		.loc 1 10 5 is_stmt 1 view .LVU3
-  43              		.loc 1 10 10 is_stmt 0 view .LVU4
+  18:Lib/compute/filter/avg_filter.cpp ****         return false;
+  19:Lib/compute/filter/avg_filter.cpp **** 
+  20:Lib/compute/filter/avg_filter.cpp ****     _sum = 0.f;          // 清空窗口内数据总和
+  42              		.loc 1 20 5 is_stmt 1 view .LVU3
+  43              		.loc 1 20 10 is_stmt 0 view .LVU4
   44 0008 0023     		movs	r3, #0
   45 000a C360     		str	r3, [r0, #12]	@ float
-  11:Lib/compute/filter/avg_filter.cpp ****     _size = win_size;
-  46              		.loc 1 11 5 is_stmt 1 view .LVU5
-ARM GAS  /tmp/ccbLbaRg.s 			page 2
-
-
-  47              		.loc 1 11 11 is_stmt 0 view .LVU6
+  21:Lib/compute/filter/avg_filter.cpp ****     _size = win_size;    // 记录窗口大小
+  46              		.loc 1 21 5 is_stmt 1 view .LVU5
+  47              		.loc 1 21 11 is_stmt 0 view .LVU6
   48 000c 0170     		strb	r1, [r0]
-  12:Lib/compute/filter/avg_filter.cpp ****     _index = 0;
-  49              		.loc 1 12 5 is_stmt 1 view .LVU7
-  50              		.loc 1 12 12 is_stmt 0 view .LVU8
+  22:Lib/compute/filter/avg_filter.cpp ****     _index = 0;          // 环形缓冲区当前写入位置索引
+  49              		.loc 1 22 5 is_stmt 1 view .LVU7
+  50              		.loc 1 22 12 is_stmt 0 view .LVU8
   51 000e 0023     		movs	r3, #0
   52 0010 0372     		strb	r3, [r0, #8]
-  13:Lib/compute/filter/avg_filter.cpp ****     _count = 0;
-  53              		.loc 1 13 5 is_stmt 1 view .LVU9
-  54              		.loc 1 13 12 is_stmt 0 view .LVU10
+  23:Lib/compute/filter/avg_filter.cpp ****     _count = 0;          // 当前已存储的数据个数（未满时 < _size）
+  53              		.loc 1 23 5 is_stmt 1 view .LVU9
+  54              		.loc 1 23 12 is_stmt 0 view .LVU10
   55 0012 4372     		strb	r3, [r0, #9]
-  14:Lib/compute/filter/avg_filter.cpp **** 
-  15:Lib/compute/filter/avg_filter.cpp ****     pData = (float *)pvPortMalloc(sizeof(float) * _size);
-  56              		.loc 1 15 5 is_stmt 1 view .LVU11
-  57              		.loc 1 15 34 is_stmt 0 view .LVU12
+  24:Lib/compute/filter/avg_filter.cpp **** 
+  25:Lib/compute/filter/avg_filter.cpp ****     // 使用 FreeRTOS 的动态内存分配函数申请 float 类型的环形缓冲区
+  26:Lib/compute/filter/avg_filter.cpp ****     pData = (float *)pvPortMalloc(sizeof(float) * _size);
+  56              		.loc 1 26 5 is_stmt 1 view .LVU11
+  57              		.loc 1 26 34 is_stmt 0 view .LVU12
   58 0014 8800     		lsls	r0, r1, #2
   59              	.LVL1:
-  60              		.loc 1 15 34 view .LVU13
+  60              		.loc 1 26 34 view .LVU13
   61 0016 FFF7FEFF 		bl	pvPortMalloc
   62              	.LVL2:
-  63              		.loc 1 15 11 discriminator 1 view .LVU14
+  63              		.loc 1 26 11 discriminator 1 view .LVU14
   64 001a 6060     		str	r0, [r4, #4]
-  16:Lib/compute/filter/avg_filter.cpp ****     if (pData == NULL)
-  65              		.loc 1 16 5 is_stmt 1 view .LVU15
-  66 001c 18B1     		cbz	r0, .L4
-  17:Lib/compute/filter/avg_filter.cpp ****         return false;
+  27:Lib/compute/filter/avg_filter.cpp ****     if (pData == NULL)   // 内存分配失败
+  65              		.loc 1 27 5 is_stmt 1 view .LVU15
+  66 001c 40B1     		cbz	r0, .L4
+  28:Lib/compute/filter/avg_filter.cpp ****         return false;
+  29:Lib/compute/filter/avg_filter.cpp ****     memset(pData, 0, sizeof(float) * _size);// 清空缓冲区内容 防止随机值
+  67              		.loc 1 29 5 view .LVU16
+  68              		.loc 1 29 38 is_stmt 0 view .LVU17
+  69 001e 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+  70              		.loc 1 29 11 view .LVU18
+  71 0020 9200     		lsls	r2, r2, #2
+  72 0022 0021     		movs	r1, #0
+  73 0024 FFF7FEFF 		bl	memset
+  74              	.LVL3:
+  30:Lib/compute/filter/avg_filter.cpp ****     return true;         // 初始化成功
+  75              		.loc 1 30 5 is_stmt 1 view .LVU19
+  76              		.loc 1 30 12 is_stmt 0 view .LVU20
+  77 0028 0120     		movs	r0, #1
+  78              	.L2:
+  31:Lib/compute/filter/avg_filter.cpp **** }
+  79              		.loc 1 31 1 view .LVU21
+  80 002a 10BD     		pop	{r4, pc}
+  81              	.LVL4:
+  82              	.L3:
+  83              		.cfi_def_cfa_offset 0
+ARM GAS  /tmp/cc62yMRv.s 			page 3
+
+
+  84              		.cfi_restore 4
+  85              		.cfi_restore 14
   18:Lib/compute/filter/avg_filter.cpp **** 
-  19:Lib/compute/filter/avg_filter.cpp ****     return true;
-  67              		.loc 1 19 12 is_stmt 0 view .LVU16
-  68 001e 0120     		movs	r0, #1
-  69              	.L2:
-  20:Lib/compute/filter/avg_filter.cpp **** }
-  70              		.loc 1 20 1 view .LVU17
-  71 0020 10BD     		pop	{r4, pc}
-  72              	.LVL3:
-  73              	.L3:
-  74              		.cfi_def_cfa_offset 0
-  75              		.cfi_restore 4
-  76              		.cfi_restore 14
-   8:Lib/compute/filter/avg_filter.cpp **** 
-  77              		.loc 1 8 16 view .LVU18
-  78 0022 0020     		movs	r0, #0
-  79              	.LVL4:
-  80              		.loc 1 20 1 view .LVU19
-  81 0024 7047     		bx	lr
-  82              	.LVL5:
-  83              	.L4:
-  84              		.cfi_def_cfa_offset 8
-  85              		.cfi_offset 4, -8
-  86              		.cfi_offset 14, -4
-  17:Lib/compute/filter/avg_filter.cpp ****         return false;
-  87              		.loc 1 17 16 view .LVU20
-  88 0026 0020     		movs	r0, #0
-  89 0028 FAE7     		b	.L2
-  90              		.cfi_endproc
-  91              	.LFE982:
-  93              		.align	1
-ARM GAS  /tmp/ccbLbaRg.s 			page 3
+  86              		.loc 1 18 16 view .LVU22
+  87 002c 0020     		movs	r0, #0
+  88              	.LVL5:
+  89              		.loc 1 31 1 view .LVU23
+  90 002e 7047     		bx	lr
+  91              	.LVL6:
+  92              	.L4:
+  93              		.cfi_def_cfa_offset 8
+  94              		.cfi_offset 4, -8
+  95              		.cfi_offset 14, -4
+  28:Lib/compute/filter/avg_filter.cpp ****     memset(pData, 0, sizeof(float) * _size);// 清空缓冲区内容 防止随机值
+  96              		.loc 1 28 16 view .LVU24
+  97 0030 0020     		movs	r0, #0
+  98 0032 FAE7     		b	.L2
+  99              		.cfi_endproc
+ 100              	.LFE982:
+ 102              		.align	1
+ 103              		.global	_ZN9AvgFilter6filterEf
+ 104              		.syntax unified
+ 105              		.thumb
+ 106              		.thumb_func
+ 108              	_ZN9AvgFilter6filterEf:
+ 109              	.LVL7:
+ 110              	.LFB983:
+  32:Lib/compute/filter/avg_filter.cpp **** 
+  33:Lib/compute/filter/avg_filter.cpp **** // 滤波核心函数：向滤波器输入一个新值，返回滤波后的结果
+  34:Lib/compute/filter/avg_filter.cpp **** // 参数 value : 新采样的原始数据
+  35:Lib/compute/filter/avg_filter.cpp **** // 返回值     : 滤波后的平均值
+  36:Lib/compute/filter/avg_filter.cpp **** float AvgFilter::filter(float value)
+  37:Lib/compute/filter/avg_filter.cpp **** {
+ 111              		.loc 1 37 1 is_stmt 1 view -0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115              		@ link register save eliminated.
+  38:Lib/compute/filter/avg_filter.cpp ****     // 1. 更新数据计数（未满时增加，满了后保持为 _size）
+  39:Lib/compute/filter/avg_filter.cpp ****     _count = _count < _size ? _count + 1 : _size;
+ 116              		.loc 1 39 5 view .LVU26
+ 117              		.loc 1 39 14 is_stmt 0 view .LVU27
+ 118 0034 427A     		ldrb	r2, [r0, #9]	@ zero_extendqisi2
+ 119              		.loc 1 39 23 view .LVU28
+ 120 0036 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 121              		.loc 1 39 12 view .LVU29
+ 122 0038 9A42     		cmp	r2, r3
+ 123 003a 01D2     		bcs	.L10
+ 124              		.loc 1 39 12 discriminator 1 view .LVU30
+ 125 003c 0132     		adds	r2, r2, #1
+ 126 003e D3B2     		uxtb	r3, r2
+ 127              	.L10:
+ 128              		.loc 1 39 12 discriminator 4 view .LVU31
+ 129 0040 4372     		strb	r3, [r0, #9]
+  40:Lib/compute/filter/avg_filter.cpp **** 
+  41:Lib/compute/filter/avg_filter.cpp ****     // 2. 更新总和：减去即将被覆盖的旧值，加上新值
+  42:Lib/compute/filter/avg_filter.cpp ****     _sum = _sum - pData[_index] + value; //将被覆盖的最老数据从总和中剔除。
+ARM GAS  /tmp/cc62yMRv.s 			page 4
 
 
-  94              		.global	_ZN9AvgFilter6filterEf
-  95              		.syntax unified
-  96              		.thumb
-  97              		.thumb_func
-  99              	_ZN9AvgFilter6filterEf:
- 100              	.LVL6:
- 101              	.LFB983:
-  21:Lib/compute/filter/avg_filter.cpp **** 
-  22:Lib/compute/filter/avg_filter.cpp **** float AvgFilter::filter(float value)
-  23:Lib/compute/filter/avg_filter.cpp **** {
- 102              		.loc 1 23 1 is_stmt 1 view -0
- 103              		.cfi_startproc
- 104              		@ args = 0, pretend = 0, frame = 0
- 105              		@ frame_needed = 0, uses_anonymous_args = 0
- 106              		@ link register save eliminated.
-  24:Lib/compute/filter/avg_filter.cpp ****     _count = _count < _size ? _count + 1 : _size;
- 107              		.loc 1 24 5 view .LVU22
- 108              		.loc 1 24 14 is_stmt 0 view .LVU23
- 109 002a 427A     		ldrb	r2, [r0, #9]	@ zero_extendqisi2
- 110              		.loc 1 24 23 view .LVU24
- 111 002c 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
- 112              		.loc 1 24 12 view .LVU25
- 113 002e 9A42     		cmp	r2, r3
- 114 0030 01D2     		bcs	.L10
- 115              		.loc 1 24 12 discriminator 1 view .LVU26
- 116 0032 0132     		adds	r2, r2, #1
- 117 0034 D3B2     		uxtb	r3, r2
- 118              	.L10:
- 119              		.loc 1 24 12 discriminator 4 view .LVU27
- 120 0036 4372     		strb	r3, [r0, #9]
-  25:Lib/compute/filter/avg_filter.cpp ****     _sum = _sum - pData[_index] + value;
- 121              		.loc 1 25 5 is_stmt 1 view .LVU28
- 122              		.loc 1 25 12 is_stmt 0 view .LVU29
- 123 0038 D0ED037A 		vldr.32	s15, [r0, #12]
- 124              		.loc 1 25 19 view .LVU30
- 125 003c 4368     		ldr	r3, [r0, #4]
- 126              		.loc 1 25 25 view .LVU31
- 127 003e 027A     		ldrb	r2, [r0, #8]	@ zero_extendqisi2
- 128              		.loc 1 25 31 view .LVU32
- 129 0040 03EB8203 		add	r3, r3, r2, lsl #2
- 130 0044 93ED007A 		vldr.32	s14, [r3]
- 131              		.loc 1 25 17 view .LVU33
- 132 0048 77EEC77A 		vsub.f32	s15, s15, s14
- 133              		.loc 1 25 33 view .LVU34
- 134 004c 77EE807A 		vadd.f32	s15, s15, s0
- 135              		.loc 1 25 10 view .LVU35
- 136 0050 C0ED037A 		vstr.32	s15, [r0, #12]
-  26:Lib/compute/filter/avg_filter.cpp **** 
-  27:Lib/compute/filter/avg_filter.cpp ****     pData[_index] = value;
- 137              		.loc 1 27 5 is_stmt 1 view .LVU36
- 138              		.loc 1 27 19 is_stmt 0 view .LVU37
- 139 0054 83ED000A 		vstr.32	s0, [r3]
-  28:Lib/compute/filter/avg_filter.cpp ****     _index = (_index + 1) % _size;
- 140              		.loc 1 28 5 is_stmt 1 view .LVU38
- 141              		.loc 1 28 15 is_stmt 0 view .LVU39
- 142 0058 037A     		ldrb	r3, [r0, #8]	@ zero_extendqisi2
- 143              		.loc 1 28 22 view .LVU40
-ARM GAS  /tmp/ccbLbaRg.s 			page 4
+ 130              		.loc 1 42 5 is_stmt 1 view .LVU32
+ 131              		.loc 1 42 12 is_stmt 0 view .LVU33
+ 132 0042 D0ED037A 		vldr.32	s15, [r0, #12]
+ 133              		.loc 1 42 19 view .LVU34
+ 134 0046 4368     		ldr	r3, [r0, #4]
+ 135              		.loc 1 42 25 view .LVU35
+ 136 0048 027A     		ldrb	r2, [r0, #8]	@ zero_extendqisi2
+ 137              		.loc 1 42 31 view .LVU36
+ 138 004a 03EB8203 		add	r3, r3, r2, lsl #2
+ 139 004e 93ED007A 		vldr.32	s14, [r3]
+ 140              		.loc 1 42 17 view .LVU37
+ 141 0052 77EEC77A 		vsub.f32	s15, s15, s14
+ 142              		.loc 1 42 33 view .LVU38
+ 143 0056 77EE807A 		vadd.f32	s15, s15, s0
+ 144              		.loc 1 42 10 view .LVU39
+ 145 005a C0ED037A 		vstr.32	s15, [r0, #12]
+  43:Lib/compute/filter/avg_filter.cpp **** 
+  44:Lib/compute/filter/avg_filter.cpp ****     // 3. 将新值存入当前槽位
+  45:Lib/compute/filter/avg_filter.cpp ****     pData[_index] = value; 
+ 146              		.loc 1 45 5 is_stmt 1 view .LVU40
+ 147              		.loc 1 45 19 is_stmt 0 view .LVU41
+ 148 005e 83ED000A 		vstr.32	s0, [r3]
+  46:Lib/compute/filter/avg_filter.cpp **** 
+  47:Lib/compute/filter/avg_filter.cpp ****     // 4. 环形缓冲区指针向前移动，并取模实现循环
+  48:Lib/compute/filter/avg_filter.cpp ****     _index = (_index + 1) % _size;
+ 149              		.loc 1 48 5 is_stmt 1 view .LVU42
+ 150              		.loc 1 48 15 is_stmt 0 view .LVU43
+ 151 0062 037A     		ldrb	r3, [r0, #8]	@ zero_extendqisi2
+ 152              		.loc 1 48 22 view .LVU44
+ 153 0064 0133     		adds	r3, r3, #1
+ 154              		.loc 1 48 29 view .LVU45
+ 155 0066 0178     		ldrb	r1, [r0]	@ zero_extendqisi2
+ 156              		.loc 1 48 27 view .LVU46
+ 157 0068 93FBF1F2 		sdiv	r2, r3, r1
+ 158 006c 01FB1233 		mls	r3, r1, r2, r3
+ 159              		.loc 1 48 12 view .LVU47
+ 160 0070 0372     		strb	r3, [r0, #8]
+  49:Lib/compute/filter/avg_filter.cpp **** 
+  50:Lib/compute/filter/avg_filter.cpp ****     // 5. 初始化极值（用于后续查找最大最小值）
+  51:Lib/compute/filter/avg_filter.cpp ****     _max = _min = value;
+ 161              		.loc 1 51 5 is_stmt 1 view .LVU48
+ 162              		.loc 1 51 17 is_stmt 0 view .LVU49
+ 163 0072 80ED060A 		vstr.32	s0, [r0, #24]
+ 164              		.loc 1 51 10 view .LVU50
+ 165 0076 80ED050A 		vstr.32	s0, [r0, #20]
+  52:Lib/compute/filter/avg_filter.cpp **** 
+  53:Lib/compute/filter/avg_filter.cpp ****     // 6. 判断是否已填满窗口
+  54:Lib/compute/filter/avg_filter.cpp ****     if (_count == _size)
+ 166              		.loc 1 54 5 is_stmt 1 view .LVU51
+ 167              	.LBB2:
+ 168              		.loc 1 54 9 is_stmt 0 view .LVU52
+ 169 007a 437A     		ldrb	r3, [r0, #9]	@ zero_extendqisi2
+ 170              		.loc 1 54 5 view .LVU53
+ 171 007c 9942     		cmp	r1, r3
+ 172 007e 29D0     		beq	.L23
+  55:Lib/compute/filter/avg_filter.cpp ****     {
+  56:Lib/compute/filter/avg_filter.cpp ****         // 窗口已满：遍历所有数据，找出最大值和最小值
+ARM GAS  /tmp/cc62yMRv.s 			page 5
 
 
- 144 005a 0133     		adds	r3, r3, #1
- 145              		.loc 1 28 29 view .LVU41
- 146 005c 0178     		ldrb	r1, [r0]	@ zero_extendqisi2
- 147              		.loc 1 28 27 view .LVU42
- 148 005e 93FBF1F2 		sdiv	r2, r3, r1
- 149 0062 01FB1233 		mls	r3, r1, r2, r3
- 150              		.loc 1 28 12 view .LVU43
- 151 0066 0372     		strb	r3, [r0, #8]
-  29:Lib/compute/filter/avg_filter.cpp **** 
-  30:Lib/compute/filter/avg_filter.cpp ****     _max = _min = value;
- 152              		.loc 1 30 5 is_stmt 1 view .LVU44
- 153              		.loc 1 30 17 is_stmt 0 view .LVU45
- 154 0068 80ED060A 		vstr.32	s0, [r0, #24]
- 155              		.loc 1 30 10 view .LVU46
- 156 006c 80ED050A 		vstr.32	s0, [r0, #20]
-  31:Lib/compute/filter/avg_filter.cpp **** 
-  32:Lib/compute/filter/avg_filter.cpp ****     if (_count == _size)
- 157              		.loc 1 32 5 is_stmt 1 view .LVU47
- 158              	.LBB2:
- 159              		.loc 1 32 9 is_stmt 0 view .LVU48
- 160 0070 437A     		ldrb	r3, [r0, #9]	@ zero_extendqisi2
- 161              		.loc 1 32 5 view .LVU49
- 162 0072 9942     		cmp	r1, r3
- 163 0074 29D0     		beq	.L23
-  33:Lib/compute/filter/avg_filter.cpp ****     {
-  34:Lib/compute/filter/avg_filter.cpp ****         for (int i = 0; i < _size; i++)
-  35:Lib/compute/filter/avg_filter.cpp ****         {
-  36:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] > _max)
-  37:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
-  38:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] < _min)
-  39:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
-  40:Lib/compute/filter/avg_filter.cpp ****         }
-  41:Lib/compute/filter/avg_filter.cpp ****         _avg = (_sum - _max - _min) / (_size - 2);
-  42:Lib/compute/filter/avg_filter.cpp ****     }
-  43:Lib/compute/filter/avg_filter.cpp ****     else
-  44:Lib/compute/filter/avg_filter.cpp ****     {
-  45:Lib/compute/filter/avg_filter.cpp ****         _avg = _sum / _count;
- 164              		.loc 1 45 9 is_stmt 1 view .LVU50
- 165              		.loc 1 45 16 is_stmt 0 view .LVU51
- 166 0076 D0ED036A 		vldr.32	s13, [r0, #12]
- 167              		.loc 1 45 21 view .LVU52
- 168 007a 07EE903A 		vmov	s15, r3	@ int
- 169 007e F8EEE77A 		vcvt.f32.s32	s15, s15
- 170 0082 86EEA77A 		vdiv.f32	s14, s13, s15
- 171              		.loc 1 45 14 view .LVU53
- 172 0086 80ED047A 		vstr.32	s14, [r0, #16]
- 173              	.L18:
- 174              		.loc 1 45 14 view .LVU54
- 175              	.LBE2:
-  46:Lib/compute/filter/avg_filter.cpp ****     }
-  47:Lib/compute/filter/avg_filter.cpp **** 
-  48:Lib/compute/filter/avg_filter.cpp ****     return _avg;
- 176              		.loc 1 48 5 is_stmt 1 view .LVU55
-  49:Lib/compute/filter/avg_filter.cpp **** }
- 177              		.loc 1 49 1 is_stmt 0 view .LVU56
- 178 008a 90ED040A 		vldr.32	s0, [r0, #16]
- 179              	.LVL7:
-ARM GAS  /tmp/ccbLbaRg.s 			page 5
+  57:Lib/compute/filter/avg_filter.cpp ****         for (int i = 0; i < _size; i++)
+  58:Lib/compute/filter/avg_filter.cpp ****         {
+  59:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] > _max)
+  60:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
+  61:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] < _min)
+  62:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
+  63:Lib/compute/filter/avg_filter.cpp ****         }
+  64:Lib/compute/filter/avg_filter.cpp ****         // 计算去极值平均：总和减去最大最小值，再除以 (窗口大小 - 2)
+  65:Lib/compute/filter/avg_filter.cpp ****         _avg = (_sum - _max - _min) / (_size - 2);
+  66:Lib/compute/filter/avg_filter.cpp ****     }
+  67:Lib/compute/filter/avg_filter.cpp ****     else
+  68:Lib/compute/filter/avg_filter.cpp ****     {
+  69:Lib/compute/filter/avg_filter.cpp ****         // 窗口未满：直接计算普通平均值（总和 / 当前数据个数）
+  70:Lib/compute/filter/avg_filter.cpp ****         _avg = _sum / _count;
+ 173              		.loc 1 70 9 is_stmt 1 view .LVU54
+ 174              		.loc 1 70 16 is_stmt 0 view .LVU55
+ 175 0080 D0ED036A 		vldr.32	s13, [r0, #12]
+ 176              		.loc 1 70 21 view .LVU56
+ 177 0084 07EE903A 		vmov	s15, r3	@ int
+ 178 0088 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 179 008c 86EEA77A 		vdiv.f32	s14, s13, s15
+ 180              		.loc 1 70 14 view .LVU57
+ 181 0090 80ED047A 		vstr.32	s14, [r0, #16]
+ 182              	.L18:
+ 183              		.loc 1 70 14 view .LVU58
+ 184              	.LBE2:
+  71:Lib/compute/filter/avg_filter.cpp ****     }
+  72:Lib/compute/filter/avg_filter.cpp **** 
+  73:Lib/compute/filter/avg_filter.cpp ****     // 返回滤波结果
+  74:Lib/compute/filter/avg_filter.cpp ****     return _avg;
+ 185              		.loc 1 74 5 is_stmt 1 view .LVU59
+  75:Lib/compute/filter/avg_filter.cpp **** }
+ 186              		.loc 1 75 1 is_stmt 0 view .LVU60
+ 187 0094 90ED040A 		vldr.32	s0, [r0, #16]
+ 188              	.LVL8:
+ 189              		.loc 1 75 1 view .LVU61
+ 190 0098 7047     		bx	lr
+ 191              	.LVL9:
+ 192              	.L15:
+ 193              	.LBB5:
+ 194              	.LBB3:
+ 195              	.LBB4:
+  57:Lib/compute/filter/avg_filter.cpp ****         {
+ 196              		.loc 1 57 9 is_stmt 1 discriminator 2 view .LVU62
+ 197 009a 0132     		adds	r2, r2, #1
+ 198              	.LVL10:
+ 199              	.L11:
+  57:Lib/compute/filter/avg_filter.cpp ****         {
+ 200              		.loc 1 57 27 discriminator 1 view .LVU63
+ 201 009c 9142     		cmp	r1, r2
+ 202 009e 1BDD     		ble	.L24
+  59:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
+ 203              		.loc 1 59 13 view .LVU64
+  59:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
+ 204              		.loc 1 59 17 is_stmt 0 view .LVU65
+ 205 00a0 4368     		ldr	r3, [r0, #4]
+  59:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
+ARM GAS  /tmp/cc62yMRv.s 			page 6
 
 
- 180              		.loc 1 49 1 view .LVU57
- 181 008e 7047     		bx	lr
- 182              	.LVL8:
- 183              	.L15:
- 184              	.LBB5:
- 185              	.LBB3:
- 186              	.LBB4:
-  34:Lib/compute/filter/avg_filter.cpp ****         {
- 187              		.loc 1 34 9 is_stmt 1 discriminator 2 view .LVU58
- 188 0090 0132     		adds	r2, r2, #1
- 189              	.LVL9:
- 190              	.L11:
-  34:Lib/compute/filter/avg_filter.cpp ****         {
- 191              		.loc 1 34 27 discriminator 1 view .LVU59
- 192 0092 9142     		cmp	r1, r2
- 193 0094 1BDD     		ble	.L24
-  36:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
- 194              		.loc 1 36 13 view .LVU60
-  36:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
- 195              		.loc 1 36 17 is_stmt 0 view .LVU61
- 196 0096 4368     		ldr	r3, [r0, #4]
-  36:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
- 197              		.loc 1 36 24 view .LVU62
- 198 0098 03EB8203 		add	r3, r3, r2, lsl #2
- 199 009c D3ED007A 		vldr.32	s15, [r3]
-  36:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
- 200              		.loc 1 36 28 view .LVU63
- 201 00a0 90ED057A 		vldr.32	s14, [r0, #20]
-  36:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
- 202              		.loc 1 36 13 view .LVU64
- 203 00a4 F4EEC77A 		vcmpe.f32	s15, s14
- 204 00a8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 205 00ac 01DD     		ble	.L13
-  37:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] < _min)
- 206              		.loc 1 37 17 is_stmt 1 view .LVU65
-  37:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] < _min)
- 207              		.loc 1 37 22 is_stmt 0 view .LVU66
- 208 00ae C0ED057A 		vstr.32	s15, [r0, #20]
- 209              	.L13:
-  38:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
- 210              		.loc 1 38 13 is_stmt 1 view .LVU67
-  38:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
- 211              		.loc 1 38 24 is_stmt 0 view .LVU68
- 212 00b2 D3ED007A 		vldr.32	s15, [r3]
-  38:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
- 213              		.loc 1 38 28 view .LVU69
- 214 00b6 90ED067A 		vldr.32	s14, [r0, #24]
-  38:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
- 215              		.loc 1 38 13 view .LVU70
- 216 00ba F4EEC77A 		vcmpe.f32	s15, s14
- 217 00be F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 218 00c2 E5D5     		bpl	.L15
-  39:Lib/compute/filter/avg_filter.cpp ****         }
- 219              		.loc 1 39 17 is_stmt 1 view .LVU71
-  39:Lib/compute/filter/avg_filter.cpp ****         }
- 220              		.loc 1 39 22 is_stmt 0 view .LVU72
- 221 00c4 C0ED067A 		vstr.32	s15, [r0, #24]
-ARM GAS  /tmp/ccbLbaRg.s 			page 6
+ 206              		.loc 1 59 24 view .LVU66
+ 207 00a2 03EB8203 		add	r3, r3, r2, lsl #2
+ 208 00a6 D3ED007A 		vldr.32	s15, [r3]
+  59:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
+ 209              		.loc 1 59 28 view .LVU67
+ 210 00aa 90ED057A 		vldr.32	s14, [r0, #20]
+  59:Lib/compute/filter/avg_filter.cpp ****                 _max = pData[i];
+ 211              		.loc 1 59 13 view .LVU68
+ 212 00ae F4EEC77A 		vcmpe.f32	s15, s14
+ 213 00b2 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 214 00b6 01DD     		ble	.L13
+  60:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] < _min)
+ 215              		.loc 1 60 17 is_stmt 1 view .LVU69
+  60:Lib/compute/filter/avg_filter.cpp ****             if (pData[i] < _min)
+ 216              		.loc 1 60 22 is_stmt 0 view .LVU70
+ 217 00b8 C0ED057A 		vstr.32	s15, [r0, #20]
+ 218              	.L13:
+  61:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
+ 219              		.loc 1 61 13 is_stmt 1 view .LVU71
+  61:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
+ 220              		.loc 1 61 24 is_stmt 0 view .LVU72
+ 221 00bc D3ED007A 		vldr.32	s15, [r3]
+  61:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
+ 222              		.loc 1 61 28 view .LVU73
+ 223 00c0 90ED067A 		vldr.32	s14, [r0, #24]
+  61:Lib/compute/filter/avg_filter.cpp ****                 _min = pData[i];
+ 224              		.loc 1 61 13 view .LVU74
+ 225 00c4 F4EEC77A 		vcmpe.f32	s15, s14
+ 226 00c8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 227 00cc E5D5     		bpl	.L15
+  62:Lib/compute/filter/avg_filter.cpp ****         }
+ 228              		.loc 1 62 17 is_stmt 1 view .LVU75
+  62:Lib/compute/filter/avg_filter.cpp ****         }
+ 229              		.loc 1 62 22 is_stmt 0 view .LVU76
+ 230 00ce C0ED067A 		vstr.32	s15, [r0, #24]
+ 231 00d2 E2E7     		b	.L15
+ 232              	.LVL11:
+ 233              	.L23:
+  57:Lib/compute/filter/avg_filter.cpp ****         {
+ 234              		.loc 1 57 18 view .LVU77
+ 235 00d4 0022     		movs	r2, #0
+ 236 00d6 E1E7     		b	.L11
+ 237              	.LVL12:
+ 238              	.L24:
+  57:Lib/compute/filter/avg_filter.cpp ****         {
+ 239              		.loc 1 57 18 view .LVU78
+ 240              	.LBE4:
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 241              		.loc 1 65 9 is_stmt 1 view .LVU79
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 242              		.loc 1 65 17 is_stmt 0 view .LVU80
+ 243 00d8 90ED037A 		vldr.32	s14, [r0, #12]
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 244              		.loc 1 65 24 view .LVU81
+ 245 00dc D0ED057A 		vldr.32	s15, [r0, #20]
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 246              		.loc 1 65 22 view .LVU82
+ARM GAS  /tmp/cc62yMRv.s 			page 7
 
 
- 222 00c8 E2E7     		b	.L15
- 223              	.LVL10:
- 224              	.L23:
-  34:Lib/compute/filter/avg_filter.cpp ****         {
- 225              		.loc 1 34 18 view .LVU73
- 226 00ca 0022     		movs	r2, #0
- 227 00cc E1E7     		b	.L11
- 228              	.LVL11:
- 229              	.L24:
-  34:Lib/compute/filter/avg_filter.cpp ****         {
- 230              		.loc 1 34 18 view .LVU74
- 231              	.LBE4:
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 232              		.loc 1 41 9 is_stmt 1 view .LVU75
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 233              		.loc 1 41 17 is_stmt 0 view .LVU76
- 234 00ce 90ED037A 		vldr.32	s14, [r0, #12]
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 235              		.loc 1 41 24 view .LVU77
- 236 00d2 D0ED057A 		vldr.32	s15, [r0, #20]
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 237              		.loc 1 41 22 view .LVU78
- 238 00d6 37EE677A 		vsub.f32	s14, s14, s15
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 239              		.loc 1 41 31 view .LVU79
- 240 00da D0ED067A 		vldr.32	s15, [r0, #24]
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 241              		.loc 1 41 29 view .LVU80
- 242 00de 37EE677A 		vsub.f32	s14, s14, s15
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 243              		.loc 1 41 46 view .LVU81
- 244 00e2 0239     		subs	r1, r1, #2
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 245              		.loc 1 41 37 view .LVU82
- 246 00e4 07EE901A 		vmov	s15, r1	@ int
- 247 00e8 F8EEE77A 		vcvt.f32.s32	s15, s15
- 248 00ec C7EE276A 		vdiv.f32	s13, s14, s15
-  41:Lib/compute/filter/avg_filter.cpp ****     }
- 249              		.loc 1 41 14 view .LVU83
- 250 00f0 C0ED046A 		vstr.32	s13, [r0, #16]
- 251              	.LBE3:
- 252 00f4 C9E7     		b	.L18
- 253              	.LBE5:
- 254              		.cfi_endproc
- 255              	.LFE983:
- 257              		.align	1
- 258              		.global	_ZN9AvgFilter5clearEv
- 259              		.syntax unified
- 260              		.thumb
- 261              		.thumb_func
- 263              	_ZN9AvgFilter5clearEv:
- 264              	.LVL12:
- 265              	.LFB984:
-  50:Lib/compute/filter/avg_filter.cpp **** 
-  51:Lib/compute/filter/avg_filter.cpp **** void AvgFilter::clear(void)
-  52:Lib/compute/filter/avg_filter.cpp **** {
- 266              		.loc 1 52 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccbLbaRg.s 			page 7
+ 247 00e0 37EE677A 		vsub.f32	s14, s14, s15
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 248              		.loc 1 65 31 view .LVU83
+ 249 00e4 D0ED067A 		vldr.32	s15, [r0, #24]
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 250              		.loc 1 65 29 view .LVU84
+ 251 00e8 37EE677A 		vsub.f32	s14, s14, s15
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 252              		.loc 1 65 46 view .LVU85
+ 253 00ec 0239     		subs	r1, r1, #2
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 254              		.loc 1 65 37 view .LVU86
+ 255 00ee 07EE901A 		vmov	s15, r1	@ int
+ 256 00f2 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 257 00f6 C7EE276A 		vdiv.f32	s13, s14, s15
+  65:Lib/compute/filter/avg_filter.cpp ****     }
+ 258              		.loc 1 65 14 view .LVU87
+ 259 00fa C0ED046A 		vstr.32	s13, [r0, #16]
+ 260              	.LBE3:
+ 261 00fe C9E7     		b	.L18
+ 262              	.LBE5:
+ 263              		.cfi_endproc
+ 264              	.LFE983:
+ 266              		.align	1
+ 267              		.global	_ZN9AvgFilter5clearEv
+ 268              		.syntax unified
+ 269              		.thumb
+ 270              		.thumb_func
+ 272              	_ZN9AvgFilter5clearEv:
+ 273              	.LVL13:
+ 274              	.LFB984:
+  76:Lib/compute/filter/avg_filter.cpp **** 
+  77:Lib/compute/filter/avg_filter.cpp **** // 清空滤波器状态，重置所有内部变量，但不释放内存（保留已申请的缓冲
+  78:Lib/compute/filter/avg_filter.cpp **** void AvgFilter::clear(void)
+  79:Lib/compute/filter/avg_filter.cpp **** {
+ 275              		.loc 1 79 1 is_stmt 1 view -0
+ 276              		.cfi_startproc
+ 277              		@ args = 0, pretend = 0, frame = 0
+ 278              		@ frame_needed = 0, uses_anonymous_args = 0
+ 279              		@ link register save eliminated.
+  80:Lib/compute/filter/avg_filter.cpp ****     _index = 0;          // 重置写入位置
+ 280              		.loc 1 80 5 view .LVU89
+ 281              		.loc 1 80 12 is_stmt 0 view .LVU90
+ 282 0100 0023     		movs	r3, #0
+ 283 0102 0372     		strb	r3, [r0, #8]
+  81:Lib/compute/filter/avg_filter.cpp ****     _count = 0;          // 重置数据计数
+ 284              		.loc 1 81 5 is_stmt 1 view .LVU91
+ 285              		.loc 1 81 12 is_stmt 0 view .LVU92
+ 286 0104 4372     		strb	r3, [r0, #9]
+  82:Lib/compute/filter/avg_filter.cpp ****     _sum = 0.f;          // 重置总和
+ 287              		.loc 1 82 5 is_stmt 1 view .LVU93
+ 288              		.loc 1 82 10 is_stmt 0 view .LVU94
+ 289 0106 0023     		movs	r3, #0
+ 290 0108 C360     		str	r3, [r0, #12]	@ float
+  83:Lib/compute/filter/avg_filter.cpp ****     _max = 0.f;          // 重置最大值（仅用于临时计算）
+ 291              		.loc 1 83 5 is_stmt 1 view .LVU95
+ 292              		.loc 1 83 10 is_stmt 0 view .LVU96
+ARM GAS  /tmp/cc62yMRv.s 			page 8
 
 
- 267              		.cfi_startproc
- 268              		@ args = 0, pretend = 0, frame = 0
- 269              		@ frame_needed = 0, uses_anonymous_args = 0
- 270              		@ link register save eliminated.
-  53:Lib/compute/filter/avg_filter.cpp ****     _index = 0;
- 271              		.loc 1 53 5 view .LVU85
- 272              		.loc 1 53 12 is_stmt 0 view .LVU86
- 273 00f6 0023     		movs	r3, #0
- 274 00f8 0372     		strb	r3, [r0, #8]
-  54:Lib/compute/filter/avg_filter.cpp ****     _count = 0;
- 275              		.loc 1 54 5 is_stmt 1 view .LVU87
- 276              		.loc 1 54 12 is_stmt 0 view .LVU88
- 277 00fa 4372     		strb	r3, [r0, #9]
-  55:Lib/compute/filter/avg_filter.cpp ****     _sum = 0.f;
- 278              		.loc 1 55 5 is_stmt 1 view .LVU89
- 279              		.loc 1 55 10 is_stmt 0 view .LVU90
- 280 00fc 0023     		movs	r3, #0
- 281 00fe C360     		str	r3, [r0, #12]	@ float
-  56:Lib/compute/filter/avg_filter.cpp ****     _max = 0.f;
- 282              		.loc 1 56 5 is_stmt 1 view .LVU91
- 283              		.loc 1 56 10 is_stmt 0 view .LVU92
- 284 0100 4361     		str	r3, [r0, #20]	@ float
-  57:Lib/compute/filter/avg_filter.cpp ****     _min = 0.f;
- 285              		.loc 1 57 5 is_stmt 1 view .LVU93
- 286              		.loc 1 57 10 is_stmt 0 view .LVU94
- 287 0102 8361     		str	r3, [r0, #24]	@ float
-  58:Lib/compute/filter/avg_filter.cpp **** }
- 288              		.loc 1 58 1 view .LVU95
- 289 0104 7047     		bx	lr
- 290              		.cfi_endproc
- 291              	.LFE984:
- 293              	.Letext0:
- 294              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 295              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
- 296              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
- 297              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
- 298              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
- 299              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
- 300              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
- 301              		.file 9 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
- 302              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
- 303              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
- 304              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
- 305              		.file 13 "Lib/compute/ex_math.hpp"
- 306              		.file 14 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
-ARM GAS  /tmp/ccbLbaRg.s 			page 8
+ 293 010a 4361     		str	r3, [r0, #20]	@ float
+  84:Lib/compute/filter/avg_filter.cpp ****     _min = 0.f;          // 重置最小值（仅用于临时计算）
+ 294              		.loc 1 84 5 is_stmt 1 view .LVU97
+ 295              		.loc 1 84 10 is_stmt 0 view .LVU98
+ 296 010c 8361     		str	r3, [r0, #24]	@ float
+  85:Lib/compute/filter/avg_filter.cpp ****     // 注意：不清除 pData 缓冲区的内容，因为后续会覆盖
+  86:Lib/compute/filter/avg_filter.cpp **** }...
+ 297              		.loc 1 86 1 view .LVU99
+ 298 010e 7047     		bx	lr
+ 299              		.cfi_endproc
+ 300              	.LFE984:
+ 302              	.Letext0:
+ 303              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 304              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 305              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 306              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 307              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 308              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 309              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 310              		.file 9 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 311              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 312              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 313              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 314              		.file 13 "Lib/compute/ex_math.hpp"
+ 315              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
+ 316              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
+ARM GAS  /tmp/cc62yMRv.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 avg_filter.cpp
-     /tmp/ccbLbaRg.s:20     .text:00000000 $t
-     /tmp/ccbLbaRg.s:26     .text:00000000 _ZN9AvgFilter4initEh
-     /tmp/ccbLbaRg.s:99     .text:0000002a _ZN9AvgFilter6filterEf
-     /tmp/ccbLbaRg.s:263    .text:000000f6 _ZN9AvgFilter5clearEv
+     /tmp/cc62yMRv.s:20     .text:00000000 $t
+     /tmp/cc62yMRv.s:26     .text:00000000 _ZN9AvgFilter4initEh
+     /tmp/cc62yMRv.s:108    .text:00000034 _ZN9AvgFilter6filterEf
+     /tmp/cc62yMRv.s:272    .text:00000100 _ZN9AvgFilter5clearEv
 
 UNDEFINED SYMBOLS
 pvPortMalloc
+memset

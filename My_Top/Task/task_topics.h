@@ -1,25 +1,27 @@
 #pragma once
 
-#include "ex_math.hpp"  // deg2rad
+typedef struct {
+    // 实际位置/速度
+    float theta_m;               //电机原始弧度
+    float theta_deg_final;       //最终的电机角度 (度)
+    float reg_final;             //最终的电机角度 (弧度)
 
-#define MOTOR_STATE_NUM 10
+    float Angular_velocity_final; //最终的角速度
 
-// uORB Topic 数据索引（发布端和订阅端共享）
-enum MotorStateIdx {
-    kRegFinal = 0,          // M1 最终输出角度 (弧度)
-    kTargetLocation,        // M1 目标位置 (已转弧度)
-    kAngularVelocity,       // M1 最终角速度
-    kTargetSpeed,           // M1 目标速度
-    kMotorFreApplied,       // M1 实际输出频率
-    kTargetErrorLocation,   // M1 误差位置
-    kM2RegFinal,            // M2 最终输出角度 (弧度)
-    kM2TargetLocation,      // M2 目标位置 (已转弧度)
-    kM2AngularVelocity,     // M2 最终角速度
-    kM2TargetSpeed,         // M2 目标速度
+    // 目标位置/速度
+    float _target_location2;     //目标位置 (度)
+    float _target_speed;         //目标速度
+
+
+    //热敏电阻
+    float ADC_Temp_Val = 0.0f; //热敏电阻温度
+
+    //调试信息
+    float updown_duty = 0.0f;//电机全局占空比
     
-};
 
-typedef float motor_state_t[MOTOR_STATE_NUM]; //创建一个新的类型名称 叫motor_state_t 代表float[10] 的数组类型。
-//枚举值就是索引号 
+} motor_telem_t;                  // 每路电机一个结构体
+
+#define UORB_TOPIC_MOTOR "motor_telem"
 
 

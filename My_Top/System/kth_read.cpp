@@ -7,11 +7,9 @@ bool KTH7111::KTH7111_Init(bool fx)
     uint16_t angle_zero = 0;
     encoder_dir = fx;
     write_ok =KTH7111_RotationDirection(fx); //写入编码器角度方向
-    // KTH7111_WriteReg(0x00, 0x00); //设置零点
-    // KTH7111_WriteReg(0x01, 0x00); //设置零点 32786
     KTH7111_WriteReg(0x0d, 0x88); //设置滤波深度
-
-    KTH7111_BurnMTP(); //写入MTP 
+    KTH_CS_Enble(true); //片选拉高 不选中编码器
+    // KTH7111_BurnMTP(); //写入MTP 
     return write_ok;
 }
 
@@ -63,7 +61,7 @@ uint8_t KTH7111::CRC8_ITU(const uint8_t *data, uint8_t len)
 
 void KTH7111::KTH7111_Send_JIAO_CMD() //读取角度
 {
-    HAL_StatusTypeDef status = HAL_ERROR;
+    HAL_StatusTypeDef status = HAL_OK;
     uint8_t cmd = 0x00;   //发送命令：8bit（0x00）
     uint8_t rx_buff[3] = {0}; /* 收 2字节角度 + 1字节CRC */
     uint8_t crc = 0;

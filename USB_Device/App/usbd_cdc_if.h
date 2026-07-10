@@ -110,6 +110,11 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
 
 /* USER CODE BEGIN EXPORTED_FUNCTIONS */
 
+//My_Add_code
+typedef void (*USB_RxCallback)  (uint8_t* Buf, uint32_t Len); //定义函数指针 类型名是USB_RxCallback
+void USB_Register_RxCallback(USB_RxCallback cb); // 注册回调函数
+//My_Add_code
+
 /* USER CODE END EXPORTED_FUNCTIONS */
 
 /**

@@ -12,7 +12,7 @@ uint16_t diantiao_len = sizeof(diantiao) / sizeof(diantiao[0]);
 
 void Task_DroneCAN(void *argument)
 {
-    printf("1-DroneCAN任务启动中\r\n");
+    // printf("1-DroneCAN任务启动中\r\n");
     vTaskDelay(pdMS_TO_TICKS(50));
     while (1)
     {
@@ -39,6 +39,6 @@ void Task_DroneCAN(void *argument)
                 drone_heartbeat.updated);
             drone_heartbeat.updated = false;
         }
-        // vTaskDelay(pdMS_TO_TICKS(1));
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

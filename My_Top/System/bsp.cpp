@@ -12,6 +12,7 @@ const MotorPWM_Config M1_PWM = {
     .ENC_CS_PIN = ENC1_CS_Pin, //编码器片选引脚
     .ENC_CAL_PORT = ENC1_CAL_GPIO_Port, //编码器校准引脚
     .ENC_CAL_PIN = ENC1_CAL_Pin, //编码器校准引脚
+    .adc_channel = 0, //热敏电阻adc通道
 };
 
 // ---------- M2 电机 ----------
@@ -25,7 +26,7 @@ const MotorPWM_Config M2_PWM = {
     .ENC_CS_PIN = ENC2_CS_Pin, //编码器片选引脚
     .ENC_CAL_PORT = ENC2_CAL_GPIO_Port, //编码器校准引脚
     .ENC_CAL_PIN = ENC2_CAL_Pin, //编码器校准引脚
-
+    .adc_channel = 1, //热敏电阻adc通道
 };
 
 // ---------- M3 电机 ----------
@@ -39,6 +40,7 @@ const MotorPWM_Config M3_PWM = {
     .ENC_CS_PIN = ENC3_CS_Pin, //编码器片选引脚
     .ENC_CAL_PORT = ENC3_CAL_GPIO_Port, //编码器校准引脚
     .ENC_CAL_PIN = ENC3_CAL_Pin, //编码器校准引脚
+    .adc_channel = 2, //热敏电阻adc通道
 };
 // ---------- M4 电机 ----------
 const MotorPWM_Config M4_PWM = {
@@ -51,5 +53,6 @@ const MotorPWM_Config M4_PWM = {
     .ENC_CS_PIN = ENC4_CS_Pin, //编码器片选引脚
     .ENC_CAL_PORT = ENC4_CAL_GPIO_Port, //编码器校准引脚
     .ENC_CAL_PIN = ENC4_CAL_Pin, //编码器校准引脚
+    .adc_channel = 3, //热敏电阻adc通道
 };
 

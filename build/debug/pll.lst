@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCmXEY4.s 			page 1
+ARM GAS  /tmp/ccViJelo.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -19,7 +19,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "My_Top/System/pll.cpp"
+  19              		.file 1 "Lib/compute/pid/pll.cpp"
   20              		.align	1
   21              		.global	_Z11foc_pll_runffPfS_P13PLL_Parameter
   22              		.syntax unified
@@ -28,44 +28,44 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
   26              	_Z11foc_pll_runffPfS_P13PLL_Parameter:
   27              	.LVL0:
   28              	.LFB1310:
-   1:My_Top/System/pll.cpp **** #include "pll.hpp"
-   2:My_Top/System/pll.cpp **** 
-   3:My_Top/System/pll.cpp **** 
-   4:My_Top/System/pll.cpp **** /*  wn是自然频率决定了系统的响应速度和带宽  ζ是阻尼比  ts是收敛时间即�
-   5:My_Top/System/pll.cpp ****     ζ≈0.707 时，带宽 ≈ ωn/2pi（近似）
-   6:My_Top/System/pll.cpp ****     实测电机最高38.2圈/s =2292rpm  电频率Fe = 2280*7/60=226hz  wn>2pi*Fe/10=142  wn最小
-   7:My_Top/System/pll.cpp ****     wn<(2pi*4000/10) = 2513.2  wn最大限制
-   8:My_Top/System/pll.cpp ****     wn = 3/(ζ*ts) = 3/(0.707*0.002) = 2121.64(Ts最小2ms)
-   9:My_Top/System/pll.cpp ****     kp = 2ζωn
-  10:My_Top/System/pll.cpp ****     ki = ωn²
-  11:My_Top/System/pll.cpp ****     ζ = 0.707
-  12:My_Top/System/pll.cpp **** 
-  13:My_Top/System/pll.cpp **** */
-  14:My_Top/System/pll.cpp **** /* 
-  15:My_Top/System/pll.cpp ****     PLL_ts = 5ms  →  带宽 ≈ 135Hz  →  不动时波动 0.7 rad/s
-  16:My_Top/System/pll.cpp ****     PLL_ts = 10ms →  带宽 ≈ 67Hz   →  波动估计降到 ~0.2 rad/s
-  17:My_Top/System/pll.cpp ****     PLL_ts = 20ms →  带宽 ≈ 34Hz   →  更平滑
-  18:My_Top/System/pll.cpp ****     采样频率必须 ≥ 带宽频率的 2 倍，否则信号会混叠。（带宽频率的<采�
-  19:My_Top/System/pll.cpp ****     带宽太低：跟踪不了快速变化的角度，动态响应差
-  20:My_Top/System/pll.cpp ****     带宽太高：会把高频噪声也跟踪进来，输出抖动大
-  21:My_Top/System/pll.cpp **** */
-  22:My_Top/System/pll.cpp **** 
-  23:My_Top/System/pll.cpp **** 
-  24:My_Top/System/pll.cpp **** /*
-  25:My_Top/System/pll.cpp **** reg_in:输入角度 对应数学公式中的 θin
-  26:My_Top/System/pll.cpp **** dt:采样周期 两次调用 foc_pll_run 之间的时间间隔，单位为秒
-  27:My_Top/System/pll.cpp **** reg_out:输出角度 对应数学公式中的 θout
-  28:My_Top/System/pll.cpp **** Angular_velocity:输出角速度 对应数学公式中的 ωout
-  29:My_Top/System/pll.cpp **** conf：PI参数配置结构体
-  30:My_Top/System/pll.cpp **** 
-ARM GAS  /tmp/ccCmXEY4.s 			page 2
+   1:Lib/compute/pid/pll.cpp **** #include "pll.hpp"
+   2:Lib/compute/pid/pll.cpp **** 
+   3:Lib/compute/pid/pll.cpp **** 
+   4:Lib/compute/pid/pll.cpp **** /*  wn是自然频率决定了系统的响应速度和带宽  ζ是阻尼比  ts是收敛时间即�
+   5:Lib/compute/pid/pll.cpp ****     ζ≈0.707 时，带宽 ≈ ωn/2pi（近似）
+   6:Lib/compute/pid/pll.cpp ****     实测电机最高38.2圈/s =2292rpm  电频率Fe = 2280*7/60=226hz  wn>2pi*Fe/10=142  wn最小
+   7:Lib/compute/pid/pll.cpp ****     wn<(2pi*4000/10) = 2513.2  wn最大限制
+   8:Lib/compute/pid/pll.cpp ****     wn = 3/(ζ*ts) = 3/(0.707*0.002) = 2121.64(Ts最小2ms)
+   9:Lib/compute/pid/pll.cpp ****     kp = 2ζωn
+  10:Lib/compute/pid/pll.cpp ****     ki = ωn²
+  11:Lib/compute/pid/pll.cpp ****     ζ = 0.707
+  12:Lib/compute/pid/pll.cpp **** 
+  13:Lib/compute/pid/pll.cpp **** */
+  14:Lib/compute/pid/pll.cpp **** /* 
+  15:Lib/compute/pid/pll.cpp ****     PLL_ts = 5ms  →  带宽 ≈ 135Hz  →  不动时波动 0.7 rad/s
+  16:Lib/compute/pid/pll.cpp ****     PLL_ts = 10ms →  带宽 ≈ 67Hz   →  波动估计降到 ~0.2 rad/s
+  17:Lib/compute/pid/pll.cpp ****     PLL_ts = 20ms →  带宽 ≈ 34Hz   →  更平滑
+  18:Lib/compute/pid/pll.cpp ****     采样频率必须 ≥ 带宽频率的 2 倍，否则信号会混叠。（带宽频率的<采�
+  19:Lib/compute/pid/pll.cpp ****     带宽太低：跟踪不了快速变化的角度，动态响应差
+  20:Lib/compute/pid/pll.cpp ****     带宽太高：会把高频噪声也跟踪进来，输出抖动大
+  21:Lib/compute/pid/pll.cpp **** */
+  22:Lib/compute/pid/pll.cpp **** 
+  23:Lib/compute/pid/pll.cpp **** 
+  24:Lib/compute/pid/pll.cpp **** /*
+  25:Lib/compute/pid/pll.cpp **** reg_in:输入角度 对应数学公式中的 θin
+  26:Lib/compute/pid/pll.cpp **** dt:采样周期 两次调用 foc_pll_run 之间的时间间隔，单位为秒
+  27:Lib/compute/pid/pll.cpp **** reg_out:输出角度 对应数学公式中的 θout
+  28:Lib/compute/pid/pll.cpp **** Angular_velocity:输出角速度 对应数学公式中的 ωout
+  29:Lib/compute/pid/pll.cpp **** conf：PI参数配置结构体
+  30:Lib/compute/pid/pll.cpp **** 
+ARM GAS  /tmp/ccViJelo.s 			page 2
 
 
-  31:My_Top/System/pll.cpp **** */
-  32:My_Top/System/pll.cpp **** 
-  33:My_Top/System/pll.cpp **** //超过实际速度3倍以上需要限制最大速度
-  34:My_Top/System/pll.cpp **** void foc_pll_run(float reg_in, float dt, float *reg_out,
-  35:My_Top/System/pll.cpp ****                  float *Angular_velocity, PLL_Parameter *conf) {
+  31:Lib/compute/pid/pll.cpp **** */
+  32:Lib/compute/pid/pll.cpp **** 
+  33:Lib/compute/pid/pll.cpp **** //超过实际速度3倍以上需要限制最大速度
+  34:Lib/compute/pid/pll.cpp **** void foc_pll_run(float reg_in, float dt, float *reg_out,
+  35:Lib/compute/pid/pll.cpp ****                  float *Angular_velocity, PLL_Parameter *conf) {
   29              		.loc 1 35 64 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 24
@@ -88,18 +88,18 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
   48 000a 8246     		mov	r10, r0
   49 000c 0C46     		mov	r4, r1
   50 000e 1546     		mov	r5, r2
-  36:My_Top/System/pll.cpp **** 
-  37:My_Top/System/pll.cpp **** // volatile float debug_pll_kp = FOC_PLL_KP; 
-  38:My_Top/System/pll.cpp **** // volatile float debug_pll_ki = FOC_PLL_KI; 
-  39:My_Top/System/pll.cpp **** // volatile float debug_pll_wn = PLL_Wn;
-  40:My_Top/System/pll.cpp **** // volatile float debug_PLL_ts = PLL_ts;
-  41:My_Top/System/pll.cpp **** // volatile float debug_pll_Ts_min = Ts_min;
-  42:My_Top/System/pll.cpp **** // volatile float debug_pll_Ts_max = Ts_max;
-  43:My_Top/System/pll.cpp **** // volatile float debug_pll_wn_min = Wn_min;
-  44:My_Top/System/pll.cpp **** // volatile float debug_pll_wn_max = Wn_max;
-  45:My_Top/System/pll.cpp ****                     
-  46:My_Top/System/pll.cpp **** 
-  47:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*reg_out);//如果输出角度是非数字(NaN)或无穷大置零
+  36:Lib/compute/pid/pll.cpp **** 
+  37:Lib/compute/pid/pll.cpp **** // volatile float debug_pll_kp = FOC_PLL_KP; 
+  38:Lib/compute/pid/pll.cpp **** // volatile float debug_pll_ki = FOC_PLL_KI; 
+  39:Lib/compute/pid/pll.cpp **** // volatile float debug_pll_wn = PLL_Wn;
+  40:Lib/compute/pid/pll.cpp **** // volatile float debug_PLL_ts = PLL_ts;
+  41:Lib/compute/pid/pll.cpp **** // volatile float debug_pll_Ts_min = Ts_min;
+  42:Lib/compute/pid/pll.cpp **** // volatile float debug_pll_Ts_max = Ts_max;
+  43:Lib/compute/pid/pll.cpp **** // volatile float debug_pll_wn_min = Wn_min;
+  44:Lib/compute/pid/pll.cpp **** // volatile float debug_pll_wn_max = Wn_max;
+  45:Lib/compute/pid/pll.cpp ****                     
+  46:Lib/compute/pid/pll.cpp **** 
+  47:Lib/compute/pid/pll.cpp ****     UTILS_NAN_ZERO(*reg_out);//如果输出角度是非数字(NaN)或无穷大置零
   51              		.loc 1 47 5 is_stmt 1 view .LVU2
   52 0010 D0ED007A 		vldr.32	s15, [r0]
   53              		.loc 1 47 5 is_stmt 0 discriminator 1 view .LVU3
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
    6:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // software; you can redistribute it and/or modify it under the
    7:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // terms of the GNU General Public License as published by the
    8:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // Free Software Foundation; either version 3, or (at your option)
-ARM GAS  /tmp/ccCmXEY4.s 			page 3
+ARM GAS  /tmp/ccViJelo.s 			page 3
 
 
    9:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // any later version.
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
   63:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef atan2
   64:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef ceil
   65:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef cos
-ARM GAS  /tmp/ccCmXEY4.s 			page 4
+ARM GAS  /tmp/ccViJelo.s 			page 4
 
 
   66:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef cosh
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  120:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
  121:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
  122:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value,
-ARM GAS  /tmp/ccCmXEY4.s 			page 5
+ARM GAS  /tmp/ccViJelo.s 			page 5
 
 
  123:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****                                     double>::__type
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  177:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::cos;
  178:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  179:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
-ARM GAS  /tmp/ccCmXEY4.s 			page 6
+ARM GAS  /tmp/ccViJelo.s 			page 6
 
 
  180:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  234:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::fabs;
  235:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  236:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
-ARM GAS  /tmp/ccCmXEY4.s 			page 7
+ARM GAS  /tmp/ccViJelo.s 			page 7
 
 
  237:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR float
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  291:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline long double
  292:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(long double __x, int* __exp)
  293:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexpl(__x, __exp); }
-ARM GAS  /tmp/ccCmXEY4.s 			page 8
+ARM GAS  /tmp/ccViJelo.s 			page 8
 
 
  294:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  348:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
  349:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   log10(long double __x)
  350:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_log10l(__x); }
-ARM GAS  /tmp/ccCmXEY4.s 			page 9
+ARM GAS  /tmp/ccViJelo.s 			page 9
 
 
  351:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  405:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_sinf(__x); }
  406:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  407:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
-ARM GAS  /tmp/ccCmXEY4.s 			page 10
+ARM GAS  /tmp/ccViJelo.s 			page 10
 
 
  408:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(long double __x)
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  462:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanf(__x); }
  463:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  464:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _GLIBCXX_CONSTEXPR long double
-ARM GAS  /tmp/ccCmXEY4.s 			page 11
+ARM GAS  /tmp/ccViJelo.s 			page 11
 
 
  465:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(long double __x)
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  519:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  520:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
  521:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   cosh(_Float16 __x)
-ARM GAS  /tmp/ccCmXEY4.s 			page 12
+ARM GAS  /tmp/ccViJelo.s 			page 12
 
 
  522:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_coshf(__x)); }
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  576:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float16
  577:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sqrt(_Float16 __x)
  578:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return _Float16(__builtin_sqrtf(__x)); }
-ARM GAS  /tmp/ccCmXEY4.s 			page 13
+ARM GAS  /tmp/ccViJelo.s 			page 13
 
 
  579:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  633:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  634:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   inline _Float32
  635:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   frexp(_Float32 __x, int* __exp)
-ARM GAS  /tmp/ccCmXEY4.s 			page 14
+ARM GAS  /tmp/ccViJelo.s 			page 14
 
 
  636:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_frexpf(__x, __exp); }
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  690:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_asin(__x); }
  691:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  692:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float64
-ARM GAS  /tmp/ccCmXEY4.s 			page 15
+ARM GAS  /tmp/ccViJelo.s 			page 15
 
 
  693:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   atan(_Float64 __x)
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  747:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     double __i, __ret = __builtin_modf(__x, &__i);
  748:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     *__iptr = __i;
  749:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     return __ret;
-ARM GAS  /tmp/ccCmXEY4.s 			page 16
+ARM GAS  /tmp/ccViJelo.s 			page 16
 
 
  750:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   }
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  804:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_coshl(__x); }
  805:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  806:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
-ARM GAS  /tmp/ccCmXEY4.s 			page 17
+ARM GAS  /tmp/ccViJelo.s 			page 17
 
 
  807:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   exp(_Float128 __x)
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  861:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  862:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
  863:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   tan(_Float128 __x)
-ARM GAS  /tmp/ccCmXEY4.s 			page 18
+ARM GAS  /tmp/ccViJelo.s 			page 18
 
 
  864:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_tanl(__x); }
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  918:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr _Float128
  919:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ldexp(_Float128 __x, int __exp)
  920:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __builtin_ldexpf128(__x, __exp); }
-ARM GAS  /tmp/ccCmXEY4.s 			page 19
+ARM GAS  /tmp/ccViJelo.s 			page 19
 
 
  921:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  975:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  976:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
  977:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   ceil(__gnu_cxx::__bfloat16_t __x)
-ARM GAS  /tmp/ccCmXEY4.s 			page 20
+ARM GAS  /tmp/ccViJelo.s 			page 20
 
 
  978:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_ceilf(__x)); }
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
 1032:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr __gnu_cxx::__bfloat16_t
 1033:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   sin(__gnu_cxx::__bfloat16_t __x)
 1034:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   { return __gnu_cxx::__bfloat16_t(__builtin_sinf(__x)); }
-ARM GAS  /tmp/ccCmXEY4.s 			page 21
+ARM GAS  /tmp/ccViJelo.s 			page 21
 
 
 1035:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
 1089:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef signbit
 1090:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isgreater
 1091:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isgreaterequal
-ARM GAS  /tmp/ccCmXEY4.s 			page 22
+ARM GAS  /tmp/ccViJelo.s 			page 22
 
 
 1092:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef isless
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
 1146:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #ifndef __CORRECT_ISO_CPP11_MATH_H_PROTO_FP
 1147:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   constexpr bool
 1148:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   isinf(float __x)
-ARM GAS  /tmp/ccCmXEY4.s 			page 23
+ARM GAS  /tmp/ccViJelo.s 			page 23
 
 
   61              		.loc 2 1148 3 is_stmt 1 view .LVU4
@@ -1342,12 +1342,12 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
   78 0032 CAF80030 		str	r3, [r10]	@ float
   79              	.L3:
   80              		.loc 1 47 29 discriminator 9 view .LVU10
-  48:My_Top/System/pll.cpp ****     float delta_theta = reg_in - *reg_out;//计算输入角度与输出角度的误差
+  48:Lib/compute/pid/pll.cpp ****     float delta_theta = reg_in - *reg_out;//计算输入角度与输出角度的误差
   81              		.loc 1 48 5 view .LVU11
   82              		.loc 1 48 34 is_stmt 0 view .LVU12
   83 0036 DAED007A 		vldr.32	s15, [r10]
   84              	.LVL3:
-  49:My_Top/System/pll.cpp ****     delta_theta = wrap_to_PI(delta_theta);//将误差限制在 -π 到 π 之间
+  49:Lib/compute/pid/pll.cpp ****     delta_theta = wrap_to_PI(delta_theta);//将误差限制在 -π 到 π 之间
   85              		.loc 1 49 5 is_stmt 1 view .LVU13
   86              	.LBB14:
   87              		.loc 1 49 19 view .LVU14
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  112              	.L4:
  113              		.loc 1 49 19 discriminator 3 view .LVU19
  114 006c 10EE100A 		vmov	r0, s0
-ARM GAS  /tmp/ccCmXEY4.s 			page 24
+ARM GAS  /tmp/ccViJelo.s 			page 24
 
 
  115 0070 FFF7FEFF 		bl	__aeabi_f2d
@@ -1394,7 +1394,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  125              	.LVL13:
  126 0082 8046     		mov	r8, r0	@ float
  127              	.LVL14:
-  50:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+  50:Lib/compute/pid/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
  128              		.loc 1 50 5 is_stmt 1 view .LVU22
  129 0084 D4ED007A 		vldr.32	s15, [r4]
  130              		.loc 1 50 5 is_stmt 0 discriminator 1 view .LVU23
@@ -1425,8 +1425,8 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  154 00a6 2360     		str	r3, [r4]	@ float
  155              	.L7:
  156              		.loc 1 50 38 discriminator 9 view .LVU30
-  51:My_Top/System/pll.cpp ****     // 对应：θ_out[k+1] = θ_out[k] + (ω_out[k] + Kp·Δθ[k]) × Ts
-  52:My_Top/System/pll.cpp ****     *reg_out += (*Angular_velocity + conf->foc_pll_kp * delta_theta) * dt; //更新输出角度 310
+  51:Lib/compute/pid/pll.cpp ****     // 对应：θ_out[k+1] = θ_out[k] + (ω_out[k] + Kp·Δθ[k]) × Ts
+  52:Lib/compute/pid/pll.cpp ****     *reg_out += (*Angular_velocity + conf->foc_pll_kp * delta_theta) * dt; //更新输出角度 310
  157              		.loc 1 52 5 view .LVU31
  158 00a8 DAF80000 		ldr	r0, [r10]	@ float
  159              	.LVL17:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  165 00b4 2068     		ldr	r0, [r4]	@ float
  166 00b6 FFF7FEFF 		bl	__aeabi_f2d
  167              	.LVL19:
-ARM GAS  /tmp/ccCmXEY4.s 			page 25
+ARM GAS  /tmp/ccViJelo.s 			page 25
 
 
  168 00ba CDE90201 		strd	r0, [sp, #8]
@@ -1488,7 +1488,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  212 010a FFF7FEFF 		bl	__aeabi_d2f
  213              	.LVL27:
  214 010e CAF80000 		str	r0, [r10]	@ float
-  53:My_Top/System/pll.cpp ****     *reg_out = wrap_to_PI(*reg_out);//将输出角度限制在 -π 到 π 之间
+  53:Lib/compute/pid/pll.cpp ****     *reg_out = wrap_to_PI(*reg_out);//将输出角度限制在 -π 到 π 之间
  215              		.loc 1 53 5 is_stmt 1 view .LVU42
  216              	.LBB17:
  217              		.loc 1 53 16 view .LVU43
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  221 0118 D3E90023 		ldrd	r2, [r3]
  222 011c FFF7FEFF 		bl	__aeabi_dadd
  223              	.LVL29:
-ARM GAS  /tmp/ccCmXEY4.s 			page 26
+ARM GAS  /tmp/ccViJelo.s 			page 26
 
 
  224 0120 FFF7FEFF 		bl	__aeabi_d2f
@@ -1527,7 +1527,7 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  247              	.LVL35:
  248              		.loc 1 53 14 discriminator 3 view .LVU47
  249 0150 CAF80000 		str	r0, [r10]	@ float
-  54:My_Top/System/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
+  54:Lib/compute/pid/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
  250              		.loc 1 54 5 is_stmt 1 view .LVU48
  251 0154 2068     		ldr	r0, [r4]	@ float
  252 0156 FFF7FEFF 		bl	__aeabi_f2d
@@ -1556,9 +1556,9 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  275 0182 FFF7FEFF 		bl	__aeabi_d2f
  276              	.LVL40:
  277 0186 2060     		str	r0, [r4]	@ float
-  55:My_Top/System/pll.cpp **** }
+  55:Lib/compute/pid/pll.cpp **** }
  278              		.loc 1 55 1 view .LVU52
-ARM GAS  /tmp/ccCmXEY4.s 			page 27
+ARM GAS  /tmp/ccViJelo.s 			page 27
 
 
  279 0188 07B0     		add	sp, sp, #28
@@ -1570,26 +1570,26 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  285              	.L13:
  286              		.cfi_restore_state
  287              	.LBB18:
-  49:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+  49:Lib/compute/pid/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
  288              		.loc 1 49 19 is_stmt 1 discriminator 1 view .LVU53
  289 018e DFED097A 		vldr.32	s15, .L15+12
  290 0192 30EE270A 		vadd.f32	s0, s0, s15
  291              	.LVL42:
-  49:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+  49:Lib/compute/pid/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
  292              		.loc 1 49 19 is_stmt 0 discriminator 1 view .LVU54
  293 0196 69E7     		b	.L4
  294              	.LVL43:
  295              	.L14:
-  49:My_Top/System/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
+  49:Lib/compute/pid/pll.cpp ****     UTILS_NAN_ZERO(*Angular_velocity);//如果输出角速度是非数字(NaN)或无穷大置零
  296              		.loc 1 49 19 discriminator 1 view .LVU55
  297              	.LBE18:
  298              	.LBB19:
-  53:My_Top/System/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
+  53:Lib/compute/pid/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
  299              		.loc 1 53 16 is_stmt 1 discriminator 1 view .LVU56
  300 0198 DFED067A 		vldr.32	s15, .L15+12
  301 019c 30EE270A 		vadd.f32	s0, s0, s15
  302              	.LVL44:
-  53:My_Top/System/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
+  53:Lib/compute/pid/pll.cpp ****     *Angular_velocity += conf->foc_pll_ki * delta_theta * dt; //更新输出角速度
  303              		.loc 1 53 16 is_stmt 0 discriminator 1 view .LVU57
  304 01a0 CBE7     		b	.L8
  305              	.L16:
@@ -1611,15 +1611,15 @@ ARM GAS  /tmp/ccCmXEY4.s 			page 1
  321              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
  322              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+fp
  323              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
- 324              		.file 10 "My_Top/System/pll.hpp"
-ARM GAS  /tmp/ccCmXEY4.s 			page 28
+ 324              		.file 10 "Lib/compute/pid/pll.hpp"
+ARM GAS  /tmp/ccViJelo.s 			page 28
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 pll.cpp
-     /tmp/ccCmXEY4.s:20     .text:00000000 $t
-     /tmp/ccCmXEY4.s:26     .text:00000000 _Z11foc_pll_runffPfS_P13PLL_Parameter
-     /tmp/ccCmXEY4.s:308    .text:000001a8 $d
+     /tmp/ccViJelo.s:20     .text:00000000 $t
+     /tmp/ccViJelo.s:26     .text:00000000 _Z11foc_pll_runffPfS_P13PLL_Parameter
+     /tmp/ccViJelo.s:308    .text:000001a8 $d
 
 UNDEFINED SYMBOLS
 __aeabi_f2d

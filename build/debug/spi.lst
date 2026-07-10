@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccjsQwVC.s 			page 1
+ARM GAS  /tmp/ccEcNknv.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
   28:Core/Src/spi.c **** 
   29:Core/Src/spi.c **** /* SPI3 init function */
   30:Core/Src/spi.c **** void MX_SPI3_Init(void)
-ARM GAS  /tmp/ccjsQwVC.s 			page 2
+ARM GAS  /tmp/ccEcNknv.s 			page 2
 
 
   31:Core/Src/spi.c **** {
@@ -94,10 +94,10 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
   47              		.loc 1 42 24 is_stmt 0 view .LVU6
   48 000e 4FF40043 		mov	r3, #32768
   49 0012 8360     		str	r3, [r0, #8]
-  43:Core/Src/spi.c ****   hspi3.Init.DataSize = SPI_DATASIZE_4BIT;
+  43:Core/Src/spi.c ****   hspi3.Init.DataSize = SPI_DATASIZE_8BIT;
   50              		.loc 1 43 3 is_stmt 1 view .LVU7
   51              		.loc 1 43 23 is_stmt 0 view .LVU8
-  52 0014 4FF44073 		mov	r3, #768
+  52 0014 4FF4E063 		mov	r3, #1792
   53 0018 C360     		str	r3, [r0, #12]
   44:Core/Src/spi.c ****   hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
   54              		.loc 1 44 3 is_stmt 1 view .LVU9
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
   66              		.loc 1 47 32 is_stmt 0 view .LVU16
   67 0026 1822     		movs	r2, #24
   68 0028 C261     		str	r2, [r0, #28]
-ARM GAS  /tmp/ccjsQwVC.s 			page 3
+ARM GAS  /tmp/ccEcNknv.s 			page 3
 
 
   48:Core/Src/spi.c ****   hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
  107 0048 00000000 		.word	hspi3
  108 004c 003C0040 		.word	1073757184
  109              		.cfi_endproc
-ARM GAS  /tmp/ccjsQwVC.s 			page 4
+ARM GAS  /tmp/ccEcNknv.s 			page 4
 
 
  110              	.LFE329:
@@ -219,7 +219,7 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
  141              		.loc 1 68 15 is_stmt 0 view .LVU40
  142 0010 0268     		ldr	r2, [r0]
  143              		.loc 1 68 5 view .LVU41
- 144 0012 124B     		ldr	r3, .L11
+ 144 0012 164B     		ldr	r3, .L11
  145 0014 9A42     		cmp	r2, r3
  146 0016 02D0     		beq	.L10
  147              	.LVL3:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
   80:Core/Src/spi.c ****     */
   81:Core/Src/spi.c ****     GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_5;
   82:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-ARM GAS  /tmp/ccjsQwVC.s 			page 5
+ARM GAS  /tmp/ccEcNknv.s 			page 5
 
 
   83:Core/Src/spi.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -246,12 +246,15 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
   85:Core/Src/spi.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
   86:Core/Src/spi.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   87:Core/Src/spi.c **** 
-  88:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
-  89:Core/Src/spi.c **** 
-  90:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 1 */
-  91:Core/Src/spi.c ****   }
-  92:Core/Src/spi.c **** }
- 149              		.loc 1 92 1 view .LVU42
+  88:Core/Src/spi.c ****     /* SPI3 interrupt Init */
+  89:Core/Src/spi.c ****     HAL_NVIC_SetPriority(SPI3_IRQn, 5, 0);
+  90:Core/Src/spi.c ****     HAL_NVIC_EnableIRQ(SPI3_IRQn);
+  91:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
+  92:Core/Src/spi.c **** 
+  93:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 1 */
+  94:Core/Src/spi.c ****   }
+  95:Core/Src/spi.c **** }
+ 149              		.loc 1 95 1 view .LVU42
  150 0018 09B0     		add	sp, sp, #36
  151              		.cfi_remember_state
  152              		.cfi_def_cfa_offset 4
@@ -295,12 +298,12 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
   76:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
  181              		.loc 1 76 5 view .LVU52
  182 003c DB6C     		ldr	r3, [r3, #76]
+ARM GAS  /tmp/ccEcNknv.s 			page 6
+
+
  183 003e 03F00203 		and	r3, r3, #2
  184 0042 0293     		str	r3, [sp, #8]
   76:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
-ARM GAS  /tmp/ccjsQwVC.s 			page 6
-
-
  185              		.loc 1 76 5 view .LVU53
  186 0044 029B     		ldr	r3, [sp, #8]
  187              	.LBE3:
@@ -331,145 +334,168 @@ ARM GAS  /tmp/ccjsQwVC.s 			page 1
   86:Core/Src/spi.c **** 
  203              		.loc 1 86 5 is_stmt 1 view .LVU63
  204 0052 03A9     		add	r1, sp, #12
- 205 0054 0248     		ldr	r0, .L11+4
+ 205 0054 0648     		ldr	r0, .L11+4
  206              	.LVL5:
   86:Core/Src/spi.c **** 
  207              		.loc 1 86 5 is_stmt 0 view .LVU64
  208 0056 FFF7FEFF 		bl	HAL_GPIO_Init
  209              	.LVL6:
- 210              		.loc 1 92 1 view .LVU65
- 211 005a DDE7     		b	.L7
- 212              	.L12:
- 213              		.align	2
- 214              	.L11:
- 215 005c 003C0040 		.word	1073757184
- 216 0060 00040048 		.word	1207960576
- 217              		.cfi_endproc
- 218              	.LFE330:
- 220              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
- 221              		.align	1
- 222              		.global	HAL_SPI_MspDeInit
- 223              		.syntax unified
- 224              		.thumb
- 225              		.thumb_func
- 227              	HAL_SPI_MspDeInit:
- 228              	.LVL7:
- 229              	.LFB331:
-  93:Core/Src/spi.c **** 
-  94:Core/Src/spi.c **** void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
-  95:Core/Src/spi.c **** {
-ARM GAS  /tmp/ccjsQwVC.s 			page 7
+  89:Core/Src/spi.c ****     HAL_NVIC_EnableIRQ(SPI3_IRQn);
+ 210              		.loc 1 89 5 is_stmt 1 view .LVU65
+ 211 005a 0022     		movs	r2, #0
+ 212 005c 0521     		movs	r1, #5
+ 213 005e 3320     		movs	r0, #51
+ 214 0060 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 215              	.LVL7:
+  90:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
+ 216              		.loc 1 90 5 view .LVU66
+ 217 0064 3320     		movs	r0, #51
+ 218 0066 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 219              	.LVL8:
+ 220              		.loc 1 95 1 is_stmt 0 view .LVU67
+ 221 006a D5E7     		b	.L7
+ 222              	.L12:
+ 223              		.align	2
+ 224              	.L11:
+ 225 006c 003C0040 		.word	1073757184
+ARM GAS  /tmp/ccEcNknv.s 			page 7
 
 
- 230              		.loc 1 95 1 is_stmt 1 view -0
- 231              		.cfi_startproc
- 232              		@ args = 0, pretend = 0, frame = 0
- 233              		@ frame_needed = 0, uses_anonymous_args = 0
- 234              		.loc 1 95 1 is_stmt 0 view .LVU67
- 235 0000 08B5     		push	{r3, lr}
- 236              		.cfi_def_cfa_offset 8
- 237              		.cfi_offset 3, -8
- 238              		.cfi_offset 14, -4
+ 226 0070 00040048 		.word	1207960576
+ 227              		.cfi_endproc
+ 228              	.LFE330:
+ 230              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
+ 231              		.align	1
+ 232              		.global	HAL_SPI_MspDeInit
+ 233              		.syntax unified
+ 234              		.thumb
+ 235              		.thumb_func
+ 237              	HAL_SPI_MspDeInit:
+ 238              	.LVL9:
+ 239              	.LFB331:
   96:Core/Src/spi.c **** 
-  97:Core/Src/spi.c ****   if(spiHandle->Instance==SPI3)
- 239              		.loc 1 97 3 is_stmt 1 view .LVU68
- 240              		.loc 1 97 15 is_stmt 0 view .LVU69
- 241 0002 0268     		ldr	r2, [r0]
- 242              		.loc 1 97 5 view .LVU70
- 243 0004 064B     		ldr	r3, .L17
- 244 0006 9A42     		cmp	r2, r3
- 245 0008 00D0     		beq	.L16
- 246              	.LVL8:
- 247              	.L13:
-  98:Core/Src/spi.c ****   {
-  99:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 0 */
- 100:Core/Src/spi.c **** 
- 101:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 0 */
- 102:Core/Src/spi.c ****     /* Peripheral clock disable */
- 103:Core/Src/spi.c ****     __HAL_RCC_SPI3_CLK_DISABLE();
- 104:Core/Src/spi.c **** 
- 105:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
- 106:Core/Src/spi.c ****     PB3     ------> SPI3_SCK
- 107:Core/Src/spi.c ****     PB5     ------> SPI3_MOSI
- 108:Core/Src/spi.c ****     */
- 109:Core/Src/spi.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_3|GPIO_PIN_5);
- 110:Core/Src/spi.c **** 
- 111:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 1 */
- 112:Core/Src/spi.c **** 
- 113:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 1 */
- 114:Core/Src/spi.c ****   }
- 115:Core/Src/spi.c **** }
- 248              		.loc 1 115 1 view .LVU71
- 249 000a 08BD     		pop	{r3, pc}
- 250              	.LVL9:
- 251              	.L16:
+  97:Core/Src/spi.c **** void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
+  98:Core/Src/spi.c **** {
+ 240              		.loc 1 98 1 is_stmt 1 view -0
+ 241              		.cfi_startproc
+ 242              		@ args = 0, pretend = 0, frame = 0
+ 243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 244              		.loc 1 98 1 is_stmt 0 view .LVU69
+ 245 0000 08B5     		push	{r3, lr}
+ 246              		.cfi_def_cfa_offset 8
+ 247              		.cfi_offset 3, -8
+ 248              		.cfi_offset 14, -4
+  99:Core/Src/spi.c **** 
+ 100:Core/Src/spi.c ****   if(spiHandle->Instance==SPI3)
+ 249              		.loc 1 100 3 is_stmt 1 view .LVU70
+ 250              		.loc 1 100 15 is_stmt 0 view .LVU71
+ 251 0002 0268     		ldr	r2, [r0]
+ 252              		.loc 1 100 5 view .LVU72
+ 253 0004 084B     		ldr	r3, .L17
+ 254 0006 9A42     		cmp	r2, r3
+ 255 0008 00D0     		beq	.L16
+ 256              	.LVL10:
+ 257              	.L13:
+ 101:Core/Src/spi.c ****   {
+ 102:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 0 */
  103:Core/Src/spi.c **** 
- 252              		.loc 1 103 5 is_stmt 1 view .LVU72
- 253 000c 054A     		ldr	r2, .L17+4
- 254 000e 936D     		ldr	r3, [r2, #88]
- 255 0010 23F40043 		bic	r3, r3, #32768
- 256 0014 9365     		str	r3, [r2, #88]
- 109:Core/Src/spi.c **** 
- 257              		.loc 1 109 5 view .LVU73
- 258 0016 2821     		movs	r1, #40
- 259 0018 0348     		ldr	r0, .L17+8
- 260              	.LVL10:
- 109:Core/Src/spi.c **** 
- 261              		.loc 1 109 5 is_stmt 0 view .LVU74
- 262 001a FFF7FEFF 		bl	HAL_GPIO_DeInit
- 263              	.LVL11:
-ARM GAS  /tmp/ccjsQwVC.s 			page 8
+ 104:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 0 */
+ 105:Core/Src/spi.c ****     /* Peripheral clock disable */
+ 106:Core/Src/spi.c ****     __HAL_RCC_SPI3_CLK_DISABLE();
+ 107:Core/Src/spi.c **** 
+ 108:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
+ 109:Core/Src/spi.c ****     PB3     ------> SPI3_SCK
+ 110:Core/Src/spi.c ****     PB5     ------> SPI3_MOSI
+ 111:Core/Src/spi.c ****     */
+ 112:Core/Src/spi.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_3|GPIO_PIN_5);
+ 113:Core/Src/spi.c **** 
+ 114:Core/Src/spi.c ****     /* SPI3 interrupt Deinit */
+ 115:Core/Src/spi.c ****     HAL_NVIC_DisableIRQ(SPI3_IRQn);
+ 116:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 1 */
+ 117:Core/Src/spi.c **** 
+ 118:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 1 */
+ 119:Core/Src/spi.c ****   }
+ 120:Core/Src/spi.c **** }
+ 258              		.loc 1 120 1 view .LVU73
+ 259 000a 08BD     		pop	{r3, pc}
+ARM GAS  /tmp/ccEcNknv.s 			page 8
 
 
- 264              		.loc 1 115 1 view .LVU75
- 265 001e F4E7     		b	.L13
- 266              	.L18:
- 267              		.align	2
- 268              	.L17:
- 269 0020 003C0040 		.word	1073757184
- 270 0024 00100240 		.word	1073876992
- 271 0028 00040048 		.word	1207960576
- 272              		.cfi_endproc
- 273              	.LFE331:
- 275              		.global	hspi3
- 276              		.section	.bss.hspi3,"aw",%nobits
- 277              		.align	2
- 280              	hspi3:
- 281 0000 00000000 		.space	100
- 281      00000000 
- 281      00000000 
- 281      00000000 
- 281      00000000 
- 282              		.text
- 283              	.Letext0:
- 284              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 285              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
- 286              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 287              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 288              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
- 289              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 290              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 291              		.file 9 "Core/Inc/spi.h"
- 292              		.file 10 "Core/Inc/main.h"
-ARM GAS  /tmp/ccjsQwVC.s 			page 9
+ 260              	.LVL11:
+ 261              	.L16:
+ 106:Core/Src/spi.c **** 
+ 262              		.loc 1 106 5 is_stmt 1 view .LVU74
+ 263 000c 074A     		ldr	r2, .L17+4
+ 264 000e 936D     		ldr	r3, [r2, #88]
+ 265 0010 23F40043 		bic	r3, r3, #32768
+ 266 0014 9365     		str	r3, [r2, #88]
+ 112:Core/Src/spi.c **** 
+ 267              		.loc 1 112 5 view .LVU75
+ 268 0016 2821     		movs	r1, #40
+ 269 0018 0548     		ldr	r0, .L17+8
+ 270              	.LVL12:
+ 112:Core/Src/spi.c **** 
+ 271              		.loc 1 112 5 is_stmt 0 view .LVU76
+ 272 001a FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 273              	.LVL13:
+ 115:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 1 */
+ 274              		.loc 1 115 5 is_stmt 1 view .LVU77
+ 275 001e 3320     		movs	r0, #51
+ 276 0020 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 277              	.LVL14:
+ 278              		.loc 1 120 1 is_stmt 0 view .LVU78
+ 279 0024 F1E7     		b	.L13
+ 280              	.L18:
+ 281 0026 00BF     		.align	2
+ 282              	.L17:
+ 283 0028 003C0040 		.word	1073757184
+ 284 002c 00100240 		.word	1073876992
+ 285 0030 00040048 		.word	1207960576
+ 286              		.cfi_endproc
+ 287              	.LFE331:
+ 289              		.global	hspi3
+ 290              		.section	.bss.hspi3,"aw",%nobits
+ 291              		.align	2
+ 294              	hspi3:
+ 295 0000 00000000 		.space	100
+ 295      00000000 
+ 295      00000000 
+ 295      00000000 
+ 295      00000000 
+ 296              		.text
+ 297              	.Letext0:
+ 298              		.file 2 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 299              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 300              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 301              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 302              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 303              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 304              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 305              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
+ 306              		.file 10 "Core/Inc/spi.h"
+ 307              		.file 11 "Core/Inc/main.h"
+ARM GAS  /tmp/ccEcNknv.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-     /tmp/ccjsQwVC.s:21     .text.MX_SPI3_Init:00000000 $t
-     /tmp/ccjsQwVC.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
-     /tmp/ccjsQwVC.s:107    .text.MX_SPI3_Init:00000048 $d
-     /tmp/ccjsQwVC.s:280    .bss.hspi3:00000000 hspi3
-     /tmp/ccjsQwVC.s:113    .text.HAL_SPI_MspInit:00000000 $t
-     /tmp/ccjsQwVC.s:119    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-     /tmp/ccjsQwVC.s:215    .text.HAL_SPI_MspInit:0000005c $d
-     /tmp/ccjsQwVC.s:221    .text.HAL_SPI_MspDeInit:00000000 $t
-     /tmp/ccjsQwVC.s:227    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-     /tmp/ccjsQwVC.s:269    .text.HAL_SPI_MspDeInit:00000020 $d
-     /tmp/ccjsQwVC.s:277    .bss.hspi3:00000000 $d
+     /tmp/ccEcNknv.s:21     .text.MX_SPI3_Init:00000000 $t
+     /tmp/ccEcNknv.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
+     /tmp/ccEcNknv.s:107    .text.MX_SPI3_Init:00000048 $d
+     /tmp/ccEcNknv.s:294    .bss.hspi3:00000000 hspi3
+     /tmp/ccEcNknv.s:113    .text.HAL_SPI_MspInit:00000000 $t
+     /tmp/ccEcNknv.s:119    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+     /tmp/ccEcNknv.s:225    .text.HAL_SPI_MspInit:0000006c $d
+     /tmp/ccEcNknv.s:231    .text.HAL_SPI_MspDeInit:00000000 $t
+     /tmp/ccEcNknv.s:237    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+     /tmp/ccEcNknv.s:283    .text.HAL_SPI_MspDeInit:00000028 $d
+     /tmp/ccEcNknv.s:291    .bss.hspi3:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init
 Error_Handler
 HAL_GPIO_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
 HAL_GPIO_DeInit
+HAL_NVIC_DisableIRQ

@@ -41,8 +41,8 @@ build/debug/my_tim.o: My_Top/Motor_Control/my_tim.cpp \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  My_Top/System/HAL_System.hpp My_Top/System/bsp.hpp Core/Inc/usart.h \
  Core/Inc/gpio.h Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/adc.h \
- My_Top/Motor_Control/DcMotor_ClosedLoop.hpp \
- My_Top/System/pid_Increment.hpp My_Top/System/pll.hpp \
+ My_Top/Motor_Control/DcMotor_ClosedLoop.hpp Lib/compute/pid/pid.hpp \
+ Lib/compute/pid/pid_Increment.hpp Lib/compute/pid/pll.hpp \
  Lib/compute/ex_math.hpp Lib/compute/fast_sin.h \
  My_Top/System/kth_read.hpp \
  Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
@@ -54,7 +54,7 @@ build/debug/my_tim.o: My_Top/Motor_Control/my_tim.cpp \
  Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- My_Top/System/BL24C16F.hpp My_Top/Drone_CAN/my_dronecan.hpp \
+ My_Top/EEPROM/XBLW24C64.hpp My_Top/Drone_CAN/my_dronecan.hpp \
  My_Top/Drone_CAN/my_uav_can.hpp Core/Inc/fdcan.h \
  My_Top/Drone_CAN/canard.h My_Top/Drone_CAN/my_fdcan.hpp \
  My_Top/Drone_CAN/dronecan_jiexi.hpp \
@@ -116,8 +116,9 @@ Core/Inc/i2c.h:
 Core/Inc/spi.h:
 Core/Inc/adc.h:
 My_Top/Motor_Control/DcMotor_ClosedLoop.hpp:
-My_Top/System/pid_Increment.hpp:
-My_Top/System/pll.hpp:
+Lib/compute/pid/pid.hpp:
+Lib/compute/pid/pid_Increment.hpp:
+Lib/compute/pid/pll.hpp:
 Lib/compute/ex_math.hpp:
 Lib/compute/fast_sin.h:
 My_Top/System/kth_read.hpp:
@@ -130,7 +131,7 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
-My_Top/System/BL24C16F.hpp:
+My_Top/EEPROM/XBLW24C64.hpp:
 My_Top/Drone_CAN/my_dronecan.hpp:
 My_Top/Drone_CAN/my_uav_can.hpp:
 Core/Inc/fdcan.h:

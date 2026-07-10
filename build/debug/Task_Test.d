@@ -56,11 +56,18 @@ build/debug/Task_Test.o: My_Top/Task/Task_Test.cpp \
  Lib/serial/printf.h My_Top/Modules/CLI_Module.hpp \
  Lib/embedded-cli/embedded_cli.h My_Top/System/bsp.hpp Core/Inc/tim.h \
  Core/Inc/gpio.h Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/adc.h \
- My_Top/MC/My_Vofa.hpp Lib/uorb/uorb.hpp \
- My_Top/Motor_Control/DcMotor_ClosedLoop.hpp \
- My_Top/System/pid_Increment.hpp My_Top/System/pll.hpp \
- Lib/compute/ex_math.hpp Lib/compute/fast_sin.h \
- My_Top/System/kth_read.hpp My_Top/System/BL24C16F.hpp \
+ My_Top/MC/My_Vofa.hpp USB_Device/App/usbd_cdc_if.h \
+ Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
+ Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
+ USB_Device/Target/usbd_conf.h \
+ Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
+ Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
+ Lib/uorb/uorb.hpp My_Top/Motor_Control/DcMotor_ClosedLoop.hpp \
+ Lib/compute/pid/pid.hpp Lib/compute/pid/pid_Increment.hpp \
+ Lib/compute/pid/pll.hpp Lib/compute/ex_math.hpp Lib/compute/fast_sin.h \
+ My_Top/System/kth_read.hpp My_Top/EEPROM/XBLW24C64.hpp \
  My_Top/Drone_CAN/my_dronecan.hpp My_Top/Drone_CAN/my_uav_can.hpp \
  Core/Inc/fdcan.h My_Top/Drone_CAN/canard.h My_Top/Drone_CAN/my_fdcan.hpp \
  My_Top/System/HAL_System.hpp My_Top/Drone_CAN/dronecan_jiexi.hpp \
@@ -139,14 +146,23 @@ Core/Inc/i2c.h:
 Core/Inc/spi.h:
 Core/Inc/adc.h:
 My_Top/MC/My_Vofa.hpp:
+USB_Device/App/usbd_cdc_if.h:
+Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
+Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+USB_Device/Target/usbd_conf.h:
+Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
+Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
 Lib/uorb/uorb.hpp:
 My_Top/Motor_Control/DcMotor_ClosedLoop.hpp:
-My_Top/System/pid_Increment.hpp:
-My_Top/System/pll.hpp:
+Lib/compute/pid/pid.hpp:
+Lib/compute/pid/pid_Increment.hpp:
+Lib/compute/pid/pll.hpp:
 Lib/compute/ex_math.hpp:
 Lib/compute/fast_sin.h:
 My_Top/System/kth_read.hpp:
-My_Top/System/BL24C16F.hpp:
+My_Top/EEPROM/XBLW24C64.hpp:
 My_Top/Drone_CAN/my_dronecan.hpp:
 My_Top/Drone_CAN/my_uav_can.hpp:
 Core/Inc/fdcan.h:
