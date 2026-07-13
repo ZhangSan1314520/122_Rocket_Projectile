@@ -22,15 +22,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
-//My_Add_code
-static USB_RxCallback _usb_rx_cb = NULL;  //
-void USB_Register_RxCallback(USB_RxCallback cb)
-{
-    _usb_rx_cb = cb;
-}
-//My_Add_code
-
+#include "My_USB_CDC.hpp"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -271,8 +263,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   /* USER CODE BEGIN 6 */
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-  if (_usb_rx_cb != NULL)  //注册过函数
-    _usb_rx_cb(Buf, *Len); 
+  My_USB_CDC_ProcessRx(Buf, *Len);
   return (USBD_OK);
   /* USER CODE END 6 */
 }

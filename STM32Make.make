@@ -170,6 +170,7 @@ My_Top/Drone_CAN/my_uav_can.cpp \
 My_Top/EEPROM/Motor_Storage.cpp \
 My_Top/EEPROM/XBLW24C64.cpp \
 My_Top/MC/MC_Serial.cpp \
+My_Top/MC/My_USB_CDC.cpp \
 My_Top/MC/My_Vofa.cpp \
 My_Top/Modules/CLI_Module.cpp \
 My_Top/Motor_Control/DcMotor_ClosedLoop.cpp \

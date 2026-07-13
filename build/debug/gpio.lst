@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccunQEOl.s 			page 1
+ARM GAS  /tmp/cc59IzSE.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccunQEOl.s 			page 1
   28:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
   29:Core/Src/gpio.c **** /* Configure GPIO                                                             */
   30:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
-ARM GAS  /tmp/ccunQEOl.s 			page 2
+ARM GAS  /tmp/cc59IzSE.s 			page 2
 
 
   31:Core/Src/gpio.c **** /* USER CODE BEGIN 1 */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccunQEOl.s 			page 1
   65 0024 0092     		str	r2, [sp]
   66              		.loc 1 48 3 view .LVU7
   67 0026 009A     		ldr	r2, [sp]
-ARM GAS  /tmp/ccunQEOl.s 			page 3
+ARM GAS  /tmp/cc59IzSE.s 			page 3
 
 
   68              	.LBE2:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccunQEOl.s 			page 1
  118              		.loc 1 52 3 view .LVU29
  119 005e DA6C     		ldr	r2, [r3, #76]
  120 0060 42F00802 		orr	r2, r2, #8
-ARM GAS  /tmp/ccunQEOl.s 			page 4
+ARM GAS  /tmp/cc59IzSE.s 			page 4
 
 
  121 0064 DA64     		str	r2, [r3, #76]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccunQEOl.s 			page 1
  160 00b0 3846     		mov	r0, r7
  161 00b2 FFF7FEFF 		bl	HAL_GPIO_WritePin
  162              	.LVL4:
-ARM GAS  /tmp/ccunQEOl.s 			page 5
+ARM GAS  /tmp/cc59IzSE.s 			page 5
 
 
   68:Core/Src/gpio.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccunQEOl.s 			page 1
   84:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ENC2_CAL_Pin;
  201              		.loc 1 84 3 view .LVU56
  202              		.loc 1 84 23 is_stmt 0 view .LVU57
-ARM GAS  /tmp/ccunQEOl.s 			page 6
+ARM GAS  /tmp/cc59IzSE.s 			page 6
 
 
  203 00e8 4FF48073 		mov	r3, #256
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccunQEOl.s 			page 1
  242              		.loc 1 99 24 is_stmt 0 view .LVU77
  243 0118 0696     		str	r6, [sp, #24]
  100:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_PULLUP;
-ARM GAS  /tmp/ccunQEOl.s 			page 7
+ARM GAS  /tmp/cc59IzSE.s 			page 7
 
 
  244              		.loc 1 100 3 is_stmt 1 view .LVU78
@@ -396,14 +396,14 @@ ARM GAS  /tmp/ccunQEOl.s 			page 1
  273              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
  274              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  275              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
-ARM GAS  /tmp/ccunQEOl.s 			page 8
+ARM GAS  /tmp/cc59IzSE.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpio.c
-     /tmp/ccunQEOl.s:21     .text.MX_GPIO_Init:00000000 $t
-     /tmp/ccunQEOl.s:27     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-     /tmp/ccunQEOl.s:263    .text.MX_GPIO_Init:0000012c $d
+     /tmp/cc59IzSE.s:21     .text.MX_GPIO_Init:00000000 $t
+     /tmp/cc59IzSE.s:27     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+     /tmp/cc59IzSE.s:263    .text.MX_GPIO_Init:0000012c $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
