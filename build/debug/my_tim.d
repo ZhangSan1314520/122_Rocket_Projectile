@@ -43,7 +43,7 @@ build/debug/my_tim.o: My_Top/Motor_Control/my_tim.cpp \
  Core/Inc/gpio.h Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/adc.h \
  My_Top/Motor_Control/DcMotor_ClosedLoop.hpp Lib/compute/pid/pid.hpp \
  Lib/compute/pid/pid_Increment.hpp Lib/compute/pid/pll.hpp \
- Lib/compute/ex_math.hpp Lib/compute/fast_sin.h \
+ Lib/compute/ex_math.hpp Lib/compute/fast_sin.h Lib/compute/pid/LQR.hpp \
  My_Top/System/kth_read.hpp \
  Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  Core/Inc/FreeRTOSConfig.h \
@@ -121,6 +121,7 @@ Lib/compute/pid/pid_Increment.hpp:
 Lib/compute/pid/pll.hpp:
 Lib/compute/ex_math.hpp:
 Lib/compute/fast_sin.h:
+Lib/compute/pid/LQR.hpp:
 My_Top/System/kth_read.hpp:
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:

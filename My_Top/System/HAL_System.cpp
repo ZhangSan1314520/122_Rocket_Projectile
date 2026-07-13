@@ -51,21 +51,18 @@ uint32_t HAL_System::get_tick_ms(void)
 }
 
 // ============================================================
-// 延时函数（使用 FreeRTOS 的任务延时，释放 CPU）
-// ============================================================
-void HAL_System::delay_ms(uint32_t ms)
-{
-    vTaskDelay(pdMS_TO_TICKS(ms));
-}
-
-// ============================================================
 // 定时器溢出回调函数（每当 TIM 计数器从 0xFFFFFFFF 回到 0 时触发）
 // ============================================================
 // 注意：此函数运行在中断上下文中！
 void HAL_System::period_elapsed_callback(TIM_HandleTypeDef *htim)
 {
-    // tick_us += (uint64_t)1 << 32;
     tick_us += (uint64_t)1 << Tim_Number_ofdigits;
 }
 
+
+void HAL_System::delay_ms(uint32_t ms)
+{
+    uint32_t start = get_tick_ms();
+    while ((get_tick_ms() - start) < ms) {}
+}
 

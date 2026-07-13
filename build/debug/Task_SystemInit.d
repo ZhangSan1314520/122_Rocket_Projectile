@@ -61,9 +61,10 @@ build/debug/Task_SystemInit.o: My_Top/Task/Task_SystemInit.cpp \
  Lib/embedded-cli/embedded_cli.h \
  My_Top/Motor_Control/DcMotor_ClosedLoop.hpp Lib/compute/pid/pid.hpp \
  Lib/compute/pid/pid_Increment.hpp Lib/compute/pid/pll.hpp \
- My_Top/System/kth_read.hpp My_Top/EEPROM/XBLW24C64.hpp \
- My_Top/Drone_CAN/my_dronecan.hpp My_Top/Drone_CAN/my_uav_can.hpp \
- Core/Inc/fdcan.h My_Top/Drone_CAN/canard.h My_Top/Drone_CAN/my_fdcan.hpp \
+ Lib/compute/pid/LQR.hpp My_Top/System/kth_read.hpp \
+ My_Top/EEPROM/XBLW24C64.hpp My_Top/Drone_CAN/my_dronecan.hpp \
+ My_Top/Drone_CAN/my_uav_can.hpp Core/Inc/fdcan.h \
+ My_Top/Drone_CAN/canard.h My_Top/Drone_CAN/my_fdcan.hpp \
  My_Top/Drone_CAN/dronecan_jiexi.hpp \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h \
@@ -157,6 +158,7 @@ My_Top/Motor_Control/DcMotor_ClosedLoop.hpp:
 Lib/compute/pid/pid.hpp:
 Lib/compute/pid/pid_Increment.hpp:
 Lib/compute/pid/pll.hpp:
+Lib/compute/pid/LQR.hpp:
 My_Top/System/kth_read.hpp:
 My_Top/EEPROM/XBLW24C64.hpp:
 My_Top/Drone_CAN/my_dronecan.hpp:

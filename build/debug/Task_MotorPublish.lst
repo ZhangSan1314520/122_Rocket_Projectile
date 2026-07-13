@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccXWiaJR.s 			page 1
+ARM GAS  /tmp/ccEBDXNn.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,7 +26,7 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
   23              		.thumb_func
   25              	_ZL10fill_telemP13motor_telem_tP8DC_Motor:
   26              	.LVL0:
-  27              	.LFB1347:
+  27              	.LFB1352:
    1:My_Top/Task/Task_MotorPublish.cpp **** #include "FreeRTOS.h"
    2:My_Top/Task/Task_MotorPublish.cpp **** #include "task.h"
    3:My_Top/Task/Task_MotorPublish.cpp **** #include "uorb.hpp"
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
   43              		.loc 1 13 5 is_stmt 1 view .LVU7
   44              		.loc 1 13 25 is_stmt 0 view .LVU8
   45 0008 8B69     		ldr	r3, [r1, #24]	@ float
-ARM GAS  /tmp/ccXWiaJR.s 			page 2
+ARM GAS  /tmp/ccEBDXNn.s 			page 2
 
 
   46              		.loc 1 13 20 view .LVU9
@@ -104,7 +104,7 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
   73              		.loc 1 26 1 view .LVU25
   74 0020 7047     		bx	lr
   75              		.cfi_endproc
-  76              	.LFE1347:
+  76              	.LFE1352:
   78              		.section	.rodata.str1.4,"aMS",%progbits,1
   79              		.align	2
   80              	.LC0:
@@ -118,11 +118,11 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
   86              		.thumb
   87              		.thumb_func
   89              	_Z17Task_MotorPublishPv:
-ARM GAS  /tmp/ccXWiaJR.s 			page 3
+ARM GAS  /tmp/ccEBDXNn.s 			page 3
 
 
   90              	.LVL1:
-  91              	.LFB1348:
+  91              	.LFB1353:
   27:My_Top/Task/Task_MotorPublish.cpp **** 
   28:My_Top/Task/Task_MotorPublish.cpp **** void Task_MotorPublish(void *argument)
   29:My_Top/Task/Task_MotorPublish.cpp **** {
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
   16:My_Top/Task/task_topics.h ****     //热敏电阻
   17:My_Top/Task/task_topics.h ****     float ADC_Temp_Val = 0.0f; //热敏电阻温度
   18:My_Top/Task/task_topics.h **** 
-ARM GAS  /tmp/ccXWiaJR.s 			page 4
+ARM GAS  /tmp/ccEBDXNn.s 			page 4
 
 
   19:My_Top/Task/task_topics.h ****     //调试信息
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
  166              	.LVL11:
   39:My_Top/Task/Task_MotorPublish.cpp **** 
   40:My_Top/Task/Task_MotorPublish.cpp ****         uorb_publish(topic, buf);//发布数据 (没有指定给谁发，放在公共区域里)
-ARM GAS  /tmp/ccXWiaJR.s 			page 5
+ARM GAS  /tmp/ccEBDXNn.s 			page 5
 
 
  167              		.loc 1 40 9 is_stmt 1 view .LVU46
@@ -265,7 +265,7 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
  186 0080 00000000 		.word	M3
  187 0084 00000000 		.word	M4
  188              		.cfi_endproc
- 189              	.LFE1348:
+ 189              	.LFE1353:
  191              	.Letext0:
  192              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
  193              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
@@ -289,19 +289,20 @@ ARM GAS  /tmp/ccXWiaJR.s 			page 1
  211              		.file 22 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
  212              		.file 23 "My_Top/System/bsp.hpp"
  213              		.file 24 "Lib/compute/pid/pll.hpp"
- 214              		.file 25 "My_Top/System/kth_read.hpp"
- 215              		.file 26 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
- 216              		.file 27 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-ARM GAS  /tmp/ccXWiaJR.s 			page 6
+ 214              		.file 25 "Lib/compute/pid/LQR.hpp"
+ 215              		.file 26 "My_Top/System/kth_read.hpp"
+ 216              		.file 27 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ 217              		.file 28 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  /tmp/ccEBDXNn.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Task_MotorPublish.cpp
-     /tmp/ccXWiaJR.s:20     .text:00000000 $t
-     /tmp/ccXWiaJR.s:25     .text:00000000 _ZL10fill_telemP13motor_telem_tP8DC_Motor
-     /tmp/ccXWiaJR.s:79     .rodata.str1.4:00000000 $d
-     /tmp/ccXWiaJR.s:89     .text:00000022 _Z17Task_MotorPublishPv
-     /tmp/ccXWiaJR.s:183    .text:00000074 $d
+     /tmp/ccEBDXNn.s:20     .text:00000000 $t
+     /tmp/ccEBDXNn.s:25     .text:00000000 _ZL10fill_telemP13motor_telem_tP8DC_Motor
+     /tmp/ccEBDXNn.s:79     .rodata.str1.4:00000000 $d
+     /tmp/ccEBDXNn.s:89     .text:00000022 _Z17Task_MotorPublishPv
+     /tmp/ccEBDXNn.s:183    .text:00000074 $d
 
 UNDEFINED SYMBOLS
 uorb_advertise

@@ -11,21 +11,24 @@ KTH7111 kth7111_M4(&M4_PWM); //编码器对象
 
 PID_Increment pid_spd_M1(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
 PID           pid_loc_M1(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
+LQR lqr_M1(2.0f, 0.20f, 1.0f, -1.0f);
 
 PID_Increment pid_spd_M2(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
 PID           pid_loc_M2(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
+LQR lqr_M2(2.0f, 0.20f, 1.0f, -1.0f);
 
 PID_Increment pid_spd_M3(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
 PID           pid_loc_M3(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
+LQR lqr_M3(2.0f, 0.20f, 1.0f, -1.0f);
 
 PID_Increment pid_spd_M4(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
 PID           pid_loc_M4(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
+LQR lqr_M4(2.0f, 0.20f, 1.0f, -1.0f);
 
-
-DC_Motor M1(&M1_PWM, &kth7111_M1, &pid_spd_M1, &pid_loc_M1); //电机1
-DC_Motor M2(&M2_PWM, &kth7111_M2, &pid_spd_M2, &pid_loc_M2); //电机2
-DC_Motor M3(&M3_PWM, &kth7111_M3, &pid_spd_M3, &pid_loc_M3); //电机3
-DC_Motor M4(&M4_PWM, &kth7111_M4, &pid_spd_M4, &pid_loc_M4); //电机4
+DC_Motor M1(&M1_PWM, &kth7111_M1, &pid_spd_M1, &pid_loc_M1,&lqr_M1); //电机1
+DC_Motor M2(&M2_PWM, &kth7111_M2, &pid_spd_M2, &pid_loc_M2,&lqr_M2); //电机2
+DC_Motor M3(&M3_PWM, &kth7111_M3, &pid_spd_M3, &pid_loc_M3,&lqr_M3); //电机3
+DC_Motor M4(&M4_PWM, &kth7111_M4, &pid_spd_M4, &pid_loc_M4,&lqr_M4); //电机4
 
 
 

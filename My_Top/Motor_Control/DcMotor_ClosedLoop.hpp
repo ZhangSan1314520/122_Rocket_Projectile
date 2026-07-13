@@ -2,6 +2,7 @@
 #include "pid.hpp"
 #include "pid_Increment.hpp"
 #include "pll.hpp"
+#include "LQR.hpp"
 #include "kth_read.hpp"
 #include "ex_math.hpp"
 #include "bsp.hpp"
@@ -24,8 +25,11 @@ enum Work_Mode
 class DC_Motor
 {
 public:
-    DC_Motor(const MotorPWM_Config *motor_config, KTH7111 *encoder,PID_Increment *pid_inc_param ,PID *pid)
-        : _motor_config(motor_config), _encoder(encoder), pid_speed_incparam(pid_inc_param) ,pid_location(pid){}//构造函数
+    DC_Motor(const MotorPWM_Config *motor_config, KTH7111 *encoder,
+            PID_Increment *pid_inc_param ,PID *pid,LQR *lqr)
+            : _motor_config(motor_config), _encoder(encoder), 
+            pid_speed_incparam(pid_inc_param) ,pid_location(pid),_lqr(lqr)
+            {}//构造函数
     
     static uint8_t selected_motor; // 0=不选 M1~M4
     Work_Mode work_mode = open_loop; //电机工作模式
@@ -52,6 +56,7 @@ public:
     KTH7111   *_encoder; //编码器
     PID_Increment *pid_speed_incparam; //速度环 增量式PID
     PID       *pid_location; //位置环 位置式PID
+    LQR *_lqr; //LQR控制式
 
     void test_laji();
     void My_DC_Motor_Init(void);

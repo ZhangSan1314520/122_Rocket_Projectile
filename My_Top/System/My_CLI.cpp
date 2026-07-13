@@ -218,13 +218,34 @@ void set_mode(EmbeddedCli *cli, char *args, void *context) //设置工作模式
         mode_temp = position;
     } else if (strcmp(arg_list[2], "open_loop") == 0) {
         mode_temp = open_loop;
-    } else {
+    } else if (strcmp(arg_list[2], "calib") == 0) {
+        mode_temp = EncoderCalibration;
+    }else {
         printf("未知模式\r\n");
         return;
     }
-
     m->work_mode = mode_temp;
     printf("电机M%d 工作模式设置%s\r\n",idx,arg_list[2]);
+
+
+    if(mode_temp == EncoderCalibration)
+    {
+        printf("电机M%d 校准模式：启动开环全速\r\n", idx);
+        vTaskDelay(pdMS_TO_TICKS(500));
+
+        printf("电机M%d 开始 ANLC 校准，保持转动...\r\n", idx);
+        bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
+        m->work_mode = open_loop;//切回开环控制
+        vTaskDelay(pdMS_TO_TICKS(10));
+        m->Motor_EN(false);
+        m->updown_duty = 0.0;//停止电机
+        if (ok) {
+            printf("电机M%d ANLC 校准成功！参数已保存至MTP\r\n", idx);
+        } else {
+            printf("电机M%d ANLC 校准失败\r\n", idx);
+        }
+    }
+
 }
 
 

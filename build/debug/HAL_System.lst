@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccQb81sC.s 			page 1
+ARM GAS  /tmp/ccE3r7Rh.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -27,7 +27,7 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
   24              		.thumb_func
   26              	_ZN10HAL_System23period_elapsed_callbackEP19__TIM_HandleTypeDef:
   27              	.LVL0:
-  28              	.LFB337:
+  28              	.LFB336:
    1:My_Top/System/HAL_System.cpp **** #include "HAL_System.hpp"
    2:My_Top/System/HAL_System.cpp **** #include "FreeRTOS.h"
    3:My_Top/System/HAL_System.cpp **** #include "task.h"
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
   28:My_Top/System/HAL_System.cpp **** {
   29:My_Top/System/HAL_System.cpp ****     // 读取当前 TIM 计数器的低 32 位
   30:My_Top/System/HAL_System.cpp ****     uint32_t current_cnt = __HAL_TIM_GET_COUNTER(System_htim);
-ARM GAS  /tmp/ccQb81sC.s 			page 2
+ARM GAS  /tmp/ccE3r7Rh.s 			page 2
 
 
   31:My_Top/System/HAL_System.cpp **** 
@@ -84,44 +84,32 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
   51:My_Top/System/HAL_System.cpp **** }
   52:My_Top/System/HAL_System.cpp **** 
   53:My_Top/System/HAL_System.cpp **** // ============================================================
-  54:My_Top/System/HAL_System.cpp **** // 延时函数（使用 FreeRTOS 的任务延时，释放 CPU）
+  54:My_Top/System/HAL_System.cpp **** // 定时器溢出回调函数（每当 TIM 计数器从 0xFFFFFFFF 回到 0 时触发）
   55:My_Top/System/HAL_System.cpp **** // ============================================================
-  56:My_Top/System/HAL_System.cpp **** void HAL_System::delay_ms(uint32_t ms)
-  57:My_Top/System/HAL_System.cpp **** {
-  58:My_Top/System/HAL_System.cpp ****     vTaskDelay(pdMS_TO_TICKS(ms));
-  59:My_Top/System/HAL_System.cpp **** }
-  60:My_Top/System/HAL_System.cpp **** 
-  61:My_Top/System/HAL_System.cpp **** // ============================================================
-  62:My_Top/System/HAL_System.cpp **** // 定时器溢出回调函数（每当 TIM 计数器从 0xFFFFFFFF 回到 0 时触发）
-  63:My_Top/System/HAL_System.cpp **** // ============================================================
-  64:My_Top/System/HAL_System.cpp **** // 注意：此函数运行在中断上下文中！
-  65:My_Top/System/HAL_System.cpp **** void HAL_System::period_elapsed_callback(TIM_HandleTypeDef *htim)
-  66:My_Top/System/HAL_System.cpp **** {
-  29              		.loc 1 66 1 view -0
+  56:My_Top/System/HAL_System.cpp **** // 注意：此函数运行在中断上下文中！
+  57:My_Top/System/HAL_System.cpp **** void HAL_System::period_elapsed_callback(TIM_HandleTypeDef *htim)
+  58:My_Top/System/HAL_System.cpp **** {
+  29              		.loc 1 58 1 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-  67:My_Top/System/HAL_System.cpp ****     // tick_us += (uint64_t)1 << 32;
-  68:My_Top/System/HAL_System.cpp ****     tick_us += (uint64_t)1 << Tim_Number_ofdigits;
-  34              		.loc 1 68 5 view .LVU1
-  35              		.loc 1 68 13 is_stmt 0 view .LVU2
+  59:My_Top/System/HAL_System.cpp ****     tick_us += (uint64_t)1 << Tim_Number_ofdigits;
+  34              		.loc 1 59 5 view .LVU1
+  35              		.loc 1 59 13 is_stmt 0 view .LVU2
   36 0000 024A     		ldr	r2, .L2
   37 0002 5368     		ldr	r3, [r2, #4]
   38 0004 0133     		adds	r3, r3, #1
   39 0006 5360     		str	r3, [r2, #4]
-  69:My_Top/System/HAL_System.cpp **** }
-  40              		.loc 1 69 1 view .LVU3
+  60:My_Top/System/HAL_System.cpp **** }
+  40              		.loc 1 60 1 view .LVU3
   41 0008 7047     		bx	lr
   42              	.L3:
   43 000a 00BF     		.align	2
   44              	.L2:
   45 000c 00000000 		.word	.LANCHOR0
   46              		.cfi_endproc
-ARM GAS  /tmp/ccQb81sC.s 			page 3
-
-
-  47              	.LFE337:
+  47              	.LFE336:
   49              		.align	1
   50              		.global	_ZN10HAL_System4initEv
   51              		.syntax unified
@@ -130,6 +118,9 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
   55              	_ZN10HAL_System4initEv:
   56              	.LFB333:
   21:My_Top/System/HAL_System.cpp ****     // 启动定时器中断（计数器开始计数）
+ARM GAS  /tmp/ccE3r7Rh.s 			page 3
+
+
   57              		.loc 1 21 1 is_stmt 1 view -0
   58              		.cfi_startproc
   59              		@ args = 0, pretend = 0, frame = 0
@@ -178,9 +169,6 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
   30:My_Top/System/HAL_System.cpp **** 
   98              		.loc 1 30 5 view .LVU11
   30:My_Top/System/HAL_System.cpp **** 
-ARM GAS  /tmp/ccQb81sC.s 			page 4
-
-
   99              		.loc 1 30 28 is_stmt 0 view .LVU12
  100 002c 034B     		ldr	r3, .L9
  101 002e 1B68     		ldr	r3, [r3]
@@ -190,6 +178,9 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
  104              		.loc 1 36 5 is_stmt 1 view .LVU13
   36:My_Top/System/HAL_System.cpp **** 
  105              		.loc 1 36 24 is_stmt 0 view .LVU14
+ARM GAS  /tmp/ccE3r7Rh.s 			page 4
+
+
  106 0032 034B     		ldr	r3, .L9+4
   36:My_Top/System/HAL_System.cpp **** 
  107              		.loc 1 36 13 view .LVU15
@@ -238,9 +229,6 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
   49:My_Top/System/HAL_System.cpp ****     return tick_ms;
  146              		.loc 1 49 13 discriminator 1 view .LVU22
  147 0054 014B     		ldr	r3, .L13
-ARM GAS  /tmp/ccQb81sC.s 			page 5
-
-
  148 0056 9860     		str	r0, [r3, #8]
   50:My_Top/System/HAL_System.cpp **** }
  149              		.loc 1 50 5 is_stmt 1 view .LVU23
@@ -250,6 +238,9 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
  152              	.L14:
  153 005a 00BF     		.align	2
  154              	.L13:
+ARM GAS  /tmp/ccE3r7Rh.s 			page 5
+
+
  155 005c 00000000 		.word	.LANCHOR0
  156              		.cfi_endproc
  157              	.LFE335:
@@ -260,95 +251,97 @@ ARM GAS  /tmp/ccQb81sC.s 			page 1
  163              		.thumb_func
  165              	_ZN10HAL_System8delay_msEm:
  166              	.LVL5:
- 167              	.LFB336:
-  57:My_Top/System/HAL_System.cpp ****     vTaskDelay(pdMS_TO_TICKS(ms));
- 168              		.loc 1 57 1 is_stmt 1 view -0
+ 167              	.LFB337:
+  61:My_Top/System/HAL_System.cpp **** 
+  62:My_Top/System/HAL_System.cpp **** 
+  63:My_Top/System/HAL_System.cpp **** void HAL_System::delay_ms(uint32_t ms)
+  64:My_Top/System/HAL_System.cpp **** {
+ 168              		.loc 1 64 1 is_stmt 1 view -0
  169              		.cfi_startproc
  170              		@ args = 0, pretend = 0, frame = 0
  171              		@ frame_needed = 0, uses_anonymous_args = 0
-  57:My_Top/System/HAL_System.cpp ****     vTaskDelay(pdMS_TO_TICKS(ms));
- 172              		.loc 1 57 1 is_stmt 0 view .LVU26
- 173 0060 08B5     		push	{r3, lr}
- 174              		.cfi_def_cfa_offset 8
- 175              		.cfi_offset 3, -8
- 176              		.cfi_offset 14, -4
-  58:My_Top/System/HAL_System.cpp **** }
- 177              		.loc 1 58 5 is_stmt 1 view .LVU27
-  58:My_Top/System/HAL_System.cpp **** }
- 178              		.loc 1 58 16 is_stmt 0 view .LVU28
- 179 0062 4FF47A73 		mov	r3, #1000
- 180 0066 03FB00F0 		mul	r0, r3, r0
- 181              	.LVL6:
-  58:My_Top/System/HAL_System.cpp **** }
- 182              		.loc 1 58 16 view .LVU29
- 183 006a 034B     		ldr	r3, .L17
- 184 006c A3FB0030 		umull	r3, r0, r3, r0
-  58:My_Top/System/HAL_System.cpp **** }
- 185              		.loc 1 58 15 view .LVU30
- 186 0070 8009     		lsrs	r0, r0, #6
- 187 0072 FFF7FEFF 		bl	vTaskDelay
- 188              	.LVL7:
-  59:My_Top/System/HAL_System.cpp **** 
- 189              		.loc 1 59 1 view .LVU31
- 190 0076 08BD     		pop	{r3, pc}
- 191              	.L18:
- 192              		.align	2
- 193              	.L17:
- 194 0078 D34D6210 		.word	274877907
- 195              		.cfi_endproc
- 196              	.LFE336:
- 198              		.global	_ZN10HAL_System7tick_msE
-ARM GAS  /tmp/ccQb81sC.s 			page 6
+ 172              		.loc 1 64 1 is_stmt 0 view .LVU26
+ 173 0060 38B5     		push	{r3, r4, r5, lr}
+ 174              		.cfi_def_cfa_offset 16
+ 175              		.cfi_offset 3, -16
+ 176              		.cfi_offset 4, -12
+ 177              		.cfi_offset 5, -8
+ 178              		.cfi_offset 14, -4
+ 179 0062 0546     		mov	r5, r0
+  65:My_Top/System/HAL_System.cpp ****     uint32_t start = get_tick_ms();
+ 180              		.loc 1 65 5 is_stmt 1 view .LVU27
+ 181              		.loc 1 65 33 is_stmt 0 view .LVU28
+ 182 0064 FFF7FEFF 		bl	_ZN10HAL_System11get_tick_msEv
+ 183              	.LVL6:
+ 184              		.loc 1 65 33 view .LVU29
+ 185 0068 0446     		mov	r4, r0
+ 186              	.LVL7:
+  66:My_Top/System/HAL_System.cpp ****     while ((get_tick_ms() - start) < ms) {}
+ 187              		.loc 1 66 5 is_stmt 1 view .LVU30
+ 188              	.L16:
+ 189              		.loc 1 66 36 discriminator 1 view .LVU31
+ 190              		.loc 1 66 24 is_stmt 0 discriminator 1 view .LVU32
+ 191 006a FFF7FEFF 		bl	_ZN10HAL_System11get_tick_msEv
+ 192              	.LVL8:
+ 193              		.loc 1 66 27 discriminator 1 view .LVU33
+ 194 006e 001B     		subs	r0, r0, r4
+ 195              		.loc 1 66 36 discriminator 1 view .LVU34
+ 196 0070 A842     		cmp	r0, r5
+ 197 0072 FAD3     		bcc	.L16
+  67:My_Top/System/HAL_System.cpp **** }
+ 198              		.loc 1 67 1 view .LVU35
+ 199 0074 38BD     		pop	{r3, r4, r5, pc}
+ 200              		.loc 1 67 1 view .LVU36
+ 201              		.cfi_endproc
+ 202              	.LFE337:
+ 204              		.global	_ZN10HAL_System7tick_msE
+ 205              		.global	_ZN10HAL_System7tick_usE
+ 206              		.bss
+ 207              		.align	3
+ARM GAS  /tmp/ccE3r7Rh.s 			page 6
 
 
- 199              		.global	_ZN10HAL_System7tick_usE
- 200              		.bss
- 201              		.align	3
- 202              		.set	.LANCHOR0,. + 0
- 205              	_ZN10HAL_System7tick_usE:
- 206 0000 00000000 		.space	8
- 206      00000000 
- 209              	_ZN10HAL_System7tick_msE:
- 210 0008 00000000 		.space	4
- 211              		.text
- 212              	.Letext0:
- 213              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 214              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
- 215              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 216              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
- 217              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 218              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 219              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 220              		.file 9 "My_Top/System/HAL_System.hpp"
- 221              		.file 10 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
- 222              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
- 223              		.file 12 "Core/Inc/tim.h"
-ARM GAS  /tmp/ccQb81sC.s 			page 7
+ 208              		.set	.LANCHOR0,. + 0
+ 211              	_ZN10HAL_System7tick_usE:
+ 212 0000 00000000 		.space	8
+ 212      00000000 
+ 215              	_ZN10HAL_System7tick_msE:
+ 216 0008 00000000 		.space	4
+ 217              		.text
+ 218              	.Letext0:
+ 219              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 220              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 221              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 222              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 223              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 224              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 225              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 226              		.file 9 "My_Top/System/HAL_System.hpp"
+ 227              		.file 10 "Core/Inc/tim.h"
+ARM GAS  /tmp/ccE3r7Rh.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 HAL_System.cpp
-     /tmp/ccQb81sC.s:20     .text:00000000 $t
-     /tmp/ccQb81sC.s:26     .text:00000000 _ZN10HAL_System23period_elapsed_callbackEP19__TIM_HandleTypeDef
-     /tmp/ccQb81sC.s:45     .text:0000000c $d
-     /tmp/ccQb81sC.s:49     .text:00000010 $t
-     /tmp/ccQb81sC.s:55     .text:00000010 _ZN10HAL_System4initEv
-     /tmp/ccQb81sC.s:80     .text:00000024 $d
-     /tmp/ccQb81sC.s:85     .text:0000002c $t
-     /tmp/ccQb81sC.s:91     .text:0000002c _ZN10HAL_System11get_tick_usEv
-     /tmp/ccQb81sC.s:116    .text:0000003c $d
-     /tmp/ccQb81sC.s:121    .text:00000044 $t
-     /tmp/ccQb81sC.s:127    .text:00000044 _ZN10HAL_System11get_tick_msEv
-     /tmp/ccQb81sC.s:155    .text:0000005c $d
-     /tmp/ccQb81sC.s:159    .text:00000060 $t
-     /tmp/ccQb81sC.s:165    .text:00000060 _ZN10HAL_System8delay_msEm
-     /tmp/ccQb81sC.s:194    .text:00000078 $d
-     /tmp/ccQb81sC.s:209    .bss:00000008 _ZN10HAL_System7tick_msE
-     /tmp/ccQb81sC.s:205    .bss:00000000 _ZN10HAL_System7tick_usE
-     /tmp/ccQb81sC.s:201    .bss:00000000 $d
+     /tmp/ccE3r7Rh.s:20     .text:00000000 $t
+     /tmp/ccE3r7Rh.s:26     .text:00000000 _ZN10HAL_System23period_elapsed_callbackEP19__TIM_HandleTypeDef
+     /tmp/ccE3r7Rh.s:45     .text:0000000c $d
+     /tmp/ccE3r7Rh.s:49     .text:00000010 $t
+     /tmp/ccE3r7Rh.s:55     .text:00000010 _ZN10HAL_System4initEv
+     /tmp/ccE3r7Rh.s:80     .text:00000024 $d
+     /tmp/ccE3r7Rh.s:85     .text:0000002c $t
+     /tmp/ccE3r7Rh.s:91     .text:0000002c _ZN10HAL_System11get_tick_usEv
+     /tmp/ccE3r7Rh.s:116    .text:0000003c $d
+     /tmp/ccE3r7Rh.s:121    .text:00000044 $t
+     /tmp/ccE3r7Rh.s:127    .text:00000044 _ZN10HAL_System11get_tick_msEv
+     /tmp/ccE3r7Rh.s:155    .text:0000005c $d
+     /tmp/ccE3r7Rh.s:159    .text:00000060 $t
+     /tmp/ccE3r7Rh.s:165    .text:00000060 _ZN10HAL_System8delay_msEm
+     /tmp/ccE3r7Rh.s:215    .bss:00000008 _ZN10HAL_System7tick_msE
+     /tmp/ccE3r7Rh.s:211    .bss:00000000 _ZN10HAL_System7tick_usE
+     /tmp/ccE3r7Rh.s:207    .bss:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_TIM_Base_Start_IT
 htim5
 __aeabi_uldivmod
-vTaskDelay

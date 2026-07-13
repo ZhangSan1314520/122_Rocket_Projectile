@@ -75,6 +75,11 @@ void My_Tim_Callback(TIM_HandleTypeDef *htim)
             break;
 
         case EncoderCalibration: //编码器校准模式
+            if (count % 160 == 1)
+            {
+                m->updown_duty = 0.95; //全速动起来
+                m->Set_Motor_Glo_Duty();
+            }
             break;
         }
     }

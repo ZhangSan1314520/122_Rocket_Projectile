@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCuL5Dx.s 			page 1
+ARM GAS  /tmp/ccKVpYZu.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
   46 0010 08B1     		cbz	r0, .L3
   11:My_Top/EEPROM/XBLW24C64.cpp ****                               EEPROM_DEV_ADDR << 1,   // 8位写地址
   12:My_Top/EEPROM/XBLW24C64.cpp ****                               3,                       // 重试次数
-ARM GAS  /tmp/ccCuL5Dx.s 			page 2
+ARM GAS  /tmp/ccKVpYZu.s 			page 2
 
 
   13:My_Top/EEPROM/XBLW24C64.cpp ****                               100) == HAL_OK)          // 超时 ms
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
   28:My_Top/EEPROM/XBLW24C64.cpp ****     if (HAL_I2C_Mem_Read(_hi2c, EEPROM_DEV_ADDR << 1, addr,
   87              		.loc 1 28 5 is_stmt 1 view .LVU11
   88              		.loc 1 28 25 is_stmt 0 view .LVU12
-ARM GAS  /tmp/ccCuL5Dx.s 			page 3
+ARM GAS  /tmp/ccKVpYZu.s 			page 3
 
 
   89 002c 6423     		movs	r3, #100
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
   37:My_Top/EEPROM/XBLW24C64.cpp **** 
   38:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
   39:My_Top/EEPROM/XBLW24C64.cpp **** // 写入一个字节
-ARM GAS  /tmp/ccCuL5Dx.s 			page 4
+ARM GAS  /tmp/ccKVpYZu.s 			page 4
 
 
   40:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
@@ -224,61 +224,60 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  153 006a 0020     		movs	r0, #0
  154              	.LVL6:
   63:My_Top/EEPROM/XBLW24C64.cpp **** 
-  64:My_Top/EEPROM/XBLW24C64.cpp ****     // 16位地址的 EEPROM 支持一次连续读完全部数据
-  65:My_Top/EEPROM/XBLW24C64.cpp ****     if (HAL_I2C_Mem_Read(_hi2c, EEPROM_DEV_ADDR << 1, addr,
-  66:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
-  67:My_Top/EEPROM/XBLW24C64.cpp ****                          buf, len, 100) != HAL_OK)
-  68:My_Top/EEPROM/XBLW24C64.cpp ****     {
-  69:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
-  70:My_Top/EEPROM/XBLW24C64.cpp ****     }
-  71:My_Top/EEPROM/XBLW24C64.cpp ****     return true;
-  72:My_Top/EEPROM/XBLW24C64.cpp **** }
- 155              		.loc 1 72 1 view .LVU26
+  64:My_Top/EEPROM/XBLW24C64.cpp ****     if (HAL_I2C_Mem_Read(_hi2c, EEPROM_DEV_ADDR << 1, addr,
+  65:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
+  66:My_Top/EEPROM/XBLW24C64.cpp ****                          buf, len, 100) != HAL_OK)
+  67:My_Top/EEPROM/XBLW24C64.cpp ****     {
+  68:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+  69:My_Top/EEPROM/XBLW24C64.cpp ****     }
+  70:My_Top/EEPROM/XBLW24C64.cpp ****     return true;
+  71:My_Top/EEPROM/XBLW24C64.cpp **** }
+ 155              		.loc 1 71 1 view .LVU26
  156 006c 7047     		bx	lr
  157              	.LVL7:
  158              	.L23:
   58:My_Top/EEPROM/XBLW24C64.cpp ****     if (buf == NULL || len == 0)
-ARM GAS  /tmp/ccCuL5Dx.s 			page 5
-
-
  159              		.loc 1 58 1 view .LVU27
+ARM GAS  /tmp/ccKVpYZu.s 			page 5
+
+
  160 006e 00B5     		push	{lr}
  161              		.cfi_def_cfa_offset 4
  162              		.cfi_offset 14, -4
  163 0070 85B0     		sub	sp, sp, #20
  164              		.cfi_def_cfa_offset 24
-  65:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
- 165              		.loc 1 65 5 is_stmt 1 view .LVU28
-  65:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
- 166              		.loc 1 65 25 is_stmt 0 view .LVU29
+  64:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
+ 165              		.loc 1 64 5 is_stmt 1 view .LVU28
+  64:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
+ 166              		.loc 1 64 25 is_stmt 0 view .LVU29
  167 0072 6421     		movs	r1, #100
  168 0074 0291     		str	r1, [sp, #8]
  169 0076 0192     		str	r2, [sp, #4]
  170 0078 0093     		str	r3, [sp]
  171 007a 0223     		movs	r3, #2
  172              	.LVL8:
-  65:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
- 173              		.loc 1 65 25 view .LVU30
+  64:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
+ 173              		.loc 1 64 25 view .LVU30
  174 007c 0246     		mov	r2, r0
  175              	.LVL9:
-  65:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
- 176              		.loc 1 65 25 view .LVU31
+  64:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
+ 176              		.loc 1 64 25 view .LVU31
  177 007e A021     		movs	r1, #160
  178 0080 0748     		ldr	r0, .L24
  179              	.LVL10:
-  65:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
- 180              		.loc 1 65 25 view .LVU32
+  64:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
+ 180              		.loc 1 64 25 view .LVU32
  181 0082 0068     		ldr	r0, [r0]
  182 0084 FFF7FEFF 		bl	HAL_I2C_Mem_Read
  183              	.LVL11:
-  65:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
- 184              		.loc 1 65 5 view .LVU33
+  64:My_Top/EEPROM/XBLW24C64.cpp ****                          EEPROM_ADDR_SIZE,
+ 184              		.loc 1 64 5 view .LVU33
  185 0088 38B9     		cbnz	r0, .L18
-  71:My_Top/EEPROM/XBLW24C64.cpp **** }
- 186              		.loc 1 71 12 view .LVU34
+  70:My_Top/EEPROM/XBLW24C64.cpp **** }
+ 186              		.loc 1 70 12 view .LVU34
  187 008a 0120     		movs	r0, #1
  188              	.L14:
- 189              		.loc 1 72 1 view .LVU35
+ 189              		.loc 1 71 1 view .LVU35
  190 008c 05B0     		add	sp, sp, #20
  191              		.cfi_def_cfa_offset 4
  192              		@ sp needed
@@ -298,10 +297,10 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  204              	.L16:
   60:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
  205              		.loc 1 60 16 view .LVU38
-ARM GAS  /tmp/ccCuL5Dx.s 			page 6
-
-
  206 0096 0020     		movs	r0, #0
+ARM GAS  /tmp/ccKVpYZu.s 			page 6
+
+
  207              	.LVL15:
   60:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
  208              		.loc 1 60 16 view .LVU39
@@ -310,8 +309,8 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  211              	.L18:
  212              		.cfi_def_cfa_offset 24
  213              		.cfi_offset 14, -4
-  69:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 214              		.loc 1 69 16 view .LVU40
+  68:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ 214              		.loc 1 68 16 view .LVU40
  215 009a 0020     		movs	r0, #0
  216 009c F6E7     		b	.L14
  217              	.L25:
@@ -327,51 +326,51 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  228              		.thumb_func
  230              	_ZN9XBLW24C6420_wait_write_completeEv:
  231              	.LFB337:
+  72:My_Top/EEPROM/XBLW24C64.cpp **** 
   73:My_Top/EEPROM/XBLW24C64.cpp **** 
-  74:My_Top/EEPROM/XBLW24C64.cpp **** 
-  75:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
-  76:My_Top/EEPROM/XBLW24C64.cpp **** // 连续写入多个字节（自动处理页边界）
-  77:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
-  78:My_Top/EEPROM/XBLW24C64.cpp **** bool XBLW24C64::write(uint16_t addr, const uint8_t *buf, uint16_t len)
-  79:My_Top/EEPROM/XBLW24C64.cpp **** {
-  80:My_Top/EEPROM/XBLW24C64.cpp ****     if (buf == NULL || len == 0)
-  81:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
-  82:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
-  83:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
-  84:My_Top/EEPROM/XBLW24C64.cpp **** 
-  85:My_Top/EEPROM/XBLW24C64.cpp ****     while (len > 0)
-  86:My_Top/EEPROM/XBLW24C64.cpp ****     {
-  87:My_Top/EEPROM/XBLW24C64.cpp ****         // 计算当前页内还能写多少字节
-  88:My_Top/EEPROM/XBLW24C64.cpp ****         uint8_t page_remain = EEPROM_PAGE_SIZE - (addr % EEPROM_PAGE_SIZE);
-  89:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
-  90:My_Top/EEPROM/XBLW24C64.cpp **** 
-  91:My_Top/EEPROM/XBLW24C64.cpp ****         if (HAL_I2C_Mem_Write(_hi2c, EEPROM_DEV_ADDR << 1, addr,
-  92:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
-  93:My_Top/EEPROM/XBLW24C64.cpp ****                                (uint8_t *)buf, chunk, 100) != HAL_OK)
-  94:My_Top/EEPROM/XBLW24C64.cpp ****         {
-  95:My_Top/EEPROM/XBLW24C64.cpp ****             return false;
-  96:My_Top/EEPROM/XBLW24C64.cpp ****         }
-  97:My_Top/EEPROM/XBLW24C64.cpp **** 
-  98:My_Top/EEPROM/XBLW24C64.cpp ****         // 等待内部写入完成
-  99:My_Top/EEPROM/XBLW24C64.cpp ****         _wait_write_complete();
- 100:My_Top/EEPROM/XBLW24C64.cpp **** 
- 101:My_Top/EEPROM/XBLW24C64.cpp ****         addr += chunk;
- 102:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
- 103:My_Top/EEPROM/XBLW24C64.cpp ****         len  -= chunk;
-ARM GAS  /tmp/ccCuL5Dx.s 			page 7
+  74:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
+  75:My_Top/EEPROM/XBLW24C64.cpp **** // 连续写入多个字节（自动处理页边界）
+  76:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
+  77:My_Top/EEPROM/XBLW24C64.cpp **** bool XBLW24C64::write(uint16_t addr, const uint8_t *buf, uint16_t len)
+  78:My_Top/EEPROM/XBLW24C64.cpp **** {
+  79:My_Top/EEPROM/XBLW24C64.cpp ****     if (buf == NULL || len == 0)
+  80:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+  81:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
+  82:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+  83:My_Top/EEPROM/XBLW24C64.cpp **** 
+  84:My_Top/EEPROM/XBLW24C64.cpp ****     while (len > 0)
+  85:My_Top/EEPROM/XBLW24C64.cpp ****     {
+  86:My_Top/EEPROM/XBLW24C64.cpp ****         // 计算当前页内还能写多少字节
+  87:My_Top/EEPROM/XBLW24C64.cpp ****         uint8_t page_remain = EEPROM_PAGE_SIZE - (addr % EEPROM_PAGE_SIZE);
+  88:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
+  89:My_Top/EEPROM/XBLW24C64.cpp **** 
+  90:My_Top/EEPROM/XBLW24C64.cpp ****         if (HAL_I2C_Mem_Write(_hi2c, EEPROM_DEV_ADDR << 1, addr,
+  91:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
+  92:My_Top/EEPROM/XBLW24C64.cpp ****                                (uint8_t *)buf, chunk, 100) != HAL_OK)
+  93:My_Top/EEPROM/XBLW24C64.cpp ****         {
+  94:My_Top/EEPROM/XBLW24C64.cpp ****             return false;
+  95:My_Top/EEPROM/XBLW24C64.cpp ****         }
+  96:My_Top/EEPROM/XBLW24C64.cpp **** 
+  97:My_Top/EEPROM/XBLW24C64.cpp ****         // 等待内部写入完成
+  98:My_Top/EEPROM/XBLW24C64.cpp ****         _wait_write_complete();
+  99:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 100:My_Top/EEPROM/XBLW24C64.cpp ****         addr += chunk;
+ 101:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
+ 102:My_Top/EEPROM/XBLW24C64.cpp ****         len  -= chunk;
+ 103:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ARM GAS  /tmp/ccKVpYZu.s 			page 7
 
 
- 104:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 105:My_Top/EEPROM/XBLW24C64.cpp ****     return true;
- 106:My_Top/EEPROM/XBLW24C64.cpp **** }
+ 104:My_Top/EEPROM/XBLW24C64.cpp ****     return true;
+ 105:My_Top/EEPROM/XBLW24C64.cpp **** }
+ 106:My_Top/EEPROM/XBLW24C64.cpp **** 
  107:My_Top/EEPROM/XBLW24C64.cpp **** 
- 108:My_Top/EEPROM/XBLW24C64.cpp **** 
- 109:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
- 110:My_Top/EEPROM/XBLW24C64.cpp **** // 等待 EEPROM 内部写入完成（ACK 轮询）
- 111:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
- 112:My_Top/EEPROM/XBLW24C64.cpp **** void XBLW24C64::_wait_write_complete(void)
- 113:My_Top/EEPROM/XBLW24C64.cpp **** {
- 232              		.loc 1 113 1 is_stmt 1 view -0
+ 108:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
+ 109:My_Top/EEPROM/XBLW24C64.cpp **** // 等待 EEPROM 内部写入完成（ACK 轮询）
+ 110:My_Top/EEPROM/XBLW24C64.cpp **** // ============================================================
+ 111:My_Top/EEPROM/XBLW24C64.cpp **** void XBLW24C64::_wait_write_complete(void)
+ 112:My_Top/EEPROM/XBLW24C64.cpp **** {
+ 232              		.loc 1 112 1 is_stmt 1 view -0
  233              		.cfi_startproc
  234              		@ args = 0, pretend = 0, frame = 0
  235              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -381,22 +380,22 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  239              		.cfi_offset 4, -12
  240              		.cfi_offset 5, -8
  241              		.cfi_offset 14, -4
- 114:My_Top/EEPROM/XBLW24C64.cpp ****     uint32_t time_old = HAL_System::get_tick_ms();
- 242              		.loc 1 114 5 view .LVU42
- 243              		.loc 1 114 48 is_stmt 0 view .LVU43
+ 113:My_Top/EEPROM/XBLW24C64.cpp ****     uint32_t time_old = HAL_System::get_tick_ms();
+ 242              		.loc 1 113 5 view .LVU42
+ 243              		.loc 1 113 48 is_stmt 0 view .LVU43
  244 00a6 FFF7FEFF 		bl	_ZN10HAL_System11get_tick_msEv
  245              	.LVL17:
  246 00aa 0546     		mov	r5, r0
  247              	.LVL18:
- 115:My_Top/EEPROM/XBLW24C64.cpp ****     while (HAL_I2C_IsDeviceReady(_hi2c,
- 248              		.loc 1 115 5 is_stmt 1 view .LVU44
+ 114:My_Top/EEPROM/XBLW24C64.cpp ****     while (HAL_I2C_IsDeviceReady(_hi2c,
+ 248              		.loc 1 114 5 is_stmt 1 view .LVU44
  249              	.L27:
- 116:My_Top/EEPROM/XBLW24C64.cpp ****                                   EEPROM_DEV_ADDR << 1,
- 117:My_Top/EEPROM/XBLW24C64.cpp ****                                   1,     // 每次1次尝试
- 118:My_Top/EEPROM/XBLW24C64.cpp ****                                   1) != HAL_OK)   // 1ms 超时
- 250              		.loc 1 118 38 view .LVU45
- 115:My_Top/EEPROM/XBLW24C64.cpp ****     while (HAL_I2C_IsDeviceReady(_hi2c,
- 251              		.loc 1 115 33 is_stmt 0 view .LVU46
+ 115:My_Top/EEPROM/XBLW24C64.cpp ****                                   EEPROM_DEV_ADDR << 1,
+ 116:My_Top/EEPROM/XBLW24C64.cpp ****                                   1,     // 每次1次尝试
+ 117:My_Top/EEPROM/XBLW24C64.cpp ****                                   1) != HAL_OK)   // 1ms 超时
+ 250              		.loc 1 117 38 view .LVU45
+ 114:My_Top/EEPROM/XBLW24C64.cpp ****     while (HAL_I2C_IsDeviceReady(_hi2c,
+ 251              		.loc 1 114 33 is_stmt 0 view .LVU46
  252 00ac 0123     		movs	r3, #1
  253 00ae 1A46     		mov	r2, r3
  254 00b0 A021     		movs	r1, #160
@@ -404,33 +403,33 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  256 00b4 2068     		ldr	r0, [r4]
  257 00b6 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
  258              	.LVL19:
- 259              		.loc 1 118 38 view .LVU47
+ 259              		.loc 1 117 38 view .LVU47
  260 00ba 20B1     		cbz	r0, .L26
- 119:My_Top/EEPROM/XBLW24C64.cpp ****     {
- 120:My_Top/EEPROM/XBLW24C64.cpp ****         if( (HAL_System::get_tick_ms()-time_old) >= EEPROM_WRITE_CYCLE_MS)
- 261              		.loc 1 120 9 is_stmt 1 view .LVU48
- 262              		.loc 1 120 37 is_stmt 0 view .LVU49
+ 118:My_Top/EEPROM/XBLW24C64.cpp ****     {
+ 119:My_Top/EEPROM/XBLW24C64.cpp ****         if( (HAL_System::get_tick_ms()-time_old) >= EEPROM_WRITE_CYCLE_MS)
+ 261              		.loc 1 119 9 is_stmt 1 view .LVU48
+ 262              		.loc 1 119 37 is_stmt 0 view .LVU49
  263 00bc FFF7FEFF 		bl	_ZN10HAL_System11get_tick_msEv
  264              	.LVL20:
- 265              		.loc 1 120 39 discriminator 1 view .LVU50
+ 265              		.loc 1 119 39 discriminator 1 view .LVU50
  266 00c0 401B     		subs	r0, r0, r5
- 267              		.loc 1 120 9 discriminator 1 view .LVU51
+ 267              		.loc 1 119 9 discriminator 1 view .LVU51
  268 00c2 0428     		cmp	r0, #4
  269 00c4 F2D9     		bls	.L27
  270              	.L26:
-ARM GAS  /tmp/ccCuL5Dx.s 			page 8
+ 120:My_Top/EEPROM/XBLW24C64.cpp ****         {
+ARM GAS  /tmp/ccKVpYZu.s 			page 8
 
 
- 121:My_Top/EEPROM/XBLW24C64.cpp ****         {
- 122:My_Top/EEPROM/XBLW24C64.cpp ****             return;
- 123:My_Top/EEPROM/XBLW24C64.cpp ****         }
- 124:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 125:My_Top/EEPROM/XBLW24C64.cpp **** }
- 271              		.loc 1 125 1 view .LVU52
+ 121:My_Top/EEPROM/XBLW24C64.cpp ****             return;
+ 122:My_Top/EEPROM/XBLW24C64.cpp ****         }
+ 123:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ 124:My_Top/EEPROM/XBLW24C64.cpp **** }
+ 271              		.loc 1 124 1 view .LVU52
  272 00c6 38BD     		pop	{r3, r4, r5, pc}
  273              	.LVL21:
  274              	.L32:
- 275              		.loc 1 125 1 view .LVU53
+ 275              		.loc 1 124 1 view .LVU53
  276              		.align	2
  277              	.L31:
  278 00c8 00000000 		.word	.LANCHOR0
@@ -478,10 +477,10 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
   43:My_Top/EEPROM/XBLW24C64.cpp ****                            EEPROM_ADDR_SIZE,
  317              		.loc 1 43 26 view .LVU59
  318 00ea 0068     		ldr	r0, [r0]
-ARM GAS  /tmp/ccCuL5Dx.s 			page 9
-
-
  319 00ec FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ARM GAS  /tmp/ccKVpYZu.s 			page 9
+
+
  320              	.LVL25:
   43:My_Top/EEPROM/XBLW24C64.cpp ****                            EEPROM_ADDR_SIZE,
  321              		.loc 1 43 5 view .LVU60
@@ -525,23 +524,23 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  355              	_ZN9XBLW24C645writeEtPKht:
  356              	.LVL27:
  357              	.LFB336:
-  79:My_Top/EEPROM/XBLW24C64.cpp ****     if (buf == NULL || len == 0)
- 358              		.loc 1 79 1 is_stmt 1 view -0
+  78:My_Top/EEPROM/XBLW24C64.cpp ****     if (buf == NULL || len == 0)
+ 358              		.loc 1 78 1 is_stmt 1 view -0
  359              		.cfi_startproc
  360              		@ args = 0, pretend = 0, frame = 0
  361              		@ frame_needed = 0, uses_anonymous_args = 0
-  80:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
- 362              		.loc 1 80 5 view .LVU68
+  79:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+ 362              		.loc 1 79 5 view .LVU68
  363 0108 41B3     		cbz	r1, .L44
-  79:My_Top/EEPROM/XBLW24C64.cpp ****     if (buf == NULL || len == 0)
- 364              		.loc 1 79 1 is_stmt 0 view .LVU69
+  78:My_Top/EEPROM/XBLW24C64.cpp ****     if (buf == NULL || len == 0)
+ 364              		.loc 1 78 1 is_stmt 0 view .LVU69
  365 010a F0B5     		push	{r4, r5, r6, r7, lr}
  366              		.cfi_def_cfa_offset 20
  367              		.cfi_offset 4, -20
-ARM GAS  /tmp/ccCuL5Dx.s 			page 10
-
-
  368              		.cfi_offset 5, -16
+ARM GAS  /tmp/ccKVpYZu.s 			page 10
+
+
  369              		.cfi_offset 6, -12
  370              		.cfi_offset 7, -8
  371              		.cfi_offset 14, -4
@@ -550,46 +549,46 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  374 010e 0546     		mov	r5, r0
  375 0110 1646     		mov	r6, r2
  376 0112 0F46     		mov	r7, r1
-  80:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
- 377              		.loc 1 80 21 discriminator 1 view .LVU70
+  79:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+ 377              		.loc 1 79 21 discriminator 1 view .LVU70
  378 0114 22B3     		cbz	r2, .L45
-  82:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
- 379              		.loc 1 82 5 is_stmt 1 view .LVU71
-  82:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
- 380              		.loc 1 82 14 is_stmt 0 view .LVU72
+  81:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+ 379              		.loc 1 81 5 is_stmt 1 view .LVU71
+  81:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+ 380              		.loc 1 81 14 is_stmt 0 view .LVU72
  381 0116 8318     		adds	r3, r0, r2
-  82:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
- 382              		.loc 1 82 5 view .LVU73
+  81:My_Top/EEPROM/XBLW24C64.cpp ****         return false;
+ 382              		.loc 1 81 5 view .LVU73
  383 0118 B3F5005F 		cmp	r3, #8192
  384 011c 23DC     		bgt	.L52
  385              	.LVL28:
  386              	.L42:
-  85:My_Top/EEPROM/XBLW24C64.cpp ****     {
- 387              		.loc 1 85 16 is_stmt 1 view .LVU74
+  84:My_Top/EEPROM/XBLW24C64.cpp ****     {
+ 387              		.loc 1 84 16 is_stmt 1 view .LVU74
  388 011e DEB1     		cbz	r6, .L53
  389              	.LBB2:
-  88:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
- 390              		.loc 1 88 9 view .LVU75
-  88:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
- 391              		.loc 1 88 56 is_stmt 0 view .LVU76
+  87:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
+ 390              		.loc 1 87 9 view .LVU75
+  87:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
+ 391              		.loc 1 87 56 is_stmt 0 view .LVU76
  392 0120 05F01F04 		and	r4, r5, #31
-  88:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
- 393              		.loc 1 88 17 view .LVU77
+  87:My_Top/EEPROM/XBLW24C64.cpp ****         uint16_t chunk = (len < page_remain) ? len : page_remain;//等价于min(len, page_remain);
+ 393              		.loc 1 87 17 view .LVU77
  394 0124 C4F12004 		rsb	r4, r4, #32
  395 0128 E4B2     		uxtb	r4, r4
  396              	.LVL29:
-  89:My_Top/EEPROM/XBLW24C64.cpp **** 
- 397              		.loc 1 89 9 is_stmt 1 view .LVU78
-  89:My_Top/EEPROM/XBLW24C64.cpp **** 
- 398              		.loc 1 89 18 is_stmt 0 view .LVU79
+  88:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 397              		.loc 1 88 9 is_stmt 1 view .LVU78
+  88:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 398              		.loc 1 88 18 is_stmt 0 view .LVU79
  399 012a B442     		cmp	r4, r6
  400 012c 28BF     		it	cs
  401 012e 3446     		movcs	r4, r6
  402              	.LVL30:
-  91:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
- 403              		.loc 1 91 9 is_stmt 1 view .LVU80
-  91:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
- 404              		.loc 1 91 30 is_stmt 0 view .LVU81
+  90:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
+ 403              		.loc 1 90 9 is_stmt 1 view .LVU80
+  90:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
+ 404              		.loc 1 90 30 is_stmt 0 view .LVU81
  405 0130 6423     		movs	r3, #100
  406 0132 0293     		str	r3, [sp, #8]
  407 0134 0194     		str	r4, [sp, #4]
@@ -598,57 +597,57 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  410 013a 2A46     		mov	r2, r5
  411 013c A021     		movs	r1, #160
  412 013e 0C48     		ldr	r0, .L54
-ARM GAS  /tmp/ccCuL5Dx.s 			page 11
-
-
  413 0140 0068     		ldr	r0, [r0]
+ARM GAS  /tmp/ccKVpYZu.s 			page 11
+
+
  414 0142 FFF7FEFF 		bl	HAL_I2C_Mem_Write
  415              	.LVL31:
-  91:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
- 416              		.loc 1 91 9 view .LVU82
+  90:My_Top/EEPROM/XBLW24C64.cpp ****                                EEPROM_ADDR_SIZE,
+ 416              		.loc 1 90 9 view .LVU82
  417 0146 80B9     		cbnz	r0, .L47
-  99:My_Top/EEPROM/XBLW24C64.cpp **** 
- 418              		.loc 1 99 9 is_stmt 1 view .LVU83
-  99:My_Top/EEPROM/XBLW24C64.cpp **** 
- 419              		.loc 1 99 29 is_stmt 0 view .LVU84
+  98:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 418              		.loc 1 98 9 is_stmt 1 view .LVU83
+  98:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 419              		.loc 1 98 29 is_stmt 0 view .LVU84
  420 0148 FFF7FEFF 		bl	_ZN9XBLW24C6420_wait_write_completeEv
  421              	.LVL32:
- 101:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
- 422              		.loc 1 101 9 is_stmt 1 view .LVU85
- 101:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
- 423              		.loc 1 101 14 is_stmt 0 view .LVU86
+ 100:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
+ 422              		.loc 1 100 9 is_stmt 1 view .LVU85
+ 100:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
+ 423              		.loc 1 100 14 is_stmt 0 view .LVU86
  424 014c 2544     		add	r5, r5, r4
  425              	.LVL33:
- 101:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
- 426              		.loc 1 101 14 view .LVU87
+ 100:My_Top/EEPROM/XBLW24C64.cpp ****         buf  += chunk;
+ 426              		.loc 1 100 14 view .LVU87
  427 014e ADB2     		uxth	r5, r5
  428              	.LVL34:
- 102:My_Top/EEPROM/XBLW24C64.cpp ****         len  -= chunk;
- 429              		.loc 1 102 9 is_stmt 1 view .LVU88
- 102:My_Top/EEPROM/XBLW24C64.cpp ****         len  -= chunk;
- 430              		.loc 1 102 14 is_stmt 0 view .LVU89
+ 101:My_Top/EEPROM/XBLW24C64.cpp ****         len  -= chunk;
+ 429              		.loc 1 101 9 is_stmt 1 view .LVU88
+ 101:My_Top/EEPROM/XBLW24C64.cpp ****         len  -= chunk;
+ 430              		.loc 1 101 14 is_stmt 0 view .LVU89
  431 0150 2744     		add	r7, r7, r4
  432              	.LVL35:
- 103:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 433              		.loc 1 103 9 is_stmt 1 view .LVU90
- 103:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 434              		.loc 1 103 14 is_stmt 0 view .LVU91
+ 102:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ 433              		.loc 1 102 9 is_stmt 1 view .LVU90
+ 102:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ 434              		.loc 1 102 14 is_stmt 0 view .LVU91
  435 0152 341B     		subs	r4, r6, r4
  436              	.LVL36:
- 103:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 437              		.loc 1 103 14 view .LVU92
+ 102:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ 437              		.loc 1 102 14 view .LVU92
  438 0154 A6B2     		uxth	r6, r4
  439              	.LVL37:
- 103:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 440              		.loc 1 103 14 view .LVU93
+ 102:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ 440              		.loc 1 102 14 view .LVU93
  441 0156 E2E7     		b	.L42
  442              	.LVL38:
  443              	.L53:
- 103:My_Top/EEPROM/XBLW24C64.cpp ****     }
- 444              		.loc 1 103 14 view .LVU94
+ 102:My_Top/EEPROM/XBLW24C64.cpp ****     }
+ 444              		.loc 1 102 14 view .LVU94
  445              	.LBE2:
- 105:My_Top/EEPROM/XBLW24C64.cpp **** }
- 446              		.loc 1 105 12 view .LVU95
+ 104:My_Top/EEPROM/XBLW24C64.cpp **** }
+ 446              		.loc 1 104 12 view .LVU95
  447 0158 0120     		movs	r0, #1
  448 015a 02E0     		b	.L41
  449              	.LVL39:
@@ -658,16 +657,16 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  453              		.cfi_restore 5
  454              		.cfi_restore 6
  455              		.cfi_restore 7
-ARM GAS  /tmp/ccCuL5Dx.s 			page 12
-
-
  456              		.cfi_restore 14
-  81:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
- 457              		.loc 1 81 16 view .LVU96
+ARM GAS  /tmp/ccKVpYZu.s 			page 12
+
+
+  80:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
+ 457              		.loc 1 80 16 view .LVU96
  458 015c 0020     		movs	r0, #0
  459              	.LVL40:
- 106:My_Top/EEPROM/XBLW24C64.cpp **** 
- 460              		.loc 1 106 1 view .LVU97
+ 105:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 460              		.loc 1 105 1 view .LVU97
  461 015e 7047     		bx	lr
  462              	.LVL41:
  463              	.L45:
@@ -677,13 +676,13 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  467              		.cfi_offset 6, -12
  468              		.cfi_offset 7, -8
  469              		.cfi_offset 14, -4
-  81:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
- 470              		.loc 1 81 16 view .LVU98
+  80:My_Top/EEPROM/XBLW24C64.cpp ****     if (addr + len > EEPROM_SIZE)
+ 470              		.loc 1 80 16 view .LVU98
  471 0160 0020     		movs	r0, #0
  472              	.LVL42:
  473              	.L41:
- 106:My_Top/EEPROM/XBLW24C64.cpp **** 
- 474              		.loc 1 106 1 view .LVU99
+ 105:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 474              		.loc 1 105 1 view .LVU99
  475 0162 05B0     		add	sp, sp, #20
  476              		.cfi_remember_state
  477              		.cfi_def_cfa_offset 20
@@ -692,18 +691,18 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  480              	.LVL43:
  481              	.L52:
  482              		.cfi_restore_state
-  83:My_Top/EEPROM/XBLW24C64.cpp **** 
- 483              		.loc 1 83 16 view .LVU100
+  82:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 483              		.loc 1 82 16 view .LVU100
  484 0166 0020     		movs	r0, #0
  485              	.LVL44:
-  83:My_Top/EEPROM/XBLW24C64.cpp **** 
- 486              		.loc 1 83 16 view .LVU101
+  82:My_Top/EEPROM/XBLW24C64.cpp **** 
+ 486              		.loc 1 82 16 view .LVU101
  487 0168 FBE7     		b	.L41
  488              	.LVL45:
  489              	.L47:
  490              	.LBB3:
-  95:My_Top/EEPROM/XBLW24C64.cpp ****         }
- 491              		.loc 1 95 20 view .LVU102
+  94:My_Top/EEPROM/XBLW24C64.cpp ****         }
+ 491              		.loc 1 94 20 view .LVU102
  492 016a 0020     		movs	r0, #0
  493 016c F9E7     		b	.L41
  494              	.L55:
@@ -718,10 +717,10 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  504              		.align	2
  505              		.set	.LANCHOR0,. + 0
  508              	_ZN9XBLW24C645_hi2cE:
-ARM GAS  /tmp/ccCuL5Dx.s 			page 13
-
-
  509 0000 00000000 		.space	4
+ARM GAS  /tmp/ccKVpYZu.s 			page 13
+
+
  510              		.text
  511              	.Letext0:
  512              		.file 2 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
@@ -734,31 +733,31 @@ ARM GAS  /tmp/ccCuL5Dx.s 			page 1
  519              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
  520              		.file 10 "My_Top/EEPROM/XBLW24C64.hpp"
  521              		.file 11 "My_Top/System/HAL_System.hpp"
-ARM GAS  /tmp/ccCuL5Dx.s 			page 14
+ARM GAS  /tmp/ccKVpYZu.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 XBLW24C64.cpp
-     /tmp/ccCuL5Dx.s:20     .text:00000000 $t
-     /tmp/ccCuL5Dx.s:26     .text:00000000 _ZN9XBLW24C644initEv
-     /tmp/ccCuL5Dx.s:59     .text:0000001c $d
-     /tmp/ccCuL5Dx.s:63     .text:00000020 $t
-     /tmp/ccCuL5Dx.s:69     .text:00000020 _ZN9XBLW24C649read_byteEt
-     /tmp/ccCuL5Dx.s:123    .text:00000058 $d
-     /tmp/ccCuL5Dx.s:127    .text:0000005c $t
-     /tmp/ccCuL5Dx.s:133    .text:0000005c _ZN9XBLW24C644readEtPht
-     /tmp/ccCuL5Dx.s:220    .text:000000a0 $d
-     /tmp/ccCuL5Dx.s:224    .text:000000a4 $t
-     /tmp/ccCuL5Dx.s:230    .text:000000a4 _ZN9XBLW24C6420_wait_write_completeEv
-     /tmp/ccCuL5Dx.s:278    .text:000000c8 $d
-     /tmp/ccCuL5Dx.s:282    .text:000000cc $t
-     /tmp/ccCuL5Dx.s:288    .text:000000cc _ZN9XBLW24C6410write_byteEth
-     /tmp/ccCuL5Dx.s:345    .text:00000104 $d
-     /tmp/ccCuL5Dx.s:349    .text:00000108 $t
-     /tmp/ccCuL5Dx.s:355    .text:00000108 _ZN9XBLW24C645writeEtPKht
-     /tmp/ccCuL5Dx.s:497    .text:00000170 $d
-     /tmp/ccCuL5Dx.s:508    .bss:00000000 _ZN9XBLW24C645_hi2cE
-     /tmp/ccCuL5Dx.s:504    .bss:00000000 $d
+     /tmp/ccKVpYZu.s:20     .text:00000000 $t
+     /tmp/ccKVpYZu.s:26     .text:00000000 _ZN9XBLW24C644initEv
+     /tmp/ccKVpYZu.s:59     .text:0000001c $d
+     /tmp/ccKVpYZu.s:63     .text:00000020 $t
+     /tmp/ccKVpYZu.s:69     .text:00000020 _ZN9XBLW24C649read_byteEt
+     /tmp/ccKVpYZu.s:123    .text:00000058 $d
+     /tmp/ccKVpYZu.s:127    .text:0000005c $t
+     /tmp/ccKVpYZu.s:133    .text:0000005c _ZN9XBLW24C644readEtPht
+     /tmp/ccKVpYZu.s:220    .text:000000a0 $d
+     /tmp/ccKVpYZu.s:224    .text:000000a4 $t
+     /tmp/ccKVpYZu.s:230    .text:000000a4 _ZN9XBLW24C6420_wait_write_completeEv
+     /tmp/ccKVpYZu.s:278    .text:000000c8 $d
+     /tmp/ccKVpYZu.s:282    .text:000000cc $t
+     /tmp/ccKVpYZu.s:288    .text:000000cc _ZN9XBLW24C6410write_byteEth
+     /tmp/ccKVpYZu.s:345    .text:00000104 $d
+     /tmp/ccKVpYZu.s:349    .text:00000108 $t
+     /tmp/ccKVpYZu.s:355    .text:00000108 _ZN9XBLW24C645writeEtPKht
+     /tmp/ccKVpYZu.s:497    .text:00000170 $d
+     /tmp/ccKVpYZu.s:508    .bss:00000000 _ZN9XBLW24C645_hi2cE
+     /tmp/ccKVpYZu.s:504    .bss:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_IsDeviceReady

@@ -55,9 +55,10 @@ build/debug/Task_MotorPublish.o: My_Top/Task/Task_MotorPublish.cpp \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h Core/Inc/tim.h \
  Core/Inc/gpio.h Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/adc.h \
- My_Top/System/kth_read.hpp My_Top/EEPROM/XBLW24C64.hpp \
- My_Top/Drone_CAN/my_dronecan.hpp My_Top/Drone_CAN/my_uav_can.hpp \
- Core/Inc/fdcan.h My_Top/Drone_CAN/canard.h My_Top/Drone_CAN/my_fdcan.hpp \
+ Lib/compute/pid/LQR.hpp My_Top/System/kth_read.hpp \
+ My_Top/EEPROM/XBLW24C64.hpp My_Top/Drone_CAN/my_dronecan.hpp \
+ My_Top/Drone_CAN/my_uav_can.hpp Core/Inc/fdcan.h \
+ My_Top/Drone_CAN/canard.h My_Top/Drone_CAN/my_fdcan.hpp \
  My_Top/System/HAL_System.hpp My_Top/Drone_CAN/dronecan_jiexi.hpp \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.h \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.h \
@@ -134,6 +135,7 @@ Core/Inc/gpio.h:
 Core/Inc/i2c.h:
 Core/Inc/spi.h:
 Core/Inc/adc.h:
+Lib/compute/pid/LQR.hpp:
 My_Top/System/kth_read.hpp:
 My_Top/EEPROM/XBLW24C64.hpp:
 My_Top/Drone_CAN/my_dronecan.hpp:

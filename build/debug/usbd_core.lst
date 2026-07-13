@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccJ149Js.s 			page 1
+ARM GAS  /tmp/cc9muXW7.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
   27:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
   28:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** /** @defgroup USBD_CORE
   29:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @brief usbd core module
-ARM GAS  /tmp/ccJ149Js.s 			page 2
+ARM GAS  /tmp/cc9muXW7.s 			page 2
 
 
   30:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @{
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
   84:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @param  pdev: device instance
   85:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @param  pdesc: Descriptor structure address
   86:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @param  id: Low level core index
-ARM GAS  /tmp/ccJ149Js.s 			page 3
+ARM GAS  /tmp/cc9muXW7.s 			page 3
 
 
   87:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @retval None
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  111:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     pdev->pDesc = pdesc;
   59              		.loc 1 111 5 is_stmt 1 view .LVU14
   60              		.loc 1 111 17 is_stmt 0 view .LVU15
-ARM GAS  /tmp/ccJ149Js.s 			page 4
+ARM GAS  /tmp/cc9muXW7.s 			page 4
 
 
   61 0016 C3F8B412 		str	r1, [r3, #692]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  125:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @brief  USBD_DeInit
  126:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   *         Re-Initialize the device library
  127:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @param  pdev: device instance
-ARM GAS  /tmp/ccJ149Js.s 			page 5
+ARM GAS  /tmp/cc9muXW7.s 			page 5
 
 
  128:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @retval status: status
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  139              		.loc 1 145 5 is_stmt 1 view .LVU42
  140              		.loc 1 145 21 is_stmt 0 view .LVU43
  141 0022 C4F8C032 		str	r3, [r4, #704]
-ARM GAS  /tmp/ccJ149Js.s 			page 6
+ARM GAS  /tmp/cc9muXW7.s 			page 6
 
 
  142              	.L10:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  177 0000 10B5     		push	{r4, lr}
  178              		.cfi_def_cfa_offset 8
  179              		.cfi_offset 4, -8
-ARM GAS  /tmp/ccJ149Js.s 			page 7
+ARM GAS  /tmp/cc9muXW7.s 			page 7
 
 
  180              		.cfi_offset 14, -4
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  193:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   return USBD_OK;
  208              		.loc 1 193 10 view .LVU68
  209 0020 0020     		movs	r0, #0
-ARM GAS  /tmp/ccJ149Js.s 			page 8
+ARM GAS  /tmp/cc9muXW7.s 			page 8
 
 
  210              	.LVL13:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  252              		.cfi_def_cfa_offset 8
  253              		.cfi_offset 3, -8
  254              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccJ149Js.s 			page 9
+ARM GAS  /tmp/cc9muXW7.s 			page 9
 
 
  204:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   /* Start the low level driver  */
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  222:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     (void)pdev->pClass->DeInit(pdev, (uint8_t)pdev->dev_config);
  293              		.loc 1 222 5 is_stmt 1 view .LVU86
  294              		.loc 1 222 23 is_stmt 0 view .LVU87
-ARM GAS  /tmp/ccJ149Js.s 			page 10
+ARM GAS  /tmp/cc9muXW7.s 			page 10
 
 
  295 000e 5B68     		ldr	r3, [r3, #4]
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  333              	.LFE338:
  335              		.section	.text.USBD_SetClassConfig,"ax",%progbits
  336              		.align	1
-ARM GAS  /tmp/ccJ149Js.s 			page 11
+ARM GAS  /tmp/cc9muXW7.s 			page 11
 
 
  337              		.global	USBD_SetClassConfig
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  371              	.LVL28:
  372              	.L25:
  252:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
-ARM GAS  /tmp/ccJ149Js.s 			page 12
+ARM GAS  /tmp/cc9muXW7.s 			page 12
 
 
  373              		.loc 1 252 22 view .LVU108
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  278:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   return USBD_OK;
  412              		.loc 1 278 3 is_stmt 1 view .LVU118
  279:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** }
-ARM GAS  /tmp/ccJ149Js.s 			page 13
+ARM GAS  /tmp/cc9muXW7.s 			page 13
 
 
  413              		.loc 1 279 1 is_stmt 0 view .LVU119
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  296:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   pdev->ep0_data_len = pdev->request.wLength;
  453              		.loc 1 296 3 is_stmt 1 view .LVU127
  454              		.loc 1 296 37 is_stmt 0 view .LVU128
-ARM GAS  /tmp/ccJ149Js.s 			page 14
+ARM GAS  /tmp/cc9muXW7.s 			page 14
 
 
  455 0014 B4F8B032 		ldrh	r3, [r4, #688]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  485 003c FFF7FEFF 		bl	USBD_StdItfReq
  486              	.LVL37:
  306:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
-ARM GAS  /tmp/ccJ149Js.s 			page 15
+ARM GAS  /tmp/cc9muXW7.s 			page 15
 
 
  487              		.loc 1 306 7 is_stmt 1 view .LVU140
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  525              		@ frame_needed = 0, uses_anonymous_args = 0
  526              		.loc 1 330 1 is_stmt 0 view .LVU148
  527 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  /tmp/ccJ149Js.s 			page 16
+ARM GAS  /tmp/cc9muXW7.s 			page 16
 
 
  528              		.cfi_def_cfa_offset 16
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  363:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       {
  364:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         /*
  365:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           * STATUS PHASE completed, update ep0_state to idle
-ARM GAS  /tmp/ccJ149Js.s 			page 17
+ARM GAS  /tmp/cc9muXW7.s 			page 17
 
 
  366:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           */
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  572 0026 032B     		cmp	r3, #3
  573 0028 0FD0     		beq	.L47
  574              	.LVL49:
-ARM GAS  /tmp/ccJ149Js.s 			page 18
+ARM GAS  /tmp/cc9muXW7.s 			page 18
 
 
  575              	.L40:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  615 0056 E8E7     		b	.L40
  616              	.LVL55:
  617              	.L37:
-ARM GAS  /tmp/ccJ149Js.s 			page 19
+ARM GAS  /tmp/cc9muXW7.s 			page 19
 
 
  375:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     {
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  659              		.thumb_func
  661              	USBD_LL_DataInStage:
  662              	.LVL61:
-ARM GAS  /tmp/ccJ149Js.s 			page 20
+ARM GAS  /tmp/cc9muXW7.s 			page 20
 
 
  663              	.LFB343:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  413:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         pep->rem_length -= pep->maxpacket;
  414:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
  415:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         (void)USBD_CtlContinueSendData(pdev, pdata, pep->rem_length);
-ARM GAS  /tmp/ccJ149Js.s 			page 21
+ARM GAS  /tmp/cc9muXW7.s 			page 21
 
 
  416:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  463:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   }
  464:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   else
  465:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   {
-ARM GAS  /tmp/ccJ149Js.s 			page 22
+ARM GAS  /tmp/cc9muXW7.s 			page 22
 
 
  466:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     if (pdev->dev_state == USBD_STATE_CONFIGURED)
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  731              	.LVL69:
  732              	.L54:
  442:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           (void)USBD_CtlReceiveStatus(pdev);
-ARM GAS  /tmp/ccJ149Js.s 			page 23
+ARM GAS  /tmp/cc9muXW7.s 			page 23
 
 
  733              		.loc 1 442 11 is_stmt 1 view .LVU219
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  424:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****             (pep->total_length < pdev->ep0_data_len))
  775              		.loc 1 424 51 view .LVU232
  776 0066 9342     		cmp	r3, r2
-ARM GAS  /tmp/ccJ149Js.s 			page 24
+ARM GAS  /tmp/cc9muXW7.s 			page 24
 
 
  777 0068 E0D2     		bcs	.L53
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  816              		.loc 1 461 7 view .LVU247
  461:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     }
  817              		.loc 1 461 27 is_stmt 0 view .LVU248
-ARM GAS  /tmp/ccJ149Js.s 			page 25
+ARM GAS  /tmp/cc9muXW7.s 			page 25
 
 
  818 0094 0023     		movs	r3, #0
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  857 00b8 B1E7     		b	.L55
  858              		.cfi_endproc
  859              	.LFE343:
-ARM GAS  /tmp/ccJ149Js.s 			page 26
+ARM GAS  /tmp/cc9muXW7.s 			page 26
 
 
  861              		.section	.text.USBD_LL_Reset,"ax",%progbits
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  898              		.cfi_offset 5, -12
  899              		.cfi_offset 6, -8
  900              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccJ149Js.s 			page 27
+ARM GAS  /tmp/cc9muXW7.s 			page 27
 
 
  901 001a 0446     		mov	r4, r0
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  935              		.loc 1 518 9 is_stmt 0 view .LVU292
  936 0042 2B46     		mov	r3, r5
  937 0044 0022     		movs	r2, #0
-ARM GAS  /tmp/ccJ149Js.s 			page 28
+ARM GAS  /tmp/cc9muXW7.s 			page 28
 
 
  938 0046 8021     		movs	r1, #128
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  534:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** {
  978              		.loc 1 534 1 is_stmt 1 view -0
  979              		.cfi_startproc
-ARM GAS  /tmp/ccJ149Js.s 			page 29
+ARM GAS  /tmp/cc9muXW7.s 			page 29
 
 
  980              		@ args = 0, pretend = 0, frame = 0
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  551:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
  552:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   return USBD_OK;
  1020              		.loc 1 552 3 is_stmt 1 view .LVU314
-ARM GAS  /tmp/ccJ149Js.s 			page 30
+ARM GAS  /tmp/cc9muXW7.s 			page 30
 
 
  553:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** }
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  566:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   }
  1059              		.loc 1 566 5 is_stmt 1 view .LVU324
  566:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   }
-ARM GAS  /tmp/ccJ149Js.s 			page 31
+ARM GAS  /tmp/cc9muXW7.s 			page 31
 
 
  1060              		.loc 1 566 27 is_stmt 0 view .LVU325
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  587:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   {
  588:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     if (pdev->pClass->SOF != NULL)
  589:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     {
-ARM GAS  /tmp/ccJ149Js.s 			page 32
+ARM GAS  /tmp/cc9muXW7.s 			page 32
 
 
  590:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       (void)pdev->pClass->SOF(pdev);
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  1138              		.global	USBD_LL_IsoINIncomplete
  1139              		.syntax unified
  1140              		.thumb
-ARM GAS  /tmp/ccJ149Js.s 			page 33
+ARM GAS  /tmp/cc9muXW7.s 			page 33
 
 
  1141              		.thumb_func
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  1171 0012 08BD     		pop	{r3, pc}
  1172              	.LVL111:
  1173              	.L92:
-ARM GAS  /tmp/ccJ149Js.s 			page 34
+ARM GAS  /tmp/cc9muXW7.s 			page 34
 
 
  613:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     {
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  628:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** USBD_StatusTypeDef USBD_LL_IsoOUTIncomplete(USBD_HandleTypeDef *pdev,
  629:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****                                             uint8_t epnum)
  630:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** {
-ARM GAS  /tmp/ccJ149Js.s 			page 35
+ARM GAS  /tmp/cc9muXW7.s 			page 35
 
 
  1213              		.loc 1 630 1 is_stmt 1 view -0
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  1247              		.loc 1 640 13 is_stmt 0 view .LVU381
  1248 0018 9847     		blx	r3
  1249              	.LVL120:
-ARM GAS  /tmp/ccJ149Js.s 			page 36
+ARM GAS  /tmp/cc9muXW7.s 			page 36
 
 
  644:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** }
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  1287              		.loc 1 659 1 is_stmt 0 view .LVU390
  1288 0000 0020     		movs	r0, #0
  1289              	.LVL126:
-ARM GAS  /tmp/ccJ149Js.s 			page 37
+ARM GAS  /tmp/cc9muXW7.s 			page 37
 
 
  1290              		.loc 1 659 1 view .LVU391
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  675:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   }
  676:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
  677:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   return USBD_OK;
-ARM GAS  /tmp/ccJ149Js.s 			page 38
+ARM GAS  /tmp/cc9muXW7.s 			page 38
 
 
  1331              		.loc 1 677 3 is_stmt 1 view .LVU402
@@ -2236,51 +2236,51 @@ ARM GAS  /tmp/ccJ149Js.s 			page 1
  1343              		.file 5 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h"
  1344              		.file 6 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h"
  1345              		.file 7 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h"
-ARM GAS  /tmp/ccJ149Js.s 			page 39
+ARM GAS  /tmp/cc9muXW7.s 			page 39
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_core.c
-     /tmp/ccJ149Js.s:21     .text.USBD_Init:00000000 $t
-     /tmp/ccJ149Js.s:27     .text.USBD_Init:00000000 USBD_Init
-     /tmp/ccJ149Js.s:94     .text.USBD_DeInit:00000000 $t
-     /tmp/ccJ149Js.s:100    .text.USBD_DeInit:00000000 USBD_DeInit
-     /tmp/ccJ149Js.s:163    .text.USBD_RegisterClass:00000000 $t
-     /tmp/ccJ149Js.s:169    .text.USBD_RegisterClass:00000000 USBD_RegisterClass
-     /tmp/ccJ149Js.s:237    .text.USBD_Start:00000000 $t
-     /tmp/ccJ149Js.s:243    .text.USBD_Start:00000000 USBD_Start
-     /tmp/ccJ149Js.s:265    .text.USBD_Stop:00000000 $t
-     /tmp/ccJ149Js.s:271    .text.USBD_Stop:00000000 USBD_Stop
-     /tmp/ccJ149Js.s:311    .text.USBD_RunTestMode:00000000 $t
-     /tmp/ccJ149Js.s:317    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
-     /tmp/ccJ149Js.s:336    .text.USBD_SetClassConfig:00000000 $t
-     /tmp/ccJ149Js.s:342    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
-     /tmp/ccJ149Js.s:382    .text.USBD_ClrClassConfig:00000000 $t
-     /tmp/ccJ149Js.s:388    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
-     /tmp/ccJ149Js.s:420    .text.USBD_LL_SetupStage:00000000 $t
-     /tmp/ccJ149Js.s:426    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
-     /tmp/ccJ149Js.s:513    .text.USBD_LL_DataOutStage:00000000 $t
-     /tmp/ccJ149Js.s:519    .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
-     /tmp/ccJ149Js.s:655    .text.USBD_LL_DataInStage:00000000 $t
-     /tmp/ccJ149Js.s:661    .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
-     /tmp/ccJ149Js.s:862    .text.USBD_LL_Reset:00000000 $t
-     /tmp/ccJ149Js.s:868    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
-     /tmp/ccJ149Js.s:969    .text.USBD_LL_SetSpeed:00000000 $t
-     /tmp/ccJ149Js.s:975    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
-     /tmp/ccJ149Js.s:996    .text.USBD_LL_Suspend:00000000 $t
-     /tmp/ccJ149Js.s:1002   .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
-     /tmp/ccJ149Js.s:1030   .text.USBD_LL_Resume:00000000 $t
-     /tmp/ccJ149Js.s:1036   .text.USBD_LL_Resume:00000000 USBD_LL_Resume
-     /tmp/ccJ149Js.s:1070   .text.USBD_LL_SOF:00000000 $t
-     /tmp/ccJ149Js.s:1076   .text.USBD_LL_SOF:00000000 USBD_LL_SOF
-     /tmp/ccJ149Js.s:1137   .text.USBD_LL_IsoINIncomplete:00000000 $t
-     /tmp/ccJ149Js.s:1143   .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
-     /tmp/ccJ149Js.s:1204   .text.USBD_LL_IsoOUTIncomplete:00000000 $t
-     /tmp/ccJ149Js.s:1210   .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
-     /tmp/ccJ149Js.s:1271   .text.USBD_LL_DevConnected:00000000 $t
-     /tmp/ccJ149Js.s:1277   .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
-     /tmp/ccJ149Js.s:1296   .text.USBD_LL_DevDisconnected:00000000 $t
-     /tmp/ccJ149Js.s:1302   .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
+     /tmp/cc9muXW7.s:21     .text.USBD_Init:00000000 $t
+     /tmp/cc9muXW7.s:27     .text.USBD_Init:00000000 USBD_Init
+     /tmp/cc9muXW7.s:94     .text.USBD_DeInit:00000000 $t
+     /tmp/cc9muXW7.s:100    .text.USBD_DeInit:00000000 USBD_DeInit
+     /tmp/cc9muXW7.s:163    .text.USBD_RegisterClass:00000000 $t
+     /tmp/cc9muXW7.s:169    .text.USBD_RegisterClass:00000000 USBD_RegisterClass
+     /tmp/cc9muXW7.s:237    .text.USBD_Start:00000000 $t
+     /tmp/cc9muXW7.s:243    .text.USBD_Start:00000000 USBD_Start
+     /tmp/cc9muXW7.s:265    .text.USBD_Stop:00000000 $t
+     /tmp/cc9muXW7.s:271    .text.USBD_Stop:00000000 USBD_Stop
+     /tmp/cc9muXW7.s:311    .text.USBD_RunTestMode:00000000 $t
+     /tmp/cc9muXW7.s:317    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
+     /tmp/cc9muXW7.s:336    .text.USBD_SetClassConfig:00000000 $t
+     /tmp/cc9muXW7.s:342    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
+     /tmp/cc9muXW7.s:382    .text.USBD_ClrClassConfig:00000000 $t
+     /tmp/cc9muXW7.s:388    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
+     /tmp/cc9muXW7.s:420    .text.USBD_LL_SetupStage:00000000 $t
+     /tmp/cc9muXW7.s:426    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
+     /tmp/cc9muXW7.s:513    .text.USBD_LL_DataOutStage:00000000 $t
+     /tmp/cc9muXW7.s:519    .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
+     /tmp/cc9muXW7.s:655    .text.USBD_LL_DataInStage:00000000 $t
+     /tmp/cc9muXW7.s:661    .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
+     /tmp/cc9muXW7.s:862    .text.USBD_LL_Reset:00000000 $t
+     /tmp/cc9muXW7.s:868    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
+     /tmp/cc9muXW7.s:969    .text.USBD_LL_SetSpeed:00000000 $t
+     /tmp/cc9muXW7.s:975    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
+     /tmp/cc9muXW7.s:996    .text.USBD_LL_Suspend:00000000 $t
+     /tmp/cc9muXW7.s:1002   .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
+     /tmp/cc9muXW7.s:1030   .text.USBD_LL_Resume:00000000 $t
+     /tmp/cc9muXW7.s:1036   .text.USBD_LL_Resume:00000000 USBD_LL_Resume
+     /tmp/cc9muXW7.s:1070   .text.USBD_LL_SOF:00000000 $t
+     /tmp/cc9muXW7.s:1076   .text.USBD_LL_SOF:00000000 USBD_LL_SOF
+     /tmp/cc9muXW7.s:1137   .text.USBD_LL_IsoINIncomplete:00000000 $t
+     /tmp/cc9muXW7.s:1143   .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
+     /tmp/cc9muXW7.s:1204   .text.USBD_LL_IsoOUTIncomplete:00000000 $t
+     /tmp/cc9muXW7.s:1210   .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
+     /tmp/cc9muXW7.s:1271   .text.USBD_LL_DevConnected:00000000 $t
+     /tmp/cc9muXW7.s:1277   .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
+     /tmp/cc9muXW7.s:1296   .text.USBD_LL_DevDisconnected:00000000 $t
+     /tmp/cc9muXW7.s:1302   .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
 
 UNDEFINED SYMBOLS
 USBD_LL_Init
@@ -2296,7 +2296,7 @@ USBD_CtlSendStatus
 USBD_CtlContinueRx
 USBD_CtlReceiveStatus
 USBD_CtlContinueSendData
-ARM GAS  /tmp/ccJ149Js.s 			page 40
+ARM GAS  /tmp/cc9muXW7.s 			page 40
 
 
 USBD_LL_PrepareReceive

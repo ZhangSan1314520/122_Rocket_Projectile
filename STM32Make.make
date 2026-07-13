@@ -154,6 +154,7 @@ Lib/compute/ex_math.cpp \
 Lib/compute/filter/avg_filter.cpp \
 Lib/compute/filter/lowpass_filter.cpp \
 Lib/compute/filter/win_filter.cpp \
+Lib/compute/pid/LQR.cpp \
 Lib/compute/pid/dynamic_pid.cpp \
 Lib/compute/pid/pid.cpp \
 Lib/compute/pid/pid_Increment.cpp \

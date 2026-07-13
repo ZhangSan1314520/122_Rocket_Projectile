@@ -50,7 +50,7 @@ build/debug/kth_read.o: My_Top/System/kth_read.cpp \
  Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  My_Top/System/bsp.hpp Core/Inc/usart.h Core/Inc/tim.h Core/Inc/gpio.h \
  Core/Inc/i2c.h Core/Inc/adc.h Lib/compute/ex_math.hpp \
- Lib/compute/fast_sin.h
+ Lib/compute/fast_sin.h My_Top/System/HAL_System.hpp
 My_Top/System/kth_read.hpp:
 Core/Inc/spi.h:
 Core/Inc/main.h:
@@ -112,3 +112,4 @@ Core/Inc/i2c.h:
 Core/Inc/adc.h:
 Lib/compute/ex_math.hpp:
 Lib/compute/fast_sin.h:
+My_Top/System/HAL_System.hpp:

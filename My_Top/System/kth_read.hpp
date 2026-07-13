@@ -11,10 +11,20 @@
 #define RAD_TO_DEG  (180.0f / 3.14159265358979323846f)// 弧度转角度系数：180 / π ≈ 57.29578
 #include "ex_math.hpp" 
 
+enum ANLC_Status
+{
+    NotStarted = 0,   // 未开始自校准
+    InProgress = 1,   // 校准进行中
+    Failed     = 2,   // 校准失败
+    Completed  = 3    // 校准完成
+};
 
 class KTH7111
 {
 public:
+
+
+
     uint16_t single_turn; // 单圈原始值16位
     float theta;          // 转换后的弧度角 (0 ~ 2π)
     float angle;          // 转换后的角度 (0 ~ 360)
@@ -39,7 +49,7 @@ public:
     void KTH7111_Read_MoreRegs(uint8_t *add, uint8_t *data_rx, uint8_t len); //读取多个寄存器
     void KTH7111_Write_MoreRegs(uint8_t *add, uint8_t *data_tx, uint8_t len,bool save); //写入多个寄存器
     bool KTH7111_ANLC_Calibration(uint32_t timeout_ms); //自动线性度校准（方式1：匀速旋转触发）
-    uint8_t KTH7111_Get_ANLC_Status(void); //读取校准状态 0=未完成 1=完成 2=失败
+    ANLC_Status KTH7111_Get_ANLC_Status(void); //读取校准状态
     void SetZeroAngle_RuanJian(float zero); //设置软件零点
 
 private:

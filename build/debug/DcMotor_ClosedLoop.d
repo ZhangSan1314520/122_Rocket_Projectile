@@ -44,7 +44,7 @@ build/debug/DcMotor_ClosedLoop.o: \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h Core/Inc/tim.h \
  Core/Inc/gpio.h Core/Inc/i2c.h Core/Inc/spi.h Core/Inc/adc.h \
- My_Top/System/kth_read.hpp \
+ Lib/compute/pid/LQR.hpp My_Top/System/kth_read.hpp \
  Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  Core/Inc/FreeRTOSConfig.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
@@ -119,6 +119,7 @@ Core/Inc/gpio.h:
 Core/Inc/i2c.h:
 Core/Inc/spi.h:
 Core/Inc/adc.h:
+Lib/compute/pid/LQR.hpp:
 My_Top/System/kth_read.hpp:
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:

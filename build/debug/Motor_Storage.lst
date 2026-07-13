@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cczV2lnF.s 			page 1
+ARM GAS  /tmp/ccQWElhx.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -27,7 +27,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   24              		.thumb_func
   26              	_ZN13Motor_Storage10motor_addrEh:
   27              	.LVL0:
-  28              	.LFB1350:
+  28              	.LFB1355:
    1:My_Top/EEPROM/Motor_Storage.cpp **** #include "Motor_Storage.hpp"
    2:My_Top/EEPROM/Motor_Storage.cpp **** #include "XBLW24C64.hpp" 
    3:My_Top/EEPROM/Motor_Storage.cpp **** 
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   28:My_Top/EEPROM/Motor_Storage.cpp ****                             sizeof(s)) )
   29:My_Top/EEPROM/Motor_Storage.cpp ****     {
   30:My_Top/EEPROM/Motor_Storage.cpp ****         return false;
-ARM GAS  /tmp/cczV2lnF.s 			page 2
+ARM GAS  /tmp/ccQWElhx.s 			page 2
 
 
   31:My_Top/EEPROM/Motor_Storage.cpp ****     }
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   85:My_Top/EEPROM/Motor_Storage.cpp ****     // 100 = 全部清除
   86:My_Top/EEPROM/Motor_Storage.cpp ****     if (motor_id == 100) {
   87:My_Top/EEPROM/Motor_Storage.cpp ****         bool ok = true;
-ARM GAS  /tmp/cczV2lnF.s 			page 3
+ARM GAS  /tmp/ccQWElhx.s 			page 3
 
 
   88:My_Top/EEPROM/Motor_Storage.cpp ****         for (uint8_t i = 1; i <= 4; i++) {
@@ -169,7 +169,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   47              		.loc 1 114 1 view .LVU7
   48 000a 7047     		bx	lr
   49              		.cfi_endproc
-  50              	.LFE1350:
+  50              	.LFE1355:
   52              		.align	1
   53              		.global	_ZN13Motor_Storage13get_motor_ptrEh
   54              		.syntax unified
@@ -177,8 +177,8 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   56              		.thumb_func
   58              	_ZN13Motor_Storage13get_motor_ptrEh:
   59              	.LVL3:
-  60              	.LFB1351:
-ARM GAS  /tmp/cczV2lnF.s 			page 4
+  60              	.LFB1356:
+ARM GAS  /tmp/ccQWElhx.s 			page 4
 
 
  115:My_Top/EEPROM/Motor_Storage.cpp **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  124:My_Top/EEPROM/Motor_Storage.cpp ****     }
  125:My_Top/EEPROM/Motor_Storage.cpp **** }
  105              		.loc 1 125 1 view .LVU22
-ARM GAS  /tmp/cczV2lnF.s 			page 5
+ARM GAS  /tmp/ccQWElhx.s 			page 5
 
 
  106 002c 7047     		bx	lr
@@ -250,7 +250,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  112 0038 00000000 		.word	M4
  113 003c 00000000 		.word	M2
  114              		.cfi_endproc
- 115              	.LFE1351:
+ 115              	.LFE1356:
  117              		.align	1
  118              		.global	_ZN13Motor_Storage11motor_magicEh
  119              		.syntax unified
@@ -258,7 +258,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  121              		.thumb_func
  123              	_ZN13Motor_Storage11motor_magicEh:
  124              	.LVL6:
- 125              	.LFB1352:
+ 125              	.LFB1357:
  126:My_Top/EEPROM/Motor_Storage.cpp **** 
  127:My_Top/EEPROM/Motor_Storage.cpp **** 
  128:My_Top/EEPROM/Motor_Storage.cpp **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  154 0058 7047     		bx	lr
  155              	.L14:
  134:My_Top/EEPROM/Motor_Storage.cpp ****         case 4: return MOTOR4_MAGIC;
-ARM GAS  /tmp/cczV2lnF.s 			page 6
+ARM GAS  /tmp/ccQWElhx.s 			page 6
 
 
  156              		.loc 1 134 9 is_stmt 1 view .LVU30
@@ -322,7 +322,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  170              		.loc 1 137 1 view .LVU37
  171 0068 7047     		bx	lr
  172              		.cfi_endproc
- 173              	.LFE1352:
+ 173              	.LFE1357:
  175              		.align	1
  176              		.global	_ZN13Motor_Storage16motor_magic_addrEh
  177              		.syntax unified
@@ -330,7 +330,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  179              		.thumb_func
  181              	_ZN13Motor_Storage16motor_magic_addrEh:
  182              	.LVL9:
- 183              	.LFB1353:
+ 183              	.LFB1358:
  138:My_Top/EEPROM/Motor_Storage.cpp **** 
  139:My_Top/EEPROM/Motor_Storage.cpp **** 
  140:My_Top/EEPROM/Motor_Storage.cpp **** uint16_t Motor_Storage::motor_magic_addr(uint8_t id) //分配电机标志的写入起始地址
@@ -354,18 +354,18 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  198              		.loc 1 143 1 view .LVU43
  199 0070 7047     		bx	lr
  200              		.cfi_endproc
- 201              	.LFE1353:
+ 201              	.LFE1358:
  203              		.align	1
  204              		.global	_ZN13Motor_Storage4saveEh
  205              		.syntax unified
-ARM GAS  /tmp/cczV2lnF.s 			page 7
+ARM GAS  /tmp/ccQWElhx.s 			page 7
 
 
  206              		.thumb
  207              		.thumb_func
  209              	_ZN13Motor_Storage4saveEh:
  210              	.LVL12:
- 211              	.LFB1347:
+ 211              	.LFB1352:
    6:My_Top/EEPROM/Motor_Storage.cpp ****     // ① 拿电机对象指针 
  212              		.loc 1 6 1 is_stmt 1 view -0
  213              		.cfi_startproc
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   18:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_kp      = m->pid_location->_kp;        // 位置环 P
  246              		.loc 1 18 19 view .LVU59
  247 008a 0492     		str	r2, [sp, #16]	@ float
-ARM GAS  /tmp/cczV2lnF.s 			page 8
+ARM GAS  /tmp/ccQWElhx.s 			page 8
 
 
   19:My_Top/EEPROM/Motor_Storage.cpp ****     s.pos_ki      = m->pid_location->_ki;        // 位置环 I
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  282              		.loc 1 26 5 is_stmt 1 view .LVU79
   26:My_Top/EEPROM/Motor_Storage.cpp ****                             (const uint8_t *)&s,
  283              		.loc 1 26 26 is_stmt 0 view .LVU80
-ARM GAS  /tmp/cczV2lnF.s 			page 9
+ARM GAS  /tmp/ccQWElhx.s 			page 9
 
 
  284 00a8 2022     		movs	r2, #32
@@ -536,9 +536,9 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  325              		.loc 1 11 16 view .LVU91
  326 00d4 EDE7     		b	.L22
  327              		.cfi_endproc
- 328              	.LFE1347:
+ 328              	.LFE1352:
  330              		.align	1
-ARM GAS  /tmp/cczV2lnF.s 			page 10
+ARM GAS  /tmp/ccQWElhx.s 			page 10
 
 
  331              		.global	_ZN13Motor_Storage4loadEh
@@ -547,7 +547,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  334              		.thumb_func
  336              	_ZN13Motor_Storage4loadEh:
  337              	.LVL24:
- 338              	.LFB1348:
+ 338              	.LFB1353:
   39:My_Top/EEPROM/Motor_Storage.cpp ****     DC_Motor *m = get_motor_ptr(motor_id);
  339              		.loc 1 39 1 is_stmt 1 view -0
  340              		.cfi_startproc
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  375              	.LVL28:
   46:My_Top/EEPROM/Motor_Storage.cpp ****                         (uint8_t *)&magic_read,
  376              		.loc 1 46 5 discriminator 2 view .LVU103
-ARM GAS  /tmp/cczV2lnF.s 			page 11
+ARM GAS  /tmp/ccQWElhx.s 			page 11
 
 
  377 00fc 40B3     		cbz	r0, .L27
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  414              		.loc 1 69 8 is_stmt 0 view .LVU120
  415 0126 EB6B     		ldr	r3, [r5, #60]
   69:My_Top/EEPROM/Motor_Storage.cpp ****     m->pid_speed_incparam->_kd = s.speed_kd;
-ARM GAS  /tmp/cczV2lnF.s 			page 12
+ARM GAS  /tmp/ccQWElhx.s 			page 12
 
 
  416              		.loc 1 69 36 view .LVU121
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   74:My_Top/EEPROM/Motor_Storage.cpp ****     m->motor_freq              = s.motor_freq;
  451              		.loc 1 74 32 view .LVU141
  452 0146 6B62     		str	r3, [r5, #36]	@ float
-ARM GAS  /tmp/cczV2lnF.s 			page 13
+ARM GAS  /tmp/ccQWElhx.s 			page 13
 
 
   75:My_Top/EEPROM/Motor_Storage.cpp **** 
@@ -750,7 +750,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   78:My_Top/EEPROM/Motor_Storage.cpp **** 
  472              		.loc 1 78 1 view .LVU149
  473              		.cfi_endproc
- 474              	.LFE1348:
+ 474              	.LFE1353:
  476              		.align	1
  477              		.global	_ZN13Motor_Storage5clearEh
  478              		.syntax unified
@@ -758,7 +758,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  480              		.thumb_func
  482              	_ZN13Motor_Storage5clearEh:
  483              	.LVL34:
- 484              	.LFB1349:
+ 484              	.LFB1354:
   82:My_Top/EEPROM/Motor_Storage.cpp ****     uint16_t erase = 0x0000;
  485              		.loc 1 82 1 is_stmt 1 view -0
  486              		.cfi_startproc
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
   83:My_Top/EEPROM/Motor_Storage.cpp **** 
  498              		.loc 1 83 14 is_stmt 0 view .LVU153
  499 0158 0023     		movs	r3, #0
-ARM GAS  /tmp/cczV2lnF.s 			page 14
+ARM GAS  /tmp/ccQWElhx.s 			page 14
 
 
  500 015a ADF80630 		strh	r3, [sp, #6]	@ movhi
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  543 017c FFF7FEFF 		bl	_ZN13Motor_Storage16motor_magic_addrEh
  544              	.LVL39:
   89:My_Top/EEPROM/Motor_Storage.cpp ****                                   (const uint8_t *)&erase,
-ARM GAS  /tmp/cczV2lnF.s 			page 15
+ARM GAS  /tmp/ccQWElhx.s 			page 15
 
 
  545              		.loc 1 89 34 discriminator 1 view .LVU165
@@ -887,7 +887,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  579              		.loc 1 102 39 view .LVU174
  580 01a8 E0E7     		b	.L37
  581              		.cfi_endproc
- 582              	.LFE1349:
+ 582              	.LFE1354:
  584              	.Letext0:
  585              		.file 2 "Lib/compute/pid/pid.hpp"
  586              		.file 3 "Lib/compute/pid/pid_Increment.hpp"
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  591              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
  592              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
  593              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
-ARM GAS  /tmp/cczV2lnF.s 			page 16
+ARM GAS  /tmp/ccQWElhx.s 			page 16
 
 
  594              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
@@ -913,29 +913,30 @@ ARM GAS  /tmp/cczV2lnF.s 			page 1
  603              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
  604              		.file 21 "My_Top/System/bsp.hpp"
  605              		.file 22 "Lib/compute/pid/pll.hpp"
- 606              		.file 23 "My_Top/System/kth_read.hpp"
- 607              		.file 24 "My_Top/EEPROM/XBLW24C64.hpp"
- 608              		.file 25 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
- 609              		.file 26 "My_Top/EEPROM/Motor_Storage.hpp"
-ARM GAS  /tmp/cczV2lnF.s 			page 17
+ 606              		.file 23 "Lib/compute/pid/LQR.hpp"
+ 607              		.file 24 "My_Top/System/kth_read.hpp"
+ 608              		.file 25 "My_Top/EEPROM/XBLW24C64.hpp"
+ 609              		.file 26 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ 610              		.file 27 "My_Top/EEPROM/Motor_Storage.hpp"
+ARM GAS  /tmp/ccQWElhx.s 			page 17
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Motor_Storage.cpp
-     /tmp/cczV2lnF.s:20     .text:00000000 $t
-     /tmp/cczV2lnF.s:26     .text:00000000 _ZN13Motor_Storage10motor_addrEh
-     /tmp/cczV2lnF.s:58     .text:0000000c _ZN13Motor_Storage13get_motor_ptrEh
-     /tmp/cczV2lnF.s:74     .text:00000016 $d
-     /tmp/cczV2lnF.s:78     .text:0000001a $t
-     /tmp/cczV2lnF.s:110    .text:00000030 $d
-     /tmp/cczV2lnF.s:117    .text:00000040 $t
-     /tmp/cczV2lnF.s:123    .text:00000040 _ZN13Motor_Storage11motor_magicEh
-     /tmp/cczV2lnF.s:139    .text:0000004a $d
-     /tmp/cczV2lnF.s:143    .text:0000004e $t
-     /tmp/cczV2lnF.s:181    .text:0000006a _ZN13Motor_Storage16motor_magic_addrEh
-     /tmp/cczV2lnF.s:209    .text:00000072 _ZN13Motor_Storage4saveEh
-     /tmp/cczV2lnF.s:336    .text:000000d6 _ZN13Motor_Storage4loadEh
-     /tmp/cczV2lnF.s:482    .text:00000154 _ZN13Motor_Storage5clearEh
+     /tmp/ccQWElhx.s:20     .text:00000000 $t
+     /tmp/ccQWElhx.s:26     .text:00000000 _ZN13Motor_Storage10motor_addrEh
+     /tmp/ccQWElhx.s:58     .text:0000000c _ZN13Motor_Storage13get_motor_ptrEh
+     /tmp/ccQWElhx.s:74     .text:00000016 $d
+     /tmp/ccQWElhx.s:78     .text:0000001a $t
+     /tmp/ccQWElhx.s:110    .text:00000030 $d
+     /tmp/ccQWElhx.s:117    .text:00000040 $t
+     /tmp/ccQWElhx.s:123    .text:00000040 _ZN13Motor_Storage11motor_magicEh
+     /tmp/ccQWElhx.s:139    .text:0000004a $d
+     /tmp/ccQWElhx.s:143    .text:0000004e $t
+     /tmp/ccQWElhx.s:181    .text:0000006a _ZN13Motor_Storage16motor_magic_addrEh
+     /tmp/ccQWElhx.s:209    .text:00000072 _ZN13Motor_Storage4saveEh
+     /tmp/ccQWElhx.s:336    .text:000000d6 _ZN13Motor_Storage4loadEh
+     /tmp/ccQWElhx.s:482    .text:00000154 _ZN13Motor_Storage5clearEh
 
 UNDEFINED SYMBOLS
 M1
