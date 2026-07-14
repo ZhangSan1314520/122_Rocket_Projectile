@@ -55,7 +55,6 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern PCD_HandleTypeDef hpcd_USB_FS;
 extern DMA_HandleTypeDef hdma_adc2;
 extern CORDIC_HandleTypeDef hcordic;
 extern FDCAN_HandleTypeDef hfdcan2;
@@ -73,6 +72,7 @@ extern DMA_HandleTypeDef hdma_usart3_tx;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
+extern PCD_HandleTypeDef hpcd_USB_FS;
 extern TIM_HandleTypeDef htim20;
 
 /* USER CODE BEGIN EV */
@@ -486,5 +486,10 @@ void CORDIC_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+// #include "usb.h"
+// void USB_LP_IRQHandler(void)
+// {
+//     HAL_PCD_IRQHandler(&hpcd_USB_FS);
+// }
 
 /* USER CODE END 1 */

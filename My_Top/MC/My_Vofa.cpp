@@ -25,7 +25,8 @@ void Vofa_SendFireWater(float *data, uint16_t count, uint32_t timeout)//发送�
     memcpy(buf, data, data_len);
     memcpy(buf + data_len, tail, 4);
  
-    CDC_Transmit_FS(buf, total_len); // 发送数据
+    // CDC_Transmit_FS(buf, total_len); // 发送数据
+    CDC_Transmit(0, (uint8_t*)buf, total_len); // 发送数据
 
 }
 

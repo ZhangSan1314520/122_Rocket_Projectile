@@ -1,10 +1,10 @@
 #pragma once
 
-#include "usbd_cdc_if.h"
 #include <stdint.h>
 #include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>     // atof
+#include "My_USB_CDC.hpp"
 
 #define VOFA_PARAM_MAX    30   // 最大参数个数
 #define VOFA_NAME_LEN     25   // 参数名最大长度

@@ -10,12 +10,11 @@
 #include "my_tim.hpp"
 #include "Motor_Storage.hpp"
 #include "usb_device.h"
-
+#include "usb.h"
 
 void Task_SystemInit(void *argument)
 {
-
-    MX_USB_Device_Init(); //初始化USB设备
+    MX_USB_DEVICE_Init(); //初始化USB设备 换大写
     uorb_init(); //初始化uORB消息中间件
     My_Canard_Init(); //初始化Canard协议栈
     HAL_System::init(); //初始化计时器 
@@ -28,9 +27,9 @@ void Task_SystemInit(void *argument)
     M4.My_DC_Motor_Init(); //初始化电机4
 
     Motor_Storage::load(1);//读eeprom的数据传回给电机
-
-
-
+    Motor_Storage::load(2);//读eeprom的数据传回给电机
+    Motor_Storage::load(3);//读eeprom的数据传回给电机
+    Motor_Storage::load(4);//读eeprom的数据传回给电机
 
     printf("Sys_init栈剩余:%d\r\n", uxTaskGetStackHighWaterMark(NULL));
     vTaskDelete(NULL); //删除任务

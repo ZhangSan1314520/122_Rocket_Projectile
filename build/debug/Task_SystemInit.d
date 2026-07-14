@@ -72,17 +72,21 @@ build/debug/Task_SystemInit.o: My_Top/Task/Task_SystemInit.cpp \
  My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.RawCommand.h \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.Status.h \
- My_Top/MC/My_Vofa.hpp USB_Device/App/usbd_cdc_if.h \
- Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- USB_Device/Target/usbd_conf.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
- Lib/uorb/uorb.hpp My_Top/Motor_Control/my_tim.hpp \
- My_Top/EEPROM/Motor_Storage.hpp USB_Device/App/usb_device.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
+ My_Top/MC/My_Vofa.hpp My_Top/USB_Composite/My_USB_CDC.hpp \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.h \
+ Core/Inc/main.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h \
+ Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h Lib/uorb/uorb.hpp \
+ My_Top/Motor_Control/my_tim.hpp My_Top/EEPROM/Motor_Storage.hpp \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usb_device.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h \
+ Core/Inc/usb.h
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -174,16 +178,20 @@ My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h:
 My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.RawCommand.h:
 My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.Status.h:
 My_Top/MC/My_Vofa.hpp:
-USB_Device/App/usbd_cdc_if.h:
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
-USB_Device/Target/usbd_conf.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
+My_Top/USB_Composite/My_USB_CDC.hpp:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.h:
+Core/Inc/main.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h:
+Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h:
 Lib/uorb/uorb.hpp:
 My_Top/Motor_Control/my_tim.hpp:
 My_Top/EEPROM/Motor_Storage.hpp:
-USB_Device/App/usb_device.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usb_device.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h:
+Core/Inc/usb.h:

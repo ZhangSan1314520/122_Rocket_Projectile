@@ -20,8 +20,10 @@ floatAbi: -mfloat-abi=hard
 ldscript: STM32G474XX_FLASH.ld # linker script
 
 # Compiler definitions. The -D prefix for the compiler will be automatically added.
-cDefinitions: []
-cxxDefinitions: []
+cDefinitions: 
+               []
+cxxDefinitions: 
+               []
 asDefinitions: []
 
 # Compiler definition files. you can add a single files or an array of files for different definitions.

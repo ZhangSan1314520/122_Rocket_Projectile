@@ -1,19 +1,20 @@
 build/debug/My_Vofa.o: My_Top/MC/My_Vofa.cpp My_Top/MC/My_Vofa.hpp \
- USB_Device/App/usbd_cdc_if.h \
- Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- USB_Device/Target/usbd_conf.h \
+ My_Top/USB_Composite/My_USB_CDC.hpp \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.h \
+ Core/Inc/main.h Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
+ Core/Inc/stm32g4xx_hal_conf.h \
+ Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
+ Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h \
  Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h \
  Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h \
  Drivers/CMSIS/Include/core_cm4.h Drivers/CMSIS/Include/cmsis_version.h \
  Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h \
  Drivers/CMSIS/Include/mpu_armv7.h \
  Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h \
- Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
- Core/Inc/stm32g4xx_hal_conf.h \
- Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
- Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h \
@@ -43,15 +44,22 @@ build/debug/My_Vofa.o: My_Top/MC/My_Vofa.cpp My_Top/MC/My_Vofa.hpp \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
+ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h \
+ Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h
 My_Top/MC/My_Vofa.hpp:
-USB_Device/App/usbd_cdc_if.h:
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
-USB_Device/Target/usbd_conf.h:
+My_Top/USB_Composite/My_USB_CDC.hpp:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.h:
+Core/Inc/main.h:
+Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
+Core/Inc/stm32g4xx_hal_conf.h:
+Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h:
+Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h:
 Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h:
 Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h:
 Drivers/CMSIS/Include/core_cm4.h:
@@ -60,10 +68,6 @@ Drivers/CMSIS/Include/cmsis_compiler.h:
 Drivers/CMSIS/Include/cmsis_gcc.h:
 Drivers/CMSIS/Include/mpu_armv7.h:
 Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h:
-Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
-Core/Inc/stm32g4xx_hal_conf.h:
-Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h:
-Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h:
@@ -93,6 +97,7 @@ Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
-Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h:
+Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h:

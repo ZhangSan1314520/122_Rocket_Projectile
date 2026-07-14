@@ -92,6 +92,7 @@ Core/Src/sysmem.c \
 Core/Src/system_stm32g4xx.c \
 Core/Src/tim.c \
 Core/Src/usart.c \
+Core/Src/usb.c \
 Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.c \
 Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.c \
 Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.c \
@@ -124,10 +125,17 @@ Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c \
 Lib/embedded-cli/embedded_cli.c \
 Lib/protocol/xlink/xlink_common.c \
 Lib/serial/printf.c \
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
-Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usb_device.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Src/usbd_cdc_acm.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/COMPOSITE/Src/usbd_composite.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_MOUSE/Src/usbd_hid_mouse.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c \
+Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c \
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c \
 Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
 Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
@@ -142,11 +150,7 @@ My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.ArrayCommand.c \
 My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Command.c \
 My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Status.c \
 My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.c \
-My_Top/Drone_CAN/canard.c \
-USB_Device/App/usb_device.c \
-USB_Device/App/usbd_cdc_if.c \
-USB_Device/App/usbd_desc.c \
-USB_Device/Target/usbd_conf.c
+My_Top/Drone_CAN/canard.c
 
 
 CXX_SOURCES = \
@@ -170,7 +174,6 @@ My_Top/Drone_CAN/my_uav_can.cpp \
 My_Top/EEPROM/Motor_Storage.cpp \
 My_Top/EEPROM/XBLW24C64.cpp \
 My_Top/MC/MC_Serial.cpp \
-My_Top/MC/My_USB_CDC.cpp \
 My_Top/MC/My_Vofa.cpp \
 My_Top/Modules/CLI_Module.cpp \
 My_Top/Motor_Control/DcMotor_ClosedLoop.cpp \
@@ -185,7 +188,9 @@ My_Top/Task/Task_Launch.cpp \
 My_Top/Task/Task_MotorPublish.cpp \
 My_Top/Task/Task_SystemInit.cpp \
 My_Top/Task/Task_Test.cpp \
-My_Top/Task/Task_Vofa.cpp
+My_Top/Task/Task_Vofa.cpp \
+My_Top/USB_Composite/My_HID_Keyboard.cpp \
+My_Top/USB_Composite/My_USB_CDC.cpp
 
 
 # ASM sources
@@ -275,6 +280,7 @@ AS_INCLUDES = \
 
 # C includes
 C_INCLUDES =  \
+-IComposite \
 -ICore/Inc \
 -IDrivers/CMSIS/Device/ST/STM32G4xx/Include \
 -IDrivers/CMSIS/Include \
@@ -289,8 +295,13 @@ C_INCLUDES =  \
 -ILib/serial \
 -ILib/ulog \
 -ILib/uorb \
--IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
--IMiddlewares/ST/STM32_USB_Device_Library/Core/Inc \
+-IMiddlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App \
+-IMiddlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc \
+-IMiddlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/COMPOSITE/Inc \
+-IMiddlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Inc \
+-IMiddlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_MOUSE/Inc \
+-IMiddlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc \
+-IMiddlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target \
 -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
 -IMiddlewares/Third_Party/FreeRTOS/Source/include \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
@@ -302,8 +313,7 @@ C_INCLUDES =  \
 -IMy_Top/Motor_Control \
 -IMy_Top/System \
 -IMy_Top/Task \
--IUSB_Device/App \
--IUSB_Device/Target
+-IMy_Top/USB_Composite
 
 
 
