@@ -423,9 +423,10 @@ static int8_t CDC_Receive(uint8_t cdc_ch, uint8_t *Buf, uint32_t *Len)
   /* USER CODE BEGIN 6 */
   //HAL_UART_Transmit_DMA(CDC_CH_To_UART_Handle(cdc_ch), Buf, *Len);
   // CDC_Transmit(cdc_ch, Buf, *Len); // echo back on same channel
+
   extern void My_USB_CDC_ProcessRx(uint8_t* data, uint32_t len); //中断调用
   My_USB_CDC_ProcessRx(Buf, *Len);
-  
+
   USBD_CDC_SetRxBuffer(cdc_ch, &hUsbDevice, &Buf[0]);
   USBD_CDC_ReceivePacket(cdc_ch, &hUsbDevice);
   return (USBD_OK);

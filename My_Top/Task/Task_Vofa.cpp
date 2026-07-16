@@ -72,10 +72,7 @@ void vofa_update_mode(Work_Mode *target, Work_Mode default_val , DC_Motor* motor
         last_mode = new_mode;
         if (motor != NULL)
         {
-            motor->updown_duty = 0.0;
-            motor->Motor_EN(false);
-            motor->pid_speed_incparam->reset();
-            motor->pid_location->reset();
+            motor->My_DC_Motor_Reset();
         }
     }
 }
@@ -92,9 +89,7 @@ void vofa_update_if_changed(Vafa_data *d, uint8_t idx, float *target,  DC_Motor*
     d->changed[idx] = false; // 标记无变化
 
     if (motor == NULL) return; // 如果没有指定电机，不复位
-    motor->pid_speed_incparam->reset();
-    motor->pid_location->reset();
-    motor->updown_duty = 0.0;
+    motor->My_DC_Motor_Reset();
 
 }
 
@@ -113,11 +108,18 @@ void Task_VofaRx(void *argument)
 { 
     static float Motor_Select = 0.0; // 电机选择1-4
     static uint8_t last_idx = 0; // 上一次的电机选择
+    VofaRxFrame_t frame;   // 队列接收缓冲区
+
     vofa_data_init();
     
     while (1)
     {
-        vofa1.parse();                                                    // 解析收到的帧
+        xQueueReceive(vofaRxQueue, &frame, portMAX_DELAY); // 从队列中获取数据
+        /* 把队列数据喂给 vofa1（复用原有解析逻辑） */
+        memcpy(vofa1.rx_buf, frame.buf, frame.len);
+        vofa1.rx_len = frame.len;
+        vofa1.parse();// 解析收到的帧
+
         vofa1.vofa_get_batch(&vofa1, IA_Names, Vafa_IA.val, Vafa_IA.len); // 读取IA_Names参数值
         vofa1.vofa_get_batch(&vofa1, Speed_Names, Vafa_Speed.val, Vafa_Speed.len); // 读取Speed_Names参数值
         vofa1.vofa_get_batch(&vofa1, Target_Names, Vafa_Target.val, Vafa_Target.len); // 读取Target_Names参数值
@@ -179,7 +181,6 @@ void Task_VofaRx(void *argument)
         }
         vofa_update_mode(&m->work_mode, open_loop, m);        
 
-        vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
@@ -197,21 +198,28 @@ void Task_VofaTx(void *argument)
     {
         uorb_copy(topic, buf);  // 阻塞等新数据
 
-        Vofa_SendFireWater_VA(21,
-            // M1
-            buf[0].theta_m, buf[0].theta_deg_final,buf[0].Angular_velocity_final, 
-            buf[0]._target_location2, buf[0]._target_speed,999.0f,
-            // M2
-            buf[1].theta_m, buf[1].theta_deg_final,buf[1].Angular_velocity_final,
-            buf[1]._target_location2, buf[1]._target_speed,999.0f,
-            // M3
-            buf[2].theta_m, buf[2].theta_deg_final,buf[2].Angular_velocity_final,
-            buf[2]._target_location2, buf[2]._target_speed,999.0f,
-            // M4
-            buf[3].theta_m, buf[3].theta_deg_final,buf[3].Angular_velocity_final,
-            buf[3]._target_location2, buf[3]._target_speed,999.0f
+        // Vofa_SendFireWater_VA(21,
+        //     // M1
+        //     buf[0].theta_m, buf[0].theta_deg_final,buf[0].Angular_velocity_final, 
+        //     buf[0]._target_location2, buf[0]._target_speed,999.0f,
+        //     // M2
+        //     buf[1].theta_m, buf[1].theta_deg_final,buf[1].Angular_velocity_final,
+        //     buf[1]._target_location2, buf[1]._target_speed,999.0f,
+        //     // M3
+        //     buf[2].theta_m, buf[2].theta_deg_final,buf[2].Angular_velocity_final,
+        //     buf[2]._target_location2, buf[2]._target_speed,999.0f,
+        //     // M4
+        //     buf[3].theta_m, buf[3].theta_deg_final,buf[3].Angular_velocity_final,
+        //     buf[3]._target_location2, buf[3]._target_speed,999.0f
 
-        );
+        // );
+
+        Vofa_SendFireWater_VA(4,
+            // M1
+            buf[1]._target_speed, buf[1].Angular_velocity_final,
+            buf[1]._target_location2, rad2deg(buf[1].reg_final)
+                                        
+        );  
 
     }
 }

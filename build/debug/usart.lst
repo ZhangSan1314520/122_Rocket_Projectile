@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccj8I5zt.s 			page 1
+ARM GAS  /tmp/cck2th90.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
   28:Core/Src/usart.c **** UART_HandleTypeDef huart2;
   29:Core/Src/usart.c **** UART_HandleTypeDef huart3;
   30:Core/Src/usart.c **** DMA_HandleTypeDef hdma_usart1_rx;
-ARM GAS  /tmp/ccj8I5zt.s 			page 2
+ARM GAS  /tmp/cck2th90.s 			page 2
 
 
   31:Core/Src/usart.c **** DMA_HandleTypeDef hdma_usart1_tx;
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
   59 0018 4261     		str	r2, [r0, #20]
   55:Core/Src/usart.c ****   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   60              		.loc 1 55 3 is_stmt 1 view .LVU13
-ARM GAS  /tmp/ccj8I5zt.s 			page 3
+ARM GAS  /tmp/cck2th90.s 			page 3
 
 
   61              		.loc 1 55 25 is_stmt 0 view .LVU14
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
   71:Core/Src/usart.c ****   }
   72:Core/Src/usart.c ****   if (HAL_UARTEx_DisableFifoMode(&huart1) != HAL_OK)
  100              		.loc 1 72 3 is_stmt 1 view .LVU32
-ARM GAS  /tmp/ccj8I5zt.s 			page 4
+ARM GAS  /tmp/cck2th90.s 			page 4
 
 
  101              		.loc 1 72 7 is_stmt 0 view .LVU33
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  144              		.thumb_func
  146              	MX_USART2_UART_Init:
  147              	.LFB330:
-ARM GAS  /tmp/ccj8I5zt.s 			page 5
+ARM GAS  /tmp/cck2th90.s 			page 5
 
 
   81:Core/Src/usart.c **** /* USART2 init function */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  182              		.loc 1 100 3 is_stmt 1 view .LVU56
  183              		.loc 1 100 28 is_stmt 0 view .LVU57
  184 001c C361     		str	r3, [r0, #28]
-ARM GAS  /tmp/ccj8I5zt.s 			page 6
+ARM GAS  /tmp/cck2th90.s 			page 6
 
 
  101:Core/Src/usart.c ****   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  223              	.LVL11:
  224              		.loc 1 116 6 discriminator 1 view .LVU75
  225 0044 48B9     		cbnz	r0, .L22
-ARM GAS  /tmp/ccj8I5zt.s 			page 7
+ARM GAS  /tmp/cck2th90.s 			page 7
 
 
  226              	.L13:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  128:Core/Src/usart.c **** {
  267              		.loc 1 128 1 is_stmt 1 view -0
  268              		.cfi_startproc
-ARM GAS  /tmp/ccj8I5zt.s 			page 8
+ARM GAS  /tmp/cck2th90.s 			page 8
 
 
  269              		@ args = 0, pretend = 0, frame = 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  306 001e 0162     		str	r1, [r0, #32]
  146:Core/Src/usart.c ****   huart3.Init.ClockPrescaler = UART_PRESCALER_DIV1;
  307              		.loc 1 146 3 is_stmt 1 view .LVU101
-ARM GAS  /tmp/ccj8I5zt.s 			page 9
+ARM GAS  /tmp/cck2th90.s 			page 9
 
 
  308              		.loc 1 146 30 is_stmt 0 view .LVU102
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  161:Core/Src/usart.c ****   {
  162:Core/Src/usart.c ****     Error_Handler();
  163:Core/Src/usart.c ****   }
-ARM GAS  /tmp/ccj8I5zt.s 			page 10
+ARM GAS  /tmp/cck2th90.s 			page 10
 
 
  164:Core/Src/usart.c ****   /* USER CODE BEGIN USART3_Init 2 */
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  392              		@ frame_needed = 0, uses_anonymous_args = 0
  393              		.loc 1 171 1 is_stmt 0 view .LVU124
  394 0000 30B5     		push	{r4, r5, lr}
-ARM GAS  /tmp/ccj8I5zt.s 			page 11
+ARM GAS  /tmp/cck2th90.s 			page 11
 
 
  395              		.cfi_def_cfa_offset 12
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  196:Core/Src/usart.c ****     PA10     ------> USART1_RX
  197:Core/Src/usart.c ****     */
  198:Core/Src/usart.c ****     GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10;
-ARM GAS  /tmp/ccj8I5zt.s 			page 12
+ARM GAS  /tmp/cck2th90.s 			page 12
 
 
  199:Core/Src/usart.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  248:Core/Src/usart.c ****   {
  249:Core/Src/usart.c ****   /* USER CODE BEGIN USART2_MspInit 0 */
  250:Core/Src/usart.c **** 
-ARM GAS  /tmp/ccj8I5zt.s 			page 13
+ARM GAS  /tmp/cck2th90.s 			page 13
 
 
  251:Core/Src/usart.c ****   /* USER CODE END USART2_MspInit 0 */
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  305:Core/Src/usart.c ****     if (HAL_DMA_Init(&hdma_usart2_tx) != HAL_OK)
  306:Core/Src/usart.c ****     {
  307:Core/Src/usart.c ****       Error_Handler();
-ARM GAS  /tmp/ccj8I5zt.s 			page 14
+ARM GAS  /tmp/cck2th90.s 			page 14
 
 
  308:Core/Src/usart.c ****     }
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  356:Core/Src/usart.c ****     hdma_usart3_rx.Init.MemInc = DMA_MINC_ENABLE;
  357:Core/Src/usart.c ****     hdma_usart3_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
  358:Core/Src/usart.c ****     hdma_usart3_rx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
-ARM GAS  /tmp/ccj8I5zt.s 			page 15
+ARM GAS  /tmp/cck2th90.s 			page 15
 
 
  359:Core/Src/usart.c ****     hdma_usart3_rx.Init.Mode = DMA_NORMAL;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  451              		.loc 1 185 9 is_stmt 0 view .LVU142
  452 0038 06A8     		add	r0, sp, #24
  453 003a FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
-ARM GAS  /tmp/ccj8I5zt.s 			page 16
+ARM GAS  /tmp/cck2th90.s 			page 16
 
 
  454              	.LVL28:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  493 006c 1B93     		str	r3, [sp, #108]
  199:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
  494              		.loc 1 199 5 is_stmt 1 view .LVU158
-ARM GAS  /tmp/ccj8I5zt.s 			page 17
+ARM GAS  /tmp/cck2th90.s 			page 17
 
 
  199:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  531 0094 8023     		movs	r3, #128
  532 0096 0361     		str	r3, [r0, #16]
  212:Core/Src/usart.c ****     hdma_usart1_rx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
-ARM GAS  /tmp/ccj8I5zt.s 			page 18
+ARM GAS  /tmp/cck2th90.s 			page 18
 
 
  533              		.loc 1 212 5 is_stmt 1 view .LVU177
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  568              		.loc 1 226 5 is_stmt 1 view .LVU196
  226:Core/Src/usart.c ****     hdma_usart1_tx.Init.PeriphInc = DMA_PINC_DISABLE;
  569              		.loc 1 226 35 is_stmt 0 view .LVU197
-ARM GAS  /tmp/ccj8I5zt.s 			page 19
+ARM GAS  /tmp/cck2th90.s 			page 19
 
 
  570 00b8 1023     		movs	r3, #16
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  605              		.loc 1 238 5 view .LVU216
  241:Core/Src/usart.c ****     HAL_NVIC_EnableIRQ(USART1_IRQn);
  606              		.loc 1 241 5 view .LVU217
-ARM GAS  /tmp/ccj8I5zt.s 			page 20
+ARM GAS  /tmp/cck2th90.s 			page 20
 
 
  607 00d8 0022     		movs	r2, #0
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  649              		.loc 1 263 5 view .LVU229
  263:Core/Src/usart.c **** 
  650              		.loc 1 263 5 view .LVU230
-ARM GAS  /tmp/ccj8I5zt.s 			page 21
+ARM GAS  /tmp/cck2th90.s 			page 21
 
 
  651 010a 624B     		ldr	r3, .L63+12
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  273:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
  690              		.loc 1 273 5 is_stmt 1 view .LVU246
  273:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
-ARM GAS  /tmp/ccj8I5zt.s 			page 22
+ARM GAS  /tmp/cck2th90.s 			page 22
 
 
  691              		.loc 1 273 27 is_stmt 0 view .LVU247
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  727              		.loc 1 286 5 is_stmt 1 view .LVU265
  286:Core/Src/usart.c ****     hdma_usart2_rx.Init.Priority = DMA_PRIORITY_LOW;
  728              		.loc 1 286 30 is_stmt 0 view .LVU266
-ARM GAS  /tmp/ccj8I5zt.s 			page 23
+ARM GAS  /tmp/cck2th90.s 			page 23
 
 
  729 0162 C561     		str	r5, [r0, #28]
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  300:Core/Src/usart.c ****     hdma_usart2_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
  765              		.loc 1 300 32 is_stmt 0 view .LVU285
  766 0186 8022     		movs	r2, #128
-ARM GAS  /tmp/ccj8I5zt.s 			page 24
+ARM GAS  /tmp/cck2th90.s 			page 24
 
 
  767 0188 0261     		str	r2, [r0, #16]
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  804 01ae 3FE7     		b	.L37
  805              	.L57:
  259:Core/Src/usart.c ****     }
-ARM GAS  /tmp/ccj8I5zt.s 			page 25
+ARM GAS  /tmp/cck2th90.s 			page 25
 
 
  806              		.loc 1 259 7 view .LVU303
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  847              		.loc 1 335 5 view .LVU316
  848 01e2 049A     		ldr	r2, [sp, #16]
  849              	.LBE6:
-ARM GAS  /tmp/ccj8I5zt.s 			page 26
+ARM GAS  /tmp/cck2th90.s 			page 26
 
 
  335:Core/Src/usart.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  886 020a 1BA9     		add	r1, sp, #108
  887 020c 2A48     		ldr	r0, .L63+48
  888 020e FFF7FEFF 		bl	HAL_GPIO_Init
-ARM GAS  /tmp/ccj8I5zt.s 			page 27
+ARM GAS  /tmp/cck2th90.s 			page 27
 
 
  889              	.LVL47:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  923 022c FFF7FEFF 		bl	HAL_DMA_Init
  924              	.LVL48:
  361:Core/Src/usart.c ****     {
-ARM GAS  /tmp/ccj8I5zt.s 			page 28
+ARM GAS  /tmp/cck2th90.s 			page 28
 
 
  925              		.loc 1 361 8 discriminator 1 view .LVU355
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  961 0252 8361     		str	r3, [r0, #24]
  376:Core/Src/usart.c ****     hdma_usart3_tx.Init.Priority = DMA_PRIORITY_LOW;
  962              		.loc 1 376 5 is_stmt 1 view .LVU374
-ARM GAS  /tmp/ccj8I5zt.s 			page 29
+ARM GAS  /tmp/cck2th90.s 			page 29
 
 
  376:Core/Src/usart.c ****     hdma_usart3_tx.Init.Priority = DMA_PRIORITY_LOW;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1003 0280 D7E7     		b	.L48
  1004              	.L62:
  380:Core/Src/usart.c ****     }
-ARM GAS  /tmp/ccj8I5zt.s 			page 30
+ARM GAS  /tmp/cck2th90.s 			page 30
 
 
  1005              		.loc 1 380 7 view .LVU390
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1056 0006 264A     		ldr	r2, .L73
  1057 0008 9342     		cmp	r3, r2
  1058 000a 06D0     		beq	.L70
-ARM GAS  /tmp/ccj8I5zt.s 			page 31
+ARM GAS  /tmp/cck2th90.s 			page 31
 
 
  398:Core/Src/usart.c ****   {
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1065              		.loc 1 445 10 is_stmt 0 view .LVU399
  1066 0012 254A     		ldr	r2, .L73+8
  1067 0014 9342     		cmp	r3, r2
-ARM GAS  /tmp/ccj8I5zt.s 			page 32
+ARM GAS  /tmp/cck2th90.s 			page 32
 
 
  1068 0016 2DD0     		beq	.L72
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1092 003a E06F     		ldr	r0, [r4, #124]
  1093 003c FFF7FEFF 		bl	HAL_DMA_DeInit
  1094              	.LVL61:
-ARM GAS  /tmp/ccj8I5zt.s 			page 33
+ARM GAS  /tmp/cck2th90.s 			page 33
 
 
  416:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_MspDeInit 1 */
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1139 0086 FFF7FEFF 		bl	HAL_GPIO_DeInit
  1140              	.LVL71:
  461:Core/Src/usart.c ****     HAL_DMA_DeInit(uartHandle->hdmatx);
-ARM GAS  /tmp/ccj8I5zt.s 			page 34
+ARM GAS  /tmp/cck2th90.s 			page 34
 
 
  1141              		.loc 1 461 5 is_stmt 1 view .LVU416
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1188              		.align	2
  1191              	hdma_usart2_rx:
  1192 0000 00000000 		.space	96
-ARM GAS  /tmp/ccj8I5zt.s 			page 35
+ARM GAS  /tmp/cck2th90.s 			page 35
 
 
  1192      00000000 
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1233              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  1234              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h"
  1235              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
-ARM GAS  /tmp/ccj8I5zt.s 			page 36
+ARM GAS  /tmp/cck2th90.s 			page 36
 
 
  1236              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
@@ -2108,44 +2108,44 @@ ARM GAS  /tmp/ccj8I5zt.s 			page 1
  1240              		.file 12 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h"
  1241              		.file 13 "Core/Inc/main.h"
  1242              		.file 14 "<built-in>"
-ARM GAS  /tmp/ccj8I5zt.s 			page 37
+ARM GAS  /tmp/cck2th90.s 			page 37
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usart.c
-     /tmp/ccj8I5zt.s:21     .text.MX_USART1_UART_Init:00000000 $t
-     /tmp/ccj8I5zt.s:27     .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
-     /tmp/ccj8I5zt.s:134    .text.MX_USART1_UART_Init:00000060 $d
-     /tmp/ccj8I5zt.s:1226   .bss.huart1:00000000 huart1
-     /tmp/ccj8I5zt.s:140    .text.MX_USART2_UART_Init:00000000 $t
-     /tmp/ccj8I5zt.s:146    .text.MX_USART2_UART_Init:00000000 MX_USART2_UART_Init
-     /tmp/ccj8I5zt.s:253    .text.MX_USART2_UART_Init:00000060 $d
-     /tmp/ccj8I5zt.s:1219   .bss.huart2:00000000 huart2
-     /tmp/ccj8I5zt.s:259    .text.MX_USART3_UART_Init:00000000 $t
-     /tmp/ccj8I5zt.s:265    .text.MX_USART3_UART_Init:00000000 MX_USART3_UART_Init
-     /tmp/ccj8I5zt.s:374    .text.MX_USART3_UART_Init:00000064 $d
-     /tmp/ccj8I5zt.s:1212   .bss.huart3:00000000 huart3
-     /tmp/ccj8I5zt.s:380    .text.HAL_UART_MspInit:00000000 $t
-     /tmp/ccj8I5zt.s:386    .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
-     /tmp/ccj8I5zt.s:1012   .text.HAL_UART_MspInit:00000288 $d
-     /tmp/ccj8I5zt.s:1205   .bss.hdma_usart1_rx:00000000 hdma_usart1_rx
-     /tmp/ccj8I5zt.s:1198   .bss.hdma_usart1_tx:00000000 hdma_usart1_tx
-     /tmp/ccj8I5zt.s:1191   .bss.hdma_usart2_rx:00000000 hdma_usart2_rx
-     /tmp/ccj8I5zt.s:1184   .bss.hdma_usart2_tx:00000000 hdma_usart2_tx
-     /tmp/ccj8I5zt.s:1177   .bss.hdma_usart3_rx:00000000 hdma_usart3_rx
-     /tmp/ccj8I5zt.s:1170   .bss.hdma_usart3_tx:00000000 hdma_usart3_tx
-     /tmp/ccj8I5zt.s:1033   .text.HAL_UART_MspDeInit:00000000 $t
-     /tmp/ccj8I5zt.s:1039   .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
-     /tmp/ccj8I5zt.s:1158   .text.HAL_UART_MspDeInit:000000a0 $d
-     /tmp/ccj8I5zt.s:1167   .bss.hdma_usart3_tx:00000000 $d
-     /tmp/ccj8I5zt.s:1174   .bss.hdma_usart3_rx:00000000 $d
-     /tmp/ccj8I5zt.s:1181   .bss.hdma_usart2_tx:00000000 $d
-     /tmp/ccj8I5zt.s:1188   .bss.hdma_usart2_rx:00000000 $d
-     /tmp/ccj8I5zt.s:1195   .bss.hdma_usart1_tx:00000000 $d
-     /tmp/ccj8I5zt.s:1202   .bss.hdma_usart1_rx:00000000 $d
-     /tmp/ccj8I5zt.s:1209   .bss.huart3:00000000 $d
-     /tmp/ccj8I5zt.s:1216   .bss.huart2:00000000 $d
-     /tmp/ccj8I5zt.s:1223   .bss.huart1:00000000 $d
+     /tmp/cck2th90.s:21     .text.MX_USART1_UART_Init:00000000 $t
+     /tmp/cck2th90.s:27     .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+     /tmp/cck2th90.s:134    .text.MX_USART1_UART_Init:00000060 $d
+     /tmp/cck2th90.s:1226   .bss.huart1:00000000 huart1
+     /tmp/cck2th90.s:140    .text.MX_USART2_UART_Init:00000000 $t
+     /tmp/cck2th90.s:146    .text.MX_USART2_UART_Init:00000000 MX_USART2_UART_Init
+     /tmp/cck2th90.s:253    .text.MX_USART2_UART_Init:00000060 $d
+     /tmp/cck2th90.s:1219   .bss.huart2:00000000 huart2
+     /tmp/cck2th90.s:259    .text.MX_USART3_UART_Init:00000000 $t
+     /tmp/cck2th90.s:265    .text.MX_USART3_UART_Init:00000000 MX_USART3_UART_Init
+     /tmp/cck2th90.s:374    .text.MX_USART3_UART_Init:00000064 $d
+     /tmp/cck2th90.s:1212   .bss.huart3:00000000 huart3
+     /tmp/cck2th90.s:380    .text.HAL_UART_MspInit:00000000 $t
+     /tmp/cck2th90.s:386    .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
+     /tmp/cck2th90.s:1012   .text.HAL_UART_MspInit:00000288 $d
+     /tmp/cck2th90.s:1205   .bss.hdma_usart1_rx:00000000 hdma_usart1_rx
+     /tmp/cck2th90.s:1198   .bss.hdma_usart1_tx:00000000 hdma_usart1_tx
+     /tmp/cck2th90.s:1191   .bss.hdma_usart2_rx:00000000 hdma_usart2_rx
+     /tmp/cck2th90.s:1184   .bss.hdma_usart2_tx:00000000 hdma_usart2_tx
+     /tmp/cck2th90.s:1177   .bss.hdma_usart3_rx:00000000 hdma_usart3_rx
+     /tmp/cck2th90.s:1170   .bss.hdma_usart3_tx:00000000 hdma_usart3_tx
+     /tmp/cck2th90.s:1033   .text.HAL_UART_MspDeInit:00000000 $t
+     /tmp/cck2th90.s:1039   .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
+     /tmp/cck2th90.s:1158   .text.HAL_UART_MspDeInit:000000a0 $d
+     /tmp/cck2th90.s:1167   .bss.hdma_usart3_tx:00000000 $d
+     /tmp/cck2th90.s:1174   .bss.hdma_usart3_rx:00000000 $d
+     /tmp/cck2th90.s:1181   .bss.hdma_usart2_tx:00000000 $d
+     /tmp/cck2th90.s:1188   .bss.hdma_usart2_rx:00000000 $d
+     /tmp/cck2th90.s:1195   .bss.hdma_usart1_tx:00000000 $d
+     /tmp/cck2th90.s:1202   .bss.hdma_usart1_rx:00000000 $d
+     /tmp/cck2th90.s:1209   .bss.huart3:00000000 $d
+     /tmp/cck2th90.s:1216   .bss.huart2:00000000 $d
+     /tmp/cck2th90.s:1223   .bss.huart1:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_UART_Init

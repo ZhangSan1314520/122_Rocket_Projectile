@@ -3,12 +3,12 @@
 
 bool KTH7111::KTH7111_Init(bool fx)
 {
+    // KTH7111_ReadReg(0x00);  // 读一个无关寄存器，结果丢弃
     bool write_ok = false;
     uint16_t angle_zero = 0;
     encoder_dir = fx;
     write_ok =KTH7111_RotationDirection(fx); //写入编码器角度方向
-    KTH7111_WriteReg(0x0d, 0x88); //设置滤波深度
-    KTH_CS_Enble(true); //片选拉高 不选中编码器
+    // KTH7111_WriteReg(0x0d, 0x88); //设置滤波深度
     // KTH7111_BurnMTP(); //写入MTP 
     return write_ok;
 }
@@ -119,7 +119,7 @@ uint8_t KTH7111::KTH7111_ReadReg(uint8_t addr)
 
     SPI_Set_MOSI_Input();//MOSI变为MISO
 
-    for(volatile uint32_t i = 0; i < 28; i++) { __NOP(); } //延时1us
+    for(volatile uint32_t i = 0; i < 10; i++) { __NOP(); } //延时1us
     status = HAL_SPI_Receive(_motor_config->hspi,rx_buff, 2, 10); //接收数据：8bit 寄存器值 + 8bitCRC
     if(status != HAL_OK)
     {
@@ -127,7 +127,7 @@ uint8_t KTH7111::KTH7111_ReadReg(uint8_t addr)
         SPI_Set_MOSI_Output();//MISO 变为MOSI
         return 0;
     }
-    for(volatile uint32_t i = 0; i < 28; i++) { __NOP(); } //延时1us
+    for(volatile uint32_t i = 0; i < 10; i++) { __NOP(); } //延时1us
     SPI_Set_MOSI_Output();//MISO 变为MOSI
     KTH_CS_Enble(true);
 
@@ -153,18 +153,17 @@ bool KTH7111::KTH7111_WriteReg(uint8_t addr, uint8_t data)
     KTH_CS_Enble(true);
 
     KTH_CS_Enble(false);
-    for(volatile uint32_t i = 0; i < 28; i++) { __NOP(); } //延时1us
+    for(volatile uint32_t i = 0; i < 10; i++) { __NOP(); } //延时1us
     /* 第二帧：发写命令 */
     HAL_SPI_Transmit(_motor_config->hspi, cmd, 3, 10);
-    for(volatile uint32_t i = 0; i < 28; i++) { __NOP(); } //延时1us
+    for(volatile uint32_t i = 0; i < 10; i++) { __NOP(); } //延时1us
 
     SPI_Set_MOSI_Input();//MOSI变为MISO
     /* 第三帧：收确认（同一帧返回的寄存器值） */
     HAL_SPI_Receive(_motor_config->hspi, &rx, 1, 10);
-    KTH_CS_Enble(true);
-    for(volatile uint32_t i = 0; i < 28; i++) { __NOP(); } //延时1us
+    for(volatile uint32_t i = 0; i < 10; i++) { __NOP(); } //延时1us
     SPI_Set_MOSI_Output();//MISO 变为MOSI
-    
+    KTH_CS_Enble(true);
     
     return rx == data;
 }
@@ -181,7 +180,7 @@ bool KTH7111::KTH7111_RotationDirection(bool RD)  //控制编码器旋转方向 
     uint8_t rx_temp = 0;
     uint8_t rx_new = 0;    
     uint8_t tx = 0;
-    if(RD == false)  //如果RD为1，设置为顺时针方向
+    if(RD == true)  //如果RD为1，设置为顺时针方向
     {
         rx_temp = KTH7111_ReadReg(0x02); 
         tx = rx_temp|0x80;//最高位置1
@@ -206,7 +205,7 @@ HAL_StatusTypeDef KTH7111::KTH7111_BurnMTP(void)//保存当前参数到MTP
 {
     uint8_t burn_cmd[3] = {0x22, 0x55, 0xAA}; //
     HAL_StatusTypeDef status = HAL_ERROR;
-    SPI_Set_MOSI_Input();//MOSI变为MISO
+    SPI_Set_MOSI_Output();
     KTH_CS_Enble(false);
     status = HAL_SPI_Transmit(_motor_config->hspi, burn_cmd, 3, 10);
     KTH_CS_Enble(true);

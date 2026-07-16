@@ -39,8 +39,13 @@ void My_Tim_Callback(TIM_HandleTypeDef *htim)
         DC_Motor* m = motors[i];
         if (!m->control_init_flag) continue;
 
-        if (count % 40 == 1)
-            m->Update_Speed_Angle_LPFAndPLL();
+        if (count % DC_VELOCITY_UP_FREQ_DIV == 1)
+        {
+            // start_time = HAL_System::get_tick_us(); //记录开始时间
+            m->Update_Speed_Angle_LPFAndPLL(); //耗时30us*4 = 120us = 8.333khz
+            // end_time = HAL_System::get_tick_us(); // 记录结束时间
+            // m->laji = (float)(end_time - start_time);  // 计算时间差
+        }
 
         switch (m->work_mode)
         {
@@ -72,12 +77,16 @@ void My_Tim_Callback(TIM_HandleTypeDef *htim)
                 // end_time = HAL_System::get_tick_us(); // 记录结束时间
                 // m->laji = (float)(end_time - start_time);  // 计算时间差
             }
+            if (count % DC_VELOCITY_LOOP_FREQ_DIV == 1)
+            {
+                m->Speed_Loop();//耗时4us*4 = 16us
+            }
             break;
 
         case EncoderCalibration: //编码器校准模式
             if (count % 160 == 1)
             {
-                m->updown_duty = 0.95; //全速动起来
+                m->updown_duty = 0.96f; //全速动起来
                 m->Set_Motor_Glo_Duty();
             }
             break;

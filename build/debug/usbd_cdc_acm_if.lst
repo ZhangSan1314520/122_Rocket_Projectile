@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc52nHYP.s 			page 1
+ARM GAS  /tmp/ccRYB9b3.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /* USER CODE END INCLUDE */
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /* Private typedef -----------------------------------------------------------*/
-ARM GAS  /tmp/cc52nHYP.s 			page 2
+ARM GAS  /tmp/ccRYB9b3.s 			page 2
 
 
   31:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /* Private define ------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /** @defgroup USBD_CDC_IF_Private_Variables USBD_CDC_IF_Private_Variables
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @brief Private variables.
-ARM GAS  /tmp/cc52nHYP.s 			page 3
+ARM GAS  /tmp/ccRYB9b3.s 			page 3
 
 
   88:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  UART_HandleTypeDef *handle = NULL;
  143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //
  144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  if (cdc_ch == 0)
-ARM GAS  /tmp/cc52nHYP.s 			page 4
+ARM GAS  /tmp/ccRYB9b3.s 			page 4
 
 
  145:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  {
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    break;
  200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  default:
  201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    handle->Init.StopBits = UART_STOPBITS_1;
-ARM GAS  /tmp/cc52nHYP.s 			page 5
+ARM GAS  /tmp/ccRYB9b3.s 			page 5
 
 
  202:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    break;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  256:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  {
  257:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    /* Initialization Error */
  258:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    Error_Handler();
-ARM GAS  /tmp/cc52nHYP.s 			page 6
+ARM GAS  /tmp/ccRYB9b3.s 			page 6
 
 
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  }
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
  310:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE BEGIN 4 */
-ARM GAS  /tmp/cc52nHYP.s 			page 7
+ARM GAS  /tmp/ccRYB9b3.s 			page 7
 
 
  311:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* DeInitialize the UART peripheral */
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  339:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     break;
  340:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
  341:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   case CDC_SET_COMM_FEATURE:
-ARM GAS  /tmp/cc52nHYP.s 			page 8
+ARM GAS  /tmp/ccRYB9b3.s 			page 8
 
 
  342:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
   75 0014 C1F30721 		ubfx	r1, r1, #8, #8
   76              		.loc 1 382 13 view .LVU13
   77 0018 5170     		strb	r1, [r2, #1]
-ARM GAS  /tmp/cc52nHYP.s 			page 9
+ARM GAS  /tmp/ccRYB9b3.s 			page 9
 
 
  383:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     pbuf[2] = (uint8_t)(Line_Coding[cdc_ch].bitrate >> 16);
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  122 0042 43EA0123 		orr	r3, r3, r1, lsl #8
  372:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     Line_Coding[cdc_ch].format = pbuf[4];
  123              		.loc 1 372 51 view .LVU37
-ARM GAS  /tmp/cc52nHYP.s 			page 10
+ARM GAS  /tmp/ccRYB9b3.s 			page 10
 
 
  124 0046 9178     		ldrb	r1, [r2, #2]	@ zero_extendqisi2
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  403:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 5 */
  404:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
  152              		.loc 1 404 1 is_stmt 0 view .LVU51
-ARM GAS  /tmp/cc52nHYP.s 			page 11
+ARM GAS  /tmp/ccRYB9b3.s 			page 11
 
 
  153 0068 0020     		movs	r0, #0
@@ -638,44 +638,45 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  423:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE BEGIN 6 */
  424:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   //HAL_UART_Transmit_DMA(CDC_CH_To_UART_Handle(cdc_ch), Buf, *Len);
  425:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   // CDC_Transmit(cdc_ch, Buf, *Len); // echo back on same channel
- 426:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   extern void My_USB_CDC_ProcessRx(uint8_t* data, uint32_t len); //中断调用
- 427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   My_USB_CDC_ProcessRx(Buf, *Len);
- 428:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   
- 429:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_SetRxBuffer(cdc_ch, &hUsbDevice, &Buf[0]);
- 430:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_ReceivePacket(cdc_ch, &hUsbDevice);
- 431:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return (USBD_OK);
- 432:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 6 */
- 433:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
- 434:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
- 435:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /**
- 436:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @brief  CDC_TransmitCplt_FS
- 437:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         Data transmited callback
- 438:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
- 439:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         @note
- 440:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         This function is IN transfer complete callback used to inform user that
- 441:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         the submitted Data is successfully sent over USB.
- 442:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
- 443:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Buf: Buffer of data to be received
- 444:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Len: Number of data received (in bytes)
- 445:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
-ARM GAS  /tmp/cc52nHYP.s 			page 12
+ 426:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   extern void My_USB_CDC_ProcessRx(uint8_t* data, uint32_t len); //中断调用
+ 428:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   My_USB_CDC_ProcessRx(Buf, *Len);
+ 429:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 430:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_SetRxBuffer(cdc_ch, &hUsbDevice, &Buf[0]);
+ 431:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_ReceivePacket(cdc_ch, &hUsbDevice);
+ 432:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return (USBD_OK);
+ 433:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 6 */
+ 434:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
+ 435:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 436:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /**
+ 437:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @brief  CDC_TransmitCplt_FS
+ 438:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         Data transmited callback
+ 439:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
+ 440:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         @note
+ 441:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         This function is IN transfer complete callback used to inform user that
+ 442:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         the submitted Data is successfully sent over USB.
+ 443:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
+ 444:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Buf: Buffer of data to be received
+ 445:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Len: Number of data received (in bytes)
+ARM GAS  /tmp/ccRYB9b3.s 			page 12
 
 
- 446:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   */
- 447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** static int8_t CDC_TransmitCplt(uint8_t cdc_ch, uint8_t *Buf, uint32_t *Len, uint8_t epnum)
- 448:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** {
- 171              		.loc 1 448 1 is_stmt 1 view -0
+ 446:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
+ 447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   */
+ 448:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** static int8_t CDC_TransmitCplt(uint8_t cdc_ch, uint8_t *Buf, uint32_t *Len, uint8_t epnum)
+ 449:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** {
+ 171              		.loc 1 449 1 is_stmt 1 view -0
  172              		.cfi_startproc
  173              		@ args = 0, pretend = 0, frame = 0
  174              		@ frame_needed = 0, uses_anonymous_args = 0
  175              		@ link register save eliminated.
- 449:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return (USBD_OK);
- 176              		.loc 1 449 3 view .LVU53
- 450:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
- 177              		.loc 1 450 1 is_stmt 0 view .LVU54
+ 450:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return (USBD_OK);
+ 176              		.loc 1 450 3 view .LVU53
+ 451:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
+ 177              		.loc 1 451 1 is_stmt 0 view .LVU54
  178 0000 0020     		movs	r0, #0
  179              	.LVL11:
- 180              		.loc 1 450 1 view .LVU55
+ 180              		.loc 1 451 1 view .LVU55
  181 0002 7047     		bx	lr
  182              		.cfi_endproc
  183              	.LFE337:
@@ -717,10 +718,10 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  216 0014 00000000 		.word	RX_Buffer
  217 0018 00000000 		.word	hUsbDevice
  218              		.cfi_endproc
+ARM GAS  /tmp/ccRYB9b3.s 			page 13
+
+
  219              	.LFE333:
-ARM GAS  /tmp/cc52nHYP.s 			page 13
-
-
  221              		.section	.text.CDC_Receive,"ax",%progbits
  222              		.align	1
  223              		.syntax unified
@@ -744,47 +745,47 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  240              		.cfi_offset 14, -4
  241 0002 0446     		mov	r4, r0
  242 0004 0D46     		mov	r5, r1
- 426:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   My_USB_CDC_ProcessRx(Buf, *Len);
- 243              		.loc 1 426 3 is_stmt 1 view .LVU63
- 427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   
- 244              		.loc 1 427 3 view .LVU64
+ 427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   My_USB_CDC_ProcessRx(Buf, *Len);
+ 243              		.loc 1 427 3 is_stmt 1 view .LVU63
+ 428:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 244              		.loc 1 428 3 view .LVU64
  245 0006 1168     		ldr	r1, [r2]
  246              	.LVL15:
- 427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   
- 247              		.loc 1 427 3 is_stmt 0 view .LVU65
+ 428:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 247              		.loc 1 428 3 is_stmt 0 view .LVU65
  248 0008 2846     		mov	r0, r5
  249              	.LVL16:
- 427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   
- 250              		.loc 1 427 3 view .LVU66
+ 428:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 250              		.loc 1 428 3 view .LVU66
  251 000a FFF7FEFF 		bl	My_USB_CDC_ProcessRx
  252              	.LVL17:
- 429:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_ReceivePacket(cdc_ch, &hUsbDevice);
- 253              		.loc 1 429 3 is_stmt 1 view .LVU67
+ 430:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_ReceivePacket(cdc_ch, &hUsbDevice);
+ 253              		.loc 1 430 3 is_stmt 1 view .LVU67
  254 000e 064E     		ldr	r6, .L15
  255 0010 2A46     		mov	r2, r5
  256 0012 3146     		mov	r1, r6
  257 0014 2046     		mov	r0, r4
  258 0016 FFF7FEFF 		bl	USBD_CDC_SetRxBuffer
  259              	.LVL18:
- 430:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return (USBD_OK);
- 260              		.loc 1 430 3 view .LVU68
+ 431:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return (USBD_OK);
+ 260              		.loc 1 431 3 view .LVU68
  261 001a 3146     		mov	r1, r6
  262 001c 2046     		mov	r0, r4
  263 001e FFF7FEFF 		bl	USBD_CDC_ReceivePacket
  264              	.LVL19:
- 431:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 6 */
- 265              		.loc 1 431 3 view .LVU69
- 433:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
- 266              		.loc 1 433 1 is_stmt 0 view .LVU70
+ 432:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 6 */
+ 265              		.loc 1 432 3 view .LVU69
+ 434:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 266              		.loc 1 434 1 is_stmt 0 view .LVU70
  267 0022 0020     		movs	r0, #0
+ARM GAS  /tmp/ccRYB9b3.s 			page 14
+
+
  268 0024 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  /tmp/cc52nHYP.s 			page 14
-
-
  269              	.LVL20:
  270              	.L16:
- 433:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
- 271              		.loc 1 433 1 view .LVU71
+ 434:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 271              		.loc 1 434 1 view .LVU71
  272 0026 00BF     		.align	2
  273              	.L15:
  274 0028 00000000 		.word	hUsbDevice
@@ -799,25 +800,25 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  285              	CDC_Transmit:
  286              	.LVL21:
  287              	.LFB338:
- 451:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
- 452:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /**
- 453:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @brief  CDC_Transmit
- 454:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         Data to send over USB IN endpoint are sent over CDC interface
- 455:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         through this function.
- 456:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         @note
- 457:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
+ 452:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
+ 453:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /**
+ 454:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @brief  CDC_Transmit
+ 455:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         Data to send over USB IN endpoint are sent over CDC interface
+ 456:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         through this function.
+ 457:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *         @note
  458:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
- 459:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Buf: Buffer of data to be sent
- 460:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Len: Number of data to be sent (in bytes)
- 461:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @retval USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
- 462:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   */
- 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** uint8_t CDC_Transmit(uint8_t ch, uint8_t *Buf, uint16_t Len)
- 464:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** {
- 288              		.loc 1 464 1 is_stmt 1 view -0
+ 459:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
+ 460:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Buf: Buffer of data to be sent
+ 461:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Len: Number of data to be sent (in bytes)
+ 462:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @retval USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
+ 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   */
+ 464:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** uint8_t CDC_Transmit(uint8_t ch, uint8_t *Buf, uint16_t Len)
+ 465:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** {
+ 288              		.loc 1 465 1 is_stmt 1 view -0
  289              		.cfi_startproc
  290              		@ args = 0, pretend = 0, frame = 0
  291              		@ frame_needed = 0, uses_anonymous_args = 0
- 292              		.loc 1 464 1 is_stmt 0 view .LVU73
+ 292              		.loc 1 465 1 is_stmt 0 view .LVU73
  293 0000 38B5     		push	{r3, r4, r5, lr}
  294              		.cfi_def_cfa_offset 16
  295              		.cfi_offset 3, -16
@@ -825,82 +826,82 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  297              		.cfi_offset 5, -8
  298              		.cfi_offset 14, -4
  299 0002 0446     		mov	r4, r0
- 465:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   uint8_t result = USBD_OK;
- 300              		.loc 1 465 3 is_stmt 1 view .LVU74
+ 466:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   uint8_t result = USBD_OK;
+ 300              		.loc 1 466 3 is_stmt 1 view .LVU74
  301              	.LVL22:
- 466:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE BEGIN 7 */
- 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   extern USBD_CDC_ACM_HandleTypeDef CDC_ACM_Class_Data[];
- 302              		.loc 1 467 3 view .LVU75
- 468:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_ACM_HandleTypeDef *hcdc = NULL;
- 303              		.loc 1 468 3 view .LVU76
- 469:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   hcdc = &CDC_ACM_Class_Data[ch];
- 304              		.loc 1 469 3 view .LVU77
- 470:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   if (hcdc->TxState != 0)
- 305              		.loc 1 470 3 view .LVU78
- 306              		.loc 1 470 11 is_stmt 0 view .LVU79
-ARM GAS  /tmp/cc52nHYP.s 			page 15
+ 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE BEGIN 7 */
+ 468:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   extern USBD_CDC_ACM_HandleTypeDef CDC_ACM_Class_Data[];
+ 302              		.loc 1 468 3 view .LVU75
+ 469:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_ACM_HandleTypeDef *hcdc = NULL;
+ 303              		.loc 1 469 3 view .LVU76
+ 470:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   hcdc = &CDC_ACM_Class_Data[ch];
+ 304              		.loc 1 470 3 view .LVU77
+ 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   if (hcdc->TxState != 0)
+ 305              		.loc 1 471 3 view .LVU78
+ARM GAS  /tmp/ccRYB9b3.s 			page 15
 
 
+ 306              		.loc 1 471 11 is_stmt 0 view .LVU79
  307 0004 0A48     		ldr	r0, .L22
  308              	.LVL23:
- 309              		.loc 1 470 11 view .LVU80
+ 309              		.loc 1 471 11 view .LVU80
  310 0006 4FF40773 		mov	r3, #540
  311 000a 03FB0400 		mla	r0, r3, r4, r0
  312              	.LVL24:
- 313              		.loc 1 470 11 view .LVU81
+ 313              		.loc 1 471 11 view .LVU81
  314 000e D0F81432 		ldr	r3, [r0, #532]
- 315              		.loc 1 470 6 view .LVU82
+ 315              		.loc 1 471 6 view .LVU82
  316 0012 0BB1     		cbz	r3, .L21
- 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   {
- 472:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     return USBD_BUSY;
- 317              		.loc 1 472 12 view .LVU83
+ 472:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   {
+ 473:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     return USBD_BUSY;
+ 317              		.loc 1 473 12 view .LVU83
  318 0014 0120     		movs	r0, #1
  319              	.LVL25:
  320              	.L18:
- 473:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   }
- 474:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_SetTxBuffer(ch, &hUsbDevice, Buf, Len);
- 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
- 476:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 7 */
- 477:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return result;
- 478:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
- 321              		.loc 1 478 1 view .LVU84
+ 474:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   }
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   USBD_CDC_SetTxBuffer(ch, &hUsbDevice, Buf, Len);
+ 476:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
+ 477:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 7 */
+ 478:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   return result;
+ 479:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
+ 321              		.loc 1 479 1 view .LVU84
  322 0016 38BD     		pop	{r3, r4, r5, pc}
  323              	.LVL26:
  324              	.L21:
- 474:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
- 325              		.loc 1 474 3 is_stmt 1 view .LVU85
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
+ 325              		.loc 1 475 3 is_stmt 1 view .LVU85
  326 0018 064D     		ldr	r5, .L22+4
  327 001a 1346     		mov	r3, r2
  328 001c 0A46     		mov	r2, r1
  329              	.LVL27:
- 474:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
- 330              		.loc 1 474 3 is_stmt 0 view .LVU86
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
+ 330              		.loc 1 475 3 is_stmt 0 view .LVU86
  331 001e 2946     		mov	r1, r5
  332              	.LVL28:
- 474:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
- 333              		.loc 1 474 3 view .LVU87
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
+ 333              		.loc 1 475 3 view .LVU87
  334 0020 2046     		mov	r0, r4
  335              	.LVL29:
- 474:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
- 336              		.loc 1 474 3 view .LVU88
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   result = USBD_CDC_TransmitPacket(ch, &hUsbDevice);
+ 336              		.loc 1 475 3 view .LVU88
  337 0022 FFF7FEFF 		bl	USBD_CDC_SetTxBuffer
  338              	.LVL30:
- 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 7 */
- 339              		.loc 1 475 3 is_stmt 1 view .LVU89
- 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 7 */
- 340              		.loc 1 475 12 is_stmt 0 view .LVU90
+ 476:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 7 */
+ 339              		.loc 1 476 3 is_stmt 1 view .LVU89
+ 476:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 7 */
+ 340              		.loc 1 476 12 is_stmt 0 view .LVU90
  341 0026 2946     		mov	r1, r5
  342 0028 2046     		mov	r0, r4
  343 002a FFF7FEFF 		bl	USBD_CDC_TransmitPacket
  344              	.LVL31:
- 477:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
- 345              		.loc 1 477 3 is_stmt 1 view .LVU91
- 477:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
- 346              		.loc 1 477 10 is_stmt 0 view .LVU92
+ 478:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
+ 345              		.loc 1 478 3 is_stmt 1 view .LVU91
+ 478:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
+ 346              		.loc 1 478 10 is_stmt 0 view .LVU92
+ARM GAS  /tmp/ccRYB9b3.s 			page 16
+
+
  347 002e F2E7     		b	.L18
-ARM GAS  /tmp/cc52nHYP.s 			page 16
-
-
  348              	.L23:
  349              		.align	2
  350              	.L22:
@@ -957,43 +958,43 @@ ARM GAS  /tmp/cc52nHYP.s 			page 1
  405              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
  406              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
  407              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h"
+ARM GAS  /tmp/ccRYB9b3.s 			page 17
+
+
  408              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h"
-ARM GAS  /tmp/cc52nHYP.s 			page 17
-
-
-ARM GAS  /tmp/cc52nHYP.s 			page 18
+ARM GAS  /tmp/ccRYB9b3.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_cdc_acm_if.c
-     /tmp/cc52nHYP.s:21     .text.CDC_DeInit:00000000 $t
-     /tmp/cc52nHYP.s:26     .text.CDC_DeInit:00000000 CDC_DeInit
-     /tmp/cc52nHYP.s:44     .text.CDC_Control:00000000 $t
-     /tmp/cc52nHYP.s:49     .text.CDC_Control:00000000 CDC_Control
-     /tmp/cc52nHYP.s:158    .text.CDC_Control:0000006c $d
-     /tmp/cc52nHYP.s:386    .bss.Line_Coding:00000000 Line_Coding
-     /tmp/cc52nHYP.s:163    .text.CDC_TransmitCplt:00000000 $t
-     /tmp/cc52nHYP.s:168    .text.CDC_TransmitCplt:00000000 CDC_TransmitCplt
-     /tmp/cc52nHYP.s:186    .text.CDC_Init:00000000 $t
-     /tmp/cc52nHYP.s:191    .text.CDC_Init:00000000 CDC_Init
-     /tmp/cc52nHYP.s:216    .text.CDC_Init:00000014 $d
-     /tmp/cc52nHYP.s:400    .bss.RX_Buffer:00000000 RX_Buffer
-     /tmp/cc52nHYP.s:222    .text.CDC_Receive:00000000 $t
-     /tmp/cc52nHYP.s:227    .text.CDC_Receive:00000000 CDC_Receive
-     /tmp/cc52nHYP.s:274    .text.CDC_Receive:00000028 $d
-     /tmp/cc52nHYP.s:279    .text.CDC_Transmit:00000000 $t
-     /tmp/cc52nHYP.s:285    .text.CDC_Transmit:00000000 CDC_Transmit
-     /tmp/cc52nHYP.s:351    .text.CDC_Transmit:00000030 $d
-     /tmp/cc52nHYP.s:361    .data.USBD_CDC_ACM_fops:00000000 USBD_CDC_ACM_fops
-     /tmp/cc52nHYP.s:358    .data.USBD_CDC_ACM_fops:00000000 $d
-     /tmp/cc52nHYP.s:372    .bss.Read_Index:00000000 Read_Index
-     /tmp/cc52nHYP.s:369    .bss.Read_Index:00000000 $d
-     /tmp/cc52nHYP.s:379    .bss.Write_Index:00000000 Write_Index
-     /tmp/cc52nHYP.s:376    .bss.Write_Index:00000000 $d
-     /tmp/cc52nHYP.s:383    .bss.Line_Coding:00000000 $d
-     /tmp/cc52nHYP.s:393    .bss.TX_Buffer:00000000 TX_Buffer
-     /tmp/cc52nHYP.s:390    .bss.TX_Buffer:00000000 $d
-     /tmp/cc52nHYP.s:397    .bss.RX_Buffer:00000000 $d
+     /tmp/ccRYB9b3.s:21     .text.CDC_DeInit:00000000 $t
+     /tmp/ccRYB9b3.s:26     .text.CDC_DeInit:00000000 CDC_DeInit
+     /tmp/ccRYB9b3.s:44     .text.CDC_Control:00000000 $t
+     /tmp/ccRYB9b3.s:49     .text.CDC_Control:00000000 CDC_Control
+     /tmp/ccRYB9b3.s:158    .text.CDC_Control:0000006c $d
+     /tmp/ccRYB9b3.s:386    .bss.Line_Coding:00000000 Line_Coding
+     /tmp/ccRYB9b3.s:163    .text.CDC_TransmitCplt:00000000 $t
+     /tmp/ccRYB9b3.s:168    .text.CDC_TransmitCplt:00000000 CDC_TransmitCplt
+     /tmp/ccRYB9b3.s:186    .text.CDC_Init:00000000 $t
+     /tmp/ccRYB9b3.s:191    .text.CDC_Init:00000000 CDC_Init
+     /tmp/ccRYB9b3.s:216    .text.CDC_Init:00000014 $d
+     /tmp/ccRYB9b3.s:400    .bss.RX_Buffer:00000000 RX_Buffer
+     /tmp/ccRYB9b3.s:222    .text.CDC_Receive:00000000 $t
+     /tmp/ccRYB9b3.s:227    .text.CDC_Receive:00000000 CDC_Receive
+     /tmp/ccRYB9b3.s:274    .text.CDC_Receive:00000028 $d
+     /tmp/ccRYB9b3.s:279    .text.CDC_Transmit:00000000 $t
+     /tmp/ccRYB9b3.s:285    .text.CDC_Transmit:00000000 CDC_Transmit
+     /tmp/ccRYB9b3.s:351    .text.CDC_Transmit:00000030 $d
+     /tmp/ccRYB9b3.s:361    .data.USBD_CDC_ACM_fops:00000000 USBD_CDC_ACM_fops
+     /tmp/ccRYB9b3.s:358    .data.USBD_CDC_ACM_fops:00000000 $d
+     /tmp/ccRYB9b3.s:372    .bss.Read_Index:00000000 Read_Index
+     /tmp/ccRYB9b3.s:369    .bss.Read_Index:00000000 $d
+     /tmp/ccRYB9b3.s:379    .bss.Write_Index:00000000 Write_Index
+     /tmp/ccRYB9b3.s:376    .bss.Write_Index:00000000 $d
+     /tmp/ccRYB9b3.s:383    .bss.Line_Coding:00000000 $d
+     /tmp/ccRYB9b3.s:393    .bss.TX_Buffer:00000000 TX_Buffer
+     /tmp/ccRYB9b3.s:390    .bss.TX_Buffer:00000000 $d
+     /tmp/ccRYB9b3.s:397    .bss.RX_Buffer:00000000 $d
 
 UNDEFINED SYMBOLS
 USBD_CDC_SetRxBuffer

@@ -5,6 +5,8 @@
 #include "task.h"
 #include "timers.h"
 #include "MC_Serial.hpp"
+#include "queue.h"
+#include "My_Vofa.hpp"
 
 
 /* Task Handle */
@@ -25,9 +27,15 @@ extern void Task_CLI(void *argument);
 extern void Task_DroneCAN(void *argument);
 extern void Task_MotorPublish(void *argument);
 extern void Task_VofaTx(void *argument);
+QueueHandle_t vofaRxQueue;   // VOFA接收队列句柄
+
 
 void MC_TaskStart(void)
 {
+
+    /* 创建 VOFA 接收队列：队列长度 8，每项一帧数据 */
+    vofaRxQueue = xQueueCreate(8, sizeof(VofaRxFrame_t));
+
     /* Task 创建 */
     xTaskCreate(Task_SystemInit, "SystemInit", 256, NULL, osPriorityHigh, &SystemInitHandle); //系统初始化任务
     xTaskCreate(Task_VofaRx, "Task_VofaRx", 256, NULL, osPriorityNormal, &Task_VofaRxHandle); //Vofa解析任务

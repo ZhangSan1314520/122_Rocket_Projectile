@@ -31,23 +31,36 @@ void look_mem(void)
 }
 
 XBLW24C64 EEPROM1(EEPROM_hi2c);
-uint8_t bufff_tx[10] = {0x01, 0x02, 0xa3, 0xb4, 0x05, 0x06, 0xc7, 0xf8, 0x09, 0x0a};
+uint8_t add[]= {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0d,0x10,0x11,0x12,0x16,0x72};
+uint8_t data_tx[]= {0x00,0x00,0x00,0xff,0x03,0x00,0x07,0x00,0x00,0xa5,0xa5,0x88,0x00,0xaC,0x02,0x08,0x00};
 
-uint8_t add[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0d, 0x10, 0x11, 0x12, 0x16, 0x72};
-uint8_t data_tx[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10};
-uint16_t len = sizeof(data_tx) / sizeof(data_tx[0]);
-uint8_t data_rx[20];
-
+uint8_t len = sizeof(data_tx)/sizeof(data_tx[0]);
+uint8_t data_rx1[20], data_rx2[20], data_rx3[20], data_rx4[20],data_rx5[20];
 
 void Task_Test(void *argument)
 {
     printf("1-任务启动中\r\n");
-
     // M1._encoder->KTH7111_Read_MoreRegs(add, data_rx, len); //读取多个寄存器
+    vTaskDelay(pdMS_TO_TICKS(1000));
+    
+
+
+    // M1._encoder->KTH7111_Write_MoreRegs(add, data_tx, len,true); //写入多个寄存器
+    // M2._encoder->KTH7111_Write_MoreRegs(add, data_tx, len,true); //写入多个寄存器
+    // M3._encoder->KTH7111_Write_MoreRegs(add, data_tx, len,true); //写入多个寄存器
+    // M4._encoder->KTH7111_Write_MoreRegs(add, data_tx, len,true); //写入多个寄存器
+    // M1._encoder->KTH7111_Write_MoreRegs(add, data_tx, len,true); //写入多个寄存器
+
+    // M1._encoder->KTH7111_Read_MoreRegs(add, data_rx1, len); //读取多个寄存器
+    // M2._encoder->KTH7111_Read_MoreRegs(add, data_rx2, len); //读取多个寄存器
+    // M3._encoder->KTH7111_Read_MoreRegs(add, data_rx3, len); //读取多个寄存器
+    // M4._encoder->KTH7111_Read_MoreRegs(add, data_rx4, len); //读取多个寄存器
+
 
     while (1)
     {
-        vTaskDelay(pdMS_TO_TICKS(1000));
+
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 

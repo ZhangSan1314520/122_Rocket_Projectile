@@ -2,12 +2,12 @@
 
 static USB_RxCallback _usb_rx_cb = NULL;
 
-void USB_Register_RxCallback(USB_RxCallback cb)
+void USB_Register_RxCallback(USB_RxCallback cb)  //用户调用绑定回调函数
 {
     _usb_rx_cb = cb;
 }
 
-void My_USB_CDC_ProcessRx(uint8_t* data, uint32_t len)
+void My_USB_CDC_ProcessRx(uint8_t* data, uint32_t len)  //中断调用
 {
     if (_usb_rx_cb != NULL) {
         _usb_rx_cb(data, len);

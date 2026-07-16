@@ -3,6 +3,7 @@
 typedef struct {
     // 实际位置/速度
     float theta_m;               //电机原始弧度
+    float theta_m_speed;        //电机原始角速度(弧度)
     float theta_deg_final;       //最终的电机角度 (度)
     float reg_final;             //最终的电机角度 (弧度)
 
@@ -10,6 +11,7 @@ typedef struct {
 
     // 目标位置/速度
     float _target_location2;     //目标位置 (度)
+    float _target_location2_cmd;      //目标位置cmd
     float _target_speed;         //目标速度
 
 

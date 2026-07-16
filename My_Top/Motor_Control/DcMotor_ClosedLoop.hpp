@@ -40,6 +40,7 @@ public:
     float motor_down_duty = 0.0f;//电机下桥臂占空比
     float updown_duty = 0.0f;//电机全局占空比
     float theta_m;//电机原始弧度
+    float theta_m_speed;// 电机原始速度
     float reg_final;//最终的电机角度 (弧度)
     float theta_deg_final ; //最终的电机角度 (角度)
     float Angular_velocity_final;  //最终的角速度
@@ -47,7 +48,7 @@ public:
 
     float _target_speed = 0.0f;//电机速度目标值
     float _target_location2 = 0.0f;//电机目标位置 (-180°~+180°)
-
+    float _target_location2_cmd = 0.0f;//电机目标位置 (-180°~+180°) 原始命令
 
     static uint16_t ADC_Value[max_chl_num]; //ADC采集值数组
     float ADC_RES_Val; //热敏电阻值
@@ -59,6 +60,7 @@ public:
     LQR *_lqr; //LQR控制式
 
     void test_laji();
+    void My_DC_Motor_Reset();
     void My_DC_Motor_Init(void);
     void Motor_EN(bool en) ;//电机使能
     void Set_Motor_Frequency(void); //单独设置电机频率和占空比
@@ -87,7 +89,6 @@ private:
     float theta_m_last; //电机上一次弧度
     float theta_m_offic;//角度差
     float theta_m_offic_filtered;// 角度差滤波
-    float theta_m_speed;// 电机速度
     float theta_av_speed;// 电机平均速度
     float filtered_speed;// 速度滤波
 

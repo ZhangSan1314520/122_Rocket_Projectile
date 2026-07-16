@@ -19,10 +19,12 @@
 #define Fre_Accel_Slow  100.0f    // Hz/s，高速加速度（≥1500Hz）
 #define Fre_Accel_Threshold   1500.0f  // 快慢分界线（Hz）
 
+#define DC_VELOCITY_UP_FREQ_DIV 4  //速度更新频率
 #define DC_Open_Loop_FREQ_DIV 4  //开环控制 
 #define DC_VELOCITY_LOOP_FREQ_DIV 4  //速度环 
 #define DC_POSITION_LOOP_FREQ_DIV 16 //位置环
 #define DC_MAIN_LOOP_FREQ_HZ 16000.0
+#define DC_VELOCITY_UP_FREQ_HZ (DC_MAIN_LOOP_FREQ_HZ / DC_VELOCITY_UP_FREQ_DIV)
 #define DC_VELOCITY_LOOP_FREQ_HZ (DC_MAIN_LOOP_FREQ_HZ / DC_VELOCITY_LOOP_FREQ_DIV)
 #define DC_POSITION_LOOP_FREQ_HZ (DC_MAIN_LOOP_FREQ_HZ / DC_POSITION_LOOP_FREQ_DIV)
 #define DC_Open_Loop_FREQ_HZ (DC_MAIN_LOOP_FREQ_HZ / DC_Open_Loop_FREQ_DIV)

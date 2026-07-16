@@ -5,10 +5,23 @@
 #include <string.h>
 #include <stdlib.h>     // atof
 #include "My_USB_CDC.hpp"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h" 
 
 #define VOFA_PARAM_MAX    30   // 最大参数个数
 #define VOFA_NAME_LEN     25   // 参数名最大长度
 #define VOFA_RX_BUF_SIZE 128   // DMA 接收缓冲
+
+
+
+/* 队列项：一帧 VOFA 接收数据 */
+struct VofaRxFrame_t {
+    uint16_t len;
+    uint8_t  buf[VOFA_RX_BUF_SIZE];
+};
+
+extern QueueHandle_t vofaRxQueue;   // VOFA队列句柄
 
 struct vofa_param_t {            // 单个参数
     char  name[VOFA_NAME_LEN];
@@ -24,18 +37,21 @@ struct VoFA_Rx {
     vofa_param_t params[VOFA_PARAM_MAX];   // 参数表
     uint8_t      param_cnt;                // 已注册参数数
 
-    /* 中断里调：只拷贝 + 置标志 */
+    /* 中断里调：拷贝数据到队列，替代 rx_ready 标志位 */
     void on_recv(uint8_t *buf, uint16_t len) {
-        // if (rx_ready) return;                             // 上帧未处理则丢弃
-        if (len > VOFA_RX_BUF_SIZE) len = VOFA_RX_BUF_SIZE; 
-        memcpy(rx_buf, buf, len);                        // 拷贝数据
-        rx_len = len; rx_ready = true;                   // 置标志
+        VofaRxFrame_t frame;
+        if (len > VOFA_RX_BUF_SIZE) len = VOFA_RX_BUF_SIZE;
+        frame.len = len;
+        memcpy(frame.buf, buf, len);
+        
+        BaseType_t xHigherPriorityTaskWoken = pdFALSE; //中断里向队列发消息的标准三板斧
+        xQueueSendFromISR(vofaRxQueue, &frame, &xHigherPriorityTaskWoken);
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     }
+
 
     /* Task 里调：解析 "name:value\n" */
     void parse() {
-        if (!rx_ready) return;                            // 无新数据直接返回
-        rx_ready = false;                                 // 置标志位无新数据
         char name[VOFA_NAME_LEN] = {}, val[16] = {};     // 临时缓冲区  
         uint8_t ni = 0, vi = 0;                          // name/val 索引
         bool in_val = false;                            // false=读名 true=读值
@@ -96,6 +112,7 @@ private:
 };
 
 extern VoFA_Rx vofa1;
+
 void Vofa_SendFireWater_VA(uint16_t count, ...);
 void Vofa_SendFireWater(float *data, uint16_t count, uint32_t timeout);
 void Vofa_Init();

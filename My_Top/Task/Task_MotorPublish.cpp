@@ -9,12 +9,14 @@ static void fill_telem(motor_telem_t *dst, DC_Motor *m) // 电机数据填充转
 
     // 实际位置/速度
     dst->theta_m = m->theta_m;                //电机原始弧度
+    dst->theta_m_speed = m->theta_m_speed;        //电机原始弧度速度
     dst->theta_deg_final = m->theta_deg_final;        //最终的电机角度 (度)
     dst->reg_final = m->reg_final;              //最终的电机角度 (弧度)
     dst->Angular_velocity_final = m->Angular_velocity_final; //最终的角速度
 
     // 目标位置/速度
     dst->_target_location2 = m->_target_location2;      //目标位置 (度)
+    dst->_target_location2_cmd = m->_target_location2_cmd;
     dst->_target_speed = m->_target_speed;          //目标速度
  
     //热敏电阻

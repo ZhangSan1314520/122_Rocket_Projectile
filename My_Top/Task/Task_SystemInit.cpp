@@ -21,15 +21,16 @@ void Task_SystemInit(void *argument)
     MC_Serial::init(); //初始化串口
     Vofa_Init(); //初始化Vofa 
     My_Tim_Init(closed_loop_htim,therm_hadc); //初始化定时器绑定中断
+
     M1.My_DC_Motor_Init(); //初始化电机1
     M2.My_DC_Motor_Init(); //初始化电机2
     M3.My_DC_Motor_Init(); //初始化电机3
     M4.My_DC_Motor_Init(); //初始化电机4
 
-    Motor_Storage::load(1);//读eeprom的数据传回给电机
-    Motor_Storage::load(2);//读eeprom的数据传回给电机
-    Motor_Storage::load(3);//读eeprom的数据传回给电机
-    Motor_Storage::load(4);//读eeprom的数据传回给电机
+    // Motor_Storage::load(1);//读eeprom的数据传回给电机
+    // Motor_Storage::load(2);//读eeprom的数据传回给电机
+    // Motor_Storage::load(3);//读eeprom的数据传回给电机
+    // Motor_Storage::load(4);//读eeprom的数据传回给电机
 
     printf("Sys_init栈剩余:%d\r\n", uxTaskGetStackHighWaterMark(NULL));
     vTaskDelete(NULL); //删除任务

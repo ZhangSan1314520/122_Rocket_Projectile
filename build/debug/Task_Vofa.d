@@ -56,11 +56,12 @@ build/debug/Task_Vofa.o: My_Top/Task/Task_Vofa.cpp \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h \
- Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h My_Top/MC/MC_Serial.hpp \
- Lib/serial/serial.hpp Core/Inc/usart.h Core/Inc/main.h \
- Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
+ Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ My_Top/MC/MC_Serial.hpp Lib/serial/serial.hpp Core/Inc/usart.h \
+ Core/Inc/main.h \
+ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  Lib/serial/printf.h My_Top/Modules/CLI_Module.hpp \
@@ -142,13 +143,13 @@ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h:
 Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 My_Top/MC/MC_Serial.hpp:
 Lib/serial/serial.hpp:
 Core/Inc/usart.h:
 Core/Inc/main.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
-Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
-Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 Lib/serial/printf.h:

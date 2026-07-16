@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccI3xKhe.s 			page 1
+ARM GAS  /tmp/cc9p8QrQ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
   29:Lib/uorb/uorb.cpp ****  * ============================================================
   30:Lib/uorb/uorb.cpp ****  */
   31:Lib/uorb/uorb.cpp **** 
-ARM GAS  /tmp/ccI3xKhe.s 			page 2
+ARM GAS  /tmp/cc9p8QrQ.s 			page 2
 
 
   32:Lib/uorb/uorb.cpp **** #include "uorb.hpp"
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
   49              		.loc 1 64 5 is_stmt 1 discriminator 2 view .LVU5
   50 0008 0134     		adds	r4, r4, #1
   51              	.LVL3:
-ARM GAS  /tmp/ccI3xKhe.s 			page 3
+ARM GAS  /tmp/cc9p8QrQ.s 			page 3
 
 
   52              	.L2:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
   99              		.loc 1 69 5 is_stmt 1 discriminator 2 view .LVU20
  100 004c 0133     		adds	r3, r3, #1
  101              	.LVL6:
-ARM GAS  /tmp/ccI3xKhe.s 			page 4
+ARM GAS  /tmp/cc9p8QrQ.s 			page 4
 
 
   69:Lib/uorb/uorb.cpp ****         if (!topics[i].valid) {                      // 找到空闲槽
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  146              	.LVL12:
  147              	.L1:
   80:Lib/uorb/uorb.cpp **** }
-ARM GAS  /tmp/ccI3xKhe.s 			page 5
+ARM GAS  /tmp/cc9p8QrQ.s 			page 5
 
 
  148              		.loc 1 80 1 view .LVU39
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  197              	.LFE4:
  199              		.align	1
  200              		.global	uorb_advertise
-ARM GAS  /tmp/ccI3xKhe.s 			page 6
+ARM GAS  /tmp/cc9p8QrQ.s 			page 6
 
 
  201              		.syntax unified
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  239              	.LVL21:
  240              		.loc 1 97 18 is_stmt 0 discriminator 1 view .LVU56
  241 00c2 0369     		ldr	r3, [r0, #16]
-ARM GAS  /tmp/ccI3xKhe.s 			page 7
+ARM GAS  /tmp/cc9p8QrQ.s 			page 7
 
 
  242              		.loc 1 97 12 discriminator 1 view .LVU57
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  286 00f4 0348     		ldr	r0, .L24
  287              	.LVL29:
   98:Lib/uorb/uorb.cpp ****         return -1;
-ARM GAS  /tmp/ccI3xKhe.s 			page 8
+ARM GAS  /tmp/cc9p8QrQ.s 			page 8
 
 
  288              		.loc 1 98 9 is_stmt 0 view .LVU72
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  325              		.cfi_offset 5, -8
  326              		.cfi_offset 14, -4
  327 0112 0D46     		mov	r5, r1
-ARM GAS  /tmp/ccI3xKhe.s 			page 9
+ARM GAS  /tmp/cc9p8QrQ.s 			page 9
 
 
  123:Lib/uorb/uorb.cpp ****     uorb_topic_t *t = &topics[handle];
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  366 0140 0133     		adds	r3, r3, #1
  367 0142 A361     		str	r3, [r4, #24]
  129:Lib/uorb/uorb.cpp **** }
-ARM GAS  /tmp/ccI3xKhe.s 			page 10
+ARM GAS  /tmp/cc9p8QrQ.s 			page 10
 
 
  368              		.loc 1 129 5 is_stmt 1 view .LVU91
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  404              		@ frame_needed = 0, uses_anonymous_args = 0
  405              		.loc 1 149 48 is_stmt 0 view .LVU94
  406 0158 70B5     		push	{r4, r5, r6, lr}
-ARM GAS  /tmp/ccI3xKhe.s 			page 11
+ARM GAS  /tmp/cc9p8QrQ.s 			page 11
 
 
  407              		.cfi_def_cfa_offset 16
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  452              	.LVL47:
  159:Lib/uorb/uorb.cpp ****     t->sub_count++;
  453              		.loc 1 159 5 view .LVU110
-ARM GAS  /tmp/ccI3xKhe.s 			page 12
+ARM GAS  /tmp/cc9p8QrQ.s 			page 12
 
 
  454              		.loc 1 159 17 is_stmt 0 view .LVU111
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  499              	.LFE8:
  501              		.align	1
  502              		.global	uorb_check
-ARM GAS  /tmp/ccI3xKhe.s 			page 13
+ARM GAS  /tmp/cc9p8QrQ.s 			page 13
 
 
  503              		.syntax unified
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  168:Lib/uorb/uorb.cpp **** 
  535              		.loc 1 168 68 view .LVU130
  536              	.LBE15:
-ARM GAS  /tmp/ccI3xKhe.s 			page 14
+ARM GAS  /tmp/cc9p8QrQ.s 			page 14
 
 
  537              	.LBE14:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  584 0212 0020     		movs	r0, #0
  585              	.LVL63:
  185:Lib/uorb/uorb.cpp **** }
-ARM GAS  /tmp/ccI3xKhe.s 			page 15
+ARM GAS  /tmp/cc9p8QrQ.s 			page 15
 
 
  586              		.loc 1 185 1 view .LVU145
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  624              		.loc 1 167 51 view .LVU150
  167:Lib/uorb/uorb.cpp **** static inline int handle_slot(uorb_handle_t h)  { return (h >> 16) & 0xFFFF; }
  625              		.loc 1 167 62 is_stmt 0 view .LVU151
-ARM GAS  /tmp/ccI3xKhe.s 			page 16
+ARM GAS  /tmp/cc9p8QrQ.s 			page 16
 
 
  626 0222 85B2     		uxth	r5, r0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  666 0244 9842     		cmp	r0, r3
  667 0246 EFD0     		beq	.L50
  207:Lib/uorb/uorb.cpp **** 
-ARM GAS  /tmp/ccI3xKhe.s 			page 17
+ARM GAS  /tmp/cc9p8QrQ.s 			page 17
 
 
  208:Lib/uorb/uorb.cpp ****     /* 数据到达, 拷贝 */
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  713 0284 00000000 		.word	.LANCHOR0
  714              		.cfi_endproc
  715              	.LFE12:
-ARM GAS  /tmp/ccI3xKhe.s 			page 18
+ARM GAS  /tmp/cc9p8QrQ.s 			page 18
 
 
  717              		.bss
@@ -1044,35 +1044,35 @@ ARM GAS  /tmp/ccI3xKhe.s 			page 1
  737              		.file 9 "Lib/uorb/uorb.hpp"
  738              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
  739              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
-ARM GAS  /tmp/ccI3xKhe.s 			page 19
+ARM GAS  /tmp/cc9p8QrQ.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 uorb.cpp
-     /tmp/ccI3xKhe.s:20     .text:00000000 $t
-     /tmp/ccI3xKhe.s:25     .text:00000000 _ZL14find_or_createPKc
-     /tmp/ccI3xKhe.s:155    .text:00000080 $d
-     /tmp/ccI3xKhe.s:159    .text:00000084 $t
-     /tmp/ccI3xKhe.s:165    .text:00000084 uorb_init
-     /tmp/ccI3xKhe.s:195    .text:000000a0 $d
-     /tmp/ccI3xKhe.s:199    .text:000000a4 $t
-     /tmp/ccI3xKhe.s:205    .text:000000a4 uorb_advertise
-     /tmp/ccI3xKhe.s:299    .text:00000104 $d
-     /tmp/ccI3xKhe.s:304    .text:0000010c $t
-     /tmp/ccI3xKhe.s:310    .text:0000010c uorb_publish
-     /tmp/ccI3xKhe.s:388    .text:00000154 $d
-     /tmp/ccI3xKhe.s:392    .text:00000158 $t
-     /tmp/ccI3xKhe.s:398    .text:00000158 uorb_subscribe
-     /tmp/ccI3xKhe.s:496    .text:000001d0 $d
-     /tmp/ccI3xKhe.s:501    .text:000001d8 $t
-     /tmp/ccI3xKhe.s:507    .text:000001d8 uorb_check
-     /tmp/ccI3xKhe.s:591    .text:00000218 $d
-     /tmp/ccI3xKhe.s:595    .text:0000021c $t
-     /tmp/ccI3xKhe.s:601    .text:0000021c uorb_copy
-     /tmp/ccI3xKhe.s:713    .text:00000284 $d
-     /tmp/ccI3xKhe.s:718    .bss:00000000 $d
-     /tmp/ccI3xKhe.s:722    .bss:00000000 _ZL6topics
-     /tmp/ccI3xKhe.s:726    .bss:000002f8 _ZL11global_lock
+     /tmp/cc9p8QrQ.s:20     .text:00000000 $t
+     /tmp/cc9p8QrQ.s:25     .text:00000000 _ZL14find_or_createPKc
+     /tmp/cc9p8QrQ.s:155    .text:00000080 $d
+     /tmp/cc9p8QrQ.s:159    .text:00000084 $t
+     /tmp/cc9p8QrQ.s:165    .text:00000084 uorb_init
+     /tmp/cc9p8QrQ.s:195    .text:000000a0 $d
+     /tmp/cc9p8QrQ.s:199    .text:000000a4 $t
+     /tmp/cc9p8QrQ.s:205    .text:000000a4 uorb_advertise
+     /tmp/cc9p8QrQ.s:299    .text:00000104 $d
+     /tmp/cc9p8QrQ.s:304    .text:0000010c $t
+     /tmp/cc9p8QrQ.s:310    .text:0000010c uorb_publish
+     /tmp/cc9p8QrQ.s:388    .text:00000154 $d
+     /tmp/cc9p8QrQ.s:392    .text:00000158 $t
+     /tmp/cc9p8QrQ.s:398    .text:00000158 uorb_subscribe
+     /tmp/cc9p8QrQ.s:496    .text:000001d0 $d
+     /tmp/cc9p8QrQ.s:501    .text:000001d8 $t
+     /tmp/cc9p8QrQ.s:507    .text:000001d8 uorb_check
+     /tmp/cc9p8QrQ.s:591    .text:00000218 $d
+     /tmp/cc9p8QrQ.s:595    .text:0000021c $t
+     /tmp/cc9p8QrQ.s:601    .text:0000021c uorb_copy
+     /tmp/cc9p8QrQ.s:713    .text:00000284 $d
+     /tmp/cc9p8QrQ.s:718    .bss:00000000 $d
+     /tmp/cc9p8QrQ.s:722    .bss:00000000 _ZL6topics
+     /tmp/cc9p8QrQ.s:726    .bss:000002f8 _ZL11global_lock
 
 UNDEFINED SYMBOLS
 strcmp

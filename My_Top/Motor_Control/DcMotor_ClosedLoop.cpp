@@ -1,7 +1,14 @@
 #include "DcMotor_ClosedLoop.hpp"
 
+#define PID_I_Ratio (0.6f)    //积分限幅比率 
+#define PID_Max_Duty (0.97f)  //PID输出最大占空比
+#define PID_Min_Duty (-0.97f) //PID输出最小占空比
+#define PID_Max_Speed (1.8f)  //PID输出最大速度
+#define PID_Min_Speed (-1.8f) //PID输出最小速度
+
 uint8_t DC_Motor::selected_motor = 0;// 静态成员定义
 uint16_t DC_Motor::ADC_Value[max_chl_num] = {0};// 静态成员定义
+
 
 
 KTH7111 kth7111_M1(&M1_PWM); //编码器对象，
@@ -9,21 +16,21 @@ KTH7111 kth7111_M2(&M2_PWM); //编码器对象
 KTH7111 kth7111_M3(&M3_PWM); //编码器对象，
 KTH7111 kth7111_M4(&M4_PWM); //编码器对象
 
-PID_Increment pid_spd_M1(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
-PID           pid_loc_M1(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
-LQR lqr_M1(2.0f, 0.20f, 1.0f, -1.0f);
+PID_Increment pid_spd_M1(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
+PID           pid_loc_M1(1.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
+LQR lqr_M1(6.0f, 0.4f, PID_Max_Duty, PID_Min_Duty);
 
-PID_Increment pid_spd_M2(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
-PID           pid_loc_M2(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
-LQR lqr_M2(2.0f, 0.20f, 1.0f, -1.0f);
+PID_Increment pid_spd_M2(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
+PID           pid_loc_M2(0.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
+LQR lqr_M2(6.0f, 0.4f, PID_Max_Duty, PID_Min_Duty);
 
-PID_Increment pid_spd_M3(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
-PID           pid_loc_M3(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
-LQR lqr_M3(2.0f, 0.20f, 1.0f, -1.0f);
+PID_Increment pid_spd_M3(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
+PID           pid_loc_M3(0.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
+LQR lqr_M3(2.0f, 0.20f,  PID_Max_Duty, PID_Min_Duty);
 
-PID_Increment pid_spd_M4(0.0, 0.0, 0.0, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, 0.8, -0.8);
-PID           pid_loc_M4(0.0, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, 0.8*20, 20.0, -20.0);
-LQR lqr_M4(2.0f, 0.20f, 1.0f, -1.0f);
+PID_Increment pid_spd_M4(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
+PID           pid_loc_M4(0.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
+LQR lqr_M4(2.0f, 0.20f,  PID_Max_Duty, PID_Min_Duty);
 
 DC_Motor M1(&M1_PWM, &kth7111_M1, &pid_spd_M1, &pid_loc_M1,&lqr_M1); //电机1
 DC_Motor M2(&M2_PWM, &kth7111_M2, &pid_spd_M2, &pid_loc_M2,&lqr_M2); //电机2
@@ -44,6 +51,19 @@ void DC_Motor::test_laji()
     HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
 }
 
+void DC_Motor::My_DC_Motor_Reset()
+{
+    _target_location2 = rad2deg(reg_final);
+    _target_location2_cmd = _target_location2;
+    _target_speed = 0.0;
+    updown_duty = 0.0;
+    Motor_EN(false);
+    pid_speed_incparam->reset(); //复位pid
+    pid_location->reset(); //复位pid
+}
+
+
+
 
 void DC_Motor::My_DC_Motor_Init()
 {
@@ -62,7 +82,6 @@ void DC_Motor::My_DC_Motor_Init()
     Motor_EN(true);  // 打开PWM输出
     vTaskDelay(pdMS_TO_TICKS(1));  // 等 1ms 充满
     Motor_EN(false); // 关闭PWM输出
-
     _encoder->KTH7111_Init(motor_encoder_dir);
     control_init_flag = true;
 }
@@ -74,8 +93,8 @@ void DC_Motor::Set_Motor_Frequency() //单独设置电机频率和占空比
     bool new_dir = false;
     uint32_t arr = 0;
     uint16_t Fre = (uint16_t)motor_freq;//转整数计算
-    float up_duty = constraint_value(motor_up_duty, 0.0f, 1.0f); //限制占空比在0~1之间
-    float down_duty = constraint_value(motor_down_duty, 0.0f, 1.0f); //限制占空比在0~1之间
+    float up_duty = constraint_value(motor_up_duty, 0.0f, PID_Max_Duty); //限制占空比在0~1之间
+    float down_duty = constraint_value(motor_down_duty, 0.0f, PID_Max_Duty); //限制占空比在0~1之间
 
     if (Fre == Fre_last && up_duty == up_duty_last && down_duty == down_duty_last) return;// 如果频率和占空比两个都没有变化，则直接返回
     Fre_last = Fre;
@@ -99,7 +118,7 @@ void DC_Motor::Set_Motor_Frequency() //单独设置电机频率和占空比
 
 void DC_Motor::Set_Motor_Glo_Duty() //设置电机全局占空比
 {
-    float duty = constraint_value(updown_duty, -1.0f, 1.0f);
+    float duty = constraint_value(updown_duty, PID_Min_Duty, PID_Max_Duty);
 
     if (duty == 0.0f || fabsf(duty) < 1e-6f)
     {
@@ -119,7 +138,6 @@ void DC_Motor::Set_Motor_Glo_Duty() //设置电机全局占空比
 
     Set_Motor_Frequency();
 }
-
 
 
 
@@ -157,11 +175,9 @@ void DC_Motor::Update_Speed_Angle_LPFAndPLL() //更新速度和角度
     _encoder->KTH7111_Send_JIAO_CMD();//发送角度指令
     fudu_test = _encoder->Get_KTH7111_Radian();//获取编码器角度
 
-    theta_m = fudu_test; // 获取原始机械角度 弧度
-    
     if (LPFAndPLL == false) //低通滤波角度
     {
-      theta_m = wrap_to_PI(theta_m);
+      theta_m = wrap_to_PI(fudu_test);
       //方式1 低通滤波 更新机械角度速度
       theta_m_offic_temp = theta_m - theta_m_last; 
       theta_m_last = theta_m; // 更新上一次的机械角度
@@ -178,6 +194,7 @@ void DC_Motor::Update_Speed_Angle_LPFAndPLL() //更新速度和角度
     }else if (LPFAndPLL == true)
     {
       // 方式2PLL锁相环 更新PLL锁相环的输出角度和角速度
+      theta_m = fudu_test; // 获取原始机械角度 弧度
       foc_pll_run(theta_m,PLL_FREQ_Dt,&_pll_reg_out,&_pll_Angular_velocity,&_pll_conf); //更新PLL锁相环的输出角度和角速度
       reg_final = _pll_reg_out; //将PLL锁相环的输出角度赋值给最终角度
       theta_deg_final = rad2deg(reg_final); //将弧度转换为360度
@@ -193,18 +210,64 @@ void DC_Motor::Speed_Loop(void) //速度环
     float error_speed = _target_speed - Angular_velocity_final; //计算速度误差
 
     _delta_pwm = pid_speed_incparam->update(error_speed); //计算PID增量
-    updown_duty += _delta_pwm; //更新电机频率
+    updown_duty += _delta_pwm; //更新电机占空比
     Set_Motor_Glo_Duty(); //设置电机全局占空比
 }
 
 
-void DC_Motor::Location_Loop(void) //位置环
+// void DC_Motor::Location_Loop(void) //位置环
+// {
+//     float error = wrap_to_PI(deg2rad(_target_location2) - reg_final); //计算位置误差
+//     _target_speed = pid_location->update(error); //传入实际误差值
+// }
+
+
+
+// void DC_Motor::Location_Loop(void)
+// {
+//     float diff = _target_location2_cmd - _target_location2;
+
+//     while (diff > 180.0f) diff -= 360.0f;    // 改成 while，确保 diff 在 [-180, 180]
+//     while (diff < -180.0f) diff += 360.0f;
+
+//     if (diff > 60.0f) diff = 60.0f;
+//     if (diff < -60.0f) diff = -60.0f;
+//     _target_location2 += diff;
+
+//     while (_target_location2 > 180.0f) _target_location2 -= 360.0f;
+//     while (_target_location2 < -180.0f) _target_location2 += 360.0f;
+
+//     float error = wrap_to_PI(deg2rad(_target_location2) - reg_final);
+//     float raw_speed = pid_location->update(error);
+//     _target_speed = raw_speed;
+
+//     if (_target_speed > PID_Max_Speed) _target_speed = PID_Max_Speed;
+//     if (_target_speed < PID_Min_Speed) _target_speed = PID_Min_Speed;
+// }
+
+
+
+
+void DC_Motor::Location_Loop(void)
 {
-    float _delta_fre = 0.0f;
-    float _target_error_location = deg2rad(_target_location2) - reg_final; //计算位置误差
-    _target_speed = pid_location->update(_target_error_location); //
-    Speed_Loop(); //位置环内部调用速度环控制
+    // LQR 状态：位置误差 + 速度误差
+    float pos_error = wrap_to_PI(deg2rad(_target_location2) - reg_final);
+    // 死区：误差小于 0.5° 时，认为已经到位
+    // if (fabs(pos_error) < deg2rad(0.3f)) {
+    //     _target_speed = 0.0f;  // 或占空比 = 0
+    //     return;
+    // }
+
+    float vel_error = _target_speed - Angular_velocity_final;  // 目标速度 - 实际速度
+
+    // LQR 直接输出目标速度（不需要 PID，不需要速度斜坡）
+    _target_speed = _lqr->update(pos_error, vel_error);
 }
+
+
+
+
+
 
 
 
