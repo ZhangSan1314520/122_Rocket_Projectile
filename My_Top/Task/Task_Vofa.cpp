@@ -177,6 +177,10 @@ void Task_VofaRx(void *argument)
                 vofa_update_if_changed(&Vafa_Location, 1, &m->pid_location->_ki, m);
                 vofa_update_if_changed(&Vafa_Location, 2, &m->pid_location->_kd, m);
                 vofa_update_if_changed(&Vafa_Target,  4, &m->_target_location2, NULL); //目标位置-180°~+180°
+                vofa_update_if_changed(&Vafa_Speed,  0, &m->pid_speed_incparam->_kp, m);//速度PID
+                vofa_update_if_changed(&Vafa_Speed,  1, &m->pid_speed_incparam->_ki, m);
+                vofa_update_if_changed(&Vafa_Speed,  2, &m->pid_speed_incparam->_kd, m);                
+            
                 break;
         }
         vofa_update_mode(&m->work_mode, open_loop, m);        

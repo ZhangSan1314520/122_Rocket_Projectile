@@ -63,7 +63,8 @@ build/debug/DcMotor_ClosedLoop.o: \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Status.h \
  My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h \
  My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.RawCommand.h \
- My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.Status.h
+ My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.Status.h \
+ My_Top/System/Motor_Param.hpp
 My_Top/Motor_Control/DcMotor_ClosedLoop.hpp:
 Lib/compute/pid/pid.hpp:
 Lib/compute/pid/pid_Increment.hpp:
@@ -144,3 +145,4 @@ My_Top/Drone_CAN/Check_code/uavcan.equipment.actuator.Status.h:
 My_Top/Drone_CAN/Check_code/uavcan.protocol.NodeStatus.h:
 My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.RawCommand.h:
 My_Top/Drone_CAN/Check_code/uavcan.equipment.esc.Status.h:
+My_Top/System/Motor_Param.hpp:

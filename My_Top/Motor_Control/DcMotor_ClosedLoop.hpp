@@ -76,6 +76,9 @@ private:
     float up_duty_last = -1.0f;   // 每个对象独立的上次占空比 不能用 static
     float down_duty_last = -1.0f;   // 每个对象独立的上次占空比 不能用 static
     bool _motor_is_on_last = false; //上次电机使能标志
+    bool position_done = false; //位置环是否完成
+    uint16_t position_ok_cnt = 0;  // 位置到位检测计数
+    float target_speed_last = 0.0f; //上次目标速度
 
     uint32_t timer_clock_freq_; // 定时器的实际计数时钟频率
     LowpassFilter speed_lpf;     // 速度低通滤波器

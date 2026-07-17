@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccB0kTvA.s 			page 1
+ARM GAS  /tmp/cc1uyov9.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
   28:Core/Src/usb.c **** 
   29:Core/Src/usb.c **** /* USB init function */
   30:Core/Src/usb.c **** 
-ARM GAS  /tmp/ccB0kTvA.s 			page 2
+ARM GAS  /tmp/cc1uyov9.s 			page 2
 
 
   31:Core/Src/usb.c **** void MX_USB_PCD_Init(void)
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
   65 001a C372     		strb	r3, [r0, #11]
   49:Core/Src/usb.c ****   if (HAL_PCD_Init(&hpcd_USB_FS) != HAL_OK)
   66              		.loc 1 49 3 is_stmt 1 view .LVU17
-ARM GAS  /tmp/ccB0kTvA.s 			page 3
+ARM GAS  /tmp/cc1uyov9.s 			page 3
 
 
   67              		.loc 1 49 7 is_stmt 0 view .LVU18
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
   61:Core/Src/usb.c **** 
   62:Core/Src/usb.c ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
  111              		.loc 1 62 3 is_stmt 1 view .LVU25
-ARM GAS  /tmp/ccB0kTvA.s 			page 4
+ARM GAS  /tmp/cc1uyov9.s 			page 4
 
 
  112              		.loc 1 62 28 is_stmt 0 view .LVU26
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
  132              		@ sp needed
  133 001a 10BD     		pop	{r4, pc}
  134              	.LVL5:
-ARM GAS  /tmp/ccB0kTvA.s 			page 5
+ARM GAS  /tmp/cc1uyov9.s 			page 5
 
 
  135              	.L11:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
  175              	.LVL8:
   84:Core/Src/usb.c ****     HAL_NVIC_EnableIRQ(USB_LP_IRQn);
  176              		.loc 1 84 5 view .LVU46
-ARM GAS  /tmp/ccB0kTvA.s 			page 6
+ARM GAS  /tmp/cc1uyov9.s 			page 6
 
 
  177 004e 0022     		movs	r2, #0
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
  226 0008 00D0     		beq	.L18
  227              	.LVL13:
  228              	.L15:
-ARM GAS  /tmp/ccB0kTvA.s 			page 7
+ARM GAS  /tmp/cc1uyov9.s 			page 7
 
 
  102:Core/Src/usb.c ****   {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
  264      00000000 
  264      00000000 
  265              		.text
-ARM GAS  /tmp/ccB0kTvA.s 			page 8
+ARM GAS  /tmp/cc1uyov9.s 			page 8
 
 
  266              	.Letext0:
@@ -434,22 +434,22 @@ ARM GAS  /tmp/ccB0kTvA.s 			page 1
  276              		.file 11 "Core/Inc/usb.h"
  277              		.file 12 "Core/Inc/main.h"
  278              		.file 13 "<built-in>"
-ARM GAS  /tmp/ccB0kTvA.s 			page 9
+ARM GAS  /tmp/cc1uyov9.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usb.c
-     /tmp/ccB0kTvA.s:21     .text.MX_USB_PCD_Init:00000000 $t
-     /tmp/ccB0kTvA.s:27     .text.MX_USB_PCD_Init:00000000 MX_USB_PCD_Init
-     /tmp/ccB0kTvA.s:84     .text.MX_USB_PCD_Init:0000002c $d
-     /tmp/ccB0kTvA.s:263    .bss.hpcd_USB_FS:00000000 hpcd_USB_FS
-     /tmp/ccB0kTvA.s:90     .text.HAL_PCD_MspInit:00000000 $t
-     /tmp/ccB0kTvA.s:96     .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
-     /tmp/ccB0kTvA.s:196    .text.HAL_PCD_MspInit:00000068 $d
-     /tmp/ccB0kTvA.s:202    .text.HAL_PCD_MspDeInit:00000000 $t
-     /tmp/ccB0kTvA.s:208    .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
-     /tmp/ccB0kTvA.s:253    .text.HAL_PCD_MspDeInit:00000024 $d
-     /tmp/ccB0kTvA.s:260    .bss.hpcd_USB_FS:00000000 $d
+     /tmp/cc1uyov9.s:21     .text.MX_USB_PCD_Init:00000000 $t
+     /tmp/cc1uyov9.s:27     .text.MX_USB_PCD_Init:00000000 MX_USB_PCD_Init
+     /tmp/cc1uyov9.s:84     .text.MX_USB_PCD_Init:0000002c $d
+     /tmp/cc1uyov9.s:263    .bss.hpcd_USB_FS:00000000 hpcd_USB_FS
+     /tmp/cc1uyov9.s:90     .text.HAL_PCD_MspInit:00000000 $t
+     /tmp/cc1uyov9.s:96     .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
+     /tmp/cc1uyov9.s:196    .text.HAL_PCD_MspInit:00000068 $d
+     /tmp/cc1uyov9.s:202    .text.HAL_PCD_MspDeInit:00000000 $t
+     /tmp/cc1uyov9.s:208    .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
+     /tmp/cc1uyov9.s:253    .text.HAL_PCD_MspDeInit:00000024 $d
+     /tmp/cc1uyov9.s:260    .bss.hpcd_USB_FS:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_PCD_Init

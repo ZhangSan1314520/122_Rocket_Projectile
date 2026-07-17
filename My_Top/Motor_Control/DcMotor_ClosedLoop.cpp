@@ -1,14 +1,10 @@
 #include "DcMotor_ClosedLoop.hpp"
+#include "Motor_Param.hpp"
 
-#define PID_I_Ratio (0.6f)    //积分限幅比率 
-#define PID_Max_Duty (0.97f)  //PID输出最大占空比
-#define PID_Min_Duty (-0.97f) //PID输出最小占空比
-#define PID_Max_Speed (1.8f)  //PID输出最大速度
-#define PID_Min_Speed (-1.8f) //PID输出最小速度
 
+// 7.17周五更新LQR最佳参数3S响应稳定值
 uint8_t DC_Motor::selected_motor = 0;// 静态成员定义
 uint16_t DC_Motor::ADC_Value[max_chl_num] = {0};// 静态成员定义
-
 
 
 KTH7111 kth7111_M1(&M1_PWM); //编码器对象，
@@ -16,21 +12,158 @@ KTH7111 kth7111_M2(&M2_PWM); //编码器对象
 KTH7111 kth7111_M3(&M3_PWM); //编码器对象，
 KTH7111 kth7111_M4(&M4_PWM); //编码器对象
 
-PID_Increment pid_spd_M1(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
-PID           pid_loc_M1(1.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
-LQR lqr_M1(6.0f, 0.4f, PID_Max_Duty, PID_Min_Duty);
+PID_Increment pid_spd_M1
+(
+    MOTOR_DEFAULT_PARAM.speed_pid.kp,
+    MOTOR_DEFAULT_PARAM.speed_pid.ki,
+    MOTOR_DEFAULT_PARAM.speed_pid.kd,
 
-PID_Increment pid_spd_M2(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
-PID           pid_loc_M2(0.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
-LQR lqr_M2(6.0f, 0.4f, PID_Max_Duty, PID_Min_Duty);
+    1.0/DC_VELOCITY_LOOP_FREQ_HZ,
 
-PID_Increment pid_spd_M3(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
-PID           pid_loc_M3(0.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
-LQR lqr_M3(2.0f, 0.20f,  PID_Max_Duty, PID_Min_Duty);
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+    MOTOR_DEFAULT_PARAM.limit.min_duty
+);
 
-PID_Increment pid_spd_M4(0.62, 25, 0.1, 1.0/DC_VELOCITY_LOOP_FREQ_HZ, PID_Max_Duty, PID_Min_Duty);
-PID           pid_loc_M4(0.6, 0.0, 0.0, 1.0/DC_POSITION_LOOP_FREQ_HZ, PID_I_Ratio*PID_Max_Duty, PID_Max_Speed, PID_Min_Speed);
-LQR lqr_M4(2.0f, 0.20f,  PID_Max_Duty, PID_Min_Duty);
+PID pid_loc_M1
+(
+    MOTOR_DEFAULT_PARAM.location_pid.kp,
+    MOTOR_DEFAULT_PARAM.location_pid.ki,
+    MOTOR_DEFAULT_PARAM.location_pid.kd,
+
+    1.0/DC_POSITION_LOOP_FREQ_HZ,
+
+    MOTOR_DEFAULT_PARAM.limit.i_ratio *
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+
+    MOTOR_DEFAULT_PARAM.limit.max_speed,
+    MOTOR_DEFAULT_PARAM.limit.min_speed
+);
+LQR lqr_M1
+(
+    MOTOR_DEFAULT_PARAM.lqr.k1,
+    MOTOR_DEFAULT_PARAM.lqr.k2,
+    MOTOR_DEFAULT_PARAM.lqr.max_speed,
+    MOTOR_DEFAULT_PARAM.lqr.min_speed
+);
+
+
+
+
+PID_Increment pid_spd_M2
+(
+    MOTOR_DEFAULT_PARAM.speed_pid.kp,
+    MOTOR_DEFAULT_PARAM.speed_pid.ki,
+    MOTOR_DEFAULT_PARAM.speed_pid.kd,
+
+    1.0/DC_VELOCITY_LOOP_FREQ_HZ,
+
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+    MOTOR_DEFAULT_PARAM.limit.min_duty
+);
+
+PID pid_loc_M2
+(
+    MOTOR_DEFAULT_PARAM.location_pid.kp,
+    MOTOR_DEFAULT_PARAM.location_pid.ki,
+    MOTOR_DEFAULT_PARAM.location_pid.kd,
+
+    1.0/DC_POSITION_LOOP_FREQ_HZ,
+
+    MOTOR_DEFAULT_PARAM.limit.i_ratio *
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+
+    MOTOR_DEFAULT_PARAM.limit.max_speed,
+    MOTOR_DEFAULT_PARAM.limit.min_speed
+);
+
+LQR lqr_M2
+(
+    MOTOR_DEFAULT_PARAM.lqr.k1,
+    MOTOR_DEFAULT_PARAM.lqr.k2,
+    MOTOR_DEFAULT_PARAM.lqr.max_speed,
+    MOTOR_DEFAULT_PARAM.lqr.min_speed
+);
+
+
+
+
+
+
+PID_Increment pid_spd_M3
+(
+    MOTOR_DEFAULT_PARAM.speed_pid.kp,
+    MOTOR_DEFAULT_PARAM.speed_pid.ki,
+    MOTOR_DEFAULT_PARAM.speed_pid.kd,
+
+    1.0/DC_VELOCITY_LOOP_FREQ_HZ,
+
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+    MOTOR_DEFAULT_PARAM.limit.min_duty
+);
+
+PID pid_loc_M3
+(
+    MOTOR_DEFAULT_PARAM.location_pid.kp,
+    MOTOR_DEFAULT_PARAM.location_pid.ki,
+    MOTOR_DEFAULT_PARAM.location_pid.kd,
+
+    1.0/DC_POSITION_LOOP_FREQ_HZ,
+
+    MOTOR_DEFAULT_PARAM.limit.i_ratio *
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+
+    MOTOR_DEFAULT_PARAM.limit.max_speed,
+    MOTOR_DEFAULT_PARAM.limit.min_speed
+);
+
+LQR lqr_M3
+(
+    MOTOR_DEFAULT_PARAM.lqr.k1,
+    MOTOR_DEFAULT_PARAM.lqr.k2,
+    MOTOR_DEFAULT_PARAM.lqr.max_speed,
+    MOTOR_DEFAULT_PARAM.lqr.min_speed
+);
+
+
+
+
+
+PID_Increment pid_spd_M4
+(
+    MOTOR_DEFAULT_PARAM.speed_pid.kp,
+    MOTOR_DEFAULT_PARAM.speed_pid.ki,
+    MOTOR_DEFAULT_PARAM.speed_pid.kd,
+
+    1.0/DC_VELOCITY_LOOP_FREQ_HZ,
+
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+    MOTOR_DEFAULT_PARAM.limit.min_duty
+);
+
+PID pid_loc_M4
+(
+    MOTOR_DEFAULT_PARAM.location_pid.kp,
+    MOTOR_DEFAULT_PARAM.location_pid.ki,
+    MOTOR_DEFAULT_PARAM.location_pid.kd,
+
+    1.0/DC_POSITION_LOOP_FREQ_HZ,
+
+    MOTOR_DEFAULT_PARAM.limit.i_ratio *
+    MOTOR_DEFAULT_PARAM.limit.max_duty,
+
+    MOTOR_DEFAULT_PARAM.limit.max_speed,
+    MOTOR_DEFAULT_PARAM.limit.min_speed
+);
+
+LQR lqr_M4
+(
+    MOTOR_DEFAULT_PARAM.lqr.k1,
+    MOTOR_DEFAULT_PARAM.lqr.k2,
+    MOTOR_DEFAULT_PARAM.lqr.max_speed,
+    MOTOR_DEFAULT_PARAM.lqr.min_speed
+);
+
+
 
 DC_Motor M1(&M1_PWM, &kth7111_M1, &pid_spd_M1, &pid_loc_M1,&lqr_M1); //电机1
 DC_Motor M2(&M2_PWM, &kth7111_M2, &pid_spd_M2, &pid_loc_M2,&lqr_M2); //电机2
@@ -93,8 +226,8 @@ void DC_Motor::Set_Motor_Frequency() //单独设置电机频率和占空比
     bool new_dir = false;
     uint32_t arr = 0;
     uint16_t Fre = (uint16_t)motor_freq;//转整数计算
-    float up_duty = constraint_value(motor_up_duty, 0.0f, PID_Max_Duty); //限制占空比在0~1之间
-    float down_duty = constraint_value(motor_down_duty, 0.0f, PID_Max_Duty); //限制占空比在0~1之间
+    float up_duty = constraint_value(motor_up_duty, 0.0f, MOTOR_DEFAULT_PARAM.limit.max_duty); //限制占空比在0~1之间
+    float down_duty = constraint_value(motor_down_duty, 0.0f, MOTOR_DEFAULT_PARAM.limit.max_duty); //限制占空比在0~1之间
 
     if (Fre == Fre_last && up_duty == up_duty_last && down_duty == down_duty_last) return;// 如果频率和占空比两个都没有变化，则直接返回
     Fre_last = Fre;
@@ -118,7 +251,7 @@ void DC_Motor::Set_Motor_Frequency() //单独设置电机频率和占空比
 
 void DC_Motor::Set_Motor_Glo_Duty() //设置电机全局占空比
 {
-    float duty = constraint_value(updown_duty, PID_Min_Duty, PID_Max_Duty);
+    float duty = constraint_value(updown_duty, MOTOR_DEFAULT_PARAM.limit.min_duty, MOTOR_DEFAULT_PARAM.limit.max_duty);
 
     if (duty == 0.0f || fabsf(duty) < 1e-6f)
     {
@@ -138,7 +271,6 @@ void DC_Motor::Set_Motor_Glo_Duty() //设置电机全局占空比
 
     Set_Motor_Frequency();
 }
-
 
 
 
@@ -248,26 +380,64 @@ void DC_Motor::Speed_Loop(void) //速度环
 
 
 
+
 void DC_Motor::Location_Loop(void)
 {
-    // LQR 状态：位置误差 + 速度误差
-    float pos_error = wrap_to_PI(deg2rad(_target_location2) - reg_final);
-    // 死区：误差小于 0.5° 时，认为已经到位
-    // if (fabs(pos_error) < deg2rad(0.3f)) {
-    //     _target_speed = 0.0f;  // 或占空比 = 0
-    //     return;
-    // }
+    float pos_error = wrap_to_PI(deg2rad(_target_location2) - reg_final);  // 计算当前位置误差
 
-    float vel_error = _target_speed - Angular_velocity_final;  // 目标速度 - 实际速度
+    float pos_abs = fabs(pos_error); // 误差位置绝对值
 
-    // LQR 直接输出目标速度（不需要 PID，不需要速度斜坡）
-    _target_speed = _lqr->update(pos_error, vel_error);
+    float vel_abs = fabs(Angular_velocity_final); //真实速度绝对值
+
+
+    if(position_done) // 位置环到位
+    {
+        if(pos_abs > deg2rad(0.6f))
+        {
+            position_done = false;
+        }
+    }else // 位置环未到位
+    {
+        if(pos_abs < deg2rad(0.3f) &&vel_abs < deg2rad(4.0f))
+        {
+            position_ok_cnt++;//连续10次满足条件，认为位置到位
+            if(position_ok_cnt >= 10)
+            {
+                position_done = true;
+            }
+        }else
+        {
+            position_ok_cnt = 0;
+        }
+    }
+
+
+    if(position_done)  // 位置环到位，停止输出速度
+    {
+        _target_speed = 0.0f;
+        target_speed_last = 0.0f;
+        return;
+    }
+
+    float vel_error = -Angular_velocity_final;  //计算速度误差
+    _target_speed = _lqr->update(pos_error, vel_error);  // LQR输出目标速度
+    //速度变化斜坡
+    float lqr_speed = _lqr->update(pos_error, vel_error);  // LQR输出目标速度
+    float speed_delta = lqr_speed - target_speed_last;
+    if(speed_delta > 0.002f)
+    {
+        speed_delta = 0.002f;
+    }
+    else if(speed_delta < -0.002f)
+    {
+        speed_delta = -0.002f;
+    }
+
+    target_speed_last += speed_delta;
+
+    _target_speed = target_speed_last;
+
 }
-
-
-
-
-
 
 
 

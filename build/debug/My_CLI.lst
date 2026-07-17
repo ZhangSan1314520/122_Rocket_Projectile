@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccimRGC4.s 			page 1
+ARM GAS  /tmp/cc38vYQD.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
   41              		@ args = 0, pretend = 0, frame = 0
   42              		@ frame_needed = 0, uses_anonymous_args = 0
   43              		.loc 1 5 1 is_stmt 0 view .LVU1
-ARM GAS  /tmp/ccimRGC4.s 			page 2
+ARM GAS  /tmp/cc38vYQD.s 			page 2
 
 
   44 0000 38B5     		push	{r3, r4, r5, lr}
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
   91              		.loc 1 6 28 is_stmt 0 discriminator 1 view .LVU15
   92 0026 0A48     		ldr	r0, .L14
   93              	.LVL7:
-ARM GAS  /tmp/ccimRGC4.s 			page 3
+ARM GAS  /tmp/cc38vYQD.s 			page 3
 
 
    6:My_Top/System/My_CLI.cpp ****     int idx = atoi(arg_list[1]);
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
   14:My_Top/System/My_CLI.cpp ****     }
  130              		.loc 1 14 17 view .LVU29
   14:My_Top/System/My_CLI.cpp ****     }
-ARM GAS  /tmp/ccimRGC4.s 			page 4
+ARM GAS  /tmp/cc38vYQD.s 			page 4
 
 
  131              		.loc 1 14 25 is_stmt 0 view .LVU30
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  176              		.cfi_def_cfa_offset 12
  177              		.cfi_offset 4, -12
  178              		.cfi_offset 5, -8
-ARM GAS  /tmp/ccimRGC4.s 			page 5
+ARM GAS  /tmp/cc38vYQD.s 			page 5
 
 
  179              		.cfi_offset 14, -4
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  220              		.loc 1 35 5 is_stmt 1 view .LVU51
  221              		.loc 1 35 11 is_stmt 0 view .LVU52
  222 0094 0B99     		ldr	r1, [sp, #44]
-ARM GAS  /tmp/ccimRGC4.s 			page 6
+ARM GAS  /tmp/cc38vYQD.s 			page 6
 
 
  223 0096 0248     		ldr	r0, .L20
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  271 00aa 0023     		movs	r3, #0
  272 00ac 0B93     		str	r3, [sp, #44]
   41:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
-ARM GAS  /tmp/ccimRGC4.s 			page 7
+ARM GAS  /tmp/cc38vYQD.s 			page 7
 
 
   42:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  316              		@ sp needed
  317 00da 30BD     		pop	{r4, r5, pc}
  318              	.LVL34:
-ARM GAS  /tmp/ccimRGC4.s 			page 8
+ARM GAS  /tmp/cc38vYQD.s 			page 8
 
 
  319              	.L27:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
   63:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
  361              		.loc 1 63 5 view .LVU82
  362              		.loc 1 63 41 is_stmt 0 view .LVU83
-ARM GAS  /tmp/ccimRGC4.s 			page 9
+ARM GAS  /tmp/cc38vYQD.s 			page 9
 
 
  363 00ec 2146     		mov	r1, r4
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  402      BF97E4BD 
  402      8D20E5A4 
  402      B1E8
-ARM GAS  /tmp/ccimRGC4.s 			page 10
+ARM GAS  /tmp/cc38vYQD.s 			page 10
 
 
  403 00b1 B4A50D0A 		.ascii	"\264\245\015\012\000"
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  445              	.LVL45:
  446              		.loc 1 80 41 view .LVU102
  447 011e FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
-ARM GAS  /tmp/ccimRGC4.s 			page 11
+ARM GAS  /tmp/cc38vYQD.s 			page 11
 
 
  448              	.LVL46:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  494              		.align	2
  495              	.L40:
  496 014c 70000000 		.word	.LC5
-ARM GAS  /tmp/ccimRGC4.s 			page 12
+ARM GAS  /tmp/cc38vYQD.s 			page 12
 
 
  497 0150 94000000 		.word	.LC6
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  537 015a 0023     		movs	r3, #0
  538 015c 0B93     		str	r3, [sp, #44]
   90:My_Top/System/My_CLI.cpp ****     bool save_flag = false;
-ARM GAS  /tmp/ccimRGC4.s 			page 13
+ARM GAS  /tmp/cc38vYQD.s 			page 13
 
 
  539              		.loc 1 90 5 is_stmt 1 view .LVU120
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  582              	.LVL66:
  583              		.loc 1 101 25 discriminator 1 view .LVU138
  584 0188 FFF7FEFF 		bl	printf_
-ARM GAS  /tmp/ccimRGC4.s 			page 14
+ARM GAS  /tmp/cc38vYQD.s 			page 14
 
 
  585              	.LVL67:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  625              		.syntax unified
  626              		.thumb
  627              		.thumb_func
-ARM GAS  /tmp/ccimRGC4.s 			page 15
+ARM GAS  /tmp/cc38vYQD.s 			page 15
 
 
  629              	_Z7set_freP11EmbeddedCliPcPv:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  667              		.loc 1 119 5 is_stmt 1 view .LVU155
  668              		.loc 1 119 35 is_stmt 0 view .LVU156
  669 01be 0BAA     		add	r2, sp, #44
-ARM GAS  /tmp/ccimRGC4.s 			page 16
+ARM GAS  /tmp/cc38vYQD.s 			page 16
 
 
  670 01c0 6846     		mov	r0, sp
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  714              		@ sp needed
  715 01f4 30BD     		pop	{r4, r5, pc}
  716              	.LVL84:
-ARM GAS  /tmp/ccimRGC4.s 			page 17
+ARM GAS  /tmp/cc38vYQD.s 			page 17
 
 
  717              	.L55:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  760              		.cfi_offset 14, -4
  761 020a 8DB0     		sub	sp, sp, #52
  762              		.cfi_def_cfa_offset 64
-ARM GAS  /tmp/ccimRGC4.s 			page 18
+ARM GAS  /tmp/cc38vYQD.s 			page 18
 
 
  763 020c 0C46     		mov	r4, r1
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  806              	.LVL96:
  807 0236 10EE100A 		vmov	r0, s0
  808              	.LVL97:
-ARM GAS  /tmp/ccimRGC4.s 			page 19
+ARM GAS  /tmp/cc38vYQD.s 			page 19
 
 
  144:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  851 0268 F8000000 		.word	.LC9
  852              		.cfi_endproc
  853              	.LFE1367:
-ARM GAS  /tmp/ccimRGC4.s 			page 20
+ARM GAS  /tmp/cc38vYQD.s 			page 20
 
 
  855              		.section	.rodata.str1.4
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  893              		.loc 1 162 5 is_stmt 1 view .LVU212
  894 027a F0B1     		cbz	r0, .L66
  163:My_Top/System/My_CLI.cpp ****     // 解析参数
-ARM GAS  /tmp/ccimRGC4.s 			page 21
+ARM GAS  /tmp/cc38vYQD.s 			page 21
 
 
  164:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  937              		.loc 1 175 5 is_stmt 1 view .LVU228
  938              		.loc 1 175 11 is_stmt 0 view .LVU229
  939 02aa FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccimRGC4.s 			page 22
+ARM GAS  /tmp/cc38vYQD.s 			page 22
 
 
  940              	.LVL114:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  987              		@ frame_needed = 0, uses_anonymous_args = 0
  988              		.loc 1 180 1 is_stmt 0 view .LVU237
  989 02d0 30B5     		push	{r4, r5, lr}
-ARM GAS  /tmp/ccimRGC4.s 			page 23
+ARM GAS  /tmp/cc38vYQD.s 			page 23
 
 
  990              		.cfi_def_cfa_offset 12
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1033              		.loc 1 191 24 is_stmt 0 view .LVU254
  1034 02f6 0AA9     		add	r1, sp, #40
  1035 02f8 0298     		ldr	r0, [sp, #8]
-ARM GAS  /tmp/ccimRGC4.s 			page 24
+ARM GAS  /tmp/cc38vYQD.s 			page 24
 
 
  1036              	.LVL127:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1078              		.loc 1 195 9 is_stmt 1 view .LVU266
  1079 0328 F9E7     		b	.L74
  1080              	.L81:
-ARM GAS  /tmp/ccimRGC4.s 			page 25
+ARM GAS  /tmp/cc38vYQD.s 			page 25
 
 
  1081 032a 00BF     		.align	2
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1114      80
  1115 01f2 9F0D0A00 		.ascii	"\237\015\012\000"
  1116 01f6 0000     		.align	2
-ARM GAS  /tmp/ccimRGC4.s 			page 26
+ARM GAS  /tmp/cc38vYQD.s 			page 26
 
 
  1117              	.LC20:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  204:My_Top/System/My_CLI.cpp **** {
  1141              		.loc 1 204 1 view -0
  1142              		.cfi_startproc
-ARM GAS  /tmp/ccimRGC4.s 			page 27
+ARM GAS  /tmp/cc38vYQD.s 			page 27
 
 
  1143              		@ args = 0, pretend = 0, frame = 48
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1187              	.LVL142:
  215:My_Top/System/My_CLI.cpp ****     if (!m) return;
  1188              		.loc 1 215 5 is_stmt 1 view .LVU283
-ARM GAS  /tmp/ccimRGC4.s 			page 28
+ARM GAS  /tmp/cc38vYQD.s 			page 28
 
 
  1189 0358 0446     		mov	r4, r0
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1232              		.loc 1 226 9 is_stmt 1 view .LVU299
  1233              		.loc 1 226 15 is_stmt 0 view .LVU300
  1234 038a 2248     		ldr	r0, .L95+16
-ARM GAS  /tmp/ccimRGC4.s 			page 29
+ARM GAS  /tmp/cc38vYQD.s 			page 29
 
 
  1235 038c FFF7FEFF 		bl	printf_
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  243:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
  244:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(10));
  245:My_Top/System/My_CLI.cpp ****         m->Motor_EN(false);
-ARM GAS  /tmp/ccimRGC4.s 			page 30
+ARM GAS  /tmp/cc38vYQD.s 			page 30
 
 
  246:My_Top/System/My_CLI.cpp ****         m->updown_duty = 0.0;//停止电机
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1307 03d0 206C     		ldr	r0, [r4, #64]
  1308 03d2 FFF7FEFF 		bl	_ZN7KTH711124KTH7111_ANLC_CalibrationEm
  1309              	.LVL159:
-ARM GAS  /tmp/ccimRGC4.s 			page 31
+ARM GAS  /tmp/cc38vYQD.s 			page 31
 
 
  1310 03d6 0546     		mov	r5, r0
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1351 0404 74010000 		.word	.LC13
  1352 0408 7C010000 		.word	.LC14
  1353 040c 80010000 		.word	.LC15
-ARM GAS  /tmp/ccimRGC4.s 			page 32
+ARM GAS  /tmp/cc38vYQD.s 			page 32
 
 
  1354 0410 8C010000 		.word	.LC16
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1396 0430 0C46     		mov	r4, r1
  262:My_Top/System/My_CLI.cpp ****     int idx = 0;
  1397              		.loc 1 262 5 is_stmt 1 view .LVU337
-ARM GAS  /tmp/ccimRGC4.s 			page 33
+ARM GAS  /tmp/cc38vYQD.s 			page 33
 
 
  1398              		.loc 1 262 9 is_stmt 0 view .LVU338
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1442              	.LVL174:
  273:My_Top/System/My_CLI.cpp ****     float ki = strtof(arg_list[3], &end2); //将字符串转换为浮点数
  1443              		.loc 1 273 5 is_stmt 1 view .LVU354
-ARM GAS  /tmp/ccimRGC4.s 			page 34
+ARM GAS  /tmp/cc38vYQD.s 			page 34
 
 
  1444              		.loc 1 273 22 is_stmt 0 view .LVU355
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  283:My_Top/System/My_CLI.cpp ****     m->My_DC_Motor_Reset(); //重置电机
  1489              		.loc 1 283 5 is_stmt 1 view .LVU370
  1490              		.loc 1 283 25 is_stmt 0 view .LVU371
-ARM GAS  /tmp/ccimRGC4.s 			page 35
+ARM GAS  /tmp/cc38vYQD.s 			page 35
 
 
  1491 04a2 3846     		mov	r0, r7
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1540 04e4 F8000000 		.word	.LC9
  1541              		.cfi_endproc
  1542              	.LFE1371:
-ARM GAS  /tmp/ccimRGC4.s 			page 36
+ARM GAS  /tmp/cc38vYQD.s 			page 36
 
 
  1544              		.section	.rodata.str1.4
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  294:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
  1584              		.loc 1 294 5 is_stmt 1 view .LVU387
  1585 04f6 0028     		cmp	r0, #0
-ARM GAS  /tmp/ccimRGC4.s 			page 37
+ARM GAS  /tmp/cc38vYQD.s 			page 37
 
 
  1586 04f8 49D0     		beq	.L105
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1632 052e 0898     		ldr	r0, [sp, #32]
  1633 0530 FFF7FEFF 		bl	strtof
  1634              	.LVL200:
-ARM GAS  /tmp/ccimRGC4.s 			page 38
+ARM GAS  /tmp/cc38vYQD.s 			page 38
 
 
  1635 0534 10EE105A 		vmov	r5, s0
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1679              		.loc 1 312 11 view .LVU419
  1680 056c 0F46     		mov	r7, r1
  1681              	.LVL205:
-ARM GAS  /tmp/ccimRGC4.s 			page 39
+ARM GAS  /tmp/cc38vYQD.s 			page 39
 
 
  1682              		.loc 1 312 11 view .LVU420
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1727 0311 8EAFE68E 		.ascii	"\216\257\346\216\247\345\210\266\346\250\241\345\274"
  1727      A7E588B6 
  1727      E6A8A1E5 
-ARM GAS  /tmp/ccimRGC4.s 			page 40
+ARM GAS  /tmp/cc38vYQD.s 			page 40
 
 
  1727      BC
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1755              		.loc 1 317 1 view -0
  1756              		.cfi_startproc
  1757              		@ args = 0, pretend = 0, frame = 48
-ARM GAS  /tmp/ccimRGC4.s 			page 41
+ARM GAS  /tmp/cc38vYQD.s 			page 41
 
 
  1758              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1801              		.loc 1 328 5 view .LVU441
  1802              		.loc 1 328 15 is_stmt 0 view .LVU442
  1803 05ca 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
-ARM GAS  /tmp/ccimRGC4.s 			page 42
+ARM GAS  /tmp/cc38vYQD.s 			page 42
 
 
  1804              	.LVL218:
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1837              		.loc 1 335 15 view .LVU453
  1838 05e6 FFF7FEFF 		bl	printf_
  1839              	.LVL223:
-ARM GAS  /tmp/ccimRGC4.s 			page 43
+ARM GAS  /tmp/cc38vYQD.s 			page 43
 
 
  336:My_Top/System/My_CLI.cpp ****     case position:
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1884              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
  1885              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
  1886              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
-ARM GAS  /tmp/ccimRGC4.s 			page 44
+ARM GAS  /tmp/cc38vYQD.s 			page 44
 
 
  1887              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
@@ -2611,56 +2611,56 @@ ARM GAS  /tmp/ccimRGC4.s 			page 1
  1914              		.file 37 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
  1915              		.file 38 "Lib/serial/printf.h"
  1916              		.file 39 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
-ARM GAS  /tmp/ccimRGC4.s 			page 45
+ARM GAS  /tmp/cc38vYQD.s 			page 45
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 My_CLI.cpp
-     /tmp/ccimRGC4.s:21     .rodata.str1.4:00000000 $d
-     /tmp/ccimRGC4.s:30     .text:00000000 $t
-     /tmp/ccimRGC4.s:36     .text:00000000 _Z16get_motor_by_argPPKciPi
-     /tmp/ccimRGC4.s:83     .text:00000022 $d
-     /tmp/ccimRGC4.s:88     .text:00000026 $t
-     /tmp/ccimRGC4.s:146    .text:00000050 $d
-     /tmp/ccimRGC4.s:161    .text:00000068 $t
-     /tmp/ccimRGC4.s:167    .text:00000068 _Z5startP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:237    .text:000000a0 $d
-     /tmp/ccimRGC4.s:247    .text:000000a4 $t
-     /tmp/ccimRGC4.s:253    .text:000000a4 _Z4stopP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:323    .text:000000dc $d
-     /tmp/ccimRGC4.s:333    .text:000000e0 $t
-     /tmp/ccimRGC4.s:339    .text:000000e0 _Z5resetP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:389    .text:00000104 $d
-     /tmp/ccimRGC4.s:405    .text:00000108 $t
-     /tmp/ccimRGC4.s:411    .text:00000108 _Z12clear_eepromP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:496    .text:0000014c $d
-     /tmp/ccimRGC4.s:513    .text:00000154 $t
-     /tmp/ccimRGC4.s:519    .text:00000154 _Z4saveP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:608    .text:0000019c $d
-     /tmp/ccimRGC4.s:623    .text:000001a4 $t
-     /tmp/ccimRGC4.s:629    .text:000001a4 _Z7set_freP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:731    .text:00000200 $d
-     /tmp/ccimRGC4.s:742    .text:00000208 $t
-     /tmp/ccimRGC4.s:748    .text:00000208 _Z8set_dutyP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:850    .text:00000264 $d
-     /tmp/ccimRGC4.s:862    .text:0000026c $t
-     /tmp/ccimRGC4.s:868    .text:0000026c _Z7set_posP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:970    .text:000002c8 $d
-     /tmp/ccimRGC4.s:975    .text:000002d0 $t
-     /tmp/ccimRGC4.s:981    .text:000002d0 _Z9set_speedP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:1083   .text:0000032c $d
-     /tmp/ccimRGC4.s:1132   .text:00000334 $t
-     /tmp/ccimRGC4.s:1138   .text:00000334 _Z8set_modeP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:1351   .text:00000404 $d
-     /tmp/ccimRGC4.s:1373   .text:0000042c $t
-     /tmp/ccimRGC4.s:1379   .text:0000042c _Z9set_pid_vP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:1539   .text:000004e0 $d
-     /tmp/ccimRGC4.s:1551   .text:000004e8 $t
-     /tmp/ccimRGC4.s:1557   .text:000004e8 _Z9set_pid_pP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:1717   .text:0000059c $d
-     /tmp/ccimRGC4.s:1746   .text:000005a4 $t
-     /tmp/ccimRGC4.s:1752   .text:000005a4 _Z8get_modeP11EmbeddedCliPcPv
-     /tmp/ccimRGC4.s:1871   .text:00000600 $d
+     /tmp/cc38vYQD.s:21     .rodata.str1.4:00000000 $d
+     /tmp/cc38vYQD.s:30     .text:00000000 $t
+     /tmp/cc38vYQD.s:36     .text:00000000 _Z16get_motor_by_argPPKciPi
+     /tmp/cc38vYQD.s:83     .text:00000022 $d
+     /tmp/cc38vYQD.s:88     .text:00000026 $t
+     /tmp/cc38vYQD.s:146    .text:00000050 $d
+     /tmp/cc38vYQD.s:161    .text:00000068 $t
+     /tmp/cc38vYQD.s:167    .text:00000068 _Z5startP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:237    .text:000000a0 $d
+     /tmp/cc38vYQD.s:247    .text:000000a4 $t
+     /tmp/cc38vYQD.s:253    .text:000000a4 _Z4stopP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:323    .text:000000dc $d
+     /tmp/cc38vYQD.s:333    .text:000000e0 $t
+     /tmp/cc38vYQD.s:339    .text:000000e0 _Z5resetP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:389    .text:00000104 $d
+     /tmp/cc38vYQD.s:405    .text:00000108 $t
+     /tmp/cc38vYQD.s:411    .text:00000108 _Z12clear_eepromP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:496    .text:0000014c $d
+     /tmp/cc38vYQD.s:513    .text:00000154 $t
+     /tmp/cc38vYQD.s:519    .text:00000154 _Z4saveP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:608    .text:0000019c $d
+     /tmp/cc38vYQD.s:623    .text:000001a4 $t
+     /tmp/cc38vYQD.s:629    .text:000001a4 _Z7set_freP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:731    .text:00000200 $d
+     /tmp/cc38vYQD.s:742    .text:00000208 $t
+     /tmp/cc38vYQD.s:748    .text:00000208 _Z8set_dutyP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:850    .text:00000264 $d
+     /tmp/cc38vYQD.s:862    .text:0000026c $t
+     /tmp/cc38vYQD.s:868    .text:0000026c _Z7set_posP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:970    .text:000002c8 $d
+     /tmp/cc38vYQD.s:975    .text:000002d0 $t
+     /tmp/cc38vYQD.s:981    .text:000002d0 _Z9set_speedP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:1083   .text:0000032c $d
+     /tmp/cc38vYQD.s:1132   .text:00000334 $t
+     /tmp/cc38vYQD.s:1138   .text:00000334 _Z8set_modeP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:1351   .text:00000404 $d
+     /tmp/cc38vYQD.s:1373   .text:0000042c $t
+     /tmp/cc38vYQD.s:1379   .text:0000042c _Z9set_pid_vP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:1539   .text:000004e0 $d
+     /tmp/cc38vYQD.s:1551   .text:000004e8 $t
+     /tmp/cc38vYQD.s:1557   .text:000004e8 _Z9set_pid_pP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:1717   .text:0000059c $d
+     /tmp/cc38vYQD.s:1746   .text:000005a4 $t
+     /tmp/cc38vYQD.s:1752   .text:000005a4 _Z8get_modeP11EmbeddedCliPcPv
+     /tmp/cc38vYQD.s:1871   .text:00000600 $d
 
 UNDEFINED SYMBOLS
 atoi
@@ -2671,7 +2671,7 @@ M4
 M2
 _ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
 _ZN10CLI_Module13init_arg_listEPPKcS1_
-ARM GAS  /tmp/ccimRGC4.s 			page 46
+ARM GAS  /tmp/cc38vYQD.s 			page 46
 
 
 _ZN8DC_Motor8Motor_ENEb
