@@ -186,8 +186,7 @@ void DC_Motor::test_laji()
 
 void DC_Motor::My_DC_Motor_Reset()
 {
-    _target_location2 = rad2deg(reg_final);
-    _target_location2_cmd = _target_location2;
+    _target_location2 = rad2deg(reg_final); //复位位置为当前位置
     _target_speed = 0.0;
     updown_duty = 0.0;
     Motor_EN(false);

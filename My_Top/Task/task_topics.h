@@ -11,7 +11,6 @@ typedef struct {
 
     // 目标位置/速度
     float _target_location2;     //目标位置 (度)
-    float _target_location2_cmd;      //目标位置cmd
     float _target_speed;         //目标速度
 
 

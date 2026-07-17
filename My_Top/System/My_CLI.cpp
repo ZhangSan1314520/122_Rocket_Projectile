@@ -171,7 +171,7 @@ void set_pos(EmbeddedCli *cli, char *args, void *context) //设置目标位置
         printf("参数格式错误\r\n");
         return;
     }
-    m->_target_location2_cmd = temp;
+    m->_target_location2 = temp;
     printf("电机M%d 目标位置设置%.2f\r\n",idx,temp);
 }
 
@@ -195,7 +195,7 @@ void set_speed(EmbeddedCli *cli, char *args, void *context) //设置目标速度
         return;
     }
     m->_target_speed = temp;
-    printf("电机M%d 目标位置设置%.2f\r\n",idx,temp);
+    printf("电机M%d 目标速度设置%.2f\r\n",idx,temp);
 }
 
 

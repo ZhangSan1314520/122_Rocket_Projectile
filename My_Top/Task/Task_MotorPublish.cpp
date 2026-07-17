@@ -16,7 +16,6 @@ static void fill_telem(motor_telem_t *dst, DC_Motor *m) // 电机数据填充转
 
     // 目标位置/速度
     dst->_target_location2 = m->_target_location2;      //目标位置 (度)
-    dst->_target_location2_cmd = m->_target_location2_cmd;
     dst->_target_speed = m->_target_speed;          //目标速度
  
     //热敏电阻

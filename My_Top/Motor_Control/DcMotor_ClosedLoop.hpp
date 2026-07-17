@@ -48,7 +48,6 @@ public:
 
     float _target_speed = 0.0f;//电机速度目标值
     float _target_location2 = 0.0f;//电机目标位置 (-180°~+180°)
-    float _target_location2_cmd = 0.0f;//电机目标位置 (-180°~+180°) 原始命令
 
     static uint16_t ADC_Value[max_chl_num]; //ADC采集值数组
     float ADC_RES_Val; //热敏电阻值
