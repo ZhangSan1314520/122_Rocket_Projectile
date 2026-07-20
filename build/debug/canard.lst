@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccKA4fQ5.s 			page 1
+ARM GAS  /tmp/ccBkjMFy.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
   28:My_Top/Drone_CAN/canard.c **** #include <string.h>
   29:My_Top/Drone_CAN/canard.c **** 
   30:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 2
+ARM GAS  /tmp/ccBkjMFy.s 			page 2
 
 
   31:My_Top/Drone_CAN/canard.c **** #undef MIN
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
   85:My_Top/Drone_CAN/canard.c **** 
   86:My_Top/Drone_CAN/canard.c ****     out_ins->node_id = CANARD_BROADCAST_NODE_ID;
   87:My_Top/Drone_CAN/canard.c ****     out_ins->on_reception = on_reception;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 3
+ARM GAS  /tmp/ccBkjMFy.s 			page 3
 
 
   88:My_Top/Drone_CAN/canard.c ****     out_ins->should_accept = should_accept;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  142:My_Top/Drone_CAN/canard.c **** int16_t canardBroadcast(CanardInstance* ins,
  143:My_Top/Drone_CAN/canard.c ****                         uint64_t data_type_signature,
  144:My_Top/Drone_CAN/canard.c ****                         uint16_t data_type_id,
-ARM GAS  /tmp/ccKA4fQ5.s 			page 4
+ARM GAS  /tmp/ccBkjMFy.s 			page 4
 
 
  145:My_Top/Drone_CAN/canard.c ****                         uint8_t* inout_transfer_id,
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  199:My_Top/Drone_CAN/canard.c ****         {
  200:My_Top/Drone_CAN/canard.c ****             return -CANARD_ERROR_NODE_ID_NOT_SET;
  201:My_Top/Drone_CAN/canard.c ****         }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 5
+ARM GAS  /tmp/ccBkjMFy.s 			page 5
 
 
  202:My_Top/Drone_CAN/canard.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
   37 0000 0846     		mov	r0, r1
   38              	.LVL1:
   39              		.loc 1 247 1 view .LVU4
-ARM GAS  /tmp/ccKA4fQ5.s 			page 6
+ARM GAS  /tmp/ccBkjMFy.s 			page 6
 
 
   40 0002 7047     		bx	lr
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  264:My_Top/Drone_CAN/canard.c **** #if CANARD_64_BIT
  265:My_Top/Drone_CAN/canard.c ****     if (idx == CANARD_BUFFER_IDX_NONE) {
  266:My_Top/Drone_CAN/canard.c ****         return NULL;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 7
+ARM GAS  /tmp/ccBkjMFy.s 			page 7
 
 
  267:My_Top/Drone_CAN/canard.c ****     }
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  119              		.thumb
  120              		.thumb_func
  122              	computeTransferIDForwardDistance:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 8
+ARM GAS  /tmp/ccBkjMFy.s 			page 8
 
 
  123              	.LVL8:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  339:My_Top/Drone_CAN/canard.c ****         .transfer_type = kind == CanardRequest ? CanardTransferTypeRequest : CanardTransferTypeResp
  340:My_Top/Drone_CAN/canard.c ****         .payload = payload,
  341:My_Top/Drone_CAN/canard.c ****         .payload_len = payload_len,
-ARM GAS  /tmp/ccKA4fQ5.s 			page 9
+ARM GAS  /tmp/ccBkjMFy.s 			page 9
 
 
  342:My_Top/Drone_CAN/canard.c **** #if CANARD_ENABLE_DEADLINE
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  396:My_Top/Drone_CAN/canard.c **** void canardPopTxQueue(CanardInstance* ins)
  397:My_Top/Drone_CAN/canard.c **** {
  398:My_Top/Drone_CAN/canard.c ****     CanardTxQueueItem* item = ins->tx_queue;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 10
+ARM GAS  /tmp/ccBkjMFy.s 			page 10
 
 
  399:My_Top/Drone_CAN/canard.c ****     ins->tx_queue = item->next;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  453:My_Top/Drone_CAN/canard.c ****     }
  454:My_Top/Drone_CAN/canard.c ****     else
  455:My_Top/Drone_CAN/canard.c ****     {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 11
+ARM GAS  /tmp/ccBkjMFy.s 			page 11
 
 
  456:My_Top/Drone_CAN/canard.c ****         rx_state = findRxState(ins, transfer_descriptor);
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  510:My_Top/Drone_CAN/canard.c ****     if (IS_START_OF_TRANSFER(tail_byte) && IS_END_OF_TRANSFER(tail_byte)) // single frame transfer
  511:My_Top/Drone_CAN/canard.c ****     {
  512:My_Top/Drone_CAN/canard.c ****         rx_state->timestamp_usec = timestamp_usec;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 12
+ARM GAS  /tmp/ccBkjMFy.s 			page 12
 
 
  513:My_Top/Drone_CAN/canard.c ****         CanardRxTransfer rx_transfer = {
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  567:My_Top/Drone_CAN/canard.c ****                                           frame->data + 2, (uint8_t)(frame->data_len - 3));
  568:My_Top/Drone_CAN/canard.c ****     }
  569:My_Top/Drone_CAN/canard.c ****     else if (!IS_START_OF_TRANSFER(tail_byte) && !IS_END_OF_TRANSFER(tail_byte))    // Middle of a 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 13
+ARM GAS  /tmp/ccBkjMFy.s 			page 13
 
 
  570:My_Top/Drone_CAN/canard.c ****     {
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  624:My_Top/Drone_CAN/canard.c ****         CanardRxTransfer rx_transfer = {
  625:My_Top/Drone_CAN/canard.c ****             .timestamp_usec = timestamp_usec,
  626:My_Top/Drone_CAN/canard.c ****             .payload_head = rx_state->buffer_head,
-ARM GAS  /tmp/ccKA4fQ5.s 			page 14
+ARM GAS  /tmp/ccBkjMFy.s 			page 14
 
 
  627:My_Top/Drone_CAN/canard.c ****             .payload_middle = canardBufferFromIdx(&ins->allocator, rx_state->buffer_blocks),
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  681:My_Top/Drone_CAN/canard.c ****                 releaseStatePayload(ins, state);
  682:My_Top/Drone_CAN/canard.c ****                 ins->rx_states = canardRxFromIdx(&ins->allocator, ins->rx_states->next);
  683:My_Top/Drone_CAN/canard.c ****                 freeBlock(&ins->allocator, state);
-ARM GAS  /tmp/ccKA4fQ5.s 			page 15
+ARM GAS  /tmp/ccBkjMFy.s 			page 15
 
 
  684:My_Top/Drone_CAN/canard.c ****                 state = ins->rx_states;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  738:My_Top/Drone_CAN/canard.c **** int16_t canardDecodeScalar(const CanardRxTransfer* transfer,
  739:My_Top/Drone_CAN/canard.c ****                            uint32_t bit_offset,
  740:My_Top/Drone_CAN/canard.c ****                            uint8_t bit_length,
-ARM GAS  /tmp/ccKA4fQ5.s 			page 16
+ARM GAS  /tmp/ccBkjMFy.s 			page 16
 
 
  741:My_Top/Drone_CAN/canard.c ****                            bool value_is_signed,
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  795:My_Top/Drone_CAN/canard.c ****         // coverity[overrun-local]
  796:My_Top/Drone_CAN/canard.c ****         storage.bytes[bit_length / 8U] = (uint8_t)(storage.bytes[bit_length / 8U] >> ((8U - (bit_le
  797:My_Top/Drone_CAN/canard.c ****     }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 17
+ARM GAS  /tmp/ccBkjMFy.s 			page 17
 
 
  798:My_Top/Drone_CAN/canard.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  852:My_Top/Drone_CAN/canard.c ****         {
  853:My_Top/Drone_CAN/canard.c ****             if ((storage.u16 & (1U << (bit_length - 1U))) != 0)
  854:My_Top/Drone_CAN/canard.c ****             {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 18
+ARM GAS  /tmp/ccBkjMFy.s 			page 18
 
 
  855:My_Top/Drone_CAN/canard.c ****                 storage.u16 |= (uint16_t) 0xFFFFU & (uint16_t) ~((1U << bit_length) - 1U);
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  909:My_Top/Drone_CAN/canard.c ****     CANARD_ASSERT(result > 0);
  910:My_Top/Drone_CAN/canard.c ****     return result;
  911:My_Top/Drone_CAN/canard.c **** }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 19
+ARM GAS  /tmp/ccBkjMFy.s 			page 19
 
 
  912:My_Top/Drone_CAN/canard.c **** 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  966:My_Top/Drone_CAN/canard.c ****     CANARD_ASSERT(std_byte_length > 0);
  967:My_Top/Drone_CAN/canard.c **** 	
  968:My_Top/Drone_CAN/canard.c **** #if WORD_ADDRESSING_IS_16BITS
-ARM GAS  /tmp/ccKA4fQ5.s 			page 20
+ARM GAS  /tmp/ccBkjMFy.s 			page 20
 
 
  969:My_Top/Drone_CAN/canard.c ****     /*
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1023:My_Top/Drone_CAN/canard.c **** }
 1024:My_Top/Drone_CAN/canard.c **** 
 1025:My_Top/Drone_CAN/canard.c **** uint16_t canardConvertNativeFloatToFloat16(float value)
-ARM GAS  /tmp/ccKA4fQ5.s 			page 21
+ARM GAS  /tmp/ccBkjMFy.s 			page 21
 
 
 1026:My_Top/Drone_CAN/canard.c **** {
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1080:My_Top/Drone_CAN/canard.c ****     const union FP32 was_inf_nan = { (127UL + 16UL) << 23U };
 1081:My_Top/Drone_CAN/canard.c ****     union FP32 out;
 1082:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 22
+ARM GAS  /tmp/ccBkjMFy.s 			page 22
 
 
 1083:My_Top/Drone_CAN/canard.c ****     out.u = (value & 0x7FFFU) << 13U;
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1102:My_Top/Drone_CAN/canard.c ****     }
  154              		.loc 1 1102 11 view .LVU31
  155 000c 18B2     		sxth	r0, r3
-ARM GAS  /tmp/ccKA4fQ5.s 			page 23
+ARM GAS  /tmp/ccBkjMFy.s 			page 23
 
 
  156 000e FBE7     		b	.L6
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  203              	.LVL16:
  204              	.LFB27:
 1117:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 24
+ARM GAS  /tmp/ccBkjMFy.s 			page 24
 
 
 1118:My_Top/Drone_CAN/canard.c **** CANARD_INTERNAL uint16_t dlcToDataLength(uint16_t dlc) {
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  239              		.loc 1 1126 9 is_stmt 1 view .LVU46
 1126:My_Top/Drone_CAN/canard.c ****     } else if (dlc == 10) {
  240              		.loc 1 1126 16 is_stmt 0 view .LVU47
-ARM GAS  /tmp/ccKA4fQ5.s 			page 25
+ARM GAS  /tmp/ccBkjMFy.s 			page 25
 
 
  241 001c 0C20     		movs	r0, #12
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  282              	.LVL29:
  283              	.L19:
 1137:My_Top/Drone_CAN/canard.c ****     }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 26
+ARM GAS  /tmp/ccBkjMFy.s 			page 26
 
 
 1138:My_Top/Drone_CAN/canard.c ****     return 64;
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  325 0014 2028     		cmp	r0, #32
  326 0016 0BD9     		bls	.L28
 1153:My_Top/Drone_CAN/canard.c ****         return 13;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 27
+ARM GAS  /tmp/ccBkjMFy.s 			page 27
 
 
 1154:My_Top/Drone_CAN/canard.c ****     } else if (data_length <= 48) {
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  368              	.LVL41:
 1153:My_Top/Drone_CAN/canard.c ****     } else if (data_length <= 48) {
  369              		.loc 1 1153 16 view .LVU90
-ARM GAS  /tmp/ccKA4fQ5.s 			page 28
+ARM GAS  /tmp/ccBkjMFy.s 			page 28
 
 
  370 0032 7047     		bx	lr
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1192:My_Top/Drone_CAN/canard.c **** 
 1193:My_Top/Drone_CAN/canard.c ****         memcpy(queue_item->frame.data, transfer->payload, transfer->payload_len);
 1194:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 29
+ARM GAS  /tmp/ccBkjMFy.s 			page 29
 
 
 1195:My_Top/Drone_CAN/canard.c ****         transfer->payload_len = dlcToDataLength(dataLengthToDlc(transfer->payload_len+1))-1;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1249:My_Top/Drone_CAN/canard.c ****             }
 1250:My_Top/Drone_CAN/canard.c ****             else
 1251:My_Top/Drone_CAN/canard.c ****             {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 30
+ARM GAS  /tmp/ccBkjMFy.s 			page 30
 
 
 1252:My_Top/Drone_CAN/canard.c ****                 i = 0;
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1306:My_Top/Drone_CAN/canard.c ****         {
 1307:My_Top/Drone_CAN/canard.c ****             if (queue == ins->tx_queue)
 1308:My_Top/Drone_CAN/canard.c ****             {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 31
+ARM GAS  /tmp/ccBkjMFy.s 			page 31
 
 
 1309:My_Top/Drone_CAN/canard.c ****                 item->next = queue;
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  399              		.loc 1 1354 20 is_stmt 0 view .LVU96
  400 0002 21F0604C 		bic	ip, r1, #-536870912
  401              	.LVL45:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 32
+ARM GAS  /tmp/ccBkjMFy.s 			page 32
 
 
 1355:My_Top/Drone_CAN/canard.c ****     const uint32_t rhs_clean_id = rhs & CANARD_CAN_EXT_ID_MASK;
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1383:My_Top/Drone_CAN/canard.c ****         return rhs_rtr;
 1384:My_Top/Drone_CAN/canard.c ****     }
 1385:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 33
+ARM GAS  /tmp/ccBkjMFy.s 			page 33
 
 
 1386:My_Top/Drone_CAN/canard.c ****     /*
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  468              	.LVL56:
  469              	.L38:
 1364:My_Top/Drone_CAN/canard.c ****         uint32_t rhs_arb11 = rhs_ext ? (rhs_clean_id >> 18U) : rhs_clean_id;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 34
+ARM GAS  /tmp/ccBkjMFy.s 			page 34
 
 
  470              		.loc 1 1364 50 discriminator 1 view .LVU123
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1292:My_Top/Drone_CAN/canard.c **** 
  518              		.loc 1 1292 44 view .LVU132
 1294:My_Top/Drone_CAN/canard.c ****     {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 35
+ARM GAS  /tmp/ccBkjMFy.s 			page 35
 
 
  519              		.loc 1 1294 5 view .LVU133
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  557              		.loc 1 1296 23 is_stmt 0 view .LVU149
  558 002c 7962     		str	r1, [r7, #36]
 1297:My_Top/Drone_CAN/canard.c ****     }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 36
+ARM GAS  /tmp/ccBkjMFy.s 			page 36
 
 
  559              		.loc 1 1297 9 is_stmt 1 view .LVU150
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  598              		.align	1
  599              		.syntax unified
  600              		.thumb
-ARM GAS  /tmp/ccKA4fQ5.s 			page 37
+ARM GAS  /tmp/ccBkjMFy.s 			page 37
 
 
  601              		.thumb_func
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1405:My_Top/Drone_CAN/canard.c ****  */
 1406:My_Top/Drone_CAN/canard.c **** uint16_t extractDataType(uint32_t id)
 1407:My_Top/Drone_CAN/canard.c **** {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 38
+ARM GAS  /tmp/ccBkjMFy.s 			page 38
 
 
 1408:My_Top/Drone_CAN/canard.c ****     if (extractTransferType(id) == CanardTransferTypeBroadcast)
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1462:My_Top/Drone_CAN/canard.c ****         }
 1463:My_Top/Drone_CAN/canard.c **** 
 1464:My_Top/Drone_CAN/canard.c ****         ins->rx_states = states;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 39
+ARM GAS  /tmp/ccBkjMFy.s 			page 39
 
 
 1465:My_Top/Drone_CAN/canard.c ****         return states;
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  671              		.loc 1 1491 17 view .LVU185
  672 0010 FFF7FEFF 		bl	canardRxFromIdx
  673              	.LVL75:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 40
+ARM GAS  /tmp/ccBkjMFy.s 			page 40
 
 
  674              	.L56:
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1519:My_Top/Drone_CAN/canard.c ****     };
 1520:My_Top/Drone_CAN/canard.c **** 
 1521:My_Top/Drone_CAN/canard.c ****     CanardRxState* state = (CanardRxState*) allocateBlock(allocator);
-ARM GAS  /tmp/ccKA4fQ5.s 			page 41
+ARM GAS  /tmp/ccBkjMFy.s 			page 41
 
 
 1522:My_Top/Drone_CAN/canard.c ****     if (state == NULL)
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1576:My_Top/Drone_CAN/canard.c ****         (uint16_t)(((state->payload_len) - CANARD_MULTIFRAME_RX_PAYLOAD_HEAD_SIZE) % CANARD_BUFFER_
 1577:My_Top/Drone_CAN/canard.c **** 
 1578:My_Top/Drone_CAN/canard.c ****     // get to current block
-ARM GAS  /tmp/ccKA4fQ5.s 			page 42
+ARM GAS  /tmp/ccBkjMFy.s 			page 42
 
 
 1579:My_Top/Drone_CAN/canard.c ****     CanardBufferBlock* block = NULL;
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1633:My_Top/Drone_CAN/canard.c ****             if (block->next == NULL)
 1634:My_Top/Drone_CAN/canard.c ****             {
 1635:My_Top/Drone_CAN/canard.c ****                 return -CANARD_ERROR_OUT_OF_MEMORY;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 43
+ARM GAS  /tmp/ccBkjMFy.s 			page 43
 
 
 1636:My_Top/Drone_CAN/canard.c ****             }
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  720              		.loc 1 1668 9 is_stmt 0 view .LVU198
  721 0008 03EBD604 		add	r4, r3, r6, lsr #3
  722              	.LVL78:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 44
+ARM GAS  /tmp/ccBkjMFy.s 			page 44
 
 
 1669:My_Top/Drone_CAN/canard.c **** 
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  765 0032 28BF     		it	cs
  766 0034 8C46     		movcs	ip, r1
  767              	.LVL87:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 45
+ARM GAS  /tmp/ccBkjMFy.s 			page 45
 
 
 1681:My_Top/Drone_CAN/canard.c **** 
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  804 0066 04F80860 		strb	r6, [r4, r8]
  805              	.LVL93:
 1698:My_Top/Drone_CAN/canard.c **** #endif
-ARM GAS  /tmp/ccKA4fQ5.s 			page 46
+ARM GAS  /tmp/ccBkjMFy.s 			page 46
 
 
 1699:My_Top/Drone_CAN/canard.c **** 
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  850              		.cfi_offset 14, -4
  851 0004 87B0     		sub	sp, sp, #28
  852              		.cfi_def_cfa_offset 64
-ARM GAS  /tmp/ccKA4fQ5.s 			page 47
+ARM GAS  /tmp/ccBkjMFy.s 			page 47
 
 
  853 0006 0393     		str	r3, [sp, #12]
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1726:My_Top/Drone_CAN/canard.c ****         /*
 1727:My_Top/Drone_CAN/canard.c ****          * This part is hideously complicated and probably should be redesigned.
 1728:My_Top/Drone_CAN/canard.c ****          * The objective here is to copy the requested number of bits from scattered storage into t
-ARM GAS  /tmp/ccKA4fQ5.s 			page 48
+ARM GAS  /tmp/ccBkjMFy.s 			page 48
 
 
 1729:My_Top/Drone_CAN/canard.c ****          * local storage. We go through great pains to ensure that all corner cases are handled cor
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1745:My_Top/Drone_CAN/canard.c ****             remaining_bit_length = (uint8_t)(remaining_bit_length - amount);
  929              		.loc 1 1745 13 view .LVU273
  930              		.loc 1 1745 34 is_stmt 0 view .LVU274
-ARM GAS  /tmp/ccKA4fQ5.s 			page 49
+ARM GAS  /tmp/ccBkjMFy.s 			page 49
 
 
  931 005a A5EB0B04 		sub	r4, r5, fp
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1754:My_Top/Drone_CAN/canard.c ****         {
 1755:My_Top/Drone_CAN/canard.c ****             CANARD_ASSERT(remaining_bits > 0);
 1756:My_Top/Drone_CAN/canard.c ****             const uint32_t block_end_bit_offset = block_bit_offset + MIN(CANARD_BUFFER_BLOCK_DATA_S
-ARM GAS  /tmp/ccKA4fQ5.s 			page 50
+ARM GAS  /tmp/ccBkjMFy.s 			page 50
 
 
 1757:My_Top/Drone_CAN/canard.c ****                                                                          remaining_bits);
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  981              		.loc 1 1802 9 is_stmt 0 view .LVU291
  982 0096 FFF7FEFF 		bl	copyBitArray
  983              	.LVL113:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 51
+ARM GAS  /tmp/ccBkjMFy.s 			page 51
 
 
  984 009a 35E0     		b	.L77
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1026              	.LVL120:
 1770:My_Top/Drone_CAN/canard.c ****                 remaining_bit_length = (uint8_t)(remaining_bit_length - amount);
  1027              		.loc 1 1770 35 view .LVU304
-ARM GAS  /tmp/ccKA4fQ5.s 			page 52
+ARM GAS  /tmp/ccBkjMFy.s 			page 52
 
 
  1028 00be 5FFA8BFB 		uxtb	fp, fp
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1756:My_Top/Drone_CAN/canard.c ****                                                                          remaining_bits);
  1066              		.loc 1 1756 28 view .LVU321
  1067 00de 0AEB0108 		add	r8, r10, r1
-ARM GAS  /tmp/ccKA4fQ5.s 			page 53
+ARM GAS  /tmp/ccBkjMFy.s 			page 53
 
 
  1068              	.LVL126:
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1803:My_Top/Drone_CAN/canard.c ****     }
 1804:My_Top/Drone_CAN/canard.c **** 
 1805:My_Top/Drone_CAN/canard.c ****     return bit_length;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 54
+ARM GAS  /tmp/ccBkjMFy.s 			page 54
 
 
  1107              		.loc 1 1805 5 is_stmt 1 view .LVU337
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1149              		.cfi_endproc
  1150              	.LFE44:
  1152              		.section	.text.isBigEndian,"ax",%progbits
-ARM GAS  /tmp/ccKA4fQ5.s 			page 55
+ARM GAS  /tmp/ccBkjMFy.s 			page 55
 
 
  1153              		.align	1
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1184              		.cfi_startproc
  1185              		@ args = 0, pretend = 0, frame = 0
  1186              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccKA4fQ5.s 			page 56
+ARM GAS  /tmp/ccBkjMFy.s 			page 56
 
 
  1187              		@ link register save eliminated.
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1840:My_Top/Drone_CAN/canard.c ****     {
  1226              		.loc 1 1840 16 is_stmt 1 view .LVU377
  1227 0016 8B42     		cmp	r3, r1
-ARM GAS  /tmp/ccKA4fQ5.s 			page 57
+ARM GAS  /tmp/ccBkjMFy.s 			page 57
 
 
  1228 0018 F5D3     		bcc	.L88
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1270              	.LVL145:
  1271              	.L92:
 1856:My_Top/Drone_CAN/canard.c ****     for (uint8_t j = 0; j < 8; j++)
-ARM GAS  /tmp/ccKA4fQ5.s 			page 58
+ARM GAS  /tmp/ccBkjMFy.s 			page 58
 
 
  1272              		.loc 1 1856 33 is_stmt 1 discriminator 2 view .LVU390
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1313              		.cfi_startproc
  1314              		@ args = 0, pretend = 0, frame = 0
  1315              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccKA4fQ5.s 			page 59
+ARM GAS  /tmp/ccBkjMFy.s 			page 59
 
 
  1316              		.loc 1 1871 1 is_stmt 0 view .LVU402
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1877:My_Top/Drone_CAN/canard.c **** }
  1361              		.loc 1 1877 1 is_stmt 0 view .LVU415
  1362 0032 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  /tmp/ccKA4fQ5.s 			page 60
+ARM GAS  /tmp/ccBkjMFy.s 			page 60
 
 
  1363              		.loc 1 1877 1 view .LVU416
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1409 0012 002A     		cmp	r2, #0
  1410 0014 F7D1     		bne	.L102
 1884:My_Top/Drone_CAN/canard.c ****     }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 61
+ARM GAS  /tmp/ccBkjMFy.s 			page 61
 
 
 1885:My_Top/Drone_CAN/canard.c ****     return crc_val;
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1455              		.loc 1 299 9 is_stmt 1 view .LVU440
  299:My_Top/Drone_CAN/canard.c **** #if CANARD_ENABLE_CANFD
  1456              		.loc 1 299 15 is_stmt 0 view .LVU441
-ARM GAS  /tmp/ccKA4fQ5.s 			page 62
+ARM GAS  /tmp/ccBkjMFy.s 			page 62
 
 
  1457 0016 2A46     		mov	r2, r5
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1498 0002 0161     		str	r1, [r0, #16]
 1898:My_Top/Drone_CAN/canard.c ****     CanardPoolAllocatorBlock** current_block = &(allocator->free_list);
  1499              		.loc 1 1898 5 is_stmt 1 view .LVU452
-ARM GAS  /tmp/ccKA4fQ5.s 			page 63
+ARM GAS  /tmp/ccBkjMFy.s 			page 63
 
 
  1500              		.loc 1 1898 32 is_stmt 0 view .LVU453
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1541 0026 8381     		strh	r3, [r0, #12]	@ movhi
 1910:My_Top/Drone_CAN/canard.c ****     // user should initialize semaphore after the canardInit
 1911:My_Top/Drone_CAN/canard.c ****     // or at first call of canard_allocate_sem_take
-ARM GAS  /tmp/ccKA4fQ5.s 			page 64
+ARM GAS  /tmp/ccBkjMFy.s 			page 64
 
 
 1912:My_Top/Drone_CAN/canard.c ****     allocator->semaphore = NULL;
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1578              		.loc 1 1931 48 is_stmt 0 view .LVU484
  1579 0006 0268     		ldr	r2, [r0]
  1580              		.loc 1 1931 26 view .LVU485
-ARM GAS  /tmp/ccKA4fQ5.s 			page 65
+ARM GAS  /tmp/ccBkjMFy.s 			page 65
 
 
  1581 0008 5A60     		str	r2, [r3, #4]
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1649:My_Top/Drone_CAN/canard.c ****     if (block == NULL)
  1623              		.loc 1 1649 5 is_stmt 1 view .LVU497
 1649:My_Top/Drone_CAN/canard.c ****     if (block == NULL)
-ARM GAS  /tmp/ccKA4fQ5.s 			page 66
+ARM GAS  /tmp/ccBkjMFy.s 			page 66
 
 
  1624              		.loc 1 1649 53 is_stmt 0 view .LVU498
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1671              		.loc 1 1556 5 is_stmt 1 view .LVU507
  1672              	.LVL183:
 1559:My_Top/Drone_CAN/canard.c ****     {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 67
+ARM GAS  /tmp/ccBkjMFy.s 			page 67
 
 
  1673              		.loc 1 1559 5 view .LVU508
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1711              		.loc 1 1563 15 view .LVU524
  1712 002c 9BB2     		uxth	r3, r3
  1713              	.LVL188:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 68
+ARM GAS  /tmp/ccBkjMFy.s 			page 68
 
 
 1563:My_Top/Drone_CAN/canard.c ****         {
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1753              	.LBB19:
 1595:My_Top/Drone_CAN/canard.c **** 
  1754              		.loc 1 1595 9 is_stmt 1 view .LVU540
-ARM GAS  /tmp/ccKA4fQ5.s 			page 69
+ARM GAS  /tmp/ccBkjMFy.s 			page 69
 
 
  1755              	.LVL194:
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1794 0080 5046     		mov	r0, r10
  1795 0082 FFF7FEFF 		bl	createBufferBlock
  1796              	.LVL201:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 70
+ARM GAS  /tmp/ccBkjMFy.s 			page 70
 
 
  1797 0086 0646     		mov	r6, r0
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1599:My_Top/Drone_CAN/canard.c ****         {
  1836              		.loc 1 1599 28 view .LVU571
  1837 00a6 002A     		cmp	r2, #0
-ARM GAS  /tmp/ccKA4fQ5.s 			page 71
+ARM GAS  /tmp/ccBkjMFy.s 			page 71
 
 
  1838 00a8 F9D1     		bne	.L126
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1876              	.LVL213:
  1877              	.L128:
 1616:My_Top/Drone_CAN/canard.c ****         }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 72
+ARM GAS  /tmp/ccBkjMFy.s 			page 72
 
 
  1878              		.loc 1 1616 19 view .LVU588
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1918 00fa 0AD9     		bls	.L141
  1919              	.LBB22:
 1623:My_Top/Drone_CAN/canard.c ****              i < CANARD_BUFFER_BLOCK_DATA_SIZE && data_index < data_len;
-ARM GAS  /tmp/ccKA4fQ5.s 			page 73
+ARM GAS  /tmp/ccBkjMFy.s 			page 73
 
 
  1920              		.loc 1 1623 23 is_stmt 0 view .LVU603
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  1959 0124 0120     		movs	r0, #1
  1960              	.LVL225:
  1961              	.L122:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 74
+ARM GAS  /tmp/ccBkjMFy.s 			page 74
 
 
 1645:My_Top/Drone_CAN/canard.c **** 
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2004              		.loc 1 1952 5 view .LVU626
  2005              		.loc 1 1952 28 is_stmt 0 view .LVU627
  2006 0000 4368     		ldr	r3, [r0, #4]
-ARM GAS  /tmp/ccKA4fQ5.s 			page 75
+ARM GAS  /tmp/ccBkjMFy.s 			page 75
 
 
  2007              		.loc 1 1952 17 view .LVU628
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2051              	.LVL231:
  2052              	.L147:
  2053              	.LBB24:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 76
+ARM GAS  /tmp/ccBkjMFy.s 			page 76
 
 
 1535:My_Top/Drone_CAN/canard.c ****         CanardBufferBlock* const temp = block->next;
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2093 002e 6FF30903 		bfc	r3, #0, #10
  2094 0032 EB82     		strh	r3, [r5, #22]	@ movhi
 1541:My_Top/Drone_CAN/canard.c **** }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 77
+ARM GAS  /tmp/ccBkjMFy.s 			page 77
 
 
  2095              		.loc 1 1541 5 is_stmt 1 view .LVU655
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2140 0016 1846     		mov	r0, r3
  2141              	.LVL241:
 1347:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 78
+ARM GAS  /tmp/ccBkjMFy.s 			page 78
 
 
  2142              		.loc 1 1347 1 view .LVU667
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1174:My_Top/Drone_CAN/canard.c ****     {
  2189              		.loc 1 1174 18 is_stmt 0 view .LVU677
  2190 0016 2B8C     		ldrh	r3, [r5, #32]
-ARM GAS  /tmp/ccKA4fQ5.s 			page 79
+ARM GAS  /tmp/ccBkjMFy.s 			page 79
 
 
 1174:My_Top/Drone_CAN/canard.c ****     {
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2228              	.LVL250:
 1225:My_Top/Drone_CAN/canard.c ****         const uint16_t blocks_available = ins->allocator.statistics.capacity_blocks - ins->allocato
  2229              		.loc 1 1225 24 view .LVU695
-ARM GAS  /tmp/ccKA4fQ5.s 			page 80
+ARM GAS  /tmp/ccBkjMFy.s 			page 80
 
 
  2230 0034 C3F38F03 		ubfx	r3, r3, #2, #16
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2269 0064 74D0     		beq	.L165
 1193:My_Top/Drone_CAN/canard.c **** 
  2270              		.loc 1 1193 9 is_stmt 1 view .LVU711
-ARM GAS  /tmp/ccKA4fQ5.s 			page 81
+ARM GAS  /tmp/ccBkjMFy.s 			page 81
 
 
  2271 0066 2A8C     		ldrh	r2, [r5, #32]
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2309 0092 43F0C003 		orr	r3, r3, #192
 1197:My_Top/Drone_CAN/canard.c ****         queue_item->frame.id = can_id | CANARD_CAN_FRAME_EFF;
  2310              		.loc 1 1197 55 view .LVU728
-ARM GAS  /tmp/ccKA4fQ5.s 			page 82
+ARM GAS  /tmp/ccBkjMFy.s 			page 82
 
 
  2311 0096 2244     		add	r2, r2, r4
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2352              		.loc 1 1260 21 view .LVU741
  2353 00b8 A342     		cmp	r3, r4
  2354 00ba 40D0     		beq	.L171
-ARM GAS  /tmp/ccKA4fQ5.s 			page 83
+ARM GAS  /tmp/ccBkjMFy.s 			page 83
 
 
  2355              	.LVL265:
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2393 00e4 4BF00042 		orr	r2, fp, #-2147483648
 1264:My_Top/Drone_CAN/canard.c ****             queue_item->frame.data_len = (uint8_t)(i + 1);
  2394              		.loc 1 1264 34 view .LVU758
-ARM GAS  /tmp/ccKA4fQ5.s 			page 84
+ARM GAS  /tmp/ccBkjMFy.s 			page 84
 
 
  2395 00e8 7260     		str	r2, [r6, #4]
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1235:My_Top/Drone_CAN/canard.c ****             if (queue_item == NULL)
  2433              		.loc 1 1235 26 is_stmt 0 view .LVU775
  2434 0108 09F10C00 		add	r0, r9, #12
-ARM GAS  /tmp/ccKA4fQ5.s 			page 85
+ARM GAS  /tmp/ccBkjMFy.s 			page 85
 
 
  2435 010c FFF7FEFF 		bl	createTxItem
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2472 012c EB69     		ldr	r3, [r5, #28]
 1257:My_Top/Drone_CAN/canard.c ****             }
  2473              		.loc 1 1257 62 view .LVU793
-ARM GAS  /tmp/ccKA4fQ5.s 			page 86
+ARM GAS  /tmp/ccBkjMFy.s 			page 86
 
 
  2474 012e 1A5D     		ldrb	r2, [r3, r4]	@ zero_extendqisi2
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2515              		.loc 1 1190 20 view .LVU806
  2516 0150 6FF00207 		mvn	r7, #2
  2517 0154 A9E7     		b	.L153
-ARM GAS  /tmp/ccKA4fQ5.s 			page 87
+ARM GAS  /tmp/ccBkjMFy.s 			page 87
 
 
  2518              	.LVL289:
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1515:My_Top/Drone_CAN/canard.c ****         .next = CANARD_BUFFER_IDX_NONE,
  2567              		.loc 1 1515 19 is_stmt 0 view .LVU814
  2568 0008 2022     		movs	r2, #32
-ARM GAS  /tmp/ccKA4fQ5.s 			page 88
+ARM GAS  /tmp/ccBkjMFy.s 			page 88
 
 
  2569 000a 0021     		movs	r1, #0
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2613              		.section	.text.prependRxState,"ax",%progbits
  2614              		.align	1
  2615              		.syntax unified
-ARM GAS  /tmp/ccKA4fQ5.s 			page 89
+ARM GAS  /tmp/ccBkjMFy.s 			page 89
 
 
  2616              		.thumb
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2658 001c 2562     		str	r5, [r4, #32]
 1510:My_Top/Drone_CAN/canard.c **** }
  2659              		.loc 1 1510 5 is_stmt 1 view .LVU839
-ARM GAS  /tmp/ccKA4fQ5.s 			page 90
+ARM GAS  /tmp/ccBkjMFy.s 			page 90
 
 
  2660              	.L177:
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2704              	.LVL306:
  2705              	.L180:
 1477:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 91
+ARM GAS  /tmp/ccBkjMFy.s 			page 91
 
 
  2706              		.loc 1 1477 1 view .LVU852
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
   73:My_Top/Drone_CAN/canard.c ****     CANARD_ASSERT(out_ins != NULL);
  2750              		.loc 1 73 1 is_stmt 1 view -0
  2751              		.cfi_startproc
-ARM GAS  /tmp/ccKA4fQ5.s 			page 92
+ARM GAS  /tmp/ccBkjMFy.s 			page 92
 
 
  2752              		@ args = 8, pretend = 0, frame = 0
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2791 001a A362     		str	r3, [r4, #40]
   95:My_Top/Drone_CAN/canard.c ****     if (pool_capacity > 0xFFFFU)
  2792              		.loc 1 95 5 is_stmt 1 view .LVU881
-ARM GAS  /tmp/ccKA4fQ5.s 			page 93
+ARM GAS  /tmp/ccBkjMFy.s 			page 93
 
 
   95:My_Top/Drone_CAN/canard.c ****     if (pool_capacity > 0xFFFFU)
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2837              	.LVL321:
  108:My_Top/Drone_CAN/canard.c **** 
  2838              		.loc 1 108 1 view .LVU894
-ARM GAS  /tmp/ccKA4fQ5.s 			page 94
+ARM GAS  /tmp/ccBkjMFy.s 			page 94
 
 
  2839 0002 7047     		bx	lr
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2886              	canardGetLocalNodeID:
  2887              	.LVL323:
  2888              	.LFB3:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 95
+ARM GAS  /tmp/ccBkjMFy.s 			page 95
 
 
  127:My_Top/Drone_CAN/canard.c ****     return ins->node_id;
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2938              		.cfi_startproc
  2939              		@ args = 0, pretend = 0, frame = 0
  2940              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccKA4fQ5.s 			page 96
+ARM GAS  /tmp/ccBkjMFy.s 			page 96
 
 
  136:My_Top/Drone_CAN/canard.c ****     CANARD_ASSERT(transfer != NULL);
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  2988 000c B9F1000F 		cmp	r9, #0
  2989 0010 22D0     		beq	.L207
  2990              	.L198:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 97
+ARM GAS  /tmp/ccBkjMFy.s 			page 97
 
 
  188:My_Top/Drone_CAN/canard.c ****     {
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3027 0034 4FF6FF70 		movw	r0, #65535
  3028 0038 FFF7FEFF 		bl	crcAdd
  3029              	.LVL332:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 98
+ARM GAS  /tmp/ccBkjMFy.s 			page 98
 
 
  211:My_Top/Drone_CAN/canard.c ****         can_id = ((uint32_t) transfer_object->priority << 24U) | ((uint32_t) discriminator << 9U) |
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3069 0066 1B02     		lsls	r3, r3, #8
  217:My_Top/Drone_CAN/canard.c ****         crc = calculateCRC(transfer_object);
  3070              		.loc 1 217 64 view .LVU957
-ARM GAS  /tmp/ccKA4fQ5.s 			page 99
+ARM GAS  /tmp/ccBkjMFy.s 			page 99
 
 
  3071 0068 43EA0863 		orr	r3, r3, r8, lsl #24
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3113 0092 6FF00105 		mvn	r5, #1
  3114 0096 F5E7     		b	.L199
  3115              	.LVL348:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 100
+ARM GAS  /tmp/ccBkjMFy.s 			page 100
 
 
  3116              	.L204:
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3164              	.LVL353:
  161:My_Top/Drone_CAN/canard.c ****         .data_type_signature = data_type_signature,
  3165              		.loc 1 161 22 view .LVU978
-ARM GAS  /tmp/ccKA4fQ5.s 			page 101
+ARM GAS  /tmp/ccBkjMFy.s 			page 101
 
 
  3166 000c 0021     		movs	r1, #0
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3215              		.cfi_def_cfa_offset 24
  3216              		.cfi_offset 4, -24
  3217              		.cfi_offset 5, -20
-ARM GAS  /tmp/ccKA4fQ5.s 			page 102
+ARM GAS  /tmp/ccBkjMFy.s 			page 102
 
 
  3218              		.cfi_offset 6, -16
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3256 002a 44EAC234 		orr	r4, r4, r2, lsl #15
  371:My_Top/Drone_CAN/canard.c ****                             (1U << 7U) | (uint32_t) canardGetLocalNodeID(ins);
  3257              		.loc 1 371 80 view .LVU1002
-ARM GAS  /tmp/ccKA4fQ5.s 			page 103
+ARM GAS  /tmp/ccBkjMFy.s 			page 103
 
 
  3258 002e 44EA0724 		orr	r4, r4, r7, lsl #8
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3298              		.loc 1 357 42 discriminator 1 view .LVU1016
  3299 005c 002B     		cmp	r3, #0
  3300 005e D6D0     		beq	.L212
-ARM GAS  /tmp/ccKA4fQ5.s 			page 104
+ARM GAS  /tmp/ccBkjMFy.s 			page 104
 
 
  359:My_Top/Drone_CAN/canard.c ****     }
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  334:My_Top/Drone_CAN/canard.c ****         .data_type_signature = data_type_signature,
  3350              		.loc 1 334 5 is_stmt 1 view .LVU1024
  339:My_Top/Drone_CAN/canard.c ****         .payload = payload,
-ARM GAS  /tmp/ccKA4fQ5.s 			page 105
+ARM GAS  /tmp/ccBkjMFy.s 			page 105
 
 
  3351              		.loc 1 339 76 is_stmt 0 view .LVU1025
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3400              		@ link register save eliminated.
  389:My_Top/Drone_CAN/canard.c ****     {
  3401              		.loc 1 389 5 view .LVU1033
-ARM GAS  /tmp/ccKA4fQ5.s 			page 106
+ARM GAS  /tmp/ccBkjMFy.s 			page 106
 
 
  389:My_Top/Drone_CAN/canard.c ****     {
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3445 0008 0C30     		adds	r0, r0, #12
  3446              	.LVL379:
  400:My_Top/Drone_CAN/canard.c **** }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 107
+ARM GAS  /tmp/ccBkjMFy.s 			page 107
 
 
  3447              		.loc 1 400 5 is_stmt 0 view .LVU1047
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3494 0012 2846     		mov	r0, r5
  3495 0014 FFF7FEFF 		bl	releaseStatePayload
  3496              	.LVL384:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 108
+ARM GAS  /tmp/ccBkjMFy.s 			page 108
 
 
  682:My_Top/Drone_CAN/canard.c ****                 freeBlock(&ins->allocator, state);
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3536              	.LVL391:
  3537              	.L227:
  675:My_Top/Drone_CAN/canard.c ****     {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 109
+ARM GAS  /tmp/ccBkjMFy.s 			page 109
 
 
  3538              		.loc 1 675 18 is_stmt 1 view .LVU1072
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3578              		.loc 1 692 17 is_stmt 1 view .LVU1086
  692:My_Top/Drone_CAN/canard.c ****             }
  3579              		.loc 1 692 25 is_stmt 0 view .LVU1087
-ARM GAS  /tmp/ccKA4fQ5.s 			page 110
+ARM GAS  /tmp/ccBkjMFy.s 			page 110
 
 
  3580 007c 3968     		ldr	r1, [r7]
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3629 0008 0028     		cmp	r0, #0
  3630 000a 00F0DF80 		beq	.L256
  3631 000e 1446     		mov	r4, r2
-ARM GAS  /tmp/ccKA4fQ5.s 			page 111
+ARM GAS  /tmp/ccBkjMFy.s 			page 111
 
 
  3632 0010 1D46     		mov	r5, r3
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  780:My_Top/Drone_CAN/canard.c ****     {
  3671              		.loc 1 780 8 is_stmt 0 view .LVU1110
  3672 003e 071E     		subs	r7, r0, #0
-ARM GAS  /tmp/ccKA4fQ5.s 			page 112
+ARM GAS  /tmp/ccBkjMFy.s 			page 112
 
 
  3673              	.LVL404:
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  806:My_Top/Drone_CAN/canard.c ****     else if (bit_length <= 64)  { std_byte_length = 8; }
  3710              		.loc 1 806 13 is_stmt 0 view .LVU1128
  3711 006a 202C     		cmp	r4, #32
-ARM GAS  /tmp/ccKA4fQ5.s 			page 113
+ARM GAS  /tmp/ccBkjMFy.s 			page 113
 
 
  3712 006c 2ED9     		bls	.L263
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  846:My_Top/Drone_CAN/canard.c ****             {
  3751              		.loc 1 846 25 is_stmt 0 view .LVU1144
  3752 0096 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
-ARM GAS  /tmp/ccKA4fQ5.s 			page 114
+ARM GAS  /tmp/ccBkjMFy.s 			page 114
 
 
  846:My_Top/Drone_CAN/canard.c ****             {
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3793              		.cfi_restore_state
  805:My_Top/Drone_CAN/canard.c ****     else if (bit_length <= 32)  { std_byte_length = 4; }
  3794              		.loc 1 805 51 discriminator 1 view .LVU1159
-ARM GAS  /tmp/ccKA4fQ5.s 			page 115
+ARM GAS  /tmp/ccBkjMFy.s 			page 115
 
 
  3795 00c6 4FF00208 		mov	r8, #2
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  858:My_Top/Drone_CAN/canard.c ****         {
  3836              		.loc 1 858 14 is_stmt 1 view .LVU1173
  858:My_Top/Drone_CAN/canard.c ****         {
-ARM GAS  /tmp/ccKA4fQ5.s 			page 116
+ARM GAS  /tmp/ccBkjMFy.s 			page 116
 
 
  3837              		.loc 1 858 17 is_stmt 0 view .LVU1174
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3876 0138 0343     		orrs	r3, r3, r0
  3877 013a 22FA01F1 		lsr	r1, r2, r1
  3878 013e 0B43     		orrs	r3, r3, r1
-ARM GAS  /tmp/ccKA4fQ5.s 			page 117
+ARM GAS  /tmp/ccBkjMFy.s 			page 117
 
 
  867:My_Top/Drone_CAN/canard.c ****             {
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3918              		.loc 1 885 17 is_stmt 0 view .LVU1204
  3919 017c 102C     		cmp	r4, #16
  3920 017e 03D8     		bhi	.L251
-ARM GAS  /tmp/ccKA4fQ5.s 			page 118
+ARM GAS  /tmp/ccBkjMFy.s 			page 118
 
 
  885:My_Top/Drone_CAN/canard.c ****         else if (bit_length <= 32)  { *((int32_t*) out_value) = storage.s32; }
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  898:My_Top/Drone_CAN/canard.c ****         else if (bit_length <= 32)  { *((uint32_t*) out_value) = storage.u32; }
  3958              		.loc 1 898 17 is_stmt 0 view .LVU1222
  3959 01a8 102C     		cmp	r4, #16
-ARM GAS  /tmp/ccKA4fQ5.s 			page 119
+ARM GAS  /tmp/ccBkjMFy.s 			page 119
 
 
  3960 01aa 03D8     		bhi	.L254
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  3999              	.L258:
  751:My_Top/Drone_CAN/canard.c ****     }
  4000              		.loc 1 751 16 view .LVU1238
-ARM GAS  /tmp/ccKA4fQ5.s 			page 120
+ARM GAS  /tmp/ccBkjMFy.s 			page 120
 
 
  4001 01d8 6FF00107 		mvn	r7, #1
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4048              		@ args = 0, pretend = 0, frame = 8
  4049              		@ frame_needed = 0, uses_anonymous_args = 0
  917:My_Top/Drone_CAN/canard.c ****     /*
-ARM GAS  /tmp/ccKA4fQ5.s 			page 121
+ARM GAS  /tmp/ccBkjMFy.s 			page 121
 
 
  4050              		.loc 1 917 1 is_stmt 0 view .LVU1248
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  957:My_Top/Drone_CAN/canard.c ****     else if (bit_length <= 16)  { std_byte_length = 2;              storage.u16 = *((uint16_t*) val
  4091              		.loc 1 957 10 is_stmt 1 view .LVU1262
  957:My_Top/Drone_CAN/canard.c ****     else if (bit_length <= 16)  { std_byte_length = 2;              storage.u16 = *((uint16_t*) val
-ARM GAS  /tmp/ccKA4fQ5.s 			page 122
+ARM GAS  /tmp/ccBkjMFy.s 			page 122
 
 
  4092              		.loc 1 957 13 is_stmt 0 view .LVU1263
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4129              		.loc 1 993 8 is_stmt 0 view .LVU1280
  4130 003c 14F0070F 		tst	r4, #7
  4131 0040 0AD0     		beq	.L280
-ARM GAS  /tmp/ccKA4fQ5.s 			page 123
+ARM GAS  /tmp/ccBkjMFy.s 			page 123
 
 
  996:My_Top/Drone_CAN/canard.c ****     }
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4173 0070 ADF80830 		strh	r3, [sp, #8]	@ movhi
  958:My_Top/Drone_CAN/canard.c ****     else if (bit_length <= 32)  { std_byte_length = 4;              storage.u32 = *((uint32_t*) val
  4174              		.loc 1 958 51 discriminator 1 view .LVU1294
-ARM GAS  /tmp/ccKA4fQ5.s 			page 124
+ARM GAS  /tmp/ccBkjMFy.s 			page 124
 
 
  4175 0074 0227     		movs	r7, #2
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4214 0096 CEE7     		b	.L275
  4215              	.LVL444:
  4216              	.L286:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 125
+ARM GAS  /tmp/ccBkjMFy.s 			page 125
 
 
  983:My_Top/Drone_CAN/canard.c ****     }
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1011:My_Top/Drone_CAN/canard.c ****     }
  4264              		.loc 1 1011 34 is_stmt 0 view .LVU1319
  4265 0012 E560     		str	r5, [r4, #12]
-ARM GAS  /tmp/ccKA4fQ5.s 			page 126
+ARM GAS  /tmp/ccBkjMFy.s 			page 126
 
 
  4266              	.LVL450:
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4307              		@ args = 0, pretend = 0, frame = 0
  4308              		@ frame_needed = 0, uses_anonymous_args = 0
  4309              		@ link register save eliminated.
-ARM GAS  /tmp/ccKA4fQ5.s 			page 127
+ARM GAS  /tmp/ccBkjMFy.s 			page 127
 
 
 1021:My_Top/Drone_CAN/canard.c ****     return ins->allocator.statistics;
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4352              		.loc 1 1039 5 view .LVU1348
 1041:My_Top/Drone_CAN/canard.c ****     in.f = value;
  4353              		.loc 1 1041 5 view .LVU1349
-ARM GAS  /tmp/ccKA4fQ5.s 			page 128
+ARM GAS  /tmp/ccBkjMFy.s 			page 128
 
 
 1042:My_Top/Drone_CAN/canard.c ****     uint32_t sign = in.u & sign_mask;
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4390              		.loc 1 1057 9 is_stmt 1 view .LVU1367
 1057:My_Top/Drone_CAN/canard.c ****         {
  4391              		.loc 1 1057 12 is_stmt 0 view .LVU1368
-ARM GAS  /tmp/ccKA4fQ5.s 			page 129
+ARM GAS  /tmp/ccBkjMFy.s 			page 129
 
 
  4392 0036 B3F1786F 		cmp	r3, #260046848
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1070:My_Top/Drone_CAN/canard.c ****     CANARD_ASSERT(sizeof(float) == CANARD_SIZEOF_FLOAT);
  4439              		.loc 1 1070 1 is_stmt 1 view -0
  4440              		.cfi_startproc
-ARM GAS  /tmp/ccKA4fQ5.s 			page 130
+ARM GAS  /tmp/ccBkjMFy.s 			page 130
 
 
  4441              		@ args = 0, pretend = 0, frame = 0
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
 1091:My_Top/Drone_CAN/canard.c **** }
  4478              		.loc 1 1091 15 is_stmt 0 view .LVU1396
  4479 002e 0343     		orrs	r3, r3, r0
-ARM GAS  /tmp/ccKA4fQ5.s 			page 131
+ARM GAS  /tmp/ccBkjMFy.s 			page 131
 
 
  4480              	.LVL466:
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4525              		.loc 1 1431 16 view .LVU1407
  4526 0010 0220     		movs	r0, #2
  4527              	.LVL470:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 132
+ARM GAS  /tmp/ccBkjMFy.s 			page 132
 
 
 1431:My_Top/Drone_CAN/canard.c ****     }
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4573              	.LVL475:
  4574              	.L315:
  4575              	.LBB36:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 133
+ARM GAS  /tmp/ccBkjMFy.s 			page 133
 
 
 1410:My_Top/Drone_CAN/canard.c ****         if (SOURCE_ID_FROM_ID(id) == CANARD_BROADCAST_NODE_ID)
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4622              		.cfi_def_cfa_offset 136
  4623 0006 0646     		mov	r6, r0
  4624 0008 0D46     		mov	r5, r1
-ARM GAS  /tmp/ccKA4fQ5.s 			page 134
+ARM GAS  /tmp/ccBkjMFy.s 			page 134
 
 
  4625 000a 0592     		str	r2, [sp, #20]
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4663              		.loc 1 421 32 view .LVU1444
  4664 0040 3046     		mov	r0, r6
  4665              	.LVL483:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 135
+ARM GAS  /tmp/ccBkjMFy.s 			page 135
 
 
  421:My_Top/Drone_CAN/canard.c ****     {
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4705              		.loc 1 434 5 is_stmt 1 view .LVU1459
  434:My_Top/Drone_CAN/canard.c ****     CanardRxState* rx_state = NULL;
  4706              		.loc 1 434 14 is_stmt 0 view .LVU1460
-ARM GAS  /tmp/ccKA4fQ5.s 			page 136
+ARM GAS  /tmp/ccBkjMFy.s 			page 136
 
 
  4707 0076 0022     		movs	r2, #0
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  475:My_Top/Drone_CAN/canard.c ****     const bool tid_timed_out = (timestamp_usec - rx_state->timestamp_usec) > TRANSFER_TIMEOUT_USEC;
  4747              		.loc 1 475 42 is_stmt 0 view .LVU1475
  4748 00ac A368     		ldr	r3, [r4, #8]
-ARM GAS  /tmp/ccKA4fQ5.s 			page 137
+ARM GAS  /tmp/ccBkjMFy.s 			page 137
 
 
  4749 00ae D4F80CA0 		ldr	r10, [r4, #12]
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4789 00de 0D90     		str	r0, [sp, #52]
  4790              	.LVL503:
  481:My_Top/Drone_CAN/canard.c ****     const bool non_wrapped_tid = computeTransferIDForwardDistance(TRANSFER_ID_FROM_TAIL_BYTE(tail_b
-ARM GAS  /tmp/ccKA4fQ5.s 			page 138
+ARM GAS  /tmp/ccBkjMFy.s 			page 138
 
 
  4791              		.loc 1 481 5 is_stmt 1 view .LVU1490
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4833              		.loc 1 489 35 view .LVU1502
  4834 011c 029B     		ldr	r3, [sp, #8]
  4835 011e 93B1     		cbz	r3, .L324
-ARM GAS  /tmp/ccKA4fQ5.s 			page 139
+ARM GAS  /tmp/ccBkjMFy.s 			page 139
 
 
  489:My_Top/Drone_CAN/canard.c **** 
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4874              		.loc 1 504 8 view .LVU1518
  4875 014a 9A42     		cmp	r2, r3
  4876 014c 40F07A81 		bne	.L350
-ARM GAS  /tmp/ccKA4fQ5.s 			page 140
+ARM GAS  /tmp/ccBkjMFy.s 			page 140
 
 
  510:My_Top/Drone_CAN/canard.c ****     {
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4914              		.loc 1 554 34 is_stmt 0 view .LVU1535
  4915 018a 059B     		ldr	r3, [sp, #20]
  4916 018c A360     		str	r3, [r4, #8]
-ARM GAS  /tmp/ccKA4fQ5.s 			page 141
+ARM GAS  /tmp/ccBkjMFy.s 			page 141
 
 
  4917 018e 069B     		ldr	r3, [sp, #24]
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  4955              		.loc 1 565 36 view .LVU1551
  4956 01c4 FFF7FEFF 		bl	crcAddSignature
  4957              	.LVL513:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 142
+ARM GAS  /tmp/ccBkjMFy.s 			page 142
 
 
  565:My_Top/Drone_CAN/canard.c ****         rx_state->calculated_crc = crcAdd((uint16_t)rx_state->calculated_crc,
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  456:My_Top/Drone_CAN/canard.c **** 
  4997              		.loc 1 456 20 is_stmt 0 view .LVU1567
  4998 01f0 4946     		mov	r1, r9
-ARM GAS  /tmp/ccKA4fQ5.s 			page 143
+ARM GAS  /tmp/ccBkjMFy.s 			page 143
 
 
  4999 01f2 3046     		mov	r0, r6
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  488:My_Top/Drone_CAN/canard.c ****             (iface_switch_allowed && first_frame && non_wrapped_tid);
  5041              		.loc 1 488 61 discriminator 5 view .LVU1580
  5042 022c 002A     		cmp	r2, #0
-ARM GAS  /tmp/ccKA4fQ5.s 			page 144
+ARM GAS  /tmp/ccBkjMFy.s 			page 144
 
 
  5043 022e 7FF479AF 		bne	.L322
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  516:My_Top/Drone_CAN/canard.c ****             .data_type_id = data_type_id,
  5085              		.loc 1 516 43 view .LVU1593
  5086 026a 2B7B     		ldrb	r3, [r5, #12]	@ zero_extendqisi2
-ARM GAS  /tmp/ccKA4fQ5.s 			page 145
+ARM GAS  /tmp/ccBkjMFy.s 			page 145
 
 
  516:My_Top/Drone_CAN/canard.c ****             .data_type_id = data_type_id,
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5129 02a8 2046     		mov	r0, r4
  5130 02aa FFF7FEFF 		bl	prepareForNextTransfer
  5131              	.LVL532:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 146
+ARM GAS  /tmp/ccBkjMFy.s 			page 146
 
 
  562:My_Top/Drone_CAN/canard.c ****         }
@@ -8758,7 +8758,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5169              		.loc 1 591 25 view .LVU1622
  5170              	.LBE41:
  586:My_Top/Drone_CAN/canard.c **** 
-ARM GAS  /tmp/ccKA4fQ5.s 			page 147
+ARM GAS  /tmp/ccBkjMFy.s 			page 147
 
 
  5171              		.loc 1 586 17 view .LVU1623
@@ -8818,7 +8818,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  579:My_Top/Drone_CAN/canard.c ****                                           frame->data, (uint8_t)(frame->data_len - 1));
  5212              		.loc 1 579 34 discriminator 1 view .LVU1637
  5213 0302 A082     		strh	r0, [r4, #20]	@ movhi
-ARM GAS  /tmp/ccKA4fQ5.s 			page 148
+ARM GAS  /tmp/ccBkjMFy.s 			page 148
 
 
  5214              	.LBE52:
@@ -8878,7 +8878,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  593:My_Top/Drone_CAN/canard.c ****             {
  5255              		.loc 1 593 34 view .LVU1651
  5256 032a 5FFA88F8 		uxtb	r8, r8
-ARM GAS  /tmp/ccKA4fQ5.s 			page 149
+ARM GAS  /tmp/ccBkjMFy.s 			page 149
 
 
  5257              	.LVL548:
@@ -8938,7 +8938,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5297              		.loc 1 629 47 view .LVU1665
  5298 035c E38A     		ldrh	r3, [r4, #22]
  5299 035e C3F30903 		ubfx	r3, r3, #0, #10
-ARM GAS  /tmp/ccKA4fQ5.s 			page 150
+ARM GAS  /tmp/ccBkjMFy.s 			page 150
 
 
  629:My_Top/Drone_CAN/canard.c ****             .data_type_id = data_type_id,
@@ -8998,7 +8998,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5341 03a2 2046     		mov	r0, r4
  5342 03a4 FFF7FEFF 		bl	prepareForNextTransfer
  5343              	.LVL555:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 151
+ARM GAS  /tmp/ccBkjMFy.s 			page 151
 
 
  657:My_Top/Drone_CAN/canard.c ****         {
@@ -9058,7 +9058,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  607:My_Top/Drone_CAN/canard.c ****                     offset += CANARD_BUFFER_BLOCK_DATA_SIZE;
  5387              		.loc 1 607 21 is_stmt 1 view .LVU1690
  608:My_Top/Drone_CAN/canard.c ****                 }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 152
+ARM GAS  /tmp/ccBkjMFy.s 			page 152
 
 
  5388              		.loc 1 608 21 view .LVU1691
@@ -9118,7 +9118,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5427 03f0 A1D2     		bcs	.L333
  619:My_Top/Drone_CAN/canard.c ****                 }
  5428              		.loc 1 619 21 is_stmt 1 view .LVU1707
-ARM GAS  /tmp/ccKA4fQ5.s 			page 153
+ARM GAS  /tmp/ccBkjMFy.s 			page 153
 
 
  619:My_Top/Drone_CAN/canard.c ****                 }
@@ -9178,7 +9178,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5470 0418 15E0     		b	.L318
  5471              	.LVL569:
  5472              	.L343:
-ARM GAS  /tmp/ccKA4fQ5.s 			page 154
+ARM GAS  /tmp/ccBkjMFy.s 			page 154
 
 
  659:My_Top/Drone_CAN/canard.c ****         }
@@ -9238,7 +9238,7 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5515              	.LVL579:
  5516              	.L350:
  507:My_Top/Drone_CAN/canard.c ****     }
-ARM GAS  /tmp/ccKA4fQ5.s 			page 155
+ARM GAS  /tmp/ccBkjMFy.s 			page 155
 
 
  5517              		.loc 1 507 16 view .LVU1733
@@ -9281,133 +9281,133 @@ ARM GAS  /tmp/ccKA4fQ5.s 			page 1
  5551              		.file 5 "My_Top/Drone_CAN/canard.h"
  5552              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
  5553              		.file 7 "<built-in>"
-ARM GAS  /tmp/ccKA4fQ5.s 			page 156
+ARM GAS  /tmp/ccBkjMFy.s 			page 156
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 canard.c
-     /tmp/ccKA4fQ5.s:21     .text.canardBufferFromIdx:00000000 $t
-     /tmp/ccKA4fQ5.s:26     .text.canardBufferFromIdx:00000000 canardBufferFromIdx
-     /tmp/ccKA4fQ5.s:45     .text.canardBufferToIdx:00000000 $t
-     /tmp/ccKA4fQ5.s:50     .text.canardBufferToIdx:00000000 canardBufferToIdx
-     /tmp/ccKA4fQ5.s:69     .text.canardRxFromIdx:00000000 $t
-     /tmp/ccKA4fQ5.s:74     .text.canardRxFromIdx:00000000 canardRxFromIdx
-     /tmp/ccKA4fQ5.s:93     .text.canardRxToIdx:00000000 $t
-     /tmp/ccKA4fQ5.s:98     .text.canardRxToIdx:00000000 canardRxToIdx
-     /tmp/ccKA4fQ5.s:117    .text.computeTransferIDForwardDistance:00000000 $t
-     /tmp/ccKA4fQ5.s:122    .text.computeTransferIDForwardDistance:00000000 computeTransferIDForwardDistance
-     /tmp/ccKA4fQ5.s:161    .text.incrementTransferID:00000000 $t
-     /tmp/ccKA4fQ5.s:166    .text.incrementTransferID:00000000 incrementTransferID
-     /tmp/ccKA4fQ5.s:197    .text.dlcToDataLength:00000000 $t
-     /tmp/ccKA4fQ5.s:202    .text.dlcToDataLength:00000000 dlcToDataLength
-     /tmp/ccKA4fQ5.s:215    .text.dlcToDataLength:00000008 $d
-     /tmp/ccKA4fQ5.s:290    .text.dataLengthToDlc:00000000 $t
-     /tmp/ccKA4fQ5.s:295    .text.dataLengthToDlc:00000000 dataLengthToDlc
-     /tmp/ccKA4fQ5.s:383    .text.isPriorityHigher:00000000 $t
-     /tmp/ccKA4fQ5.s:388    .text.isPriorityHigher:00000000 isPriorityHigher
-     /tmp/ccKA4fQ5.s:494    .text.pushTxQueue:00000000 $t
-     /tmp/ccKA4fQ5.s:499    .text.pushTxQueue:00000000 pushTxQueue
-     /tmp/ccKA4fQ5.s:598    .text.prepareForNextTransfer:00000000 $t
-     /tmp/ccKA4fQ5.s:603    .text.prepareForNextTransfer:00000000 prepareForNextTransfer
-     /tmp/ccKA4fQ5.s:636    .text.findRxState:00000000 $t
-     /tmp/ccKA4fQ5.s:641    .text.findRxState:00000000 findRxState
-     /tmp/ccKA4fQ5.s:691    .text.copyBitArray:00000000 $t
-     /tmp/ccKA4fQ5.s:696    .text.copyBitArray:00000000 copyBitArray
-     /tmp/ccKA4fQ5.s:827    .text.descatterTransferPayload:00000000 $t
-     /tmp/ccKA4fQ5.s:832    .text.descatterTransferPayload:00000000 descatterTransferPayload
-     /tmp/ccKA4fQ5.s:1153   .text.isBigEndian:00000000 $t
-     /tmp/ccKA4fQ5.s:1158   .text.isBigEndian:00000000 isBigEndian
-     /tmp/ccKA4fQ5.s:1175   .text.swapByteOrder:00000000 $t
-     /tmp/ccKA4fQ5.s:1180   .text.swapByteOrder:00000000 swapByteOrder
-     /tmp/ccKA4fQ5.s:1235   .text.crcAddByte:00000000 $t
-     /tmp/ccKA4fQ5.s:1240   .text.crcAddByte:00000000 crcAddByte
-     /tmp/ccKA4fQ5.s:1304   .text.crcAddSignature:00000000 $t
-     /tmp/ccKA4fQ5.s:1309   .text.crcAddSignature:00000000 crcAddSignature
-     /tmp/ccKA4fQ5.s:1368   .text.crcAdd:00000000 $t
-     /tmp/ccKA4fQ5.s:1373   .text.crcAdd:00000000 crcAdd
-     /tmp/ccKA4fQ5.s:1419   .text.calculateCRC:00000000 $t
-     /tmp/ccKA4fQ5.s:1424   .text.calculateCRC:00000000 calculateCRC
-     /tmp/ccKA4fQ5.s:1476   .text.initPoolAllocator:00000000 $t
-     /tmp/ccKA4fQ5.s:1481   .text.initPoolAllocator:00000000 initPoolAllocator
-     /tmp/ccKA4fQ5.s:1554   .text.allocateBlock:00000000 $t
-     /tmp/ccKA4fQ5.s:1559   .text.allocateBlock:00000000 allocateBlock
-     /tmp/ccKA4fQ5.s:1606   .text.createBufferBlock:00000000 $t
-     /tmp/ccKA4fQ5.s:1611   .text.createBufferBlock:00000000 createBufferBlock
-     /tmp/ccKA4fQ5.s:1642   .text.bufferBlockPushBytes:00000000 $t
-     /tmp/ccKA4fQ5.s:1647   .text.bufferBlockPushBytes:00000000 bufferBlockPushBytes
-     /tmp/ccKA4fQ5.s:1985   .text.bufferBlockPushBytes:0000013c $d
-     /tmp/ccKA4fQ5.s:1990   .text.freeBlock:00000000 $t
-     /tmp/ccKA4fQ5.s:1995   .text.freeBlock:00000000 freeBlock
-     /tmp/ccKA4fQ5.s:2025   .text.releaseStatePayload:00000000 $t
-     /tmp/ccKA4fQ5.s:2030   .text.releaseStatePayload:00000000 releaseStatePayload
-     /tmp/ccKA4fQ5.s:2105   .text.createTxItem:00000000 $t
-ARM GAS  /tmp/ccKA4fQ5.s 			page 157
+     /tmp/ccBkjMFy.s:21     .text.canardBufferFromIdx:00000000 $t
+     /tmp/ccBkjMFy.s:26     .text.canardBufferFromIdx:00000000 canardBufferFromIdx
+     /tmp/ccBkjMFy.s:45     .text.canardBufferToIdx:00000000 $t
+     /tmp/ccBkjMFy.s:50     .text.canardBufferToIdx:00000000 canardBufferToIdx
+     /tmp/ccBkjMFy.s:69     .text.canardRxFromIdx:00000000 $t
+     /tmp/ccBkjMFy.s:74     .text.canardRxFromIdx:00000000 canardRxFromIdx
+     /tmp/ccBkjMFy.s:93     .text.canardRxToIdx:00000000 $t
+     /tmp/ccBkjMFy.s:98     .text.canardRxToIdx:00000000 canardRxToIdx
+     /tmp/ccBkjMFy.s:117    .text.computeTransferIDForwardDistance:00000000 $t
+     /tmp/ccBkjMFy.s:122    .text.computeTransferIDForwardDistance:00000000 computeTransferIDForwardDistance
+     /tmp/ccBkjMFy.s:161    .text.incrementTransferID:00000000 $t
+     /tmp/ccBkjMFy.s:166    .text.incrementTransferID:00000000 incrementTransferID
+     /tmp/ccBkjMFy.s:197    .text.dlcToDataLength:00000000 $t
+     /tmp/ccBkjMFy.s:202    .text.dlcToDataLength:00000000 dlcToDataLength
+     /tmp/ccBkjMFy.s:215    .text.dlcToDataLength:00000008 $d
+     /tmp/ccBkjMFy.s:290    .text.dataLengthToDlc:00000000 $t
+     /tmp/ccBkjMFy.s:295    .text.dataLengthToDlc:00000000 dataLengthToDlc
+     /tmp/ccBkjMFy.s:383    .text.isPriorityHigher:00000000 $t
+     /tmp/ccBkjMFy.s:388    .text.isPriorityHigher:00000000 isPriorityHigher
+     /tmp/ccBkjMFy.s:494    .text.pushTxQueue:00000000 $t
+     /tmp/ccBkjMFy.s:499    .text.pushTxQueue:00000000 pushTxQueue
+     /tmp/ccBkjMFy.s:598    .text.prepareForNextTransfer:00000000 $t
+     /tmp/ccBkjMFy.s:603    .text.prepareForNextTransfer:00000000 prepareForNextTransfer
+     /tmp/ccBkjMFy.s:636    .text.findRxState:00000000 $t
+     /tmp/ccBkjMFy.s:641    .text.findRxState:00000000 findRxState
+     /tmp/ccBkjMFy.s:691    .text.copyBitArray:00000000 $t
+     /tmp/ccBkjMFy.s:696    .text.copyBitArray:00000000 copyBitArray
+     /tmp/ccBkjMFy.s:827    .text.descatterTransferPayload:00000000 $t
+     /tmp/ccBkjMFy.s:832    .text.descatterTransferPayload:00000000 descatterTransferPayload
+     /tmp/ccBkjMFy.s:1153   .text.isBigEndian:00000000 $t
+     /tmp/ccBkjMFy.s:1158   .text.isBigEndian:00000000 isBigEndian
+     /tmp/ccBkjMFy.s:1175   .text.swapByteOrder:00000000 $t
+     /tmp/ccBkjMFy.s:1180   .text.swapByteOrder:00000000 swapByteOrder
+     /tmp/ccBkjMFy.s:1235   .text.crcAddByte:00000000 $t
+     /tmp/ccBkjMFy.s:1240   .text.crcAddByte:00000000 crcAddByte
+     /tmp/ccBkjMFy.s:1304   .text.crcAddSignature:00000000 $t
+     /tmp/ccBkjMFy.s:1309   .text.crcAddSignature:00000000 crcAddSignature
+     /tmp/ccBkjMFy.s:1368   .text.crcAdd:00000000 $t
+     /tmp/ccBkjMFy.s:1373   .text.crcAdd:00000000 crcAdd
+     /tmp/ccBkjMFy.s:1419   .text.calculateCRC:00000000 $t
+     /tmp/ccBkjMFy.s:1424   .text.calculateCRC:00000000 calculateCRC
+     /tmp/ccBkjMFy.s:1476   .text.initPoolAllocator:00000000 $t
+     /tmp/ccBkjMFy.s:1481   .text.initPoolAllocator:00000000 initPoolAllocator
+     /tmp/ccBkjMFy.s:1554   .text.allocateBlock:00000000 $t
+     /tmp/ccBkjMFy.s:1559   .text.allocateBlock:00000000 allocateBlock
+     /tmp/ccBkjMFy.s:1606   .text.createBufferBlock:00000000 $t
+     /tmp/ccBkjMFy.s:1611   .text.createBufferBlock:00000000 createBufferBlock
+     /tmp/ccBkjMFy.s:1642   .text.bufferBlockPushBytes:00000000 $t
+     /tmp/ccBkjMFy.s:1647   .text.bufferBlockPushBytes:00000000 bufferBlockPushBytes
+     /tmp/ccBkjMFy.s:1985   .text.bufferBlockPushBytes:0000013c $d
+     /tmp/ccBkjMFy.s:1990   .text.freeBlock:00000000 $t
+     /tmp/ccBkjMFy.s:1995   .text.freeBlock:00000000 freeBlock
+     /tmp/ccBkjMFy.s:2025   .text.releaseStatePayload:00000000 $t
+     /tmp/ccBkjMFy.s:2030   .text.releaseStatePayload:00000000 releaseStatePayload
+     /tmp/ccBkjMFy.s:2105   .text.createTxItem:00000000 $t
+ARM GAS  /tmp/ccBkjMFy.s 			page 157
 
 
-     /tmp/ccKA4fQ5.s:2110   .text.createTxItem:00000000 createTxItem
-     /tmp/ccKA4fQ5.s:2149   .text.enqueueTxFrames:00000000 $t
-     /tmp/ccKA4fQ5.s:2154   .text.enqueueTxFrames:00000000 enqueueTxFrames
-     /tmp/ccKA4fQ5.s:2537   .text.enqueueTxFrames:00000164 $d
-     /tmp/ccKA4fQ5.s:2544   .text.createRxState:00000000 $t
-     /tmp/ccKA4fQ5.s:2549   .text.createRxState:00000000 createRxState
-     /tmp/ccKA4fQ5.s:2614   .text.prependRxState:00000000 $t
-     /tmp/ccKA4fQ5.s:2619   .text.prependRxState:00000000 prependRxState
-     /tmp/ccKA4fQ5.s:2669   .text.traverseRxStates:00000000 $t
-     /tmp/ccKA4fQ5.s:2674   .text.traverseRxStates:00000000 traverseRxStates
-     /tmp/ccKA4fQ5.s:2741   .text.canardInit:00000000 $t
-     /tmp/ccKA4fQ5.s:2747   .text.canardInit:00000000 canardInit
-     /tmp/ccKA4fQ5.s:2819   .text.canardGetUserReference:00000000 $t
-     /tmp/ccKA4fQ5.s:2825   .text.canardGetUserReference:00000000 canardGetUserReference
-     /tmp/ccKA4fQ5.s:2844   .text.canardSetLocalNodeID:00000000 $t
-     /tmp/ccKA4fQ5.s:2850   .text.canardSetLocalNodeID:00000000 canardSetLocalNodeID
-     /tmp/ccKA4fQ5.s:2880   .text.canardGetLocalNodeID:00000000 $t
-     /tmp/ccKA4fQ5.s:2886   .text.canardGetLocalNodeID:00000000 canardGetLocalNodeID
-     /tmp/ccKA4fQ5.s:2904   .text.canardForgetLocalNodeID:00000000 $t
-     /tmp/ccKA4fQ5.s:2910   .text.canardForgetLocalNodeID:00000000 canardForgetLocalNodeID
-     /tmp/ccKA4fQ5.s:2928   .text.canardInitTxTransfer:00000000 $t
-     /tmp/ccKA4fQ5.s:2934   .text.canardInitTxTransfer:00000000 canardInitTxTransfer
-     /tmp/ccKA4fQ5.s:2958   .text.canardBroadcastObj:00000000 $t
-     /tmp/ccKA4fQ5.s:2964   .text.canardBroadcastObj:00000000 canardBroadcastObj
-     /tmp/ccKA4fQ5.s:3135   .text.canardBroadcast:00000000 $t
-     /tmp/ccKA4fQ5.s:3141   .text.canardBroadcast:00000000 canardBroadcast
-     /tmp/ccKA4fQ5.s:3200   .text.canardRequestOrRespondObj:00000000 $t
-     /tmp/ccKA4fQ5.s:3206   .text.canardRequestOrRespondObj:00000000 canardRequestOrRespondObj
-     /tmp/ccKA4fQ5.s:3327   .text.canardRequestOrRespond:00000000 $t
-     /tmp/ccKA4fQ5.s:3333   .text.canardRequestOrRespond:00000000 canardRequestOrRespond
-     /tmp/ccKA4fQ5.s:3387   .text.canardPeekTxQueue:00000000 $t
-     /tmp/ccKA4fQ5.s:3393   .text.canardPeekTxQueue:00000000 canardPeekTxQueue
-     /tmp/ccKA4fQ5.s:3417   .text.canardPopTxQueue:00000000 $t
-     /tmp/ccKA4fQ5.s:3423   .text.canardPopTxQueue:00000000 canardPopTxQueue
-     /tmp/ccKA4fQ5.s:3456   .text.canardCleanupStaleTransfers:00000000 $t
-     /tmp/ccKA4fQ5.s:3462   .text.canardCleanupStaleTransfers:00000000 canardCleanupStaleTransfers
-     /tmp/ccKA4fQ5.s:3597   .text.canardCleanupStaleTransfers:0000008c $d
-     /tmp/ccKA4fQ5.s:3602   .text.canardDecodeScalar:00000000 $t
-     /tmp/ccKA4fQ5.s:3608   .text.canardDecodeScalar:00000000 canardDecodeScalar
-     /tmp/ccKA4fQ5.s:4037   .text.canardEncodeScalar:00000000 $t
-     /tmp/ccKA4fQ5.s:4043   .text.canardEncodeScalar:00000000 canardEncodeScalar
-     /tmp/ccKA4fQ5.s:4227   .text.canardReleaseRxTransferPayload:00000000 $t
-     /tmp/ccKA4fQ5.s:4233   .text.canardReleaseRxTransferPayload:00000000 canardReleaseRxTransferPayload
-     /tmp/ccKA4fQ5.s:4296   .text.canardGetPoolAllocatorStatistics:00000000 $t
-     /tmp/ccKA4fQ5.s:4302   .text.canardGetPoolAllocatorStatistics:00000000 canardGetPoolAllocatorStatistics
-     /tmp/ccKA4fQ5.s:4327   .text.canardConvertNativeFloatToFloat16:00000000 $t
-     /tmp/ccKA4fQ5.s:4333   .text.canardConvertNativeFloatToFloat16:00000000 canardConvertNativeFloatToFloat16
-     /tmp/ccKA4fQ5.s:4424   .text.canardConvertNativeFloatToFloat16:00000054 $d
-     /tmp/ccKA4fQ5.s:4430   .text.canardConvertFloat16ToNativeFloat:00000000 $t
-     /tmp/ccKA4fQ5.s:4436   .text.canardConvertFloat16ToNativeFloat:00000000 canardConvertFloat16ToNativeFloat
-     /tmp/ccKA4fQ5.s:4488   .text.canardConvertFloat16ToNativeFloat:00000038 $d
-     /tmp/ccKA4fQ5.s:4495   .text.extractTransferType:00000000 $t
-     /tmp/ccKA4fQ5.s:4501   .text.extractTransferType:00000000 extractTransferType
-     /tmp/ccKA4fQ5.s:4541   .text.extractDataType:00000000 $t
-     /tmp/ccKA4fQ5.s:4547   .text.extractDataType:00000000 extractDataType
-     /tmp/ccKA4fQ5.s:4596   .text.canardHandleRxFrame:00000000 $t
-     /tmp/ccKA4fQ5.s:4602   .text.canardHandleRxFrame:00000000 canardHandleRxFrame
-ARM GAS  /tmp/ccKA4fQ5.s 			page 158
+     /tmp/ccBkjMFy.s:2110   .text.createTxItem:00000000 createTxItem
+     /tmp/ccBkjMFy.s:2149   .text.enqueueTxFrames:00000000 $t
+     /tmp/ccBkjMFy.s:2154   .text.enqueueTxFrames:00000000 enqueueTxFrames
+     /tmp/ccBkjMFy.s:2537   .text.enqueueTxFrames:00000164 $d
+     /tmp/ccBkjMFy.s:2544   .text.createRxState:00000000 $t
+     /tmp/ccBkjMFy.s:2549   .text.createRxState:00000000 createRxState
+     /tmp/ccBkjMFy.s:2614   .text.prependRxState:00000000 $t
+     /tmp/ccBkjMFy.s:2619   .text.prependRxState:00000000 prependRxState
+     /tmp/ccBkjMFy.s:2669   .text.traverseRxStates:00000000 $t
+     /tmp/ccBkjMFy.s:2674   .text.traverseRxStates:00000000 traverseRxStates
+     /tmp/ccBkjMFy.s:2741   .text.canardInit:00000000 $t
+     /tmp/ccBkjMFy.s:2747   .text.canardInit:00000000 canardInit
+     /tmp/ccBkjMFy.s:2819   .text.canardGetUserReference:00000000 $t
+     /tmp/ccBkjMFy.s:2825   .text.canardGetUserReference:00000000 canardGetUserReference
+     /tmp/ccBkjMFy.s:2844   .text.canardSetLocalNodeID:00000000 $t
+     /tmp/ccBkjMFy.s:2850   .text.canardSetLocalNodeID:00000000 canardSetLocalNodeID
+     /tmp/ccBkjMFy.s:2880   .text.canardGetLocalNodeID:00000000 $t
+     /tmp/ccBkjMFy.s:2886   .text.canardGetLocalNodeID:00000000 canardGetLocalNodeID
+     /tmp/ccBkjMFy.s:2904   .text.canardForgetLocalNodeID:00000000 $t
+     /tmp/ccBkjMFy.s:2910   .text.canardForgetLocalNodeID:00000000 canardForgetLocalNodeID
+     /tmp/ccBkjMFy.s:2928   .text.canardInitTxTransfer:00000000 $t
+     /tmp/ccBkjMFy.s:2934   .text.canardInitTxTransfer:00000000 canardInitTxTransfer
+     /tmp/ccBkjMFy.s:2958   .text.canardBroadcastObj:00000000 $t
+     /tmp/ccBkjMFy.s:2964   .text.canardBroadcastObj:00000000 canardBroadcastObj
+     /tmp/ccBkjMFy.s:3135   .text.canardBroadcast:00000000 $t
+     /tmp/ccBkjMFy.s:3141   .text.canardBroadcast:00000000 canardBroadcast
+     /tmp/ccBkjMFy.s:3200   .text.canardRequestOrRespondObj:00000000 $t
+     /tmp/ccBkjMFy.s:3206   .text.canardRequestOrRespondObj:00000000 canardRequestOrRespondObj
+     /tmp/ccBkjMFy.s:3327   .text.canardRequestOrRespond:00000000 $t
+     /tmp/ccBkjMFy.s:3333   .text.canardRequestOrRespond:00000000 canardRequestOrRespond
+     /tmp/ccBkjMFy.s:3387   .text.canardPeekTxQueue:00000000 $t
+     /tmp/ccBkjMFy.s:3393   .text.canardPeekTxQueue:00000000 canardPeekTxQueue
+     /tmp/ccBkjMFy.s:3417   .text.canardPopTxQueue:00000000 $t
+     /tmp/ccBkjMFy.s:3423   .text.canardPopTxQueue:00000000 canardPopTxQueue
+     /tmp/ccBkjMFy.s:3456   .text.canardCleanupStaleTransfers:00000000 $t
+     /tmp/ccBkjMFy.s:3462   .text.canardCleanupStaleTransfers:00000000 canardCleanupStaleTransfers
+     /tmp/ccBkjMFy.s:3597   .text.canardCleanupStaleTransfers:0000008c $d
+     /tmp/ccBkjMFy.s:3602   .text.canardDecodeScalar:00000000 $t
+     /tmp/ccBkjMFy.s:3608   .text.canardDecodeScalar:00000000 canardDecodeScalar
+     /tmp/ccBkjMFy.s:4037   .text.canardEncodeScalar:00000000 $t
+     /tmp/ccBkjMFy.s:4043   .text.canardEncodeScalar:00000000 canardEncodeScalar
+     /tmp/ccBkjMFy.s:4227   .text.canardReleaseRxTransferPayload:00000000 $t
+     /tmp/ccBkjMFy.s:4233   .text.canardReleaseRxTransferPayload:00000000 canardReleaseRxTransferPayload
+     /tmp/ccBkjMFy.s:4296   .text.canardGetPoolAllocatorStatistics:00000000 $t
+     /tmp/ccBkjMFy.s:4302   .text.canardGetPoolAllocatorStatistics:00000000 canardGetPoolAllocatorStatistics
+     /tmp/ccBkjMFy.s:4327   .text.canardConvertNativeFloatToFloat16:00000000 $t
+     /tmp/ccBkjMFy.s:4333   .text.canardConvertNativeFloatToFloat16:00000000 canardConvertNativeFloatToFloat16
+     /tmp/ccBkjMFy.s:4424   .text.canardConvertNativeFloatToFloat16:00000054 $d
+     /tmp/ccBkjMFy.s:4430   .text.canardConvertFloat16ToNativeFloat:00000000 $t
+     /tmp/ccBkjMFy.s:4436   .text.canardConvertFloat16ToNativeFloat:00000000 canardConvertFloat16ToNativeFloat
+     /tmp/ccBkjMFy.s:4488   .text.canardConvertFloat16ToNativeFloat:00000038 $d
+     /tmp/ccBkjMFy.s:4495   .text.extractTransferType:00000000 $t
+     /tmp/ccBkjMFy.s:4501   .text.extractTransferType:00000000 extractTransferType
+     /tmp/ccBkjMFy.s:4541   .text.extractDataType:00000000 $t
+     /tmp/ccBkjMFy.s:4547   .text.extractDataType:00000000 extractDataType
+     /tmp/ccBkjMFy.s:4596   .text.canardHandleRxFrame:00000000 $t
+     /tmp/ccBkjMFy.s:4602   .text.canardHandleRxFrame:00000000 canardHandleRxFrame
+ARM GAS  /tmp/ccBkjMFy.s 			page 158
 
 
-     /tmp/ccKA4fQ5.s:5358   .text.canardHandleRxFrame:000003b8 $d
-     /tmp/ccKA4fQ5.s:5365   .text.canardHandleRxFrame:000003c0 $t
-     /tmp/ccKA4fQ5.s:230    .text.dlcToDataLength:00000017 $d
-     /tmp/ccKA4fQ5.s:230    .text.dlcToDataLength:00000018 $t
+     /tmp/ccBkjMFy.s:5358   .text.canardHandleRxFrame:000003b8 $d
+     /tmp/ccBkjMFy.s:5365   .text.canardHandleRxFrame:000003c0 $t
+     /tmp/ccBkjMFy.s:230    .text.dlcToDataLength:00000017 $d
+     /tmp/ccBkjMFy.s:230    .text.dlcToDataLength:00000018 $t
 
 UNDEFINED SYMBOLS
 memcpy

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccTQ1tEA.s 			page 1
+ARM GAS  /tmp/cciITIXS.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
   29:My_Top/USB_Composite/My_HID_Keyboard.cpp **** /* USB 设备句柄（定义在 AL94 的 usb_device.c 中） */
   30:My_Top/USB_Composite/My_HID_Keyboard.cpp **** extern USBD_HandleTypeDef hUsbDevice;
   31:My_Top/USB_Composite/My_HID_Keyboard.cpp **** 
-ARM GAS  /tmp/ccTQ1tEA.s 			page 2
+ARM GAS  /tmp/cciITIXS.s 			page 2
 
 
   32:My_Top/USB_Composite/My_HID_Keyboard.cpp **** /* ========================================================================= */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
   86:My_Top/USB_Composite/My_HID_Keyboard.cpp **** 
   87:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     /* 0x2B '+' 需要 Shift + '=' */
   88:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     {HID_KEY_EQUAL,  HID_MOD_LSHIFT},
-ARM GAS  /tmp/ccTQ1tEA.s 			page 3
+ARM GAS  /tmp/cciITIXS.s 			page 3
 
 
   89:My_Top/USB_Composite/My_HID_Keyboard.cpp **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  143:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     {HID_KEY_Y, HID_MOD_LSHIFT}, {HID_KEY_Z, HID_MOD_LSHIFT},
  144:My_Top/USB_Composite/My_HID_Keyboard.cpp **** 
  145:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     /* 0x5B '[' 左方括号，不需要 Shift */
-ARM GAS  /tmp/ccTQ1tEA.s 			page 4
+ARM GAS  /tmp/cciITIXS.s 			page 4
 
 
  146:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     {HID_KEY_LBRACKET, HID_MOD_NONE},
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  200:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   * @param  modifier: 修饰键位图
  201:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   * @param  key1~5:   按键码（HID Usage ID）
  202:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   * @note   此函数只发报告，不处理延时或释放，由上层调用者控制
-ARM GAS  /tmp/ccTQ1tEA.s 			page 5
+ARM GAS  /tmp/cciITIXS.s 			page 5
 
 
  203:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
   64              	.LVL3:
   65              		.loc 1 220 33 view .LVU9
   66 0036 0248     		ldr	r0, .L3
-ARM GAS  /tmp/ccTQ1tEA.s 			page 6
+ARM GAS  /tmp/cciITIXS.s 			page 6
 
 
   67              	.LVL4:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  230:My_Top/USB_Composite/My_HID_Keyboard.cpp **** }
  114              		.loc 1 230 1 view .LVU18
  115 005a 03B0     		add	sp, sp, #12
-ARM GAS  /tmp/ccTQ1tEA.s 			page 7
+ARM GAS  /tmp/cciITIXS.s 			page 7
 
 
  116              		.cfi_def_cfa_offset 4
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  250:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     vTaskDelay(pdMS_TO_TICKS(10));
  153              		.loc 1 250 5 is_stmt 1 view .LVU23
  154              		.loc 1 250 15 is_stmt 0 view .LVU24
-ARM GAS  /tmp/ccTQ1tEA.s 			page 8
+ARM GAS  /tmp/cciITIXS.s 			page 8
 
 
  155 0074 0A20     		movs	r0, #10
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  278:My_Top/USB_Composite/My_HID_Keyboard.cpp **** 
  279:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     /* 换行符映射为 Enter */
  280:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     if (c == '\n' || c == '\r') {
-ARM GAS  /tmp/ccTQ1tEA.s 			page 9
+ARM GAS  /tmp/cciITIXS.s 			page 9
 
 
  281:My_Top/USB_Composite/My_HID_Keyboard.cpp ****         HID_KB_SendSpecialKey(HID_KEY_ENTER);
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  195              		.loc 1 323 19 is_stmt 0 view .LVU33
  196 008e 0020     		movs	r0, #0
  197              	.LVL14:
-ARM GAS  /tmp/ccTQ1tEA.s 			page 10
+ARM GAS  /tmp/cciITIXS.s 			page 10
 
 
  198              		.loc 1 323 19 view .LVU34
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  243              	.LVL18:
  290:My_Top/USB_Composite/My_HID_Keyboard.cpp ****         return;
  244              		.loc 1 290 5 is_stmt 1 view .LVU46
-ARM GAS  /tmp/ccTQ1tEA.s 			page 11
+ARM GAS  /tmp/cciITIXS.s 			page 11
 
 
  245 00b2 21B9     		cbnz	r1, .L21
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  305:My_Top/USB_Composite/My_HID_Keyboard.cpp ****     if (str == NULL) {
  292              		.loc 1 305 1 is_stmt 1 view -0
  293              		.cfi_startproc
-ARM GAS  /tmp/ccTQ1tEA.s 			page 12
+ARM GAS  /tmp/cciITIXS.s 			page 12
 
 
  294              		@ args = 0, pretend = 0, frame = 0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  328:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   * @param  modifier: 修饰键位图（见 HID_MOD_* 宏）
  329:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   * @param  keycode:  主键 Usage ID（见 HID_KEY_* 宏）
  330:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   *
-ARM GAS  /tmp/ccTQ1tEA.s 			page 13
+ARM GAS  /tmp/cciITIXS.s 			page 13
 
 
  331:My_Top/USB_Composite/My_HID_Keyboard.cpp ****   * 示例：
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  385 0018 00       		.byte	0
  386 0019 00       		.byte	0
  387 001a 00       		.byte	0
-ARM GAS  /tmp/ccTQ1tEA.s 			page 14
+ARM GAS  /tmp/cciITIXS.s 			page 14
 
 
  388 001b 00       		.byte	0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  442 0051 02       		.byte	2
  443 0052 27       		.byte	39
  444 0053 02       		.byte	2
-ARM GAS  /tmp/ccTQ1tEA.s 			page 15
+ARM GAS  /tmp/cciITIXS.s 			page 15
 
 
  445 0054 25       		.byte	37
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  499 008a 08       		.byte	8
  500 008b 02       		.byte	2
  501 008c 09       		.byte	9
-ARM GAS  /tmp/ccTQ1tEA.s 			page 16
+ARM GAS  /tmp/cciITIXS.s 			page 16
 
 
  502 008d 02       		.byte	2
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  556 00c3 00       		.byte	0
  557 00c4 05       		.byte	5
  558 00c5 00       		.byte	0
-ARM GAS  /tmp/ccTQ1tEA.s 			page 17
+ARM GAS  /tmp/cciITIXS.s 			page 17
 
 
  559 00c6 06       		.byte	6
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  613 00fc 35       		.byte	53
  614 00fd 02       		.byte	2
  615 00fe 00       		.byte	0
-ARM GAS  /tmp/ccTQ1tEA.s 			page 18
+ARM GAS  /tmp/cciITIXS.s 			page 18
 
 
  616 00ff 00       		.byte	0
@@ -1037,27 +1037,27 @@ ARM GAS  /tmp/ccTQ1tEA.s 			page 1
  629              		.file 12 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Inc/usbd_hid_key
  630              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
  631              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
-ARM GAS  /tmp/ccTQ1tEA.s 			page 19
+ARM GAS  /tmp/cciITIXS.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 My_HID_Keyboard.cpp
-     /tmp/ccTQ1tEA.s:20     .text:00000000 $t
-     /tmp/ccTQ1tEA.s:25     .text:00000000 _ZL17HID_KB_SendReporthhhhhh
-     /tmp/ccTQ1tEA.s:81     .text:00000040 $d
-     /tmp/ccTQ1tEA.s:85     .text:00000044 $t
-     /tmp/ccTQ1tEA.s:90     .text:00000044 _ZL18HID_KB_SendReleasev
-     /tmp/ccTQ1tEA.s:122    .text:00000060 $d
-     /tmp/ccTQ1tEA.s:126    .text:00000064 $t
-     /tmp/ccTQ1tEA.s:132    .text:00000064 _Z14HID_KB_SendKeyhh
-     /tmp/ccTQ1tEA.s:181    .text:0000008a _Z21HID_KB_SendSpecialKeyh
-     /tmp/ccTQ1tEA.s:212    .text:00000096 _Z15HID_KB_SendCharc
-     /tmp/ccTQ1tEA.s:279    .text:000000c8 $d
-     /tmp/ccTQ1tEA.s:283    .text:000000cc $t
-     /tmp/ccTQ1tEA.s:289    .text:000000cc _Z17HID_KB_SendStringPKc
-     /tmp/ccTQ1tEA.s:334    .text:000000e2 _Z16HID_KB_SendCombohh
-     /tmp/ccTQ1tEA.s:356    .rodata:00000000 $d
-     /tmp/ccTQ1tEA.s:360    .rodata:00000000 _ZL12ascii_to_hid
+     /tmp/cciITIXS.s:20     .text:00000000 $t
+     /tmp/cciITIXS.s:25     .text:00000000 _ZL17HID_KB_SendReporthhhhhh
+     /tmp/cciITIXS.s:81     .text:00000040 $d
+     /tmp/cciITIXS.s:85     .text:00000044 $t
+     /tmp/cciITIXS.s:90     .text:00000044 _ZL18HID_KB_SendReleasev
+     /tmp/cciITIXS.s:122    .text:00000060 $d
+     /tmp/cciITIXS.s:126    .text:00000064 $t
+     /tmp/cciITIXS.s:132    .text:00000064 _Z14HID_KB_SendKeyhh
+     /tmp/cciITIXS.s:181    .text:0000008a _Z21HID_KB_SendSpecialKeyh
+     /tmp/cciITIXS.s:212    .text:00000096 _Z15HID_KB_SendCharc
+     /tmp/cciITIXS.s:279    .text:000000c8 $d
+     /tmp/cciITIXS.s:283    .text:000000cc $t
+     /tmp/cciITIXS.s:289    .text:000000cc _Z17HID_KB_SendStringPKc
+     /tmp/cciITIXS.s:334    .text:000000e2 _Z16HID_KB_SendCombohh
+     /tmp/cciITIXS.s:356    .rodata:00000000 $d
+     /tmp/cciITIXS.s:360    .rodata:00000000 _ZL12ascii_to_hid
 
 UNDEFINED SYMBOLS
 USBD_HID_Keybaord_SendReport

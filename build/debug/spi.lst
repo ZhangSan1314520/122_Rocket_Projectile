@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccdY1WHj.s 			page 1
+ARM GAS  /tmp/ccGFmKas.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
   28:Core/Src/spi.c **** 
   29:Core/Src/spi.c **** /* SPI3 init function */
   30:Core/Src/spi.c **** void MX_SPI3_Init(void)
-ARM GAS  /tmp/ccdY1WHj.s 			page 2
+ARM GAS  /tmp/ccGFmKas.s 			page 2
 
 
   31:Core/Src/spi.c **** {
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
   66              		.loc 1 47 3 is_stmt 1 view .LVU15
   67              		.loc 1 47 32 is_stmt 0 view .LVU16
   68 0028 2023     		movs	r3, #32
-ARM GAS  /tmp/ccdY1WHj.s 			page 3
+ARM GAS  /tmp/ccGFmKas.s 			page 3
 
 
   69 002a C361     		str	r3, [r0, #28]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
  107              	.L5:
  108 004c 00000000 		.word	hspi3
  109 0050 003C0040 		.word	1073757184
-ARM GAS  /tmp/ccdY1WHj.s 			page 4
+ARM GAS  /tmp/ccGFmKas.s 			page 4
 
 
  110              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
   79:Core/Src/spi.c ****     PB5     ------> SPI3_MOSI
   80:Core/Src/spi.c ****     */
   81:Core/Src/spi.c ****     GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_5;
-ARM GAS  /tmp/ccdY1WHj.s 			page 5
+ARM GAS  /tmp/ccGFmKas.s 			page 5
 
 
   82:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
  181 003a DA64     		str	r2, [r3, #76]
   76:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
  182              		.loc 1 76 5 view .LVU52
-ARM GAS  /tmp/ccdY1WHj.s 			page 6
+ARM GAS  /tmp/ccGFmKas.s 			page 6
 
 
  183 003c DB6C     		ldr	r3, [r3, #76]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
  223              	.L12:
  224              		.align	2
  225              	.L11:
-ARM GAS  /tmp/ccdY1WHj.s 			page 7
+ARM GAS  /tmp/ccGFmKas.s 			page 7
 
 
  226 006c 003C0040 		.word	1073757184
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
  119:Core/Src/spi.c ****   }
  120:Core/Src/spi.c **** }
  259              		.loc 1 120 1 view .LVU73
-ARM GAS  /tmp/ccdY1WHj.s 			page 8
+ARM GAS  /tmp/ccGFmKas.s 			page 8
 
 
  260 000a 08BD     		pop	{r3, pc}
@@ -475,22 +475,22 @@ ARM GAS  /tmp/ccdY1WHj.s 			page 1
  306              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
  307              		.file 10 "Core/Inc/spi.h"
  308              		.file 11 "Core/Inc/main.h"
-ARM GAS  /tmp/ccdY1WHj.s 			page 9
+ARM GAS  /tmp/ccGFmKas.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-     /tmp/ccdY1WHj.s:21     .text.MX_SPI3_Init:00000000 $t
-     /tmp/ccdY1WHj.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
-     /tmp/ccdY1WHj.s:108    .text.MX_SPI3_Init:0000004c $d
-     /tmp/ccdY1WHj.s:295    .bss.hspi3:00000000 hspi3
-     /tmp/ccdY1WHj.s:114    .text.HAL_SPI_MspInit:00000000 $t
-     /tmp/ccdY1WHj.s:120    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-     /tmp/ccdY1WHj.s:226    .text.HAL_SPI_MspInit:0000006c $d
-     /tmp/ccdY1WHj.s:232    .text.HAL_SPI_MspDeInit:00000000 $t
-     /tmp/ccdY1WHj.s:238    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-     /tmp/ccdY1WHj.s:284    .text.HAL_SPI_MspDeInit:00000028 $d
-     /tmp/ccdY1WHj.s:292    .bss.hspi3:00000000 $d
+     /tmp/ccGFmKas.s:21     .text.MX_SPI3_Init:00000000 $t
+     /tmp/ccGFmKas.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
+     /tmp/ccGFmKas.s:108    .text.MX_SPI3_Init:0000004c $d
+     /tmp/ccGFmKas.s:295    .bss.hspi3:00000000 hspi3
+     /tmp/ccGFmKas.s:114    .text.HAL_SPI_MspInit:00000000 $t
+     /tmp/ccGFmKas.s:120    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+     /tmp/ccGFmKas.s:226    .text.HAL_SPI_MspInit:0000006c $d
+     /tmp/ccGFmKas.s:232    .text.HAL_SPI_MspDeInit:00000000 $t
+     /tmp/ccGFmKas.s:238    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+     /tmp/ccGFmKas.s:284    .text.HAL_SPI_MspDeInit:00000028 $d
+     /tmp/ccGFmKas.s:292    .bss.hspi3:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

@@ -45,14 +45,21 @@ struct Motor_Param
 // 默认LQR参数
 constexpr Motor_Param MOTOR_DEFAULT_PARAM = //常量表达式
 {
-    // LQR
-    {
-        5.5f,
-        0.9f,
-        1.4f, //电机速度极限
-        -1.4f
-    },
+    // LQR //串级控制参数
+    // {
+    //     5.5f,
+    //     0.9f,
+    //     1.4f, //电机速度极限
+    //     -1.4f
+    // },
 
+    // LQR //直接控制参数
+    {
+        3.5f,
+        0.1f,
+        0.97f,
+        -0.97f
+    },
 
     // 速度环PID
     {

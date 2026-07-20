@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccON67r0.s 			page 1
+ARM GAS  /tmp/cc9NG85F.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
   41              		@ args = 0, pretend = 0, frame = 0
   42              		@ frame_needed = 0, uses_anonymous_args = 0
   43              		.loc 1 5 1 is_stmt 0 view .LVU1
-ARM GAS  /tmp/ccON67r0.s 			page 2
+ARM GAS  /tmp/cc9NG85F.s 			page 2
 
 
   44 0000 38B5     		push	{r3, r4, r5, lr}
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
   91              		.loc 1 6 28 is_stmt 0 discriminator 1 view .LVU15
   92 0026 0A48     		ldr	r0, .L14
   93              	.LVL7:
-ARM GAS  /tmp/ccON67r0.s 			page 3
+ARM GAS  /tmp/cc9NG85F.s 			page 3
 
 
    6:My_Top/System/My_CLI.cpp ****     int idx = atoi(arg_list[1]);
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
   14:My_Top/System/My_CLI.cpp ****     }
  130              		.loc 1 14 17 view .LVU29
   14:My_Top/System/My_CLI.cpp ****     }
-ARM GAS  /tmp/ccON67r0.s 			page 4
+ARM GAS  /tmp/cc9NG85F.s 			page 4
 
 
  131              		.loc 1 14 25 is_stmt 0 view .LVU30
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  176              		.cfi_def_cfa_offset 12
  177              		.cfi_offset 4, -12
  178              		.cfi_offset 5, -8
-ARM GAS  /tmp/ccON67r0.s 			page 5
+ARM GAS  /tmp/cc9NG85F.s 			page 5
 
 
  179              		.cfi_offset 14, -4
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  220              		.loc 1 35 5 is_stmt 1 view .LVU51
  221              		.loc 1 35 11 is_stmt 0 view .LVU52
  222 0094 0B99     		ldr	r1, [sp, #44]
-ARM GAS  /tmp/ccON67r0.s 			page 6
+ARM GAS  /tmp/cc9NG85F.s 			page 6
 
 
  223 0096 0248     		ldr	r0, .L20
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  271 00aa 0023     		movs	r3, #0
  272 00ac 0B93     		str	r3, [sp, #44]
   41:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
-ARM GAS  /tmp/ccON67r0.s 			page 7
+ARM GAS  /tmp/cc9NG85F.s 			page 7
 
 
   42:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  316              		@ sp needed
  317 00da 30BD     		pop	{r4, r5, pc}
  318              	.LVL34:
-ARM GAS  /tmp/ccON67r0.s 			page 8
+ARM GAS  /tmp/cc9NG85F.s 			page 8
 
 
  319              	.L27:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
   63:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
  361              		.loc 1 63 5 view .LVU82
  362              		.loc 1 63 41 is_stmt 0 view .LVU83
-ARM GAS  /tmp/ccON67r0.s 			page 9
+ARM GAS  /tmp/cc9NG85F.s 			page 9
 
 
  363 00ec 2146     		mov	r1, r4
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  402      BF97E4BD 
  402      8D20E5A4 
  402      B1E8
-ARM GAS  /tmp/ccON67r0.s 			page 10
+ARM GAS  /tmp/cc9NG85F.s 			page 10
 
 
  403 00b1 B4A50D0A 		.ascii	"\264\245\015\012\000"
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  445              	.LVL45:
  446              		.loc 1 80 41 view .LVU102
  447 011e FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
-ARM GAS  /tmp/ccON67r0.s 			page 11
+ARM GAS  /tmp/cc9NG85F.s 			page 11
 
 
  448              	.LVL46:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  494              		.align	2
  495              	.L40:
  496 014c 70000000 		.word	.LC5
-ARM GAS  /tmp/ccON67r0.s 			page 12
+ARM GAS  /tmp/cc9NG85F.s 			page 12
 
 
  497 0150 94000000 		.word	.LC6
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  537 015a 0023     		movs	r3, #0
  538 015c 0B93     		str	r3, [sp, #44]
   90:My_Top/System/My_CLI.cpp ****     bool save_flag = false;
-ARM GAS  /tmp/ccON67r0.s 			page 13
+ARM GAS  /tmp/cc9NG85F.s 			page 13
 
 
  539              		.loc 1 90 5 is_stmt 1 view .LVU120
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  582              	.LVL66:
  583              		.loc 1 101 25 discriminator 1 view .LVU138
  584 0188 FFF7FEFF 		bl	printf_
-ARM GAS  /tmp/ccON67r0.s 			page 14
+ARM GAS  /tmp/cc9NG85F.s 			page 14
 
 
  585              	.LVL67:
@@ -824,1856 +824,2090 @@ ARM GAS  /tmp/ccON67r0.s 			page 1
  617      AF0D0A00 
  618 010d 000000   		.align	2
  619              	.LC10:
- 620 0110 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \351\242\221\347\216\207"
+ 620 0110 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \350\256\276\347\275\256"
  620      9CBA4D25 
- 620      6420E9A2 
- 620      91E78E87 
- 621 0120 E8AEBEE7 		.ascii	"\350\256\276\347\275\256%.2fhz\015\012\000"
- 621      BDAE252E 
- 621      3266687A 
- 621      0D0A00
- 622              		.text
- 623              		.align	1
- 624              		.global	_Z7set_freP11EmbeddedCliPcPv
- 625              		.syntax unified
- 626              		.thumb
- 627              		.thumb_func
-ARM GAS  /tmp/ccON67r0.s 			page 15
+ 620      6420E8AE 
+ 620      BEE7BDAE 
+ 621 0120 E5BD93E5 		.ascii	"\345\275\223\345\211\215\350\247\222\345\272\246\344"
+ 621      898DE8A7 
+ 621      92E5BAA6 
+ 621      E4
+ 622 012d B8BA252E 		.ascii	"\270\272%.2f\345\272\246\015\012\000"
+ 622      3266E5BA 
+ 622      A60D0A00 
+ 623              		.text
+ 624              		.align	1
+ 625              		.global	_Z8set_zeroP11EmbeddedCliPcPv
+ARM GAS  /tmp/cc9NG85F.s 			page 15
 
 
- 629              	_Z7set_freP11EmbeddedCliPcPv:
- 630              	.LVL71:
- 631              	.LFB1366:
+ 626              		.syntax unified
+ 627              		.thumb
+ 628              		.thumb_func
+ 630              	_Z8set_zeroP11EmbeddedCliPcPv:
+ 631              	.LVL71:
+ 632              	.LFB1366:
  104:My_Top/System/My_CLI.cpp **** 
  105:My_Top/System/My_CLI.cpp **** 
  106:My_Top/System/My_CLI.cpp **** 
  107:My_Top/System/My_CLI.cpp **** 
- 108:My_Top/System/My_CLI.cpp **** 
- 109:My_Top/System/My_CLI.cpp **** void set_fre(EmbeddedCli *cli, char *args, void *context) //设置电机频率 单位 Hz
- 110:My_Top/System/My_CLI.cpp **** {
- 632              		.loc 1 110 1 is_stmt 1 view -0
- 633              		.cfi_startproc
- 634              		@ args = 0, pretend = 0, frame = 48
- 635              		@ frame_needed = 0, uses_anonymous_args = 0
- 636              		.loc 1 110 1 is_stmt 0 view .LVU144
- 637 01a4 30B5     		push	{r4, r5, lr}
- 638              		.cfi_def_cfa_offset 12
- 639              		.cfi_offset 4, -12
- 640              		.cfi_offset 5, -8
- 641              		.cfi_offset 14, -4
- 642 01a6 8DB0     		sub	sp, sp, #52
- 643              		.cfi_def_cfa_offset 64
- 644 01a8 0C46     		mov	r4, r1
- 111:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 645              		.loc 1 111 5 is_stmt 1 view .LVU145
- 646              		.loc 1 111 9 is_stmt 0 view .LVU146
- 647 01aa 0023     		movs	r3, #0
- 648 01ac 0B93     		str	r3, [sp, #44]
- 112:My_Top/System/My_CLI.cpp ****     char *end;
- 649              		.loc 1 112 5 is_stmt 1 view .LVU147
- 113:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
- 114:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 650              		.loc 1 114 5 view .LVU148
- 651              		.loc 1 114 48 is_stmt 0 view .LVU149
- 652 01ae FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 653              	.LVL72:
- 115:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 654              		.loc 1 115 5 is_stmt 1 view .LVU150
- 655 01b2 F0B1     		cbz	r0, .L50
- 116:My_Top/System/My_CLI.cpp ****     // 解析参数
- 117:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 656              		.loc 1 117 5 view .LVU151
- 118:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 657              		.loc 1 118 5 view .LVU152
- 658              		.loc 1 118 41 is_stmt 0 view .LVU153
- 659 01b4 2146     		mov	r1, r4
- 660 01b6 6846     		mov	r0, sp
- 661              	.LVL73:
- 662              		.loc 1 118 41 view .LVU154
- 663 01b8 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 664              	.LVL74:
- 665 01bc 0146     		mov	r1, r0
- 666              	.LVL75:
- 119:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 667              		.loc 1 119 5 is_stmt 1 view .LVU155
- 668              		.loc 1 119 35 is_stmt 0 view .LVU156
- 669 01be 0BAA     		add	r2, sp, #44
-ARM GAS  /tmp/ccON67r0.s 			page 16
+ 108:My_Top/System/My_CLI.cpp **** void set_zero(EmbeddedCli *cli, char *args, void *context) //设置0点单位°
+ 109:My_Top/System/My_CLI.cpp **** {
+ 633              		.loc 1 109 1 is_stmt 1 view -0
+ 634              		.cfi_startproc
+ 635              		@ args = 0, pretend = 0, frame = 48
+ 636              		@ frame_needed = 0, uses_anonymous_args = 0
+ 637              		.loc 1 109 1 is_stmt 0 view .LVU144
+ 638 01a4 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 639              		.cfi_def_cfa_offset 24
+ 640              		.cfi_offset 4, -24
+ 641              		.cfi_offset 5, -20
+ 642              		.cfi_offset 6, -16
+ 643              		.cfi_offset 7, -12
+ 644              		.cfi_offset 8, -8
+ 645              		.cfi_offset 14, -4
+ 646 01a8 8CB0     		sub	sp, sp, #48
+ 647              		.cfi_def_cfa_offset 72
+ 648 01aa 0C46     		mov	r4, r1
+ 110:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 649              		.loc 1 110 5 is_stmt 1 view .LVU145
+ 650              		.loc 1 110 9 is_stmt 0 view .LVU146
+ 651 01ac 0023     		movs	r3, #0
+ 652 01ae 0B93     		str	r3, [sp, #44]
+ 111:My_Top/System/My_CLI.cpp ****     char *end;
+ 653              		.loc 1 111 5 is_stmt 1 view .LVU147
+ 112:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ 113:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 654              		.loc 1 113 5 view .LVU148
+ 655              		.loc 1 113 48 is_stmt 0 view .LVU149
+ 656 01b0 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 657              	.LVL72:
+ 114:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 658              		.loc 1 114 5 is_stmt 1 view .LVU150
+ 659 01b4 0028     		cmp	r0, #0
+ 660 01b6 50D0     		beq	.L50
+ 115:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 116:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 661              		.loc 1 116 5 view .LVU151
+ 117:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 662              		.loc 1 117 5 view .LVU152
+ 663              		.loc 1 117 41 is_stmt 0 view .LVU153
+ 664 01b8 2146     		mov	r1, r4
+ 665 01ba 6846     		mov	r0, sp
+ 666              	.LVL73:
+ 667              		.loc 1 117 41 view .LVU154
+ 668 01bc FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 669              	.LVL74:
+ARM GAS  /tmp/cc9NG85F.s 			page 16
 
 
- 670 01c0 6846     		mov	r0, sp
- 671              	.LVL76:
- 672              		.loc 1 119 35 view .LVU157
- 673 01c2 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 674              	.LVL77:
- 120:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 675              		.loc 1 120 5 is_stmt 1 view .LVU158
- 676 01c6 0446     		mov	r4, r0
- 677              	.LVL78:
- 678              		.loc 1 120 5 is_stmt 0 view .LVU159
- 679 01c8 98B1     		cbz	r0, .L50
- 121:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
- 680              		.loc 1 121 5 is_stmt 1 view .LVU160
- 681              		.loc 1 121 24 is_stmt 0 view .LVU161
- 682 01ca 0AA9     		add	r1, sp, #40
- 683 01cc 0298     		ldr	r0, [sp, #8]
- 684              	.LVL79:
- 685              		.loc 1 121 24 view .LVU162
- 686 01ce FFF7FEFF 		bl	strtof
- 687              	.LVL80:
- 688 01d2 10EE100A 		vmov	r0, s0
- 689              	.LVL81:
- 122:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
- 690              		.loc 1 122 5 is_stmt 1 view .LVU163
- 691 01d6 029A     		ldr	r2, [sp, #8]
- 692 01d8 0A9B     		ldr	r3, [sp, #40]
- 693 01da 9A42     		cmp	r2, r3
- 694 01dc 0BD0     		beq	.L55
- 123:My_Top/System/My_CLI.cpp ****     {
- 124:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
- 125:My_Top/System/My_CLI.cpp ****         return;
- 126:My_Top/System/My_CLI.cpp ****     }
- 127:My_Top/System/My_CLI.cpp ****     m->motor_freq = temp;
- 695              		.loc 1 127 5 view .LVU164
- 696              		.loc 1 127 19 is_stmt 0 view .LVU165
- 697 01de 84ED010A 		vstr.32	s0, [r4, #4]
- 128:My_Top/System/My_CLI.cpp ****     printf("电机M%d 频率设置%.2fhz\r\n",idx,temp);
- 698              		.loc 1 128 5 is_stmt 1 view .LVU166
- 699              		.loc 1 128 11 is_stmt 0 view .LVU167
- 700 01e2 FFF7FEFF 		bl	__aeabi_f2d
- 701              	.LVL82:
- 702              		.loc 1 128 11 view .LVU168
- 703 01e6 0246     		mov	r2, r0
- 704 01e8 0B46     		mov	r3, r1
- 705 01ea 0B99     		ldr	r1, [sp, #44]
- 706 01ec 0448     		ldr	r0, .L56
- 707 01ee FFF7FEFF 		bl	printf_
- 708              	.LVL83:
- 709              	.L50:
- 129:My_Top/System/My_CLI.cpp **** }
- 710              		.loc 1 129 1 view .LVU169
- 711 01f2 0DB0     		add	sp, sp, #52
- 712              		.cfi_remember_state
- 713              		.cfi_def_cfa_offset 12
- 714              		@ sp needed
- 715 01f4 30BD     		pop	{r4, r5, pc}
- 716              	.LVL84:
-ARM GAS  /tmp/ccON67r0.s 			page 17
-
-
- 717              	.L55:
- 718              		.cfi_restore_state
+ 670 01c0 0146     		mov	r1, r0
+ 671              	.LVL75:
+ 118:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 672              		.loc 1 118 5 is_stmt 1 view .LVU155
+ 673              		.loc 1 118 35 is_stmt 0 view .LVU156
+ 674 01c2 0BAA     		add	r2, sp, #44
+ 675 01c4 6846     		mov	r0, sp
+ 676              	.LVL76:
+ 677              		.loc 1 118 35 view .LVU157
+ 678 01c6 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 679              	.LVL77:
+ 119:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 680              		.loc 1 119 5 is_stmt 1 view .LVU158
+ 681 01ca 8046     		mov	r8, r0
+ 682 01cc 0028     		cmp	r0, #0
+ 683 01ce 44D0     		beq	.L50
+ 120:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
+ 684              		.loc 1 120 5 view .LVU159
+ 685              		.loc 1 120 24 is_stmt 0 view .LVU160
+ 686 01d0 0AA9     		add	r1, sp, #40
+ 687 01d2 0298     		ldr	r0, [sp, #8]
+ 688              	.LVL78:
+ 689              		.loc 1 120 24 view .LVU161
+ 690 01d4 FFF7FEFF 		bl	strtof
+ 691              	.LVL79:
+ 692 01d8 10EE104A 		vmov	r4, s0
+ 693              	.LVL80:
+ 121:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
+ 694              		.loc 1 121 5 is_stmt 1 view .LVU162
+ 695 01dc 029A     		ldr	r2, [sp, #8]
+ 696 01de 0A9B     		ldr	r3, [sp, #40]
+ 697 01e0 9A42     		cmp	r2, r3
+ 698 01e2 3DD0     		beq	.L58
+ 122:My_Top/System/My_CLI.cpp ****     {
+ 123:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
  124:My_Top/System/My_CLI.cpp ****         return;
- 719              		.loc 1 124 9 is_stmt 1 view .LVU170
- 124:My_Top/System/My_CLI.cpp ****         return;
- 720              		.loc 1 124 15 is_stmt 0 view .LVU171
- 721 01f6 0348     		ldr	r0, .L56+4
- 722              	.LVL85:
- 124:My_Top/System/My_CLI.cpp ****         return;
- 723              		.loc 1 124 15 view .LVU172
- 724 01f8 FFF7FEFF 		bl	printf_
- 725              	.LVL86:
  125:My_Top/System/My_CLI.cpp ****     }
- 726              		.loc 1 125 9 is_stmt 1 view .LVU173
- 727 01fc F9E7     		b	.L50
- 728              	.L57:
- 729 01fe 00BF     		.align	2
- 730              	.L56:
- 731 0200 10010000 		.word	.LC10
- 732 0204 F8000000 		.word	.LC9
- 733              		.cfi_endproc
- 734              	.LFE1366:
- 736              		.section	.rodata.str1.4
- 737 012f 00       		.align	2
- 738              	.LC11:
- 739 0130 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\215\240\347\251\272"
- 739      9CBA4D25 
- 739      6420E58D 
- 739      A0E7A9BA 
- 740 0140 E6AF94E8 		.ascii	"\346\257\224\350\256\276\347\275\256%.2f\015\012\000"
- 740      AEBEE7BD 
- 740      AE252E32 
- 740      660D0A00 
- 741              		.text
- 742              		.align	1
- 743              		.global	_Z8set_dutyP11EmbeddedCliPcPv
- 744              		.syntax unified
- 745              		.thumb
- 746              		.thumb_func
- 748              	_Z8set_dutyP11EmbeddedCliPcPv:
- 749              	.LVL87:
- 750              	.LFB1367:
+ 126:My_Top/System/My_CLI.cpp ****     m->zero_offset = wrap_to_PI(m->theta_temp - deg2rad(temp) );
+ 699              		.loc 1 126 5 view .LVU163
+ 700              	.LBB2:
+ 701              		.loc 1 126 22 view .LVU164
+ 702 01e4 D8F81400 		ldr	r0, [r8, #20]	@ float
+ 703 01e8 FFF7FEFF 		bl	__aeabi_f2d
+ 704              	.LVL81:
+ 705 01ec 0646     		mov	r6, r0
+ 706 01ee 0F46     		mov	r7, r1
+ 707 01f0 2046     		mov	r0, r4	@ float
+ 708 01f2 FFF7FEFF 		bl	__aeabi_f2d
+ 709              	.LVL82:
+ 710 01f6 0446     		mov	r4, r0
+ 711              	.LVL83:
+ 712              		.loc 1 126 22 is_stmt 0 view .LVU165
+ 713 01f8 0D46     		mov	r5, r1
+ 714 01fa 24A3     		adr	r3, .L60+20
+ 715 01fc D3E90023 		ldrd	r2, [r3]
+ 716 0200 FFF7FEFF 		bl	__aeabi_dmul
+ 717              	.LVL84:
+ARM GAS  /tmp/cc9NG85F.s 			page 17
+
+
+ 718 0204 0246     		mov	r2, r0
+ 719 0206 0B46     		mov	r3, r1
+ 720 0208 3046     		mov	r0, r6
+ 721 020a 3946     		mov	r1, r7
+ 722 020c FFF7FEFF 		bl	__aeabi_dsub
+ 723              	.LVL85:
+ 724 0210 19A3     		adr	r3, .L60
+ 725 0212 D3E90023 		ldrd	r2, [r3]
+ 726 0216 FFF7FEFF 		bl	__aeabi_dadd
+ 727              	.LVL86:
+ 728 021a FFF7FEFF 		bl	__aeabi_d2f
+ 729              	.LVL87:
+ 730 021e DFED180A 		vldr.32	s1, .L60+8
+ 731 0222 00EE100A 		vmov	s0, r0
+ 732 0226 FFF7FEFF 		bl	fmodf
+ 733              	.LVL88:
+ 734              		.loc 1 126 22 is_stmt 1 discriminator 1 view .LVU166
+ 735 022a B5EEC00A 		vcmpe.f32	s0, #0
+ 736 022e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 737 0232 19D4     		bmi	.L59
+ 738              	.LVL89:
+ 739              	.L53:
+ 740              		.loc 1 126 22 discriminator 3 view .LVU167
+ 741 0234 10EE100A 		vmov	r0, s0
+ 742 0238 FFF7FEFF 		bl	__aeabi_f2d
+ 743              	.LVL90:
+ 744              		.loc 1 126 22 is_stmt 0 discriminator 3 view .LVU168
+ 745 023c 0EA3     		adr	r3, .L60
+ 746 023e D3E90023 		ldrd	r2, [r3]
+ 747 0242 FFF7FEFF 		bl	__aeabi_dsub
+ 748              	.LVL91:
+ 749              	.LBE2:
+ 750 0246 FFF7FEFF 		bl	__aeabi_d2f
+ 751              	.LVL92:
+ 752              		.loc 1 126 20 discriminator 3 view .LVU169
+ 753 024a C8F82C00 		str	r0, [r8, #44]	@ float
+ 127:My_Top/System/My_CLI.cpp ****     printf("电机M%d 设置当前角度为%.2f度\r\n",idx,temp);
+ 754              		.loc 1 127 5 is_stmt 1 view .LVU170
+ 755              		.loc 1 127 11 is_stmt 0 view .LVU171
+ 756 024e 2246     		mov	r2, r4
+ 757 0250 2B46     		mov	r3, r5
+ 758 0252 0B99     		ldr	r1, [sp, #44]
+ 759 0254 0B48     		ldr	r0, .L60+12
+ 760 0256 FFF7FEFF 		bl	printf_
+ 761              	.LVL93:
+ 762              	.L50:
+ 128:My_Top/System/My_CLI.cpp **** }
+ 763              		.loc 1 128 1 view .LVU172
+ 764 025a 0CB0     		add	sp, sp, #48
+ 765              		.cfi_remember_state
+ 766              		.cfi_def_cfa_offset 24
+ 767              		@ sp needed
+ 768 025c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 769              	.LVL94:
+ 770              	.L58:
+ 771              		.cfi_restore_state
+ 123:My_Top/System/My_CLI.cpp ****         return;
+ARM GAS  /tmp/cc9NG85F.s 			page 18
+
+
+ 772              		.loc 1 123 9 is_stmt 1 view .LVU173
+ 123:My_Top/System/My_CLI.cpp ****         return;
+ 773              		.loc 1 123 15 is_stmt 0 view .LVU174
+ 774 0260 0948     		ldr	r0, .L60+16
+ 775 0262 FFF7FEFF 		bl	printf_
+ 776              	.LVL95:
+ 124:My_Top/System/My_CLI.cpp ****     }
+ 777              		.loc 1 124 9 is_stmt 1 view .LVU175
+ 778 0266 F8E7     		b	.L50
+ 779              	.LVL96:
+ 780              	.L59:
+ 781              	.LBB3:
+ 126:My_Top/System/My_CLI.cpp ****     printf("电机M%d 设置当前角度为%.2f度\r\n",idx,temp);
+ 782              		.loc 1 126 22 discriminator 1 view .LVU176
+ 783 0268 DFED057A 		vldr.32	s15, .L60+8
+ 784 026c 30EE270A 		vadd.f32	s0, s0, s15
+ 785              	.LVL97:
+ 126:My_Top/System/My_CLI.cpp ****     printf("电机M%d 设置当前角度为%.2f度\r\n",idx,temp);
+ 786              		.loc 1 126 22 is_stmt 0 discriminator 1 view .LVU177
+ 787 0270 E0E7     		b	.L53
+ 788              	.L61:
+ 789 0272 00BFAFF3 		.align	3
+ 789      0080
+ 790              	.L60:
+ 791 0278 182D4454 		.word	1413754136
+ 792 027c FB210940 		.word	1074340347
+ 793 0280 DB0FC940 		.word	1086918619
+ 794 0284 10010000 		.word	.LC10
+ 795 0288 F8000000 		.word	.LC9
+ 796 028c 399D52A2 		.word	-1571644103
+ 797 0290 46DF913F 		.word	1066524486
+ 798              	.LBE3:
+ 799              		.cfi_endproc
+ 800              	.LFE1366:
+ 802              		.section	.rodata.str1.4
+ 803 0139 000000   		.align	2
+ 804              	.LC11:
+ 805 013c E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \351\242\221\347\216\207"
+ 805      9CBA4D25 
+ 805      6420E9A2 
+ 805      91E78E87 
+ 806 014c E8AEBEE7 		.ascii	"\350\256\276\347\275\256%.2fhz\015\012\000"
+ 806      BDAE252E 
+ 806      3266687A 
+ 806      0D0A00
+ 807              		.text
+ 808              		.align	1
+ 809              		.global	_Z7set_freP11EmbeddedCliPcPv
+ 810              		.syntax unified
+ 811              		.thumb
+ 812              		.thumb_func
+ 814              	_Z7set_freP11EmbeddedCliPcPv:
+ 815              	.LVL98:
+ 816              	.LFB1367:
+ 129:My_Top/System/My_CLI.cpp **** 
  130:My_Top/System/My_CLI.cpp **** 
- 131:My_Top/System/My_CLI.cpp **** void set_duty(EmbeddedCli *cli, char *args, void *context) //设置电机占空比0-1
+ 131:My_Top/System/My_CLI.cpp **** void set_fre(EmbeddedCli *cli, char *args, void *context) //设置电机频率 单位 Hz
+ARM GAS  /tmp/cc9NG85F.s 			page 19
+
+
  132:My_Top/System/My_CLI.cpp **** {
- 751              		.loc 1 132 1 view -0
- 752              		.cfi_startproc
- 753              		@ args = 0, pretend = 0, frame = 48
- 754              		@ frame_needed = 0, uses_anonymous_args = 0
- 755              		.loc 1 132 1 is_stmt 0 view .LVU175
- 756 0208 30B5     		push	{r4, r5, lr}
- 757              		.cfi_def_cfa_offset 12
- 758              		.cfi_offset 4, -12
- 759              		.cfi_offset 5, -8
- 760              		.cfi_offset 14, -4
- 761 020a 8DB0     		sub	sp, sp, #52
- 762              		.cfi_def_cfa_offset 64
-ARM GAS  /tmp/ccON67r0.s 			page 18
-
-
- 763 020c 0C46     		mov	r4, r1
+ 817              		.loc 1 132 1 is_stmt 1 view -0
+ 818              		.cfi_startproc
+ 819              		@ args = 0, pretend = 0, frame = 48
+ 820              		@ frame_needed = 0, uses_anonymous_args = 0
+ 821              		.loc 1 132 1 is_stmt 0 view .LVU179
+ 822 0294 30B5     		push	{r4, r5, lr}
+ 823              		.cfi_def_cfa_offset 12
+ 824              		.cfi_offset 4, -12
+ 825              		.cfi_offset 5, -8
+ 826              		.cfi_offset 14, -4
+ 827 0296 8DB0     		sub	sp, sp, #52
+ 828              		.cfi_def_cfa_offset 64
+ 829 0298 0C46     		mov	r4, r1
  133:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 764              		.loc 1 133 5 is_stmt 1 view .LVU176
- 765              		.loc 1 133 9 is_stmt 0 view .LVU177
- 766 020e 0023     		movs	r3, #0
- 767 0210 0B93     		str	r3, [sp, #44]
+ 830              		.loc 1 133 5 is_stmt 1 view .LVU180
+ 831              		.loc 1 133 9 is_stmt 0 view .LVU181
+ 832 029a 0023     		movs	r3, #0
+ 833 029c 0B93     		str	r3, [sp, #44]
  134:My_Top/System/My_CLI.cpp ****     char *end;
- 768              		.loc 1 134 5 is_stmt 1 view .LVU178
+ 834              		.loc 1 134 5 is_stmt 1 view .LVU182
  135:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
  136:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 769              		.loc 1 136 5 view .LVU179
- 770              		.loc 1 136 48 is_stmt 0 view .LVU180
- 771 0212 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 772              	.LVL88:
+ 835              		.loc 1 136 5 view .LVU183
+ 836              		.loc 1 136 48 is_stmt 0 view .LVU184
+ 837 029e FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 838              	.LVL99:
  137:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 773              		.loc 1 137 5 is_stmt 1 view .LVU181
- 774 0216 F0B1     		cbz	r0, .L58
+ 839              		.loc 1 137 5 is_stmt 1 view .LVU185
+ 840 02a2 F0B1     		cbz	r0, .L62
  138:My_Top/System/My_CLI.cpp ****     // 解析参数
  139:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 775              		.loc 1 139 5 view .LVU182
+ 841              		.loc 1 139 5 view .LVU186
  140:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 776              		.loc 1 140 5 view .LVU183
- 777              		.loc 1 140 41 is_stmt 0 view .LVU184
- 778 0218 2146     		mov	r1, r4
- 779 021a 6846     		mov	r0, sp
- 780              	.LVL89:
- 781              		.loc 1 140 41 view .LVU185
- 782 021c FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 783              	.LVL90:
- 784 0220 0146     		mov	r1, r0
- 785              	.LVL91:
+ 842              		.loc 1 140 5 view .LVU187
+ 843              		.loc 1 140 41 is_stmt 0 view .LVU188
+ 844 02a4 2146     		mov	r1, r4
+ 845 02a6 6846     		mov	r0, sp
+ 846              	.LVL100:
+ 847              		.loc 1 140 41 view .LVU189
+ 848 02a8 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 849              	.LVL101:
+ 850 02ac 0146     		mov	r1, r0
+ 851              	.LVL102:
  141:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 786              		.loc 1 141 5 is_stmt 1 view .LVU186
- 787              		.loc 1 141 35 is_stmt 0 view .LVU187
- 788 0222 0BAA     		add	r2, sp, #44
- 789 0224 6846     		mov	r0, sp
- 790              	.LVL92:
- 791              		.loc 1 141 35 view .LVU188
- 792 0226 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 793              	.LVL93:
+ 852              		.loc 1 141 5 is_stmt 1 view .LVU190
+ 853              		.loc 1 141 35 is_stmt 0 view .LVU191
+ 854 02ae 0BAA     		add	r2, sp, #44
+ 855 02b0 6846     		mov	r0, sp
+ 856              	.LVL103:
+ 857              		.loc 1 141 35 view .LVU192
+ 858 02b2 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 859              	.LVL104:
  142:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 794              		.loc 1 142 5 is_stmt 1 view .LVU189
- 795 022a 0446     		mov	r4, r0
- 796              	.LVL94:
- 797              		.loc 1 142 5 is_stmt 0 view .LVU190
- 798 022c 98B1     		cbz	r0, .L58
+ 860              		.loc 1 142 5 is_stmt 1 view .LVU193
+ 861 02b6 0446     		mov	r4, r0
+ 862              	.LVL105:
+ARM GAS  /tmp/cc9NG85F.s 			page 20
+
+
+ 863              		.loc 1 142 5 is_stmt 0 view .LVU194
+ 864 02b8 98B1     		cbz	r0, .L62
  143:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
- 799              		.loc 1 143 5 is_stmt 1 view .LVU191
- 800              		.loc 1 143 24 is_stmt 0 view .LVU192
- 801 022e 0AA9     		add	r1, sp, #40
- 802 0230 0298     		ldr	r0, [sp, #8]
- 803              	.LVL95:
- 804              		.loc 1 143 24 view .LVU193
- 805 0232 FFF7FEFF 		bl	strtof
- 806              	.LVL96:
- 807 0236 10EE100A 		vmov	r0, s0
- 808              	.LVL97:
-ARM GAS  /tmp/ccON67r0.s 			page 19
-
-
+ 865              		.loc 1 143 5 is_stmt 1 view .LVU195
+ 866              		.loc 1 143 24 is_stmt 0 view .LVU196
+ 867 02ba 0AA9     		add	r1, sp, #40
+ 868 02bc 0298     		ldr	r0, [sp, #8]
+ 869              	.LVL106:
+ 870              		.loc 1 143 24 view .LVU197
+ 871 02be FFF7FEFF 		bl	strtof
+ 872              	.LVL107:
+ 873 02c2 10EE100A 		vmov	r0, s0
+ 874              	.LVL108:
  144:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
- 809              		.loc 1 144 5 is_stmt 1 view .LVU194
- 810 023a 029A     		ldr	r2, [sp, #8]
- 811 023c 0A9B     		ldr	r3, [sp, #40]
- 812 023e 9A42     		cmp	r2, r3
- 813 0240 0BD0     		beq	.L63
+ 875              		.loc 1 144 5 is_stmt 1 view .LVU198
+ 876 02c6 029A     		ldr	r2, [sp, #8]
+ 877 02c8 0A9B     		ldr	r3, [sp, #40]
+ 878 02ca 9A42     		cmp	r2, r3
+ 879 02cc 0BD0     		beq	.L67
  145:My_Top/System/My_CLI.cpp ****     {
  146:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
  147:My_Top/System/My_CLI.cpp ****         return;
  148:My_Top/System/My_CLI.cpp ****     }
- 149:My_Top/System/My_CLI.cpp ****     m->updown_duty = temp;
- 814              		.loc 1 149 5 view .LVU195
- 815              		.loc 1 149 20 is_stmt 0 view .LVU196
- 816 0242 84ED040A 		vstr.32	s0, [r4, #16]
- 150:My_Top/System/My_CLI.cpp ****     printf("电机M%d 占空比设置%.2f\r\n",idx,temp);
- 817              		.loc 1 150 5 is_stmt 1 view .LVU197
- 818              		.loc 1 150 11 is_stmt 0 view .LVU198
- 819 0246 FFF7FEFF 		bl	__aeabi_f2d
- 820              	.LVL98:
- 821              		.loc 1 150 11 view .LVU199
- 822 024a 0246     		mov	r2, r0
- 823 024c 0B46     		mov	r3, r1
- 824 024e 0B99     		ldr	r1, [sp, #44]
- 825 0250 0448     		ldr	r0, .L64
- 826 0252 FFF7FEFF 		bl	printf_
- 827              	.LVL99:
- 828              	.L58:
+ 149:My_Top/System/My_CLI.cpp ****     m->motor_freq = temp;
+ 880              		.loc 1 149 5 view .LVU199
+ 881              		.loc 1 149 19 is_stmt 0 view .LVU200
+ 882 02ce 84ED010A 		vstr.32	s0, [r4, #4]
+ 150:My_Top/System/My_CLI.cpp ****     printf("电机M%d 频率设置%.2fhz\r\n",idx,temp);
+ 883              		.loc 1 150 5 is_stmt 1 view .LVU201
+ 884              		.loc 1 150 11 is_stmt 0 view .LVU202
+ 885 02d2 FFF7FEFF 		bl	__aeabi_f2d
+ 886              	.LVL109:
+ 887              		.loc 1 150 11 view .LVU203
+ 888 02d6 0246     		mov	r2, r0
+ 889 02d8 0B46     		mov	r3, r1
+ 890 02da 0B99     		ldr	r1, [sp, #44]
+ 891 02dc 0448     		ldr	r0, .L68
+ 892 02de FFF7FEFF 		bl	printf_
+ 893              	.LVL110:
+ 894              	.L62:
  151:My_Top/System/My_CLI.cpp **** }
- 829              		.loc 1 151 1 view .LVU200
- 830 0256 0DB0     		add	sp, sp, #52
- 831              		.cfi_remember_state
- 832              		.cfi_def_cfa_offset 12
- 833              		@ sp needed
- 834 0258 30BD     		pop	{r4, r5, pc}
- 835              	.LVL100:
- 836              	.L63:
- 837              		.cfi_restore_state
+ 895              		.loc 1 151 1 view .LVU204
+ 896 02e2 0DB0     		add	sp, sp, #52
+ 897              		.cfi_remember_state
+ 898              		.cfi_def_cfa_offset 12
+ 899              		@ sp needed
+ 900 02e4 30BD     		pop	{r4, r5, pc}
+ 901              	.LVL111:
+ 902              	.L67:
+ 903              		.cfi_restore_state
  146:My_Top/System/My_CLI.cpp ****         return;
- 838              		.loc 1 146 9 is_stmt 1 view .LVU201
+ 904              		.loc 1 146 9 is_stmt 1 view .LVU205
  146:My_Top/System/My_CLI.cpp ****         return;
- 839              		.loc 1 146 15 is_stmt 0 view .LVU202
- 840 025a 0348     		ldr	r0, .L64+4
- 841              	.LVL101:
+ 905              		.loc 1 146 15 is_stmt 0 view .LVU206
+ 906 02e6 0348     		ldr	r0, .L68+4
+ 907              	.LVL112:
  146:My_Top/System/My_CLI.cpp ****         return;
- 842              		.loc 1 146 15 view .LVU203
- 843 025c FFF7FEFF 		bl	printf_
- 844              	.LVL102:
+ARM GAS  /tmp/cc9NG85F.s 			page 21
+
+
+ 908              		.loc 1 146 15 view .LVU207
+ 909 02e8 FFF7FEFF 		bl	printf_
+ 910              	.LVL113:
  147:My_Top/System/My_CLI.cpp ****     }
- 845              		.loc 1 147 9 is_stmt 1 view .LVU204
- 846 0260 F9E7     		b	.L58
- 847              	.L65:
- 848 0262 00BF     		.align	2
- 849              	.L64:
- 850 0264 30010000 		.word	.LC11
- 851 0268 F8000000 		.word	.LC9
- 852              		.cfi_endproc
- 853              	.LFE1367:
-ARM GAS  /tmp/ccON67r0.s 			page 20
-
-
- 855              		.section	.rodata.str1.4
- 856              		.align	2
- 857              	.LC12:
- 858 0150 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \347\233\256\346\240\207"
- 858      9CBA4D25 
- 858      6420E79B 
- 858      AEE6A087 
- 859 0160 E4BD8DE7 		.ascii	"\344\275\215\347\275\256\350\256\276\347\275\256%.2"
- 859      BDAEE8AE 
- 859      BEE7BDAE 
- 859      252E32
- 860 016f 660D0A00 		.ascii	"f\015\012\000"
- 861              		.text
- 862              		.align	1
- 863              		.global	_Z7set_posP11EmbeddedCliPcPv
- 864              		.syntax unified
- 865              		.thumb
- 866              		.thumb_func
- 868              	_Z7set_posP11EmbeddedCliPcPv:
- 869              	.LVL103:
- 870              	.LFB1368:
+ 911              		.loc 1 147 9 is_stmt 1 view .LVU208
+ 912 02ec F9E7     		b	.L62
+ 913              	.L69:
+ 914 02ee 00BF     		.align	2
+ 915              	.L68:
+ 916 02f0 3C010000 		.word	.LC11
+ 917 02f4 F8000000 		.word	.LC9
+ 918              		.cfi_endproc
+ 919              	.LFE1367:
+ 921              		.section	.rodata.str1.4
+ 922 015b 00       		.align	2
+ 923              	.LC12:
+ 924 015c E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\215\240\347\251\272"
+ 924      9CBA4D25 
+ 924      6420E58D 
+ 924      A0E7A9BA 
+ 925 016c E6AF94E8 		.ascii	"\346\257\224\350\256\276\347\275\256%.2f\015\012\000"
+ 925      AEBEE7BD 
+ 925      AE252E32 
+ 925      660D0A00 
+ 926              		.text
+ 927              		.align	1
+ 928              		.global	_Z8set_dutyP11EmbeddedCliPcPv
+ 929              		.syntax unified
+ 930              		.thumb
+ 931              		.thumb_func
+ 933              	_Z8set_dutyP11EmbeddedCliPcPv:
+ 934              	.LVL114:
+ 935              	.LFB1368:
  152:My_Top/System/My_CLI.cpp **** 
- 153:My_Top/System/My_CLI.cpp **** 
- 154:My_Top/System/My_CLI.cpp ****  
- 155:My_Top/System/My_CLI.cpp **** 
- 156:My_Top/System/My_CLI.cpp **** void set_pos(EmbeddedCli *cli, char *args, void *context) //设置目标位置
- 157:My_Top/System/My_CLI.cpp **** {
- 871              		.loc 1 157 1 view -0
- 872              		.cfi_startproc
- 873              		@ args = 0, pretend = 0, frame = 48
- 874              		@ frame_needed = 0, uses_anonymous_args = 0
- 875              		.loc 1 157 1 is_stmt 0 view .LVU206
- 876 026c 30B5     		push	{r4, r5, lr}
- 877              		.cfi_def_cfa_offset 12
- 878              		.cfi_offset 4, -12
- 879              		.cfi_offset 5, -8
- 880              		.cfi_offset 14, -4
- 881 026e 8DB0     		sub	sp, sp, #52
- 882              		.cfi_def_cfa_offset 64
- 883 0270 0C46     		mov	r4, r1
- 158:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 884              		.loc 1 158 5 is_stmt 1 view .LVU207
- 885              		.loc 1 158 9 is_stmt 0 view .LVU208
- 886 0272 0023     		movs	r3, #0
- 887 0274 0B93     		str	r3, [sp, #44]
- 159:My_Top/System/My_CLI.cpp ****     char *end;
- 888              		.loc 1 159 5 is_stmt 1 view .LVU209
- 160:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
- 161:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 889              		.loc 1 161 5 view .LVU210
- 890              		.loc 1 161 48 is_stmt 0 view .LVU211
- 891 0276 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 892              	.LVL104:
- 162:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 893              		.loc 1 162 5 is_stmt 1 view .LVU212
- 894 027a F0B1     		cbz	r0, .L66
- 163:My_Top/System/My_CLI.cpp ****     // 解析参数
-ARM GAS  /tmp/ccON67r0.s 			page 21
+ 153:My_Top/System/My_CLI.cpp **** void set_duty(EmbeddedCli *cli, char *args, void *context) //设置电机占空比0-1
+ 154:My_Top/System/My_CLI.cpp **** {
+ 936              		.loc 1 154 1 view -0
+ 937              		.cfi_startproc
+ 938              		@ args = 0, pretend = 0, frame = 48
+ 939              		@ frame_needed = 0, uses_anonymous_args = 0
+ 940              		.loc 1 154 1 is_stmt 0 view .LVU210
+ 941 02f8 30B5     		push	{r4, r5, lr}
+ 942              		.cfi_def_cfa_offset 12
+ 943              		.cfi_offset 4, -12
+ 944              		.cfi_offset 5, -8
+ 945              		.cfi_offset 14, -4
+ 946 02fa 8DB0     		sub	sp, sp, #52
+ 947              		.cfi_def_cfa_offset 64
+ 948 02fc 0C46     		mov	r4, r1
+ 155:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 949              		.loc 1 155 5 is_stmt 1 view .LVU211
+ 950              		.loc 1 155 9 is_stmt 0 view .LVU212
+ 951 02fe 0023     		movs	r3, #0
+ 952 0300 0B93     		str	r3, [sp, #44]
+ 156:My_Top/System/My_CLI.cpp ****     char *end;
+ 953              		.loc 1 156 5 is_stmt 1 view .LVU213
+ 157:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ARM GAS  /tmp/cc9NG85F.s 			page 22
 
 
- 164:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 895              		.loc 1 164 5 view .LVU213
- 165:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 896              		.loc 1 165 5 view .LVU214
- 897              		.loc 1 165 41 is_stmt 0 view .LVU215
- 898 027c 2146     		mov	r1, r4
- 899 027e 6846     		mov	r0, sp
- 900              	.LVL105:
- 901              		.loc 1 165 41 view .LVU216
- 902 0280 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 903              	.LVL106:
- 904 0284 0146     		mov	r1, r0
- 905              	.LVL107:
- 166:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 906              		.loc 1 166 5 is_stmt 1 view .LVU217
- 907              		.loc 1 166 35 is_stmt 0 view .LVU218
- 908 0286 0BAA     		add	r2, sp, #44
- 909 0288 6846     		mov	r0, sp
- 910              	.LVL108:
- 911              		.loc 1 166 35 view .LVU219
- 912 028a FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 913              	.LVL109:
- 167:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 914              		.loc 1 167 5 is_stmt 1 view .LVU220
- 915 028e 0446     		mov	r4, r0
- 916              	.LVL110:
- 917              		.loc 1 167 5 is_stmt 0 view .LVU221
- 918 0290 98B1     		cbz	r0, .L66
- 168:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
- 919              		.loc 1 168 5 is_stmt 1 view .LVU222
- 920              		.loc 1 168 24 is_stmt 0 view .LVU223
- 921 0292 0AA9     		add	r1, sp, #40
- 922 0294 0298     		ldr	r0, [sp, #8]
- 923              	.LVL111:
- 924              		.loc 1 168 24 view .LVU224
- 925 0296 FFF7FEFF 		bl	strtof
- 926              	.LVL112:
- 927 029a 10EE100A 		vmov	r0, s0
- 928              	.LVL113:
- 169:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
- 929              		.loc 1 169 5 is_stmt 1 view .LVU225
- 930 029e 029A     		ldr	r2, [sp, #8]
- 931 02a0 0A9B     		ldr	r3, [sp, #40]
- 932 02a2 9A42     		cmp	r2, r3
- 933 02a4 0BD0     		beq	.L71
- 170:My_Top/System/My_CLI.cpp ****     {
- 171:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
- 172:My_Top/System/My_CLI.cpp ****         return;
- 173:My_Top/System/My_CLI.cpp ****     }
- 174:My_Top/System/My_CLI.cpp ****     m->_target_location2 = temp;
- 934              		.loc 1 174 5 view .LVU226
- 935              		.loc 1 174 26 is_stmt 0 view .LVU227
- 936 02a6 84ED0C0A 		vstr.32	s0, [r4, #48]
- 175:My_Top/System/My_CLI.cpp ****     printf("电机M%d 目标位置设置%.2f\r\n",idx,temp);
- 937              		.loc 1 175 5 is_stmt 1 view .LVU228
- 938              		.loc 1 175 11 is_stmt 0 view .LVU229
- 939 02aa FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccON67r0.s 			page 22
+ 158:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 954              		.loc 1 158 5 view .LVU214
+ 955              		.loc 1 158 48 is_stmt 0 view .LVU215
+ 956 0302 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 957              	.LVL115:
+ 159:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 958              		.loc 1 159 5 is_stmt 1 view .LVU216
+ 959 0306 F0B1     		cbz	r0, .L70
+ 160:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 161:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 960              		.loc 1 161 5 view .LVU217
+ 162:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 961              		.loc 1 162 5 view .LVU218
+ 962              		.loc 1 162 41 is_stmt 0 view .LVU219
+ 963 0308 2146     		mov	r1, r4
+ 964 030a 6846     		mov	r0, sp
+ 965              	.LVL116:
+ 966              		.loc 1 162 41 view .LVU220
+ 967 030c FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 968              	.LVL117:
+ 969 0310 0146     		mov	r1, r0
+ 970              	.LVL118:
+ 163:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 971              		.loc 1 163 5 is_stmt 1 view .LVU221
+ 972              		.loc 1 163 35 is_stmt 0 view .LVU222
+ 973 0312 0BAA     		add	r2, sp, #44
+ 974 0314 6846     		mov	r0, sp
+ 975              	.LVL119:
+ 976              		.loc 1 163 35 view .LVU223
+ 977 0316 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 978              	.LVL120:
+ 164:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 979              		.loc 1 164 5 is_stmt 1 view .LVU224
+ 980 031a 0446     		mov	r4, r0
+ 981              	.LVL121:
+ 982              		.loc 1 164 5 is_stmt 0 view .LVU225
+ 983 031c 98B1     		cbz	r0, .L70
+ 165:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
+ 984              		.loc 1 165 5 is_stmt 1 view .LVU226
+ 985              		.loc 1 165 24 is_stmt 0 view .LVU227
+ 986 031e 0AA9     		add	r1, sp, #40
+ 987 0320 0298     		ldr	r0, [sp, #8]
+ 988              	.LVL122:
+ 989              		.loc 1 165 24 view .LVU228
+ 990 0322 FFF7FEFF 		bl	strtof
+ 991              	.LVL123:
+ 992 0326 10EE100A 		vmov	r0, s0
+ 993              	.LVL124:
+ 166:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
+ 994              		.loc 1 166 5 is_stmt 1 view .LVU229
+ 995 032a 029A     		ldr	r2, [sp, #8]
+ 996 032c 0A9B     		ldr	r3, [sp, #40]
+ 997 032e 9A42     		cmp	r2, r3
+ 998 0330 0BD0     		beq	.L75
+ 167:My_Top/System/My_CLI.cpp ****     {
+ 168:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
+ 169:My_Top/System/My_CLI.cpp ****         return;
+ARM GAS  /tmp/cc9NG85F.s 			page 23
 
 
- 940              	.LVL114:
- 941              		.loc 1 175 11 view .LVU230
- 942 02ae 0246     		mov	r2, r0
- 943 02b0 0B46     		mov	r3, r1
- 944 02b2 0B99     		ldr	r1, [sp, #44]
- 945 02b4 0448     		ldr	r0, .L72
- 946 02b6 FFF7FEFF 		bl	printf_
- 947              	.LVL115:
- 948              	.L66:
- 176:My_Top/System/My_CLI.cpp **** }
- 949              		.loc 1 176 1 view .LVU231
- 950 02ba 0DB0     		add	sp, sp, #52
- 951              		.cfi_remember_state
- 952              		.cfi_def_cfa_offset 12
- 953              		@ sp needed
- 954 02bc 30BD     		pop	{r4, r5, pc}
- 955              	.LVL116:
- 956              	.L71:
- 957              		.cfi_restore_state
- 171:My_Top/System/My_CLI.cpp ****         return;
- 958              		.loc 1 171 9 is_stmt 1 view .LVU232
- 171:My_Top/System/My_CLI.cpp ****         return;
- 959              		.loc 1 171 15 is_stmt 0 view .LVU233
- 960 02be 0348     		ldr	r0, .L72+4
- 961              	.LVL117:
- 171:My_Top/System/My_CLI.cpp ****         return;
- 962              		.loc 1 171 15 view .LVU234
- 963 02c0 FFF7FEFF 		bl	printf_
- 964              	.LVL118:
- 172:My_Top/System/My_CLI.cpp ****     }
- 965              		.loc 1 172 9 is_stmt 1 view .LVU235
- 966 02c4 F9E7     		b	.L66
- 967              	.L73:
- 968 02c6 00BF     		.align	2
- 969              	.L72:
- 970 02c8 50010000 		.word	.LC12
- 971 02cc F8000000 		.word	.LC9
- 972              		.cfi_endproc
- 973              	.LFE1368:
- 975              		.section	.rodata.str1.4
- 976 0173 00       		.align	2
- 977              	.LC13:
- 978 0174 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \347\233\256\346\240\207"
- 978      9CBA4D25 
- 978      6420E79B 
- 978      AEE6A087 
- 979 0184 E9809FE5 		.ascii	"\351\200\237\345\272\246\350\256\276\347\275\256%.2"
- 979      BAA6E8AE 
- 979      BEE7BDAE 
- 979      252E32
- 980 0193 660D0A00 		.ascii	"f\015\012\000"
- 981              		.text
- 982              		.align	1
- 983              		.global	_Z9set_speedP11EmbeddedCliPcPv
- 984              		.syntax unified
- 985              		.thumb
- 986              		.thumb_func
-ARM GAS  /tmp/ccON67r0.s 			page 23
+ 170:My_Top/System/My_CLI.cpp ****     }
+ 171:My_Top/System/My_CLI.cpp ****     m->updown_duty = temp;
+ 999              		.loc 1 171 5 view .LVU230
+ 1000              		.loc 1 171 20 is_stmt 0 view .LVU231
+ 1001 0332 84ED040A 		vstr.32	s0, [r4, #16]
+ 172:My_Top/System/My_CLI.cpp ****     printf("电机M%d 占空比设置%.2f\r\n",idx,temp);
+ 1002              		.loc 1 172 5 is_stmt 1 view .LVU232
+ 1003              		.loc 1 172 11 is_stmt 0 view .LVU233
+ 1004 0336 FFF7FEFF 		bl	__aeabi_f2d
+ 1005              	.LVL125:
+ 1006              		.loc 1 172 11 view .LVU234
+ 1007 033a 0246     		mov	r2, r0
+ 1008 033c 0B46     		mov	r3, r1
+ 1009 033e 0B99     		ldr	r1, [sp, #44]
+ 1010 0340 0448     		ldr	r0, .L76
+ 1011 0342 FFF7FEFF 		bl	printf_
+ 1012              	.LVL126:
+ 1013              	.L70:
+ 173:My_Top/System/My_CLI.cpp **** }
+ 1014              		.loc 1 173 1 view .LVU235
+ 1015 0346 0DB0     		add	sp, sp, #52
+ 1016              		.cfi_remember_state
+ 1017              		.cfi_def_cfa_offset 12
+ 1018              		@ sp needed
+ 1019 0348 30BD     		pop	{r4, r5, pc}
+ 1020              	.LVL127:
+ 1021              	.L75:
+ 1022              		.cfi_restore_state
+ 168:My_Top/System/My_CLI.cpp ****         return;
+ 1023              		.loc 1 168 9 is_stmt 1 view .LVU236
+ 168:My_Top/System/My_CLI.cpp ****         return;
+ 1024              		.loc 1 168 15 is_stmt 0 view .LVU237
+ 1025 034a 0348     		ldr	r0, .L76+4
+ 1026              	.LVL128:
+ 168:My_Top/System/My_CLI.cpp ****         return;
+ 1027              		.loc 1 168 15 view .LVU238
+ 1028 034c FFF7FEFF 		bl	printf_
+ 1029              	.LVL129:
+ 169:My_Top/System/My_CLI.cpp ****     }
+ 1030              		.loc 1 169 9 is_stmt 1 view .LVU239
+ 1031 0350 F9E7     		b	.L70
+ 1032              	.L77:
+ 1033 0352 00BF     		.align	2
+ 1034              	.L76:
+ 1035 0354 5C010000 		.word	.LC12
+ 1036 0358 F8000000 		.word	.LC9
+ 1037              		.cfi_endproc
+ 1038              	.LFE1368:
+ 1040              		.section	.rodata.str1.4
+ 1041              		.align	2
+ 1042              	.LC13:
+ 1043 017c E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \347\233\256\346\240\207"
+ 1043      9CBA4D25 
+ 1043      6420E79B 
+ 1043      AEE6A087 
+ 1044 018c E4BD8DE7 		.ascii	"\344\275\215\347\275\256\350\256\276\347\275\256%.2"
+ 1044      BDAEE8AE 
+ARM GAS  /tmp/cc9NG85F.s 			page 24
 
 
- 988              	_Z9set_speedP11EmbeddedCliPcPv:
- 989              	.LVL119:
- 990              	.LFB1369:
+ 1044      BEE7BDAE 
+ 1044      252E32
+ 1045 019b 660D0A00 		.ascii	"f\015\012\000"
+ 1046              		.text
+ 1047              		.align	1
+ 1048              		.global	_Z7set_posP11EmbeddedCliPcPv
+ 1049              		.syntax unified
+ 1050              		.thumb
+ 1051              		.thumb_func
+ 1053              	_Z7set_posP11EmbeddedCliPcPv:
+ 1054              	.LVL130:
+ 1055              	.LFB1369:
+ 174:My_Top/System/My_CLI.cpp **** 
+ 175:My_Top/System/My_CLI.cpp **** 
+ 176:My_Top/System/My_CLI.cpp ****  
  177:My_Top/System/My_CLI.cpp **** 
- 178:My_Top/System/My_CLI.cpp **** 
- 179:My_Top/System/My_CLI.cpp **** void set_speed(EmbeddedCli *cli, char *args, void *context) //设置目标速度
- 180:My_Top/System/My_CLI.cpp **** {
- 991              		.loc 1 180 1 view -0
- 992              		.cfi_startproc
- 993              		@ args = 0, pretend = 0, frame = 48
- 994              		@ frame_needed = 0, uses_anonymous_args = 0
- 995              		.loc 1 180 1 is_stmt 0 view .LVU237
- 996 02d0 30B5     		push	{r4, r5, lr}
- 997              		.cfi_def_cfa_offset 12
- 998              		.cfi_offset 4, -12
- 999              		.cfi_offset 5, -8
- 1000              		.cfi_offset 14, -4
- 1001 02d2 8DB0     		sub	sp, sp, #52
- 1002              		.cfi_def_cfa_offset 64
- 1003 02d4 0C46     		mov	r4, r1
- 181:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 1004              		.loc 1 181 5 is_stmt 1 view .LVU238
- 1005              		.loc 1 181 9 is_stmt 0 view .LVU239
- 1006 02d6 0023     		movs	r3, #0
- 1007 02d8 0B93     		str	r3, [sp, #44]
- 182:My_Top/System/My_CLI.cpp ****     char *end;
- 1008              		.loc 1 182 5 is_stmt 1 view .LVU240
- 183:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
- 184:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 1009              		.loc 1 184 5 view .LVU241
- 1010              		.loc 1 184 48 is_stmt 0 view .LVU242
- 1011 02da FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 1012              	.LVL120:
- 185:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 1013              		.loc 1 185 5 is_stmt 1 view .LVU243
- 1014 02de F0B1     		cbz	r0, .L74
- 186:My_Top/System/My_CLI.cpp ****     // 解析参数
- 187:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 1015              		.loc 1 187 5 view .LVU244
- 188:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 1016              		.loc 1 188 5 view .LVU245
- 1017              		.loc 1 188 41 is_stmt 0 view .LVU246
- 1018 02e0 2146     		mov	r1, r4
- 1019 02e2 6846     		mov	r0, sp
- 1020              	.LVL121:
- 1021              		.loc 1 188 41 view .LVU247
- 1022 02e4 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 1023              	.LVL122:
- 1024 02e8 0146     		mov	r1, r0
- 1025              	.LVL123:
- 189:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 1026              		.loc 1 189 5 is_stmt 1 view .LVU248
- 1027              		.loc 1 189 35 is_stmt 0 view .LVU249
- 1028 02ea 0BAA     		add	r2, sp, #44
- 1029 02ec 6846     		mov	r0, sp
- 1030              	.LVL124:
- 1031              		.loc 1 189 35 view .LVU250
-ARM GAS  /tmp/ccON67r0.s 			page 24
+ 178:My_Top/System/My_CLI.cpp **** void set_pos(EmbeddedCli *cli, char *args, void *context) //设置目标位置
+ 179:My_Top/System/My_CLI.cpp **** {
+ 1056              		.loc 1 179 1 view -0
+ 1057              		.cfi_startproc
+ 1058              		@ args = 0, pretend = 0, frame = 48
+ 1059              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1060              		.loc 1 179 1 is_stmt 0 view .LVU241
+ 1061 035c 30B5     		push	{r4, r5, lr}
+ 1062              		.cfi_def_cfa_offset 12
+ 1063              		.cfi_offset 4, -12
+ 1064              		.cfi_offset 5, -8
+ 1065              		.cfi_offset 14, -4
+ 1066 035e 8DB0     		sub	sp, sp, #52
+ 1067              		.cfi_def_cfa_offset 64
+ 1068 0360 0C46     		mov	r4, r1
+ 180:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 1069              		.loc 1 180 5 is_stmt 1 view .LVU242
+ 1070              		.loc 1 180 9 is_stmt 0 view .LVU243
+ 1071 0362 0023     		movs	r3, #0
+ 1072 0364 0B93     		str	r3, [sp, #44]
+ 181:My_Top/System/My_CLI.cpp ****     char *end;
+ 1073              		.loc 1 181 5 is_stmt 1 view .LVU244
+ 182:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ 183:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 1074              		.loc 1 183 5 view .LVU245
+ 1075              		.loc 1 183 48 is_stmt 0 view .LVU246
+ 1076 0366 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 1077              	.LVL131:
+ 184:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 1078              		.loc 1 184 5 is_stmt 1 view .LVU247
+ 1079 036a F0B1     		cbz	r0, .L78
+ 185:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 186:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 1080              		.loc 1 186 5 view .LVU248
+ 187:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 1081              		.loc 1 187 5 view .LVU249
+ 1082              		.loc 1 187 41 is_stmt 0 view .LVU250
+ 1083 036c 2146     		mov	r1, r4
+ 1084 036e 6846     		mov	r0, sp
+ 1085              	.LVL132:
+ 1086              		.loc 1 187 41 view .LVU251
+ARM GAS  /tmp/cc9NG85F.s 			page 25
 
 
- 1032 02ee FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 1033              	.LVL125:
- 190:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 1034              		.loc 1 190 5 is_stmt 1 view .LVU251
- 1035 02f2 0446     		mov	r4, r0
- 1036              	.LVL126:
- 1037              		.loc 1 190 5 is_stmt 0 view .LVU252
- 1038 02f4 98B1     		cbz	r0, .L74
- 191:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
- 1039              		.loc 1 191 5 is_stmt 1 view .LVU253
- 1040              		.loc 1 191 24 is_stmt 0 view .LVU254
- 1041 02f6 0AA9     		add	r1, sp, #40
- 1042 02f8 0298     		ldr	r0, [sp, #8]
- 1043              	.LVL127:
- 1044              		.loc 1 191 24 view .LVU255
- 1045 02fa FFF7FEFF 		bl	strtof
- 1046              	.LVL128:
- 1047 02fe 10EE100A 		vmov	r0, s0
- 1048              	.LVL129:
- 192:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
- 1049              		.loc 1 192 5 is_stmt 1 view .LVU256
- 1050 0302 029A     		ldr	r2, [sp, #8]
- 1051 0304 0A9B     		ldr	r3, [sp, #40]
- 1052 0306 9A42     		cmp	r2, r3
- 1053 0308 0BD0     		beq	.L79
- 193:My_Top/System/My_CLI.cpp ****     {
- 194:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
- 195:My_Top/System/My_CLI.cpp ****         return;
- 196:My_Top/System/My_CLI.cpp ****     }
- 197:My_Top/System/My_CLI.cpp ****     m->_target_speed = temp;
- 1054              		.loc 1 197 5 view .LVU257
- 1055              		.loc 1 197 22 is_stmt 0 view .LVU258
- 1056 030a 84ED0B0A 		vstr.32	s0, [r4, #44]
- 198:My_Top/System/My_CLI.cpp ****     printf("电机M%d 目标速度设置%.2f\r\n",idx,temp);
- 1057              		.loc 1 198 5 is_stmt 1 view .LVU259
- 1058              		.loc 1 198 11 is_stmt 0 view .LVU260
- 1059 030e FFF7FEFF 		bl	__aeabi_f2d
- 1060              	.LVL130:
- 1061              		.loc 1 198 11 view .LVU261
- 1062 0312 0246     		mov	r2, r0
- 1063 0314 0B46     		mov	r3, r1
- 1064 0316 0B99     		ldr	r1, [sp, #44]
- 1065 0318 0448     		ldr	r0, .L80
- 1066 031a FFF7FEFF 		bl	printf_
- 1067              	.LVL131:
- 1068              	.L74:
- 199:My_Top/System/My_CLI.cpp **** }
- 1069              		.loc 1 199 1 view .LVU262
- 1070 031e 0DB0     		add	sp, sp, #52
- 1071              		.cfi_remember_state
- 1072              		.cfi_def_cfa_offset 12
- 1073              		@ sp needed
- 1074 0320 30BD     		pop	{r4, r5, pc}
- 1075              	.LVL132:
- 1076              	.L79:
- 1077              		.cfi_restore_state
+ 1087 0370 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 1088              	.LVL133:
+ 1089 0374 0146     		mov	r1, r0
+ 1090              	.LVL134:
+ 188:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 1091              		.loc 1 188 5 is_stmt 1 view .LVU252
+ 1092              		.loc 1 188 35 is_stmt 0 view .LVU253
+ 1093 0376 0BAA     		add	r2, sp, #44
+ 1094 0378 6846     		mov	r0, sp
+ 1095              	.LVL135:
+ 1096              		.loc 1 188 35 view .LVU254
+ 1097 037a FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 1098              	.LVL136:
+ 189:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 1099              		.loc 1 189 5 is_stmt 1 view .LVU255
+ 1100 037e 0446     		mov	r4, r0
+ 1101              	.LVL137:
+ 1102              		.loc 1 189 5 is_stmt 0 view .LVU256
+ 1103 0380 98B1     		cbz	r0, .L78
+ 190:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
+ 1104              		.loc 1 190 5 is_stmt 1 view .LVU257
+ 1105              		.loc 1 190 24 is_stmt 0 view .LVU258
+ 1106 0382 0AA9     		add	r1, sp, #40
+ 1107 0384 0298     		ldr	r0, [sp, #8]
+ 1108              	.LVL138:
+ 1109              		.loc 1 190 24 view .LVU259
+ 1110 0386 FFF7FEFF 		bl	strtof
+ 1111              	.LVL139:
+ 1112 038a 10EE100A 		vmov	r0, s0
+ 1113              	.LVL140:
+ 191:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
+ 1114              		.loc 1 191 5 is_stmt 1 view .LVU260
+ 1115 038e 029A     		ldr	r2, [sp, #8]
+ 1116 0390 0A9B     		ldr	r3, [sp, #40]
+ 1117 0392 9A42     		cmp	r2, r3
+ 1118 0394 0BD0     		beq	.L83
+ 192:My_Top/System/My_CLI.cpp ****     {
+ 193:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
  194:My_Top/System/My_CLI.cpp ****         return;
-ARM GAS  /tmp/ccON67r0.s 			page 25
-
-
- 1078              		.loc 1 194 9 is_stmt 1 view .LVU263
- 194:My_Top/System/My_CLI.cpp ****         return;
- 1079              		.loc 1 194 15 is_stmt 0 view .LVU264
- 1080 0322 0348     		ldr	r0, .L80+4
- 1081              	.LVL133:
- 194:My_Top/System/My_CLI.cpp ****         return;
- 1082              		.loc 1 194 15 view .LVU265
- 1083 0324 FFF7FEFF 		bl	printf_
- 1084              	.LVL134:
  195:My_Top/System/My_CLI.cpp ****     }
- 1085              		.loc 1 195 9 is_stmt 1 view .LVU266
- 1086 0328 F9E7     		b	.L74
- 1087              	.L81:
- 1088 032a 00BF     		.align	2
- 1089              	.L80:
- 1090 032c 74010000 		.word	.LC13
- 1091 0330 F8000000 		.word	.LC9
- 1092              		.cfi_endproc
- 1093              	.LFE1369:
- 1095              		.section	.rodata.str1.4
- 1096 0197 00       		.align	2
- 1097              	.LC14:
- 1098 0198 73706565 		.ascii	"speed\000"
- 1098      6400
- 1099 019e 0000     		.align	2
- 1100              	.LC15:
- 1101 01a0 706F7300 		.ascii	"pos\000"
- 1102              		.align	2
- 1103              	.LC16:
- 1104 01a4 6F70656E 		.ascii	"open_loop\000"
- 1104      5F6C6F6F 
- 1104      7000
- 1105 01ae 0000     		.align	2
- 1106              	.LC17:
- 1107 01b0 63616C69 		.ascii	"calib\000"
- 1107      6200
- 1108 01b6 0000     		.align	2
- 1109              	.LC18:
- 1110 01b8 E69CAAE7 		.ascii	"\346\234\252\347\237\245\346\250\241\345\274\217\015"
- 1110      9FA5E6A8 
- 1110      A1E5BC8F 
- 1110      0D
- 1111 01c5 0A00     		.ascii	"\012\000"
- 1112 01c7 00       		.align	2
- 1113              	.LC19:
- 1114 01c8 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\267\245\344\275\234"
- 1114      9CBA4D25 
- 1114      6420E5B7 
- 1114      A5E4BD9C 
- 1115 01d8 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\350\256\276\347\275\256%s\015"
- 1115      BC8FE8AE 
- 1115      BEE7BDAE 
- 1115      25730D
- 1116 01e7 0A00     		.ascii	"\012\000"
- 1117 01e9 000000   		.align	2
- 1118              	.LC20:
- 1119 01ec E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \346\240\241\345\207\206"
-ARM GAS  /tmp/ccON67r0.s 			page 26
+ 196:My_Top/System/My_CLI.cpp ****     m->_target_location2 = temp;
+ 1119              		.loc 1 196 5 view .LVU261
+ 1120              		.loc 1 196 26 is_stmt 0 view .LVU262
+ 1121 0396 84ED0D0A 		vstr.32	s0, [r4, #52]
+ 197:My_Top/System/My_CLI.cpp ****     printf("电机M%d 目标位置设置%.2f\r\n",idx,temp);
+ 1122              		.loc 1 197 5 is_stmt 1 view .LVU263
+ 1123              		.loc 1 197 11 is_stmt 0 view .LVU264
+ 1124 039a FFF7FEFF 		bl	__aeabi_f2d
+ 1125              	.LVL141:
+ 1126              		.loc 1 197 11 view .LVU265
+ 1127 039e 0246     		mov	r2, r0
+ 1128 03a0 0B46     		mov	r3, r1
+ 1129 03a2 0B99     		ldr	r1, [sp, #44]
+ 1130 03a4 0448     		ldr	r0, .L84
+ 1131 03a6 FFF7FEFF 		bl	printf_
+ 1132              	.LVL142:
+ 1133              	.L78:
+ARM GAS  /tmp/cc9NG85F.s 			page 26
 
 
- 1119      9CBA4D25 
- 1119      6420E6A0 
- 1119      A1E58786 
- 1120 01fc E6A8A1E5 		.ascii	"\346\250\241\345\274\217\357\274\232\345\220\257\345"
- 1120      BC8FEFBC 
- 1120      9AE590AF 
- 1120      E5
- 1121 0209 8AA8E5BC 		.ascii	"\212\250\345\274\200\347\216\257\345\205\250\351\200"
- 1121      80E78EAF 
- 1121      E585A8E9 
- 1121      80
- 1122 0216 9F0D0A00 		.ascii	"\237\015\012\000"
- 1123 021a 0000     		.align	2
- 1124              	.LC21:
- 1125 021c E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\274\200\345\247\213"
- 1125      9CBA4D25 
- 1125      6420E5BC 
- 1125      80E5A78B 
- 1126 022c 20414E4C 		.ascii	" ANLC \346\240\241\345\207\206\357\274\214\344\277\235"
- 1126      4320E6A0 
- 1126      A1E58786 
- 1126      EFBC8CE4 
- 1126      BF9D
- 1127 023e E68C81E8 		.ascii	"\346\214\201\350\275\254\345\212\250...\015\012\000"
- 1127      BDACE58A 
- 1127      A82E2E2E 
- 1127      0D0A00
- 1128 024d 000000   		.align	2
- 1129              	.LC22:
- 1130 0250 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d ANLC \346\240\241\345\207"
- 1130      9CBA4D25 
- 1130      6420414E 
- 1130      4C4320E6 
- 1130      A0A1E587 
- 1131 0264 86E68890 		.ascii	"\206\346\210\220\345\212\237\357\274\201\345\217\202"
- 1131      E58A9FEF 
- 1131      BC81E58F 
- 1131      82
- 1132 0271 E695B0E5 		.ascii	"\346\225\260\345\267\262\344\277\235\345\255\230\350"
- 1132      B7B2E4BF 
- 1132      9DE5AD98 
- 1132      E8
- 1133 027e 87B34D54 		.ascii	"\207\263MTP\015\012\000"
- 1133      500D0A00 
- 1134 0286 0000     		.align	2
- 1135              	.LC23:
- 1136 0288 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d ANLC \346\240\241\345\207"
- 1136      9CBA4D25 
- 1136      6420414E 
- 1136      4C4320E6 
- 1136      A0A1E587 
- 1137 029c 86E5A4B1 		.ascii	"\206\345\244\261\350\264\245\015\012\000"
- 1137      E8B4A50D 
- 1137      0A00
- 1138              		.text
- 1139              		.align	1
- 1140              		.global	_Z8set_modeP11EmbeddedCliPcPv
-ARM GAS  /tmp/ccON67r0.s 			page 27
-
-
- 1141              		.syntax unified
- 1142              		.thumb
- 1143              		.thumb_func
- 1145              	_Z8set_modeP11EmbeddedCliPcPv:
- 1146              	.LVL135:
- 1147              	.LFB1370:
+ 198:My_Top/System/My_CLI.cpp **** }
+ 1134              		.loc 1 198 1 view .LVU266
+ 1135 03aa 0DB0     		add	sp, sp, #52
+ 1136              		.cfi_remember_state
+ 1137              		.cfi_def_cfa_offset 12
+ 1138              		@ sp needed
+ 1139 03ac 30BD     		pop	{r4, r5, pc}
+ 1140              	.LVL143:
+ 1141              	.L83:
+ 1142              		.cfi_restore_state
+ 193:My_Top/System/My_CLI.cpp ****         return;
+ 1143              		.loc 1 193 9 is_stmt 1 view .LVU267
+ 193:My_Top/System/My_CLI.cpp ****         return;
+ 1144              		.loc 1 193 15 is_stmt 0 view .LVU268
+ 1145 03ae 0348     		ldr	r0, .L84+4
+ 1146              	.LVL144:
+ 193:My_Top/System/My_CLI.cpp ****         return;
+ 1147              		.loc 1 193 15 view .LVU269
+ 1148 03b0 FFF7FEFF 		bl	printf_
+ 1149              	.LVL145:
+ 194:My_Top/System/My_CLI.cpp ****     }
+ 1150              		.loc 1 194 9 is_stmt 1 view .LVU270
+ 1151 03b4 F9E7     		b	.L78
+ 1152              	.L85:
+ 1153 03b6 00BF     		.align	2
+ 1154              	.L84:
+ 1155 03b8 7C010000 		.word	.LC13
+ 1156 03bc F8000000 		.word	.LC9
+ 1157              		.cfi_endproc
+ 1158              	.LFE1369:
+ 1160              		.section	.rodata.str1.4
+ 1161 019f 00       		.align	2
+ 1162              	.LC14:
+ 1163 01a0 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \347\233\256\346\240\207"
+ 1163      9CBA4D25 
+ 1163      6420E79B 
+ 1163      AEE6A087 
+ 1164 01b0 E9809FE5 		.ascii	"\351\200\237\345\272\246\350\256\276\347\275\256%.2"
+ 1164      BAA6E8AE 
+ 1164      BEE7BDAE 
+ 1164      252E32
+ 1165 01bf 660D0A00 		.ascii	"f\015\012\000"
+ 1166              		.text
+ 1167              		.align	1
+ 1168              		.global	_Z9set_speedP11EmbeddedCliPcPv
+ 1169              		.syntax unified
+ 1170              		.thumb
+ 1171              		.thumb_func
+ 1173              	_Z9set_speedP11EmbeddedCliPcPv:
+ 1174              	.LVL146:
+ 1175              	.LFB1370:
+ 199:My_Top/System/My_CLI.cpp **** 
  200:My_Top/System/My_CLI.cpp **** 
- 201:My_Top/System/My_CLI.cpp **** 
- 202:My_Top/System/My_CLI.cpp **** 
- 203:My_Top/System/My_CLI.cpp **** void set_mode(EmbeddedCli *cli, char *args, void *context) //设置工作模式
- 204:My_Top/System/My_CLI.cpp **** {
- 1148              		.loc 1 204 1 view -0
- 1149              		.cfi_startproc
- 1150              		@ args = 0, pretend = 0, frame = 48
- 1151              		@ frame_needed = 0, uses_anonymous_args = 0
- 1152              		.loc 1 204 1 is_stmt 0 view .LVU268
- 1153 0334 70B5     		push	{r4, r5, r6, lr}
- 1154              		.cfi_def_cfa_offset 16
- 1155              		.cfi_offset 4, -16
- 1156              		.cfi_offset 5, -12
- 1157              		.cfi_offset 6, -8
- 1158              		.cfi_offset 14, -4
- 1159 0336 8CB0     		sub	sp, sp, #48
- 1160              		.cfi_def_cfa_offset 64
- 1161 0338 0C46     		mov	r4, r1
- 205:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 1162              		.loc 1 205 5 is_stmt 1 view .LVU269
- 1163              		.loc 1 205 9 is_stmt 0 view .LVU270
- 1164 033a 0023     		movs	r3, #0
- 1165 033c 0B93     		str	r3, [sp, #44]
- 206:My_Top/System/My_CLI.cpp ****     char *end;
- 1166              		.loc 1 206 5 is_stmt 1 view .LVU271
- 207:My_Top/System/My_CLI.cpp ****     Work_Mode mode_temp = null_mode;
- 1167              		.loc 1 207 5 view .LVU272
- 1168              	.LVL136:
- 208:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
- 209:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 1169              		.loc 1 209 5 view .LVU273
- 1170              		.loc 1 209 48 is_stmt 0 view .LVU274
- 1171 033e FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 1172              	.LVL137:
- 210:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 1173              		.loc 1 210 5 is_stmt 1 view .LVU275
- 1174 0342 A0B3     		cbz	r0, .L82
- 211:My_Top/System/My_CLI.cpp ****     // 解析参数
- 212:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 1175              		.loc 1 212 5 view .LVU276
- 213:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 1176              		.loc 1 213 5 view .LVU277
- 1177              		.loc 1 213 41 is_stmt 0 view .LVU278
- 1178 0344 01AD     		add	r5, sp, #4
- 1179 0346 2146     		mov	r1, r4
- 1180 0348 2846     		mov	r0, r5
- 1181              	.LVL138:
- 1182              		.loc 1 213 41 view .LVU279
- 1183 034a FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 1184              	.LVL139:
-ARM GAS  /tmp/ccON67r0.s 			page 28
+ 201:My_Top/System/My_CLI.cpp **** void set_speed(EmbeddedCli *cli, char *args, void *context) //设置目标速度
+ 202:My_Top/System/My_CLI.cpp **** {
+ 1176              		.loc 1 202 1 view -0
+ 1177              		.cfi_startproc
+ARM GAS  /tmp/cc9NG85F.s 			page 27
 
 
- 1185 034e 0146     		mov	r1, r0
- 1186              	.LVL140:
- 214:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 1187              		.loc 1 214 5 is_stmt 1 view .LVU280
- 1188              		.loc 1 214 35 is_stmt 0 view .LVU281
- 1189 0350 0BAA     		add	r2, sp, #44
- 1190 0352 2846     		mov	r0, r5
- 1191              	.LVL141:
- 1192              		.loc 1 214 35 view .LVU282
- 1193 0354 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 1194              	.LVL142:
- 215:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 1195              		.loc 1 215 5 is_stmt 1 view .LVU283
- 1196 0358 0446     		mov	r4, r0
- 1197              	.LVL143:
- 1198              		.loc 1 215 5 is_stmt 0 view .LVU284
- 1199 035a 40B3     		cbz	r0, .L82
- 216:My_Top/System/My_CLI.cpp **** 
- 217:My_Top/System/My_CLI.cpp ****     if (strcmp(arg_list[2], "speed") == 0) {
- 1200              		.loc 1 217 5 is_stmt 1 view .LVU285
- 1201              		.loc 1 217 15 is_stmt 0 view .LVU286
- 1202 035c 039D     		ldr	r5, [sp, #12]
- 1203 035e 2949     		ldr	r1, .L95
- 1204 0360 2846     		mov	r0, r5
- 1205              	.LVL144:
- 1206              		.loc 1 217 15 view .LVU287
- 1207 0362 FFF7FEFF 		bl	strcmp
- 1208              	.LVL145:
- 1209              		.loc 1 217 5 discriminator 1 view .LVU288
- 1210 0366 A0B1     		cbz	r0, .L88
- 218:My_Top/System/My_CLI.cpp ****         mode_temp = speed;
- 219:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "pos") == 0) {
- 1211              		.loc 1 219 12 is_stmt 1 view .LVU289
- 1212              		.loc 1 219 22 is_stmt 0 view .LVU290
- 1213 0368 2749     		ldr	r1, .L95+4
- 1214 036a 2846     		mov	r0, r5
- 1215 036c FFF7FEFF 		bl	strcmp
- 1216              	.LVL146:
- 1217              		.loc 1 219 12 discriminator 1 view .LVU291
- 1218 0370 88B1     		cbz	r0, .L89
- 220:My_Top/System/My_CLI.cpp ****         mode_temp = position;
- 221:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "open_loop") == 0) {
- 1219              		.loc 1 221 12 is_stmt 1 view .LVU292
- 1220              		.loc 1 221 22 is_stmt 0 view .LVU293
- 1221 0372 2649     		ldr	r1, .L95+8
- 1222 0374 2846     		mov	r0, r5
- 1223 0376 FFF7FEFF 		bl	strcmp
- 1224              	.LVL147:
- 1225              		.loc 1 221 12 discriminator 1 view .LVU294
- 1226 037a D0B1     		cbz	r0, .L90
- 222:My_Top/System/My_CLI.cpp ****         mode_temp = open_loop;
- 223:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "calib") == 0) {
- 1227              		.loc 1 223 12 is_stmt 1 view .LVU295
- 1228              		.loc 1 223 22 is_stmt 0 view .LVU296
- 1229 037c 2449     		ldr	r1, .L95+12
- 1230 037e 2846     		mov	r0, r5
- 1231 0380 FFF7FEFF 		bl	strcmp
-ARM GAS  /tmp/ccON67r0.s 			page 29
+ 1178              		@ args = 0, pretend = 0, frame = 48
+ 1179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1180              		.loc 1 202 1 is_stmt 0 view .LVU272
+ 1181 03c0 30B5     		push	{r4, r5, lr}
+ 1182              		.cfi_def_cfa_offset 12
+ 1183              		.cfi_offset 4, -12
+ 1184              		.cfi_offset 5, -8
+ 1185              		.cfi_offset 14, -4
+ 1186 03c2 8DB0     		sub	sp, sp, #52
+ 1187              		.cfi_def_cfa_offset 64
+ 1188 03c4 0C46     		mov	r4, r1
+ 203:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 1189              		.loc 1 203 5 is_stmt 1 view .LVU273
+ 1190              		.loc 1 203 9 is_stmt 0 view .LVU274
+ 1191 03c6 0023     		movs	r3, #0
+ 1192 03c8 0B93     		str	r3, [sp, #44]
+ 204:My_Top/System/My_CLI.cpp ****     char *end;
+ 1193              		.loc 1 204 5 is_stmt 1 view .LVU275
+ 205:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ 206:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 1194              		.loc 1 206 5 view .LVU276
+ 1195              		.loc 1 206 48 is_stmt 0 view .LVU277
+ 1196 03ca FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 1197              	.LVL147:
+ 207:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 1198              		.loc 1 207 5 is_stmt 1 view .LVU278
+ 1199 03ce F0B1     		cbz	r0, .L86
+ 208:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 209:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 1200              		.loc 1 209 5 view .LVU279
+ 210:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 1201              		.loc 1 210 5 view .LVU280
+ 1202              		.loc 1 210 41 is_stmt 0 view .LVU281
+ 1203 03d0 2146     		mov	r1, r4
+ 1204 03d2 6846     		mov	r0, sp
+ 1205              	.LVL148:
+ 1206              		.loc 1 210 41 view .LVU282
+ 1207 03d4 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 1208              	.LVL149:
+ 1209 03d8 0146     		mov	r1, r0
+ 1210              	.LVL150:
+ 211:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 1211              		.loc 1 211 5 is_stmt 1 view .LVU283
+ 1212              		.loc 1 211 35 is_stmt 0 view .LVU284
+ 1213 03da 0BAA     		add	r2, sp, #44
+ 1214 03dc 6846     		mov	r0, sp
+ 1215              	.LVL151:
+ 1216              		.loc 1 211 35 view .LVU285
+ 1217 03de FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 1218              	.LVL152:
+ 212:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 1219              		.loc 1 212 5 is_stmt 1 view .LVU286
+ 1220 03e2 0446     		mov	r4, r0
+ 1221              	.LVL153:
+ 1222              		.loc 1 212 5 is_stmt 0 view .LVU287
+ 1223 03e4 98B1     		cbz	r0, .L86
+ 213:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
+ARM GAS  /tmp/cc9NG85F.s 			page 28
 
 
- 1232              	.LVL148:
- 1233              		.loc 1 223 12 discriminator 1 view .LVU297
- 1234 0384 08B9     		cbnz	r0, .L93
- 224:My_Top/System/My_CLI.cpp ****         mode_temp = EncoderCalibration;
- 1235              		.loc 1 224 19 view .LVU298
- 1236 0386 6325     		movs	r5, #99
- 1237 0388 06E0     		b	.L84
- 1238              	.L93:
- 225:My_Top/System/My_CLI.cpp ****     }else {
- 226:My_Top/System/My_CLI.cpp ****         printf("未知模式\r\n");
- 1239              		.loc 1 226 9 is_stmt 1 view .LVU299
- 1240              		.loc 1 226 15 is_stmt 0 view .LVU300
- 1241 038a 2248     		ldr	r0, .L95+16
- 1242 038c FFF7FEFF 		bl	printf_
- 1243              	.LVL149:
- 227:My_Top/System/My_CLI.cpp ****         return;
- 1244              		.loc 1 227 9 is_stmt 1 view .LVU301
- 1245 0390 0DE0     		b	.L82
- 1246              	.L88:
- 218:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "pos") == 0) {
- 1247              		.loc 1 218 19 is_stmt 0 view .LVU302
- 1248 0392 0125     		movs	r5, #1
- 1249 0394 00E0     		b	.L84
- 1250              	.L89:
- 220:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "open_loop") == 0) {
- 1251              		.loc 1 220 19 view .LVU303
- 1252 0396 0225     		movs	r5, #2
- 1253              	.L84:
- 1254              	.LVL150:
- 228:My_Top/System/My_CLI.cpp ****     }
- 229:My_Top/System/My_CLI.cpp ****     m->work_mode = mode_temp;
- 1255              		.loc 1 229 5 is_stmt 1 view .LVU304
- 1256              		.loc 1 229 18 is_stmt 0 view .LVU305
- 1257 0398 2570     		strb	r5, [r4]
- 230:My_Top/System/My_CLI.cpp **** 
- 231:My_Top/System/My_CLI.cpp ****     m->My_DC_Motor_Reset(); //重置电机
- 1258              		.loc 1 231 5 is_stmt 1 view .LVU306
- 1259              		.loc 1 231 25 is_stmt 0 view .LVU307
- 1260 039a 2046     		mov	r0, r4
- 1261 039c FFF7FEFF 		bl	_ZN8DC_Motor17My_DC_Motor_ResetEv
- 1262              	.LVL151:
- 232:My_Top/System/My_CLI.cpp **** 
- 233:My_Top/System/My_CLI.cpp ****     printf("电机M%d 工作模式设置%s\r\n",idx,arg_list[2]);
- 1263              		.loc 1 233 5 is_stmt 1 view .LVU308
- 1264              		.loc 1 233 11 is_stmt 0 view .LVU309
- 1265 03a0 039A     		ldr	r2, [sp, #12]
- 1266 03a2 0B99     		ldr	r1, [sp, #44]
- 1267 03a4 1C48     		ldr	r0, .L95+20
- 1268 03a6 FFF7FEFF 		bl	printf_
- 1269              	.LVL152:
- 234:My_Top/System/My_CLI.cpp **** 
- 235:My_Top/System/My_CLI.cpp **** 
- 236:My_Top/System/My_CLI.cpp ****     if(mode_temp == EncoderCalibration)
- 1270              		.loc 1 236 5 is_stmt 1 view .LVU310
- 1271              	.LBB2:
- 1272 03aa 632D     		cmp	r5, #99
- 1273 03ac 03D0     		beq	.L94
-ARM GAS  /tmp/ccON67r0.s 			page 30
+ 1224              		.loc 1 213 5 is_stmt 1 view .LVU288
+ 1225              		.loc 1 213 24 is_stmt 0 view .LVU289
+ 1226 03e6 0AA9     		add	r1, sp, #40
+ 1227 03e8 0298     		ldr	r0, [sp, #8]
+ 1228              	.LVL154:
+ 1229              		.loc 1 213 24 view .LVU290
+ 1230 03ea FFF7FEFF 		bl	strtof
+ 1231              	.LVL155:
+ 1232 03ee 10EE100A 		vmov	r0, s0
+ 1233              	.LVL156:
+ 214:My_Top/System/My_CLI.cpp ****     if(end == arg_list[2]) 
+ 1234              		.loc 1 214 5 is_stmt 1 view .LVU291
+ 1235 03f2 029A     		ldr	r2, [sp, #8]
+ 1236 03f4 0A9B     		ldr	r3, [sp, #40]
+ 1237 03f6 9A42     		cmp	r2, r3
+ 1238 03f8 0BD0     		beq	.L91
+ 215:My_Top/System/My_CLI.cpp ****     {
+ 216:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
+ 217:My_Top/System/My_CLI.cpp ****         return;
+ 218:My_Top/System/My_CLI.cpp ****     }
+ 219:My_Top/System/My_CLI.cpp ****     m->_target_speed = temp;
+ 1239              		.loc 1 219 5 view .LVU292
+ 1240              		.loc 1 219 22 is_stmt 0 view .LVU293
+ 1241 03fa 84ED0C0A 		vstr.32	s0, [r4, #48]
+ 220:My_Top/System/My_CLI.cpp ****     printf("电机M%d 目标速度设置%.2f\r\n",idx,temp);
+ 1242              		.loc 1 220 5 is_stmt 1 view .LVU294
+ 1243              		.loc 1 220 11 is_stmt 0 view .LVU295
+ 1244 03fe FFF7FEFF 		bl	__aeabi_f2d
+ 1245              	.LVL157:
+ 1246              		.loc 1 220 11 view .LVU296
+ 1247 0402 0246     		mov	r2, r0
+ 1248 0404 0B46     		mov	r3, r1
+ 1249 0406 0B99     		ldr	r1, [sp, #44]
+ 1250 0408 0448     		ldr	r0, .L92
+ 1251 040a FFF7FEFF 		bl	printf_
+ 1252              	.LVL158:
+ 1253              	.L86:
+ 221:My_Top/System/My_CLI.cpp **** }
+ 1254              		.loc 1 221 1 view .LVU297
+ 1255 040e 0DB0     		add	sp, sp, #52
+ 1256              		.cfi_remember_state
+ 1257              		.cfi_def_cfa_offset 12
+ 1258              		@ sp needed
+ 1259 0410 30BD     		pop	{r4, r5, pc}
+ 1260              	.LVL159:
+ 1261              	.L91:
+ 1262              		.cfi_restore_state
+ 216:My_Top/System/My_CLI.cpp ****         return;
+ 1263              		.loc 1 216 9 is_stmt 1 view .LVU298
+ 216:My_Top/System/My_CLI.cpp ****         return;
+ 1264              		.loc 1 216 15 is_stmt 0 view .LVU299
+ 1265 0412 0348     		ldr	r0, .L92+4
+ 1266              	.LVL160:
+ 216:My_Top/System/My_CLI.cpp ****         return;
+ 1267              		.loc 1 216 15 view .LVU300
+ 1268 0414 FFF7FEFF 		bl	printf_
+ 1269              	.LVL161:
+ARM GAS  /tmp/cc9NG85F.s 			page 29
 
 
- 1274              	.LVL153:
- 1275              	.L82:
- 1276              		.loc 1 236 5 is_stmt 0 view .LVU311
- 1277              	.LBE2:
- 237:My_Top/System/My_CLI.cpp ****     {
- 238:My_Top/System/My_CLI.cpp ****         printf("电机M%d 校准模式：启动开环全速\r\n", idx);
- 239:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(2000));
- 240:My_Top/System/My_CLI.cpp **** 
- 241:My_Top/System/My_CLI.cpp ****         printf("电机M%d 开始 ANLC 校准，保持转动...\r\n", idx);
- 242:My_Top/System/My_CLI.cpp ****         bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
- 243:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
- 244:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(10));
- 245:My_Top/System/My_CLI.cpp ****         m->Motor_EN(false);
- 246:My_Top/System/My_CLI.cpp ****         m->updown_duty = 0.0;//停止电机
- 247:My_Top/System/My_CLI.cpp ****         if (ok) {
- 248:My_Top/System/My_CLI.cpp ****             printf("电机M%d ANLC 校准成功！参数已保存至MTP\r\n", idx);
- 249:My_Top/System/My_CLI.cpp ****         } else {
- 250:My_Top/System/My_CLI.cpp ****             printf("电机M%d ANLC 校准失败\r\n", idx);
- 251:My_Top/System/My_CLI.cpp ****         }
- 252:My_Top/System/My_CLI.cpp ****     }
- 253:My_Top/System/My_CLI.cpp **** 
- 254:My_Top/System/My_CLI.cpp **** }
- 1278              		.loc 1 254 1 view .LVU312
- 1279 03ae 0CB0     		add	sp, sp, #48
- 1280              		.cfi_remember_state
- 1281              		.cfi_def_cfa_offset 16
- 1282              		@ sp needed
- 1283 03b0 70BD     		pop	{r4, r5, r6, pc}
- 1284              	.LVL154:
- 1285              	.L90:
- 1286              		.cfi_restore_state
- 222:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "calib") == 0) {
- 1287              		.loc 1 222 19 view .LVU313
- 1288 03b2 0025     		movs	r5, #0
- 1289 03b4 F0E7     		b	.L84
- 1290              	.LVL155:
- 1291              	.L94:
- 1292              	.LBB4:
- 1293              	.LBB3:
- 238:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(2000));
- 1294              		.loc 1 238 9 is_stmt 1 view .LVU314
- 238:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(2000));
- 1295              		.loc 1 238 15 is_stmt 0 view .LVU315
- 1296 03b6 0B99     		ldr	r1, [sp, #44]
- 1297 03b8 1848     		ldr	r0, .L95+24
- 1298 03ba FFF7FEFF 		bl	printf_
- 1299              	.LVL156:
- 239:My_Top/System/My_CLI.cpp **** 
- 1300              		.loc 1 239 9 is_stmt 1 view .LVU316
- 239:My_Top/System/My_CLI.cpp **** 
- 1301              		.loc 1 239 19 is_stmt 0 view .LVU317
- 1302 03be 4FF4FA60 		mov	r0, #2000
- 1303 03c2 FFF7FEFF 		bl	vTaskDelay
- 1304              	.LVL157:
- 241:My_Top/System/My_CLI.cpp ****         bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
- 1305              		.loc 1 241 9 is_stmt 1 view .LVU318
- 241:My_Top/System/My_CLI.cpp ****         bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
-ARM GAS  /tmp/ccON67r0.s 			page 31
+ 217:My_Top/System/My_CLI.cpp ****     }
+ 1270              		.loc 1 217 9 is_stmt 1 view .LVU301
+ 1271 0418 F9E7     		b	.L86
+ 1272              	.L93:
+ 1273 041a 00BF     		.align	2
+ 1274              	.L92:
+ 1275 041c A0010000 		.word	.LC14
+ 1276 0420 F8000000 		.word	.LC9
+ 1277              		.cfi_endproc
+ 1278              	.LFE1370:
+ 1280              		.section	.rodata.str1.4
+ 1281 01c3 00       		.align	2
+ 1282              	.LC15:
+ 1283 01c4 73706565 		.ascii	"speed\000"
+ 1283      6400
+ 1284 01ca 0000     		.align	2
+ 1285              	.LC16:
+ 1286 01cc 706F7300 		.ascii	"pos\000"
+ 1287              		.align	2
+ 1288              	.LC17:
+ 1289 01d0 6F70656E 		.ascii	"open_loop\000"
+ 1289      5F6C6F6F 
+ 1289      7000
+ 1290 01da 0000     		.align	2
+ 1291              	.LC18:
+ 1292 01dc 63616C69 		.ascii	"calib\000"
+ 1292      6200
+ 1293 01e2 0000     		.align	2
+ 1294              	.LC19:
+ 1295 01e4 E69CAAE7 		.ascii	"\346\234\252\347\237\245\346\250\241\345\274\217\015"
+ 1295      9FA5E6A8 
+ 1295      A1E5BC8F 
+ 1295      0D
+ 1296 01f1 0A00     		.ascii	"\012\000"
+ 1297 01f3 00       		.align	2
+ 1298              	.LC20:
+ 1299 01f4 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\267\245\344\275\234"
+ 1299      9CBA4D25 
+ 1299      6420E5B7 
+ 1299      A5E4BD9C 
+ 1300 0204 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\350\256\276\347\275\256%s\015"
+ 1300      BC8FE8AE 
+ 1300      BEE7BDAE 
+ 1300      25730D
+ 1301 0213 0A00     		.ascii	"\012\000"
+ 1302 0215 000000   		.align	2
+ 1303              	.LC21:
+ 1304 0218 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \346\240\241\345\207\206"
+ 1304      9CBA4D25 
+ 1304      6420E6A0 
+ 1304      A1E58786 
+ 1305 0228 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\357\274\232\345\220\257\345"
+ 1305      BC8FEFBC 
+ 1305      9AE590AF 
+ 1305      E5
+ 1306 0235 8AA8E5BC 		.ascii	"\212\250\345\274\200\347\216\257\345\205\250\351\200"
+ 1306      80E78EAF 
+ARM GAS  /tmp/cc9NG85F.s 			page 30
 
 
- 1306              		.loc 1 241 15 is_stmt 0 view .LVU319
- 1307 03c6 0B99     		ldr	r1, [sp, #44]
- 1308 03c8 1548     		ldr	r0, .L95+28
- 1309 03ca FFF7FEFF 		bl	printf_
- 1310              	.LVL158:
- 242:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
- 1311              		.loc 1 242 9 is_stmt 1 view .LVU320
- 242:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
- 1312              		.loc 1 242 56 is_stmt 0 view .LVU321
- 1313 03ce 3C21     		movs	r1, #60
- 1314 03d0 E06B     		ldr	r0, [r4, #60]
- 1315 03d2 FFF7FEFF 		bl	_ZN7KTH711124KTH7111_ANLC_CalibrationEm
- 1316              	.LVL159:
- 1317 03d6 0546     		mov	r5, r0
- 1318              	.LVL160:
- 243:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(10));
- 1319              		.loc 1 243 9 is_stmt 1 view .LVU322
- 243:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(10));
- 1320              		.loc 1 243 22 is_stmt 0 view .LVU323
- 1321 03d8 0026     		movs	r6, #0
- 1322 03da 2670     		strb	r6, [r4]
- 244:My_Top/System/My_CLI.cpp ****         m->Motor_EN(false);
- 1323              		.loc 1 244 9 is_stmt 1 view .LVU324
- 244:My_Top/System/My_CLI.cpp ****         m->Motor_EN(false);
- 1324              		.loc 1 244 19 is_stmt 0 view .LVU325
- 1325 03dc 0A20     		movs	r0, #10
- 1326 03de FFF7FEFF 		bl	vTaskDelay
- 1327              	.LVL161:
- 245:My_Top/System/My_CLI.cpp ****         m->updown_duty = 0.0;//停止电机
- 1328              		.loc 1 245 9 is_stmt 1 view .LVU326
- 245:My_Top/System/My_CLI.cpp ****         m->updown_duty = 0.0;//停止电机
- 1329              		.loc 1 245 20 is_stmt 0 view .LVU327
- 1330 03e2 3146     		mov	r1, r6
- 1331 03e4 2046     		mov	r0, r4
- 1332 03e6 FFF7FEFF 		bl	_ZN8DC_Motor8Motor_ENEb
- 1333              	.LVL162:
- 246:My_Top/System/My_CLI.cpp ****         if (ok) {
- 1334              		.loc 1 246 9 is_stmt 1 view .LVU328
- 246:My_Top/System/My_CLI.cpp ****         if (ok) {
- 1335              		.loc 1 246 24 is_stmt 0 view .LVU329
- 1336 03ea 0023     		movs	r3, #0
- 1337 03ec 2361     		str	r3, [r4, #16]	@ float
- 247:My_Top/System/My_CLI.cpp ****             printf("电机M%d ANLC 校准成功！参数已保存至MTP\r\n", idx);
- 1338              		.loc 1 247 9 is_stmt 1 view .LVU330
- 1339 03ee 25B1     		cbz	r5, .L86
- 248:My_Top/System/My_CLI.cpp ****         } else {
- 1340              		.loc 1 248 13 view .LVU331
- 248:My_Top/System/My_CLI.cpp ****         } else {
- 1341              		.loc 1 248 19 is_stmt 0 view .LVU332
- 1342 03f0 0B99     		ldr	r1, [sp, #44]
- 1343 03f2 0C48     		ldr	r0, .L95+32
- 1344 03f4 FFF7FEFF 		bl	printf_
- 1345              	.LVL163:
- 1346 03f8 D9E7     		b	.L82
- 1347              	.L86:
- 250:My_Top/System/My_CLI.cpp ****         }
- 1348              		.loc 1 250 13 is_stmt 1 view .LVU333
-ARM GAS  /tmp/ccON67r0.s 			page 32
+ 1306      E585A8E9 
+ 1306      80
+ 1307 0242 9F0D0A00 		.ascii	"\237\015\012\000"
+ 1308 0246 0000     		.align	2
+ 1309              	.LC22:
+ 1310 0248 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\274\200\345\247\213"
+ 1310      9CBA4D25 
+ 1310      6420E5BC 
+ 1310      80E5A78B 
+ 1311 0258 20414E4C 		.ascii	" ANLC \346\240\241\345\207\206\357\274\214\344\277\235"
+ 1311      4320E6A0 
+ 1311      A1E58786 
+ 1311      EFBC8CE4 
+ 1311      BF9D
+ 1312 026a E68C81E8 		.ascii	"\346\214\201\350\275\254\345\212\250...\015\012\000"
+ 1312      BDACE58A 
+ 1312      A82E2E2E 
+ 1312      0D0A00
+ 1313 0279 000000   		.align	2
+ 1314              	.LC23:
+ 1315 027c E794B5E6 		.ascii	"\347\224\265\346\234\272M%d ANLC \346\240\241\345\207"
+ 1315      9CBA4D25 
+ 1315      6420414E 
+ 1315      4C4320E6 
+ 1315      A0A1E587 
+ 1316 0290 86E68890 		.ascii	"\206\346\210\220\345\212\237\357\274\201\345\217\202"
+ 1316      E58A9FEF 
+ 1316      BC81E58F 
+ 1316      82
+ 1317 029d E695B0E5 		.ascii	"\346\225\260\345\267\262\344\277\235\345\255\230\350"
+ 1317      B7B2E4BF 
+ 1317      9DE5AD98 
+ 1317      E8
+ 1318 02aa 87B34D54 		.ascii	"\207\263MTP\015\012\000"
+ 1318      500D0A00 
+ 1319 02b2 0000     		.align	2
+ 1320              	.LC24:
+ 1321 02b4 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d ANLC \346\240\241\345\207"
+ 1321      9CBA4D25 
+ 1321      6420414E 
+ 1321      4C4320E6 
+ 1321      A0A1E587 
+ 1322 02c8 86E5A4B1 		.ascii	"\206\345\244\261\350\264\245\015\012\000"
+ 1322      E8B4A50D 
+ 1322      0A00
+ 1323              		.text
+ 1324              		.align	1
+ 1325              		.global	_Z8set_modeP11EmbeddedCliPcPv
+ 1326              		.syntax unified
+ 1327              		.thumb
+ 1328              		.thumb_func
+ 1330              	_Z8set_modeP11EmbeddedCliPcPv:
+ 1331              	.LVL162:
+ 1332              	.LFB1371:
+ 222:My_Top/System/My_CLI.cpp **** 
+ 223:My_Top/System/My_CLI.cpp **** 
+ 224:My_Top/System/My_CLI.cpp **** 
+ARM GAS  /tmp/cc9NG85F.s 			page 31
 
 
- 250:My_Top/System/My_CLI.cpp ****         }
- 1349              		.loc 1 250 19 is_stmt 0 view .LVU334
- 1350 03fa 0B99     		ldr	r1, [sp, #44]
- 1351 03fc 0A48     		ldr	r0, .L95+36
- 1352 03fe FFF7FEFF 		bl	printf_
- 1353              	.LVL164:
- 1354 0402 D4E7     		b	.L82
- 1355              	.L96:
- 1356              		.align	2
- 1357              	.L95:
- 1358 0404 98010000 		.word	.LC14
- 1359 0408 A0010000 		.word	.LC15
- 1360 040c A4010000 		.word	.LC16
- 1361 0410 B0010000 		.word	.LC17
- 1362 0414 B8010000 		.word	.LC18
- 1363 0418 C8010000 		.word	.LC19
- 1364 041c EC010000 		.word	.LC20
- 1365 0420 1C020000 		.word	.LC21
- 1366 0424 50020000 		.word	.LC22
- 1367 0428 88020000 		.word	.LC23
- 1368              	.LBE3:
- 1369              	.LBE4:
- 1370              		.cfi_endproc
- 1371              	.LFE1370:
- 1373              		.section	.rodata.str1.4
- 1374 02a6 0000     		.align	2
- 1375              	.LC24:
- 1376 02a8 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \351\200\237\345\272\246"
- 1376      9CBA4D25 
- 1376      6420E980 
- 1376      9FE5BAA6 
- 1377 02b8 706964E8 		.ascii	"pid\350\256\276\347\275\256 kp:%.3f ki:%.3f kd:%.3f"
- 1377      AEBEE7BD 
- 1377      AE206B70 
- 1377      3A252E33 
- 1377      66206B69 
- 1378 02d9 200D0A00 		.ascii	" \015\012\000"
- 1379              		.text
- 1380              		.align	1
- 1381              		.global	_Z9set_pid_vP11EmbeddedCliPcPv
- 1382              		.syntax unified
- 1383              		.thumb
- 1384              		.thumb_func
- 1386              	_Z9set_pid_vP11EmbeddedCliPcPv:
- 1387              	.LVL165:
- 1388              	.LFB1371:
- 255:My_Top/System/My_CLI.cpp **** 
+ 225:My_Top/System/My_CLI.cpp **** void set_mode(EmbeddedCli *cli, char *args, void *context) //设置工作模式
+ 226:My_Top/System/My_CLI.cpp **** {
+ 1333              		.loc 1 226 1 view -0
+ 1334              		.cfi_startproc
+ 1335              		@ args = 0, pretend = 0, frame = 48
+ 1336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1337              		.loc 1 226 1 is_stmt 0 view .LVU303
+ 1338 0424 70B5     		push	{r4, r5, r6, lr}
+ 1339              		.cfi_def_cfa_offset 16
+ 1340              		.cfi_offset 4, -16
+ 1341              		.cfi_offset 5, -12
+ 1342              		.cfi_offset 6, -8
+ 1343              		.cfi_offset 14, -4
+ 1344 0426 8CB0     		sub	sp, sp, #48
+ 1345              		.cfi_def_cfa_offset 64
+ 1346 0428 0C46     		mov	r4, r1
+ 227:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 1347              		.loc 1 227 5 is_stmt 1 view .LVU304
+ 1348              		.loc 1 227 9 is_stmt 0 view .LVU305
+ 1349 042a 0023     		movs	r3, #0
+ 1350 042c 0B93     		str	r3, [sp, #44]
+ 228:My_Top/System/My_CLI.cpp ****     char *end;
+ 1351              		.loc 1 228 5 is_stmt 1 view .LVU306
+ 229:My_Top/System/My_CLI.cpp ****     Work_Mode mode_temp = null_mode;
+ 1352              		.loc 1 229 5 view .LVU307
+ 1353              	.LVL163:
+ 230:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ 231:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 1354              		.loc 1 231 5 view .LVU308
+ 1355              		.loc 1 231 48 is_stmt 0 view .LVU309
+ 1356 042e FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 1357              	.LVL164:
+ 232:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 1358              		.loc 1 232 5 is_stmt 1 view .LVU310
+ 1359 0432 A0B3     		cbz	r0, .L94
+ 233:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 234:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 1360              		.loc 1 234 5 view .LVU311
+ 235:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 1361              		.loc 1 235 5 view .LVU312
+ 1362              		.loc 1 235 41 is_stmt 0 view .LVU313
+ 1363 0434 01AD     		add	r5, sp, #4
+ 1364 0436 2146     		mov	r1, r4
+ 1365 0438 2846     		mov	r0, r5
+ 1366              	.LVL165:
+ 1367              		.loc 1 235 41 view .LVU314
+ 1368 043a FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 1369              	.LVL166:
+ 1370 043e 0146     		mov	r1, r0
+ 1371              	.LVL167:
+ 236:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 1372              		.loc 1 236 5 is_stmt 1 view .LVU315
+ 1373              		.loc 1 236 35 is_stmt 0 view .LVU316
+ 1374 0440 0BAA     		add	r2, sp, #44
+ 1375 0442 2846     		mov	r0, r5
+ 1376              	.LVL168:
+ 1377              		.loc 1 236 35 view .LVU317
+ARM GAS  /tmp/cc9NG85F.s 			page 32
+
+
+ 1378 0444 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 1379              	.LVL169:
+ 237:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 1380              		.loc 1 237 5 is_stmt 1 view .LVU318
+ 1381 0448 0446     		mov	r4, r0
+ 1382              	.LVL170:
+ 1383              		.loc 1 237 5 is_stmt 0 view .LVU319
+ 1384 044a 40B3     		cbz	r0, .L94
+ 238:My_Top/System/My_CLI.cpp **** 
+ 239:My_Top/System/My_CLI.cpp ****     if (strcmp(arg_list[2], "speed") == 0) {
+ 1385              		.loc 1 239 5 is_stmt 1 view .LVU320
+ 1386              		.loc 1 239 15 is_stmt 0 view .LVU321
+ 1387 044c 039D     		ldr	r5, [sp, #12]
+ 1388 044e 2949     		ldr	r1, .L107
+ 1389 0450 2846     		mov	r0, r5
+ 1390              	.LVL171:
+ 1391              		.loc 1 239 15 view .LVU322
+ 1392 0452 FFF7FEFF 		bl	strcmp
+ 1393              	.LVL172:
+ 1394              		.loc 1 239 5 discriminator 1 view .LVU323
+ 1395 0456 A0B1     		cbz	r0, .L100
+ 240:My_Top/System/My_CLI.cpp ****         mode_temp = speed;
+ 241:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "pos") == 0) {
+ 1396              		.loc 1 241 12 is_stmt 1 view .LVU324
+ 1397              		.loc 1 241 22 is_stmt 0 view .LVU325
+ 1398 0458 2749     		ldr	r1, .L107+4
+ 1399 045a 2846     		mov	r0, r5
+ 1400 045c FFF7FEFF 		bl	strcmp
+ 1401              	.LVL173:
+ 1402              		.loc 1 241 12 discriminator 1 view .LVU326
+ 1403 0460 88B1     		cbz	r0, .L101
+ 242:My_Top/System/My_CLI.cpp ****         mode_temp = position;
+ 243:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "open_loop") == 0) {
+ 1404              		.loc 1 243 12 is_stmt 1 view .LVU327
+ 1405              		.loc 1 243 22 is_stmt 0 view .LVU328
+ 1406 0462 2649     		ldr	r1, .L107+8
+ 1407 0464 2846     		mov	r0, r5
+ 1408 0466 FFF7FEFF 		bl	strcmp
+ 1409              	.LVL174:
+ 1410              		.loc 1 243 12 discriminator 1 view .LVU329
+ 1411 046a D0B1     		cbz	r0, .L102
+ 244:My_Top/System/My_CLI.cpp ****         mode_temp = open_loop;
+ 245:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "calib") == 0) {
+ 1412              		.loc 1 245 12 is_stmt 1 view .LVU330
+ 1413              		.loc 1 245 22 is_stmt 0 view .LVU331
+ 1414 046c 2449     		ldr	r1, .L107+12
+ 1415 046e 2846     		mov	r0, r5
+ 1416 0470 FFF7FEFF 		bl	strcmp
+ 1417              	.LVL175:
+ 1418              		.loc 1 245 12 discriminator 1 view .LVU332
+ 1419 0474 08B9     		cbnz	r0, .L105
+ 246:My_Top/System/My_CLI.cpp ****         mode_temp = EncoderCalibration;
+ 1420              		.loc 1 246 19 view .LVU333
+ 1421 0476 6325     		movs	r5, #99
+ 1422 0478 06E0     		b	.L96
+ 1423              	.L105:
+ 247:My_Top/System/My_CLI.cpp ****     }else {
+ARM GAS  /tmp/cc9NG85F.s 			page 33
+
+
+ 248:My_Top/System/My_CLI.cpp ****         printf("未知模式\r\n");
+ 1424              		.loc 1 248 9 is_stmt 1 view .LVU334
+ 1425              		.loc 1 248 15 is_stmt 0 view .LVU335
+ 1426 047a 2248     		ldr	r0, .L107+16
+ 1427 047c FFF7FEFF 		bl	printf_
+ 1428              	.LVL176:
+ 249:My_Top/System/My_CLI.cpp ****         return;
+ 1429              		.loc 1 249 9 is_stmt 1 view .LVU336
+ 1430 0480 0DE0     		b	.L94
+ 1431              	.L100:
+ 240:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "pos") == 0) {
+ 1432              		.loc 1 240 19 is_stmt 0 view .LVU337
+ 1433 0482 0125     		movs	r5, #1
+ 1434 0484 00E0     		b	.L96
+ 1435              	.L101:
+ 242:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "open_loop") == 0) {
+ 1436              		.loc 1 242 19 view .LVU338
+ 1437 0486 0225     		movs	r5, #2
+ 1438              	.L96:
+ 1439              	.LVL177:
+ 250:My_Top/System/My_CLI.cpp ****     }
+ 251:My_Top/System/My_CLI.cpp ****     m->work_mode = mode_temp;
+ 1440              		.loc 1 251 5 is_stmt 1 view .LVU339
+ 1441              		.loc 1 251 18 is_stmt 0 view .LVU340
+ 1442 0488 2570     		strb	r5, [r4]
+ 252:My_Top/System/My_CLI.cpp **** 
+ 253:My_Top/System/My_CLI.cpp ****     m->My_DC_Motor_Reset(); //重置电机
+ 1443              		.loc 1 253 5 is_stmt 1 view .LVU341
+ 1444              		.loc 1 253 25 is_stmt 0 view .LVU342
+ 1445 048a 2046     		mov	r0, r4
+ 1446 048c FFF7FEFF 		bl	_ZN8DC_Motor17My_DC_Motor_ResetEv
+ 1447              	.LVL178:
+ 254:My_Top/System/My_CLI.cpp **** 
+ 255:My_Top/System/My_CLI.cpp ****     printf("电机M%d 工作模式设置%s\r\n",idx,arg_list[2]);
+ 1448              		.loc 1 255 5 is_stmt 1 view .LVU343
+ 1449              		.loc 1 255 11 is_stmt 0 view .LVU344
+ 1450 0490 039A     		ldr	r2, [sp, #12]
+ 1451 0492 0B99     		ldr	r1, [sp, #44]
+ 1452 0494 1C48     		ldr	r0, .L107+20
+ 1453 0496 FFF7FEFF 		bl	printf_
+ 1454              	.LVL179:
  256:My_Top/System/My_CLI.cpp **** 
  257:My_Top/System/My_CLI.cpp **** 
- 258:My_Top/System/My_CLI.cpp **** 
- 259:My_Top/System/My_CLI.cpp **** 
- 260:My_Top/System/My_CLI.cpp **** void set_pid_v(EmbeddedCli *cli, char *args, void *context) //设置PID 速度环  
- 261:My_Top/System/My_CLI.cpp **** {
- 1389              		.loc 1 261 1 is_stmt 1 view -0
- 1390              		.cfi_startproc
- 1391              		@ args = 0, pretend = 0, frame = 56
- 1392              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccON67r0.s 			page 33
+ 258:My_Top/System/My_CLI.cpp ****     if(mode_temp == EncoderCalibration)
+ 1455              		.loc 1 258 5 is_stmt 1 view .LVU345
+ 1456              	.LBB4:
+ 1457 049a 632D     		cmp	r5, #99
+ 1458 049c 03D0     		beq	.L106
+ 1459              	.LVL180:
+ 1460              	.L94:
+ 1461              		.loc 1 258 5 is_stmt 0 view .LVU346
+ 1462              	.LBE4:
+ 259:My_Top/System/My_CLI.cpp ****     {
+ 260:My_Top/System/My_CLI.cpp ****         printf("电机M%d 校准模式：启动开环全速\r\n", idx);
+ 261:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(2000));
+ 262:My_Top/System/My_CLI.cpp **** 
+ 263:My_Top/System/My_CLI.cpp ****         printf("电机M%d 开始 ANLC 校准，保持转动...\r\n", idx);
+ARM GAS  /tmp/cc9NG85F.s 			page 34
 
 
- 1393              		.loc 1 261 1 is_stmt 0 view .LVU336
- 1394 042c F0B5     		push	{r4, r5, r6, r7, lr}
- 1395              		.cfi_def_cfa_offset 20
- 1396              		.cfi_offset 4, -20
- 1397              		.cfi_offset 5, -16
- 1398              		.cfi_offset 6, -12
- 1399              		.cfi_offset 7, -8
- 1400              		.cfi_offset 14, -4
- 1401 042e 93B0     		sub	sp, sp, #76
- 1402              		.cfi_def_cfa_offset 96
- 1403 0430 0C46     		mov	r4, r1
- 262:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 1404              		.loc 1 262 5 is_stmt 1 view .LVU337
- 1405              		.loc 1 262 9 is_stmt 0 view .LVU338
- 1406 0432 0023     		movs	r3, #0
- 1407 0434 1193     		str	r3, [sp, #68]
- 263:My_Top/System/My_CLI.cpp ****     char *end1,*end2,*end3;
- 1408              		.loc 1 263 5 is_stmt 1 view .LVU339
- 264:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
- 265:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 1409              		.loc 1 265 5 view .LVU340
- 1410              		.loc 1 265 48 is_stmt 0 view .LVU341
- 1411 0436 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 1412              	.LVL166:
- 266:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 1413              		.loc 1 266 5 is_stmt 1 view .LVU342
- 1414 043a 0028     		cmp	r0, #0
- 1415 043c 49D0     		beq	.L97
- 267:My_Top/System/My_CLI.cpp ****     // 解析参数
- 268:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 1416              		.loc 1 268 5 view .LVU343
- 269:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 1417              		.loc 1 269 5 view .LVU344
- 1418              		.loc 1 269 41 is_stmt 0 view .LVU345
- 1419 043e 04AD     		add	r5, sp, #16
- 1420 0440 2146     		mov	r1, r4
- 1421 0442 2846     		mov	r0, r5
- 1422              	.LVL167:
- 1423              		.loc 1 269 41 view .LVU346
- 1424 0444 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 1425              	.LVL168:
- 1426 0448 0146     		mov	r1, r0
- 1427              	.LVL169:
- 270:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 1428              		.loc 1 270 5 is_stmt 1 view .LVU347
- 1429              		.loc 1 270 35 is_stmt 0 view .LVU348
- 1430 044a 11AA     		add	r2, sp, #68
- 1431 044c 2846     		mov	r0, r5
- 1432              	.LVL170:
- 1433              		.loc 1 270 35 view .LVU349
- 1434 044e FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 1435              	.LVL171:
- 271:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 1436              		.loc 1 271 5 is_stmt 1 view .LVU350
- 1437 0452 0746     		mov	r7, r0
- 1438 0454 0028     		cmp	r0, #0
- 1439 0456 3CD0     		beq	.L97
-ARM GAS  /tmp/ccON67r0.s 			page 34
+ 264:My_Top/System/My_CLI.cpp ****         bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
+ 265:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
+ 266:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(10));
+ 267:My_Top/System/My_CLI.cpp ****         m->Motor_EN(false);
+ 268:My_Top/System/My_CLI.cpp ****         m->updown_duty = 0.0;//停止电机
+ 269:My_Top/System/My_CLI.cpp ****         if (ok) {
+ 270:My_Top/System/My_CLI.cpp ****             printf("电机M%d ANLC 校准成功！参数已保存至MTP\r\n", idx);
+ 271:My_Top/System/My_CLI.cpp ****         } else {
+ 272:My_Top/System/My_CLI.cpp ****             printf("电机M%d ANLC 校准失败\r\n", idx);
+ 273:My_Top/System/My_CLI.cpp ****         }
+ 274:My_Top/System/My_CLI.cpp ****     }
+ 275:My_Top/System/My_CLI.cpp **** 
+ 276:My_Top/System/My_CLI.cpp **** }
+ 1463              		.loc 1 276 1 view .LVU347
+ 1464 049e 0CB0     		add	sp, sp, #48
+ 1465              		.cfi_remember_state
+ 1466              		.cfi_def_cfa_offset 16
+ 1467              		@ sp needed
+ 1468 04a0 70BD     		pop	{r4, r5, r6, pc}
+ 1469              	.LVL181:
+ 1470              	.L102:
+ 1471              		.cfi_restore_state
+ 244:My_Top/System/My_CLI.cpp ****     } else if (strcmp(arg_list[2], "calib") == 0) {
+ 1472              		.loc 1 244 19 view .LVU348
+ 1473 04a2 0025     		movs	r5, #0
+ 1474 04a4 F0E7     		b	.L96
+ 1475              	.LVL182:
+ 1476              	.L106:
+ 1477              	.LBB6:
+ 1478              	.LBB5:
+ 260:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(2000));
+ 1479              		.loc 1 260 9 is_stmt 1 view .LVU349
+ 260:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(2000));
+ 1480              		.loc 1 260 15 is_stmt 0 view .LVU350
+ 1481 04a6 0B99     		ldr	r1, [sp, #44]
+ 1482 04a8 1848     		ldr	r0, .L107+24
+ 1483 04aa FFF7FEFF 		bl	printf_
+ 1484              	.LVL183:
+ 261:My_Top/System/My_CLI.cpp **** 
+ 1485              		.loc 1 261 9 is_stmt 1 view .LVU351
+ 261:My_Top/System/My_CLI.cpp **** 
+ 1486              		.loc 1 261 19 is_stmt 0 view .LVU352
+ 1487 04ae 4FF4FA60 		mov	r0, #2000
+ 1488 04b2 FFF7FEFF 		bl	vTaskDelay
+ 1489              	.LVL184:
+ 263:My_Top/System/My_CLI.cpp ****         bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
+ 1490              		.loc 1 263 9 is_stmt 1 view .LVU353
+ 263:My_Top/System/My_CLI.cpp ****         bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
+ 1491              		.loc 1 263 15 is_stmt 0 view .LVU354
+ 1492 04b6 0B99     		ldr	r1, [sp, #44]
+ 1493 04b8 1548     		ldr	r0, .L107+28
+ 1494 04ba FFF7FEFF 		bl	printf_
+ 1495              	.LVL185:
+ 264:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
+ 1496              		.loc 1 264 9 is_stmt 1 view .LVU355
+ 264:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
+ 1497              		.loc 1 264 56 is_stmt 0 view .LVU356
+ARM GAS  /tmp/cc9NG85F.s 			page 35
 
 
- 272:My_Top/System/My_CLI.cpp ****     float kp = strtof(arg_list[2], &end1); //将字符串转换为浮点数
- 1440              		.loc 1 272 5 view .LVU351
- 1441              		.loc 1 272 22 is_stmt 0 view .LVU352
- 1442 0458 10A9     		add	r1, sp, #64
- 1443 045a 0698     		ldr	r0, [sp, #24]
- 1444              	.LVL172:
- 1445              		.loc 1 272 22 view .LVU353
- 1446 045c FFF7FEFF 		bl	strtof
- 1447              	.LVL173:
- 1448 0460 10EE106A 		vmov	r6, s0
- 1449              	.LVL174:
- 273:My_Top/System/My_CLI.cpp ****     float ki = strtof(arg_list[3], &end2); //将字符串转换为浮点数
- 1450              		.loc 1 273 5 is_stmt 1 view .LVU354
- 1451              		.loc 1 273 22 is_stmt 0 view .LVU355
- 1452 0464 0FA9     		add	r1, sp, #60
- 1453 0466 0798     		ldr	r0, [sp, #28]
- 1454 0468 FFF7FEFF 		bl	strtof
- 1455              	.LVL175:
- 1456 046c 10EE104A 		vmov	r4, s0
- 1457              	.LVL176:
- 274:My_Top/System/My_CLI.cpp ****     float kd = strtof(arg_list[4], &end3); //将字符串转换为浮点数
- 1458              		.loc 1 274 5 is_stmt 1 view .LVU356
- 1459              		.loc 1 274 22 is_stmt 0 view .LVU357
- 1460 0470 0EA9     		add	r1, sp, #56
- 1461 0472 0898     		ldr	r0, [sp, #32]
- 1462 0474 FFF7FEFF 		bl	strtof
- 1463              	.LVL177:
- 1464 0478 10EE105A 		vmov	r5, s0
- 1465              	.LVL178:
- 275:My_Top/System/My_CLI.cpp ****     if(end1 == arg_list[2] || end2 == arg_list[3] || end3 == arg_list[4])
- 1466              		.loc 1 275 5 is_stmt 1 view .LVU358
- 1467 047c 069A     		ldr	r2, [sp, #24]
- 1468 047e 109B     		ldr	r3, [sp, #64]
- 1469 0480 9A42     		cmp	r2, r3
- 1470 0482 28D0     		beq	.L99
- 1471              		.loc 1 275 28 is_stmt 0 discriminator 1 view .LVU359
- 1472 0484 079A     		ldr	r2, [sp, #28]
- 1473 0486 0F9B     		ldr	r3, [sp, #60]
- 1474 0488 9A42     		cmp	r2, r3
- 1475 048a 24D0     		beq	.L99
- 1476              		.loc 1 275 51 discriminator 2 view .LVU360
- 1477 048c 089A     		ldr	r2, [sp, #32]
- 1478 048e 0E9B     		ldr	r3, [sp, #56]
- 1479 0490 9A42     		cmp	r2, r3
- 1480 0492 20D0     		beq	.L99
- 276:My_Top/System/My_CLI.cpp ****     {
- 277:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
- 278:My_Top/System/My_CLI.cpp ****         return;
- 279:My_Top/System/My_CLI.cpp ****     }
- 280:My_Top/System/My_CLI.cpp ****     m->pid_speed_incparam->_kp = kp;
- 1481              		.loc 1 280 5 is_stmt 1 view .LVU361
- 1482              		.loc 1 280 8 is_stmt 0 view .LVU362
- 1483 0494 3B6C     		ldr	r3, [r7, #64]
- 1484              		.loc 1 280 32 view .LVU363
- 1485 0496 1E60     		str	r6, [r3]	@ float
- 281:My_Top/System/My_CLI.cpp ****     m->pid_speed_incparam->_ki = ki;
- 1486              		.loc 1 281 5 is_stmt 1 view .LVU364
-ARM GAS  /tmp/ccON67r0.s 			page 35
+ 1498 04be 3C21     		movs	r1, #60
+ 1499 04c0 206C     		ldr	r0, [r4, #64]
+ 1500 04c2 FFF7FEFF 		bl	_ZN7KTH711124KTH7111_ANLC_CalibrationEm
+ 1501              	.LVL186:
+ 1502 04c6 0546     		mov	r5, r0
+ 1503              	.LVL187:
+ 265:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(10));
+ 1504              		.loc 1 265 9 is_stmt 1 view .LVU357
+ 265:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(10));
+ 1505              		.loc 1 265 22 is_stmt 0 view .LVU358
+ 1506 04c8 0026     		movs	r6, #0
+ 1507 04ca 2670     		strb	r6, [r4]
+ 266:My_Top/System/My_CLI.cpp ****         m->Motor_EN(false);
+ 1508              		.loc 1 266 9 is_stmt 1 view .LVU359
+ 266:My_Top/System/My_CLI.cpp ****         m->Motor_EN(false);
+ 1509              		.loc 1 266 19 is_stmt 0 view .LVU360
+ 1510 04cc 0A20     		movs	r0, #10
+ 1511 04ce FFF7FEFF 		bl	vTaskDelay
+ 1512              	.LVL188:
+ 267:My_Top/System/My_CLI.cpp ****         m->updown_duty = 0.0;//停止电机
+ 1513              		.loc 1 267 9 is_stmt 1 view .LVU361
+ 267:My_Top/System/My_CLI.cpp ****         m->updown_duty = 0.0;//停止电机
+ 1514              		.loc 1 267 20 is_stmt 0 view .LVU362
+ 1515 04d2 3146     		mov	r1, r6
+ 1516 04d4 2046     		mov	r0, r4
+ 1517 04d6 FFF7FEFF 		bl	_ZN8DC_Motor8Motor_ENEb
+ 1518              	.LVL189:
+ 268:My_Top/System/My_CLI.cpp ****         if (ok) {
+ 1519              		.loc 1 268 9 is_stmt 1 view .LVU363
+ 268:My_Top/System/My_CLI.cpp ****         if (ok) {
+ 1520              		.loc 1 268 24 is_stmt 0 view .LVU364
+ 1521 04da 0023     		movs	r3, #0
+ 1522 04dc 2361     		str	r3, [r4, #16]	@ float
+ 269:My_Top/System/My_CLI.cpp ****             printf("电机M%d ANLC 校准成功！参数已保存至MTP\r\n", idx);
+ 1523              		.loc 1 269 9 is_stmt 1 view .LVU365
+ 1524 04de 25B1     		cbz	r5, .L98
+ 270:My_Top/System/My_CLI.cpp ****         } else {
+ 1525              		.loc 1 270 13 view .LVU366
+ 270:My_Top/System/My_CLI.cpp ****         } else {
+ 1526              		.loc 1 270 19 is_stmt 0 view .LVU367
+ 1527 04e0 0B99     		ldr	r1, [sp, #44]
+ 1528 04e2 0C48     		ldr	r0, .L107+32
+ 1529 04e4 FFF7FEFF 		bl	printf_
+ 1530              	.LVL190:
+ 1531 04e8 D9E7     		b	.L94
+ 1532              	.L98:
+ 272:My_Top/System/My_CLI.cpp ****         }
+ 1533              		.loc 1 272 13 is_stmt 1 view .LVU368
+ 272:My_Top/System/My_CLI.cpp ****         }
+ 1534              		.loc 1 272 19 is_stmt 0 view .LVU369
+ 1535 04ea 0B99     		ldr	r1, [sp, #44]
+ 1536 04ec 0A48     		ldr	r0, .L107+36
+ 1537 04ee FFF7FEFF 		bl	printf_
+ 1538              	.LVL191:
+ 1539 04f2 D4E7     		b	.L94
+ 1540              	.L108:
+ 1541              		.align	2
+ARM GAS  /tmp/cc9NG85F.s 			page 36
 
 
- 1487              		.loc 1 281 8 is_stmt 0 view .LVU365
- 1488 0498 3B6C     		ldr	r3, [r7, #64]
- 1489              		.loc 1 281 32 view .LVU366
- 1490 049a 5C60     		str	r4, [r3, #4]	@ float
- 282:My_Top/System/My_CLI.cpp ****     m->pid_speed_incparam->_kd = kd;
- 1491              		.loc 1 282 5 is_stmt 1 view .LVU367
- 1492              		.loc 1 282 8 is_stmt 0 view .LVU368
- 1493 049c 3B6C     		ldr	r3, [r7, #64]
- 1494              		.loc 1 282 32 view .LVU369
- 1495 049e 83ED020A 		vstr.32	s0, [r3, #8]
- 283:My_Top/System/My_CLI.cpp ****     m->My_DC_Motor_Reset(); //重置电机
- 1496              		.loc 1 283 5 is_stmt 1 view .LVU370
- 1497              		.loc 1 283 25 is_stmt 0 view .LVU371
- 1498 04a2 3846     		mov	r0, r7
- 1499 04a4 FFF7FEFF 		bl	_ZN8DC_Motor17My_DC_Motor_ResetEv
- 1500              	.LVL179:
- 284:My_Top/System/My_CLI.cpp ****     printf("电机M%d 速度pid设置 kp:%.3f ki:%.3f kd:%.3f \r\n",idx,kp,ki,kd);
- 1501              		.loc 1 284 5 is_stmt 1 view .LVU372
- 1502              		.loc 1 284 11 is_stmt 0 view .LVU373
- 1503 04a8 3046     		mov	r0, r6	@ float
- 1504 04aa FFF7FEFF 		bl	__aeabi_f2d
- 1505              	.LVL180:
- 1506 04ae 0646     		mov	r6, r0
- 1507              	.LVL181:
- 1508              		.loc 1 284 11 view .LVU374
- 1509 04b0 0F46     		mov	r7, r1
- 1510              	.LVL182:
- 1511              		.loc 1 284 11 view .LVU375
- 1512 04b2 2846     		mov	r0, r5	@ float
- 1513 04b4 FFF7FEFF 		bl	__aeabi_f2d
- 1514              	.LVL183:
- 1515 04b8 CDE90201 		strd	r0, [sp, #8]
- 1516 04bc 2046     		mov	r0, r4	@ float
- 1517 04be FFF7FEFF 		bl	__aeabi_f2d
- 1518              	.LVL184:
- 1519 04c2 CDE90001 		strd	r0, [sp]
- 1520 04c6 3246     		mov	r2, r6
- 1521 04c8 3B46     		mov	r3, r7
- 1522 04ca 1199     		ldr	r1, [sp, #68]
- 1523 04cc 0448     		ldr	r0, .L103
- 1524 04ce FFF7FEFF 		bl	printf_
- 1525              	.LVL185:
- 1526              	.L97:
- 285:My_Top/System/My_CLI.cpp **** }
- 1527              		.loc 1 285 1 view .LVU376
- 1528 04d2 13B0     		add	sp, sp, #76
- 1529              		.cfi_remember_state
- 1530              		.cfi_def_cfa_offset 20
- 1531              		@ sp needed
- 1532 04d4 F0BD     		pop	{r4, r5, r6, r7, pc}
- 1533              	.LVL186:
- 1534              	.L99:
- 1535              		.cfi_restore_state
- 277:My_Top/System/My_CLI.cpp ****         return;
- 1536              		.loc 1 277 9 is_stmt 1 view .LVU377
- 277:My_Top/System/My_CLI.cpp ****         return;
- 1537              		.loc 1 277 15 is_stmt 0 view .LVU378
-ARM GAS  /tmp/ccON67r0.s 			page 36
+ 1542              	.L107:
+ 1543 04f4 C4010000 		.word	.LC15
+ 1544 04f8 CC010000 		.word	.LC16
+ 1545 04fc D0010000 		.word	.LC17
+ 1546 0500 DC010000 		.word	.LC18
+ 1547 0504 E4010000 		.word	.LC19
+ 1548 0508 F4010000 		.word	.LC20
+ 1549 050c 18020000 		.word	.LC21
+ 1550 0510 48020000 		.word	.LC22
+ 1551 0514 7C020000 		.word	.LC23
+ 1552 0518 B4020000 		.word	.LC24
+ 1553              	.LBE5:
+ 1554              	.LBE6:
+ 1555              		.cfi_endproc
+ 1556              	.LFE1371:
+ 1558              		.section	.rodata.str1.4
+ 1559 02d2 0000     		.align	2
+ 1560              	.LC25:
+ 1561 02d4 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \351\200\237\345\272\246"
+ 1561      9CBA4D25 
+ 1561      6420E980 
+ 1561      9FE5BAA6 
+ 1562 02e4 706964E8 		.ascii	"pid\350\256\276\347\275\256 kp:%.3f ki:%.3f kd:%.3f"
+ 1562      AEBEE7BD 
+ 1562      AE206B70 
+ 1562      3A252E33 
+ 1562      66206B69 
+ 1563 0305 200D0A00 		.ascii	" \015\012\000"
+ 1564              		.text
+ 1565              		.align	1
+ 1566              		.global	_Z9set_pid_vP11EmbeddedCliPcPv
+ 1567              		.syntax unified
+ 1568              		.thumb
+ 1569              		.thumb_func
+ 1571              	_Z9set_pid_vP11EmbeddedCliPcPv:
+ 1572              	.LVL192:
+ 1573              	.LFB1372:
+ 277:My_Top/System/My_CLI.cpp **** 
+ 278:My_Top/System/My_CLI.cpp **** 
+ 279:My_Top/System/My_CLI.cpp **** 
+ 280:My_Top/System/My_CLI.cpp **** 
+ 281:My_Top/System/My_CLI.cpp **** 
+ 282:My_Top/System/My_CLI.cpp **** void set_pid_v(EmbeddedCli *cli, char *args, void *context) //设置PID 速度环  
+ 283:My_Top/System/My_CLI.cpp **** {
+ 1574              		.loc 1 283 1 is_stmt 1 view -0
+ 1575              		.cfi_startproc
+ 1576              		@ args = 0, pretend = 0, frame = 56
+ 1577              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1578              		.loc 1 283 1 is_stmt 0 view .LVU371
+ 1579 051c F0B5     		push	{r4, r5, r6, r7, lr}
+ 1580              		.cfi_def_cfa_offset 20
+ 1581              		.cfi_offset 4, -20
+ 1582              		.cfi_offset 5, -16
+ 1583              		.cfi_offset 6, -12
+ 1584              		.cfi_offset 7, -8
+ 1585              		.cfi_offset 14, -4
+ 1586 051e 93B0     		sub	sp, sp, #76
+ARM GAS  /tmp/cc9NG85F.s 			page 37
 
 
- 1538 04d6 0348     		ldr	r0, .L103+4
- 1539 04d8 FFF7FEFF 		bl	printf_
- 1540              	.LVL187:
- 278:My_Top/System/My_CLI.cpp ****     }
- 1541              		.loc 1 278 9 is_stmt 1 view .LVU379
- 1542 04dc F9E7     		b	.L97
- 1543              	.L104:
- 1544 04de 00BF     		.align	2
- 1545              	.L103:
- 1546 04e0 A8020000 		.word	.LC24
- 1547 04e4 F8000000 		.word	.LC9
- 1548              		.cfi_endproc
- 1549              	.LFE1371:
- 1551              		.section	.rodata.str1.4
- 1552 02dd 000000   		.align	2
- 1553              	.LC25:
- 1554 02e0 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \344\275\215\347\275\256"
- 1554      9CBA4D25 
- 1554      6420E4BD 
- 1554      8DE7BDAE 
- 1555 02f0 706964E8 		.ascii	"pid\350\256\276\347\275\256 kp:%.3f ki:%.3f kd:%.3f"
- 1555      AEBEE7BD 
- 1555      AE206B70 
- 1555      3A252E33 
- 1555      66206B69 
- 1556 0311 200D0A00 		.ascii	" \015\012\000"
- 1557              		.text
- 1558              		.align	1
- 1559              		.global	_Z9set_pid_pP11EmbeddedCliPcPv
- 1560              		.syntax unified
- 1561              		.thumb
- 1562              		.thumb_func
- 1564              	_Z9set_pid_pP11EmbeddedCliPcPv:
- 1565              	.LVL188:
- 1566              	.LFB1372:
- 286:My_Top/System/My_CLI.cpp **** 
- 287:My_Top/System/My_CLI.cpp **** 
- 288:My_Top/System/My_CLI.cpp **** void set_pid_p(EmbeddedCli *cli, char *args, void *context) //设置PID 位置环  
- 289:My_Top/System/My_CLI.cpp **** {
- 1567              		.loc 1 289 1 view -0
- 1568              		.cfi_startproc
- 1569              		@ args = 0, pretend = 0, frame = 56
- 1570              		@ frame_needed = 0, uses_anonymous_args = 0
- 1571              		.loc 1 289 1 is_stmt 0 view .LVU381
- 1572 04e8 F0B5     		push	{r4, r5, r6, r7, lr}
- 1573              		.cfi_def_cfa_offset 20
- 1574              		.cfi_offset 4, -20
- 1575              		.cfi_offset 5, -16
- 1576              		.cfi_offset 6, -12
- 1577              		.cfi_offset 7, -8
- 1578              		.cfi_offset 14, -4
- 1579 04ea 93B0     		sub	sp, sp, #76
- 1580              		.cfi_def_cfa_offset 96
- 1581 04ec 0C46     		mov	r4, r1
- 290:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 1582              		.loc 1 290 5 is_stmt 1 view .LVU382
- 1583              		.loc 1 290 9 is_stmt 0 view .LVU383
-ARM GAS  /tmp/ccON67r0.s 			page 37
+ 1587              		.cfi_def_cfa_offset 96
+ 1588 0520 0C46     		mov	r4, r1
+ 284:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 1589              		.loc 1 284 5 is_stmt 1 view .LVU372
+ 1590              		.loc 1 284 9 is_stmt 0 view .LVU373
+ 1591 0522 0023     		movs	r3, #0
+ 1592 0524 1193     		str	r3, [sp, #68]
+ 285:My_Top/System/My_CLI.cpp ****     char *end1,*end2,*end3;
+ 1593              		.loc 1 285 5 is_stmt 1 view .LVU374
+ 286:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ 287:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 1594              		.loc 1 287 5 view .LVU375
+ 1595              		.loc 1 287 48 is_stmt 0 view .LVU376
+ 1596 0526 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 1597              	.LVL193:
+ 288:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 1598              		.loc 1 288 5 is_stmt 1 view .LVU377
+ 1599 052a 0028     		cmp	r0, #0
+ 1600 052c 49D0     		beq	.L109
+ 289:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 290:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 1601              		.loc 1 290 5 view .LVU378
+ 291:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 1602              		.loc 1 291 5 view .LVU379
+ 1603              		.loc 1 291 41 is_stmt 0 view .LVU380
+ 1604 052e 04AD     		add	r5, sp, #16
+ 1605 0530 2146     		mov	r1, r4
+ 1606 0532 2846     		mov	r0, r5
+ 1607              	.LVL194:
+ 1608              		.loc 1 291 41 view .LVU381
+ 1609 0534 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 1610              	.LVL195:
+ 1611 0538 0146     		mov	r1, r0
+ 1612              	.LVL196:
+ 292:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 1613              		.loc 1 292 5 is_stmt 1 view .LVU382
+ 1614              		.loc 1 292 35 is_stmt 0 view .LVU383
+ 1615 053a 11AA     		add	r2, sp, #68
+ 1616 053c 2846     		mov	r0, r5
+ 1617              	.LVL197:
+ 1618              		.loc 1 292 35 view .LVU384
+ 1619 053e FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 1620              	.LVL198:
+ 293:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 1621              		.loc 1 293 5 is_stmt 1 view .LVU385
+ 1622 0542 0746     		mov	r7, r0
+ 1623 0544 0028     		cmp	r0, #0
+ 1624 0546 3CD0     		beq	.L109
+ 294:My_Top/System/My_CLI.cpp ****     float kp = strtof(arg_list[2], &end1); //将字符串转换为浮点数
+ 1625              		.loc 1 294 5 view .LVU386
+ 1626              		.loc 1 294 22 is_stmt 0 view .LVU387
+ 1627 0548 10A9     		add	r1, sp, #64
+ 1628 054a 0698     		ldr	r0, [sp, #24]
+ 1629              	.LVL199:
+ 1630              		.loc 1 294 22 view .LVU388
+ 1631 054c FFF7FEFF 		bl	strtof
+ 1632              	.LVL200:
+ARM GAS  /tmp/cc9NG85F.s 			page 38
 
 
- 1584 04ee 0023     		movs	r3, #0
- 1585 04f0 1193     		str	r3, [sp, #68]
- 291:My_Top/System/My_CLI.cpp ****     char *end1,*end2,*end3;
- 1586              		.loc 1 291 5 is_stmt 1 view .LVU384
- 292:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
- 293:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 1587              		.loc 1 293 5 view .LVU385
- 1588              		.loc 1 293 48 is_stmt 0 view .LVU386
- 1589 04f2 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 1590              	.LVL189:
- 294:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 1591              		.loc 1 294 5 is_stmt 1 view .LVU387
- 1592 04f6 0028     		cmp	r0, #0
- 1593 04f8 49D0     		beq	.L105
- 295:My_Top/System/My_CLI.cpp ****     // 解析参数
- 296:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 1594              		.loc 1 296 5 view .LVU388
- 297:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 1595              		.loc 1 297 5 view .LVU389
- 1596              		.loc 1 297 41 is_stmt 0 view .LVU390
- 1597 04fa 04AD     		add	r5, sp, #16
- 1598 04fc 2146     		mov	r1, r4
- 1599 04fe 2846     		mov	r0, r5
- 1600              	.LVL190:
- 1601              		.loc 1 297 41 view .LVU391
- 1602 0500 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 1603              	.LVL191:
- 1604 0504 0146     		mov	r1, r0
- 1605              	.LVL192:
- 298:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 1606              		.loc 1 298 5 is_stmt 1 view .LVU392
- 1607              		.loc 1 298 35 is_stmt 0 view .LVU393
- 1608 0506 11AA     		add	r2, sp, #68
- 1609 0508 2846     		mov	r0, r5
- 1610              	.LVL193:
- 1611              		.loc 1 298 35 view .LVU394
- 1612 050a FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 1613              	.LVL194:
- 299:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 1614              		.loc 1 299 5 is_stmt 1 view .LVU395
- 1615 050e 0746     		mov	r7, r0
- 1616 0510 0028     		cmp	r0, #0
- 1617 0512 3CD0     		beq	.L105
- 300:My_Top/System/My_CLI.cpp ****     float kp = strtof(arg_list[2], &end1); //将字符串转换为浮点数
- 1618              		.loc 1 300 5 view .LVU396
- 1619              		.loc 1 300 22 is_stmt 0 view .LVU397
- 1620 0514 10A9     		add	r1, sp, #64
- 1621 0516 0698     		ldr	r0, [sp, #24]
- 1622              	.LVL195:
- 1623              		.loc 1 300 22 view .LVU398
- 1624 0518 FFF7FEFF 		bl	strtof
- 1625              	.LVL196:
- 1626 051c 10EE106A 		vmov	r6, s0
- 1627              	.LVL197:
- 301:My_Top/System/My_CLI.cpp ****     float ki = strtof(arg_list[3], &end2); //将字符串转换为浮点数
- 1628              		.loc 1 301 5 is_stmt 1 view .LVU399
- 1629              		.loc 1 301 22 is_stmt 0 view .LVU400
-ARM GAS  /tmp/ccON67r0.s 			page 38
+ 1633 0550 10EE106A 		vmov	r6, s0
+ 1634              	.LVL201:
+ 295:My_Top/System/My_CLI.cpp ****     float ki = strtof(arg_list[3], &end2); //将字符串转换为浮点数
+ 1635              		.loc 1 295 5 is_stmt 1 view .LVU389
+ 1636              		.loc 1 295 22 is_stmt 0 view .LVU390
+ 1637 0554 0FA9     		add	r1, sp, #60
+ 1638 0556 0798     		ldr	r0, [sp, #28]
+ 1639 0558 FFF7FEFF 		bl	strtof
+ 1640              	.LVL202:
+ 1641 055c 10EE104A 		vmov	r4, s0
+ 1642              	.LVL203:
+ 296:My_Top/System/My_CLI.cpp ****     float kd = strtof(arg_list[4], &end3); //将字符串转换为浮点数
+ 1643              		.loc 1 296 5 is_stmt 1 view .LVU391
+ 1644              		.loc 1 296 22 is_stmt 0 view .LVU392
+ 1645 0560 0EA9     		add	r1, sp, #56
+ 1646 0562 0898     		ldr	r0, [sp, #32]
+ 1647 0564 FFF7FEFF 		bl	strtof
+ 1648              	.LVL204:
+ 1649 0568 10EE105A 		vmov	r5, s0
+ 1650              	.LVL205:
+ 297:My_Top/System/My_CLI.cpp ****     if(end1 == arg_list[2] || end2 == arg_list[3] || end3 == arg_list[4])
+ 1651              		.loc 1 297 5 is_stmt 1 view .LVU393
+ 1652 056c 069A     		ldr	r2, [sp, #24]
+ 1653 056e 109B     		ldr	r3, [sp, #64]
+ 1654 0570 9A42     		cmp	r2, r3
+ 1655 0572 28D0     		beq	.L111
+ 1656              		.loc 1 297 28 is_stmt 0 discriminator 1 view .LVU394
+ 1657 0574 079A     		ldr	r2, [sp, #28]
+ 1658 0576 0F9B     		ldr	r3, [sp, #60]
+ 1659 0578 9A42     		cmp	r2, r3
+ 1660 057a 24D0     		beq	.L111
+ 1661              		.loc 1 297 51 discriminator 2 view .LVU395
+ 1662 057c 089A     		ldr	r2, [sp, #32]
+ 1663 057e 0E9B     		ldr	r3, [sp, #56]
+ 1664 0580 9A42     		cmp	r2, r3
+ 1665 0582 20D0     		beq	.L111
+ 298:My_Top/System/My_CLI.cpp ****     {
+ 299:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
+ 300:My_Top/System/My_CLI.cpp ****         return;
+ 301:My_Top/System/My_CLI.cpp ****     }
+ 302:My_Top/System/My_CLI.cpp ****     m->pid_speed_incparam->_kp = kp;
+ 1666              		.loc 1 302 5 is_stmt 1 view .LVU396
+ 1667              		.loc 1 302 8 is_stmt 0 view .LVU397
+ 1668 0584 7B6C     		ldr	r3, [r7, #68]
+ 1669              		.loc 1 302 32 view .LVU398
+ 1670 0586 1E60     		str	r6, [r3]	@ float
+ 303:My_Top/System/My_CLI.cpp ****     m->pid_speed_incparam->_ki = ki;
+ 1671              		.loc 1 303 5 is_stmt 1 view .LVU399
+ 1672              		.loc 1 303 8 is_stmt 0 view .LVU400
+ 1673 0588 7B6C     		ldr	r3, [r7, #68]
+ 1674              		.loc 1 303 32 view .LVU401
+ 1675 058a 5C60     		str	r4, [r3, #4]	@ float
+ 304:My_Top/System/My_CLI.cpp ****     m->pid_speed_incparam->_kd = kd;
+ 1676              		.loc 1 304 5 is_stmt 1 view .LVU402
+ 1677              		.loc 1 304 8 is_stmt 0 view .LVU403
+ 1678 058c 7B6C     		ldr	r3, [r7, #68]
+ 1679              		.loc 1 304 32 view .LVU404
+ARM GAS  /tmp/cc9NG85F.s 			page 39
 
 
- 1630 0520 0FA9     		add	r1, sp, #60
- 1631 0522 0798     		ldr	r0, [sp, #28]
- 1632 0524 FFF7FEFF 		bl	strtof
- 1633              	.LVL198:
- 1634 0528 10EE104A 		vmov	r4, s0
- 1635              	.LVL199:
- 302:My_Top/System/My_CLI.cpp ****     float kd = strtof(arg_list[4], &end3); //将字符串转换为浮点数
- 1636              		.loc 1 302 5 is_stmt 1 view .LVU401
- 1637              		.loc 1 302 22 is_stmt 0 view .LVU402
- 1638 052c 0EA9     		add	r1, sp, #56
- 1639 052e 0898     		ldr	r0, [sp, #32]
- 1640 0530 FFF7FEFF 		bl	strtof
- 1641              	.LVL200:
- 1642 0534 10EE105A 		vmov	r5, s0
- 1643              	.LVL201:
- 303:My_Top/System/My_CLI.cpp ****     if(end1 == arg_list[2] || end2 == arg_list[3] || end3 == arg_list[4])
- 1644              		.loc 1 303 5 is_stmt 1 view .LVU403
- 1645 0538 069A     		ldr	r2, [sp, #24]
- 1646 053a 109B     		ldr	r3, [sp, #64]
- 1647 053c 9A42     		cmp	r2, r3
- 1648 053e 28D0     		beq	.L107
- 1649              		.loc 1 303 28 is_stmt 0 discriminator 1 view .LVU404
- 1650 0540 079A     		ldr	r2, [sp, #28]
- 1651 0542 0F9B     		ldr	r3, [sp, #60]
- 1652 0544 9A42     		cmp	r2, r3
- 1653 0546 24D0     		beq	.L107
- 1654              		.loc 1 303 51 discriminator 2 view .LVU405
- 1655 0548 089A     		ldr	r2, [sp, #32]
- 1656 054a 0E9B     		ldr	r3, [sp, #56]
- 1657 054c 9A42     		cmp	r2, r3
- 1658 054e 20D0     		beq	.L107
- 304:My_Top/System/My_CLI.cpp ****     {
- 305:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
- 306:My_Top/System/My_CLI.cpp ****         return;
- 307:My_Top/System/My_CLI.cpp ****     }
- 308:My_Top/System/My_CLI.cpp ****     m->pid_location->_kp = kp;
- 1659              		.loc 1 308 5 is_stmt 1 view .LVU406
- 1660              		.loc 1 308 8 is_stmt 0 view .LVU407
- 1661 0550 7B6C     		ldr	r3, [r7, #68]
- 1662              		.loc 1 308 26 view .LVU408
- 1663 0552 1E60     		str	r6, [r3]	@ float
- 309:My_Top/System/My_CLI.cpp ****     m->pid_location->_ki = ki;
- 1664              		.loc 1 309 5 is_stmt 1 view .LVU409
- 1665              		.loc 1 309 8 is_stmt 0 view .LVU410
- 1666 0554 7B6C     		ldr	r3, [r7, #68]
- 1667              		.loc 1 309 26 view .LVU411
- 1668 0556 5C60     		str	r4, [r3, #4]	@ float
- 310:My_Top/System/My_CLI.cpp ****     m->pid_location->_kd = kd;
- 1669              		.loc 1 310 5 is_stmt 1 view .LVU412
- 1670              		.loc 1 310 8 is_stmt 0 view .LVU413
- 1671 0558 7B6C     		ldr	r3, [r7, #68]
- 1672              		.loc 1 310 26 view .LVU414
- 1673 055a 83ED020A 		vstr.32	s0, [r3, #8]
- 311:My_Top/System/My_CLI.cpp ****     m->My_DC_Motor_Reset(); //重置电机
- 1674              		.loc 1 311 5 is_stmt 1 view .LVU415
- 1675              		.loc 1 311 25 is_stmt 0 view .LVU416
- 1676 055e 3846     		mov	r0, r7
-ARM GAS  /tmp/ccON67r0.s 			page 39
+ 1680 058e 83ED020A 		vstr.32	s0, [r3, #8]
+ 305:My_Top/System/My_CLI.cpp ****     m->My_DC_Motor_Reset(); //重置电机
+ 1681              		.loc 1 305 5 is_stmt 1 view .LVU405
+ 1682              		.loc 1 305 25 is_stmt 0 view .LVU406
+ 1683 0592 3846     		mov	r0, r7
+ 1684 0594 FFF7FEFF 		bl	_ZN8DC_Motor17My_DC_Motor_ResetEv
+ 1685              	.LVL206:
+ 306:My_Top/System/My_CLI.cpp ****     printf("电机M%d 速度pid设置 kp:%.3f ki:%.3f kd:%.3f \r\n",idx,kp,ki,kd);
+ 1686              		.loc 1 306 5 is_stmt 1 view .LVU407
+ 1687              		.loc 1 306 11 is_stmt 0 view .LVU408
+ 1688 0598 3046     		mov	r0, r6	@ float
+ 1689 059a FFF7FEFF 		bl	__aeabi_f2d
+ 1690              	.LVL207:
+ 1691 059e 0646     		mov	r6, r0
+ 1692              	.LVL208:
+ 1693              		.loc 1 306 11 view .LVU409
+ 1694 05a0 0F46     		mov	r7, r1
+ 1695              	.LVL209:
+ 1696              		.loc 1 306 11 view .LVU410
+ 1697 05a2 2846     		mov	r0, r5	@ float
+ 1698 05a4 FFF7FEFF 		bl	__aeabi_f2d
+ 1699              	.LVL210:
+ 1700 05a8 CDE90201 		strd	r0, [sp, #8]
+ 1701 05ac 2046     		mov	r0, r4	@ float
+ 1702 05ae FFF7FEFF 		bl	__aeabi_f2d
+ 1703              	.LVL211:
+ 1704 05b2 CDE90001 		strd	r0, [sp]
+ 1705 05b6 3246     		mov	r2, r6
+ 1706 05b8 3B46     		mov	r3, r7
+ 1707 05ba 1199     		ldr	r1, [sp, #68]
+ 1708 05bc 0448     		ldr	r0, .L115
+ 1709 05be FFF7FEFF 		bl	printf_
+ 1710              	.LVL212:
+ 1711              	.L109:
+ 307:My_Top/System/My_CLI.cpp **** }
+ 1712              		.loc 1 307 1 view .LVU411
+ 1713 05c2 13B0     		add	sp, sp, #76
+ 1714              		.cfi_remember_state
+ 1715              		.cfi_def_cfa_offset 20
+ 1716              		@ sp needed
+ 1717 05c4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1718              	.LVL213:
+ 1719              	.L111:
+ 1720              		.cfi_restore_state
+ 299:My_Top/System/My_CLI.cpp ****         return;
+ 1721              		.loc 1 299 9 is_stmt 1 view .LVU412
+ 299:My_Top/System/My_CLI.cpp ****         return;
+ 1722              		.loc 1 299 15 is_stmt 0 view .LVU413
+ 1723 05c6 0348     		ldr	r0, .L115+4
+ 1724 05c8 FFF7FEFF 		bl	printf_
+ 1725              	.LVL214:
+ 300:My_Top/System/My_CLI.cpp ****     }
+ 1726              		.loc 1 300 9 is_stmt 1 view .LVU414
+ 1727 05cc F9E7     		b	.L109
+ 1728              	.L116:
+ 1729 05ce 00BF     		.align	2
+ 1730              	.L115:
+ARM GAS  /tmp/cc9NG85F.s 			page 40
 
 
- 1677 0560 FFF7FEFF 		bl	_ZN8DC_Motor17My_DC_Motor_ResetEv
- 1678              	.LVL202:
- 312:My_Top/System/My_CLI.cpp ****     printf("电机M%d 位置pid设置 kp:%.3f ki:%.3f kd:%.3f \r\n",idx,kp,ki,kd);
- 1679              		.loc 1 312 5 is_stmt 1 view .LVU417
- 1680              		.loc 1 312 11 is_stmt 0 view .LVU418
- 1681 0564 3046     		mov	r0, r6	@ float
- 1682 0566 FFF7FEFF 		bl	__aeabi_f2d
- 1683              	.LVL203:
- 1684 056a 0646     		mov	r6, r0
- 1685              	.LVL204:
- 1686              		.loc 1 312 11 view .LVU419
- 1687 056c 0F46     		mov	r7, r1
- 1688              	.LVL205:
- 1689              		.loc 1 312 11 view .LVU420
- 1690 056e 2846     		mov	r0, r5	@ float
- 1691 0570 FFF7FEFF 		bl	__aeabi_f2d
- 1692              	.LVL206:
- 1693 0574 CDE90201 		strd	r0, [sp, #8]
- 1694 0578 2046     		mov	r0, r4	@ float
- 1695 057a FFF7FEFF 		bl	__aeabi_f2d
- 1696              	.LVL207:
- 1697 057e CDE90001 		strd	r0, [sp]
- 1698 0582 3246     		mov	r2, r6
- 1699 0584 3B46     		mov	r3, r7
- 1700 0586 1199     		ldr	r1, [sp, #68]
- 1701 0588 0448     		ldr	r0, .L111
- 1702 058a FFF7FEFF 		bl	printf_
- 1703              	.LVL208:
- 1704              	.L105:
- 313:My_Top/System/My_CLI.cpp **** }
- 1705              		.loc 1 313 1 view .LVU421
- 1706 058e 13B0     		add	sp, sp, #76
- 1707              		.cfi_remember_state
- 1708              		.cfi_def_cfa_offset 20
- 1709              		@ sp needed
- 1710 0590 F0BD     		pop	{r4, r5, r6, r7, pc}
- 1711              	.LVL209:
- 1712              	.L107:
- 1713              		.cfi_restore_state
- 305:My_Top/System/My_CLI.cpp ****         return;
- 1714              		.loc 1 305 9 is_stmt 1 view .LVU422
- 305:My_Top/System/My_CLI.cpp ****         return;
- 1715              		.loc 1 305 15 is_stmt 0 view .LVU423
- 1716 0592 0348     		ldr	r0, .L111+4
- 1717 0594 FFF7FEFF 		bl	printf_
- 1718              	.LVL210:
- 306:My_Top/System/My_CLI.cpp ****     }
- 1719              		.loc 1 306 9 is_stmt 1 view .LVU424
- 1720 0598 F9E7     		b	.L105
- 1721              	.L112:
- 1722 059a 00BF     		.align	2
- 1723              	.L111:
- 1724 059c E0020000 		.word	.LC25
- 1725 05a0 F8000000 		.word	.LC9
- 1726              		.cfi_endproc
- 1727              	.LFE1372:
- 1729              		.section	.rodata.str1.4
-ARM GAS  /tmp/ccON67r0.s 			page 40
+ 1731 05d0 D4020000 		.word	.LC25
+ 1732 05d4 F8000000 		.word	.LC9
+ 1733              		.cfi_endproc
+ 1734              	.LFE1372:
+ 1736              		.section	.rodata.str1.4
+ 1737 0309 000000   		.align	2
+ 1738              	.LC26:
+ 1739 030c E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \344\275\215\347\275\256"
+ 1739      9CBA4D25 
+ 1739      6420E4BD 
+ 1739      8DE7BDAE 
+ 1740 031c 706964E8 		.ascii	"pid\350\256\276\347\275\256 kp:%.3f ki:%.3f kd:%.3f"
+ 1740      AEBEE7BD 
+ 1740      AE206B70 
+ 1740      3A252E33 
+ 1740      66206B69 
+ 1741 033d 200D0A00 		.ascii	" \015\012\000"
+ 1742              		.text
+ 1743              		.align	1
+ 1744              		.global	_Z9set_pid_pP11EmbeddedCliPcPv
+ 1745              		.syntax unified
+ 1746              		.thumb
+ 1747              		.thumb_func
+ 1749              	_Z9set_pid_pP11EmbeddedCliPcPv:
+ 1750              	.LVL215:
+ 1751              	.LFB1373:
+ 308:My_Top/System/My_CLI.cpp **** 
+ 309:My_Top/System/My_CLI.cpp **** 
+ 310:My_Top/System/My_CLI.cpp **** void set_pid_p(EmbeddedCli *cli, char *args, void *context) //设置PID 位置环  
+ 311:My_Top/System/My_CLI.cpp **** {
+ 1752              		.loc 1 311 1 view -0
+ 1753              		.cfi_startproc
+ 1754              		@ args = 0, pretend = 0, frame = 56
+ 1755              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1756              		.loc 1 311 1 is_stmt 0 view .LVU416
+ 1757 05d8 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1758              		.cfi_def_cfa_offset 20
+ 1759              		.cfi_offset 4, -20
+ 1760              		.cfi_offset 5, -16
+ 1761              		.cfi_offset 6, -12
+ 1762              		.cfi_offset 7, -8
+ 1763              		.cfi_offset 14, -4
+ 1764 05da 93B0     		sub	sp, sp, #76
+ 1765              		.cfi_def_cfa_offset 96
+ 1766 05dc 0C46     		mov	r4, r1
+ 312:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 1767              		.loc 1 312 5 is_stmt 1 view .LVU417
+ 1768              		.loc 1 312 9 is_stmt 0 view .LVU418
+ 1769 05de 0023     		movs	r3, #0
+ 1770 05e0 1193     		str	r3, [sp, #68]
+ 313:My_Top/System/My_CLI.cpp ****     char *end1,*end2,*end3;
+ 1771              		.loc 1 313 5 is_stmt 1 view .LVU419
+ 314:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ 315:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 1772              		.loc 1 315 5 view .LVU420
+ 1773              		.loc 1 315 48 is_stmt 0 view .LVU421
+ 1774 05e2 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ARM GAS  /tmp/cc9NG85F.s 			page 41
 
 
- 1730 0315 000000   		.align	2
- 1731              	.LC26:
- 1732 0318 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\275\223\345\211\215"
- 1732      9CBA4D25 
- 1732      6420E5BD 
- 1732      93E5898D 
- 1733 0328 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\344\270\272\345\274\200\347"
- 1733      BC8FE4B8 
- 1733      BAE5BC80 
- 1733      E7
- 1734 0335 8EAFE68E 		.ascii	"\216\257\346\216\247\345\210\266\346\250\241\345\274"
- 1734      A7E588B6 
- 1734      E6A8A1E5 
- 1734      BC
- 1735 0342 8F0D0A00 		.ascii	"\217\015\012\000"
- 1736 0346 0000     		.align	2
- 1737              	.LC27:
- 1738 0348 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\275\223\345\211\215"
- 1738      9CBA4D25 
- 1738      6420E5BD 
- 1738      93E5898D 
- 1739 0358 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\344\270\272\351\200\237\345"
- 1739      BC8FE4B8 
- 1739      BAE9809F 
- 1739      E5
- 1740 0365 BAA6E68E 		.ascii	"\272\246\346\216\247\345\210\266\346\250\241\345\274"
- 1740      A7E588B6 
- 1740      E6A8A1E5 
- 1740      BC
- 1741 0372 8F0D0A00 		.ascii	"\217\015\012\000"
- 1742 0376 0000     		.align	2
- 1743              	.LC28:
- 1744 0378 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\275\223\345\211\215"
- 1744      9CBA4D25 
- 1744      6420E5BD 
- 1744      93E5898D 
- 1745 0388 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\344\270\272\344\275\215\347"
- 1745      BC8FE4B8 
- 1745      BAE4BD8D 
- 1745      E7
- 1746 0395 BDAEE68E 		.ascii	"\275\256\346\216\247\345\210\266\346\250\241\345\274"
- 1746      A7E588B6 
- 1746      E6A8A1E5 
- 1746      BC
- 1747 03a2 8F0D0A00 		.ascii	"\217\015\012\000"
- 1748 03a6 0000     		.align	2
- 1749              	.LC29:
- 1750 03a8 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \346\234\252\347\237\245"
- 1750      9CBA4D25 
- 1750      6420E69C 
- 1750      AAE79FA5 
- 1751 03b8 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\015\012\000"
- 1751      BC8F0D0A 
- 1751      00
- 1752              		.text
- 1753              		.align	1
- 1754              		.global	_Z8get_modeP11EmbeddedCliPcPv
-ARM GAS  /tmp/ccON67r0.s 			page 41
+ 1775              	.LVL216:
+ 316:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 1776              		.loc 1 316 5 is_stmt 1 view .LVU422
+ 1777 05e6 0028     		cmp	r0, #0
+ 1778 05e8 49D0     		beq	.L117
+ 317:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 318:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 1779              		.loc 1 318 5 view .LVU423
+ 319:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 1780              		.loc 1 319 5 view .LVU424
+ 1781              		.loc 1 319 41 is_stmt 0 view .LVU425
+ 1782 05ea 04AD     		add	r5, sp, #16
+ 1783 05ec 2146     		mov	r1, r4
+ 1784 05ee 2846     		mov	r0, r5
+ 1785              	.LVL217:
+ 1786              		.loc 1 319 41 view .LVU426
+ 1787 05f0 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 1788              	.LVL218:
+ 1789 05f4 0146     		mov	r1, r0
+ 1790              	.LVL219:
+ 320:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 1791              		.loc 1 320 5 is_stmt 1 view .LVU427
+ 1792              		.loc 1 320 35 is_stmt 0 view .LVU428
+ 1793 05f6 11AA     		add	r2, sp, #68
+ 1794 05f8 2846     		mov	r0, r5
+ 1795              	.LVL220:
+ 1796              		.loc 1 320 35 view .LVU429
+ 1797 05fa FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 1798              	.LVL221:
+ 321:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 1799              		.loc 1 321 5 is_stmt 1 view .LVU430
+ 1800 05fe 0746     		mov	r7, r0
+ 1801 0600 0028     		cmp	r0, #0
+ 1802 0602 3CD0     		beq	.L117
+ 322:My_Top/System/My_CLI.cpp ****     float kp = strtof(arg_list[2], &end1); //将字符串转换为浮点数
+ 1803              		.loc 1 322 5 view .LVU431
+ 1804              		.loc 1 322 22 is_stmt 0 view .LVU432
+ 1805 0604 10A9     		add	r1, sp, #64
+ 1806 0606 0698     		ldr	r0, [sp, #24]
+ 1807              	.LVL222:
+ 1808              		.loc 1 322 22 view .LVU433
+ 1809 0608 FFF7FEFF 		bl	strtof
+ 1810              	.LVL223:
+ 1811 060c 10EE106A 		vmov	r6, s0
+ 1812              	.LVL224:
+ 323:My_Top/System/My_CLI.cpp ****     float ki = strtof(arg_list[3], &end2); //将字符串转换为浮点数
+ 1813              		.loc 1 323 5 is_stmt 1 view .LVU434
+ 1814              		.loc 1 323 22 is_stmt 0 view .LVU435
+ 1815 0610 0FA9     		add	r1, sp, #60
+ 1816 0612 0798     		ldr	r0, [sp, #28]
+ 1817 0614 FFF7FEFF 		bl	strtof
+ 1818              	.LVL225:
+ 1819 0618 10EE104A 		vmov	r4, s0
+ 1820              	.LVL226:
+ 324:My_Top/System/My_CLI.cpp ****     float kd = strtof(arg_list[4], &end3); //将字符串转换为浮点数
+ 1821              		.loc 1 324 5 is_stmt 1 view .LVU436
+ 1822              		.loc 1 324 22 is_stmt 0 view .LVU437
+ARM GAS  /tmp/cc9NG85F.s 			page 42
 
 
- 1755              		.syntax unified
- 1756              		.thumb
- 1757              		.thumb_func
- 1759              	_Z8get_modeP11EmbeddedCliPcPv:
- 1760              	.LVL211:
- 1761              	.LFB1373:
- 314:My_Top/System/My_CLI.cpp **** 
- 315:My_Top/System/My_CLI.cpp **** 
- 316:My_Top/System/My_CLI.cpp **** void get_mode(EmbeddedCli *cli, char *args, void *context) //获取当前工作模式
- 317:My_Top/System/My_CLI.cpp **** {
- 1762              		.loc 1 317 1 view -0
- 1763              		.cfi_startproc
- 1764              		@ args = 0, pretend = 0, frame = 48
- 1765              		@ frame_needed = 0, uses_anonymous_args = 0
- 1766              		.loc 1 317 1 is_stmt 0 view .LVU426
- 1767 05a4 30B5     		push	{r4, r5, lr}
- 1768              		.cfi_def_cfa_offset 12
- 1769              		.cfi_offset 4, -12
- 1770              		.cfi_offset 5, -8
- 1771              		.cfi_offset 14, -4
- 1772 05a6 8DB0     		sub	sp, sp, #52
- 1773              		.cfi_def_cfa_offset 64
- 1774 05a8 0C46     		mov	r4, r1
- 318:My_Top/System/My_CLI.cpp ****     int idx = 0;
- 1775              		.loc 1 318 5 is_stmt 1 view .LVU427
- 1776              		.loc 1 318 9 is_stmt 0 view .LVU428
- 1777 05aa 0023     		movs	r3, #0
- 1778 05ac 0B93     		str	r3, [sp, #44]
- 319:My_Top/System/My_CLI.cpp ****     char *end;
- 1779              		.loc 1 319 5 is_stmt 1 view .LVU429
- 320:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
- 321:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
- 1780              		.loc 1 321 5 view .LVU430
- 1781              		.loc 1 321 48 is_stmt 0 view .LVU431
- 1782 05ae FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
- 1783              	.LVL212:
- 322:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
- 1784              		.loc 1 322 5 is_stmt 1 view .LVU432
- 1785 05b2 A0B1     		cbz	r0, .L113
- 323:My_Top/System/My_CLI.cpp ****     // 解析参数
- 324:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
- 1786              		.loc 1 324 5 view .LVU433
- 325:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
- 1787              		.loc 1 325 5 view .LVU434
- 1788              		.loc 1 325 41 is_stmt 0 view .LVU435
- 1789 05b4 01AD     		add	r5, sp, #4
- 1790 05b6 2146     		mov	r1, r4
- 1791 05b8 2846     		mov	r0, r5
- 1792              	.LVL213:
- 1793              		.loc 1 325 41 view .LVU436
- 1794 05ba FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
- 1795              	.LVL214:
- 1796 05be 0146     		mov	r1, r0
- 1797              	.LVL215:
- 326:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
- 1798              		.loc 1 326 5 is_stmt 1 view .LVU437
- 1799              		.loc 1 326 35 is_stmt 0 view .LVU438
-ARM GAS  /tmp/ccON67r0.s 			page 42
+ 1823 061c 0EA9     		add	r1, sp, #56
+ 1824 061e 0898     		ldr	r0, [sp, #32]
+ 1825 0620 FFF7FEFF 		bl	strtof
+ 1826              	.LVL227:
+ 1827 0624 10EE105A 		vmov	r5, s0
+ 1828              	.LVL228:
+ 325:My_Top/System/My_CLI.cpp ****     if(end1 == arg_list[2] || end2 == arg_list[3] || end3 == arg_list[4])
+ 1829              		.loc 1 325 5 is_stmt 1 view .LVU438
+ 1830 0628 069A     		ldr	r2, [sp, #24]
+ 1831 062a 109B     		ldr	r3, [sp, #64]
+ 1832 062c 9A42     		cmp	r2, r3
+ 1833 062e 28D0     		beq	.L119
+ 1834              		.loc 1 325 28 is_stmt 0 discriminator 1 view .LVU439
+ 1835 0630 079A     		ldr	r2, [sp, #28]
+ 1836 0632 0F9B     		ldr	r3, [sp, #60]
+ 1837 0634 9A42     		cmp	r2, r3
+ 1838 0636 24D0     		beq	.L119
+ 1839              		.loc 1 325 51 discriminator 2 view .LVU440
+ 1840 0638 089A     		ldr	r2, [sp, #32]
+ 1841 063a 0E9B     		ldr	r3, [sp, #56]
+ 1842 063c 9A42     		cmp	r2, r3
+ 1843 063e 20D0     		beq	.L119
+ 326:My_Top/System/My_CLI.cpp ****     {
+ 327:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
+ 328:My_Top/System/My_CLI.cpp ****         return;
+ 329:My_Top/System/My_CLI.cpp ****     }
+ 330:My_Top/System/My_CLI.cpp ****     m->pid_location->_kp = kp;
+ 1844              		.loc 1 330 5 is_stmt 1 view .LVU441
+ 1845              		.loc 1 330 8 is_stmt 0 view .LVU442
+ 1846 0640 BB6C     		ldr	r3, [r7, #72]
+ 1847              		.loc 1 330 26 view .LVU443
+ 1848 0642 1E60     		str	r6, [r3]	@ float
+ 331:My_Top/System/My_CLI.cpp ****     m->pid_location->_ki = ki;
+ 1849              		.loc 1 331 5 is_stmt 1 view .LVU444
+ 1850              		.loc 1 331 8 is_stmt 0 view .LVU445
+ 1851 0644 BB6C     		ldr	r3, [r7, #72]
+ 1852              		.loc 1 331 26 view .LVU446
+ 1853 0646 5C60     		str	r4, [r3, #4]	@ float
+ 332:My_Top/System/My_CLI.cpp ****     m->pid_location->_kd = kd;
+ 1854              		.loc 1 332 5 is_stmt 1 view .LVU447
+ 1855              		.loc 1 332 8 is_stmt 0 view .LVU448
+ 1856 0648 BB6C     		ldr	r3, [r7, #72]
+ 1857              		.loc 1 332 26 view .LVU449
+ 1858 064a 83ED020A 		vstr.32	s0, [r3, #8]
+ 333:My_Top/System/My_CLI.cpp ****     m->My_DC_Motor_Reset(); //重置电机
+ 1859              		.loc 1 333 5 is_stmt 1 view .LVU450
+ 1860              		.loc 1 333 25 is_stmt 0 view .LVU451
+ 1861 064e 3846     		mov	r0, r7
+ 1862 0650 FFF7FEFF 		bl	_ZN8DC_Motor17My_DC_Motor_ResetEv
+ 1863              	.LVL229:
+ 334:My_Top/System/My_CLI.cpp ****     printf("电机M%d 位置pid设置 kp:%.3f ki:%.3f kd:%.3f \r\n",idx,kp,ki,kd);
+ 1864              		.loc 1 334 5 is_stmt 1 view .LVU452
+ 1865              		.loc 1 334 11 is_stmt 0 view .LVU453
+ 1866 0654 3046     		mov	r0, r6	@ float
+ 1867 0656 FFF7FEFF 		bl	__aeabi_f2d
+ 1868              	.LVL230:
+ 1869 065a 0646     		mov	r6, r0
+ARM GAS  /tmp/cc9NG85F.s 			page 43
 
 
- 1800 05c0 0BAA     		add	r2, sp, #44
- 1801 05c2 2846     		mov	r0, r5
- 1802              	.LVL216:
- 1803              		.loc 1 326 35 view .LVU439
- 1804 05c4 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
- 1805              	.LVL217:
- 327:My_Top/System/My_CLI.cpp ****     if (!m) return;
- 1806              		.loc 1 327 5 is_stmt 1 view .LVU440
- 1807 05c8 48B1     		cbz	r0, .L113
- 328:My_Top/System/My_CLI.cpp ****     Work_Mode temp = m->work_mode;
- 1808              		.loc 1 328 5 view .LVU441
- 1809              		.loc 1 328 15 is_stmt 0 view .LVU442
- 1810 05ca 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
- 1811              	.LVL218:
- 329:My_Top/System/My_CLI.cpp ****     switch (temp)
- 1812              		.loc 1 329 5 is_stmt 1 view .LVU443
- 1813 05cc 012B     		cmp	r3, #1
- 1814 05ce 08D0     		beq	.L115
- 1815 05d0 022B     		cmp	r3, #2
- 1816 05d2 0BD0     		beq	.L116
- 1817 05d4 7BB9     		cbnz	r3, .L117
- 330:My_Top/System/My_CLI.cpp ****     {
- 331:My_Top/System/My_CLI.cpp ****     case open_loop:
- 1818              		.loc 1 331 5 view .LVU444
- 332:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为开环控制模式\r\n",idx);
- 1819              		.loc 1 332 9 view .LVU445
- 1820              		.loc 1 332 15 is_stmt 0 view .LVU446
- 1821 05d6 0B99     		ldr	r1, [sp, #44]
- 1822 05d8 0948     		ldr	r0, .L121
- 1823              	.LVL219:
- 1824              		.loc 1 332 15 view .LVU447
- 1825 05da FFF7FEFF 		bl	printf_
- 1826              	.LVL220:
- 333:My_Top/System/My_CLI.cpp ****         break;
- 1827              		.loc 1 333 9 is_stmt 1 view .LVU448
- 1828              	.L113:
- 334:My_Top/System/My_CLI.cpp ****     case speed:
- 335:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为速度控制模式\r\n",idx);
- 336:My_Top/System/My_CLI.cpp ****         break;
- 337:My_Top/System/My_CLI.cpp ****     case position:
- 338:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为位置控制模式\r\n",idx);
- 339:My_Top/System/My_CLI.cpp ****         break;    
- 340:My_Top/System/My_CLI.cpp ****     default:
- 341:My_Top/System/My_CLI.cpp ****         printf("电机M%d 未知模式\r\n",idx);
- 342:My_Top/System/My_CLI.cpp ****         break;
- 343:My_Top/System/My_CLI.cpp ****     }
- 344:My_Top/System/My_CLI.cpp ****     
- 345:My_Top/System/My_CLI.cpp **** }
- 1829              		.loc 1 345 1 is_stmt 0 view .LVU449
- 1830 05de 0DB0     		add	sp, sp, #52
- 1831              		.cfi_remember_state
- 1832              		.cfi_def_cfa_offset 12
- 1833              		@ sp needed
- 1834 05e0 30BD     		pop	{r4, r5, pc}
- 1835              	.LVL221:
- 1836              	.L115:
- 1837              		.cfi_restore_state
-ARM GAS  /tmp/ccON67r0.s 			page 43
+ 1870              	.LVL231:
+ 1871              		.loc 1 334 11 view .LVU454
+ 1872 065c 0F46     		mov	r7, r1
+ 1873              	.LVL232:
+ 1874              		.loc 1 334 11 view .LVU455
+ 1875 065e 2846     		mov	r0, r5	@ float
+ 1876 0660 FFF7FEFF 		bl	__aeabi_f2d
+ 1877              	.LVL233:
+ 1878 0664 CDE90201 		strd	r0, [sp, #8]
+ 1879 0668 2046     		mov	r0, r4	@ float
+ 1880 066a FFF7FEFF 		bl	__aeabi_f2d
+ 1881              	.LVL234:
+ 1882 066e CDE90001 		strd	r0, [sp]
+ 1883 0672 3246     		mov	r2, r6
+ 1884 0674 3B46     		mov	r3, r7
+ 1885 0676 1199     		ldr	r1, [sp, #68]
+ 1886 0678 0448     		ldr	r0, .L123
+ 1887 067a FFF7FEFF 		bl	printf_
+ 1888              	.LVL235:
+ 1889              	.L117:
+ 335:My_Top/System/My_CLI.cpp **** }
+ 1890              		.loc 1 335 1 view .LVU456
+ 1891 067e 13B0     		add	sp, sp, #76
+ 1892              		.cfi_remember_state
+ 1893              		.cfi_def_cfa_offset 20
+ 1894              		@ sp needed
+ 1895 0680 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1896              	.LVL236:
+ 1897              	.L119:
+ 1898              		.cfi_restore_state
+ 327:My_Top/System/My_CLI.cpp ****         return;
+ 1899              		.loc 1 327 9 is_stmt 1 view .LVU457
+ 327:My_Top/System/My_CLI.cpp ****         return;
+ 1900              		.loc 1 327 15 is_stmt 0 view .LVU458
+ 1901 0682 0348     		ldr	r0, .L123+4
+ 1902 0684 FFF7FEFF 		bl	printf_
+ 1903              	.LVL237:
+ 328:My_Top/System/My_CLI.cpp ****     }
+ 1904              		.loc 1 328 9 is_stmt 1 view .LVU459
+ 1905 0688 F9E7     		b	.L117
+ 1906              	.L124:
+ 1907 068a 00BF     		.align	2
+ 1908              	.L123:
+ 1909 068c 0C030000 		.word	.LC26
+ 1910 0690 F8000000 		.word	.LC9
+ 1911              		.cfi_endproc
+ 1912              	.LFE1373:
+ 1914              		.section	.rodata.str1.4
+ 1915 0341 000000   		.align	2
+ 1916              	.LC27:
+ 1917 0344 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\275\223\345\211\215"
+ 1917      9CBA4D25 
+ 1917      6420E5BD 
+ 1917      93E5898D 
+ 1918 0354 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\344\270\272\345\274\200\347"
+ 1918      BC8FE4B8 
+ 1918      BAE5BC80 
+ARM GAS  /tmp/cc9NG85F.s 			page 44
 
 
- 334:My_Top/System/My_CLI.cpp ****     case speed:
- 1838              		.loc 1 334 5 is_stmt 1 view .LVU450
- 335:My_Top/System/My_CLI.cpp ****         break;
- 1839              		.loc 1 335 9 view .LVU451
- 335:My_Top/System/My_CLI.cpp ****         break;
- 1840              		.loc 1 335 15 is_stmt 0 view .LVU452
- 1841 05e2 0B99     		ldr	r1, [sp, #44]
- 1842 05e4 0748     		ldr	r0, .L121+4
- 1843              	.LVL222:
- 335:My_Top/System/My_CLI.cpp ****         break;
- 1844              		.loc 1 335 15 view .LVU453
- 1845 05e6 FFF7FEFF 		bl	printf_
- 1846              	.LVL223:
- 336:My_Top/System/My_CLI.cpp ****     case position:
- 1847              		.loc 1 336 9 is_stmt 1 view .LVU454
- 1848 05ea F8E7     		b	.L113
- 1849              	.LVL224:
- 1850              	.L116:
- 337:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为位置控制模式\r\n",idx);
- 1851              		.loc 1 337 5 view .LVU455
- 338:My_Top/System/My_CLI.cpp ****         break;    
- 1852              		.loc 1 338 9 view .LVU456
- 338:My_Top/System/My_CLI.cpp ****         break;    
- 1853              		.loc 1 338 15 is_stmt 0 view .LVU457
- 1854 05ec 0B99     		ldr	r1, [sp, #44]
- 1855 05ee 0648     		ldr	r0, .L121+8
- 1856              	.LVL225:
- 338:My_Top/System/My_CLI.cpp ****         break;    
- 1857              		.loc 1 338 15 view .LVU458
- 1858 05f0 FFF7FEFF 		bl	printf_
- 1859              	.LVL226:
- 339:My_Top/System/My_CLI.cpp ****     default:
- 1860              		.loc 1 339 9 is_stmt 1 view .LVU459
- 1861 05f4 F3E7     		b	.L113
- 1862              	.LVL227:
- 1863              	.L117:
- 340:My_Top/System/My_CLI.cpp ****         printf("电机M%d 未知模式\r\n",idx);
- 1864              		.loc 1 340 5 view .LVU460
- 341:My_Top/System/My_CLI.cpp ****         break;
- 1865              		.loc 1 341 9 view .LVU461
- 341:My_Top/System/My_CLI.cpp ****         break;
- 1866              		.loc 1 341 15 is_stmt 0 view .LVU462
- 1867 05f6 0B99     		ldr	r1, [sp, #44]
- 1868 05f8 0448     		ldr	r0, .L121+12
- 1869              	.LVL228:
- 341:My_Top/System/My_CLI.cpp ****         break;
- 1870              		.loc 1 341 15 view .LVU463
- 1871 05fa FFF7FEFF 		bl	printf_
- 1872              	.LVL229:
- 342:My_Top/System/My_CLI.cpp ****     }
- 1873              		.loc 1 342 9 is_stmt 1 view .LVU464
- 1874 05fe EEE7     		b	.L113
- 1875              	.L122:
- 1876              		.align	2
- 1877              	.L121:
- 1878 0600 18030000 		.word	.LC26
- 1879 0604 48030000 		.word	.LC27
-ARM GAS  /tmp/ccON67r0.s 			page 44
+ 1918      E7
+ 1919 0361 8EAFE68E 		.ascii	"\216\257\346\216\247\345\210\266\346\250\241\345\274"
+ 1919      A7E588B6 
+ 1919      E6A8A1E5 
+ 1919      BC
+ 1920 036e 8F0D0A00 		.ascii	"\217\015\012\000"
+ 1921 0372 0000     		.align	2
+ 1922              	.LC28:
+ 1923 0374 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\275\223\345\211\215"
+ 1923      9CBA4D25 
+ 1923      6420E5BD 
+ 1923      93E5898D 
+ 1924 0384 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\344\270\272\351\200\237\345"
+ 1924      BC8FE4B8 
+ 1924      BAE9809F 
+ 1924      E5
+ 1925 0391 BAA6E68E 		.ascii	"\272\246\346\216\247\345\210\266\346\250\241\345\274"
+ 1925      A7E588B6 
+ 1925      E6A8A1E5 
+ 1925      BC
+ 1926 039e 8F0D0A00 		.ascii	"\217\015\012\000"
+ 1927 03a2 0000     		.align	2
+ 1928              	.LC29:
+ 1929 03a4 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \345\275\223\345\211\215"
+ 1929      9CBA4D25 
+ 1929      6420E5BD 
+ 1929      93E5898D 
+ 1930 03b4 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\344\270\272\344\275\215\347"
+ 1930      BC8FE4B8 
+ 1930      BAE4BD8D 
+ 1930      E7
+ 1931 03c1 BDAEE68E 		.ascii	"\275\256\346\216\247\345\210\266\346\250\241\345\274"
+ 1931      A7E588B6 
+ 1931      E6A8A1E5 
+ 1931      BC
+ 1932 03ce 8F0D0A00 		.ascii	"\217\015\012\000"
+ 1933 03d2 0000     		.align	2
+ 1934              	.LC30:
+ 1935 03d4 E794B5E6 		.ascii	"\347\224\265\346\234\272M%d \346\234\252\347\237\245"
+ 1935      9CBA4D25 
+ 1935      6420E69C 
+ 1935      AAE79FA5 
+ 1936 03e4 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\015\012\000"
+ 1936      BC8F0D0A 
+ 1936      00
+ 1937              		.text
+ 1938              		.align	1
+ 1939              		.global	_Z8get_modeP11EmbeddedCliPcPv
+ 1940              		.syntax unified
+ 1941              		.thumb
+ 1942              		.thumb_func
+ 1944              	_Z8get_modeP11EmbeddedCliPcPv:
+ 1945              	.LVL238:
+ 1946              	.LFB1374:
+ 336:My_Top/System/My_CLI.cpp **** 
+ 337:My_Top/System/My_CLI.cpp **** 
+ 338:My_Top/System/My_CLI.cpp **** void get_mode(EmbeddedCli *cli, char *args, void *context) //获取当前工作模式
+ARM GAS  /tmp/cc9NG85F.s 			page 45
 
 
- 1880 0608 78030000 		.word	.LC28
- 1881 060c A8030000 		.word	.LC29
- 1882              		.cfi_endproc
- 1883              	.LFE1373:
- 1885              	.Letext0:
- 1886              		.file 2 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
- 1887              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 1888              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
- 1889              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
- 1890              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
- 1891              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
- 1892              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
- 1893              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
- 1894              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
- 1895              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
- 1896              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
- 1897              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
- 1898              		.file 14 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
- 1899              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
- 1900              		.file 16 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 1901              		.file 17 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 1902              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 1903              		.file 19 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 1904              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 1905              		.file 21 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
- 1906              		.file 22 "Lib/serial/serial.hpp"
- 1907              		.file 23 "Lib/embedded-cli/embedded_cli.h"
- 1908              		.file 24 "My_Top/Modules/CLI_Module.hpp"
- 1909              		.file 25 "My_Top/System/bsp.hpp"
- 1910              		.file 26 "Lib/compute/pid/pid.hpp"
- 1911              		.file 27 "Lib/compute/pid/pid_Increment.hpp"
- 1912              		.file 28 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
- 1913              		.file 29 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
- 1914              		.file 30 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
- 1915              		.file 31 "Lib/compute/ex_math.hpp"
- 1916              		.file 32 "Lib/compute/pid/pll.hpp"
- 1917              		.file 33 "Lib/compute/pid/LQR.hpp"
- 1918              		.file 34 "My_Top/System/kth_read.hpp"
- 1919              		.file 35 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
- 1920              		.file 36 "My_Top/EEPROM/Motor_Storage.hpp"
- 1921              		.file 37 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
- 1922              		.file 38 "Lib/serial/printf.h"
- 1923              		.file 39 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
-ARM GAS  /tmp/ccON67r0.s 			page 45
+ 339:My_Top/System/My_CLI.cpp **** {
+ 1947              		.loc 1 339 1 view -0
+ 1948              		.cfi_startproc
+ 1949              		@ args = 0, pretend = 0, frame = 48
+ 1950              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1951              		.loc 1 339 1 is_stmt 0 view .LVU461
+ 1952 0694 30B5     		push	{r4, r5, lr}
+ 1953              		.cfi_def_cfa_offset 12
+ 1954              		.cfi_offset 4, -12
+ 1955              		.cfi_offset 5, -8
+ 1956              		.cfi_offset 14, -4
+ 1957 0696 8DB0     		sub	sp, sp, #52
+ 1958              		.cfi_def_cfa_offset 64
+ 1959 0698 0C46     		mov	r4, r1
+ 340:My_Top/System/My_CLI.cpp ****     int idx = 0;
+ 1960              		.loc 1 340 5 is_stmt 1 view .LVU462
+ 1961              		.loc 1 340 9 is_stmt 0 view .LVU463
+ 1962 069a 0023     		movs	r3, #0
+ 1963 069c 0B93     		str	r3, [sp, #44]
+ 341:My_Top/System/My_CLI.cpp ****     char *end;
+ 1964              		.loc 1 341 5 is_stmt 1 view .LVU464
+ 342:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
+ 343:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
+ 1965              		.loc 1 343 5 view .LVU465
+ 1966              		.loc 1 343 48 is_stmt 0 view .LVU466
+ 1967 069e FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
+ 1968              	.LVL239:
+ 344:My_Top/System/My_CLI.cpp ****     if (mc == NULL) return;
+ 1969              		.loc 1 344 5 is_stmt 1 view .LVU467
+ 1970 06a2 A0B1     		cbz	r0, .L125
+ 345:My_Top/System/My_CLI.cpp ****     // 解析参数
+ 346:My_Top/System/My_CLI.cpp ****     const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_M
+ 1971              		.loc 1 346 5 view .LVU468
+ 347:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
+ 1972              		.loc 1 347 5 view .LVU469
+ 1973              		.loc 1 347 41 is_stmt 0 view .LVU470
+ 1974 06a4 01AD     		add	r5, sp, #4
+ 1975 06a6 2146     		mov	r1, r4
+ 1976 06a8 2846     		mov	r0, r5
+ 1977              	.LVL240:
+ 1978              		.loc 1 347 41 view .LVU471
+ 1979 06aa FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
+ 1980              	.LVL241:
+ 1981 06ae 0146     		mov	r1, r0
+ 1982              	.LVL242:
+ 348:My_Top/System/My_CLI.cpp ****     DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+ 1983              		.loc 1 348 5 is_stmt 1 view .LVU472
+ 1984              		.loc 1 348 35 is_stmt 0 view .LVU473
+ 1985 06b0 0BAA     		add	r2, sp, #44
+ 1986 06b2 2846     		mov	r0, r5
+ 1987              	.LVL243:
+ 1988              		.loc 1 348 35 view .LVU474
+ 1989 06b4 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
+ 1990              	.LVL244:
+ 349:My_Top/System/My_CLI.cpp ****     if (!m) return;
+ 1991              		.loc 1 349 5 is_stmt 1 view .LVU475
+ 1992 06b8 48B1     		cbz	r0, .L125
+ARM GAS  /tmp/cc9NG85F.s 			page 46
+
+
+ 350:My_Top/System/My_CLI.cpp ****     Work_Mode temp = m->work_mode;
+ 1993              		.loc 1 350 5 view .LVU476
+ 1994              		.loc 1 350 15 is_stmt 0 view .LVU477
+ 1995 06ba 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 1996              	.LVL245:
+ 351:My_Top/System/My_CLI.cpp ****     switch (temp)
+ 1997              		.loc 1 351 5 is_stmt 1 view .LVU478
+ 1998 06bc 012B     		cmp	r3, #1
+ 1999 06be 08D0     		beq	.L127
+ 2000 06c0 022B     		cmp	r3, #2
+ 2001 06c2 0BD0     		beq	.L128
+ 2002 06c4 7BB9     		cbnz	r3, .L129
+ 352:My_Top/System/My_CLI.cpp ****     {
+ 353:My_Top/System/My_CLI.cpp ****     case open_loop:
+ 2003              		.loc 1 353 5 view .LVU479
+ 354:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为开环控制模式\r\n",idx);
+ 2004              		.loc 1 354 9 view .LVU480
+ 2005              		.loc 1 354 15 is_stmt 0 view .LVU481
+ 2006 06c6 0B99     		ldr	r1, [sp, #44]
+ 2007 06c8 0948     		ldr	r0, .L133
+ 2008              	.LVL246:
+ 2009              		.loc 1 354 15 view .LVU482
+ 2010 06ca FFF7FEFF 		bl	printf_
+ 2011              	.LVL247:
+ 355:My_Top/System/My_CLI.cpp ****         break;
+ 2012              		.loc 1 355 9 is_stmt 1 view .LVU483
+ 2013              	.L125:
+ 356:My_Top/System/My_CLI.cpp ****     case speed:
+ 357:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为速度控制模式\r\n",idx);
+ 358:My_Top/System/My_CLI.cpp ****         break;
+ 359:My_Top/System/My_CLI.cpp ****     case position:
+ 360:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为位置控制模式\r\n",idx);
+ 361:My_Top/System/My_CLI.cpp ****         break;    
+ 362:My_Top/System/My_CLI.cpp ****     default:
+ 363:My_Top/System/My_CLI.cpp ****         printf("电机M%d 未知模式\r\n",idx);
+ 364:My_Top/System/My_CLI.cpp ****         break;
+ 365:My_Top/System/My_CLI.cpp ****     }
+ 366:My_Top/System/My_CLI.cpp ****     
+ 367:My_Top/System/My_CLI.cpp **** }
+ 2014              		.loc 1 367 1 is_stmt 0 view .LVU484
+ 2015 06ce 0DB0     		add	sp, sp, #52
+ 2016              		.cfi_remember_state
+ 2017              		.cfi_def_cfa_offset 12
+ 2018              		@ sp needed
+ 2019 06d0 30BD     		pop	{r4, r5, pc}
+ 2020              	.LVL248:
+ 2021              	.L127:
+ 2022              		.cfi_restore_state
+ 356:My_Top/System/My_CLI.cpp ****     case speed:
+ 2023              		.loc 1 356 5 is_stmt 1 view .LVU485
+ 357:My_Top/System/My_CLI.cpp ****         break;
+ 2024              		.loc 1 357 9 view .LVU486
+ 357:My_Top/System/My_CLI.cpp ****         break;
+ 2025              		.loc 1 357 15 is_stmt 0 view .LVU487
+ 2026 06d2 0B99     		ldr	r1, [sp, #44]
+ 2027 06d4 0748     		ldr	r0, .L133+4
+ 2028              	.LVL249:
+ARM GAS  /tmp/cc9NG85F.s 			page 47
+
+
+ 357:My_Top/System/My_CLI.cpp ****         break;
+ 2029              		.loc 1 357 15 view .LVU488
+ 2030 06d6 FFF7FEFF 		bl	printf_
+ 2031              	.LVL250:
+ 358:My_Top/System/My_CLI.cpp ****     case position:
+ 2032              		.loc 1 358 9 is_stmt 1 view .LVU489
+ 2033 06da F8E7     		b	.L125
+ 2034              	.LVL251:
+ 2035              	.L128:
+ 359:My_Top/System/My_CLI.cpp ****         printf("电机M%d 当前模式为位置控制模式\r\n",idx);
+ 2036              		.loc 1 359 5 view .LVU490
+ 360:My_Top/System/My_CLI.cpp ****         break;    
+ 2037              		.loc 1 360 9 view .LVU491
+ 360:My_Top/System/My_CLI.cpp ****         break;    
+ 2038              		.loc 1 360 15 is_stmt 0 view .LVU492
+ 2039 06dc 0B99     		ldr	r1, [sp, #44]
+ 2040 06de 0648     		ldr	r0, .L133+8
+ 2041              	.LVL252:
+ 360:My_Top/System/My_CLI.cpp ****         break;    
+ 2042              		.loc 1 360 15 view .LVU493
+ 2043 06e0 FFF7FEFF 		bl	printf_
+ 2044              	.LVL253:
+ 361:My_Top/System/My_CLI.cpp ****     default:
+ 2045              		.loc 1 361 9 is_stmt 1 view .LVU494
+ 2046 06e4 F3E7     		b	.L125
+ 2047              	.LVL254:
+ 2048              	.L129:
+ 362:My_Top/System/My_CLI.cpp ****         printf("电机M%d 未知模式\r\n",idx);
+ 2049              		.loc 1 362 5 view .LVU495
+ 363:My_Top/System/My_CLI.cpp ****         break;
+ 2050              		.loc 1 363 9 view .LVU496
+ 363:My_Top/System/My_CLI.cpp ****         break;
+ 2051              		.loc 1 363 15 is_stmt 0 view .LVU497
+ 2052 06e6 0B99     		ldr	r1, [sp, #44]
+ 2053 06e8 0448     		ldr	r0, .L133+12
+ 2054              	.LVL255:
+ 363:My_Top/System/My_CLI.cpp ****         break;
+ 2055              		.loc 1 363 15 view .LVU498
+ 2056 06ea FFF7FEFF 		bl	printf_
+ 2057              	.LVL256:
+ 364:My_Top/System/My_CLI.cpp ****     }
+ 2058              		.loc 1 364 9 is_stmt 1 view .LVU499
+ 2059 06ee EEE7     		b	.L125
+ 2060              	.L134:
+ 2061              		.align	2
+ 2062              	.L133:
+ 2063 06f0 44030000 		.word	.LC27
+ 2064 06f4 74030000 		.word	.LC28
+ 2065 06f8 A4030000 		.word	.LC29
+ 2066 06fc D4030000 		.word	.LC30
+ 2067              		.cfi_endproc
+ 2068              	.LFE1374:
+ 2070              	.Letext0:
+ 2071              		.file 2 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 2072              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 2073              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 2074              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ARM GAS  /tmp/cc9NG85F.s 			page 48
+
+
+ 2075              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 2076              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
+ 2077              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
+ 2078              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 2079              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 2080              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ 2081              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 2082              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 2083              		.file 14 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 2084              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+ 2085              		.file 16 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 2086              		.file 17 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 2087              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 2088              		.file 19 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 2089              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 2090              		.file 21 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
+ 2091              		.file 22 "Lib/serial/serial.hpp"
+ 2092              		.file 23 "Lib/embedded-cli/embedded_cli.h"
+ 2093              		.file 24 "My_Top/Modules/CLI_Module.hpp"
+ 2094              		.file 25 "My_Top/System/bsp.hpp"
+ 2095              		.file 26 "Lib/compute/pid/pid.hpp"
+ 2096              		.file 27 "Lib/compute/pid/pid_Increment.hpp"
+ 2097              		.file 28 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 2098              		.file 29 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 2099              		.file 30 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 2100              		.file 31 "Lib/compute/ex_math.hpp"
+ 2101              		.file 32 "Lib/compute/pid/pll.hpp"
+ 2102              		.file 33 "Lib/compute/pid/LQR.hpp"
+ 2103              		.file 34 "My_Top/System/kth_read.hpp"
+ 2104              		.file 35 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ 2105              		.file 36 "My_Top/EEPROM/Motor_Storage.hpp"
+ 2106              		.file 37 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
+ 2107              		.file 38 "Lib/serial/printf.h"
+ 2108              		.file 39 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
+ARM GAS  /tmp/cc9NG85F.s 			page 49
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 My_CLI.cpp
-     /tmp/ccON67r0.s:21     .rodata.str1.4:00000000 $d
-     /tmp/ccON67r0.s:30     .text:00000000 $t
-     /tmp/ccON67r0.s:36     .text:00000000 _Z16get_motor_by_argPPKciPi
-     /tmp/ccON67r0.s:83     .text:00000022 $d
-     /tmp/ccON67r0.s:88     .text:00000026 $t
-     /tmp/ccON67r0.s:146    .text:00000050 $d
-     /tmp/ccON67r0.s:161    .text:00000068 $t
-     /tmp/ccON67r0.s:167    .text:00000068 _Z5startP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:237    .text:000000a0 $d
-     /tmp/ccON67r0.s:247    .text:000000a4 $t
-     /tmp/ccON67r0.s:253    .text:000000a4 _Z4stopP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:323    .text:000000dc $d
-     /tmp/ccON67r0.s:333    .text:000000e0 $t
-     /tmp/ccON67r0.s:339    .text:000000e0 _Z5resetP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:389    .text:00000104 $d
-     /tmp/ccON67r0.s:405    .text:00000108 $t
-     /tmp/ccON67r0.s:411    .text:00000108 _Z12clear_eepromP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:496    .text:0000014c $d
-     /tmp/ccON67r0.s:513    .text:00000154 $t
-     /tmp/ccON67r0.s:519    .text:00000154 _Z4saveP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:608    .text:0000019c $d
-     /tmp/ccON67r0.s:623    .text:000001a4 $t
-     /tmp/ccON67r0.s:629    .text:000001a4 _Z7set_freP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:731    .text:00000200 $d
-     /tmp/ccON67r0.s:742    .text:00000208 $t
-     /tmp/ccON67r0.s:748    .text:00000208 _Z8set_dutyP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:850    .text:00000264 $d
-     /tmp/ccON67r0.s:862    .text:0000026c $t
-     /tmp/ccON67r0.s:868    .text:0000026c _Z7set_posP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:970    .text:000002c8 $d
-     /tmp/ccON67r0.s:982    .text:000002d0 $t
-     /tmp/ccON67r0.s:988    .text:000002d0 _Z9set_speedP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:1090   .text:0000032c $d
-     /tmp/ccON67r0.s:1139   .text:00000334 $t
-     /tmp/ccON67r0.s:1145   .text:00000334 _Z8set_modeP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:1358   .text:00000404 $d
-     /tmp/ccON67r0.s:1380   .text:0000042c $t
-     /tmp/ccON67r0.s:1386   .text:0000042c _Z9set_pid_vP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:1546   .text:000004e0 $d
-     /tmp/ccON67r0.s:1558   .text:000004e8 $t
-     /tmp/ccON67r0.s:1564   .text:000004e8 _Z9set_pid_pP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:1724   .text:0000059c $d
-     /tmp/ccON67r0.s:1753   .text:000005a4 $t
-     /tmp/ccON67r0.s:1759   .text:000005a4 _Z8get_modeP11EmbeddedCliPcPv
-     /tmp/ccON67r0.s:1878   .text:00000600 $d
+     /tmp/cc9NG85F.s:21     .rodata.str1.4:00000000 $d
+     /tmp/cc9NG85F.s:30     .text:00000000 $t
+     /tmp/cc9NG85F.s:36     .text:00000000 _Z16get_motor_by_argPPKciPi
+     /tmp/cc9NG85F.s:83     .text:00000022 $d
+     /tmp/cc9NG85F.s:88     .text:00000026 $t
+     /tmp/cc9NG85F.s:146    .text:00000050 $d
+     /tmp/cc9NG85F.s:161    .text:00000068 $t
+     /tmp/cc9NG85F.s:167    .text:00000068 _Z5startP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:237    .text:000000a0 $d
+     /tmp/cc9NG85F.s:247    .text:000000a4 $t
+     /tmp/cc9NG85F.s:253    .text:000000a4 _Z4stopP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:323    .text:000000dc $d
+     /tmp/cc9NG85F.s:333    .text:000000e0 $t
+     /tmp/cc9NG85F.s:339    .text:000000e0 _Z5resetP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:389    .text:00000104 $d
+     /tmp/cc9NG85F.s:405    .text:00000108 $t
+     /tmp/cc9NG85F.s:411    .text:00000108 _Z12clear_eepromP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:496    .text:0000014c $d
+     /tmp/cc9NG85F.s:513    .text:00000154 $t
+     /tmp/cc9NG85F.s:519    .text:00000154 _Z4saveP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:608    .text:0000019c $d
+     /tmp/cc9NG85F.s:624    .text:000001a4 $t
+     /tmp/cc9NG85F.s:630    .text:000001a4 _Z8set_zeroP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:791    .text:00000278 $d
+     /tmp/cc9NG85F.s:808    .text:00000294 $t
+     /tmp/cc9NG85F.s:814    .text:00000294 _Z7set_freP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:916    .text:000002f0 $d
+     /tmp/cc9NG85F.s:927    .text:000002f8 $t
+     /tmp/cc9NG85F.s:933    .text:000002f8 _Z8set_dutyP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:1035   .text:00000354 $d
+     /tmp/cc9NG85F.s:1047   .text:0000035c $t
+     /tmp/cc9NG85F.s:1053   .text:0000035c _Z7set_posP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:1155   .text:000003b8 $d
+     /tmp/cc9NG85F.s:1167   .text:000003c0 $t
+     /tmp/cc9NG85F.s:1173   .text:000003c0 _Z9set_speedP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:1275   .text:0000041c $d
+     /tmp/cc9NG85F.s:1324   .text:00000424 $t
+     /tmp/cc9NG85F.s:1330   .text:00000424 _Z8set_modeP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:1543   .text:000004f4 $d
+     /tmp/cc9NG85F.s:1565   .text:0000051c $t
+     /tmp/cc9NG85F.s:1571   .text:0000051c _Z9set_pid_vP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:1731   .text:000005d0 $d
+     /tmp/cc9NG85F.s:1743   .text:000005d8 $t
+     /tmp/cc9NG85F.s:1749   .text:000005d8 _Z9set_pid_pP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:1909   .text:0000068c $d
+     /tmp/cc9NG85F.s:1938   .text:00000694 $t
+     /tmp/cc9NG85F.s:1944   .text:00000694 _Z8get_modeP11EmbeddedCliPcPv
+     /tmp/cc9NG85F.s:2063   .text:000006f0 $d
 
 UNDEFINED SYMBOLS
 atoi
@@ -2681,18 +2915,23 @@ printf_
 M1
 M3
 M4
+ARM GAS  /tmp/cc9NG85F.s 			page 50
+
+
 M2
 _ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
 _ZN10CLI_Module13init_arg_listEPPKcS1_
-ARM GAS  /tmp/ccON67r0.s 			page 46
-
-
 _ZN8DC_Motor8Motor_ENEb
 HAL_NVIC_SystemReset
 _ZN13Motor_Storage5clearEh
 _ZN13Motor_Storage4saveEh
 strtof
 __aeabi_f2d
+__aeabi_dmul
+__aeabi_dsub
+__aeabi_dadd
+__aeabi_d2f
+fmodf
 strcmp
 _ZN8DC_Motor17My_DC_Motor_ResetEv
 vTaskDelay

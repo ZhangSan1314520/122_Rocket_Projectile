@@ -20,6 +20,7 @@ void Task_CLI(void *argument)
     CLI_Module::add_command_to_all("reset", "reset", true, NULL, reset);//驱动板重启
     CLI_Module::add_command_to_all("clear_eeprom", "clear_eeprom [idx]", true, NULL, clear_eeprom);//清空指定电机的eeprom数据
     CLI_Module::add_command_to_all("save", "save [idx]", true, NULL, save);//参数保存
+    CLI_Module::add_command_to_all("set_zero", "set_zero [idx] 单位°", true, NULL, set_zero);//设置零点
     CLI_Module::add_command_to_all("set_fre", "set_fre [idx] [fre]", true, NULL, set_fre);//设置电机频率
     CLI_Module::add_command_to_all("set_duty", "set_duty [idx] [duty] 范围0.0f-1.0f", true, NULL, set_duty);//设置电机占空比
     CLI_Module::add_command_to_all("set_pos", "set_pos [idx] [angle] 单位 °", true, NULL, set_pos);//设置目标位置 范围[-180,180]

@@ -77,10 +77,10 @@ void My_Tim_Callback(TIM_HandleTypeDef *htim)
                 // end_time = HAL_System::get_tick_us(); // 记录结束时间
                 // m->laji = (float)(end_time - start_time);  // 计算时间差
             }
-            if (count % DC_VELOCITY_LOOP_FREQ_DIV == 1)
-            {
-                m->Speed_Loop();//耗时4us*4 = 16us
-            }
+            // if (count % DC_VELOCITY_LOOP_FREQ_DIV == 1)
+            // {
+            //     m->Speed_Loop();//耗时4us*4 = 16us
+            // }
             break;
 
         case EncoderCalibration: //编码器校准模式

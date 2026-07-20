@@ -14,6 +14,7 @@ void stop(EmbeddedCli *cli, char *args, void *context); //停止电机
 void reset(EmbeddedCli *cli, char *args, void *context); //复位电机
 void clear_eeprom(EmbeddedCli *cli, char *args, void *context); //清空指定电机的eeprom数据
 void save(EmbeddedCli *cli, char *args, void *context); //参数保存
+void set_zero(EmbeddedCli *cli, char *args, void *context); //设置0点单位°
 void set_fre(EmbeddedCli *cli, char *args, void *context); //设置电机频率
 void set_duty(EmbeddedCli *cli, char *args, void *context); //设置电机占空比0-1
 void set_pos(EmbeddedCli *cli, char *args, void *context); //设置目标位置

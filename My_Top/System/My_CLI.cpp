@@ -105,6 +105,28 @@ void save(EmbeddedCli *cli, char *args, void *context) //参数保存
 
 
 
+void set_zero(EmbeddedCli *cli, char *args, void *context) //设置0点单位°
+{
+    int idx = 0;
+    char *end;
+    // 获取CLI实例
+    CLI_Module *mc = CLI_Module::get_cli_module(cli);
+    if (mc == NULL) return;
+    // 解析参数
+    const char *arg_list[CLI_MODULE_MAX_ARGS_NUM]; //数据存放区 超限只保存前CLI_MODULE_MAX_ARGS_NUM个
+    int argc = CLI_Module::init_arg_list(arg_list, args);
+    DC_Motor *m = get_motor_by_arg(arg_list, argc,&idx); //获取电机对象
+    if (!m) return;
+    float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
+    if(end == arg_list[2]) 
+    {
+        printf("参数格式错误\r\n");
+        return;
+    }
+    m->zero_offset = wrap_to_PI(m->theta_temp - deg2rad(temp) );
+    printf("电机M%d 设置当前角度为%.2f度\r\n",idx,temp);
+}
+
 
 void set_fre(EmbeddedCli *cli, char *args, void *context) //设置电机频率 单位 Hz
 {

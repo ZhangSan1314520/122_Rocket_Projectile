@@ -192,6 +192,7 @@ void DC_Motor::My_DC_Motor_Reset()
     Motor_EN(false);
     pid_speed_incparam->reset(); //复位pid
     pid_location->reset(); //复位pid
+    _lqr->reset(); //复位lqr
 }
 
 
@@ -214,7 +215,7 @@ void DC_Motor::My_DC_Motor_Init()
     Motor_EN(true);  // 打开PWM输出
     vTaskDelay(pdMS_TO_TICKS(1));  // 等 1ms 充满
     Motor_EN(false); // 关闭PWM输出
-    _encoder->KTH7111_Init(motor_encoder_dir);
+    // _encoder->KTH7111_Init(motor_encoder_dir);
     control_init_flag = true;
 }
 
@@ -305,10 +306,11 @@ void DC_Motor::Update_Speed_Angle_LPFAndPLL() //更新速度和角度
 
     _encoder->KTH7111_Send_JIAO_CMD();//发送角度指令
     fudu_test = _encoder->Get_KTH7111_Radian();//获取编码器角度
+    theta_temp=wrap_to_PI(fudu_test);
+    theta_m = wrap_to_PI(fudu_test-zero_offset);//将角度规整到 [-PI, PI) 区间
 
     if (LPFAndPLL == false) //低通滤波角度
     {
-      theta_m = wrap_to_PI(fudu_test);
       //方式1 低通滤波 更新机械角度速度
       theta_m_offic_temp = theta_m - theta_m_last; 
       theta_m_last = theta_m; // 更新上一次的机械角度
@@ -325,7 +327,6 @@ void DC_Motor::Update_Speed_Angle_LPFAndPLL() //更新速度和角度
     }else if (LPFAndPLL == true)
     {
       // 方式2PLL锁相环 更新PLL锁相环的输出角度和角速度
-      theta_m = fudu_test; // 获取原始机械角度 弧度
       foc_pll_run(theta_m,PLL_FREQ_Dt,&_pll_reg_out,&_pll_Angular_velocity,&_pll_conf); //更新PLL锁相环的输出角度和角速度
       reg_final = _pll_reg_out; //将PLL锁相环的输出角度赋值给最终角度
       theta_deg_final = rad2deg(reg_final); //将弧度转换为360度
@@ -354,89 +355,104 @@ void DC_Motor::Speed_Loop(void) //速度环
 
 
 
-// void DC_Motor::Location_Loop(void)
+
+// void DC_Motor::Location_Loop(void) //LQR输出目标位置速度串级控制
 // {
-//     float diff = _target_location2_cmd - _target_location2;
+//     float pos_error = wrap_to_PI(deg2rad(_target_location2) - reg_final);  // 计算当前位置误差
 
-//     while (diff > 180.0f) diff -= 360.0f;    // 改成 while，确保 diff 在 [-180, 180]
-//     while (diff < -180.0f) diff += 360.0f;
+//     float pos_abs = fabs(pos_error); // 误差位置绝对值
 
-//     if (diff > 60.0f) diff = 60.0f;
-//     if (diff < -60.0f) diff = -60.0f;
-//     _target_location2 += diff;
+//     float vel_abs = fabs(Angular_velocity_final); //真实速度绝对值
 
-//     while (_target_location2 > 180.0f) _target_location2 -= 360.0f;
-//     while (_target_location2 < -180.0f) _target_location2 += 360.0f;
 
-//     float error = wrap_to_PI(deg2rad(_target_location2) - reg_final);
-//     float raw_speed = pid_location->update(error);
-//     _target_speed = raw_speed;
+//     if(position_done) // 位置环到位
+//     {
+//         if(pos_abs > deg2rad(0.6f))
+//         {
+//             position_done = false;
+//         }
+//     }else // 位置环未到位
+//     {
+//         if(pos_abs < deg2rad(0.3f) &&vel_abs < deg2rad(4.0f))
+//         {
+//             position_ok_cnt++;//连续10次满足条件，认为位置到位
+//             if(position_ok_cnt >= 10)
+//             {
+//                 position_done = true;
+//             }
+//         }else
+//         {
+//             position_ok_cnt = 0;
+//         }
+//     }
 
-//     if (_target_speed > PID_Max_Speed) _target_speed = PID_Max_Speed;
-//     if (_target_speed < PID_Min_Speed) _target_speed = PID_Min_Speed;
+
+//     if(position_done)  // 位置环到位，停止输出速度
+//     {
+//         _target_speed = 0.0f;
+//         target_speed_last = 0.0f;
+//         return;
+//     }
+
+//     float vel_error = -Angular_velocity_final;  //计算速度误差
+//     _target_speed = _lqr->update(pos_error, vel_error);  // LQR输出目标速度
+//     //速度变化斜坡
+//     float lqr_speed = _lqr->update(pos_error, vel_error);  // LQR输出目标速度
+//     float speed_delta = lqr_speed - target_speed_last;
+//     if(speed_delta > 0.002f)
+//     {
+//         speed_delta = 0.002f;
+//     }
+//     else if(speed_delta < -0.002f)
+//     {
+//         speed_delta = -0.002f;
+//     }
+
+//     target_speed_last += speed_delta;
+
+//     _target_speed = target_speed_last;
+
 // }
 
 
 
-
-
-void DC_Motor::Location_Loop(void)
+float friction_comp = 0.02f;
+void DC_Motor::Location_Loop(void) //LQR直接控制位置环
 {
-    float pos_error = wrap_to_PI(deg2rad(_target_location2) - reg_final);  // 计算当前位置误差
+    float pos_error =
+        wrap_to_PI(
+            deg2rad(_target_location2)
+            - reg_final
+        );
 
-    float pos_abs = fabs(pos_error); // 误差位置绝对值
 
-    float vel_abs = fabs(Angular_velocity_final); //真实速度绝对值
+    float vel_error =
+        -Angular_velocity_final;
 
 
-    if(position_done) // 位置环到位
+    float duty =
+        _lqr->update(
+            pos_error,
+            vel_error
+        );
+
+    if(fabs(pos_error)>deg2rad(0.1f)&&fabs(duty)<0.06f)
     {
-        if(pos_abs > deg2rad(0.6f))
+        if(pos_error>0)
         {
-            position_done = false;
-        }
-    }else // 位置环未到位
-    {
-        if(pos_abs < deg2rad(0.3f) &&vel_abs < deg2rad(4.0f))
-        {
-            position_ok_cnt++;//连续10次满足条件，认为位置到位
-            if(position_ok_cnt >= 10)
-            {
-                position_done = true;
-            }
+            duty += 0.03f;
         }else
         {
-            position_ok_cnt = 0;
+            duty -= 0.03f;
         }
     }
 
+    updown_duty = duty;
 
-    if(position_done)  // 位置环到位，停止输出速度
-    {
-        _target_speed = 0.0f;
-        target_speed_last = 0.0f;
-        return;
-    }
 
-    float vel_error = -Angular_velocity_final;  //计算速度误差
-    _target_speed = _lqr->update(pos_error, vel_error);  // LQR输出目标速度
-    //速度变化斜坡
-    float lqr_speed = _lqr->update(pos_error, vel_error);  // LQR输出目标速度
-    float speed_delta = lqr_speed - target_speed_last;
-    if(speed_delta > 0.002f)
-    {
-        speed_delta = 0.002f;
-    }
-    else if(speed_delta < -0.002f)
-    {
-        speed_delta = -0.002f;
-    }
-
-    target_speed_last += speed_delta;
-
-    _target_speed = target_speed_last;
-
+    Set_Motor_Glo_Duty();
 }
+
 
 
 

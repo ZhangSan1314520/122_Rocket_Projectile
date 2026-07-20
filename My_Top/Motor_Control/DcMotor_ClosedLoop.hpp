@@ -39,7 +39,8 @@ public:
     float motor_up_duty = 0.0f;//电机上桥臂占空比
     float motor_down_duty = 0.0f;//电机下桥臂占空比
     float updown_duty = 0.0f;//电机全局占空比
-    float theta_m;//电机原始弧度
+    float theta_temp;//电机角度原始值
+    float theta_m;//电机原始弧度 偏移过的
     float theta_m_speed;// 电机原始速度
     float reg_final;//最终的电机角度 (弧度)
     float theta_deg_final ; //最终的电机角度 (角度)

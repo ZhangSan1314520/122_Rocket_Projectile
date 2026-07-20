@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc3f9eTK.s 			page 1
+ARM GAS  /tmp/ccQclKqD.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** /** @defgroup USBD_REQ
-ARM GAS  /tmp/cc3f9eTK.s 			page 2
+ARM GAS  /tmp/ccQclKqD.s 			page 2
 
 
   31:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   * @brief USB standard requests module
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   */
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
-ARM GAS  /tmp/cc3f9eTK.s 			page 3
+ARM GAS  /tmp/ccQclKqD.s 			page 3
 
 
   88:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** /** @defgroup USBD_REQ_Private_Functions
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****         default:
  143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           USBD_CtlError(pdev, req);
  144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           break;
-ARM GAS  /tmp/cc3f9eTK.s 			page 4
+ARM GAS  /tmp/ccQclKqD.s 			page 4
 
 
  145:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****     default:
  200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       USBD_CtlError(pdev, req);
  201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       break;
-ARM GAS  /tmp/cc3f9eTK.s 			page 5
+ARM GAS  /tmp/ccQclKqD.s 			page 5
 
 
  202:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  256:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****               break;
  257:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  258:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****             default:
-ARM GAS  /tmp/cc3f9eTK.s 			page 6
+ARM GAS  /tmp/ccQclKqD.s 			page 6
 
 
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****               USBD_CtlError(pdev, req);
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  313:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****               break;
  314:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  315:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****             case USBD_STATE_CONFIGURED:
-ARM GAS  /tmp/cc3f9eTK.s 			page 7
+ARM GAS  /tmp/ccQclKqD.s 			page 7
 
 
  316:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****               if ((ep_addr & 0x80U) == 0x80U)
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  370:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** }
  371:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  372:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
-ARM GAS  /tmp/cc3f9eTK.s 			page 8
+ARM GAS  /tmp/ccQclKqD.s 			page 8
 
 
  373:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** /**
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           {
  428:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****             USBD_CtlError(pdev, req);
  429:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****             err++;
-ARM GAS  /tmp/cc3f9eTK.s 			page 9
+ARM GAS  /tmp/ccQclKqD.s 			page 9
 
 
  430:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  484:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****             pbuf = pdev->pDesc->GetInterfaceStrDescriptor(pdev->dev_speed, &len);
  485:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           }
  486:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           else
-ARM GAS  /tmp/cc3f9eTK.s 			page 10
+ARM GAS  /tmp/ccQclKqD.s 			page 10
 
 
  487:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  541:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****         pbuf = pdev->pClass->GetOtherSpeedConfigDescriptor(&len);
  542:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****         pbuf[1] = USB_DESC_TYPE_OTHER_SPEED_CONFIGURATION;
  543:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
-ARM GAS  /tmp/cc3f9eTK.s 			page 11
+ARM GAS  /tmp/ccQclKqD.s 			page 11
 
 
  544:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       else
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  598:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       USBD_CtlError(pdev, req);
  599:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****     }
  600:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****     else
-ARM GAS  /tmp/cc3f9eTK.s 			page 12
+ARM GAS  /tmp/ccQclKqD.s 			page 12
 
 
  601:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****     {
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****         else
  656:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****         {
  657:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           (void)USBD_CtlSendStatus(pdev);
-ARM GAS  /tmp/cc3f9eTK.s 			page 13
+ARM GAS  /tmp/ccQclKqD.s 			page 13
 
 
  658:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           pdev->dev_state = USBD_STATE_CONFIGURED;
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  712:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** /**
  713:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   * @brief  USBD_GetConfig
  714:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   *         Handle Get device configuration request
-ARM GAS  /tmp/cc3f9eTK.s 			page 14
+ARM GAS  /tmp/ccQclKqD.s 			page 14
 
 
  715:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   * @param  pdev: device instance
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  769:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       pdev->dev_config_status = 0U;
  770:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** #endif
  771:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
-ARM GAS  /tmp/cc3f9eTK.s 			page 15
+ARM GAS  /tmp/ccQclKqD.s 			page 15
 
 
  772:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       if (pdev->dev_remote_wakeup != 0U)
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  826:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       USBD_CtlError(pdev, req);
  827:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       break;
  828:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   }
-ARM GAS  /tmp/cc3f9eTK.s 			page 16
+ARM GAS  /tmp/ccQclKqD.s 			page 16
 
 
  829:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** }
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  883:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   * @retval None
  884:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   */
  885:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** void USBD_GetString(uint8_t *desc, uint8_t *unicode, uint16_t *len)
-ARM GAS  /tmp/cc3f9eTK.s 			page 17
+ARM GAS  /tmp/ccQclKqD.s 			page 17
 
 
  886:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** {
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
   41 0002 0020     		movs	r0, #0
   42              	.LVL2:
   43              		.loc 1 926 9 view .LVU6
-ARM GAS  /tmp/cc3f9eTK.s 			page 18
+ARM GAS  /tmp/ccQclKqD.s 			page 18
 
 
   44 0004 02E0     		b	.L2
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
   88              		.cfi_offset 14, -4
  796:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   {
   89              		.loc 1 796 3 is_stmt 1 view .LVU19
-ARM GAS  /tmp/cc3f9eTK.s 			page 19
+ARM GAS  /tmp/ccQclKqD.s 			page 19
 
 
  796:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   {
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  133 0002 0370     		strb	r3, [r0]
  845:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   req->bRequest = *(uint8_t *)(pbuff);
  134              		.loc 1 845 3 is_stmt 1 view .LVU33
-ARM GAS  /tmp/cc3f9eTK.s 			page 20
+ARM GAS  /tmp/ccQclKqD.s 			page 20
 
 
  135              	.LVL12:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
   38:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   */
   39:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** 
   40:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** /** @defgroup USB_DEF_Exported_Defines
-ARM GAS  /tmp/cc3f9eTK.s 			page 21
+ARM GAS  /tmp/ccQclKqD.s 			page 21
 
 
   41:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   * @{
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
   95:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #define  USB_REQ_TYPE_MASK                              0x60U
   96:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** 
   97:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #define  USB_REQ_RECIPIENT_DEVICE                       0x00U
-ARM GAS  /tmp/cc3f9eTK.s 			page 22
+ARM GAS  /tmp/ccQclKqD.s 			page 22
 
 
   98:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #define  USB_REQ_RECIPIENT_INTERFACE                    0x01U
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  152:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #define USBD_EP0_DATA_IN                                0x02U
  153:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #define USBD_EP0_DATA_OUT                               0x03U
  154:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #define USBD_EP0_STATUS_IN                              0x04U
-ARM GAS  /tmp/cc3f9eTK.s 			page 23
+ARM GAS  /tmp/ccQclKqD.s 			page 23
 
 
  155:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #define USBD_EP0_STATUS_OUT                             0x05U
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  209:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** } USBD_EpDescTypedef;
  210:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** 
  211:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** struct _USBD_HandleTypeDef;
-ARM GAS  /tmp/cc3f9eTK.s 			page 24
+ARM GAS  /tmp/ccQclKqD.s 			page 24
 
 
  212:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  266:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   uint8_t *(*GetUserStrDescriptor)(USBD_SpeedTypeDef speed, uint8_t idx, uint16_t *length);
  267:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #endif
  268:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h **** #if ((USBD_LPM_ENABLED == 1U) || (USBD_CLASS_BOS_ENABLED == 1))
-ARM GAS  /tmp/cc3f9eTK.s 			page 25
+ARM GAS  /tmp/ccQclKqD.s 			page 25
 
 
  269:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   uint8_t *(*GetBOSDescriptor)(USBD_SpeedTypeDef speed, uint16_t *length);
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  323:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   void                    *pUserData_MSC;
  324:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   void                    *pClassData_DFU;
  325:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   void                    *pUserData_DFU;
-ARM GAS  /tmp/cc3f9eTK.s 			page 26
+ARM GAS  /tmp/ccQclKqD.s 			page 26
 
 
  326:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   void                    *pClassData_PRNTR;
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  171              		.loc 1 851 3 is_stmt 1 view .LVU52
  852:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   req->wIndex = SWAPBYTE(pbuff);
  172              		.loc 1 852 3 view .LVU53
-ARM GAS  /tmp/cc3f9eTK.s 			page 27
+ARM GAS  /tmp/ccQclKqD.s 			page 27
 
 
  853:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  347:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   _pbuff++;
  209              		.loc 2 347 3 view .LVU74
  347:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h ****   _pbuff++;
-ARM GAS  /tmp/cc3f9eTK.s 			page 28
+ARM GAS  /tmp/ccQclKqD.s 			page 28
 
 
  210              		.loc 2 347 12 is_stmt 0 view .LVU75
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  255              		.loc 1 872 3 view .LVU88
  872:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   (void)USBD_LL_StallEP(pdev, 0U);
  256              		.loc 1 872 9 is_stmt 0 view .LVU89
-ARM GAS  /tmp/cc3f9eTK.s 			page 29
+ARM GAS  /tmp/ccQclKqD.s 			page 29
 
 
  257 0004 8021     		movs	r1, #128
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  384:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  303              		.loc 1 384 3 view .LVU100
  386:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   {
-ARM GAS  /tmp/cc3f9eTK.s 			page 30
+ARM GAS  /tmp/ccQclKqD.s 			page 30
 
 
  304              		.loc 1 386 3 view .LVU101
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  345 0038 00F0AB80 		beq	.L40
  564:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****     {
  346              		.loc 1 564 5 is_stmt 1 view .LVU115
-ARM GAS  /tmp/cc3f9eTK.s 			page 31
+ARM GAS  /tmp/ccQclKqD.s 			page 31
 
 
  564:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****     {
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  384              		.loc 1 408 16 view .LVU132
  385 0068 9847     		blx	r3
  386              	.LVL39:
-ARM GAS  /tmp/cc3f9eTK.s 			page 32
+ARM GAS  /tmp/ccQclKqD.s 			page 32
 
 
  409:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  427 0091 44       		.byte	(.L22-.L23)/2
  428              		.p2align 1
  429              	.L28:
-ARM GAS  /tmp/cc3f9eTK.s 			page 33
+ARM GAS  /tmp/ccQclKqD.s 			page 33
 
 
  422:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           {
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  467 00b4 0DF10601 		add	r1, sp, #6
  468 00b8 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
  469              	.LVL49:
-ARM GAS  /tmp/cc3f9eTK.s 			page 34
+ARM GAS  /tmp/ccQclKqD.s 			page 34
 
 
  436:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           }
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  509              		.loc 1 453 13 view .LVU178
  557:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   {
  510              		.loc 1 557 3 view .LVU179
-ARM GAS  /tmp/cc3f9eTK.s 			page 35
+ARM GAS  /tmp/ccQclKqD.s 			page 35
 
 
  511 00de 51E0     		b	.L11
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  549              		.loc 1 472 13 is_stmt 1 view .LVU195
  472:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           }
  550              		.loc 1 472 20 is_stmt 0 view .LVU196
-ARM GAS  /tmp/cc3f9eTK.s 			page 36
+ARM GAS  /tmp/ccQclKqD.s 			page 36
 
 
  551 0102 0DF10601 		add	r1, sp, #6
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  591 0128 FFF7FEFF 		bl	USBD_CtlError
  592              	.LVL72:
  489:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           }
-ARM GAS  /tmp/cc3f9eTK.s 			page 37
+ARM GAS  /tmp/ccQclKqD.s 			page 37
 
 
  593              		.loc 1 489 13 view .LVU211
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  529:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
  631              		.loc 1 529 28 view .LVU228
  632 014e 5B6B     		ldr	r3, [r3, #52]
-ARM GAS  /tmp/cc3f9eTK.s 			page 38
+ARM GAS  /tmp/ccQclKqD.s 			page 38
 
 
  529:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  671 0172 4370     		strb	r3, [r0, #1]
  557:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   {
  672              		.loc 1 557 3 is_stmt 1 view .LVU245
-ARM GAS  /tmp/cc3f9eTK.s 			page 39
+ARM GAS  /tmp/ccQclKqD.s 			page 39
 
 
  673 0174 5EE7     		b	.L19
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  714              		.loc 1 576 11 is_stmt 0 view .LVU258
  715 0192 2046     		mov	r0, r4
  716              	.LVL93:
-ARM GAS  /tmp/cc3f9eTK.s 			page 40
+ARM GAS  /tmp/ccQclKqD.s 			page 40
 
 
  576:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   }
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  594:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  761              		.loc 1 594 14 is_stmt 0 view .LVU271
  762 0012 03F07F05 		and	r5, r3, #127
-ARM GAS  /tmp/cc3f9eTK.s 			page 41
+ARM GAS  /tmp/ccQclKqD.s 			page 41
 
 
  763              	.LVL96:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  612:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
  801              		.loc 1 612 9 is_stmt 1 view .LVU288
  612:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
-ARM GAS  /tmp/cc3f9eTK.s 			page 42
+ARM GAS  /tmp/ccQclKqD.s 			page 42
 
 
  802              		.loc 1 612 25 is_stmt 0 view .LVU289
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  848 0006 8D78     		ldrb	r5, [r1, #2]	@ zero_extendqisi2
  634:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  849              		.loc 1 634 10 view .LVU300
-ARM GAS  /tmp/cc3f9eTK.s 			page 43
+ARM GAS  /tmp/ccQclKqD.s 			page 43
 
 
  850 0008 2E4B     		ldr	r3, .L66
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  639:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   }
  890              		.loc 1 639 12 is_stmt 0 view .LVU315
  891 0036 0325     		movs	r5, #3
-ARM GAS  /tmp/cc3f9eTK.s 			page 44
+ARM GAS  /tmp/ccQclKqD.s 			page 44
 
 
  892 0038 F9E7     		b	.L53
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  930              		.loc 1 658 27 is_stmt 0 view .LVU331
  931 0058 0323     		movs	r3, #3
  932 005a 84F89C32 		strb	r3, [r4, #668]
-ARM GAS  /tmp/cc3f9eTK.s 			page 45
+ARM GAS  /tmp/ccQclKqD.s 			page 45
 
 
  933 005e E6E7     		b	.L53
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  971 0080 0546     		mov	r5, r0
  972 0082 B0B1     		cbz	r0, .L61
  687:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           (void)USBD_ClrClassConfig(pdev, (uint8_t)pdev->dev_config);
-ARM GAS  /tmp/cc3f9eTK.s 			page 46
+ARM GAS  /tmp/ccQclKqD.s 			page 46
 
 
  973              		.loc 1 687 11 is_stmt 1 view .LVU348
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1013              	.LVL133:
  1014              	.L61:
  693:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****         }
-ARM GAS  /tmp/cc3f9eTK.s 			page 47
+ARM GAS  /tmp/ccQclKqD.s 			page 47
 
 
  1015              		.loc 1 693 11 is_stmt 1 view .LVU363
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1061 0004 012B     		cmp	r3, #1
  1062 0006 0BD1     		bne	.L76
  727:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****     {
-ARM GAS  /tmp/cc3f9eTK.s 			page 48
+ARM GAS  /tmp/ccQclKqD.s 			page 48
 
 
  1063              		.loc 1 727 5 is_stmt 1 view .LVU374
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1103              		.loc 1 732 15 is_stmt 0 view .LVU388
  1104 0032 0122     		movs	r2, #1
  1105 0034 FFF7FEFF 		bl	USBD_CtlSendData
-ARM GAS  /tmp/cc3f9eTK.s 			page 49
+ARM GAS  /tmp/ccQclKqD.s 			page 49
 
 
  1106              	.LVL145:
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1150 0010 0CD1     		bne	.L84
  767:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** #else
  1151              		.loc 1 767 7 is_stmt 1 view .LVU401
-ARM GAS  /tmp/cc3f9eTK.s 			page 50
+ARM GAS  /tmp/ccQclKqD.s 			page 50
 
 
  767:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** #else
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1190              		.loc 1 784 1 is_stmt 0 view .LVU417
  1191 0036 F8E7     		b	.L78
  1192              		.cfi_endproc
-ARM GAS  /tmp/cc3f9eTK.s 			page 51
+ARM GAS  /tmp/ccQclKqD.s 			page 51
 
 
  1193              	.LFE340:
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  821:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       }
  1237              		.loc 1 821 15 is_stmt 0 view .LVU430
  1238 001a FFF7FEFF 		bl	USBD_CtlSendStatus
-ARM GAS  /tmp/cc3f9eTK.s 			page 52
+ARM GAS  /tmp/ccQclKqD.s 			page 52
 
 
  1239              	.LVL158:
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1285 0010 54B1     		cbz	r4, .L92
  149:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       break;
  1286              		.loc 1 149 7 is_stmt 1 view .LVU441
-ARM GAS  /tmp/cc3f9eTK.s 			page 53
+ARM GAS  /tmp/ccQclKqD.s 			page 53
 
 
  1287 0012 FFF7FEFF 		bl	USBD_CtlError
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1327 0036 1C       		.byte	(.L95-.L97)/2
  1328 0037 08       		.byte	(.L100-.L97)/2
  1329 0038 05       		.byte	(.L99-.L97)/2
-ARM GAS  /tmp/cc3f9eTK.s 			page 54
+ARM GAS  /tmp/ccQclKqD.s 			page 54
 
 
  1330 0039 1C       		.byte	(.L95-.L97)/2
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1371              		.loc 1 102 22 is_stmt 0 view .LVU468
  1372 005a 2C46     		mov	r4, r5
  132:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
-ARM GAS  /tmp/cc3f9eTK.s 			page 55
+ARM GAS  /tmp/ccQclKqD.s 			page 55
 
 
  1373              		.loc 1 132 11 view .LVU469
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1421 0004 0C46     		mov	r4, r1
  165:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  1422              		.loc 1 165 3 is_stmt 1 view .LVU478
-ARM GAS  /tmp/cc3f9eTK.s 			page 56
+ARM GAS  /tmp/ccQclKqD.s 			page 56
 
 
  1423              	.LVL185:
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  180:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  1462              		.loc 1 180 43 is_stmt 0 view .LVU494
  1463 0030 D5F8B832 		ldr	r3, [r5, #696]
-ARM GAS  /tmp/cc3f9eTK.s 			page 57
+ARM GAS  /tmp/ccQclKqD.s 			page 57
 
 
  180:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1504              	.LVL198:
  165:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c **** 
  1505              		.loc 1 165 22 view .LVU509
-ARM GAS  /tmp/cc3f9eTK.s 			page 58
+ARM GAS  /tmp/ccQclKqD.s 			page 58
 
 
  1506 0058 0026     		movs	r6, #0
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  217:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   USBD_StatusTypeDef ret = USBD_OK;
  1553              		.loc 1 217 3 view .LVU519
  218:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   ep_addr = LOBYTE(req->wIndex);
-ARM GAS  /tmp/cc3f9eTK.s 			page 59
+ARM GAS  /tmp/ccQclKqD.s 			page 59
 
 
  1554              		.loc 1 218 3 view .LVU520
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  225:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****       break;
  1594              		.loc 1 225 33 view .LVU535
  1595 002e 9847     		blx	r3
-ARM GAS  /tmp/cc3f9eTK.s 			page 60
+ARM GAS  /tmp/ccQclKqD.s 			page 60
 
 
  1596              	.LVL211:
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****               break;
  1637              		.loc 1 259 15 is_stmt 1 view .LVU549
  1638 005a 2946     		mov	r1, r5
-ARM GAS  /tmp/cc3f9eTK.s 			page 61
+ARM GAS  /tmp/ccQclKqD.s 			page 61
 
 
  1639              	.LVL217:
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1679              	.LVL226:
  1680              	.L123:
  247:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****               {
-ARM GAS  /tmp/cc3f9eTK.s 			page 62
+ARM GAS  /tmp/ccQclKqD.s 			page 62
 
 
  1681              		.loc 1 247 15 is_stmt 1 view .LVU564
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1719              		.loc 1 266 23 view .LVU580
  1720 00a0 DAB2     		uxtb	r2, r3
  266:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****           {
-ARM GAS  /tmp/cc3f9eTK.s 			page 63
+ARM GAS  /tmp/ccQclKqD.s 			page 63
 
 
  1721              		.loc 1 266 11 view .LVU581
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1761              		.loc 1 272 23 is_stmt 0 view .LVU595
  1762 00c6 8021     		movs	r1, #128
  1763 00c8 3046     		mov	r0, r6
-ARM GAS  /tmp/cc3f9eTK.s 			page 64
+ARM GAS  /tmp/ccQclKqD.s 			page 64
 
 
  1764 00ca FFF7FEFF 		bl	USBD_LL_StallEP
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  285:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****                 }
  1804              		.loc 1 285 25 is_stmt 0 view .LVU610
  1805 00f2 FFF7FEFF 		bl	USBD_LL_ClearStallEP
-ARM GAS  /tmp/cc3f9eTK.s 			page 65
+ARM GAS  /tmp/ccQclKqD.s 			page 65
 
 
  1806              	.LVL248:
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  307:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****                     &pdev->ep_out[ep_addr & 0x7FU];
  1846              		.loc 1 307 82 discriminator 2 view .LVU625
  1847 0122 01EB8101 		add	r1, r1, r1, lsl #2
-ARM GAS  /tmp/cc3f9eTK.s 			page 66
+ARM GAS  /tmp/ccQclKqD.s 			page 66
 
 
  1848 0126 8900     		lsls	r1, r1, #2
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1888              		.loc 1 307 82 discriminator 1 view .LVU639
  1889 0150 01EB8101 		add	r1, r1, r1, lsl #2
  1890 0154 8900     		lsls	r1, r1, #2
-ARM GAS  /tmp/cc3f9eTK.s 			page 67
+ARM GAS  /tmp/ccQclKqD.s 			page 67
 
 
  1891 0156 1031     		adds	r1, r1, #16
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1931 018e 8029     		cmp	r1, #128
  1932 0190 26D1     		bne	.L143
  1933              	.L142:
-ARM GAS  /tmp/cc3f9eTK.s 			page 68
+ARM GAS  /tmp/ccQclKqD.s 			page 68
 
 
  338:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****               }
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  1973              		.loc 1 321 19 view .LVU668
  1974 01c0 37E7     		b	.L117
  1975              	.LVL267:
-ARM GAS  /tmp/cc3f9eTK.s 			page 69
+ARM GAS  /tmp/ccQclKqD.s 			page 69
 
 
  1976              	.L159:
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  2017 01f0 2360     		str	r3, [r4]
  2018 01f2 D0E7     		b	.L144
  2019              		.cfi_endproc
-ARM GAS  /tmp/cc3f9eTK.s 			page 70
+ARM GAS  /tmp/ccQclKqD.s 			page 70
 
 
  2020              	.LFE335:
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  898:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   idx++;
  2064              		.loc 1 898 16 is_stmt 0 view .LVU694
  2065 0016 2B70     		strb	r3, [r5]
-ARM GAS  /tmp/cc3f9eTK.s 			page 71
+ARM GAS  /tmp/ccQclKqD.s 			page 71
 
 
  899:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   unicode[idx] = USB_DESC_TYPE_STRING;
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  903:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   {
  2103              		.loc 1 903 17 is_stmt 1 view .LVU712
  903:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ctlreq.c ****   {
-ARM GAS  /tmp/cc3f9eTK.s 			page 72
+ARM GAS  /tmp/ccQclKqD.s 			page 72
 
 
  2104              		.loc 1 903 10 is_stmt 0 view .LVU713
@@ -4291,49 +4291,49 @@ ARM GAS  /tmp/cc3f9eTK.s 			page 1
  2131              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
  2132              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
  2133              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h"
-ARM GAS  /tmp/cc3f9eTK.s 			page 73
+ARM GAS  /tmp/ccQclKqD.s 			page 73
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_ctlreq.c
-     /tmp/cc3f9eTK.s:21     .text.USBD_GetLen:00000000 $t
-     /tmp/cc3f9eTK.s:26     .text.USBD_GetLen:00000000 USBD_GetLen
-     /tmp/cc3f9eTK.s:72     .text.USBD_SetFeature:00000000 $t
-     /tmp/cc3f9eTK.s:77     .text.USBD_SetFeature:00000000 USBD_SetFeature
-     /tmp/cc3f9eTK.s:114    .text.USBD_ParseSetupRequest:00000000 $t
-     /tmp/cc3f9eTK.s:120    .text.USBD_ParseSetupRequest:00000000 USBD_ParseSetupRequest
-     /tmp/cc3f9eTK.s:235    .text.USBD_CtlError:00000000 $t
-     /tmp/cc3f9eTK.s:241    .text.USBD_CtlError:00000000 USBD_CtlError
-     /tmp/cc3f9eTK.s:275    .text.USBD_GetDescriptor:00000000 $t
-     /tmp/cc3f9eTK.s:280    .text.USBD_GetDescriptor:00000000 USBD_GetDescriptor
-     /tmp/cc3f9eTK.s:316    .text.USBD_GetDescriptor:0000001e $d
-     /tmp/cc3f9eTK.s:422    .text.USBD_GetDescriptor:0000008c $d
-     /tmp/cc3f9eTK.s:428    .text.USBD_GetDescriptor:00000092 $t
-     /tmp/cc3f9eTK.s:725    .text.USBD_SetAddress:00000000 $t
-     /tmp/cc3f9eTK.s:730    .text.USBD_SetAddress:00000000 USBD_SetAddress
-     /tmp/cc3f9eTK.s:822    .text.USBD_SetConfig:00000000 $t
-     /tmp/cc3f9eTK.s:827    .text.USBD_SetConfig:00000000 USBD_SetConfig
-     /tmp/cc3f9eTK.s:1035   .text.USBD_SetConfig:000000c4 $d
-     /tmp/cc3f9eTK.s:2126   .bss.cfgidx.0:00000000 cfgidx.0
-     /tmp/cc3f9eTK.s:1040   .text.USBD_GetConfig:00000000 $t
-     /tmp/cc3f9eTK.s:1045   .text.USBD_GetConfig:00000000 USBD_GetConfig
-     /tmp/cc3f9eTK.s:1121   .text.USBD_GetStatus:00000000 $t
-     /tmp/cc3f9eTK.s:1126   .text.USBD_GetStatus:00000000 USBD_GetStatus
-     /tmp/cc3f9eTK.s:1196   .text.USBD_ClrFeature:00000000 $t
-     /tmp/cc3f9eTK.s:1201   .text.USBD_ClrFeature:00000000 USBD_ClrFeature
-     /tmp/cc3f9eTK.s:1254   .text.USBD_StdDevReq:00000000 $t
-     /tmp/cc3f9eTK.s:1260   .text.USBD_StdDevReq:00000000 USBD_StdDevReq
-     /tmp/cc3f9eTK.s:1323   .text.USBD_StdDevReq:00000032 $d
-     /tmp/cc3f9eTK.s:1333   .text.USBD_StdDevReq:0000003c $t
-     /tmp/cc3f9eTK.s:1400   .text.USBD_StdItfReq:00000000 $t
-     /tmp/cc3f9eTK.s:1406   .text.USBD_StdItfReq:00000000 USBD_StdItfReq
-     /tmp/cc3f9eTK.s:1528   .text.USBD_StdEPReq:00000000 $t
-     /tmp/cc3f9eTK.s:1534   .text.USBD_StdEPReq:00000000 USBD_StdEPReq
-     /tmp/cc3f9eTK.s:2023   .text.USBD_GetString:00000000 $t
-     /tmp/cc3f9eTK.s:2029   .text.USBD_GetString:00000000 USBD_GetString
-     /tmp/cc3f9eTK.s:2127   .bss.cfgidx.0:00000000 $d
-     /tmp/cc3f9eTK.s:323    .text.USBD_GetDescriptor:00000025 $d
-     /tmp/cc3f9eTK.s:323    .text.USBD_GetDescriptor:00000026 $t
+     /tmp/ccQclKqD.s:21     .text.USBD_GetLen:00000000 $t
+     /tmp/ccQclKqD.s:26     .text.USBD_GetLen:00000000 USBD_GetLen
+     /tmp/ccQclKqD.s:72     .text.USBD_SetFeature:00000000 $t
+     /tmp/ccQclKqD.s:77     .text.USBD_SetFeature:00000000 USBD_SetFeature
+     /tmp/ccQclKqD.s:114    .text.USBD_ParseSetupRequest:00000000 $t
+     /tmp/ccQclKqD.s:120    .text.USBD_ParseSetupRequest:00000000 USBD_ParseSetupRequest
+     /tmp/ccQclKqD.s:235    .text.USBD_CtlError:00000000 $t
+     /tmp/ccQclKqD.s:241    .text.USBD_CtlError:00000000 USBD_CtlError
+     /tmp/ccQclKqD.s:275    .text.USBD_GetDescriptor:00000000 $t
+     /tmp/ccQclKqD.s:280    .text.USBD_GetDescriptor:00000000 USBD_GetDescriptor
+     /tmp/ccQclKqD.s:316    .text.USBD_GetDescriptor:0000001e $d
+     /tmp/ccQclKqD.s:422    .text.USBD_GetDescriptor:0000008c $d
+     /tmp/ccQclKqD.s:428    .text.USBD_GetDescriptor:00000092 $t
+     /tmp/ccQclKqD.s:725    .text.USBD_SetAddress:00000000 $t
+     /tmp/ccQclKqD.s:730    .text.USBD_SetAddress:00000000 USBD_SetAddress
+     /tmp/ccQclKqD.s:822    .text.USBD_SetConfig:00000000 $t
+     /tmp/ccQclKqD.s:827    .text.USBD_SetConfig:00000000 USBD_SetConfig
+     /tmp/ccQclKqD.s:1035   .text.USBD_SetConfig:000000c4 $d
+     /tmp/ccQclKqD.s:2126   .bss.cfgidx.0:00000000 cfgidx.0
+     /tmp/ccQclKqD.s:1040   .text.USBD_GetConfig:00000000 $t
+     /tmp/ccQclKqD.s:1045   .text.USBD_GetConfig:00000000 USBD_GetConfig
+     /tmp/ccQclKqD.s:1121   .text.USBD_GetStatus:00000000 $t
+     /tmp/ccQclKqD.s:1126   .text.USBD_GetStatus:00000000 USBD_GetStatus
+     /tmp/ccQclKqD.s:1196   .text.USBD_ClrFeature:00000000 $t
+     /tmp/ccQclKqD.s:1201   .text.USBD_ClrFeature:00000000 USBD_ClrFeature
+     /tmp/ccQclKqD.s:1254   .text.USBD_StdDevReq:00000000 $t
+     /tmp/ccQclKqD.s:1260   .text.USBD_StdDevReq:00000000 USBD_StdDevReq
+     /tmp/ccQclKqD.s:1323   .text.USBD_StdDevReq:00000032 $d
+     /tmp/ccQclKqD.s:1333   .text.USBD_StdDevReq:0000003c $t
+     /tmp/ccQclKqD.s:1400   .text.USBD_StdItfReq:00000000 $t
+     /tmp/ccQclKqD.s:1406   .text.USBD_StdItfReq:00000000 USBD_StdItfReq
+     /tmp/ccQclKqD.s:1528   .text.USBD_StdEPReq:00000000 $t
+     /tmp/ccQclKqD.s:1534   .text.USBD_StdEPReq:00000000 USBD_StdEPReq
+     /tmp/ccQclKqD.s:2023   .text.USBD_GetString:00000000 $t
+     /tmp/ccQclKqD.s:2029   .text.USBD_GetString:00000000 USBD_GetString
+     /tmp/ccQclKqD.s:2127   .bss.cfgidx.0:00000000 $d
+     /tmp/ccQclKqD.s:323    .text.USBD_GetDescriptor:00000025 $d
+     /tmp/ccQclKqD.s:323    .text.USBD_GetDescriptor:00000026 $t
 
 UNDEFINED SYMBOLS
 USBD_CtlSendStatus

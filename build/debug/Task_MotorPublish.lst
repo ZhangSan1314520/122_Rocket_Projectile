@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccsU4LXx.s 			page 1
+ARM GAS  /tmp/ccLezyWC.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -45,20 +45,20 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
   11:My_Top/Task/Task_MotorPublish.cpp ****     dst->theta_m = m->theta_m;                //电机原始弧度
   33              		.loc 1 11 5 view .LVU1
   34              		.loc 1 11 23 is_stmt 0 view .LVU2
-  35 0000 4B69     		ldr	r3, [r1, #20]	@ float
+  35 0000 8B69     		ldr	r3, [r1, #24]	@ float
   36              		.loc 1 11 18 view .LVU3
   37 0002 0360     		str	r3, [r0]	@ float
   12:My_Top/Task/Task_MotorPublish.cpp ****     dst->theta_m_speed = m->theta_m_speed;        //电机原始弧度速度
   38              		.loc 1 12 5 is_stmt 1 view .LVU4
   39              		.loc 1 12 29 is_stmt 0 view .LVU5
-  40 0004 8B69     		ldr	r3, [r1, #24]	@ float
+  40 0004 CB69     		ldr	r3, [r1, #28]	@ float
   41              		.loc 1 12 24 view .LVU6
   42 0006 4360     		str	r3, [r0, #4]	@ float
   13:My_Top/Task/Task_MotorPublish.cpp ****     dst->theta_deg_final = m->theta_deg_final;        //最终的电机角度 (度)
   43              		.loc 1 13 5 is_stmt 1 view .LVU7
   44              		.loc 1 13 31 is_stmt 0 view .LVU8
-  45 0008 0B6A     		ldr	r3, [r1, #32]	@ float
-ARM GAS  /tmp/ccsU4LXx.s 			page 2
+  45 0008 4B6A     		ldr	r3, [r1, #36]	@ float
+ARM GAS  /tmp/ccLezyWC.s 			page 2
 
 
   46              		.loc 1 13 26 view .LVU9
@@ -66,13 +66,13 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
   14:My_Top/Task/Task_MotorPublish.cpp ****     dst->reg_final = m->reg_final;              //最终的电机角度 (弧度)
   48              		.loc 1 14 5 is_stmt 1 view .LVU10
   49              		.loc 1 14 25 is_stmt 0 view .LVU11
-  50 000c CB69     		ldr	r3, [r1, #28]	@ float
+  50 000c 0B6A     		ldr	r3, [r1, #32]	@ float
   51              		.loc 1 14 20 view .LVU12
   52 000e C360     		str	r3, [r0, #12]	@ float
   15:My_Top/Task/Task_MotorPublish.cpp ****     dst->Angular_velocity_final = m->Angular_velocity_final; //最终的角速度
   53              		.loc 1 15 5 is_stmt 1 view .LVU13
   54              		.loc 1 15 38 is_stmt 0 view .LVU14
-  55 0010 4B6A     		ldr	r3, [r1, #36]	@ float
+  55 0010 8B6A     		ldr	r3, [r1, #40]	@ float
   56              		.loc 1 15 33 view .LVU15
   57 0012 0361     		str	r3, [r0, #16]	@ float
   16:My_Top/Task/Task_MotorPublish.cpp **** 
@@ -80,13 +80,13 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
   18:My_Top/Task/Task_MotorPublish.cpp ****     dst->_target_location2 = m->_target_location2;      //目标位置 (度)
   58              		.loc 1 18 5 is_stmt 1 view .LVU16
   59              		.loc 1 18 33 is_stmt 0 view .LVU17
-  60 0014 0B6B     		ldr	r3, [r1, #48]	@ float
+  60 0014 4B6B     		ldr	r3, [r1, #52]	@ float
   61              		.loc 1 18 28 view .LVU18
   62 0016 4361     		str	r3, [r0, #20]	@ float
   19:My_Top/Task/Task_MotorPublish.cpp ****     dst->_target_speed = m->_target_speed;          //目标速度
   63              		.loc 1 19 5 is_stmt 1 view .LVU19
   64              		.loc 1 19 29 is_stmt 0 view .LVU20
-  65 0018 CB6A     		ldr	r3, [r1, #44]	@ float
+  65 0018 0B6B     		ldr	r3, [r1, #48]	@ float
   66              		.loc 1 19 24 view .LVU21
   67 001a 8361     		str	r3, [r0, #24]	@ float
   20:My_Top/Task/Task_MotorPublish.cpp ****  
@@ -94,7 +94,7 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
   22:My_Top/Task/Task_MotorPublish.cpp ****     dst->ADC_Temp_Val = m->ADC_Temp_Val;           //热敏电阻温度
   68              		.loc 1 22 5 is_stmt 1 view .LVU22
   69              		.loc 1 22 28 is_stmt 0 view .LVU23
-  70 001c 8B6B     		ldr	r3, [r1, #56]	@ float
+  70 001c CB6B     		ldr	r3, [r1, #60]	@ float
   71              		.loc 1 22 23 view .LVU24
   72 001e C361     		str	r3, [r0, #28]	@ float
   23:My_Top/Task/Task_MotorPublish.cpp ****  
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
   86      725F7465 
   86      6C656D00 
   87              		.text
-ARM GAS  /tmp/ccsU4LXx.s 			page 3
+ARM GAS  /tmp/ccLezyWC.s 			page 3
 
 
   88              		.align	1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
   10:My_Top/Task/task_topics.h ****     float Angular_velocity_final; //最终的角速度
   11:My_Top/Task/task_topics.h **** 
   12:My_Top/Task/task_topics.h ****     // 目标位置/速度
-ARM GAS  /tmp/ccsU4LXx.s 			page 4
+ARM GAS  /tmp/ccLezyWC.s 			page 4
 
 
   13:My_Top/Task/task_topics.h ****     float _target_location2;     //目标位置 (度)
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
  165              	.LVL10:
   39:My_Top/Task/Task_MotorPublish.cpp ****         fill_telem(&buf[3], &M4);
  166              		.loc 1 39 9 is_stmt 1 view .LVU47
-ARM GAS  /tmp/ccsU4LXx.s 			page 5
+ARM GAS  /tmp/ccLezyWC.s 			page 5
 
 
  167              		.loc 1 39 19 is_stmt 0 view .LVU48
@@ -298,21 +298,21 @@ ARM GAS  /tmp/ccsU4LXx.s 			page 1
  218              		.file 24 "Lib/compute/pid/pll.hpp"
  219              		.file 25 "Lib/compute/pid/LQR.hpp"
  220              		.file 26 "My_Top/System/kth_read.hpp"
-ARM GAS  /tmp/ccsU4LXx.s 			page 6
+ARM GAS  /tmp/ccLezyWC.s 			page 6
 
 
  221              		.file 27 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
  222              		.file 28 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-ARM GAS  /tmp/ccsU4LXx.s 			page 7
+ARM GAS  /tmp/ccLezyWC.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Task_MotorPublish.cpp
-     /tmp/ccsU4LXx.s:20     .text:00000000 $t
-     /tmp/ccsU4LXx.s:25     .text:00000000 _ZL10fill_telemP13motor_telem_tP8DC_Motor
-     /tmp/ccsU4LXx.s:84     .rodata.str1.4:00000000 $d
-     /tmp/ccsU4LXx.s:94     .text:00000026 _Z17Task_MotorPublishPv
-     /tmp/ccsU4LXx.s:188    .text:00000078 $d
+     /tmp/ccLezyWC.s:20     .text:00000000 $t
+     /tmp/ccLezyWC.s:25     .text:00000000 _ZL10fill_telemP13motor_telem_tP8DC_Motor
+     /tmp/ccLezyWC.s:84     .rodata.str1.4:00000000 $d
+     /tmp/ccLezyWC.s:94     .text:00000026 _Z17Task_MotorPublishPv
+     /tmp/ccLezyWC.s:188    .text:00000078 $d
 
 UNDEFINED SYMBOLS
 uorb_advertise

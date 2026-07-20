@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccGhe0Ox.s 			page 1
+ARM GAS  /tmp/ccNIYpTN.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,12 +58,12 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
   30:My_Top/Task/Task_Test.cpp ****            xPortGetFreeHeapSize(), configTOTAL_HEAP_SIZE);
   31:My_Top/Task/Task_Test.cpp **** }
   32:My_Top/Task/Task_Test.cpp **** 
-ARM GAS  /tmp/ccGhe0Ox.s 			page 2
+ARM GAS  /tmp/ccNIYpTN.s 			page 2
 
 
   33:My_Top/Task/Task_Test.cpp **** XBLW24C64 EEPROM1(EEPROM_hi2c);
   34:My_Top/Task/Task_Test.cpp **** uint8_t add[]= {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0d,0x10,0x11,0x12,0x16,0x7
-  35:My_Top/Task/Task_Test.cpp **** uint8_t data_tx[]= {0x00,0x00,0x00,0xff,0x03,0x00,0x07,0x00,0x00,0xa5,0xa5,0x88,0x00,0xaC,0x02,0x08
+  35:My_Top/Task/Task_Test.cpp **** uint8_t data_tx[]= {0x00,0x00,0x80,0xff,0x03,0x00,0x07,0x00,0x00,0xa5,0xa5,0x88,0x00,0xaC,0x02,0x08
   36:My_Top/Task/Task_Test.cpp **** 
   37:My_Top/Task/Task_Test.cpp **** uint8_t len = sizeof(data_tx)/sizeof(data_tx[0]);
   38:My_Top/Task/Task_Test.cpp **** uint8_t data_rx1[20], data_rx2[20], data_rx3[20], data_rx4[20],data_rx5[20];
@@ -87,14 +87,13 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
   56:My_Top/Task/Task_Test.cpp ****     // M3._encoder->KTH7111_Read_MoreRegs(add, data_rx3, len); //读取多个寄存器
   57:My_Top/Task/Task_Test.cpp ****     // M4._encoder->KTH7111_Read_MoreRegs(add, data_rx4, len); //读取多个寄存器
   58:My_Top/Task/Task_Test.cpp **** 
-  59:My_Top/Task/Task_Test.cpp **** 
-  60:My_Top/Task/Task_Test.cpp ****     while (1)
-  61:My_Top/Task/Task_Test.cpp ****     {
-  62:My_Top/Task/Task_Test.cpp **** 
-  63:My_Top/Task/Task_Test.cpp ****         vTaskDelay(pdMS_TO_TICKS(1000));
-  64:My_Top/Task/Task_Test.cpp ****     }
-  65:My_Top/Task/Task_Test.cpp **** }
-  27              		.loc 1 65 1 view -0
+  59:My_Top/Task/Task_Test.cpp ****     while (1)
+  60:My_Top/Task/Task_Test.cpp ****     {
+  61:My_Top/Task/Task_Test.cpp **** 
+  62:My_Top/Task/Task_Test.cpp ****         vTaskDelay(pdMS_TO_TICKS(1000));
+  63:My_Top/Task/Task_Test.cpp ****     }
+  64:My_Top/Task/Task_Test.cpp **** }
+  27              		.loc 1 64 1 view -0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -118,10 +117,10 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
   13:My_Top/EEPROM/XBLW24C64.hpp **** #define EEPROM_DEV_ADDR       0x50                       // 7位 I2C 器件地址
   14:My_Top/EEPROM/XBLW24C64.hpp **** #define EEPROM_PAGE_SIZE      32                         // 页大小（字节）
   15:My_Top/EEPROM/XBLW24C64.hpp **** #define EEPROM_SIZE           8192                       // 总容量（字节） 256 页 × 32 字
-ARM GAS  /tmp/ccGhe0Ox.s 			page 3
-
-
   16:My_Top/EEPROM/XBLW24C64.hpp **** #define EEPROM_ADDR_SIZE      I2C_MEMADD_SIZE_16BIT      // 内存地址位数
+ARM GAS  /tmp/ccNIYpTN.s 			page 3
+
+
   17:My_Top/EEPROM/XBLW24C64.hpp **** #define EEPROM_WRITE_CYCLE_MS          5                 // 写周期时间最大5ms
   18:My_Top/EEPROM/XBLW24C64.hpp **** 
   19:My_Top/EEPROM/XBLW24C64.hpp **** 
@@ -142,7 +141,7 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
   44              		.loc 2 25 15 view .LVU4
   45              	.LBE6:
   46              	.LBE5:
-  47              		.loc 1 65 1 view .LVU5
+  47              		.loc 1 64 1 view .LVU5
   48 0006 7047     		bx	lr
   49              	.L3:
   50              		.align	2
@@ -178,10 +177,10 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
   66              		.align	1
   67              		.global	_Z8look_memv
   68              		.syntax unified
-ARM GAS  /tmp/ccGhe0Ox.s 			page 4
-
-
   69              		.thumb
+ARM GAS  /tmp/ccNIYpTN.s 			page 4
+
+
   70              		.thumb_func
   72              	_Z8look_memv:
   73              	.LFB1367:
@@ -238,10 +237,10 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  117 0040 1868     		ldr	r0, [r3]
  118 0042 FFF7FEFF 		bl	uxTaskGetStackHighWaterMark
  119              	.LVL6:
-ARM GAS  /tmp/ccGhe0Ox.s 			page 5
-
-
  120 0046 8046     		mov	r8, r0
+ARM GAS  /tmp/ccNIYpTN.s 			page 5
+
+
   22:My_Top/Task/Task_Test.cpp ****            uxTaskGetStackHighWaterMark(SystemInitHandle),
  121              		.loc 1 22 11 discriminator 5 view .LVU13
  122 0048 144B     		ldr	r3, .L6+20
@@ -298,10 +297,10 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  170 0064 312DE4BB 		.ascii	"1-\344\273\273\345\212\241\345\220\257\345\212\250\344"
  170      BBE58AA1 
  170      E590AFE5 
-ARM GAS  /tmp/ccGhe0Ox.s 			page 6
-
-
  170      8AA8E4
+ARM GAS  /tmp/ccNIYpTN.s 			page 6
+
+
  171 0073 B8AD0D0A 		.ascii	"\270\255\015\012\000"
  171      00
  172              		.text
@@ -343,25 +342,25 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  202 00b0 FFF7FEFF 		bl	vTaskDelay
  203              	.LVL14:
  204              	.L9:
-  60:My_Top/Task/Task_Test.cpp ****     {
- 205              		.loc 1 60 5 is_stmt 1 view .LVU25
-  63:My_Top/Task/Task_Test.cpp ****     }
- 206              		.loc 1 63 9 discriminator 1 view .LVU26
-  63:My_Top/Task/Task_Test.cpp ****     }
- 207              		.loc 1 63 19 is_stmt 0 discriminator 1 view .LVU27
+  59:My_Top/Task/Task_Test.cpp ****     {
+ 205              		.loc 1 59 5 is_stmt 1 view .LVU25
+  62:My_Top/Task/Task_Test.cpp ****     }
+ 206              		.loc 1 62 9 discriminator 1 view .LVU26
+  62:My_Top/Task/Task_Test.cpp ****     }
+ 207              		.loc 1 62 19 is_stmt 0 discriminator 1 view .LVU27
  208 00b4 4FF47A70 		mov	r0, #1000
  209 00b8 FFF7FEFF 		bl	vTaskDelay
  210              	.LVL15:
-  60:My_Top/Task/Task_Test.cpp ****     {
- 211              		.loc 1 60 5 is_stmt 1 view .LVU28
+  59:My_Top/Task/Task_Test.cpp ****     {
+ 211              		.loc 1 59 5 is_stmt 1 view .LVU28
  212 00bc FAE7     		b	.L9
  213              	.L12:
  214 00be 00BF     		.align	2
  215              	.L11:
-ARM GAS  /tmp/ccGhe0Ox.s 			page 7
-
-
  216 00c0 64000000 		.word	.LC1
+ARM GAS  /tmp/ccNIYpTN.s 			page 7
+
+
  217              		.cfi_endproc
  218              	.LFE1368:
  220              		.align	1
@@ -370,7 +369,7 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  223              		.thumb_func
  225              	_GLOBAL__sub_I__Z8look_memv:
  226              	.LFB1520:
- 227              		.loc 1 65 1 view -0
+ 227              		.loc 1 64 1 view -0
  228              		.cfi_startproc
  229              		@ args = 0, pretend = 0, frame = 0
  230              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -378,7 +377,7 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  232              		.cfi_def_cfa_offset 8
  233              		.cfi_offset 3, -8
  234              		.cfi_offset 14, -4
- 235              		.loc 1 65 1 is_stmt 0 view .LVU30
+ 235              		.loc 1 64 1 is_stmt 0 view .LVU30
  236 00c6 FFF79BFF 		bl	_Z41__static_initialization_and_destruction_0v
  237              	.LVL16:
  238 00ca 08BD     		pop	{r3, pc}
@@ -402,7 +401,7 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  259 0000 11       		.byte	17
  260 0001 000000   		.space	3
  263              	data_tx:
- 264 0004 000000FF 		.ascii	"\000\000\000\377\003\000\007\000\000\245\245\210\000"
+ 264 0004 000080FF 		.ascii	"\000\000\200\377\003\000\007\000\000\245\245\210\000"
  264      03000700 
  264      00A5A588 
  264      00
@@ -418,10 +417,10 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  273              		.align	2
  276              	data_rx5:
  277 0000 00000000 		.space	20
-ARM GAS  /tmp/ccGhe0Ox.s 			page 8
-
-
  277      00000000 
+ARM GAS  /tmp/ccNIYpTN.s 			page 8
+
+
  277      00000000 
  277      00000000 
  277      00000000 
@@ -477,35 +476,35 @@ ARM GAS  /tmp/ccGhe0Ox.s 			page 1
  321              		.file 24 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdio.h"
  322              		.file 25 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
  323              		.file 26 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
-ARM GAS  /tmp/ccGhe0Ox.s 			page 9
+ARM GAS  /tmp/ccNIYpTN.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Task_Test.cpp
-     /tmp/ccGhe0Ox.s:20     .text:00000000 $t
-     /tmp/ccGhe0Ox.s:25     .text:00000000 _Z41__static_initialization_and_destruction_0v
-     /tmp/ccGhe0Ox.s:52     .text:00000008 $d
-     /tmp/ccGhe0Ox.s:58     .rodata.str1.4:00000000 $d
-     /tmp/ccGhe0Ox.s:66     .text:00000010 $t
-     /tmp/ccGhe0Ox.s:72     .text:00000010 _Z8look_memv
-     /tmp/ccGhe0Ox.s:157    .text:00000088 $d
-     /tmp/ccGhe0Ox.s:173    .text:000000a4 $t
-     /tmp/ccGhe0Ox.s:179    .text:000000a4 _Z9Task_TestPv
-     /tmp/ccGhe0Ox.s:216    .text:000000c0 $d
-     /tmp/ccGhe0Ox.s:220    .text:000000c4 $t
-     /tmp/ccGhe0Ox.s:225    .text:000000c4 _GLOBAL__sub_I__Z8look_memv
-     /tmp/ccGhe0Ox.s:243    .init_array:00000000 $d
-     /tmp/ccGhe0Ox.s:276    .bss:00000000 data_rx5
-     /tmp/ccGhe0Ox.s:280    .bss:00000014 data_rx4
-     /tmp/ccGhe0Ox.s:284    .bss:00000028 data_rx3
-     /tmp/ccGhe0Ox.s:288    .bss:0000003c data_rx2
-     /tmp/ccGhe0Ox.s:292    .bss:00000050 data_rx1
-     /tmp/ccGhe0Ox.s:258    .data:00000000 len
-     /tmp/ccGhe0Ox.s:263    .data:00000004 data_tx
-     /tmp/ccGhe0Ox.s:269    .data:00000018 add
-     /tmp/ccGhe0Ox.s:296    .bss:00000064 EEPROM1
-     /tmp/ccGhe0Ox.s:255    .data:00000000 $d
-     /tmp/ccGhe0Ox.s:273    .bss:00000000 $d
+     /tmp/ccNIYpTN.s:20     .text:00000000 $t
+     /tmp/ccNIYpTN.s:25     .text:00000000 _Z41__static_initialization_and_destruction_0v
+     /tmp/ccNIYpTN.s:52     .text:00000008 $d
+     /tmp/ccNIYpTN.s:58     .rodata.str1.4:00000000 $d
+     /tmp/ccNIYpTN.s:66     .text:00000010 $t
+     /tmp/ccNIYpTN.s:72     .text:00000010 _Z8look_memv
+     /tmp/ccNIYpTN.s:157    .text:00000088 $d
+     /tmp/ccNIYpTN.s:173    .text:000000a4 $t
+     /tmp/ccNIYpTN.s:179    .text:000000a4 _Z9Task_TestPv
+     /tmp/ccNIYpTN.s:216    .text:000000c0 $d
+     /tmp/ccNIYpTN.s:220    .text:000000c4 $t
+     /tmp/ccNIYpTN.s:225    .text:000000c4 _GLOBAL__sub_I__Z8look_memv
+     /tmp/ccNIYpTN.s:243    .init_array:00000000 $d
+     /tmp/ccNIYpTN.s:276    .bss:00000000 data_rx5
+     /tmp/ccNIYpTN.s:280    .bss:00000014 data_rx4
+     /tmp/ccNIYpTN.s:284    .bss:00000028 data_rx3
+     /tmp/ccNIYpTN.s:288    .bss:0000003c data_rx2
+     /tmp/ccNIYpTN.s:292    .bss:00000050 data_rx1
+     /tmp/ccNIYpTN.s:258    .data:00000000 len
+     /tmp/ccNIYpTN.s:263    .data:00000004 data_tx
+     /tmp/ccNIYpTN.s:269    .data:00000018 add
+     /tmp/ccNIYpTN.s:296    .bss:00000064 EEPROM1
+     /tmp/ccNIYpTN.s:255    .data:00000000 $d
+     /tmp/ccNIYpTN.s:273    .bss:00000000 $d
 
 UNDEFINED SYMBOLS
 _ZN9XBLW24C645_hi2cE

@@ -3,7 +3,6 @@
 
 bool KTH7111::KTH7111_Init(bool fx)
 {
-    // KTH7111_ReadReg(0x00);  // 读一个无关寄存器，结果丢弃
     bool write_ok = false;
     uint16_t angle_zero = 0;
     encoder_dir = fx;

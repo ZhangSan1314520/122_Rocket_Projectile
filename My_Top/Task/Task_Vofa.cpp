@@ -179,7 +179,10 @@ void Task_VofaRx(void *argument)
                 vofa_update_if_changed(&Vafa_Target,  4, &m->_target_location2, NULL); //目标位置-180°~+180°
                 vofa_update_if_changed(&Vafa_Speed,  0, &m->pid_speed_incparam->_kp, m);//速度PID
                 vofa_update_if_changed(&Vafa_Speed,  1, &m->pid_speed_incparam->_ki, m);
-                vofa_update_if_changed(&Vafa_Speed,  2, &m->pid_speed_incparam->_kd, m);                
+                vofa_update_if_changed(&Vafa_Speed,  2, &m->pid_speed_incparam->_kd, m);   
+                
+                vofa_update_if_changed(&Vafa_Target,  0, &m->_lqr->_k1, NULL); //
+                vofa_update_if_changed(&Vafa_Target,  1, &m->_lqr->_k2, NULL); //
             
                 break;
         }
@@ -218,10 +221,11 @@ void Task_VofaTx(void *argument)
 
         // );
 
-        Vofa_SendFireWater_VA(4,
+        Vofa_SendFireWater_VA(5,
             // M1
             buf[1]._target_speed, buf[1].Angular_velocity_final,
-            buf[1]._target_location2, rad2deg(buf[1].reg_final)
+            buf[1]._target_location2, rad2deg(buf[1].reg_final),
+            buf[1].updown_duty 
                                         
         );  
 
