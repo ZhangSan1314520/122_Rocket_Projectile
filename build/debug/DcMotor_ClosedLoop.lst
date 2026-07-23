@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cctnC9l2.s 			page 1
+ARM GAS  /tmp/ccAoy7T2.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   26:Lib/compute/pid/pid_Increment.hpp ****         _delta_u = 0.0f;
   27:Lib/compute/pid/pid_Increment.hpp ****     }
   28:Lib/compute/pid/pid_Increment.hpp **** 
-ARM GAS  /tmp/cctnC9l2.s 			page 2
+ARM GAS  /tmp/ccAoy7T2.s 			page 2
 
 
   29:Lib/compute/pid/pid_Increment.hpp ****     PID_Increment(float kp, float ki, float kd, float dt, float max, float min) //定义时带参�
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   61              		.loc 2 52 52 view .LVU14
   62 0028 76EE066A 		vadd.f32	s13, s12, s12
   63              		.loc 2 52 45 view .LVU15
-ARM GAS  /tmp/cctnC9l2.s 			page 3
+ARM GAS  /tmp/ccAoy7T2.s 			page 3
 
 
   64 002c 70EE666A 		vsub.f32	s13, s0, s13
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  103 0066 7047     		bx	lr
  104              	.LVL7:
  105              	.L8:
-ARM GAS  /tmp/cctnC9l2.s 			page 4
+ARM GAS  /tmp/ccAoy7T2.s 			page 4
 
 
   59:Lib/compute/pid/pid_Increment.hpp ****             _delta_u = _min;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   27:Lib/compute/pid/LQR.hpp **** //         return _output;
   28:Lib/compute/pid/LQR.hpp **** //     }
   29:Lib/compute/pid/LQR.hpp **** //     void reset(void)
-ARM GAS  /tmp/cctnC9l2.s 			page 5
+ARM GAS  /tmp/ccAoy7T2.s 			page 5
 
 
   30:Lib/compute/pid/LQR.hpp **** //     {
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
    4:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** //
    5:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // This file is part of the GNU ISO C++ Library.  This library is free
    6:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // software; you can redistribute it and/or modify it under the
-ARM GAS  /tmp/cctnC9l2.s 			page 6
+ARM GAS  /tmp/ccAoy7T2.s 			page 6
 
 
    7:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** // terms of the GNU General Public License as published by the
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   61:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef asin
   62:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef atan
   63:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef atan2
-ARM GAS  /tmp/cctnC9l2.s 			page 7
+ARM GAS  /tmp/ccAoy7T2.s 			page 7
 
 
   64:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #undef ceil
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  118:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** #endif
  119:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  120:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   template<typename _Tp>
-ARM GAS  /tmp/cctnC9l2.s 			page 8
+ARM GAS  /tmp/ccAoy7T2.s 			page 8
 
 
  121:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     inline _GLIBCXX_CONSTEXPR
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  175:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_ceil(__x); }
  176:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  177:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::cos;
-ARM GAS  /tmp/cctnC9l2.s 			page 9
+ARM GAS  /tmp/ccAoy7T2.s 			page 9
 
 
  178:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  232:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****     { return __builtin_exp(__x); }
  233:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
  234:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath ****   using ::fabs;
-ARM GAS  /tmp/cctnC9l2.s 			page 10
+ARM GAS  /tmp/ccAoy7T2.s 			page 10
 
 
  235:/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  191 004e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  192 0052 01DD     		ble	.L13
   70:Lib/compute/pid/LQR.hpp ****             _integral=5.0f;
-ARM GAS  /tmp/cctnC9l2.s 			page 11
+ARM GAS  /tmp/ccAoy7T2.s 			page 11
 
 
  193              		.loc 3 70 13 is_stmt 1 view .LVU57
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  239              	.L19:
   79:Lib/compute/pid/LQR.hpp ****         else if (_output < _min)
   80:Lib/compute/pid/LQR.hpp ****             _output = _min;
-ARM GAS  /tmp/cctnC9l2.s 			page 12
+ARM GAS  /tmp/ccAoy7T2.s 			page 12
 
 
   81:Lib/compute/pid/LQR.hpp **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  282 00e0 8744E74A 		.word	1256670343
  283 00e4 1857B63F 		.word	1068914456
  284              		.cfi_endproc
-ARM GAS  /tmp/cctnC9l2.s 			page 13
+ARM GAS  /tmp/ccAoy7T2.s 			page 13
 
 
  285              	.LFE1326:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  310 0002 0024     		movs	r4, #0
  311 0004 0470     		strb	r4, [r0]
  312 0006 0125     		movs	r5, #1
-ARM GAS  /tmp/cctnC9l2.s 			page 14
+ARM GAS  /tmp/ccAoy7T2.s 			page 14
 
 
  313 0008 4570     		strb	r5, [r0, #1]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   11:Lib/compute/pid/pll.hpp **** 
   12:Lib/compute/pid/pll.hpp **** 
   13:Lib/compute/pid/pll.hpp **** #define Stepper_Max_RPS (Motor_RPM / 60.0f) //电机最大转速 每秒转的圈数
-ARM GAS  /tmp/cctnC9l2.s 			page 15
+ARM GAS  /tmp/ccAoy7T2.s 			page 15
 
 
   14:Lib/compute/pid/pll.hpp **** #define Wn_min  (M_2PI * Stepper_Max_RPS / 10) // 最小带宽 3.30
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  387              	.LFE1350:
  389              		.weak	_ZN8DC_MotorC1EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR
  390              		.thumb_set _ZN8DC_MotorC1EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR,_ZN8DC_MotorC2EPK
-ARM GAS  /tmp/cctnC9l2.s 			page 16
+ARM GAS  /tmp/ccAoy7T2.s 			page 16
 
 
  391              		.text
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   48:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
   49:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
   50:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
-ARM GAS  /tmp/cctnC9l2.s 			page 17
+ARM GAS  /tmp/ccAoy7T2.s 			page 17
 
 
   51:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  105:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** (
  106:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     MOTOR_DEFAULT_PARAM.location_pid.kp,
  107:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     MOTOR_DEFAULT_PARAM.location_pid.ki,
-ARM GAS  /tmp/cctnC9l2.s 			page 18
+ARM GAS  /tmp/ccAoy7T2.s 			page 18
 
 
  108:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     MOTOR_DEFAULT_PARAM.location_pid.kd,
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  162:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     MOTOR_DEFAULT_PARAM.lqr.max_speed,
  163:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     MOTOR_DEFAULT_PARAM.lqr.min_speed
  164:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** );
-ARM GAS  /tmp/cctnC9l2.s 			page 19
+ARM GAS  /tmp/ccAoy7T2.s 			page 19
 
 
  165:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  219:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     control_init_flag = true;
  220:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
  221:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
-ARM GAS  /tmp/cctnC9l2.s 			page 20
+ARM GAS  /tmp/ccAoy7T2.s 			page 20
 
 
  222:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  276:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
  277:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
  278:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
-ARM GAS  /tmp/cctnC9l2.s 			page 21
+ARM GAS  /tmp/ccAoy7T2.s 			page 21
 
 
  279:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  333:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****       Angular_velocity_final = _pll_Angular_velocity; //将最终速度赋值给最终角速度
  334:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
  335:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
-ARM GAS  /tmp/cctnC9l2.s 			page 22
+ARM GAS  /tmp/ccAoy7T2.s 			page 22
 
 
  336:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** }
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  390:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** //     if(position_done)  // 位置环到位，停止输出速度
  391:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** //     {
  392:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** //         _target_speed = 0.0f;
-ARM GAS  /tmp/cctnC9l2.s 			page 23
+ARM GAS  /tmp/ccAoy7T2.s 			page 23
 
 
  393:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** //         target_speed_last = 0.0f;
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  447:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         }
  448:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }
  449:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
-ARM GAS  /tmp/cctnC9l2.s 			page 24
+ARM GAS  /tmp/ccAoy7T2.s 			page 24
 
 
  450:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     updown_duty = duty;
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   13:My_Top/System/kth_read.hpp **** 
   14:My_Top/System/kth_read.hpp **** enum ANLC_Status
   15:My_Top/System/kth_read.hpp **** {
-ARM GAS  /tmp/cctnC9l2.s 			page 25
+ARM GAS  /tmp/ccAoy7T2.s 			page 25
 
 
   16:My_Top/System/kth_read.hpp ****     NotStarted = 0,   // 未开始自校准
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  447              		.loc 7 33 7 view .LVU120
  448 0020 9E4F     		ldr	r7, .L37+8
  449 0022 6762     		str	r7, [r4, #36]
-ARM GAS  /tmp/cctnC9l2.s 			page 26
+ARM GAS  /tmp/ccAoy7T2.s 			page 26
 
 
  450              	.LVL23:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  496              	.LBB86:
  497              	.LBB87:
   31:Lib/compute/pid/pid_Increment.hpp ****         _ki = ki;
-ARM GAS  /tmp/cctnC9l2.s 			page 27
+ARM GAS  /tmp/ccAoy7T2.s 			page 27
 
 
  498              		.loc 2 31 9 view .LVU135
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  535              	.LBB88:
  536              	.LBI88:
  537              		.file 8 "Lib/compute/pid/pid.hpp"
-ARM GAS  /tmp/cctnC9l2.s 			page 28
+ARM GAS  /tmp/ccAoy7T2.s 			page 28
 
 
    1:Lib/compute/pid/pid.hpp **** #pragma once
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  578              	.LBE88:
  579              	.LBB91:
  580              	.LBI91:
-ARM GAS  /tmp/cctnC9l2.s 			page 29
+ARM GAS  /tmp/ccAoy7T2.s 			page 29
 
 
   53:Lib/compute/pid/LQR.hpp ****         : _k1(k1), _k2(k2), _max(max), _min(min), _output(0.0f) {}
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   35:Lib/compute/pid/pid_Increment.hpp ****         _min = min;
  618              		.loc 2 35 14 is_stmt 0 view .LVU186
  619 00da C4F8D400 		str	r0, [r4, #212]	@ float
-ARM GAS  /tmp/cctnC9l2.s 			page 30
+ARM GAS  /tmp/ccAoy7T2.s 			page 30
 
 
   36:Lib/compute/pid/pid_Increment.hpp ****         _e_prev = _e_prev2 = 0.0f;
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   13:Lib/compute/pid/pid.hpp ****           _output(0.0f), max_out_flag(false) {}
  657              		.loc 8 13 25 view .LVU204
  658 010e C4F80831 		str	r3, [r4, #264]	@ float
-ARM GAS  /tmp/cctnC9l2.s 			page 31
+ARM GAS  /tmp/ccAoy7T2.s 			page 31
 
 
   13:Lib/compute/pid/pid.hpp ****           _output(0.0f), max_out_flag(false) {}
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  700              		.loc 2 31 13 is_stmt 0 view .LVU220
  701 013a C4ED4E3A 		vstr.32	s7, [r4, #312]
   32:Lib/compute/pid/pid_Increment.hpp ****         _kd = kd;
-ARM GAS  /tmp/cctnC9l2.s 			page 32
+ARM GAS  /tmp/ccAoy7T2.s 			page 32
 
 
  702              		.loc 2 32 9 is_stmt 1 view .LVU221
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  738 0162 C4F86031 		str	r3, [r4, #352]	@ float
   12:Lib/compute/pid/pid.hpp ****           _error(0.0f), _prev_error(0.0f), P_OUT(0.0f), I_OUT(0.0f), D_OUT(0.0f),
  739              		.loc 8 12 29 view .LVU240
-ARM GAS  /tmp/cctnC9l2.s 			page 33
+ARM GAS  /tmp/ccAoy7T2.s 			page 33
 
 
  740 0166 C4F86431 		str	r3, [r4, #356]	@ float
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  780 01a2 C4F8A021 		str	r2, [r4, #416]	@ float
   54:Lib/compute/pid/LQR.hpp **** 
  781              		.loc 3 54 51 view .LVU258
-ARM GAS  /tmp/cctnC9l2.s 			page 34
+ARM GAS  /tmp/ccAoy7T2.s 			page 34
 
 
  782 01a6 C4F8A831 		str	r3, [r4, #424]	@ float
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  817              		.loc 2 38 18 is_stmt 0 view .LVU277
  818 01ca C4F8CC31 		str	r3, [r4, #460]	@ float
  819              	.LVL35:
-ARM GAS  /tmp/cctnC9l2.s 			page 35
+ARM GAS  /tmp/ccAoy7T2.s 			page 35
 
 
   38:Lib/compute/pid/pid_Increment.hpp ****     }
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  860              	.LBE116:
  861              	.LBE115:
  862              	.LBB118:
-ARM GAS  /tmp/cctnC9l2.s 			page 36
+ARM GAS  /tmp/ccAoy7T2.s 			page 36
 
 
  863              	.LBI118:
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  907 025c 0093     		str	r3, [sp]
  908 025e 04F59C73 		add	r3, r4, #312
  909 0262 04F12802 		add	r2, r4, #40
-ARM GAS  /tmp/cctnC9l2.s 			page 37
+ARM GAS  /tmp/ccAoy7T2.s 			page 37
 
 
  910 0266 3146     		mov	r1, r6
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  176:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****    
  964              		.loc 1 176 1 is_stmt 0 view .LVU308
  965 02d0 10B5     		push	{r4, lr}
-ARM GAS  /tmp/cctnC9l2.s 			page 38
+ARM GAS  /tmp/ccAoy7T2.s 			page 38
 
 
  966              		.cfi_def_cfa_offset 8
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1005 02fa 2046     		mov	r0, r4
  1006 02fc FFF7FEFF 		bl	HAL_TIMEx_PWMN_Start
  1007              	.LVL47:
-ARM GAS  /tmp/cctnC9l2.s 			page 39
+ARM GAS  /tmp/ccAoy7T2.s 			page 39
 
 
  185:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1052              	.LVL49:
  287:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Start(_motor_config->htim, _motor_config->ch_hin1);
  1053              		.loc 1 287 26 view .LVU336
-ARM GAS  /tmp/cctnC9l2.s 			page 40
+ARM GAS  /tmp/ccAoy7T2.s 			page 40
 
 
  1054 0320 1868     		ldr	r0, [r3]
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  293:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****         HAL_TIMEx_PWMN_Stop(_motor_config->htim, _motor_config->ch_hin1);
  1094              		.loc 1 293 25 view .LVU351
  1095 0352 1868     		ldr	r0, [r3]
-ARM GAS  /tmp/cctnC9l2.s 			page 41
+ARM GAS  /tmp/ccAoy7T2.s 			page 41
 
 
  1096              	.LVL57:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1141              	_ZN8DC_Motor17My_DC_Motor_ResetEv:
  1142              	.LVL63:
  1143              	.LFB1353:
-ARM GAS  /tmp/cctnC9l2.s 			page 42
+ARM GAS  /tmp/ccAoy7T2.s 			page 42
 
 
  188:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     _target_location2 = rad2deg(reg_final); //复位位置为当前位置
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1185 03a8 6B6C     		ldr	r3, [r5, #68]
  1186              	.LVL69:
  1187              	.LBB121:
-ARM GAS  /tmp/cctnC9l2.s 			page 43
+ARM GAS  /tmp/ccAoy7T2.s 			page 43
 
 
  1188              	.LBI121:
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
   37:Lib/compute/pid/pid.hpp **** 
   38:Lib/compute/pid/pid.hpp ****         D_OUT = _kd * (_error - _prev_error)/_dt;
   39:Lib/compute/pid/pid.hpp ****         // Calculate output
-ARM GAS  /tmp/cctnC9l2.s 			page 44
+ARM GAS  /tmp/ccAoy7T2.s 			page 44
 
 
   40:Lib/compute/pid/pid.hpp ****         _output = P_OUT + I_OUT + D_OUT; //???
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1238              		.loc 3 87 9 is_stmt 1 view .LVU398
  1239              		.loc 3 87 18 is_stmt 0 view .LVU399
  1240 03c2 1C61     		str	r4, [r3, #16]	@ float
-ARM GAS  /tmp/cctnC9l2.s 			page 45
+ARM GAS  /tmp/ccAoy7T2.s 			page 45
 
 
  1241              	.LVL74:
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1288              		.loc 1 228 14 view .LVU409
  1289 03dc FCEEE77A 		vcvt.u32.f32	s15, s15
  1290 03e0 17EE903A 		vmov	r3, s15	@ int
-ARM GAS  /tmp/cctnC9l2.s 			page 46
+ARM GAS  /tmp/ccAoy7T2.s 			page 46
 
 
  1291 03e4 9DB2     		uxth	r5, r3
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1333 0432 B4F85430 		ldrh	r3, [r4, #84]
  232:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Fre_last = Fre;
  1334              		.loc 1 232 5 view .LVU422
-ARM GAS  /tmp/cctnC9l2.s 			page 47
+ARM GAS  /tmp/ccAoy7T2.s 			page 47
 
 
  1335 0436 AB42     		cmp	r3, r5
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  242:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
  1373              		.loc 1 242 28 discriminator 1 view .LVU439
  1374 0464 15E0     		b	.L62
-ARM GAS  /tmp/cctnC9l2.s 			page 48
+ARM GAS  /tmp/ccAoy7T2.s 			page 48
 
 
  1375              	.LVL85:
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1415 049a 0021     		movs	r1, #0
  1416 049c 5162     		str	r1, [r2, #36]
  245:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin1, (uint32_t)(arr*up_duty));//�
-ARM GAS  /tmp/cctnC9l2.s 			page 49
+ARM GAS  /tmp/ccAoy7T2.s 			page 49
 
 
  1417              		.loc 1 245 5 is_stmt 1 view .LVU454
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  246:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     __HAL_TIM_SET_COMPARE(_motor_config->htim, _motor_config->ch_hin2, (uint32_t)(arr*down_duty));/
  1466              		.loc 1 246 5 discriminator 3 view .LVU460
  1467 04ee 07EE903A 		vmov	s15, r3	@ int
-ARM GAS  /tmp/cctnC9l2.s 			page 50
+ARM GAS  /tmp/ccAoy7T2.s 			page 50
 
 
  1468 04f2 F8EE677A 		vcvt.f32.u32	s15, s15
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1517 0572 CA68     		ldr	r2, [r1, #12]
  1518 0574 102A     		cmp	r2, #16
  1519 0576 4BD8     		bhi	.L71
-ARM GAS  /tmp/cctnC9l2.s 			page 51
+ARM GAS  /tmp/ccAoy7T2.s 			page 51
 
 
  1520 0578 DFE802F0 		tbb	[pc, r2]
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1569 05c6 F8EE677A 		vcvt.f32.u32	s15, s15
  1570 05ca 67EEA87A 		vmul.f32	s15, s15, s17
  1571 05ce 0B68     		ldr	r3, [r1]
-ARM GAS  /tmp/cctnC9l2.s 			page 52
+ARM GAS  /tmp/ccAoy7T2.s 			page 52
 
 
  1572              	.LVL94:
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1618              		.loc 1 248 1 view .LVU478
  1619 0628 BDEC028B 		vldm	sp!, {d8}
  1620              		.cfi_restore 80
-ARM GAS  /tmp/cctnC9l2.s 			page 53
+ARM GAS  /tmp/ccAoy7T2.s 			page 53
 
 
  1621              		.cfi_restore 81
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1669 065c F5EE407A 		vcmp.f32	s15, #0
  1670 0660 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  1671 0664 0BD0     		beq	.L91
-ARM GAS  /tmp/cctnC9l2.s 			page 54
+ARM GAS  /tmp/ccAoy7T2.s 			page 54
 
 
  1672 0666 01E0     		b	.L90
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1713              	.L102:
  260:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     {
  1714              		.loc 1 260 11 is_stmt 1 view .LVU500
-ARM GAS  /tmp/cctnC9l2.s 			page 55
+ARM GAS  /tmp/ccAoy7T2.s 			page 55
 
 
  1715 069a F5EEC07A 		vcmpe.f32	s15, #0
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  264:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     }else if (duty < 0.0f) 
  1754              		.loc 1 264 17 view .LVU516
  1755 06d0 FFF7FEFF 		bl	_ZN8DC_Motor8Motor_ENEb
-ARM GAS  /tmp/cctnC9l2.s 			page 56
+ARM GAS  /tmp/ccAoy7T2.s 			page 56
 
 
  1756              	.LVL115:
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  204:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
  1803              		.loc 1 204 70 view .LVU526
  1804 06fa 0133     		adds	r3, r3, #1
-ARM GAS  /tmp/cctnC9l2.s 			page 57
+ARM GAS  /tmp/ccAoy7T2.s 			page 57
 
 
  204:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1845              	.LVL124:
  216:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Motor_EN(false); // 关闭PWM输出
  1846              		.loc 1 216 5 is_stmt 1 view .LVU541
-ARM GAS  /tmp/cctnC9l2.s 			page 58
+ARM GAS  /tmp/ccAoy7T2.s 			page 58
 
 
  216:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     Motor_EN(false); // 关闭PWM输出
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1894 075e 2DED028B 		vpush.64	{d8}
  1895              		.cfi_def_cfa_offset 16
  1896              		.cfi_offset 80, -16
-ARM GAS  /tmp/cctnC9l2.s 			page 59
+ARM GAS  /tmp/ccAoy7T2.s 			page 59
 
 
  1897              		.cfi_offset 81, -12
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1939              		.loc 1 309 16 discriminator 3 view .LVU562
  1940 07a8 10EE100A 		vmov	r0, s0
  1941 07ac FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/cctnC9l2.s 			page 60
+ARM GAS  /tmp/ccAoy7T2.s 			page 60
 
 
  1942              	.LVL137:
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  1989 080a 00EE100A 		vmov	s0, r0
  310:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
  1990              		.loc 1 310 13 discriminator 3 view .LVU570
-ARM GAS  /tmp/cctnC9l2.s 			page 61
+ARM GAS  /tmp/ccAoy7T2.s 			page 61
 
 
  1991 080e A061     		str	r0, [r4, #24]	@ float
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  317:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp **** 
  2033              		.loc 1 317 23 discriminator 3 view .LVU583
  2034 0856 10EE100A 		vmov	r0, s0
-ARM GAS  /tmp/cctnC9l2.s 			page 62
+ARM GAS  /tmp/ccAoy7T2.s 			page 62
 
 
  2035 085a FFF7FEFF 		bl	__aeabi_f2d
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2075 08a4 84ED330A 		vstr.32	s0, [r4, #204]
  323:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****       theta_deg_final = rad2deg(reg_final); //将弧度转换为360度
  2076              		.loc 1 323 7 is_stmt 1 view .LVU598
-ARM GAS  /tmp/cctnC9l2.s 			page 63
+ARM GAS  /tmp/ccAoy7T2.s 			page 63
 
 
  323:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****       theta_deg_final = rad2deg(reg_final); //将弧度转换为360度
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  309:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     theta_m = wrap_to_PI(fudu_test-zero_offset);//将角度规整到 [-PI, PI) 区间
  2120              		.loc 1 309 16 discriminator 1 view .LVU610
  2121              	.LBE134:
-ARM GAS  /tmp/cctnC9l2.s 			page 64
+ARM GAS  /tmp/ccAoy7T2.s 			page 64
 
 
  2122              	.LBB135:
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2162              		.loc 1 332 25 is_stmt 0 view .LVU624
  2163 0902 FFF7FEFF 		bl	__aeabi_f2d
  2164              	.LVL171:
-ARM GAS  /tmp/cctnC9l2.s 			page 65
+ARM GAS  /tmp/ccAoy7T2.s 			page 65
 
 
  2165 0906 08A3     		adr	r3, .L128+8
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2214 0946 0446     		mov	r4, r0
  341:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float error_speed = _target_speed - Angular_velocity_final; //计算速度误差
  2215              		.loc 1 341 5 is_stmt 1 view .LVU632
-ARM GAS  /tmp/cctnC9l2.s 			page 66
+ARM GAS  /tmp/ccAoy7T2.s 			page 66
 
 
  2216              	.LVL175:
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2258              		.loc 1 421 1 is_stmt 1 view -0
  2259              		.cfi_startproc
  2260              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cctnC9l2.s 			page 67
+ARM GAS  /tmp/ccAoy7T2.s 			page 67
 
 
  2261              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2310 09be 3DD4     		bmi	.L146
  2311              	.LVL190:
  2312              	.L133:
-ARM GAS  /tmp/cctnC9l2.s 			page 68
+ARM GAS  /tmp/ccAoy7T2.s 			page 68
 
 
  423:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****             deg2rad(_target_location2)
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2355 09f0 F0EEC87A 		vabs.f32	s15, s16
  2356 09f4 17EE900A 		vmov	r0, s15
  2357 09f8 FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/cctnC9l2.s 			page 69
+ARM GAS  /tmp/ccAoy7T2.s 			page 69
 
 
  2358              	.LVL200:
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2401 0a36 BDEC028B 		vldm	sp!, {d8}
  2402              		.cfi_remember_state
  2403              		.cfi_restore 80
-ARM GAS  /tmp/cctnC9l2.s 			page 70
+ARM GAS  /tmp/ccAoy7T2.s 			page 70
 
 
  2404              		.cfi_restore 81
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2453              	.LFB1361:
  462:My_Top/Motor_Control/DcMotor_ClosedLoop.cpp ****     float adc_av_val = 0.0f;
  2454              		.loc 1 462 1 is_stmt 1 view -0
-ARM GAS  /tmp/cctnC9l2.s 			page 71
+ARM GAS  /tmp/ccAoy7T2.s 			page 71
 
 
  2455              		.cfi_startproc
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2499 0aba 02DD     		ble	.L152
  2500              	.LVL215:
  2501              	.L149:
-ARM GAS  /tmp/cctnC9l2.s 			page 72
+ARM GAS  /tmp/ccAoy7T2.s 			page 72
 
 
  2502              		.loc 1 474 1 view .LVU698
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2547 0afe 1D4B     		ldr	r3, .L153+36
  2548 0b00 FFF7FEFF 		bl	__aeabi_ddiv
  2549              	.LVL223:
-ARM GAS  /tmp/cctnC9l2.s 			page 73
+ARM GAS  /tmp/ccAoy7T2.s 			page 73
 
 
  2550 0b04 41EC100B 		vmov	d0, r0, r1
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2596 0b64 66327140 		.word	1081160294
  2597 0b68 00000000 		.word	.LANCHOR0
  2598 0b6c 00607F45 		.word	1165975552
-ARM GAS  /tmp/cctnC9l2.s 			page 74
+ARM GAS  /tmp/ccAoy7T2.s 			page 74
 
 
  2599 0b70 00008045 		.word	1166016512
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2658              		.bss
  2659              		.align	3
  2660              		.set	.LANCHOR0,. + 0
-ARM GAS  /tmp/cctnC9l2.s 			page 75
+ARM GAS  /tmp/ccAoy7T2.s 			page 75
 
 
  2663              	kth7111_M1:
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2699              	lqr_M2:
  2700 0120 00000000 		.space	24
  2700      00000000 
-ARM GAS  /tmp/cctnC9l2.s 			page 76
+ARM GAS  /tmp/ccAoy7T2.s 			page 76
 
 
  2700      00000000 
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2736      00000000 
  2736      00000000 
  2736      00000000 
-ARM GAS  /tmp/cctnC9l2.s 			page 77
+ARM GAS  /tmp/ccAoy7T2.s 			page 77
 
 
  2739              	M4:
@@ -4602,88 +4602,88 @@ ARM GAS  /tmp/cctnC9l2.s 			page 1
  2778              		.file 28 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h"
  2779              		.file 29 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
  2780              		.file 30 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h"
-ARM GAS  /tmp/cctnC9l2.s 			page 78
+ARM GAS  /tmp/ccAoy7T2.s 			page 78
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 DcMotor_ClosedLoop.cpp
-     /tmp/cctnC9l2.s:21     .text._ZN13PID_Increment6updateEf:00000000 $t
-     /tmp/cctnC9l2.s:27     .text._ZN13PID_Increment6updateEf:00000000 _ZN13PID_Increment6updateEf
-     /tmp/cctnC9l2.s:121    .text._ZN3LQR6updateEff:00000000 $t
-     /tmp/cctnC9l2.s:127    .text._ZN3LQR6updateEff:00000000 _ZN3LQR6updateEff
-     /tmp/cctnC9l2.s:278    .text._ZN3LQR6updateEff:000000d0 $d
-     /tmp/cctnC9l2.s:288    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000000 $t
-     /tmp/cctnC9l2.s:294    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000000 _ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR
-     /tmp/cctnC9l2.s:381    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000078 $d
-     /tmp/cctnC9l2.s:294    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000000 _ZN8DC_MotorC1EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR
-     /tmp/cctnC9l2.s:392    .text:00000000 $t
-     /tmp/cctnC9l2.s:397    .text:00000000 _Z41__static_initialization_and_destruction_0v
-     /tmp/cctnC9l2.s:933    .text:00000294 $d
-     /tmp/cctnC9l2.s:951    .text:000002d0 $t
-     /tmp/cctnC9l2.s:957    .text:000002d0 _ZN8DC_Motor9test_lajiEv
-     /tmp/cctnC9l2.s:1013   .text:00000304 $d
-     /tmp/cctnC9l2.s:1017   .text:00000308 $t
-     /tmp/cctnC9l2.s:1023   .text:00000308 _ZN8DC_Motor8Motor_ENEb
-     /tmp/cctnC9l2.s:1141   .text:00000380 _ZN8DC_Motor17My_DC_Motor_ResetEv
-     /tmp/cctnC9l2.s:1252   .text:000003c8 $d
-     /tmp/cctnC9l2.s:1257   .text:000003d0 $t
-     /tmp/cctnC9l2.s:1263   .text:000003d0 _ZN8DC_Motor19Set_Motor_FrequencyEv
-     /tmp/cctnC9l2.s:1437   .text:000004c2 $d
-     /tmp/cctnC9l2.s:1522   .text:0000057c $d
-     /tmp/cctnC9l2.s:1631   .text:00000630 $d
-     /tmp/cctnC9l2.s:1636   .text:00000638 $t
-     /tmp/cctnC9l2.s:1642   .text:00000638 _ZN8DC_Motor18Set_Motor_Glo_DutyEv
-     /tmp/cctnC9l2.s:1761   .text:000006d8 $d
-     /tmp/cctnC9l2.s:1767   .text:000006e4 $t
-     /tmp/cctnC9l2.s:1773   .text:000006e4 _ZN8DC_Motor16My_DC_Motor_InitEv
-     /tmp/cctnC9l2.s:1872   .text:00000758 $d
-     /tmp/cctnC9l2.s:1876   .text:0000075c $t
-     /tmp/cctnC9l2.s:1882   .text:0000075c _ZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEv
-     /tmp/cctnC9l2.s:2184   .text:00000920 $d
-     /tmp/cctnC9l2.s:2196   .text:00000944 $t
-     /tmp/cctnC9l2.s:2202   .text:00000944 _ZN8DC_Motor10Speed_LoopEv
-     /tmp/cctnC9l2.s:2255   .text:0000096e _ZN8DC_Motor13Location_LoopEv
-     /tmp/cctnC9l2.s:2433   .text:00000a50 $d
-     /tmp/cctnC9l2.s:2445   .text:00000a74 $t
-     /tmp/cctnC9l2.s:2451   .text:00000a74 _ZN8DC_Motor15Thermistor_TempEv
-     /tmp/cctnC9l2.s:2591   .text:00000b50 $d
-     /tmp/cctnC9l2.s:2604   .text:00000b78 $t
-     /tmp/cctnC9l2.s:2609   .text:00000b78 _GLOBAL__sub_I__ZN8DC_Motor14selected_motorE
-     /tmp/cctnC9l2.s:2627   .init_array:00000000 $d
-     /tmp/cctnC9l2.s:2656   .data:00000000 friction_comp
-     /tmp/cctnC9l2.s:2739   .bss:000004d8 M4
-     /tmp/cctnC9l2.s:2735   .bss:000003f0 M3
-     /tmp/cctnC9l2.s:2731   .bss:00000308 M2
-     /tmp/cctnC9l2.s:2727   .bss:00000220 M1
-     /tmp/cctnC9l2.s:2723   .bss:00000208 lqr_M4
-     /tmp/cctnC9l2.s:2719   .bss:000001d0 pid_loc_M4
-     /tmp/cctnC9l2.s:2715   .bss:000001ac pid_spd_M4
-     /tmp/cctnC9l2.s:2711   .bss:00000194 lqr_M3
-     /tmp/cctnC9l2.s:2707   .bss:0000015c pid_loc_M3
-     /tmp/cctnC9l2.s:2703   .bss:00000138 pid_spd_M3
-     /tmp/cctnC9l2.s:2699   .bss:00000120 lqr_M2
-ARM GAS  /tmp/cctnC9l2.s 			page 79
+     /tmp/ccAoy7T2.s:21     .text._ZN13PID_Increment6updateEf:00000000 $t
+     /tmp/ccAoy7T2.s:27     .text._ZN13PID_Increment6updateEf:00000000 _ZN13PID_Increment6updateEf
+     /tmp/ccAoy7T2.s:121    .text._ZN3LQR6updateEff:00000000 $t
+     /tmp/ccAoy7T2.s:127    .text._ZN3LQR6updateEff:00000000 _ZN3LQR6updateEff
+     /tmp/ccAoy7T2.s:278    .text._ZN3LQR6updateEff:000000d0 $d
+     /tmp/ccAoy7T2.s:288    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000000 $t
+     /tmp/ccAoy7T2.s:294    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000000 _ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR
+     /tmp/ccAoy7T2.s:381    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000078 $d
+     /tmp/ccAoy7T2.s:294    .text._ZN8DC_MotorC2EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR:00000000 _ZN8DC_MotorC1EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR
+     /tmp/ccAoy7T2.s:392    .text:00000000 $t
+     /tmp/ccAoy7T2.s:397    .text:00000000 _Z41__static_initialization_and_destruction_0v
+     /tmp/ccAoy7T2.s:933    .text:00000294 $d
+     /tmp/ccAoy7T2.s:951    .text:000002d0 $t
+     /tmp/ccAoy7T2.s:957    .text:000002d0 _ZN8DC_Motor9test_lajiEv
+     /tmp/ccAoy7T2.s:1013   .text:00000304 $d
+     /tmp/ccAoy7T2.s:1017   .text:00000308 $t
+     /tmp/ccAoy7T2.s:1023   .text:00000308 _ZN8DC_Motor8Motor_ENEb
+     /tmp/ccAoy7T2.s:1141   .text:00000380 _ZN8DC_Motor17My_DC_Motor_ResetEv
+     /tmp/ccAoy7T2.s:1252   .text:000003c8 $d
+     /tmp/ccAoy7T2.s:1257   .text:000003d0 $t
+     /tmp/ccAoy7T2.s:1263   .text:000003d0 _ZN8DC_Motor19Set_Motor_FrequencyEv
+     /tmp/ccAoy7T2.s:1437   .text:000004c2 $d
+     /tmp/ccAoy7T2.s:1522   .text:0000057c $d
+     /tmp/ccAoy7T2.s:1631   .text:00000630 $d
+     /tmp/ccAoy7T2.s:1636   .text:00000638 $t
+     /tmp/ccAoy7T2.s:1642   .text:00000638 _ZN8DC_Motor18Set_Motor_Glo_DutyEv
+     /tmp/ccAoy7T2.s:1761   .text:000006d8 $d
+     /tmp/ccAoy7T2.s:1767   .text:000006e4 $t
+     /tmp/ccAoy7T2.s:1773   .text:000006e4 _ZN8DC_Motor16My_DC_Motor_InitEv
+     /tmp/ccAoy7T2.s:1872   .text:00000758 $d
+     /tmp/ccAoy7T2.s:1876   .text:0000075c $t
+     /tmp/ccAoy7T2.s:1882   .text:0000075c _ZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEv
+     /tmp/ccAoy7T2.s:2184   .text:00000920 $d
+     /tmp/ccAoy7T2.s:2196   .text:00000944 $t
+     /tmp/ccAoy7T2.s:2202   .text:00000944 _ZN8DC_Motor10Speed_LoopEv
+     /tmp/ccAoy7T2.s:2255   .text:0000096e _ZN8DC_Motor13Location_LoopEv
+     /tmp/ccAoy7T2.s:2433   .text:00000a50 $d
+     /tmp/ccAoy7T2.s:2445   .text:00000a74 $t
+     /tmp/ccAoy7T2.s:2451   .text:00000a74 _ZN8DC_Motor15Thermistor_TempEv
+     /tmp/ccAoy7T2.s:2591   .text:00000b50 $d
+     /tmp/ccAoy7T2.s:2604   .text:00000b78 $t
+     /tmp/ccAoy7T2.s:2609   .text:00000b78 _GLOBAL__sub_I__ZN8DC_Motor14selected_motorE
+     /tmp/ccAoy7T2.s:2627   .init_array:00000000 $d
+     /tmp/ccAoy7T2.s:2656   .data:00000000 friction_comp
+     /tmp/ccAoy7T2.s:2739   .bss:000004d8 M4
+     /tmp/ccAoy7T2.s:2735   .bss:000003f0 M3
+     /tmp/ccAoy7T2.s:2731   .bss:00000308 M2
+     /tmp/ccAoy7T2.s:2727   .bss:00000220 M1
+     /tmp/ccAoy7T2.s:2723   .bss:00000208 lqr_M4
+     /tmp/ccAoy7T2.s:2719   .bss:000001d0 pid_loc_M4
+     /tmp/ccAoy7T2.s:2715   .bss:000001ac pid_spd_M4
+     /tmp/ccAoy7T2.s:2711   .bss:00000194 lqr_M3
+     /tmp/ccAoy7T2.s:2707   .bss:0000015c pid_loc_M3
+     /tmp/ccAoy7T2.s:2703   .bss:00000138 pid_spd_M3
+     /tmp/ccAoy7T2.s:2699   .bss:00000120 lqr_M2
+ARM GAS  /tmp/ccAoy7T2.s 			page 79
 
 
-     /tmp/cctnC9l2.s:2695   .bss:000000e8 pid_loc_M2
-     /tmp/cctnC9l2.s:2691   .bss:000000c4 pid_spd_M2
-     /tmp/cctnC9l2.s:2687   .bss:000000ac lqr_M1
-     /tmp/cctnC9l2.s:2683   .bss:00000074 pid_loc_M1
-     /tmp/cctnC9l2.s:2679   .bss:00000050 pid_spd_M1
-     /tmp/cctnC9l2.s:2675   .bss:0000003c kth7111_M4
-     /tmp/cctnC9l2.s:2671   .bss:00000028 kth7111_M3
-     /tmp/cctnC9l2.s:2667   .bss:00000014 kth7111_M2
-     /tmp/cctnC9l2.s:2663   .bss:00000000 kth7111_M1
-     /tmp/cctnC9l2.s:2751   .bss:000005c8 _ZN8DC_Motor9ADC_ValueE
-     /tmp/cctnC9l2.s:2755   .bss:000005d8 _ZN8DC_Motor14selected_motorE
-     /tmp/cctnC9l2.s:2653   .data:00000000 $d
-     /tmp/cctnC9l2.s:2659   .bss:00000000 $d
-     /tmp/cctnC9l2.s:2743   .bss:000005c0 _ZZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEvE9fudu_test
-     /tmp/cctnC9l2.s:2747   .bss:000005c4 _ZZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEvE18theta_m_offic_temp
-     /tmp/cctnC9l2.s:1454   .text:000004d3 $d
-     /tmp/cctnC9l2.s:1454   .text:000004d4 $t
-     /tmp/cctnC9l2.s:1539   .text:0000058d $d
-     /tmp/cctnC9l2.s:1539   .text:0000058e $t
+     /tmp/ccAoy7T2.s:2695   .bss:000000e8 pid_loc_M2
+     /tmp/ccAoy7T2.s:2691   .bss:000000c4 pid_spd_M2
+     /tmp/ccAoy7T2.s:2687   .bss:000000ac lqr_M1
+     /tmp/ccAoy7T2.s:2683   .bss:00000074 pid_loc_M1
+     /tmp/ccAoy7T2.s:2679   .bss:00000050 pid_spd_M1
+     /tmp/ccAoy7T2.s:2675   .bss:0000003c kth7111_M4
+     /tmp/ccAoy7T2.s:2671   .bss:00000028 kth7111_M3
+     /tmp/ccAoy7T2.s:2667   .bss:00000014 kth7111_M2
+     /tmp/ccAoy7T2.s:2663   .bss:00000000 kth7111_M1
+     /tmp/ccAoy7T2.s:2751   .bss:000005c8 _ZN8DC_Motor9ADC_ValueE
+     /tmp/ccAoy7T2.s:2755   .bss:000005d8 _ZN8DC_Motor14selected_motorE
+     /tmp/ccAoy7T2.s:2653   .data:00000000 $d
+     /tmp/ccAoy7T2.s:2659   .bss:00000000 $d
+     /tmp/ccAoy7T2.s:2743   .bss:000005c0 _ZZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEvE9fudu_test
+     /tmp/ccAoy7T2.s:2747   .bss:000005c4 _ZZN8DC_Motor28Update_Speed_Angle_LPFAndPLLEvE18theta_m_offic_temp
+     /tmp/ccAoy7T2.s:1454   .text:000004d3 $d
+     /tmp/ccAoy7T2.s:1454   .text:000004d4 $t
+     /tmp/ccAoy7T2.s:1539   .text:0000058d $d
+     /tmp/ccAoy7T2.s:1539   .text:0000058e $t
                            .group:00000000 _ZN8DC_MotorC5EPK15MotorPWM_ConfigP7KTH7111P13PID_IncrementP3PIDP3LQR
 
 UNDEFINED SYMBOLS

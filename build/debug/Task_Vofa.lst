@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccTpYRRI.s 			page 1
+ARM GAS  /tmp/cc3qW07B.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   26:My_Top/MC/My_Vofa.hpp **** struct vofa_param_t {            // 单个参数
   27:My_Top/MC/My_Vofa.hpp ****     char  name[VOFA_NAME_LEN];
   28:My_Top/MC/My_Vofa.hpp ****     float value;
-ARM GAS  /tmp/ccTpYRRI.s 			page 2
+ARM GAS  /tmp/cc3qW07B.s 			page 2
 
 
   29:My_Top/MC/My_Vofa.hpp ****     bool  valid; //是否赋值
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   35              		.loc 2 78 11 is_stmt 0 view .LVU1
   36 0000 70B5     		push	{r4, r5, r6, lr}
   37              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccTpYRRI.s 			page 3
+ARM GAS  /tmp/cc3qW07B.s 			page 3
 
 
   38              		.cfi_offset 4, -16
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   90              		.loc 2 80 67 discriminator 1 view .LVU15
   91 0042 002B     		cmp	r3, #0
   92 0044 E5D0     		beq	.L3
-ARM GAS  /tmp/ccTpYRRI.s 			page 4
+ARM GAS  /tmp/cc3qW07B.s 			page 4
 
 
   81:My_Top/MC/My_Vofa.hpp ****                 return params[i].value;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  144 0004 0D46     		mov	r5, r1
  145 0006 1746     		mov	r7, r2
  146 0008 9A46     		mov	r10, r3
-ARM GAS  /tmp/ccTpYRRI.s 			page 5
+ARM GAS  /tmp/cc3qW07B.s 			page 5
 
 
  147 000a 9DF828B0 		ldrb	fp, [sp, #40]	@ zero_extendqisi2
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  194              		.loc 2 92 21 is_stmt 1 view .LVU39
  195              		.loc 2 92 44 is_stmt 0 view .LVU40
  196 0048 04EBC404 		add	r4, r4, r4, lsl #3
-ARM GAS  /tmp/ccTpYRRI.s 			page 6
+ARM GAS  /tmp/cc3qW07B.s 			page 6
 
 
  197              	.LVL15:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   95:My_Top/MC/My_Vofa.hpp ****             }
   96:My_Top/MC/My_Vofa.hpp ****         }
   97:My_Top/MC/My_Vofa.hpp ****     }
-ARM GAS  /tmp/ccTpYRRI.s 			page 7
+ARM GAS  /tmp/cc3qW07B.s 			page 7
 
 
  239              		.loc 2 97 5 view .LVU55
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  288 0012 A342     		cmp	r3, r4
  289 0014 12D9     		bls	.L23
  105:My_Top/MC/My_Vofa.hpp ****             if (strncmp(params[i].name, name, VOFA_NAME_LEN) == 0) return &params[i]; //比较当�
-ARM GAS  /tmp/ccTpYRRI.s 			page 8
+ARM GAS  /tmp/cc3qW07B.s 			page 8
 
 
  290              		.loc 2 105 13 is_stmt 1 view .LVU67
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  334              	.LVL28:
  109:My_Top/MC/My_Vofa.hpp ****         return &params[param_cnt++];  // 返回新槽地址
  335              		.loc 2 109 9 is_stmt 1 view .LVU79
-ARM GAS  /tmp/ccTpYRRI.s 			page 9
+ARM GAS  /tmp/cc3qW07B.s 			page 9
 
 
  109:My_Top/MC/My_Vofa.hpp ****         return &params[param_cnt++];  // 返回新槽地址
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  383              		.cfi_offset 6, -8
  384              		.cfi_offset 14, -4
  385 0002 8CB0     		sub	sp, sp, #48
-ARM GAS  /tmp/ccTpYRRI.s 			page 10
+ARM GAS  /tmp/cc3qW07B.s 			page 10
 
 
  386              		.cfi_def_cfa_offset 64
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  427              		.loc 2 62 42 discriminator 1 view .LVU101
  428 002c 6A44     		add	r2, sp, r2
  429 002e 02F81C0C 		strb	r0, [r2, #-28]
-ARM GAS  /tmp/ccTpYRRI.s 			page 11
+ARM GAS  /tmp/cc3qW07B.s 			page 11
 
 
  430              	.LVL36:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  472              	.LVL41:
  473              	.L25:
   59:My_Top/MC/My_Vofa.hpp ****             char c = (char)rx_buf[i];
-ARM GAS  /tmp/ccTpYRRI.s 			page 12
+ARM GAS  /tmp/cc3qW07B.s 			page 12
 
 
  474              		.loc 2 59 32 is_stmt 1 discriminator 1 view .LVU114
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  514              		.loc 2 66 29 view .LVU128
  515 007e 0DEB0301 		add	r1, sp, r3
  516              	.LVL46:
-ARM GAS  /tmp/ccTpYRRI.s 			page 13
+ARM GAS  /tmp/cc3qW07B.s 			page 13
 
 
   66:My_Top/MC/My_Vofa.hpp ****                     vofa_param_t *p = _find(name);       // 查表  p 指向 params
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   70:My_Top/MC/My_Vofa.hpp ****                 } else if (vi < 15) val[vi++] = c;        // 存值
  558              		.loc 2 70 21 is_stmt 1 view .LVU142
  559              	.LVL52:
-ARM GAS  /tmp/ccTpYRRI.s 			page 14
+ARM GAS  /tmp/cc3qW07B.s 			page 14
 
 
   70:My_Top/MC/My_Vofa.hpp ****                 } else if (vi < 15) val[vi++] = c;        // 存值
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   18:My_Top/Task/Task_Vofa.cpp **** 
   19:My_Top/Task/Task_Vofa.cpp **** /* 同步 last_val = val，用于初始化或写入后 */
   20:My_Top/Task/Task_Vofa.cpp **** void vofa_sync_last(Vafa_data *d)
-ARM GAS  /tmp/ccTpYRRI.s 			page 15
+ARM GAS  /tmp/cc3qW07B.s 			page 15
 
 
   21:My_Top/Task/Task_Vofa.cpp **** {
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  635              		.cfi_endproc
  636              	.LFE1367:
  638              		.align	1
-ARM GAS  /tmp/ccTpYRRI.s 			page 16
+ARM GAS  /tmp/cc3qW07B.s 			page 16
 
 
  639              		.global	_Z14vofa_data_initv
@@ -944,7 +944,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  664 002e 2E4C     		ldr	r4, .L41
  665 0030 0422     		movs	r2, #4
  666 0032 2270     		strb	r2, [r4]
-  44:My_Top/Task/Task_Vofa.cpp ****     Vafa_Speed.len = sizeof(Speed_Names) / sizeof(IA_Names[0]);
+  44:My_Top/Task/Task_Vofa.cpp ****     Vafa_Speed.len = sizeof(Speed_Names) / sizeof(Speed_Names[0]);
  667              		.loc 1 44 5 is_stmt 1 view .LVU167
  668              		.loc 1 44 20 is_stmt 0 view .LVU168
  669 0034 0323     		movs	r3, #3
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  675              		.loc 1 46 5 is_stmt 1 view .LVU171
  676              		.loc 1 46 23 is_stmt 0 view .LVU172
  677 0040 84F83C33 		strb	r3, [r4, #828]
-ARM GAS  /tmp/ccTpYRRI.s 			page 17
+ARM GAS  /tmp/cc3qW07B.s 			page 17
 
 
   47:My_Top/Task/Task_Vofa.cpp ****     Vafa_Button.len = sizeof(Button_Names) / sizeof(Button_Names[0]);
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  725              		.loc 1 53 5 is_stmt 1 view .LVU183
  726              		.loc 1 53 25 is_stmt 0 view .LVU184
  727 00a8 04F58A67 		add	r7, r4, #1104
-ARM GAS  /tmp/ccTpYRRI.s 			page 18
+ARM GAS  /tmp/cc3qW07B.s 			page 18
 
 
  728 00ac 94F85034 		ldrb	r3, [r4, #1104]	@ zero_extendqisi2
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  776              		.align	2
  777              	.LC0:
  778 0000 776F726B 		.ascii	"work_mode\000"
-ARM GAS  /tmp/ccTpYRRI.s 			page 19
+ARM GAS  /tmp/cc3qW07B.s 			page 19
 
 
  778      5F6D6F64 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  823              		.loc 1 69 5 is_stmt 1 view .LVU206
  824              		.loc 1 69 18 is_stmt 0 view .LVU207
  825 0118 094A     		ldr	r2, .L46+8
-ARM GAS  /tmp/ccTpYRRI.s 			page 20
+ARM GAS  /tmp/cc3qW07B.s 			page 20
 
 
  826 011a 92F86425 		ldrb	r2, [r2, #1380]	@ zero_extendqisi2
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   82:My_Top/Task/Task_Vofa.cpp **** void vofa_update_if_changed(Vafa_data *d, uint8_t idx, float *target,  DC_Motor* motor)
   83:My_Top/Task/Task_Vofa.cpp **** {
  870              		.loc 1 83 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccTpYRRI.s 			page 21
+ARM GAS  /tmp/cc3qW07B.s 			page 21
 
 
  871              		.cfi_startproc
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   94:My_Top/Task/Task_Vofa.cpp **** }
  915              		.loc 1 94 1 view .LVU235
  916 017a 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/ccTpYRRI.s 			page 22
+ARM GAS  /tmp/cc3qW07B.s 			page 22
 
 
  917              		.cfi_endproc
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  962              		.loc 1 101 5 is_stmt 0 discriminator 3 view .LVU246
  963 01aa DBB2     		uxtb	r3, r3
  964              	.LVL83:
-ARM GAS  /tmp/ccTpYRRI.s 			page 23
+ARM GAS  /tmp/cc3qW07B.s 			page 23
 
 
  965              	.L52:
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1008              		.loc 1 113 19 is_stmt 0 view .LVU257
  1009 01ba FFF7FEFF 		bl	_Z14vofa_data_initv
  1010              	.LVL85:
-ARM GAS  /tmp/ccTpYRRI.s 			page 24
+ARM GAS  /tmp/cc3qW07B.s 			page 24
 
 
  1011              		.loc 1 113 19 view .LVU258
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1033 01d2 4046     		mov	r0, r8
  1034 01d4 FFF7FEFF 		bl	_Z14vofa_sync_lastP9Vafa_data
  1035              	.LVL90:
-ARM GAS  /tmp/ccTpYRRI.s 			page 25
+ARM GAS  /tmp/cc3qW07B.s 			page 25
 
 
  146:My_Top/Task/Task_Vofa.cpp ****             vofa_sync_last(&Vafa_Button);
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  162:My_Top/Task/Task_Vofa.cpp ****         }
  163:My_Top/Task/Task_Vofa.cpp ****         switch (m->work_mode) 
  1074              		.loc 1 163 9 is_stmt 1 view .LVU279
-ARM GAS  /tmp/ccTpYRRI.s 			page 26
+ARM GAS  /tmp/cc3qW07B.s 			page 26
 
 
  1075              		.loc 1 163 20 is_stmt 0 view .LVU280
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1117              		.loc 1 161 21 view .LVU295
  161:My_Top/Task/Task_Vofa.cpp ****         }
  1118              		.loc 1 161 30 view .LVU296
-ARM GAS  /tmp/ccTpYRRI.s 			page 27
+ARM GAS  /tmp/cc3qW07B.s 			page 27
 
 
  161:My_Top/Task/Task_Vofa.cpp ****         }
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1165 0262 0221     		movs	r1, #2
  1166 0264 06F50A70 		add	r0, r6, #552
  1167 0268 FFF7FEFF 		bl	_Z22vofa_update_if_changedP9Vafa_datahPfP8DC_Motor
-ARM GAS  /tmp/ccTpYRRI.s 			page 28
+ARM GAS  /tmp/cc3qW07B.s 			page 28
 
 
  1168              	.LVL106:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1215 02b2 2346     		mov	r3, r4
  1216 02b4 626C     		ldr	r2, [r4, #68]
  1217 02b6 0021     		movs	r1, #0
-ARM GAS  /tmp/ccTpYRRI.s 			page 29
+ARM GAS  /tmp/cc3qW07B.s 			page 29
 
 
  1218 02b8 2846     		mov	r0, r5
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1263 02f4 2246     		mov	r2, r4
  1264 02f6 0021     		movs	r1, #0
  1265 02f8 2046     		mov	r0, r4
-ARM GAS  /tmp/ccTpYRRI.s 			page 30
+ARM GAS  /tmp/cc3qW07B.s 			page 30
 
 
  1266 02fa FFF7FEFF 		bl	_Z16vofa_update_modeP9Work_ModeS_P8DC_Motor
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1308 0338 2846     		mov	r0, r5
  1309 033a FFF7FEFF 		bl	_ZN7VoFA_Rx14vofa_get_batchEPS_PPKcPfh
  1310              	.LVL120:
-ARM GAS  /tmp/ccTpYRRI.s 			page 31
+ARM GAS  /tmp/cc3qW07B.s 			page 31
 
 
  124:My_Top/Task/Task_Vofa.cpp ****         vofa1.vofa_get_batch(&vofa1, Target_Names, Vafa_Target.val, Vafa_Target.len); // 读取Targ
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  129:My_Top/Task/Task_Vofa.cpp ****         vofa_detect_changes(&Vafa_Speed);
  1356              		.loc 1 129 28 is_stmt 0 view .LVU361
  1357 03a6 2046     		mov	r0, r4
-ARM GAS  /tmp/ccTpYRRI.s 			page 32
+ARM GAS  /tmp/cc3qW07B.s 			page 32
 
 
  1358 03a8 FFF7FEFF 		bl	_Z19vofa_detect_changesP9Vafa_data
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  139:My_Top/Task/Task_Vofa.cpp ****         if (idx != last_idx) //电机切换后           
  1398              		.loc 1 139 34 is_stmt 0 view .LVU376
  1399 03e4 104B     		ldr	r3, .L71+36
-ARM GAS  /tmp/ccTpYRRI.s 			page 33
+ARM GAS  /tmp/cc3qW07B.s 			page 33
 
 
  1400 03e6 1D70     		strb	r5, [r3]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1444              		.align	1
  1445              		.global	_Z11Task_VofaTxPv
  1446              		.syntax unified
-ARM GAS  /tmp/ccTpYRRI.s 			page 34
+ARM GAS  /tmp/cc3qW07B.s 			page 34
 
 
  1447              		.thumb
@@ -2002,47 +2002,45 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  1455              		@ args = 0, pretend = 0, frame = 144
  1456              		@ frame_needed = 0, uses_anonymous_args = 0
  1457              		.loc 1 200 1 is_stmt 0 view .LVU387
- 1458 042c 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 1459              		.cfi_def_cfa_offset 24
- 1460              		.cfi_offset 4, -24
- 1461              		.cfi_offset 5, -20
- 1462              		.cfi_offset 6, -16
- 1463              		.cfi_offset 7, -12
- 1464              		.cfi_offset 8, -8
- 1465              		.cfi_offset 14, -4
- 1466 0430 ACB0     		sub	sp, sp, #176
- 1467              		.cfi_def_cfa_offset 200
+ 1458 042c 70B5     		push	{r4, r5, r6, lr}
+ 1459              		.cfi_def_cfa_offset 16
+ 1460              		.cfi_offset 4, -16
+ 1461              		.cfi_offset 5, -12
+ 1462              		.cfi_offset 6, -8
+ 1463              		.cfi_offset 14, -4
+ 1464 042e AAB0     		sub	sp, sp, #168
+ 1465              		.cfi_def_cfa_offset 184
  201:My_Top/Task/Task_Vofa.cpp ****     uorb_handle_t topic = uorb_subscribe(UORB_TOPIC_MOTOR); // 订阅motor_state话题
- 1468              		.loc 1 201 5 is_stmt 1 view .LVU388
- 1469              		.loc 1 201 41 is_stmt 0 view .LVU389
- 1470 0432 1F48     		ldr	r0, .L78+8
- 1471              	.LVL134:
- 1472              		.loc 1 201 41 view .LVU390
- 1473 0434 FFF7FEFF 		bl	uorb_subscribe
- 1474              	.LVL135:
- 1475 0438 8046     		mov	r8, r0
- 1476              	.LVL136:
+ 1466              		.loc 1 201 5 is_stmt 1 view .LVU388
+ 1467              		.loc 1 201 41 is_stmt 0 view .LVU389
+ 1468 0430 1548     		ldr	r0, .L78
+ 1469              	.LVL134:
+ 1470              		.loc 1 201 41 view .LVU390
+ 1471 0432 FFF7FEFF 		bl	uorb_subscribe
+ 1472              	.LVL135:
+ 1473 0436 0646     		mov	r6, r0
+ 1474              	.LVL136:
  202:My_Top/Task/Task_Vofa.cpp ****     motor_telem_t buf[4];
- 1477              		.loc 1 202 5 is_stmt 1 view .LVU391
- 1478              		.loc 1 202 24 is_stmt 0 view .LVU392
- 1479 043a 0322     		movs	r2, #3
- 1480 043c 08AB     		add	r3, sp, #32
- 1481 043e 04E0     		b	.L74
- 1482              	.L75:
- 1483              	.LVL137:
- 1484              	.LBB28:
- 1485              	.LBI28:
- 1486              		.file 3 "My_Top/Task/task_topics.h"
+ 1475              		.loc 1 202 5 is_stmt 1 view .LVU391
+ 1476              		.loc 1 202 24 is_stmt 0 view .LVU392
+ 1477 0438 0322     		movs	r2, #3
+ 1478 043a 06AB     		add	r3, sp, #24
+ 1479 043c 04E0     		b	.L74
+ 1480              	.L75:
+ 1481              	.LVL137:
+ 1482              	.LBB28:
+ 1483              	.LBI28:
+ 1484              		.file 3 "My_Top/Task/task_topics.h"
    1:My_Top/Task/task_topics.h **** #pragma once
    2:My_Top/Task/task_topics.h **** 
    3:My_Top/Task/task_topics.h **** typedef struct {
    4:My_Top/Task/task_topics.h ****     // 实际位置/速度
    5:My_Top/Task/task_topics.h ****     float theta_m;               //电机原始弧度
-ARM GAS  /tmp/ccTpYRRI.s 			page 35
-
-
    6:My_Top/Task/task_topics.h ****     float theta_m_speed;        //电机原始角速度(弧度)
    7:My_Top/Task/task_topics.h ****     float theta_deg_final;       //最终的电机角度 (度)
+ARM GAS  /tmp/cc3qW07B.s 			page 35
+
+
    8:My_Top/Task/task_topics.h ****     float reg_final;             //最终的电机角度 (弧度)
    9:My_Top/Task/task_topics.h **** 
   10:My_Top/Task/task_topics.h ****     float Angular_velocity_final; //最终的角速度
@@ -2060,35 +2058,35 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
   22:My_Top/Task/task_topics.h ****     
   23:My_Top/Task/task_topics.h **** 
   24:My_Top/Task/task_topics.h **** } motor_telem_t;                  // 每路电机一个结构体
- 1487              		.loc 3 24 3 is_stmt 1 view .LVU393
- 1488              	.LBB29:
- 1489 0440 0021     		movs	r1, #0
- 1490 0442 D961     		str	r1, [r3, #28]	@ float
- 1491 0444 1962     		str	r1, [r3, #32]	@ float
- 1492              	.LVL138:
- 1493              		.loc 3 24 3 is_stmt 0 view .LVU394
- 1494              	.LBE29:
- 1495              	.LBE28:
- 1496              		.loc 1 202 24 discriminator 3 view .LVU395
- 1497 0446 013A     		subs	r2, r2, #1
- 1498 0448 2433     		adds	r3, r3, #36
- 1499              	.L74:
- 1500              		.loc 1 202 24 is_stmt 1 discriminator 2 view .LVU396
- 1501 044a 002A     		cmp	r2, #0
- 1502 044c F8DA     		bge	.L75
- 1503              	.LVL139:
- 1504              	.L76:
+ 1485              		.loc 3 24 3 is_stmt 1 view .LVU393
+ 1486              	.LBB29:
+ 1487 043e 0021     		movs	r1, #0
+ 1488 0440 D961     		str	r1, [r3, #28]	@ float
+ 1489 0442 1962     		str	r1, [r3, #32]	@ float
+ 1490              	.LVL138:
+ 1491              		.loc 3 24 3 is_stmt 0 view .LVU394
+ 1492              	.LBE29:
+ 1493              	.LBE28:
+ 1494              		.loc 1 202 24 discriminator 3 view .LVU395
+ 1495 0444 013A     		subs	r2, r2, #1
+ 1496 0446 2433     		adds	r3, r3, #36
+ 1497              	.L74:
+ 1498              		.loc 1 202 24 is_stmt 1 discriminator 2 view .LVU396
+ 1499 0448 002A     		cmp	r2, #0
+ 1500 044a F8DA     		bge	.L75
+ 1501              	.LVL139:
+ 1502              	.L76:
  203:My_Top/Task/Task_Vofa.cpp **** 
  204:My_Top/Task/Task_Vofa.cpp ****     while (1)
- 1505              		.loc 1 204 5 view .LVU397
+ 1503              		.loc 1 204 5 view .LVU397
  205:My_Top/Task/Task_Vofa.cpp ****     {
  206:My_Top/Task/Task_Vofa.cpp ****         uorb_copy(topic, buf);  // 阻塞等新数据
- 1506              		.loc 1 206 9 view .LVU398
- 1507              		.loc 1 206 18 is_stmt 0 view .LVU399
- 1508 044e 08A9     		add	r1, sp, #32
- 1509 0450 4046     		mov	r0, r8
- 1510 0452 FFF7FEFF 		bl	uorb_copy
- 1511              	.LVL140:
+ 1504              		.loc 1 206 9 view .LVU398
+ 1505              		.loc 1 206 18 is_stmt 0 view .LVU399
+ 1506 044c 06A9     		add	r1, sp, #24
+ 1507 044e 3046     		mov	r0, r6
+ 1508 0450 FFF7FEFF 		bl	uorb_copy
+ 1509              	.LVL140:
  207:My_Top/Task/Task_Vofa.cpp **** 
  208:My_Top/Task/Task_Vofa.cpp ****         // Vofa_SendFireWater_VA(21,
  209:My_Top/Task/Task_Vofa.cpp ****         //     // M1
@@ -2098,328 +2096,319 @@ ARM GAS  /tmp/ccTpYRRI.s 			page 1
  213:My_Top/Task/Task_Vofa.cpp ****         //     buf[1].theta_m, buf[1].theta_deg_final,buf[1].Angular_velocity_final,
  214:My_Top/Task/Task_Vofa.cpp ****         //     buf[1]._target_location2, buf[1]._target_speed,999.0f,
  215:My_Top/Task/Task_Vofa.cpp ****         //     // M3
-ARM GAS  /tmp/ccTpYRRI.s 			page 36
-
-
  216:My_Top/Task/Task_Vofa.cpp ****         //     buf[2].theta_m, buf[2].theta_deg_final,buf[2].Angular_velocity_final,
  217:My_Top/Task/Task_Vofa.cpp ****         //     buf[2]._target_location2, buf[2]._target_speed,999.0f,
+ARM GAS  /tmp/cc3qW07B.s 			page 36
+
+
  218:My_Top/Task/Task_Vofa.cpp ****         //     // M4
  219:My_Top/Task/Task_Vofa.cpp ****         //     buf[3].theta_m, buf[3].theta_deg_final,buf[3].Angular_velocity_final,
  220:My_Top/Task/Task_Vofa.cpp ****         //     buf[3]._target_location2, buf[3]._target_speed,999.0f
  221:My_Top/Task/Task_Vofa.cpp **** 
  222:My_Top/Task/Task_Vofa.cpp ****         // );
  223:My_Top/Task/Task_Vofa.cpp **** 
- 224:My_Top/Task/Task_Vofa.cpp ****         Vofa_SendFireWater_VA(5,
- 1512              		.loc 1 224 9 is_stmt 1 discriminator 1 view .LVU400
- 225:My_Top/Task/Task_Vofa.cpp ****             // M1
- 226:My_Top/Task/Task_Vofa.cpp ****             buf[1]._target_speed, buf[1].Angular_velocity_final,
- 227:My_Top/Task/Task_Vofa.cpp ****             buf[1]._target_location2, rad2deg(buf[1].reg_final),
- 1513              		.loc 1 227 39 is_stmt 0 view .LVU401
- 1514 0456 1498     		ldr	r0, [sp, #80]	@ float
- 1515 0458 FFF7FEFF 		bl	__aeabi_f2d
- 1516              	.LVL141:
- 1517 045c 0646     		mov	r6, r0
- 1518 045e 0F46     		mov	r7, r1
- 224:My_Top/Task/Task_Vofa.cpp ****             // M1
- 1519              		.loc 1 224 30 discriminator 1 view .LVU402
- 1520 0460 1798     		ldr	r0, [sp, #92]	@ float
- 1521 0462 FFF7FEFF 		bl	__aeabi_f2d
- 1522              	.LVL142:
- 1523 0466 0446     		mov	r4, r0
- 1524 0468 0D46     		mov	r5, r1
- 1525 046a 1998     		ldr	r0, [sp, #100]	@ float
- 1526 046c FFF7FEFF 		bl	__aeabi_f2d
- 1527              	.LVL143:
- 1528 0470 CDE90601 		strd	r0, [sp, #24]
- 1529 0474 0CA3     		adr	r3, .L78
- 1530 0476 D3E90023 		ldrd	r2, [r3]
- 1531 047a 3046     		mov	r0, r6
- 1532 047c 3946     		mov	r1, r7
- 1533 047e FFF7FEFF 		bl	__aeabi_dmul
- 1534              	.LVL144:
- 1535 0482 CDE90401 		strd	r0, [sp, #16]
- 1536 0486 1698     		ldr	r0, [sp, #88]	@ float
- 1537 0488 FFF7FEFF 		bl	__aeabi_f2d
- 1538              	.LVL145:
- 1539 048c CDE90201 		strd	r0, [sp, #8]
- 1540 0490 1598     		ldr	r0, [sp, #84]	@ float
- 1541 0492 FFF7FEFF 		bl	__aeabi_f2d
- 1542              	.LVL146:
- 1543 0496 CDE90001 		strd	r0, [sp]
- 1544 049a 2246     		mov	r2, r4
- 1545 049c 2B46     		mov	r3, r5
- 1546 049e 0520     		movs	r0, #5
- 1547 04a0 FFF7FEFF 		bl	_Z21Vofa_SendFireWater_VAtz
- 1548              	.LVL147:
+ 224:My_Top/Task/Task_Vofa.cpp ****         // Vofa_SendFireWater_VA(5,
+ 225:My_Top/Task/Task_Vofa.cpp ****         //     // M1
+ 226:My_Top/Task/Task_Vofa.cpp ****         //     buf[1]._target_speed, buf[1].Angular_velocity_final,
+ 227:My_Top/Task/Task_Vofa.cpp ****         //     buf[1]._target_location2, rad2deg(buf[1].reg_final),
+ 228:My_Top/Task/Task_Vofa.cpp ****         //     buf[1].updown_duty 
+ 229:My_Top/Task/Task_Vofa.cpp ****                                         
+ 230:My_Top/Task/Task_Vofa.cpp ****         // );  
+ 231:My_Top/Task/Task_Vofa.cpp **** 
+ 232:My_Top/Task/Task_Vofa.cpp ****         
+ 233:My_Top/Task/Task_Vofa.cpp **** 
+ 234:My_Top/Task/Task_Vofa.cpp ****         Vofa_SendFireWater_VA(4,
+ 1510              		.loc 1 234 9 is_stmt 1 discriminator 1 view .LVU400
+ 1511              		.loc 1 234 30 is_stmt 0 discriminator 1 view .LVU401
+ 1512 0454 0D98     		ldr	r0, [sp, #52]	@ float
+ 1513 0456 FFF7FEFF 		bl	__aeabi_f2d
+ 1514              	.LVL141:
+ 1515 045a 0446     		mov	r4, r0
+ 1516 045c 0D46     		mov	r5, r1
+ 1517 045e 2898     		ldr	r0, [sp, #160]	@ float
+ 1518 0460 FFF7FEFF 		bl	__aeabi_f2d
+ 1519              	.LVL142:
+ 1520 0464 CDE90401 		strd	r0, [sp, #16]
+ 1521 0468 1F98     		ldr	r0, [sp, #124]	@ float
+ 1522 046a FFF7FEFF 		bl	__aeabi_f2d
+ 1523              	.LVL143:
+ 1524 046e CDE90201 		strd	r0, [sp, #8]
+ 1525 0472 1698     		ldr	r0, [sp, #88]	@ float
+ 1526 0474 FFF7FEFF 		bl	__aeabi_f2d
+ 1527              	.LVL144:
+ 1528 0478 CDE90001 		strd	r0, [sp]
+ 1529 047c 2246     		mov	r2, r4
+ 1530 047e 2B46     		mov	r3, r5
+ 1531 0480 0420     		movs	r0, #4
+ 1532 0482 FFF7FEFF 		bl	_Z21Vofa_SendFireWater_VAtz
+ 1533              	.LVL145:
  204:My_Top/Task/Task_Vofa.cpp ****     {
- 1549              		.loc 1 204 5 is_stmt 1 view .LVU403
- 1550 04a4 D3E7     		b	.L76
- 1551              	.L79:
- 1552 04a6 00BF     		.align	3
- 1553              	.L78:
- 1554 04a8 F8C1631A 		.word	442745336
-ARM GAS  /tmp/ccTpYRRI.s 			page 37
+ 1534              		.loc 1 204 5 is_stmt 1 view .LVU402
+ 1535 0486 E1E7     		b	.L76
+ 1536              	.L79:
+ 1537              		.align	2
+ 1538              	.L78:
+ 1539 0488 0C000000 		.word	.LC1
+ 1540              		.cfi_endproc
+ 1541              	.LFE1373:
+ 1543              		.global	Vafa_Button
+ 1544              		.global	Vafa_Location
+ 1545              		.global	Vafa_Target
+ 1546              		.global	Vafa_Speed
+ 1547              		.global	Vafa_IA
+ 1548              		.global	Button_Names
+ 1549              		.section	.rodata.str1.4
+ARM GAS  /tmp/cc3qW07B.s 			page 37
 
 
- 1555 04ac DCA54C40 		.word	1078765020
- 1556 04b0 0C000000 		.word	.LC1
- 1557              		.cfi_endproc
- 1558              	.LFE1373:
- 1560              		.global	Vafa_Button
- 1561              		.global	Vafa_Location
- 1562              		.global	Vafa_Target
- 1563              		.global	Vafa_Speed
- 1564              		.global	Vafa_IA
- 1565              		.global	Button_Names
- 1566              		.section	.rodata.str1.4
- 1567              		.align	2
- 1568              	.LC2:
- 1569 0018 6D6F746F 		.ascii	"motor_selection\000"
- 1569      725F7365 
- 1569      6C656374 
- 1569      696F6E00 
- 1570              		.align	2
- 1571              	.LC3:
- 1572 0028 6D6F746F 		.ascii	"motor_fre\000"
- 1572      725F6672 
- 1572      6500
- 1573 0032 0000     		.align	2
- 1574              	.LC4:
- 1575 0034 6D6F746F 		.ascii	"motor_duty\000"
- 1575      725F6475 
- 1575      747900
- 1576              		.global	Location_Names
- 1577 003f 00       		.align	2
- 1578              	.LC5:
- 1579 0040 6C6F6361 		.ascii	"location_p\000"
- 1579      74696F6E 
- 1579      5F7000
- 1580 004b 00       		.align	2
- 1581              	.LC6:
- 1582 004c 6C6F6361 		.ascii	"location_i\000"
- 1582      74696F6E 
- 1582      5F6900
- 1583 0057 00       		.align	2
- 1584              	.LC7:
- 1585 0058 6C6F6361 		.ascii	"location_d\000"
- 1585      74696F6E 
- 1585      5F6400
- 1586              		.global	Target_Names
- 1587 0063 00       		.align	2
- 1588              	.LC8:
- 1589 0064 54617267 		.ascii	"Target_Iq\000"
- 1589      65745F49 
- 1589      7100
- 1590 006e 0000     		.align	2
- 1591              	.LC9:
- 1592 0070 54617267 		.ascii	"Target_Id\000"
- 1592      65745F49 
- 1592      6400
- 1593 007a 0000     		.align	2
- 1594              	.LC10:
- 1595 007c 54617267 		.ascii	"Target_speed\000"
-ARM GAS  /tmp/ccTpYRRI.s 			page 38
+ 1550              		.align	2
+ 1551              	.LC2:
+ 1552 0018 6D6F746F 		.ascii	"motor_selection\000"
+ 1552      725F7365 
+ 1552      6C656374 
+ 1552      696F6E00 
+ 1553              		.align	2
+ 1554              	.LC3:
+ 1555 0028 6D6F746F 		.ascii	"motor_fre\000"
+ 1555      725F6672 
+ 1555      6500
+ 1556 0032 0000     		.align	2
+ 1557              	.LC4:
+ 1558 0034 6D6F746F 		.ascii	"motor_duty\000"
+ 1558      725F6475 
+ 1558      747900
+ 1559              		.global	Location_Names
+ 1560 003f 00       		.align	2
+ 1561              	.LC5:
+ 1562 0040 6C6F6361 		.ascii	"location_p\000"
+ 1562      74696F6E 
+ 1562      5F7000
+ 1563 004b 00       		.align	2
+ 1564              	.LC6:
+ 1565 004c 6C6F6361 		.ascii	"location_i\000"
+ 1565      74696F6E 
+ 1565      5F6900
+ 1566 0057 00       		.align	2
+ 1567              	.LC7:
+ 1568 0058 6C6F6361 		.ascii	"location_d\000"
+ 1568      74696F6E 
+ 1568      5F6400
+ 1569              		.global	Target_Names
+ 1570 0063 00       		.align	2
+ 1571              	.LC8:
+ 1572 0064 54617267 		.ascii	"Target_Iq\000"
+ 1572      65745F49 
+ 1572      7100
+ 1573 006e 0000     		.align	2
+ 1574              	.LC9:
+ 1575 0070 54617267 		.ascii	"Target_Id\000"
+ 1575      65745F49 
+ 1575      6400
+ 1576 007a 0000     		.align	2
+ 1577              	.LC10:
+ 1578 007c 54617267 		.ascii	"Target_speed\000"
+ 1578      65745F73 
+ 1578      70656564 
+ 1578      00
+ 1579 0089 000000   		.align	2
+ 1580              	.LC11:
+ 1581 008c 54617267 		.ascii	"Target_location1\000"
+ 1581      65745F6C 
+ 1581      6F636174 
+ 1581      696F6E31 
+ 1581      00
+ 1582 009d 000000   		.align	2
+ARM GAS  /tmp/cc3qW07B.s 			page 38
 
 
- 1595      65745F73 
- 1595      70656564 
- 1595      00
- 1596 0089 000000   		.align	2
- 1597              	.LC11:
- 1598 008c 54617267 		.ascii	"Target_location1\000"
- 1598      65745F6C 
- 1598      6F636174 
- 1598      696F6E31 
+ 1583              	.LC12:
+ 1584 00a0 54617267 		.ascii	"Target_location2\000"
+ 1584      65745F6C 
+ 1584      6F636174 
+ 1584      696F6E32 
+ 1584      00
+ 1585              		.global	Speed_Names
+ 1586 00b1 000000   		.align	2
+ 1587              	.LC13:
+ 1588 00b4 73706565 		.ascii	"speed_p\000"
+ 1588      645F7000 
+ 1589              		.align	2
+ 1590              	.LC14:
+ 1591 00bc 73706565 		.ascii	"speed_i\000"
+ 1591      645F6900 
+ 1592              		.align	2
+ 1593              	.LC15:
+ 1594 00c4 73706565 		.ascii	"speed_d\000"
+ 1594      645F6400 
+ 1595              		.global	IA_Names
+ 1596              		.align	2
+ 1597              	.LC16:
+ 1598 00cc 69715F70 		.ascii	"iq_p\000"
  1598      00
- 1599 009d 000000   		.align	2
- 1600              	.LC12:
- 1601 00a0 54617267 		.ascii	"Target_location2\000"
- 1601      65745F6C 
- 1601      6F636174 
- 1601      696F6E32 
+ 1599 00d1 000000   		.align	2
+ 1600              	.LC17:
+ 1601 00d4 69715F69 		.ascii	"iq_i\000"
  1601      00
- 1602              		.global	Speed_Names
- 1603 00b1 000000   		.align	2
- 1604              	.LC13:
- 1605 00b4 73706565 		.ascii	"speed_p\000"
- 1605      645F7000 
- 1606              		.align	2
- 1607              	.LC14:
- 1608 00bc 73706565 		.ascii	"speed_i\000"
- 1608      645F6900 
+ 1602 00d9 000000   		.align	2
+ 1603              	.LC18:
+ 1604 00dc 69645F70 		.ascii	"id_p\000"
+ 1604      00
+ 1605 00e1 000000   		.align	2
+ 1606              	.LC19:
+ 1607 00e4 69645F69 		.ascii	"id_i\000"
+ 1607      00
+ 1608              		.data
  1609              		.align	2
- 1610              	.LC15:
- 1611 00c4 73706565 		.ascii	"speed_d\000"
- 1611      645F6400 
- 1612              		.global	IA_Names
- 1613              		.align	2
- 1614              	.LC16:
- 1615 00cc 69715F70 		.ascii	"iq_p\000"
- 1615      00
- 1616 00d1 000000   		.align	2
- 1617              	.LC17:
- 1618 00d4 69715F69 		.ascii	"iq_i\000"
- 1618      00
- 1619 00d9 000000   		.align	2
- 1620              	.LC18:
- 1621 00dc 69645F70 		.ascii	"id_p\000"
- 1621      00
- 1622 00e1 000000   		.align	2
- 1623              	.LC19:
- 1624 00e4 69645F69 		.ascii	"id_i\000"
- 1624      00
- 1625              		.data
- 1626              		.align	2
- 1627              		.set	.LANCHOR1,. + 0
- 1630              	IA_Names:
- 1631 0000 CC000000 		.word	.LC16
- 1632 0004 D4000000 		.word	.LC17
- 1633 0008 DC000000 		.word	.LC18
- 1634 000c E4000000 		.word	.LC19
- 1637              	Speed_Names:
- 1638 0010 B4000000 		.word	.LC13
-ARM GAS  /tmp/ccTpYRRI.s 			page 39
+ 1610              		.set	.LANCHOR1,. + 0
+ 1613              	IA_Names:
+ 1614 0000 CC000000 		.word	.LC16
+ 1615 0004 D4000000 		.word	.LC17
+ 1616 0008 DC000000 		.word	.LC18
+ 1617 000c E4000000 		.word	.LC19
+ 1620              	Speed_Names:
+ 1621 0010 B4000000 		.word	.LC13
+ 1622 0014 BC000000 		.word	.LC14
+ 1623 0018 C4000000 		.word	.LC15
+ 1626              	Target_Names:
+ 1627 001c 64000000 		.word	.LC8
+ 1628 0020 70000000 		.word	.LC9
+ 1629 0024 7C000000 		.word	.LC10
+ 1630 0028 8C000000 		.word	.LC11
+ 1631 002c A0000000 		.word	.LC12
+ 1634              	Location_Names:
+ 1635 0030 40000000 		.word	.LC5
+ 1636 0034 4C000000 		.word	.LC6
+ARM GAS  /tmp/cc3qW07B.s 			page 39
 
 
- 1639 0014 BC000000 		.word	.LC14
- 1640 0018 C4000000 		.word	.LC15
- 1643              	Target_Names:
- 1644 001c 64000000 		.word	.LC8
- 1645 0020 70000000 		.word	.LC9
- 1646 0024 7C000000 		.word	.LC10
- 1647 0028 8C000000 		.word	.LC11
- 1648 002c A0000000 		.word	.LC12
- 1651              	Location_Names:
- 1652 0030 40000000 		.word	.LC5
- 1653 0034 4C000000 		.word	.LC6
- 1654 0038 58000000 		.word	.LC7
- 1657              	Button_Names:
- 1658 003c 18000000 		.word	.LC2
- 1659 0040 28000000 		.word	.LC3
- 1660 0044 34000000 		.word	.LC4
- 1661              		.bss
- 1662              		.align	2
- 1663              		.set	.LANCHOR0,. + 0
- 1666              	Vafa_IA:
- 1667 0000 00000000 		.space	276
- 1667      00000000 
- 1667      00000000 
- 1667      00000000 
- 1667      00000000 
- 1670              	Vafa_Speed:
- 1671 0114 00000000 		.space	276
- 1671      00000000 
- 1671      00000000 
- 1671      00000000 
- 1671      00000000 
- 1674              	Vafa_Target:
- 1675 0228 00000000 		.space	276
- 1675      00000000 
- 1675      00000000 
- 1675      00000000 
- 1675      00000000 
- 1678              	Vafa_Location:
- 1679 033c 00000000 		.space	276
- 1679      00000000 
- 1679      00000000 
- 1679      00000000 
- 1679      00000000 
- 1682              	Vafa_Button:
- 1683 0450 00000000 		.space	276
- 1683      00000000 
- 1683      00000000 
- 1683      00000000 
- 1683      00000000 
- 1686              	_ZZ16vofa_update_modeP9Work_ModeS_P8DC_MotorE9last_mode:
- 1687 0564 00       		.space	1
- 1688 0565 000000   		.space	3
- 1691              	_ZZ11Task_VofaRxPvE12Motor_Select:
- 1692 0568 00000000 		.space	4
- 1695              	_ZZ11Task_VofaRxPvE8last_idx:
- 1696 056c 00       		.space	1
- 1697              		.text
-ARM GAS  /tmp/ccTpYRRI.s 			page 40
+ 1637 0038 58000000 		.word	.LC7
+ 1640              	Button_Names:
+ 1641 003c 18000000 		.word	.LC2
+ 1642 0040 28000000 		.word	.LC3
+ 1643 0044 34000000 		.word	.LC4
+ 1644              		.bss
+ 1645              		.align	2
+ 1646              		.set	.LANCHOR0,. + 0
+ 1649              	Vafa_IA:
+ 1650 0000 00000000 		.space	276
+ 1650      00000000 
+ 1650      00000000 
+ 1650      00000000 
+ 1650      00000000 
+ 1653              	Vafa_Speed:
+ 1654 0114 00000000 		.space	276
+ 1654      00000000 
+ 1654      00000000 
+ 1654      00000000 
+ 1654      00000000 
+ 1657              	Vafa_Target:
+ 1658 0228 00000000 		.space	276
+ 1658      00000000 
+ 1658      00000000 
+ 1658      00000000 
+ 1658      00000000 
+ 1661              	Vafa_Location:
+ 1662 033c 00000000 		.space	276
+ 1662      00000000 
+ 1662      00000000 
+ 1662      00000000 
+ 1662      00000000 
+ 1665              	Vafa_Button:
+ 1666 0450 00000000 		.space	276
+ 1666      00000000 
+ 1666      00000000 
+ 1666      00000000 
+ 1666      00000000 
+ 1669              	_ZZ16vofa_update_modeP9Work_ModeS_P8DC_MotorE9last_mode:
+ 1670 0564 00       		.space	1
+ 1671 0565 000000   		.space	3
+ 1674              	_ZZ11Task_VofaRxPvE12Motor_Select:
+ 1675 0568 00000000 		.space	4
+ 1678              	_ZZ11Task_VofaRxPvE8last_idx:
+ 1679 056c 00       		.space	1
+ 1680              		.text
+ 1681              	.Letext0:
+ 1682              		.file 4 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 1683              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 1684              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 1685              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 1686              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
+ 1687              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
+ 1688              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 1689              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 1690              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 1691              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ARM GAS  /tmp/cc3qW07B.s 			page 40
 
 
- 1698              	.Letext0:
- 1699              		.file 4 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
- 1700              		.file 5 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 1701              		.file 6 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
- 1702              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
- 1703              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
- 1704              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
- 1705              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
- 1706              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
- 1707              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
- 1708              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
- 1709              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
- 1710              		.file 15 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/stdlib.h"
- 1711              		.file 16 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 1712              		.file 17 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 1713              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 1714              		.file 19 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 1715              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 1716              		.file 21 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
- 1717              		.file 22 "My_Top/System/bsp.hpp"
- 1718              		.file 23 "Lib/compute/pid/pid.hpp"
- 1719              		.file 24 "Lib/compute/pid/pid_Increment.hpp"
- 1720              		.file 25 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
- 1721              		.file 26 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
- 1722              		.file 27 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
- 1723              		.file 28 "Lib/compute/ex_math.hpp"
- 1724              		.file 29 "Lib/compute/pid/pll.hpp"
- 1725              		.file 30 "Lib/compute/pid/LQR.hpp"
- 1726              		.file 31 "My_Top/System/kth_read.hpp"
- 1727              		.file 32 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
- 1728              		.file 33 "Lib/uorb/uorb.hpp"
- 1729              		.file 34 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
- 1730              		.file 35 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-ARM GAS  /tmp/ccTpYRRI.s 			page 41
+ 1692              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 1693              		.file 15 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/stdlib.h"
+ 1694              		.file 16 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 1695              		.file 17 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 1696              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 1697              		.file 19 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 1698              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 1699              		.file 21 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 1700              		.file 22 "My_Top/System/bsp.hpp"
+ 1701              		.file 23 "Lib/compute/pid/pid.hpp"
+ 1702              		.file 24 "Lib/compute/pid/pid_Increment.hpp"
+ 1703              		.file 25 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 1704              		.file 26 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 1705              		.file 27 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 1706              		.file 28 "Lib/compute/ex_math.hpp"
+ 1707              		.file 29 "Lib/compute/pid/pll.hpp"
+ 1708              		.file 30 "Lib/compute/pid/LQR.hpp"
+ 1709              		.file 31 "My_Top/System/kth_read.hpp"
+ 1710              		.file 32 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ 1711              		.file 33 "Lib/uorb/uorb.hpp"
+ 1712              		.file 34 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
+ 1713              		.file 35 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  /tmp/cc3qW07B.s 			page 41
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Task_Vofa.cpp
-     /tmp/ccTpYRRI.s:21     .text._ZN7VoFA_Rx3getEPKcf:00000000 $t
-     /tmp/ccTpYRRI.s:27     .text._ZN7VoFA_Rx3getEPKcf:00000000 _ZN7VoFA_Rx3getEPKcf
-     /tmp/ccTpYRRI.s:118    .text._ZN7VoFA_Rx14vofa_get_batchEPS_PPKcPfh:00000000 $t
-     /tmp/ccTpYRRI.s:124    .text._ZN7VoFA_Rx14vofa_get_batchEPS_PPKcPfh:00000000 _ZN7VoFA_Rx14vofa_get_batchEPS_PPKcPfh
-     /tmp/ccTpYRRI.s:246    .text._ZN7VoFA_Rx5_findEPKc:00000000 $t
-     /tmp/ccTpYRRI.s:252    .text._ZN7VoFA_Rx5_findEPKc:00000000 _ZN7VoFA_Rx5_findEPKc
-     /tmp/ccTpYRRI.s:365    .text._ZN7VoFA_Rx5parseEv:00000000 $t
-     /tmp/ccTpYRRI.s:371    .text._ZN7VoFA_Rx5parseEv:00000000 _ZN7VoFA_Rx5parseEv
-     /tmp/ccTpYRRI.s:584    .text:00000000 $t
-     /tmp/ccTpYRRI.s:590    .text:00000000 _Z14vofa_sync_lastP9Vafa_data
-     /tmp/ccTpYRRI.s:644    .text:00000028 _Z14vofa_data_initv
-     /tmp/ccTpYRRI.s:769    .text:000000e8 $d
-     /tmp/ccTpYRRI.s:776    .rodata.str1.4:00000000 $d
-     /tmp/ccTpYRRI.s:780    .text:000000f4 $t
-     /tmp/ccTpYRRI.s:786    .text:000000f4 _Z16vofa_update_modeP9Work_ModeS_P8DC_Motor
-     /tmp/ccTpYRRI.s:855    .text:00000138 $d
-     /tmp/ccTpYRRI.s:861    .text:00000144 $t
-     /tmp/ccTpYRRI.s:867    .text:00000144 _Z22vofa_update_if_changedP9Vafa_datahPfP8DC_Motor
-     /tmp/ccTpYRRI.s:926    .text:0000017c _Z19vofa_detect_changesP9Vafa_data
-     /tmp/ccTpYRRI.s:984    .text:000001b4 _Z11Task_VofaRxPv
-     /tmp/ccTpYRRI.s:1056   .text:000001ee $d
-     /tmp/ccTpYRRI.s:1060   .text:000001f2 $t
-     /tmp/ccTpYRRI.s:1425   .text:00000404 $d
-     /tmp/ccTpYRRI.s:1444   .text:0000042c $t
-     /tmp/ccTpYRRI.s:1450   .text:0000042c _Z11Task_VofaTxPv
-     /tmp/ccTpYRRI.s:1554   .text:000004a8 $d
-     /tmp/ccTpYRRI.s:1682   .bss:00000450 Vafa_Button
-     /tmp/ccTpYRRI.s:1678   .bss:0000033c Vafa_Location
-     /tmp/ccTpYRRI.s:1674   .bss:00000228 Vafa_Target
-     /tmp/ccTpYRRI.s:1670   .bss:00000114 Vafa_Speed
-     /tmp/ccTpYRRI.s:1666   .bss:00000000 Vafa_IA
-     /tmp/ccTpYRRI.s:1657   .data:0000003c Button_Names
-     /tmp/ccTpYRRI.s:1651   .data:00000030 Location_Names
-     /tmp/ccTpYRRI.s:1643   .data:0000001c Target_Names
-     /tmp/ccTpYRRI.s:1637   .data:00000010 Speed_Names
-     /tmp/ccTpYRRI.s:1630   .data:00000000 IA_Names
-     /tmp/ccTpYRRI.s:1626   .data:00000000 $d
-     /tmp/ccTpYRRI.s:1662   .bss:00000000 $d
-     /tmp/ccTpYRRI.s:1686   .bss:00000564 _ZZ16vofa_update_modeP9Work_ModeS_P8DC_MotorE9last_mode
-     /tmp/ccTpYRRI.s:1691   .bss:00000568 _ZZ11Task_VofaRxPvE12Motor_Select
-     /tmp/ccTpYRRI.s:1695   .bss:0000056c _ZZ11Task_VofaRxPvE8last_idx
+     /tmp/cc3qW07B.s:21     .text._ZN7VoFA_Rx3getEPKcf:00000000 $t
+     /tmp/cc3qW07B.s:27     .text._ZN7VoFA_Rx3getEPKcf:00000000 _ZN7VoFA_Rx3getEPKcf
+     /tmp/cc3qW07B.s:118    .text._ZN7VoFA_Rx14vofa_get_batchEPS_PPKcPfh:00000000 $t
+     /tmp/cc3qW07B.s:124    .text._ZN7VoFA_Rx14vofa_get_batchEPS_PPKcPfh:00000000 _ZN7VoFA_Rx14vofa_get_batchEPS_PPKcPfh
+     /tmp/cc3qW07B.s:246    .text._ZN7VoFA_Rx5_findEPKc:00000000 $t
+     /tmp/cc3qW07B.s:252    .text._ZN7VoFA_Rx5_findEPKc:00000000 _ZN7VoFA_Rx5_findEPKc
+     /tmp/cc3qW07B.s:365    .text._ZN7VoFA_Rx5parseEv:00000000 $t
+     /tmp/cc3qW07B.s:371    .text._ZN7VoFA_Rx5parseEv:00000000 _ZN7VoFA_Rx5parseEv
+     /tmp/cc3qW07B.s:584    .text:00000000 $t
+     /tmp/cc3qW07B.s:590    .text:00000000 _Z14vofa_sync_lastP9Vafa_data
+     /tmp/cc3qW07B.s:644    .text:00000028 _Z14vofa_data_initv
+     /tmp/cc3qW07B.s:769    .text:000000e8 $d
+     /tmp/cc3qW07B.s:776    .rodata.str1.4:00000000 $d
+     /tmp/cc3qW07B.s:780    .text:000000f4 $t
+     /tmp/cc3qW07B.s:786    .text:000000f4 _Z16vofa_update_modeP9Work_ModeS_P8DC_Motor
+     /tmp/cc3qW07B.s:855    .text:00000138 $d
+     /tmp/cc3qW07B.s:861    .text:00000144 $t
+     /tmp/cc3qW07B.s:867    .text:00000144 _Z22vofa_update_if_changedP9Vafa_datahPfP8DC_Motor
+     /tmp/cc3qW07B.s:926    .text:0000017c _Z19vofa_detect_changesP9Vafa_data
+     /tmp/cc3qW07B.s:984    .text:000001b4 _Z11Task_VofaRxPv
+     /tmp/cc3qW07B.s:1056   .text:000001ee $d
+     /tmp/cc3qW07B.s:1060   .text:000001f2 $t
+     /tmp/cc3qW07B.s:1425   .text:00000404 $d
+     /tmp/cc3qW07B.s:1444   .text:0000042c $t
+     /tmp/cc3qW07B.s:1450   .text:0000042c _Z11Task_VofaTxPv
+     /tmp/cc3qW07B.s:1539   .text:00000488 $d
+     /tmp/cc3qW07B.s:1665   .bss:00000450 Vafa_Button
+     /tmp/cc3qW07B.s:1661   .bss:0000033c Vafa_Location
+     /tmp/cc3qW07B.s:1657   .bss:00000228 Vafa_Target
+     /tmp/cc3qW07B.s:1653   .bss:00000114 Vafa_Speed
+     /tmp/cc3qW07B.s:1649   .bss:00000000 Vafa_IA
+     /tmp/cc3qW07B.s:1640   .data:0000003c Button_Names
+     /tmp/cc3qW07B.s:1634   .data:00000030 Location_Names
+     /tmp/cc3qW07B.s:1626   .data:0000001c Target_Names
+     /tmp/cc3qW07B.s:1620   .data:00000010 Speed_Names
+     /tmp/cc3qW07B.s:1613   .data:00000000 IA_Names
+     /tmp/cc3qW07B.s:1609   .data:00000000 $d
+     /tmp/cc3qW07B.s:1645   .bss:00000000 $d
+     /tmp/cc3qW07B.s:1669   .bss:00000564 _ZZ16vofa_update_modeP9Work_ModeS_P8DC_MotorE9last_mode
+     /tmp/cc3qW07B.s:1674   .bss:00000568 _ZZ11Task_VofaRxPvE12Motor_Select
+     /tmp/cc3qW07B.s:1678   .bss:0000056c _ZZ11Task_VofaRxPvE8last_idx
 
 UNDEFINED SYMBOLS
 strncmp
@@ -2434,7 +2423,7 @@ vTaskDelay
 M2
 M3
 M4
-ARM GAS  /tmp/ccTpYRRI.s 			page 42
+ARM GAS  /tmp/cc3qW07B.s 			page 42
 
 
 M1
@@ -2443,5 +2432,4 @@ _ZN8DC_Motor14selected_motorE
 uorb_subscribe
 uorb_copy
 __aeabi_f2d
-__aeabi_dmul
 _Z21Vofa_SendFireWater_VAtz

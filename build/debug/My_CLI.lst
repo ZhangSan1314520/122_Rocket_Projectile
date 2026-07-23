@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc9NG85F.s 			page 1
+ARM GAS  /tmp/cc73j0Ob.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
   41              		@ args = 0, pretend = 0, frame = 0
   42              		@ frame_needed = 0, uses_anonymous_args = 0
   43              		.loc 1 5 1 is_stmt 0 view .LVU1
-ARM GAS  /tmp/cc9NG85F.s 			page 2
+ARM GAS  /tmp/cc73j0Ob.s 			page 2
 
 
   44 0000 38B5     		push	{r3, r4, r5, lr}
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
   91              		.loc 1 6 28 is_stmt 0 discriminator 1 view .LVU15
   92 0026 0A48     		ldr	r0, .L14
   93              	.LVL7:
-ARM GAS  /tmp/cc9NG85F.s 			page 3
+ARM GAS  /tmp/cc73j0Ob.s 			page 3
 
 
    6:My_Top/System/My_CLI.cpp ****     int idx = atoi(arg_list[1]);
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
   14:My_Top/System/My_CLI.cpp ****     }
  130              		.loc 1 14 17 view .LVU29
   14:My_Top/System/My_CLI.cpp ****     }
-ARM GAS  /tmp/cc9NG85F.s 			page 4
+ARM GAS  /tmp/cc73j0Ob.s 			page 4
 
 
  131              		.loc 1 14 25 is_stmt 0 view .LVU30
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  176              		.cfi_def_cfa_offset 12
  177              		.cfi_offset 4, -12
  178              		.cfi_offset 5, -8
-ARM GAS  /tmp/cc9NG85F.s 			page 5
+ARM GAS  /tmp/cc73j0Ob.s 			page 5
 
 
  179              		.cfi_offset 14, -4
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  220              		.loc 1 35 5 is_stmt 1 view .LVU51
  221              		.loc 1 35 11 is_stmt 0 view .LVU52
  222 0094 0B99     		ldr	r1, [sp, #44]
-ARM GAS  /tmp/cc9NG85F.s 			page 6
+ARM GAS  /tmp/cc73j0Ob.s 			page 6
 
 
  223 0096 0248     		ldr	r0, .L20
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  271 00aa 0023     		movs	r3, #0
  272 00ac 0B93     		str	r3, [sp, #44]
   41:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
-ARM GAS  /tmp/cc9NG85F.s 			page 7
+ARM GAS  /tmp/cc73j0Ob.s 			page 7
 
 
   42:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  316              		@ sp needed
  317 00da 30BD     		pop	{r4, r5, pc}
  318              	.LVL34:
-ARM GAS  /tmp/cc9NG85F.s 			page 8
+ARM GAS  /tmp/cc73j0Ob.s 			page 8
 
 
  319              	.L27:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
   63:My_Top/System/My_CLI.cpp ****     int argc = CLI_Module::init_arg_list(arg_list, args);
  361              		.loc 1 63 5 view .LVU82
  362              		.loc 1 63 41 is_stmt 0 view .LVU83
-ARM GAS  /tmp/cc9NG85F.s 			page 9
+ARM GAS  /tmp/cc73j0Ob.s 			page 9
 
 
  363 00ec 2146     		mov	r1, r4
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  402      BF97E4BD 
  402      8D20E5A4 
  402      B1E8
-ARM GAS  /tmp/cc9NG85F.s 			page 10
+ARM GAS  /tmp/cc73j0Ob.s 			page 10
 
 
  403 00b1 B4A50D0A 		.ascii	"\264\245\015\012\000"
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  445              	.LVL45:
  446              		.loc 1 80 41 view .LVU102
  447 011e FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
-ARM GAS  /tmp/cc9NG85F.s 			page 11
+ARM GAS  /tmp/cc73j0Ob.s 			page 11
 
 
  448              	.LVL46:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  494              		.align	2
  495              	.L40:
  496 014c 70000000 		.word	.LC5
-ARM GAS  /tmp/cc9NG85F.s 			page 12
+ARM GAS  /tmp/cc73j0Ob.s 			page 12
 
 
  497 0150 94000000 		.word	.LC6
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  537 015a 0023     		movs	r3, #0
  538 015c 0B93     		str	r3, [sp, #44]
   90:My_Top/System/My_CLI.cpp ****     bool save_flag = false;
-ARM GAS  /tmp/cc9NG85F.s 			page 13
+ARM GAS  /tmp/cc73j0Ob.s 			page 13
 
 
  539              		.loc 1 90 5 is_stmt 1 view .LVU120
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  582              	.LVL66:
  583              		.loc 1 101 25 discriminator 1 view .LVU138
  584 0188 FFF7FEFF 		bl	printf_
-ARM GAS  /tmp/cc9NG85F.s 			page 14
+ARM GAS  /tmp/cc73j0Ob.s 			page 14
 
 
  585              	.LVL67:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  623              		.text
  624              		.align	1
  625              		.global	_Z8set_zeroP11EmbeddedCliPcPv
-ARM GAS  /tmp/cc9NG85F.s 			page 15
+ARM GAS  /tmp/cc73j0Ob.s 			page 15
 
 
  626              		.syntax unified
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  667              		.loc 1 117 41 view .LVU154
  668 01bc FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
  669              	.LVL74:
-ARM GAS  /tmp/cc9NG85F.s 			page 16
+ARM GAS  /tmp/cc73j0Ob.s 			page 16
 
 
  670 01c0 0146     		mov	r1, r0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  715 01fc D3E90023 		ldrd	r2, [r3]
  716 0200 FFF7FEFF 		bl	__aeabi_dmul
  717              	.LVL84:
-ARM GAS  /tmp/cc9NG85F.s 			page 17
+ARM GAS  /tmp/cc73j0Ob.s 			page 17
 
 
  718 0204 0246     		mov	r2, r0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  770              	.L58:
  771              		.cfi_restore_state
  123:My_Top/System/My_CLI.cpp ****         return;
-ARM GAS  /tmp/cc9NG85F.s 			page 18
+ARM GAS  /tmp/cc73j0Ob.s 			page 18
 
 
  772              		.loc 1 123 9 is_stmt 1 view .LVU173
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  129:My_Top/System/My_CLI.cpp **** 
  130:My_Top/System/My_CLI.cpp **** 
  131:My_Top/System/My_CLI.cpp **** void set_fre(EmbeddedCli *cli, char *args, void *context) //设置电机频率 单位 Hz
-ARM GAS  /tmp/cc9NG85F.s 			page 19
+ARM GAS  /tmp/cc73j0Ob.s 			page 19
 
 
  132:My_Top/System/My_CLI.cpp **** {
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  860              		.loc 1 142 5 is_stmt 1 view .LVU193
  861 02b6 0446     		mov	r4, r0
  862              	.LVL105:
-ARM GAS  /tmp/cc9NG85F.s 			page 20
+ARM GAS  /tmp/cc73j0Ob.s 			page 20
 
 
  863              		.loc 1 142 5 is_stmt 0 view .LVU194
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  906 02e6 0348     		ldr	r0, .L68+4
  907              	.LVL112:
  146:My_Top/System/My_CLI.cpp ****         return;
-ARM GAS  /tmp/cc9NG85F.s 			page 21
+ARM GAS  /tmp/cc73j0Ob.s 			page 21
 
 
  908              		.loc 1 146 15 view .LVU207
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  156:My_Top/System/My_CLI.cpp ****     char *end;
  953              		.loc 1 156 5 is_stmt 1 view .LVU213
  157:My_Top/System/My_CLI.cpp ****     // 获取CLI实例
-ARM GAS  /tmp/cc9NG85F.s 			page 22
+ARM GAS  /tmp/cc73j0Ob.s 			page 22
 
 
  158:My_Top/System/My_CLI.cpp ****     CLI_Module *mc = CLI_Module::get_cli_module(cli);
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  167:My_Top/System/My_CLI.cpp ****     {
  168:My_Top/System/My_CLI.cpp ****         printf("参数格式错误\r\n");
  169:My_Top/System/My_CLI.cpp ****         return;
-ARM GAS  /tmp/cc9NG85F.s 			page 23
+ARM GAS  /tmp/cc73j0Ob.s 			page 23
 
 
  170:My_Top/System/My_CLI.cpp ****     }
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1043      AEE6A087 
  1044 018c E4BD8DE7 		.ascii	"\344\275\215\347\275\256\350\256\276\347\275\256%.2"
  1044      BDAEE8AE 
-ARM GAS  /tmp/cc9NG85F.s 			page 24
+ARM GAS  /tmp/cc73j0Ob.s 			page 24
 
 
  1044      BEE7BDAE 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1084 036e 6846     		mov	r0, sp
  1085              	.LVL132:
  1086              		.loc 1 187 41 view .LVU251
-ARM GAS  /tmp/cc9NG85F.s 			page 25
+ARM GAS  /tmp/cc73j0Ob.s 			page 25
 
 
  1087 0370 FFF7FEFF 		bl	_ZN10CLI_Module13init_arg_listEPPKcS1_
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1131 03a6 FFF7FEFF 		bl	printf_
  1132              	.LVL142:
  1133              	.L78:
-ARM GAS  /tmp/cc9NG85F.s 			page 26
+ARM GAS  /tmp/cc73j0Ob.s 			page 26
 
 
  198:My_Top/System/My_CLI.cpp **** }
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  202:My_Top/System/My_CLI.cpp **** {
  1176              		.loc 1 202 1 view -0
  1177              		.cfi_startproc
-ARM GAS  /tmp/cc9NG85F.s 			page 27
+ARM GAS  /tmp/cc73j0Ob.s 			page 27
 
 
  1178              		@ args = 0, pretend = 0, frame = 48
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1222              		.loc 1 212 5 is_stmt 0 view .LVU287
  1223 03e4 98B1     		cbz	r0, .L86
  213:My_Top/System/My_CLI.cpp ****     float temp = strtof(arg_list[2], &end); //将字符串转换为浮点数
-ARM GAS  /tmp/cc9NG85F.s 			page 28
+ARM GAS  /tmp/cc73j0Ob.s 			page 28
 
 
  1224              		.loc 1 213 5 is_stmt 1 view .LVU288
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1267              		.loc 1 216 15 view .LVU300
  1268 0414 FFF7FEFF 		bl	printf_
  1269              	.LVL161:
-ARM GAS  /tmp/cc9NG85F.s 			page 29
+ARM GAS  /tmp/cc73j0Ob.s 			page 29
 
 
  217:My_Top/System/My_CLI.cpp ****     }
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1305      E5
  1306 0235 8AA8E5BC 		.ascii	"\212\250\345\274\200\347\216\257\345\205\250\351\200"
  1306      80E78EAF 
-ARM GAS  /tmp/cc9NG85F.s 			page 30
+ARM GAS  /tmp/cc73j0Ob.s 			page 30
 
 
  1306      E585A8E9 
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  222:My_Top/System/My_CLI.cpp **** 
  223:My_Top/System/My_CLI.cpp **** 
  224:My_Top/System/My_CLI.cpp **** 
-ARM GAS  /tmp/cc9NG85F.s 			page 31
+ARM GAS  /tmp/cc73j0Ob.s 			page 31
 
 
  225:My_Top/System/My_CLI.cpp **** void set_mode(EmbeddedCli *cli, char *args, void *context) //设置工作模式
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1375 0442 2846     		mov	r0, r5
  1376              	.LVL168:
  1377              		.loc 1 236 35 view .LVU317
-ARM GAS  /tmp/cc9NG85F.s 			page 32
+ARM GAS  /tmp/cc73j0Ob.s 			page 32
 
 
  1378 0444 FFF7FEFF 		bl	_Z16get_motor_by_argPPKciPi
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1422 0478 06E0     		b	.L96
  1423              	.L105:
  247:My_Top/System/My_CLI.cpp ****     }else {
-ARM GAS  /tmp/cc9NG85F.s 			page 33
+ARM GAS  /tmp/cc73j0Ob.s 			page 33
 
 
  248:My_Top/System/My_CLI.cpp ****         printf("未知模式\r\n");
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  261:My_Top/System/My_CLI.cpp ****         vTaskDelay(pdMS_TO_TICKS(2000));
  262:My_Top/System/My_CLI.cpp **** 
  263:My_Top/System/My_CLI.cpp ****         printf("电机M%d 开始 ANLC 校准，保持转动...\r\n", idx);
-ARM GAS  /tmp/cc9NG85F.s 			page 34
+ARM GAS  /tmp/cc73j0Ob.s 			page 34
 
 
  264:My_Top/System/My_CLI.cpp ****         bool ok = m->_encoder->KTH7111_ANLC_Calibration(60);
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1496              		.loc 1 264 9 is_stmt 1 view .LVU355
  264:My_Top/System/My_CLI.cpp ****         m->work_mode = open_loop;//切回开环控制
  1497              		.loc 1 264 56 is_stmt 0 view .LVU356
-ARM GAS  /tmp/cc9NG85F.s 			page 35
+ARM GAS  /tmp/cc73j0Ob.s 			page 35
 
 
  1498 04be 3C21     		movs	r1, #60
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1539 04f2 D4E7     		b	.L94
  1540              	.L108:
  1541              		.align	2
-ARM GAS  /tmp/cc9NG85F.s 			page 36
+ARM GAS  /tmp/cc73j0Ob.s 			page 36
 
 
  1542              	.L107:
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1584              		.cfi_offset 7, -8
  1585              		.cfi_offset 14, -4
  1586 051e 93B0     		sub	sp, sp, #76
-ARM GAS  /tmp/cc9NG85F.s 			page 37
+ARM GAS  /tmp/cc73j0Ob.s 			page 37
 
 
  1587              		.cfi_def_cfa_offset 96
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1630              		.loc 1 294 22 view .LVU388
  1631 054c FFF7FEFF 		bl	strtof
  1632              	.LVL200:
-ARM GAS  /tmp/cc9NG85F.s 			page 38
+ARM GAS  /tmp/cc73j0Ob.s 			page 38
 
 
  1633 0550 10EE106A 		vmov	r6, s0
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1677              		.loc 1 304 8 is_stmt 0 view .LVU403
  1678 058c 7B6C     		ldr	r3, [r7, #68]
  1679              		.loc 1 304 32 view .LVU404
-ARM GAS  /tmp/cc9NG85F.s 			page 39
+ARM GAS  /tmp/cc73j0Ob.s 			page 39
 
 
  1680 058e 83ED020A 		vstr.32	s0, [r3, #8]
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1728              	.L116:
  1729 05ce 00BF     		.align	2
  1730              	.L115:
-ARM GAS  /tmp/cc9NG85F.s 			page 40
+ARM GAS  /tmp/cc73j0Ob.s 			page 40
 
 
  1731 05d0 D4020000 		.word	.LC25
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1772              		.loc 1 315 5 view .LVU420
  1773              		.loc 1 315 48 is_stmt 0 view .LVU421
  1774 05e2 FFF7FEFF 		bl	_ZN10CLI_Module14get_cli_moduleEP11EmbeddedCli
-ARM GAS  /tmp/cc9NG85F.s 			page 41
+ARM GAS  /tmp/cc73j0Ob.s 			page 41
 
 
  1775              	.LVL216:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  324:My_Top/System/My_CLI.cpp ****     float kd = strtof(arg_list[4], &end3); //将字符串转换为浮点数
  1821              		.loc 1 324 5 is_stmt 1 view .LVU436
  1822              		.loc 1 324 22 is_stmt 0 view .LVU437
-ARM GAS  /tmp/cc9NG85F.s 			page 42
+ARM GAS  /tmp/cc73j0Ob.s 			page 42
 
 
  1823 061c 0EA9     		add	r1, sp, #56
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1867 0656 FFF7FEFF 		bl	__aeabi_f2d
  1868              	.LVL230:
  1869 065a 0646     		mov	r6, r0
-ARM GAS  /tmp/cc9NG85F.s 			page 43
+ARM GAS  /tmp/cc73j0Ob.s 			page 43
 
 
  1870              	.LVL231:
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  1918 0354 E6A8A1E5 		.ascii	"\346\250\241\345\274\217\344\270\272\345\274\200\347"
  1918      BC8FE4B8 
  1918      BAE5BC80 
-ARM GAS  /tmp/cc9NG85F.s 			page 44
+ARM GAS  /tmp/cc73j0Ob.s 			page 44
 
 
  1918      E7
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  336:My_Top/System/My_CLI.cpp **** 
  337:My_Top/System/My_CLI.cpp **** 
  338:My_Top/System/My_CLI.cpp **** void get_mode(EmbeddedCli *cli, char *args, void *context) //获取当前工作模式
-ARM GAS  /tmp/cc9NG85F.s 			page 45
+ARM GAS  /tmp/cc73j0Ob.s 			page 45
 
 
  339:My_Top/System/My_CLI.cpp **** {
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  349:My_Top/System/My_CLI.cpp ****     if (!m) return;
  1991              		.loc 1 349 5 is_stmt 1 view .LVU475
  1992 06b8 48B1     		cbz	r0, .L125
-ARM GAS  /tmp/cc9NG85F.s 			page 46
+ARM GAS  /tmp/cc73j0Ob.s 			page 46
 
 
  350:My_Top/System/My_CLI.cpp ****     Work_Mode temp = m->work_mode;
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  2026 06d2 0B99     		ldr	r1, [sp, #44]
  2027 06d4 0748     		ldr	r0, .L133+4
  2028              	.LVL249:
-ARM GAS  /tmp/cc9NG85F.s 			page 47
+ARM GAS  /tmp/cc73j0Ob.s 			page 47
 
 
  357:My_Top/System/My_CLI.cpp ****         break;
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  2072              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
  2073              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
  2074              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
-ARM GAS  /tmp/cc9NG85F.s 			page 48
+ARM GAS  /tmp/cc73j0Ob.s 			page 48
 
 
  2075              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
@@ -2855,59 +2855,59 @@ ARM GAS  /tmp/cc9NG85F.s 			page 1
  2106              		.file 37 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/string.h"
  2107              		.file 38 "Lib/serial/printf.h"
  2108              		.file 39 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
-ARM GAS  /tmp/cc9NG85F.s 			page 49
+ARM GAS  /tmp/cc73j0Ob.s 			page 49
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 My_CLI.cpp
-     /tmp/cc9NG85F.s:21     .rodata.str1.4:00000000 $d
-     /tmp/cc9NG85F.s:30     .text:00000000 $t
-     /tmp/cc9NG85F.s:36     .text:00000000 _Z16get_motor_by_argPPKciPi
-     /tmp/cc9NG85F.s:83     .text:00000022 $d
-     /tmp/cc9NG85F.s:88     .text:00000026 $t
-     /tmp/cc9NG85F.s:146    .text:00000050 $d
-     /tmp/cc9NG85F.s:161    .text:00000068 $t
-     /tmp/cc9NG85F.s:167    .text:00000068 _Z5startP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:237    .text:000000a0 $d
-     /tmp/cc9NG85F.s:247    .text:000000a4 $t
-     /tmp/cc9NG85F.s:253    .text:000000a4 _Z4stopP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:323    .text:000000dc $d
-     /tmp/cc9NG85F.s:333    .text:000000e0 $t
-     /tmp/cc9NG85F.s:339    .text:000000e0 _Z5resetP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:389    .text:00000104 $d
-     /tmp/cc9NG85F.s:405    .text:00000108 $t
-     /tmp/cc9NG85F.s:411    .text:00000108 _Z12clear_eepromP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:496    .text:0000014c $d
-     /tmp/cc9NG85F.s:513    .text:00000154 $t
-     /tmp/cc9NG85F.s:519    .text:00000154 _Z4saveP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:608    .text:0000019c $d
-     /tmp/cc9NG85F.s:624    .text:000001a4 $t
-     /tmp/cc9NG85F.s:630    .text:000001a4 _Z8set_zeroP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:791    .text:00000278 $d
-     /tmp/cc9NG85F.s:808    .text:00000294 $t
-     /tmp/cc9NG85F.s:814    .text:00000294 _Z7set_freP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:916    .text:000002f0 $d
-     /tmp/cc9NG85F.s:927    .text:000002f8 $t
-     /tmp/cc9NG85F.s:933    .text:000002f8 _Z8set_dutyP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:1035   .text:00000354 $d
-     /tmp/cc9NG85F.s:1047   .text:0000035c $t
-     /tmp/cc9NG85F.s:1053   .text:0000035c _Z7set_posP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:1155   .text:000003b8 $d
-     /tmp/cc9NG85F.s:1167   .text:000003c0 $t
-     /tmp/cc9NG85F.s:1173   .text:000003c0 _Z9set_speedP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:1275   .text:0000041c $d
-     /tmp/cc9NG85F.s:1324   .text:00000424 $t
-     /tmp/cc9NG85F.s:1330   .text:00000424 _Z8set_modeP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:1543   .text:000004f4 $d
-     /tmp/cc9NG85F.s:1565   .text:0000051c $t
-     /tmp/cc9NG85F.s:1571   .text:0000051c _Z9set_pid_vP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:1731   .text:000005d0 $d
-     /tmp/cc9NG85F.s:1743   .text:000005d8 $t
-     /tmp/cc9NG85F.s:1749   .text:000005d8 _Z9set_pid_pP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:1909   .text:0000068c $d
-     /tmp/cc9NG85F.s:1938   .text:00000694 $t
-     /tmp/cc9NG85F.s:1944   .text:00000694 _Z8get_modeP11EmbeddedCliPcPv
-     /tmp/cc9NG85F.s:2063   .text:000006f0 $d
+     /tmp/cc73j0Ob.s:21     .rodata.str1.4:00000000 $d
+     /tmp/cc73j0Ob.s:30     .text:00000000 $t
+     /tmp/cc73j0Ob.s:36     .text:00000000 _Z16get_motor_by_argPPKciPi
+     /tmp/cc73j0Ob.s:83     .text:00000022 $d
+     /tmp/cc73j0Ob.s:88     .text:00000026 $t
+     /tmp/cc73j0Ob.s:146    .text:00000050 $d
+     /tmp/cc73j0Ob.s:161    .text:00000068 $t
+     /tmp/cc73j0Ob.s:167    .text:00000068 _Z5startP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:237    .text:000000a0 $d
+     /tmp/cc73j0Ob.s:247    .text:000000a4 $t
+     /tmp/cc73j0Ob.s:253    .text:000000a4 _Z4stopP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:323    .text:000000dc $d
+     /tmp/cc73j0Ob.s:333    .text:000000e0 $t
+     /tmp/cc73j0Ob.s:339    .text:000000e0 _Z5resetP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:389    .text:00000104 $d
+     /tmp/cc73j0Ob.s:405    .text:00000108 $t
+     /tmp/cc73j0Ob.s:411    .text:00000108 _Z12clear_eepromP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:496    .text:0000014c $d
+     /tmp/cc73j0Ob.s:513    .text:00000154 $t
+     /tmp/cc73j0Ob.s:519    .text:00000154 _Z4saveP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:608    .text:0000019c $d
+     /tmp/cc73j0Ob.s:624    .text:000001a4 $t
+     /tmp/cc73j0Ob.s:630    .text:000001a4 _Z8set_zeroP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:791    .text:00000278 $d
+     /tmp/cc73j0Ob.s:808    .text:00000294 $t
+     /tmp/cc73j0Ob.s:814    .text:00000294 _Z7set_freP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:916    .text:000002f0 $d
+     /tmp/cc73j0Ob.s:927    .text:000002f8 $t
+     /tmp/cc73j0Ob.s:933    .text:000002f8 _Z8set_dutyP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:1035   .text:00000354 $d
+     /tmp/cc73j0Ob.s:1047   .text:0000035c $t
+     /tmp/cc73j0Ob.s:1053   .text:0000035c _Z7set_posP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:1155   .text:000003b8 $d
+     /tmp/cc73j0Ob.s:1167   .text:000003c0 $t
+     /tmp/cc73j0Ob.s:1173   .text:000003c0 _Z9set_speedP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:1275   .text:0000041c $d
+     /tmp/cc73j0Ob.s:1324   .text:00000424 $t
+     /tmp/cc73j0Ob.s:1330   .text:00000424 _Z8set_modeP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:1543   .text:000004f4 $d
+     /tmp/cc73j0Ob.s:1565   .text:0000051c $t
+     /tmp/cc73j0Ob.s:1571   .text:0000051c _Z9set_pid_vP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:1731   .text:000005d0 $d
+     /tmp/cc73j0Ob.s:1743   .text:000005d8 $t
+     /tmp/cc73j0Ob.s:1749   .text:000005d8 _Z9set_pid_pP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:1909   .text:0000068c $d
+     /tmp/cc73j0Ob.s:1938   .text:00000694 $t
+     /tmp/cc73j0Ob.s:1944   .text:00000694 _Z8get_modeP11EmbeddedCliPcPv
+     /tmp/cc73j0Ob.s:2063   .text:000006f0 $d
 
 UNDEFINED SYMBOLS
 atoi
@@ -2915,7 +2915,7 @@ printf_
 M1
 M3
 M4
-ARM GAS  /tmp/cc9NG85F.s 			page 50
+ARM GAS  /tmp/cc73j0Ob.s 			page 50
 
 
 M2

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc9kjJdF.s 			page 1
+ARM GAS  /tmp/ccArKJCl.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
    8:Lib/compute/ex_math.cpp ****     {
    9:Lib/compute/ex_math.cpp ****         str++;
   49              		.loc 1 9 9 is_stmt 1 view .LVU6
-ARM GAS  /tmp/cc9kjJdF.s 			page 2
+ARM GAS  /tmp/ccArKJCl.s 			page 2
 
 
   50              		.loc 1 9 12 is_stmt 0 view .LVU7
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
   78              		.loc 1 21 14 is_stmt 1 view .LVU16
   79 0026 2E2B     		cmp	r3, #46
   80 0028 02D1     		bne	.L9
-ARM GAS  /tmp/cc9kjJdF.s 			page 3
+ARM GAS  /tmp/ccArKJCl.s 			page 3
 
 
   21:Lib/compute/ex_math.cpp ****         {
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
  124              		@ args = 0, pretend = 0, frame = 0
  125              		@ frame_needed = 0, uses_anonymous_args = 0
  126              		@ link register save eliminated.
-ARM GAS  /tmp/cc9kjJdF.s 			page 4
+ARM GAS  /tmp/ccArKJCl.s 			page 4
 
 
  127              		.loc 1 36 1 is_stmt 0 view .LVU26
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
  162              	.LVL15:
   48:Lib/compute/ex_math.cpp ****         }
  163              		.loc 1 48 23 view .LVU41
-ARM GAS  /tmp/cc9kjJdF.s 			page 5
+ARM GAS  /tmp/ccArKJCl.s 			page 5
 
 
  164 0058 0120     		movs	r0, #1
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
  204              		.loc 1 67 5 is_stmt 1 view .LVU50
  205 006c 2D2B     		cmp	r3, #45
  206 006e 01D0     		beq	.L22
-ARM GAS  /tmp/cc9kjJdF.s 			page 6
+ARM GAS  /tmp/ccArKJCl.s 			page 6
 
 
  207              		.loc 1 67 21 is_stmt 0 discriminator 1 view .LVU51
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
  233 0082 6BB1     		cbz	r3, .L21
   77:Lib/compute/ex_math.cpp ****         {
  234              		.loc 1 77 9 view .LVU59
-ARM GAS  /tmp/cc9kjJdF.s 			page 7
+ARM GAS  /tmp/ccArKJCl.s 			page 7
 
 
   77:Lib/compute/ex_math.cpp ****         {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
  275 00a0 5DF8044B 		ldr	r4, [sp], #4
  276              		.cfi_remember_state
  277              		.cfi_restore 4
-ARM GAS  /tmp/cc9kjJdF.s 			page 8
+ARM GAS  /tmp/ccArKJCl.s 			page 8
 
 
  278              		.cfi_def_cfa_offset 0
@@ -446,14 +446,14 @@ ARM GAS  /tmp/cc9kjJdF.s 			page 1
  299              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
  300              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+fp
  301              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
-ARM GAS  /tmp/cc9kjJdF.s 			page 9
+ARM GAS  /tmp/ccArKJCl.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 ex_math.cpp
-     /tmp/cc9kjJdF.s:20     .text:00000000 $t
-     /tmp/cc9kjJdF.s:26     .text:00000000 _Z9is_numberPKc
-     /tmp/cc9kjJdF.s:119    .text:0000003c _Z10is_integerPKc
-     /tmp/cc9kjJdF.s:185    .text:00000062 _Z8is_floatPKc
+     /tmp/ccArKJCl.s:20     .text:00000000 $t
+     /tmp/ccArKJCl.s:26     .text:00000000 _Z9is_numberPKc
+     /tmp/ccArKJCl.s:119    .text:0000003c _Z10is_integerPKc
+     /tmp/ccArKJCl.s:185    .text:00000062 _Z8is_floatPKc
 
 NO UNDEFINED SYMBOLS

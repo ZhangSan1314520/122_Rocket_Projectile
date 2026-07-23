@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccUEGBqk.s 			page 1
+ARM GAS  /tmp/ccR4Sjb9.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /* USER CODE END INCLUDE */
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /* Private typedef -----------------------------------------------------------*/
-ARM GAS  /tmp/ccUEGBqk.s 			page 2
+ARM GAS  /tmp/ccR4Sjb9.s 			page 2
 
 
   31:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /* Private define ------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** /** @defgroup USBD_CDC_IF_Private_Variables USBD_CDC_IF_Private_Variables
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @brief Private variables.
-ARM GAS  /tmp/ccUEGBqk.s 			page 3
+ARM GAS  /tmp/ccR4Sjb9.s 			page 3
 
 
   88:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  UART_HandleTypeDef *handle = NULL;
  143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //
  144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  if (cdc_ch == 0)
-ARM GAS  /tmp/ccUEGBqk.s 			page 4
+ARM GAS  /tmp/ccR4Sjb9.s 			page 4
 
 
  145:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  {
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    break;
  200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  default:
  201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    handle->Init.StopBits = UART_STOPBITS_1;
-ARM GAS  /tmp/ccUEGBqk.s 			page 5
+ARM GAS  /tmp/ccR4Sjb9.s 			page 5
 
 
  202:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    break;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  256:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  {
  257:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    /* Initialization Error */
  258:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //    Error_Handler();
-ARM GAS  /tmp/ccUEGBqk.s 			page 6
+ARM GAS  /tmp/ccR4Sjb9.s 			page 6
 
 
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** //  }
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
  310:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE BEGIN 4 */
-ARM GAS  /tmp/ccUEGBqk.s 			page 7
+ARM GAS  /tmp/ccR4Sjb9.s 			page 7
 
 
  311:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* DeInitialize the UART peripheral */
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  339:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     break;
  340:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
  341:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   case CDC_SET_COMM_FEATURE:
-ARM GAS  /tmp/ccUEGBqk.s 			page 8
+ARM GAS  /tmp/ccR4Sjb9.s 			page 8
 
 
  342:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
   75 0014 C1F30721 		ubfx	r1, r1, #8, #8
   76              		.loc 1 382 13 view .LVU13
   77 0018 5170     		strb	r1, [r2, #1]
-ARM GAS  /tmp/ccUEGBqk.s 			page 9
+ARM GAS  /tmp/ccR4Sjb9.s 			page 9
 
 
  383:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     pbuf[2] = (uint8_t)(Line_Coding[cdc_ch].bitrate >> 16);
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  122 0042 43EA0123 		orr	r3, r3, r1, lsl #8
  372:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****     Line_Coding[cdc_ch].format = pbuf[4];
  123              		.loc 1 372 51 view .LVU37
-ARM GAS  /tmp/ccUEGBqk.s 			page 10
+ARM GAS  /tmp/ccR4Sjb9.s 			page 10
 
 
  124 0046 9178     		ldrb	r1, [r2, #2]	@ zero_extendqisi2
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  403:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   /* USER CODE END 5 */
  404:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
  152              		.loc 1 404 1 is_stmt 0 view .LVU51
-ARM GAS  /tmp/ccUEGBqk.s 			page 11
+ARM GAS  /tmp/ccR4Sjb9.s 			page 11
 
 
  153 0068 0020     		movs	r0, #0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  443:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   *
  444:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Buf: Buffer of data to be received
  445:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @param  Len: Number of data received (in bytes)
-ARM GAS  /tmp/ccUEGBqk.s 			page 12
+ARM GAS  /tmp/ccR4Sjb9.s 			page 12
 
 
  446:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  216 0014 00000000 		.word	RX_Buffer
  217 0018 00000000 		.word	hUsbDevice
  218              		.cfi_endproc
-ARM GAS  /tmp/ccUEGBqk.s 			page 13
+ARM GAS  /tmp/ccR4Sjb9.s 			page 13
 
 
  219              	.LFE333:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  434:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** 
  266              		.loc 1 434 1 is_stmt 0 view .LVU70
  267 0022 0020     		movs	r0, #0
-ARM GAS  /tmp/ccUEGBqk.s 			page 14
+ARM GAS  /tmp/ccR4Sjb9.s 			page 14
 
 
  268 0024 70BD     		pop	{r4, r5, r6, pc}
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  304              		.loc 1 470 3 view .LVU77
  471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c ****   if (hcdc->TxState != 0)
  305              		.loc 1 471 3 view .LVU78
-ARM GAS  /tmp/ccUEGBqk.s 			page 15
+ARM GAS  /tmp/ccR4Sjb9.s 			page 15
 
 
  306              		.loc 1 471 11 is_stmt 0 view .LVU79
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  345              		.loc 1 478 3 is_stmt 1 view .LVU91
  478:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.c **** }
  346              		.loc 1 478 10 is_stmt 0 view .LVU92
-ARM GAS  /tmp/ccUEGBqk.s 			page 16
+ARM GAS  /tmp/ccR4Sjb9.s 			page 16
 
 
  347 002e F2E7     		b	.L18
@@ -958,43 +958,43 @@ ARM GAS  /tmp/ccUEGBqk.s 			page 1
  405              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
  406              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
  407              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h"
-ARM GAS  /tmp/ccUEGBqk.s 			page 17
+ARM GAS  /tmp/ccR4Sjb9.s 			page 17
 
 
  408              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h"
-ARM GAS  /tmp/ccUEGBqk.s 			page 18
+ARM GAS  /tmp/ccR4Sjb9.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_cdc_acm_if.c
-     /tmp/ccUEGBqk.s:21     .text.CDC_DeInit:00000000 $t
-     /tmp/ccUEGBqk.s:26     .text.CDC_DeInit:00000000 CDC_DeInit
-     /tmp/ccUEGBqk.s:44     .text.CDC_Control:00000000 $t
-     /tmp/ccUEGBqk.s:49     .text.CDC_Control:00000000 CDC_Control
-     /tmp/ccUEGBqk.s:158    .text.CDC_Control:0000006c $d
-     /tmp/ccUEGBqk.s:386    .bss.Line_Coding:00000000 Line_Coding
-     /tmp/ccUEGBqk.s:163    .text.CDC_TransmitCplt:00000000 $t
-     /tmp/ccUEGBqk.s:168    .text.CDC_TransmitCplt:00000000 CDC_TransmitCplt
-     /tmp/ccUEGBqk.s:186    .text.CDC_Init:00000000 $t
-     /tmp/ccUEGBqk.s:191    .text.CDC_Init:00000000 CDC_Init
-     /tmp/ccUEGBqk.s:216    .text.CDC_Init:00000014 $d
-     /tmp/ccUEGBqk.s:400    .bss.RX_Buffer:00000000 RX_Buffer
-     /tmp/ccUEGBqk.s:222    .text.CDC_Receive:00000000 $t
-     /tmp/ccUEGBqk.s:227    .text.CDC_Receive:00000000 CDC_Receive
-     /tmp/ccUEGBqk.s:274    .text.CDC_Receive:00000028 $d
-     /tmp/ccUEGBqk.s:279    .text.CDC_Transmit:00000000 $t
-     /tmp/ccUEGBqk.s:285    .text.CDC_Transmit:00000000 CDC_Transmit
-     /tmp/ccUEGBqk.s:351    .text.CDC_Transmit:00000030 $d
-     /tmp/ccUEGBqk.s:361    .data.USBD_CDC_ACM_fops:00000000 USBD_CDC_ACM_fops
-     /tmp/ccUEGBqk.s:358    .data.USBD_CDC_ACM_fops:00000000 $d
-     /tmp/ccUEGBqk.s:372    .bss.Read_Index:00000000 Read_Index
-     /tmp/ccUEGBqk.s:369    .bss.Read_Index:00000000 $d
-     /tmp/ccUEGBqk.s:379    .bss.Write_Index:00000000 Write_Index
-     /tmp/ccUEGBqk.s:376    .bss.Write_Index:00000000 $d
-     /tmp/ccUEGBqk.s:383    .bss.Line_Coding:00000000 $d
-     /tmp/ccUEGBqk.s:393    .bss.TX_Buffer:00000000 TX_Buffer
-     /tmp/ccUEGBqk.s:390    .bss.TX_Buffer:00000000 $d
-     /tmp/ccUEGBqk.s:397    .bss.RX_Buffer:00000000 $d
+     /tmp/ccR4Sjb9.s:21     .text.CDC_DeInit:00000000 $t
+     /tmp/ccR4Sjb9.s:26     .text.CDC_DeInit:00000000 CDC_DeInit
+     /tmp/ccR4Sjb9.s:44     .text.CDC_Control:00000000 $t
+     /tmp/ccR4Sjb9.s:49     .text.CDC_Control:00000000 CDC_Control
+     /tmp/ccR4Sjb9.s:158    .text.CDC_Control:0000006c $d
+     /tmp/ccR4Sjb9.s:386    .bss.Line_Coding:00000000 Line_Coding
+     /tmp/ccR4Sjb9.s:163    .text.CDC_TransmitCplt:00000000 $t
+     /tmp/ccR4Sjb9.s:168    .text.CDC_TransmitCplt:00000000 CDC_TransmitCplt
+     /tmp/ccR4Sjb9.s:186    .text.CDC_Init:00000000 $t
+     /tmp/ccR4Sjb9.s:191    .text.CDC_Init:00000000 CDC_Init
+     /tmp/ccR4Sjb9.s:216    .text.CDC_Init:00000014 $d
+     /tmp/ccR4Sjb9.s:400    .bss.RX_Buffer:00000000 RX_Buffer
+     /tmp/ccR4Sjb9.s:222    .text.CDC_Receive:00000000 $t
+     /tmp/ccR4Sjb9.s:227    .text.CDC_Receive:00000000 CDC_Receive
+     /tmp/ccR4Sjb9.s:274    .text.CDC_Receive:00000028 $d
+     /tmp/ccR4Sjb9.s:279    .text.CDC_Transmit:00000000 $t
+     /tmp/ccR4Sjb9.s:285    .text.CDC_Transmit:00000000 CDC_Transmit
+     /tmp/ccR4Sjb9.s:351    .text.CDC_Transmit:00000030 $d
+     /tmp/ccR4Sjb9.s:361    .data.USBD_CDC_ACM_fops:00000000 USBD_CDC_ACM_fops
+     /tmp/ccR4Sjb9.s:358    .data.USBD_CDC_ACM_fops:00000000 $d
+     /tmp/ccR4Sjb9.s:372    .bss.Read_Index:00000000 Read_Index
+     /tmp/ccR4Sjb9.s:369    .bss.Read_Index:00000000 $d
+     /tmp/ccR4Sjb9.s:379    .bss.Write_Index:00000000 Write_Index
+     /tmp/ccR4Sjb9.s:376    .bss.Write_Index:00000000 $d
+     /tmp/ccR4Sjb9.s:383    .bss.Line_Coding:00000000 $d
+     /tmp/ccR4Sjb9.s:393    .bss.TX_Buffer:00000000 TX_Buffer
+     /tmp/ccR4Sjb9.s:390    .bss.TX_Buffer:00000000 $d
+     /tmp/ccR4Sjb9.s:397    .bss.RX_Buffer:00000000 $d
 
 UNDEFINED SYMBOLS
 USBD_CDC_SetRxBuffer

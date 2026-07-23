@@ -129,7 +129,8 @@ void My_Tim_Init(TIM_HandleTypeDef* htim,ADC_HandleTypeDef *hadc)
     HAL_TIM_Base_Start_IT(htim); //启动定时器周期中断
     HAL_TIM_OC_Start_IT(htim, TIM_CHANNEL_1); //启动定时器比较中断
     htim->PeriodElapsedCallback = My_Tim_Callback;  // 设置定时器周期结束回调函数
-    htim->PWM_PulseFinishedCallback = My_Tim_OC_Callback;// PWM的模式的比较匹配回调函数
+    htim->OC_DelayElapsedCallback = My_Tim_OC_Callback;// PWM的模式的比较匹配回调函数
+    __HAL_TIM_ENABLE_IT(htim, TIM_IT_CC4); 
 }
 
 

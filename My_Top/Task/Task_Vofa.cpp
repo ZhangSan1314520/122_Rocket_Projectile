@@ -41,7 +41,7 @@ Vafa_data Vafa_Button;
 void vofa_data_init()
 {
     Vafa_IA.len = sizeof(IA_Names) / sizeof(IA_Names[0]);
-    Vafa_Speed.len = sizeof(Speed_Names) / sizeof(IA_Names[0]);
+    Vafa_Speed.len = sizeof(Speed_Names) / sizeof(Speed_Names[0]);
     Vafa_Target.len = sizeof(Target_Names) / sizeof(Target_Names[0]);
     Vafa_Location.len = sizeof(Location_Names) / sizeof(Location_Names[0]);
     Vafa_Button.len = sizeof(Button_Names) / sizeof(Button_Names[0]);
@@ -221,13 +221,22 @@ void Task_VofaTx(void *argument)
 
         // );
 
-        Vofa_SendFireWater_VA(5,
-            // M1
-            buf[1]._target_speed, buf[1].Angular_velocity_final,
-            buf[1]._target_location2, rad2deg(buf[1].reg_final),
-            buf[1].updown_duty 
+        // Vofa_SendFireWater_VA(5,
+        //     // M1
+        //     buf[1]._target_speed, buf[1].Angular_velocity_final,
+        //     buf[1]._target_location2, rad2deg(buf[1].reg_final),
+        //     buf[1].updown_duty 
                                         
-        );  
+        // );  
+
+        
+
+        Vofa_SendFireWater_VA(4,
+            // M1
+            buf[0].ADC_Temp_Val, buf[1].ADC_Temp_Val, 
+            buf[2].ADC_Temp_Val, buf[3].ADC_Temp_Val
+
+        );    
 
     }
 }

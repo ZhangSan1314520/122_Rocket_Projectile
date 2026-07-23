@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc6n5vZw.s 			page 1
+ARM GAS  /tmp/ccBzcusZ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc6n5vZw.s 			page 1
   36              		.cfi_startproc
   37              		@ args = 0, pretend = 0, frame = 0
   38              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cc6n5vZw.s 			page 2
+ARM GAS  /tmp/ccBzcusZ.s 			page 2
 
 
   39              		.loc 1 16 1 is_stmt 0 view .LVU1
@@ -99,151 +99,130 @@ ARM GAS  /tmp/cc6n5vZw.s 			page 1
   23:My_Top/Task/Task_SystemInit.cpp ****     My_Tim_Init(closed_loop_htim,therm_hadc); //初始化定时器绑定中断
   68              		.loc 1 23 5 is_stmt 1 view .LVU14
   69              		.loc 1 23 16 is_stmt 0 view .LVU15
-  70 001a 1349     		ldr	r1, .L3
-  71 001c 1348     		ldr	r0, .L3+4
+  70 001a 0D49     		ldr	r1, .L3
+  71 001c 0D48     		ldr	r0, .L3+4
   72 001e FFF7FEFF 		bl	_Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef
   73              	.LVL7:
   24:My_Top/Task/Task_SystemInit.cpp **** 
   25:My_Top/Task/Task_SystemInit.cpp ****     M1.My_DC_Motor_Init(); //初始化电机1
   74              		.loc 1 25 5 is_stmt 1 view .LVU16
   75              		.loc 1 25 24 is_stmt 0 view .LVU17
-  76 0022 1348     		ldr	r0, .L3+8
+  76 0022 0D48     		ldr	r0, .L3+8
   77 0024 FFF7FEFF 		bl	_ZN8DC_Motor16My_DC_Motor_InitEv
   78              	.LVL8:
   26:My_Top/Task/Task_SystemInit.cpp ****     M2.My_DC_Motor_Init(); //初始化电机2
   79              		.loc 1 26 5 is_stmt 1 view .LVU18
   80              		.loc 1 26 24 is_stmt 0 view .LVU19
-  81 0028 1248     		ldr	r0, .L3+12
+  81 0028 0C48     		ldr	r0, .L3+12
   82 002a FFF7FEFF 		bl	_ZN8DC_Motor16My_DC_Motor_InitEv
   83              	.LVL9:
   27:My_Top/Task/Task_SystemInit.cpp ****     M3.My_DC_Motor_Init(); //初始化电机3
   84              		.loc 1 27 5 is_stmt 1 view .LVU20
-ARM GAS  /tmp/cc6n5vZw.s 			page 3
+ARM GAS  /tmp/ccBzcusZ.s 			page 3
 
 
   85              		.loc 1 27 24 is_stmt 0 view .LVU21
-  86 002e 1248     		ldr	r0, .L3+16
+  86 002e 0C48     		ldr	r0, .L3+16
   87 0030 FFF7FEFF 		bl	_ZN8DC_Motor16My_DC_Motor_InitEv
   88              	.LVL10:
   28:My_Top/Task/Task_SystemInit.cpp ****     M4.My_DC_Motor_Init(); //初始化电机4
   89              		.loc 1 28 5 is_stmt 1 view .LVU22
   90              		.loc 1 28 24 is_stmt 0 view .LVU23
-  91 0034 1148     		ldr	r0, .L3+20
+  91 0034 0B48     		ldr	r0, .L3+20
   92 0036 FFF7FEFF 		bl	_ZN8DC_Motor16My_DC_Motor_InitEv
   93              	.LVL11:
   29:My_Top/Task/Task_SystemInit.cpp **** 
-  30:My_Top/Task/Task_SystemInit.cpp ****     Motor_Storage::load(1);//读eeprom的数据传回给电机
-  94              		.loc 1 30 5 is_stmt 1 view .LVU24
-  95              		.loc 1 30 24 is_stmt 0 view .LVU25
-  96 003a 0120     		movs	r0, #1
-  97 003c FFF7FEFF 		bl	_ZN13Motor_Storage4loadEh
-  98              	.LVL12:
-  31:My_Top/Task/Task_SystemInit.cpp ****     Motor_Storage::load(2);//读eeprom的数据传回给电机
-  99              		.loc 1 31 5 is_stmt 1 view .LVU26
- 100              		.loc 1 31 24 is_stmt 0 view .LVU27
- 101 0040 0220     		movs	r0, #2
- 102 0042 FFF7FEFF 		bl	_ZN13Motor_Storage4loadEh
- 103              	.LVL13:
-  32:My_Top/Task/Task_SystemInit.cpp ****     Motor_Storage::load(3);//读eeprom的数据传回给电机
- 104              		.loc 1 32 5 is_stmt 1 view .LVU28
- 105              		.loc 1 32 24 is_stmt 0 view .LVU29
- 106 0046 0320     		movs	r0, #3
- 107 0048 FFF7FEFF 		bl	_ZN13Motor_Storage4loadEh
- 108              	.LVL14:
-  33:My_Top/Task/Task_SystemInit.cpp ****     Motor_Storage::load(4);//读eeprom的数据传回给电机
- 109              		.loc 1 33 5 is_stmt 1 view .LVU30
- 110              		.loc 1 33 24 is_stmt 0 view .LVU31
- 111 004c 0420     		movs	r0, #4
- 112 004e FFF7FEFF 		bl	_ZN13Motor_Storage4loadEh
- 113              	.LVL15:
+  30:My_Top/Task/Task_SystemInit.cpp ****     // Motor_Storage::load(1);//读eeprom的数据传回给电机
+  31:My_Top/Task/Task_SystemInit.cpp ****     // Motor_Storage::load(2);//读eeprom的数据传回给电机
+  32:My_Top/Task/Task_SystemInit.cpp ****     // Motor_Storage::load(3);//读eeprom的数据传回给电机
+  33:My_Top/Task/Task_SystemInit.cpp ****     // Motor_Storage::load(4);//读eeprom的数据传回给电机
   34:My_Top/Task/Task_SystemInit.cpp **** 
   35:My_Top/Task/Task_SystemInit.cpp ****     printf("Sys_init栈剩余:%d\r\n", uxTaskGetStackHighWaterMark(NULL));
- 114              		.loc 1 35 5 is_stmt 1 view .LVU32
- 115              		.loc 1 35 11 is_stmt 0 view .LVU33
- 116 0052 0020     		movs	r0, #0
- 117 0054 FFF7FEFF 		bl	uxTaskGetStackHighWaterMark
- 118              	.LVL16:
- 119 0058 0146     		mov	r1, r0
- 120              		.loc 1 35 11 discriminator 1 view .LVU34
- 121 005a 0948     		ldr	r0, .L3+24
- 122 005c FFF7FEFF 		bl	printf_
- 123              	.LVL17:
+  94              		.loc 1 35 5 is_stmt 1 view .LVU24
+  95              		.loc 1 35 11 is_stmt 0 view .LVU25
+  96 003a 0020     		movs	r0, #0
+  97 003c FFF7FEFF 		bl	uxTaskGetStackHighWaterMark
+  98              	.LVL12:
+  99 0040 0146     		mov	r1, r0
+ 100              		.loc 1 35 11 discriminator 1 view .LVU26
+ 101 0042 0948     		ldr	r0, .L3+24
+ 102 0044 FFF7FEFF 		bl	printf_
+ 103              	.LVL13:
   36:My_Top/Task/Task_SystemInit.cpp ****     vTaskDelete(NULL); //删除任务
- 124              		.loc 1 36 5 is_stmt 1 view .LVU35
- 125              		.loc 1 36 16 is_stmt 0 view .LVU36
- 126 0060 0020     		movs	r0, #0
- 127 0062 FFF7FEFF 		bl	vTaskDelete
- 128              	.LVL18:
+ 104              		.loc 1 36 5 is_stmt 1 view .LVU27
+ 105              		.loc 1 36 16 is_stmt 0 view .LVU28
+ 106 0048 0020     		movs	r0, #0
+ 107 004a FFF7FEFF 		bl	vTaskDelete
+ 108              	.LVL14:
   37:My_Top/Task/Task_SystemInit.cpp **** }
- 129              		.loc 1 37 1 view .LVU37
- 130 0066 08BD     		pop	{r3, pc}
- 131              	.L4:
-ARM GAS  /tmp/cc6n5vZw.s 			page 4
+ 109              		.loc 1 37 1 view .LVU29
+ 110 004e 08BD     		pop	{r3, pc}
+ 111              	.L4:
+ 112              		.align	2
+ 113              	.L3:
+ 114 0050 00000000 		.word	hadc2
+ 115 0054 00000000 		.word	htim3
+ 116 0058 00000000 		.word	M1
+ 117 005c 00000000 		.word	M2
+ 118 0060 00000000 		.word	M3
+ 119 0064 00000000 		.word	M4
+ 120 0068 00000000 		.word	.LC0
+ 121              		.cfi_endproc
+ 122              	.LFE1367:
+ 124              	.Letext0:
+ 125              		.file 2 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
+ 126              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
+ 127              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
+ 128              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 129              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 130              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
+ 131              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
+ 132              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
+ARM GAS  /tmp/ccBzcusZ.s 			page 4
 
 
- 132              		.align	2
- 133              	.L3:
- 134 0068 00000000 		.word	hadc2
- 135 006c 00000000 		.word	htim3
- 136 0070 00000000 		.word	M1
- 137 0074 00000000 		.word	M2
- 138 0078 00000000 		.word	M3
- 139 007c 00000000 		.word	M4
- 140 0080 00000000 		.word	.LC0
- 141              		.cfi_endproc
- 142              	.LFE1367:
- 144              	.Letext0:
- 145              		.file 2 "/opt/arm-gnu-toolchain-14.2/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h"
- 146              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/machine/_default_types.h"
- 147              		.file 4 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
- 148              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
- 149              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
- 150              		.file 7 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cmath"
- 151              		.file 8 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/type_traits"
- 152              		.file 9 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/debug/debug.h"
- 153              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
- 154              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
- 155              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
- 156              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
- 157              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
- 158              		.file 15 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
- 159              		.file 16 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
- 160              		.file 17 "Lib/compute/ex_math.hpp"
- 161              		.file 18 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 162              		.file 19 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
- 163              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 164              		.file 21 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 165              		.file 22 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h"
- 166              		.file 23 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 167              		.file 24 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 168              		.file 25 "Core/Inc/tim.h"
- 169              		.file 26 "Core/Inc/adc.h"
- 170              		.file 27 "My_Top/System/bsp.hpp"
- 171              		.file 28 "My_Top/System/HAL_System.hpp"
- 172              		.file 29 "My_Top/MC/MC_Serial.hpp"
- 173              		.file 30 "Lib/compute/pid/pid.hpp"
- 174              		.file 31 "Lib/compute/pid/pid_Increment.hpp"
- 175              		.file 32 "Lib/compute/pid/pll.hpp"
- 176              		.file 33 "Lib/compute/pid/LQR.hpp"
- 177              		.file 34 "My_Top/System/kth_read.hpp"
- 178              		.file 35 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
- 179              		.file 36 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/stdlib.h"
- 180              		.file 37 "My_Top/EEPROM/Motor_Storage.hpp"
- 181              		.file 38 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdio.h"
- 182              		.file 39 "My_Top/Motor_Control/my_tim.hpp"
- 183              		.file 40 "My_Top/MC/My_Vofa.hpp"
- 184              		.file 41 "My_Top/Drone_CAN/my_uav_can.hpp"
- 185              		.file 42 "Lib/uorb/uorb.hpp"
- 186              		.file 43 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usb_device.h"
-ARM GAS  /tmp/cc6n5vZw.s 			page 5
+ 133              		.file 10 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/std_abs.h"
+ 134              		.file 11 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/cstdlib"
+ 135              		.file 12 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/bits/predefined_ops.h"
+ 136              		.file 13 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/math.h"
+ 137              		.file 14 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdlib.h"
+ 138              		.file 15 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/arm-none-eabi/thumb/v7e-m+f
+ 139              		.file 16 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/math.h"
+ 140              		.file 17 "Lib/compute/ex_math.hpp"
+ 141              		.file 18 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 142              		.file 19 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 143              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 144              		.file 21 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 145              		.file 22 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h"
+ 146              		.file 23 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 147              		.file 24 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 148              		.file 25 "Core/Inc/tim.h"
+ 149              		.file 26 "Core/Inc/adc.h"
+ 150              		.file 27 "My_Top/System/bsp.hpp"
+ 151              		.file 28 "My_Top/System/HAL_System.hpp"
+ 152              		.file 29 "My_Top/MC/MC_Serial.hpp"
+ 153              		.file 30 "Lib/compute/pid/pid.hpp"
+ 154              		.file 31 "Lib/compute/pid/pid_Increment.hpp"
+ 155              		.file 32 "Lib/compute/pid/pll.hpp"
+ 156              		.file 33 "Lib/compute/pid/LQR.hpp"
+ 157              		.file 34 "My_Top/System/kth_read.hpp"
+ 158              		.file 35 "My_Top/Motor_Control/DcMotor_ClosedLoop.hpp"
+ 159              		.file 36 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/c++/14.2.1/stdlib.h"
+ 160              		.file 37 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/stdio.h"
+ 161              		.file 38 "My_Top/Motor_Control/my_tim.hpp"
+ 162              		.file 39 "My_Top/MC/My_Vofa.hpp"
+ 163              		.file 40 "My_Top/Drone_CAN/my_uav_can.hpp"
+ 164              		.file 41 "Lib/uorb/uorb.hpp"
+ 165              		.file 42 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usb_device.h"
+ARM GAS  /tmp/ccBzcusZ.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Task_SystemInit.cpp
-     /tmp/cc6n5vZw.s:21     .rodata.str1.4:00000000 $d
-     /tmp/cc6n5vZw.s:26     .text:00000000 $t
-     /tmp/cc6n5vZw.s:32     .text:00000000 _Z15Task_SystemInitPv
-     /tmp/cc6n5vZw.s:134    .text:00000068 $d
+     /tmp/ccBzcusZ.s:21     .rodata.str1.4:00000000 $d
+     /tmp/ccBzcusZ.s:26     .text:00000000 $t
+     /tmp/ccBzcusZ.s:32     .text:00000000 _Z15Task_SystemInitPv
+     /tmp/ccBzcusZ.s:114    .text:00000050 $d
 
 UNDEFINED SYMBOLS
 MX_USB_DEVICE_Init
@@ -254,7 +233,6 @@ _ZN9MC_Serial4initEv
 _Z9Vofa_Initv
 _Z11My_Tim_InitP19__TIM_HandleTypeDefP19__ADC_HandleTypeDef
 _ZN8DC_Motor16My_DC_Motor_InitEv
-_ZN13Motor_Storage4loadEh
 uxTaskGetStackHighWaterMark
 printf_
 vTaskDelete

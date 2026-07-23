@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccsUOWlG.s 			page 1
+ARM GAS  /tmp/ccrLKlvR.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
   28:Core/Src/stm32g4xx_it.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32g4xx_it.c **** 
   30:Core/Src/stm32g4xx_it.c **** /* USER CODE END TD */
-ARM GAS  /tmp/ccsUOWlG.s 			page 2
+ARM GAS  /tmp/ccrLKlvR.s 			page 2
 
 
   31:Core/Src/stm32g4xx_it.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
   85:Core/Src/stm32g4xx_it.c **** /**
   86:Core/Src/stm32g4xx_it.c ****   * @brief This function handles Non maskable interrupt.
   87:Core/Src/stm32g4xx_it.c ****   */
-ARM GAS  /tmp/ccsUOWlG.s 			page 3
+ARM GAS  /tmp/ccrLKlvR.s 			page 3
 
 
   88:Core/Src/stm32g4xx_it.c **** void NMI_Handler(void)
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  112:Core/Src/stm32g4xx_it.c ****   }
   60              		.loc 1 112 3 view .LVU6
  108:Core/Src/stm32g4xx_it.c ****   {
-ARM GAS  /tmp/ccsUOWlG.s 			page 4
+ARM GAS  /tmp/ccrLKlvR.s 			page 4
 
 
   61              		.loc 1 108 9 view .LVU7
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  133:Core/Src/stm32g4xx_it.c **** void BusFault_Handler(void)
  134:Core/Src/stm32g4xx_it.c **** {
   98              		.loc 1 134 1 view -0
-ARM GAS  /tmp/ccsUOWlG.s 			page 5
+ARM GAS  /tmp/ccrLKlvR.s 			page 5
 
 
   99              		.cfi_startproc
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  130              		.loc 1 153 9 view .LVU19
  131 0000 FEE7     		b	.L10
  132              		.cfi_endproc
-ARM GAS  /tmp/ccsUOWlG.s 			page 6
+ARM GAS  /tmp/ccrLKlvR.s 			page 6
 
 
  133              	.LFE333:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  164              		.cfi_startproc
  165              		@ args = 0, pretend = 0, frame = 0
  166              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccsUOWlG.s 			page 7
+ARM GAS  /tmp/ccrLKlvR.s 			page 7
 
 
  167 0000 08B5     		push	{r3, lr}
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  203:Core/Src/stm32g4xx_it.c ****   /* USER CODE BEGIN DMA1_Channel2_IRQn 1 */
  204:Core/Src/stm32g4xx_it.c **** 
  205:Core/Src/stm32g4xx_it.c ****   /* USER CODE END DMA1_Channel2_IRQn 1 */
-ARM GAS  /tmp/ccsUOWlG.s 			page 8
+ARM GAS  /tmp/ccrLKlvR.s 			page 8
 
 
  206:Core/Src/stm32g4xx_it.c **** }
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  247              		.syntax unified
  248              		.thumb
  249              		.thumb_func
-ARM GAS  /tmp/ccsUOWlG.s 			page 9
+ARM GAS  /tmp/ccrLKlvR.s 			page 9
 
 
  251              	DMA1_Channel4_IRQHandler:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  287 0000 08B5     		push	{r3, lr}
  288              		.cfi_def_cfa_offset 8
  289              		.cfi_offset 3, -8
-ARM GAS  /tmp/ccsUOWlG.s 			page 10
+ARM GAS  /tmp/ccrLKlvR.s 			page 10
 
 
  290              		.cfi_offset 14, -4
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  262:Core/Src/stm32g4xx_it.c **** }
  325              		.loc 1 262 1 is_stmt 0 view .LVU39
  326 0008 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/ccsUOWlG.s 			page 11
+ARM GAS  /tmp/ccrLKlvR.s 			page 11
 
 
  327              	.L35:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  371              	USB_HP_IRQHandler:
  372              	.LFB342:
  277:Core/Src/stm32g4xx_it.c **** 
-ARM GAS  /tmp/ccsUOWlG.s 			page 12
+ARM GAS  /tmp/ccrLKlvR.s 			page 12
 
 
  278:Core/Src/stm32g4xx_it.c **** /**
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  410              		.cfi_offset 14, -4
  297:Core/Src/stm32g4xx_it.c ****   /* USER CODE BEGIN USB_LP_IRQn 0 */
  298:Core/Src/stm32g4xx_it.c **** 
-ARM GAS  /tmp/ccsUOWlG.s 			page 13
+ARM GAS  /tmp/ccrLKlvR.s 			page 13
 
 
  299:Core/Src/stm32g4xx_it.c ****   /* USER CODE END USB_LP_IRQn 0 */
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  447              	.L51:
  448 000a 00BF     		.align	2
  449              	.L50:
-ARM GAS  /tmp/ccsUOWlG.s 			page 14
+ARM GAS  /tmp/ccrLKlvR.s 			page 14
 
 
  450 000c 00000000 		.word	htim1
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  334:Core/Src/stm32g4xx_it.c **** /**
  335:Core/Src/stm32g4xx_it.c ****   * @brief This function handles I2C1 event interrupt / I2C1 wake-up interrupt through EXTI line 23
  336:Core/Src/stm32g4xx_it.c ****   */
-ARM GAS  /tmp/ccsUOWlG.s 			page 15
+ARM GAS  /tmp/ccrLKlvR.s 			page 15
 
 
  337:Core/Src/stm32g4xx_it.c **** void I2C1_EV_IRQHandler(void)
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  355:Core/Src/stm32g4xx_it.c ****   /* USER CODE END I2C1_ER_IRQn 0 */
  356:Core/Src/stm32g4xx_it.c ****   HAL_I2C_ER_IRQHandler(&hi2c1);
  531              		.loc 1 356 3 view .LVU59
-ARM GAS  /tmp/ccsUOWlG.s 			page 16
+ARM GAS  /tmp/ccrLKlvR.s 			page 16
 
 
  532 0002 0248     		ldr	r0, .L62
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  570 000c 00000000 		.word	huart1
  571              		.cfi_endproc
  572              	.LFE348:
-ARM GAS  /tmp/ccsUOWlG.s 			page 17
+ARM GAS  /tmp/ccrLKlvR.s 			page 17
 
 
  574              		.section	.text.USART2_IRQHandler,"ax",%progbits
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  393:Core/Src/stm32g4xx_it.c **** void USART3_IRQHandler(void)
  394:Core/Src/stm32g4xx_it.c **** {
  613              		.loc 1 394 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccsUOWlG.s 			page 18
+ARM GAS  /tmp/ccrLKlvR.s 			page 18
 
 
  614              		.cfi_startproc
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  652 0002 0248     		ldr	r0, .L78
  653 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  654              	.LVL16:
-ARM GAS  /tmp/ccsUOWlG.s 			page 19
+ARM GAS  /tmp/ccrLKlvR.s 			page 19
 
 
  413:Core/Src/stm32g4xx_it.c ****   /* USER CODE BEGIN TIM5_IRQn 1 */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  694              		.section	.text.TIM20_UP_IRQHandler,"ax",%progbits
  695              		.align	1
  696              		.global	TIM20_UP_IRQHandler
-ARM GAS  /tmp/ccsUOWlG.s 			page 20
+ARM GAS  /tmp/ccrLKlvR.s 			page 20
 
 
  697              		.syntax unified
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  734              		.cfi_startproc
  735              		@ args = 0, pretend = 0, frame = 0
  736              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccsUOWlG.s 			page 21
+ARM GAS  /tmp/ccrLKlvR.s 			page 21
 
 
  737 0000 08B5     		push	{r3, lr}
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  469:Core/Src/stm32g4xx_it.c ****   /* USER CODE BEGIN FDCAN2_IT1_IRQn 1 */
  470:Core/Src/stm32g4xx_it.c **** 
  471:Core/Src/stm32g4xx_it.c ****   /* USER CODE END FDCAN2_IT1_IRQn 1 */
-ARM GAS  /tmp/ccsUOWlG.s 			page 22
+ARM GAS  /tmp/ccrLKlvR.s 			page 22
 
 
  472:Core/Src/stm32g4xx_it.c **** }
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  817              		.file 3 "/opt/arm-gnu-toolchain-14.2/arm-none-eabi/include/sys/_stdint.h"
  818              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  819              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
-ARM GAS  /tmp/ccsUOWlG.s 			page 23
+ARM GAS  /tmp/ccrLKlvR.s 			page 23
 
 
  820              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
@@ -1331,92 +1331,92 @@ ARM GAS  /tmp/ccsUOWlG.s 			page 1
  827              		.file 13 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
  828              		.file 14 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
  829              		.file 15 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
-ARM GAS  /tmp/ccsUOWlG.s 			page 24
+ARM GAS  /tmp/ccrLKlvR.s 			page 24
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_it.c
-     /tmp/ccsUOWlG.s:21     .text.NMI_Handler:00000000 $t
-     /tmp/ccsUOWlG.s:27     .text.NMI_Handler:00000000 NMI_Handler
-     /tmp/ccsUOWlG.s:44     .text.HardFault_Handler:00000000 $t
-     /tmp/ccsUOWlG.s:50     .text.HardFault_Handler:00000000 HardFault_Handler
-     /tmp/ccsUOWlG.s:67     .text.MemManage_Handler:00000000 $t
-     /tmp/ccsUOWlG.s:73     .text.MemManage_Handler:00000000 MemManage_Handler
-     /tmp/ccsUOWlG.s:90     .text.BusFault_Handler:00000000 $t
-     /tmp/ccsUOWlG.s:96     .text.BusFault_Handler:00000000 BusFault_Handler
-     /tmp/ccsUOWlG.s:113    .text.UsageFault_Handler:00000000 $t
-     /tmp/ccsUOWlG.s:119    .text.UsageFault_Handler:00000000 UsageFault_Handler
-     /tmp/ccsUOWlG.s:136    .text.DebugMon_Handler:00000000 $t
-     /tmp/ccsUOWlG.s:142    .text.DebugMon_Handler:00000000 DebugMon_Handler
-     /tmp/ccsUOWlG.s:155    .text.DMA1_Channel1_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:161    .text.DMA1_Channel1_IRQHandler:00000000 DMA1_Channel1_IRQHandler
-     /tmp/ccsUOWlG.s:180    .text.DMA1_Channel1_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:185    .text.DMA1_Channel2_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:191    .text.DMA1_Channel2_IRQHandler:00000000 DMA1_Channel2_IRQHandler
-     /tmp/ccsUOWlG.s:210    .text.DMA1_Channel2_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:215    .text.DMA1_Channel3_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:221    .text.DMA1_Channel3_IRQHandler:00000000 DMA1_Channel3_IRQHandler
-     /tmp/ccsUOWlG.s:240    .text.DMA1_Channel3_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:245    .text.DMA1_Channel4_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:251    .text.DMA1_Channel4_IRQHandler:00000000 DMA1_Channel4_IRQHandler
-     /tmp/ccsUOWlG.s:270    .text.DMA1_Channel4_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:275    .text.DMA1_Channel5_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:281    .text.DMA1_Channel5_IRQHandler:00000000 DMA1_Channel5_IRQHandler
-     /tmp/ccsUOWlG.s:300    .text.DMA1_Channel5_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:305    .text.DMA1_Channel6_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:311    .text.DMA1_Channel6_IRQHandler:00000000 DMA1_Channel6_IRQHandler
-     /tmp/ccsUOWlG.s:330    .text.DMA1_Channel6_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:335    .text.DMA1_Channel7_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:341    .text.DMA1_Channel7_IRQHandler:00000000 DMA1_Channel7_IRQHandler
-     /tmp/ccsUOWlG.s:360    .text.DMA1_Channel7_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:365    .text.USB_HP_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:371    .text.USB_HP_IRQHandler:00000000 USB_HP_IRQHandler
-     /tmp/ccsUOWlG.s:390    .text.USB_HP_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:395    .text.USB_LP_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:401    .text.USB_LP_IRQHandler:00000000 USB_LP_IRQHandler
-     /tmp/ccsUOWlG.s:420    .text.USB_LP_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:425    .text.TIM1_BRK_TIM15_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:431    .text.TIM1_BRK_TIM15_IRQHandler:00000000 TIM1_BRK_TIM15_IRQHandler
-     /tmp/ccsUOWlG.s:450    .text.TIM1_BRK_TIM15_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:455    .text.TIM3_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:461    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
-     /tmp/ccsUOWlG.s:480    .text.TIM3_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:485    .text.I2C1_EV_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:491    .text.I2C1_EV_IRQHandler:00000000 I2C1_EV_IRQHandler
-     /tmp/ccsUOWlG.s:510    .text.I2C1_EV_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:515    .text.I2C1_ER_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:521    .text.I2C1_ER_IRQHandler:00000000 I2C1_ER_IRQHandler
-     /tmp/ccsUOWlG.s:540    .text.I2C1_ER_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:545    .text.USART1_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:551    .text.USART1_IRQHandler:00000000 USART1_IRQHandler
-     /tmp/ccsUOWlG.s:570    .text.USART1_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:575    .text.USART2_IRQHandler:00000000 $t
-ARM GAS  /tmp/ccsUOWlG.s 			page 25
+     /tmp/ccrLKlvR.s:21     .text.NMI_Handler:00000000 $t
+     /tmp/ccrLKlvR.s:27     .text.NMI_Handler:00000000 NMI_Handler
+     /tmp/ccrLKlvR.s:44     .text.HardFault_Handler:00000000 $t
+     /tmp/ccrLKlvR.s:50     .text.HardFault_Handler:00000000 HardFault_Handler
+     /tmp/ccrLKlvR.s:67     .text.MemManage_Handler:00000000 $t
+     /tmp/ccrLKlvR.s:73     .text.MemManage_Handler:00000000 MemManage_Handler
+     /tmp/ccrLKlvR.s:90     .text.BusFault_Handler:00000000 $t
+     /tmp/ccrLKlvR.s:96     .text.BusFault_Handler:00000000 BusFault_Handler
+     /tmp/ccrLKlvR.s:113    .text.UsageFault_Handler:00000000 $t
+     /tmp/ccrLKlvR.s:119    .text.UsageFault_Handler:00000000 UsageFault_Handler
+     /tmp/ccrLKlvR.s:136    .text.DebugMon_Handler:00000000 $t
+     /tmp/ccrLKlvR.s:142    .text.DebugMon_Handler:00000000 DebugMon_Handler
+     /tmp/ccrLKlvR.s:155    .text.DMA1_Channel1_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:161    .text.DMA1_Channel1_IRQHandler:00000000 DMA1_Channel1_IRQHandler
+     /tmp/ccrLKlvR.s:180    .text.DMA1_Channel1_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:185    .text.DMA1_Channel2_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:191    .text.DMA1_Channel2_IRQHandler:00000000 DMA1_Channel2_IRQHandler
+     /tmp/ccrLKlvR.s:210    .text.DMA1_Channel2_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:215    .text.DMA1_Channel3_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:221    .text.DMA1_Channel3_IRQHandler:00000000 DMA1_Channel3_IRQHandler
+     /tmp/ccrLKlvR.s:240    .text.DMA1_Channel3_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:245    .text.DMA1_Channel4_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:251    .text.DMA1_Channel4_IRQHandler:00000000 DMA1_Channel4_IRQHandler
+     /tmp/ccrLKlvR.s:270    .text.DMA1_Channel4_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:275    .text.DMA1_Channel5_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:281    .text.DMA1_Channel5_IRQHandler:00000000 DMA1_Channel5_IRQHandler
+     /tmp/ccrLKlvR.s:300    .text.DMA1_Channel5_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:305    .text.DMA1_Channel6_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:311    .text.DMA1_Channel6_IRQHandler:00000000 DMA1_Channel6_IRQHandler
+     /tmp/ccrLKlvR.s:330    .text.DMA1_Channel6_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:335    .text.DMA1_Channel7_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:341    .text.DMA1_Channel7_IRQHandler:00000000 DMA1_Channel7_IRQHandler
+     /tmp/ccrLKlvR.s:360    .text.DMA1_Channel7_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:365    .text.USB_HP_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:371    .text.USB_HP_IRQHandler:00000000 USB_HP_IRQHandler
+     /tmp/ccrLKlvR.s:390    .text.USB_HP_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:395    .text.USB_LP_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:401    .text.USB_LP_IRQHandler:00000000 USB_LP_IRQHandler
+     /tmp/ccrLKlvR.s:420    .text.USB_LP_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:425    .text.TIM1_BRK_TIM15_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:431    .text.TIM1_BRK_TIM15_IRQHandler:00000000 TIM1_BRK_TIM15_IRQHandler
+     /tmp/ccrLKlvR.s:450    .text.TIM1_BRK_TIM15_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:455    .text.TIM3_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:461    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
+     /tmp/ccrLKlvR.s:480    .text.TIM3_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:485    .text.I2C1_EV_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:491    .text.I2C1_EV_IRQHandler:00000000 I2C1_EV_IRQHandler
+     /tmp/ccrLKlvR.s:510    .text.I2C1_EV_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:515    .text.I2C1_ER_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:521    .text.I2C1_ER_IRQHandler:00000000 I2C1_ER_IRQHandler
+     /tmp/ccrLKlvR.s:540    .text.I2C1_ER_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:545    .text.USART1_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:551    .text.USART1_IRQHandler:00000000 USART1_IRQHandler
+     /tmp/ccrLKlvR.s:570    .text.USART1_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:575    .text.USART2_IRQHandler:00000000 $t
+ARM GAS  /tmp/ccrLKlvR.s 			page 25
 
 
-     /tmp/ccsUOWlG.s:581    .text.USART2_IRQHandler:00000000 USART2_IRQHandler
-     /tmp/ccsUOWlG.s:600    .text.USART2_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:605    .text.USART3_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:611    .text.USART3_IRQHandler:00000000 USART3_IRQHandler
-     /tmp/ccsUOWlG.s:630    .text.USART3_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:635    .text.TIM5_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:641    .text.TIM5_IRQHandler:00000000 TIM5_IRQHandler
-     /tmp/ccsUOWlG.s:660    .text.TIM5_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:665    .text.SPI3_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:671    .text.SPI3_IRQHandler:00000000 SPI3_IRQHandler
-     /tmp/ccsUOWlG.s:690    .text.SPI3_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:695    .text.TIM20_UP_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:701    .text.TIM20_UP_IRQHandler:00000000 TIM20_UP_IRQHandler
-     /tmp/ccsUOWlG.s:720    .text.TIM20_UP_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:725    .text.FDCAN2_IT0_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:731    .text.FDCAN2_IT0_IRQHandler:00000000 FDCAN2_IT0_IRQHandler
-     /tmp/ccsUOWlG.s:750    .text.FDCAN2_IT0_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:755    .text.FDCAN2_IT1_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:761    .text.FDCAN2_IT1_IRQHandler:00000000 FDCAN2_IT1_IRQHandler
-     /tmp/ccsUOWlG.s:780    .text.FDCAN2_IT1_IRQHandler:0000000c $d
-     /tmp/ccsUOWlG.s:785    .text.CORDIC_IRQHandler:00000000 $t
-     /tmp/ccsUOWlG.s:791    .text.CORDIC_IRQHandler:00000000 CORDIC_IRQHandler
-     /tmp/ccsUOWlG.s:810    .text.CORDIC_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:581    .text.USART2_IRQHandler:00000000 USART2_IRQHandler
+     /tmp/ccrLKlvR.s:600    .text.USART2_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:605    .text.USART3_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:611    .text.USART3_IRQHandler:00000000 USART3_IRQHandler
+     /tmp/ccrLKlvR.s:630    .text.USART3_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:635    .text.TIM5_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:641    .text.TIM5_IRQHandler:00000000 TIM5_IRQHandler
+     /tmp/ccrLKlvR.s:660    .text.TIM5_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:665    .text.SPI3_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:671    .text.SPI3_IRQHandler:00000000 SPI3_IRQHandler
+     /tmp/ccrLKlvR.s:690    .text.SPI3_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:695    .text.TIM20_UP_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:701    .text.TIM20_UP_IRQHandler:00000000 TIM20_UP_IRQHandler
+     /tmp/ccrLKlvR.s:720    .text.TIM20_UP_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:725    .text.FDCAN2_IT0_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:731    .text.FDCAN2_IT0_IRQHandler:00000000 FDCAN2_IT0_IRQHandler
+     /tmp/ccrLKlvR.s:750    .text.FDCAN2_IT0_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:755    .text.FDCAN2_IT1_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:761    .text.FDCAN2_IT1_IRQHandler:00000000 FDCAN2_IT1_IRQHandler
+     /tmp/ccrLKlvR.s:780    .text.FDCAN2_IT1_IRQHandler:0000000c $d
+     /tmp/ccrLKlvR.s:785    .text.CORDIC_IRQHandler:00000000 $t
+     /tmp/ccrLKlvR.s:791    .text.CORDIC_IRQHandler:00000000 CORDIC_IRQHandler
+     /tmp/ccrLKlvR.s:810    .text.CORDIC_IRQHandler:0000000c $d
 
 UNDEFINED SYMBOLS
 HAL_DMA_IRQHandler
